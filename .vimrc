@@ -1,4 +1,4 @@
-" Modified by Artyom Danilov on December 27th, 2019.
+" Modified by Artyom Danilov on December 30, 2019.
 
 "		   COLOR SCHEME
 
@@ -6,11 +6,10 @@
 set t_Co=256
 set background=dark
 
-"		     WHITESPACE
+"		     WHITE SPACE
 
 " Automatically wrap text that extends beyond the screen length
 set wrap
-
 set textwidth=80
 
 "		      OTHER
@@ -18,10 +17,20 @@ set textwidth=80
 " Encoding
 set encoding=utf-8
 
+" Backup
 set backup
 set backupdir=~/.vimbackup
 
+" Enable mouse for scrolling and resizing.
+set mouse=a
+
+" Increase the undo limit
+set history=1000
+
 "		   HIGHLIGHTING
+
+" Enable spellchecking
+" set spell
 
 " Turn on syntax highlighting
 syntax enable
@@ -32,12 +41,14 @@ set number
 " Highlight current line
 set cursorline
 
-" Highlighti matchin [{()}]
+" Highlight matching [{()}]
 set showmatch
+
+set list lcs=tab:>-
 
 " 		CUSTOM KEY BINDINGS
 
-" Move to beggining/end of line
+" Move to beginning/end of line
 nnoremap B ^
 nnoremap E $
 
@@ -63,19 +74,13 @@ command EditTmux :edit ~/.tmux.conf
 
 "		    INDENTATION
 
-" Load filetype-specific indent files
-filetype indent on
+" Load file type-specific indent files
+filetype indent plugin on
 
-autocmd Filetype py setlocal tabstop=4
+" Tab's size for different files
 autocmd Filetype c  setlocal tabstop=8
-autocmd FIletype asm setlocal tabstop=4
-autocmd FIletype s setlocal tabstop=4
+autocmd Filetype cpp setlocal tabstop=8
 
-" Tabs are spaces
-"set expandtab
+autocmd Filetype asm setlocal tabstop=4
+autocmd Filetype s setlocal tabstop=4
 
-" Number of visual spaces per TAB
-" set tabstop=4
-
-" Number of spaces in tab when editing
-" set softtabstop=4
