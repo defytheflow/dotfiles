@@ -117,7 +117,11 @@ if ! shopt -oq posix; then
 fi
 
 # MODIFIED BY Artyom Danilov.
-# Last modification date: December 29 2019.
+# Last modification date: January 2 2020.
+
+# Global variables
+
+export BASH_LIB=~/.bash_lib;
 
 # An alias for python3
 alias py=python3
