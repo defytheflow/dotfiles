@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -116,50 +116,31 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# MODIFIED BY Artyom Danilov.
-# Last modification date: January 2 2020.
+# ------------------------------------------------------------------------
 
-# Global variables
+# By Artyom Danilov.
+# Last modification date: January 7, 2020.
 
-export BASH_LIB=~/.bash_lib;
-
-# An alias for python3
-alias py=python3
-
-# So that python3 is always launched
-alias python=python3
-
-# An alias for clear command
-alias cls=clear; alias cl=clear; alias clr=clear;
-
-# An alias for ls command
-alias dir=ls
-
-# An alias for lolcat command
-alias cat=lolcat;
-
-# An alias for GNU Assembler
-alias gas=as;
+# Variables
+export GITHUB="https://github.com/defytheflow";
 
 # For C/C++ Programs
-PATH=$PATH:/home/defytheflow/.Bin/;export PATH;
+PATH=$PATH:/home/defytheflow/.Bin/; export PATH;
 
-# For configuretion bash scripts
-PATH=$PATH:/home/defytheflow/Dev/Config/;export PATH;
+# For configuration bash scripts
+PATH=$PATH:/home/defytheflow/Dev/Config/; export PATH;
 
 # For Python Scripts
-PATH=$PATH:/home/defytheflow/Dev/Scripts/Python;export PATH;
+PATH=$PATH:/home/defytheflow/Dev/Scripts/Python; export PATH;
 
 # For Bash Scripts
-PATH=$PATH:/home/defytheflow/Dev/Scripts/Bash;export PATH;
+PATH=$PATH:/home/defytheflow/Dev/Scripts/Bash; export PATH;
 
-PATH=$PATH:/snap/bin;export PATH;  # for the ponysay.
-
-# An Alias for my Github account.
-mygithub="https://github.com/defytheflow";
+# For the ponysay
+PATH=$PATH:/snap/bin; export PATH;
 
 # My C/C++ libraries
-CPATH=/home/defytheflow/Dev/Lib/;export CPATH;
+CPATH=/home/defytheflow/Dev/Lib/; export CPATH;
 
 # My Python Libraries
 export PYTHONPATH="/home/defytheflow/Dev/Lib";

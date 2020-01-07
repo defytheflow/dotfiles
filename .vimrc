@@ -44,7 +44,7 @@ set cursorline
 " Highlight matching [{()}]
 set showmatch
 
-set list lcs=tab:>-
+" set list lcs=tab:>_ 
 
 " 		CUSTOM KEY BINDINGS
 
@@ -69,7 +69,9 @@ vnoremap <Down>  :echo "Type 'j', fool!"  <CR>
 "		CUSTOM COMMANDS
 
 command EditVim  :edit ~/.vimrc
-command EditBash :edit ~/.bashrc
+command EditBashRc :edit ~/.bashrc
+command EditBashLib :edit ~/.bash_lib
+command EditBashAlias :edit ~/.bash_aliases
 command EditTmux :edit ~/.tmux.conf
 
 "		    INDENTATION
@@ -84,3 +86,6 @@ autocmd Filetype cpp setlocal tabstop=8
 autocmd Filetype asm setlocal tabstop=4
 autocmd Filetype s setlocal tabstop=4
 
+autocmd FileType sh setlocal tabstop=4
+
+autocmd FileType txt setlocal tabstop=4
