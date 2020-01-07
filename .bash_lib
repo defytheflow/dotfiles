@@ -32,8 +32,8 @@ warning() {
 }
 
 # Prompts user if to proceed or not.
-proceed() {
-	echo -n "Proceed? [y/n]: "
+ask() {
+	echo -n "$1? [y/n]: "
 	read ANS
 	if [[ ! "$ANS" =~ ^[yY][eE]?[sS]?$ ]]; then
 		exit 0
