@@ -14,7 +14,7 @@ alias clr=clear;
 alias dir=ls;
 
 # For lolcat command
-alias cat=lolcat;
+alias lcat=lolcat;
 
 # For cp
 alias copy=cp;
