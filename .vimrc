@@ -1,18 +1,21 @@
-" Modified by Artyom Danilov on December 30, 2019.
+" Modified by Artyom Danilov on Januuary 9, 2020.
 
-"		   COLOR SCHEME
+"                       COLORS
 
 " For compatibility with tmux colors
 set t_Co=256
 set background=dark
 
-"		     WHITE SPACE
+" Color Scheme
+colorscheme koehler
+
+"                    WHITE SPACE
 
 " Automatically wrap text that extends beyond the screen length
 set wrap
 set textwidth=80
 
-"		      OTHER
+"                       OTHER
 
 " Encoding
 set encoding=utf-8
@@ -27,10 +30,7 @@ set mouse=a
 " Increase the undo limit
 set history=1000
 
-"		   HIGHLIGHTING
-
-" Enable spellchecking
-" set spell
+"                      HIGHLIGHTING
 
 " Turn on syntax highlighting
 syntax enable
@@ -44,15 +44,24 @@ set cursorline
 " Highlight matching [{()}]
 set showmatch
 
-" set list lcs=tab:>_ 
+" Display these special characters
+set listchars=tab:>·,trail:~
+set list
 
-" 		CUSTOM KEY BINDINGS
+" Highlight the X column
+set colorcolumn=81
+
+" Press F7 to activate spell checking, F8 to turn it off.
+map <F7> <Esc>:setlocal spell spelllang=en_us<CR>
+map <F8> <Esc>:setlocal nospell<CR>
+
+"             CUSTOM KEY BINDINGS
 
 " Move to beginning/end of line
 nnoremap B ^
 nnoremap E $
 
-"		DISABLED KEYS
+"                DISABLED KEYS
 
 " Remove arrows in Normal Mode
 nnoremap <Left>  :echo "Type 'h', moron!" <CR>
@@ -66,7 +75,7 @@ vnoremap <Right> :echo "Type 'l', prat!"  <CR>
 vnoremap <Up>    :echo "Type 'k', git!"   <CR>
 vnoremap <Down>  :echo "Type 'j', fool!"  <CR>
 
-"		CUSTOM COMMANDS
+"               CUSTOM COMMANDS
 
 command EditVim  :edit ~/.vimrc
 command EditBashRc :edit ~/.bashrc
@@ -74,7 +83,14 @@ command EditBashLib :edit ~/.bash_lib
 command EditBashAlias :edit ~/.bash_aliases
 command EditTmux :edit ~/.tmux.conf
 
-"		    INDENTATION
+"                 INDENTATION
+
+" Supposed to do something good
+set autoindent
+set smartindent
+
+" Some indentation for C programs
+set cindent
 
 " Load file type-specific indent files
 filetype indent plugin on
