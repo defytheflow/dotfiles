@@ -17,6 +17,9 @@ set textwidth=80
 
 "                       OTHER
 
+" To enable all vim features
+set nocompatible
+
 " Encoding
 set encoding=utf-8
 
@@ -45,8 +48,8 @@ set cursorline
 set showmatch
 
 " Display these special characters
-set listchars=tab:>·,trail:~
-set list
+" set listchars=tab:>·,trail:~
+set listchars=trail:~
 
 " Highlight the X column
 set colorcolumn=81
@@ -61,13 +64,29 @@ map <F8> <Esc>:setlocal nospell<CR>
 nnoremap B ^
 nnoremap E $
 
-"                DISABLED KEYS
+" Move ctrl + hjkl in Insert Mode
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
+" Move ctrl + hjkl in Command Mode
+cnoremap <C-h> <Left>
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-l> <Right>
 
 " Remove arrows in Normal Mode
 nnoremap <Left>  :echo "Type 'h', moron!" <CR>
 nnoremap <Right> :echo "Type 'l', prat!"  <CR>
 nnoremap <Up>    :echo "Type 'k', git!"   <CR>
 nnoremap <Down>  :echo "Type 'j', fool!"  <CR>
+
+" Remove arrow keys in Insert Mode
+inoremap <Left>  <Esc>
+inoremap <Right> <Esc>
+inoremap <Up>    <Esc>
+inoremap <Down>  <Esc>
 
 " Remove arrows in Visual Mode
 vnoremap <Left>  :echo "Type 'h', moron!" <CR>
