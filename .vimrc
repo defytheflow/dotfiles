@@ -1,4 +1,4 @@
-" Modified by Artyom Danilov on Januuary 9, 2020.
+" Modified by Artyom Danilov on January 24, 2020.
 
 "                       COLORS
 
@@ -60,22 +60,6 @@ map <F8> <Esc>:setlocal nospell<CR>
 
 "             CUSTOM KEY BINDINGS
 
-" Move to beginning/end of line
-nnoremap B ^
-nnoremap E $
-
-" Move ctrl + hjkl in Insert Mode
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
-
-" Move ctrl + hjkl in Command Mode
-cnoremap <C-h> <Left>
-cnoremap <C-j> <Down>
-cnoremap <C-k> <Up>
-cnoremap <C-l> <Right>
-
 " Remove arrows in Normal Mode
 nnoremap <Left>  :echo "Type 'h', moron!" <CR>
 nnoremap <Right> :echo "Type 'l', prat!"  <CR>
@@ -83,10 +67,10 @@ nnoremap <Up>    :echo "Type 'k', git!"   <CR>
 nnoremap <Down>  :echo "Type 'j', fool!"  <CR>
 
 " Remove arrow keys in Insert Mode
-inoremap <Left>  <Esc>
-inoremap <Right> <Esc>
-inoremap <Up>    <Esc>
-inoremap <Down>  <Esc>
+" inoremap <Left>  <Esc>
+" inoremap <Right> <Esc>
+" inoremap <Up>    <Esc>
+" inoremap <Down>  <Esc>
 
 " Remove arrows in Visual Mode
 vnoremap <Left>  :echo "Type 'h', moron!" <CR>
@@ -124,3 +108,5 @@ autocmd Filetype s setlocal tabstop=4
 autocmd FileType sh setlocal tabstop=4
 
 autocmd FileType txt setlocal tabstop=4
+
+autocmd FileType html setlocal tabstop=2
