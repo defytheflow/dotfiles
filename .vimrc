@@ -25,7 +25,7 @@ set encoding=utf-8
 
 " Backup
 set backup
-set backupdir=~/.vimbackup
+set backupdir=~/.backup/vim
 
 " Enable mouse for scrolling and resizing.
 set mouse=a
