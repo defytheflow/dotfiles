@@ -5,6 +5,9 @@
 alias py=python3;
 alias python=python3;
 
+# For pip
+# alias pip=pip3;
+
 # For clear command
 alias cls=clear;
 alias cl=clear;
@@ -25,3 +28,6 @@ alias move=mv;
 # For rm
 alias remove=rm;
 alias delete=rm;
+
+# For google-chrome
+alias chrome=google-chrome;
