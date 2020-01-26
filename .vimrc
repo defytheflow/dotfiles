@@ -1,4 +1,60 @@
-" Modified by Artyom Danilov on January 24, 2020.
+" Modified by Artyom Danilov on January 26, 2020.
+
+" 1. INDENTATION (!)
+"
+" - Each tab is expanded into spaces, amount of spaces depends on the FileType. 
+"   Default is 4.
+"
+
+" In Insert mode uses the approptiate number of spaces to insert a <Tab>. 
+set expandtab
+
+" Number of spaces that a <Tab> counts for while performing editing
+" operations.
+set softtabstop=4
+
+" Does smart autoindenting when starting a new-line. Looks at the current line
+" for braces and previous indentation level.
+set smartindent
+
+" Controls how many columns text is indented with the reindent operations
+" (<< and >>) and automatic C-style indentation.
+set shiftwidth=4
+
+" Indentation for C/C++ source
+autocmd Filetype    c setlocal shiftwidth=8 softtabstop=8
+autocmd Filetype  cpp setlocal shiftwidth=4 softtabstop=4
+
+" Indentation for Assembly source
+autocmd Filetype  asm setlocal shiftwidth=4 softtabstop=4
+autocmd Filetype    s setlocal shiftwidth=4 softtabstop=4
+
+" Indentation for HTML source
+autocmd FileType html setlocal shiftwidth=2 softtabstop=2
+
+" 2. HIGHLIGHTING (!)
+"
+" - Syntax, Line numbers, Cursor line, Matching brackets, 
+"
+"
+
+" Switches on syntax highlighting.
+syntax enable
+
+" Precedes each line with its line number.
+set number
+
+" Highlights the current line of the cursor.
+set cursorline
+
+" When a bracket is inserted, briefly jumps to the matching one.
+set showmatch
+
+" A list of string settings.
+set list listchars=tab:>-,trail:-
+
+" Highlight the X column
+set colorcolumn=81
 
 "                       COLORS
 
@@ -33,27 +89,6 @@ set mouse=a
 " Increase the undo limit
 set history=1000
 
-"                      HIGHLIGHTING
-
-" Turn on syntax highlighting
-syntax enable
-
-" Show line numbers
-set number
-
-" Highlight current line
-set cursorline
-
-" Highlight matching [{()}]
-set showmatch
-
-" Display these special characters
-" set listchars=tab:>·,trail:~
-set listchars=trail:~
-
-" Highlight the X column
-set colorcolumn=81
-
 " Press F7 to activate spell checking, F8 to turn it off.
 map <F7> <Esc>:setlocal spell spelllang=en_us<CR>
 map <F8> <Esc>:setlocal nospell<CR>
@@ -86,27 +121,3 @@ command EditBashLib :edit ~/.bash_lib
 command EditBashAlias :edit ~/.bash_aliases
 command EditTmux :edit ~/.tmux.conf
 
-"                 INDENTATION
-
-" Supposed to do something good
-set autoindent
-set smartindent
-
-" Some indentation for C programs
-set cindent
-
-" Load file type-specific indent files
-filetype indent plugin on
-
-" Tab's size for different files
-autocmd Filetype c  setlocal tabstop=8
-autocmd Filetype cpp setlocal tabstop=8
-
-autocmd Filetype asm setlocal tabstop=4
-autocmd Filetype s setlocal tabstop=4
-
-autocmd FileType sh setlocal tabstop=4
-
-autocmd FileType txt setlocal tabstop=4
-
-autocmd FileType html setlocal tabstop=2
