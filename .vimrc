@@ -1,12 +1,13 @@
-" Modified by Artyom Danilov on January 26, 2020.
+" Author: Artyom Danilov
+" Last Modification: January 27, 2020.
 
 " 1. INDENTATION (!)
 "
-" - Each tab is expanded into spaces, amount of spaces depends on the FileType. 
+" - Each tab is expanded into spaces, amount of spaces depends on the FileType.
 "   Default is 4.
 "
 
-" In Insert mode uses the approptiate number of spaces to insert a <Tab>. 
+" In Insert mode uses the approptiate number of spaces to insert a <Tab>.
 set expandtab
 
 " Number of spaces that a <Tab> counts for while performing editing
@@ -21,8 +22,16 @@ set smartindent
 " (<< and >>) and automatic C-style indentation.
 set shiftwidth=4
 
+" Lines longer than the width of the window wrap and displaying continues
+" on the next line.
+set wrap
+
+" Maximum width of the text that is being inserted.
+set textwidth=80
+set formatoptions+=t
+
 " Indentation for C/C++ source
-autocmd Filetype    c setlocal shiftwidth=8 softtabstop=8
+autocmd Filetype    c setlocal shiftwidth=8 softtabstop=8 textwidth=80
 autocmd Filetype  cpp setlocal shiftwidth=4 softtabstop=4
 
 " Indentation for Assembly source
@@ -34,9 +43,18 @@ autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 
 " 2. HIGHLIGHTING (!)
 "
-" - Syntax, Line numbers, Cursor line, Matching brackets, 
+" - Syntax, Line numbers, Matching brackets, Tabs, Trailing spaces,
+"   81st column.
 "
-"
+
+" Compatibility with tmux colors
+set t_Co=256
+set background=dark
+
+" Colorschemes
+colorscheme koehler
+"colorscheme murphy
+"colorscheme zellner
 
 " Switches on syntax highlighting.
 syntax enable
@@ -44,56 +62,25 @@ syntax enable
 " Precedes each line with its line number.
 set number
 
-" Highlights the current line of the cursor.
-set cursorline
-
 " When a bracket is inserted, briefly jumps to the matching one.
 set showmatch
 
-" A list of string settings.
+" A list of characters to show instead of tabs and trailing spaces.
 set list listchars=tab:>-,trail:-
 
-" Highlight the X column
+" Highlight the 81st column with magenta
 set colorcolumn=81
+highlight ColorColumn ctermbg=5
 
-"                       COLORS
+" 3. BACKUP (!)
 
-" For compatibility with tmux colors
-set t_Co=256
-set background=dark
-
-" Color Scheme
-colorscheme koehler
-
-"                    WHITE SPACE
-
-" Automatically wrap text that extends beyond the screen length
-set wrap
-set textwidth=80
-
-"                       OTHER
-
-" To enable all vim features
-set nocompatible
-
-" Encoding
-set encoding=utf-8
-
-" Backup
 set backup
+if !isdirectory($HOME . "/.backup/vim")
+    call mkdir($HOME . "/.backup/vim", "p", 0700)
+endif
 set backupdir=~/.backup/vim
 
-" Enable mouse for scrolling and resizing.
-set mouse=a
-
-" Increase the undo limit
-set history=1000
-
-" Press F7 to activate spell checking, F8 to turn it off.
-map <F7> <Esc>:setlocal spell spelllang=en_us<CR>
-map <F8> <Esc>:setlocal nospell<CR>
-
-"             CUSTOM KEY BINDINGS
+" 4. KEY BINDINGS (!)
 
 " Remove arrows in Normal Mode
 nnoremap <Left>  :echo "Type 'h', moron!" <CR>
@@ -113,11 +100,29 @@ vnoremap <Right> :echo "Type 'l', prat!"  <CR>
 vnoremap <Up>    :echo "Type 'k', git!"   <CR>
 vnoremap <Down>  :echo "Type 'j', fool!"  <CR>
 
-"               CUSTOM COMMANDS
+" Press F7 to activate spell checking, F8 to turn it off.
+map <F7> <Esc>:setlocal spell spelllang=en_us<CR>
+map <F8> <Esc>:setlocal nospell<CR>
 
-command EditVim  :edit ~/.vimrc
-command EditBashRc :edit ~/.bashrc
-command EditBashLib :edit ~/.bash_lib
-command EditBashAlias :edit ~/.bash_aliases
-command EditTmux :edit ~/.tmux.conf
+" 5. CUSTOM COMMANDS (!)
 
+command EditVim          :edit ~/.vimrc
+command EditTmux         :edit ~/.tmux.conf
+command EditBashRc       :edit ~/.bashrc
+command EditBashLib      :edit ~/.bash_lib
+command EditBashAlias    :edit ~/.bash_aliases
+command EditBashFunction :edit ~/.bash_functions
+
+" 6. OTHER (!)
+
+" To enable all vim features
+set nocompatible
+
+" Encoding
+set encoding=utf-8
+
+" Enable mouse for scrolling and resizing.
+set mouse=a
+
+" Increase the undo limit
+set history=1000
