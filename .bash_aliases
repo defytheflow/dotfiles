@@ -1,7 +1,7 @@
 # Author: Artyom Danilov
 # Last modification date: January 27, 2020.
 
-# 1. MOVEMENT (!)
+# CD (!)
 
 # Typing mistakes
 alias cd..="cd .."
@@ -17,21 +17,28 @@ alias .3="cd ../../../"
 alias .4="cd ../../../../"
 alias .5="cd ../../../../../"
 
-# 2. LS (!)
-alias ls="ls --color=never"
-alias dir=ls
+# LS (!)
+alias ls="ls -h -F --color=never --group-directories-first"
+alias ll="ls -l"
+alias la="ls -A"
+alias lr="ls -R"
 
-# 3. CLEAR (!)
+# CLEAR (!)
 alias c=clear
 alias cl=clear
 alias clr=clear
 alias cls=clear
 
-# 4. VIM (!)
+# CAT (!)
+alias ncat="cat -n"
+alias tcat="cat -t"
+alias lcat=lolcat
+
+# VIM (!)
 alias vi=vim
 alias edit=vim
 
-# 5. FILE MANIPULATION (!)
+# FILE MANIPULATION (!)
 
 # Protection
 alias rm="rm -I --preserve-root"
@@ -39,6 +46,7 @@ alias mv="mv -i"
 alias cp="cp -i"
 
 alias mkdir="mkdir -p"
+alias rmdir="rmdir -p"
 
 # Explicitness
 alias copy=cp
@@ -46,34 +54,35 @@ alias move=mv
 alias remove=rm
 alias delete=rm
 
-# 6. POWER OFF
+# POWER OFF (!)
 alias reboot="sudo reboot"
 alias shutdown="sudo shutdown"
 
-# 7. BROWSER
+# BROWSER (!)
 alias chrome=google-chrome
 alias browser=chrome
 
-# 8. OTHER COMMANDS (!)
+# OTHER (!)
 
 # Intuitive
 alias now=date
 alias cpuinfo=lscpu
 alias count="ls -1 | wc -l" # Count number of files in directory
 
-# Shorthand
+# Shorthands
+alias su=sudo
 alias h=history
+alias f=file
 alias gh="history | grep" # Find a command in the history
 
-# 9. INSTALLED PROGRAMS (!)
+# INSTALLED PROGRAMS (!)
 
 # Right versions
 alias pip=pip3
 alias python=python3
 
-# Shorthand
+# Shorthands
 alias py=python3
-alias lcat=lolcat
 
 # 10. GIT (!)
 alias git-stat="git status"
