@@ -8,7 +8,7 @@ from sys import getsizeof as sizeof
 from dis import dis as disassemble
 dis = disassemble
 
-from inspect import signature
+from inspect import signature, ismodule, isclass, isfunction, isbuiltin
 
 def refcount(object_):
     """
