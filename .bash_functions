@@ -49,13 +49,13 @@ export -f isuint
 
 # To get number of files in directory
 function filenum() {
-    echo $(ls -1 $1 | wc -l)
+    echo $(ls -A -1 $1 | wc -l)
 }
 export -f filenum
 
 # To check if a directory is empty
 function isempty() {
-    if [[ $(ls -1 $1 | wc -l) -eq 0 ]]; then
+    if [[ $(ls -A -1 $1 | wc -l) -eq 0 ]]; then
         return 0
     else
         return 1
