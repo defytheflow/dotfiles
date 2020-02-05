@@ -31,7 +31,7 @@ set textwidth=80
 set formatoptions+=t
 
 " Indentation for C/C++ source
-autocmd Filetype    c setlocal shiftwidth=8 softtabstop=8 textwidth=80
+autocmd Filetype    c setlocal shiftwidth=8 softtabstop=8
 autocmd Filetype  cpp setlocal shiftwidth=4 softtabstop=4
 
 " Indentation for Assembly source
@@ -60,7 +60,7 @@ colorscheme koehler
 syntax enable
 
 " Precedes each line with its line number.
-set number
+set number relativenumber
 
 " When a bracket is inserted, briefly jumps to the matching one.
 set showmatch
@@ -72,7 +72,18 @@ set list listchars=tab:>-,trail:-
 set colorcolumn=81
 highlight ColorColumn ctermbg=5
 
-" 3. BACKUP (!)
+" 3. SPLIT (!)
+
+" Overrides vim default splitting settings
+set splitbelow splitright
+
+" Shortcuts for split navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" 4. BACKUP (!)
 
 set backup
 if !isdirectory($HOME . "/.backup/vim")
@@ -80,7 +91,7 @@ if !isdirectory($HOME . "/.backup/vim")
 endif
 set backupdir=~/.backup/vim
 
-" 4. KEY BINDINGS (!)
+" 5. ARROWS (!)
 
 " Remove arrows in Normal Mode
 nnoremap <Left>  :echo "Type 'h', moron!" <CR>
@@ -88,23 +99,13 @@ nnoremap <Right> :echo "Type 'l', prat!"  <CR>
 nnoremap <Up>    :echo "Type 'k', git!"   <CR>
 nnoremap <Down>  :echo "Type 'j', fool!"  <CR>
 
-" Remove arrow keys in Insert Mode
-" inoremap <Left>  <Esc>
-" inoremap <Right> <Esc>
-" inoremap <Up>    <Esc>
-" inoremap <Down>  <Esc>
-
 " Remove arrows in Visual Mode
 vnoremap <Left>  :echo "Type 'h', moron!" <CR>
 vnoremap <Right> :echo "Type 'l', prat!"  <CR>
 vnoremap <Up>    :echo "Type 'k', git!"   <CR>
 vnoremap <Down>  :echo "Type 'j', fool!"  <CR>
 
-" Press F7 to activate spell checking, F8 to turn it off.
-map <F7> <Esc>:setlocal spell spelllang=en_us<CR>
-map <F8> <Esc>:setlocal nospell<CR>
-
-" 5. CUSTOM COMMANDS (!)
+" 6. CUSTOM COMMANDS (!)
 
 command EditVim          :edit ~/.vimrc
 command EditTmux         :edit ~/.tmux.conf
@@ -113,16 +114,14 @@ command EditBashLib      :edit ~/.bash_lib
 command EditBashAlias    :edit ~/.bash_aliases
 command EditBashFunction :edit ~/.bash_functions
 
-" 6. OTHER (!)
+" 7. OTHER (!)
 
 " To enable all vim features
 set nocompatible
-
-" Encoding
-set encoding=utf-8
 
 " Enable mouse for scrolling and resizing.
 set mouse=a
 
 " Increase the undo limit
 set history=1000
+
