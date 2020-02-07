@@ -120,27 +120,11 @@ if [ -f ~/.bash_functions ]; then
 fi
 
 # Variable definitions
+if [ -f ~/.bash_exports ]; then
+    . ~/.bash_exports
+fi
+
+shopt -s autocd
 
 # My Git-tracked repositories
 export GIT="$HOME/Dev/Git";
-
-# PYTHON (!)
-
-# My Python Libraries
-export PYTHONPATH="$HOME/Dev/Lib";
-
-# Python "Run commands" file
-export PYTHONSTARTUP="$HOME/.pythonrc.py"
-
-# For virtualenvwrapper
-export WORKON_HOME=$HOME/.envs
-# source /usr/local/bin/virtualenvwrapper.sh
-
-# Default Text-Editor
-export EDITOR=vim;
-
-# For scripts
-export PATH=$PATH:$HOME/.bin/
-
-# Go language
-export PATH=$PATH:/usr/local/go/bin/
