@@ -1,7 +1,8 @@
 # Author: Artyom Danilov
-# Last modification date: January 27, 2020.
 
-# CD (!)
+# Last modification date: February 10, 2020.
+
+# CD ----------------------------------
 
 # Typing mistakes
 alias cd..="cd .."
@@ -17,28 +18,28 @@ alias .3="cd ../../../"
 alias .4="cd ../../../../"
 alias .5="cd ../../../../../"
 
-# LS (!)
+# LS ----------------------------------
 alias ls="ls -h -F --color=never --group-directories-first"
 alias ll="ls -l"
 alias la="ls -A"
 alias lr="ls -R"
 
-# CLEAR (!)
+# CLEAR -------------------------------
 alias c=clear
 alias cl=clear
 alias clr=clear
 alias cls=clear
 
-# CAT (!)
+# CAT ---------------------------------
 alias ncat="cat -n"
 alias tcat="cat -t"
 alias lcat=lolcat
 
-# VIM (!)
+# VIM ---------------------------------
 alias vi=vim
 alias edit=vim
 
-# FILE MANIPULATION (!)
+# FILE MANIPULATION -------------------
 
 # Protection
 alias rm="rm -I --preserve-root"
@@ -52,37 +53,27 @@ alias rmdir="rmdir -p"
 alias copy=cp
 alias move=mv
 alias remove=rm
-alias delete=rm
 
-# POWER OFF (!)
+# POWER OFF ---------------------------
 alias reboot="sudo reboot"
 alias shutdown="sudo shutdown"
 
-# BROWSER (!)
+# BROWSER -----------------------------
 alias chrome=google-chrome
 alias browser=chrome
 
-# OTHER (!)
-
-# Intuitive
+# OTHER -------------------------------
 alias now=date
 alias cpuinfo=lscpu
-alias count="ls -1 | wc -l" # Count number of files in directory
 
-# Shorthands
+# SHORTHANDS --------------------------
 alias su=sudo
 alias h=history
 alias f=file
 alias gh="history | grep" # Find a command in the history
-
-# INSTALLED PROGRAMS (!)
-
-# Right versions
-alias pip=pip3
-alias python=python3
-
-# Shorthands
+alias g=git
 alias py=python3
 
-# 10. GIT (!)
-alias git-stat="git status"
+# RIGHT VERSIONS ----------------------
+alias pip=pip3
+alias python=python3

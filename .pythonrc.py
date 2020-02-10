@@ -1,14 +1,22 @@
-# By Artyom Danilov
-# Last Modification 29 January, 2020.
+# Author: Artyom Danilov
+
+# Last Modification 10 February, 2020.
+
 # NOTE: PYTHONSTARTUP environment variable must be set.
 
 from sys import getrefcount
 from sys import getsizeof as sizeof
 
-from dis import dis as disassemble
-dis = disassemble
+from dis import dis
+disassemble = dis
 
 from inspect import signature, ismodule, isclass, isfunction, isbuiltin
+
+try:
+    from school import *
+except ModuleNotFoundError:
+    print("\n\tError: 'school' module not found.\n")
+
 
 def refcount(object_):
     """

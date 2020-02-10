@@ -27,16 +27,6 @@ function echoerr() {
 }
 export -f echoerr
 
-# To check if input is an agreement
-function isyes() {
-    if [[ "$1" =~ ^[yY][eE]?[sS]?$ ]]; then
-        return 0
-    else
-        return 1
-    fi
-}
-export -f isyes
-
 # To check if input is an unsigned integer
 function isuint() {
     if [[ "$1" =~ ^[0-9]+$ ]]; then

@@ -1,0 +1,10 @@
+[user]
+	name = Artyom Danilov
+	email = defytheflow@gmail.com
+	username = defytheflow
+[core]
+	editor = vim
+[alias]
+	st=status
+	ci=commit
+
