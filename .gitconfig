@@ -6,5 +6,5 @@
 	editor = vim
 [alias]
 	st=status
-	ci=commit
+	cm=commit
 

@@ -1,16 +1,30 @@
 # Author: Artyom Danilov
 
-# Last Modification 10 February, 2020.
+# Last Modification 11 February, 2020.
 
 # NOTE: PYTHONSTARTUP environment variable must be set.
 
+# To explore memory
 from sys import getrefcount
 from sys import getsizeof as sizeof
 
+# To explore python compilation
 from dis import dis
 disassemble = dis
+from py_compile import compile
 
-from inspect import signature, ismodule, isclass, isfunction, isbuiltin
+# To check the execution time of code
+from timeit import timeit
+
+# To print long datasets
+from pprint import pprint
+
+# To explore python keywords
+from keyword import iskeyword, kwlist
+
+# To explore python objects
+from inspect import (signature, ismodule, isclass, isfunction,
+                     isbuiltin, getsource)
 
 try:
     from school import *
