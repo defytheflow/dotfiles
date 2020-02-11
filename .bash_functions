@@ -27,6 +27,14 @@ function echoerr() {
 }
 export -f echoerr
 
+# Prints the text in the center of the terminal
+function echoc() {
+    w=$(stty size | cut -d" " -f2)
+    l=${#1}
+    printf "%"$((l+(w-l)/2))"s\n" "$1"
+}
+export -f echoc
+
 # To check if input is an unsigned integer
 function isuint() {
     if [[ "$1" =~ ^[0-9]+$ ]]; then
