@@ -1,40 +1,36 @@
 # -----------------------------------------
-# By Artyom Danilov
-# Last modification date: Februaru 07, 2020.
+# Author: Artyom Danilov
+
+# Last modification date: February 11, 2020.
 # ------------------------------------------
 
 # Default Text-Editor
 export EDITOR=vim;
 
-# ------------------------------------------
+# Shortcuts
+export GIT="$HOME/Dev/Git"
+export SCHOOL="$HOME/Desktop/School"
 
-# PYTHON (!)
+# ----------------Python--------------------
 
 # Libraries
 export PYTHONPATH="$HOME/.lib/";
 
-# Python "Run commands" file
+# "Run commands" file
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 
-# For virtualenvwrapper
-export WORKON_HOME=$HOME/.envs
-# source /usr/local/bin/virtualenvwrapper.sh
-
-# ------------------------------------------
-
-# C/C++ (!)
+# ----------------C/C++---------------------
 
 # Libraries
 export CPATH="$HOME/.lib/"
+export LD_LIBRARY_PATH="$HOME/.lib"
 
-# ------------------------------------------
+# Colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-# SCRIPTS (!)
+# -----------------GO-----------------------
 
-# For scripts
-export PATH=$PATH:$HOME/.bin/
-
-# ------------------------------------------
-
-# Go language
 export PATH=$PATH:/usr/local/go/bin/
+
+# ------------------------------------------
+

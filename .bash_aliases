@@ -20,9 +20,14 @@ alias .5="cd ../../../../../"
 
 # LS ----------------------------------
 alias ls="ls -h -F --color=never --group-directories-first"
+alias l=ls
 alias ll="ls -l"
 alias la="ls -A"
 alias lr="ls -R"
+
+# DIR ---------------------------------
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
 
 # CLEAR -------------------------------
 alias c=clear
@@ -34,6 +39,11 @@ alias cls=clear
 alias ncat="cat -n"
 alias tcat="cat -t"
 alias lcat=lolcat
+
+# GREP --------------------------------
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # VIM ---------------------------------
 alias vi=vim
