@@ -86,4 +86,5 @@ alias py=python3
 
 # RIGHT VERSIONS ----------------------
 alias pip=pip3
+alias pylint=pylint3
 alias python=python3
