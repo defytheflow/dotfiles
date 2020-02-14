@@ -5,7 +5,7 @@
 # |_.__/ \__,_|___/_| |_|_|  \___|
 #
 # Author: Artyom Danilov.
-# Last modification: February 11, 2020.
+# Last modification: February 14, 2020.
 
 # If not running interactively, don't do anything
 case $- in
@@ -53,13 +53,22 @@ fi
 if [ "$color_prompt" = yes ]; then
 
     # Colors
+    bold_blue="\[\033[01;34m\]"
+    bold_green="\[\033[01;32m\]"
     bold_yellow="\[\033[1;33m\]"
     bold_purple="\[\033[1;35m\]"
     no_color="\[\033[00m\]"
 
+    # Custom prompt
     PS1="$bold_yellow\u@\h$bold_purple at $bold_yellow\W \$ $no_color"
+
+    # Default prompt
+    PS1="$bold_green\u@\h$no_color:$bold_blue\w$no_color\$ "
+
 else
+
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+
 fi
 
 unset color_prompt force_color_prompt
@@ -76,17 +85,6 @@ esac
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-#if ! shopt -oq posix; then
-#  if [ -f /usr/share/bash-completion/bash_completion ]; then
-#    . /usr/share/bash-completion/bash_completion
-#  elif [ -f /etc/bash_completion ]; then
-#    . /etc/bash_completion
-#  fi
-#fi
 
 # Options for interactive sessions.
 
