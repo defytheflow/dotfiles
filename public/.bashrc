@@ -63,7 +63,7 @@ if [ "$color_prompt" = yes ]; then
     PS1="$bold_yellow\u@\h$bold_purple at $bold_yellow\W \$ $no_color"
 
     # Default prompt
-    PS1="$bold_green\u@\h$no_color:$bold_blue\w$no_color\$ "
+    # PS1="$bold_green\u@\h$no_color:$bold_blue\w$no_color\$ "
 
 else
 

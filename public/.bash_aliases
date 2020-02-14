@@ -1,6 +1,6 @@
 # Author: Artyom Danilov
 
-# Last modification date: February 10, 2020.
+# Last modification date: February 14, 2020.
 
 # CD ----------------------------------
 
@@ -46,6 +46,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # VIM ---------------------------------
+alias v=vim
 alias vi=vim
 alias edit=vim
 
@@ -77,12 +78,12 @@ alias now=date
 alias cpuinfo=lscpu
 
 # SHORTHANDS --------------------------
-alias su=sudo
-alias h=history
 alias f=file
-alias gh="history | grep" # Find a command in the history
 alias g=git
+alias h=history
+alias gh="history | grep" # Find a command in the history
 alias py=python3
+alias su=sudo
 
 # RIGHT VERSIONS ----------------------
 alias pip=pip3
