@@ -75,6 +75,7 @@ alias browser=chrome
 
 # OTHER -------------------------------
 alias now=date
+alias weather="curl http://wttr.in/"
 alias cpuinfo=lscpu
 
 # SHORTHANDS --------------------------
