@@ -1,5 +1,5 @@
 # Author: Artyom Danilov
-# Last modification date: January 27, 2020.
+# Last modification date: January 16, 2020.
 
 # Hides a file
 function hide() {
@@ -35,7 +35,7 @@ function echoc() {
 }
 export -f echoc
 
-# To check if input is an unsigned integer
+# Returns 0 if $1 is a positive integer
 function isuint() {
     if [[ "$1" =~ ^[0-9]+$ ]]; then
         return 0
@@ -45,13 +45,13 @@ function isuint() {
 }
 export -f isuint
 
-# To get number of files in directory
+# Returns number of files in directory
 function filenum() {
-    echo $(ls -A -1 $1 | wc -l)
+    echo $(find $1 -maxdepth 1 -type f | wc -l)
 }
 export -f filenum
 
-# To check if a directory is empty
+# Returns 0 if directory is empty, else 1
 function isempty() {
     if [[ $(ls -A -1 $1 | wc -l) -eq 0 ]]; then
         return 0
@@ -60,3 +60,17 @@ function isempty() {
     fi
 }
 export -f isempty
+
+# Create and enter inside a directory
+function mkcd() {
+    mkdir -p $1
+    cd $1
+}
+export -f mkcd
+
+# cd into directory and list it
+function cl() {
+    cd $1
+    ls
+}
+export -f cl

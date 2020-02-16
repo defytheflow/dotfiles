@@ -1,15 +1,24 @@
 # -----------------------------------------
 # Author: Artyom Danilov
 
-# Last modification date: February 11, 2020.
+# Last modification date: February 16, 2020.
 # ------------------------------------------
 
 # Default Text-Editor
 export EDITOR=vim;
 
-# Shortcuts
+# Shortcuts for fast editing
+export ALIASES="$HOME/.bash_aliases"
+export BASHRC="$HOME/.bashrc"
+export EXPORTS="$HOME/.bash_exports"
+export FUNCTIONS="$HOME/.bash_functions"
+
+# Shortcuts for fast local navigation
 export GIT="$HOME/Dev/Git"
 export SCHOOL="$HOME/Desktop/School"
+
+export SDK="$HOME/Dev/Git/sdk"
+export DOTFILES="$HOME/Dev/Git/dotfiles"
 
 # ----------------Python--------------------
 
@@ -27,10 +36,6 @@ export LD_LIBRARY_PATH="$HOME/.lib"
 
 # Colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# -----------------GO-----------------------
-
-export PATH=$PATH:/usr/local/go/bin/
 
 # ------------------------------------------
 
