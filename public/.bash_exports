@@ -8,17 +8,17 @@
 export EDITOR=vim;
 
 # Shortcuts for fast editing
-export ALIASES="$HOME/.bash_aliases"
-export BASHRC="$HOME/.bashrc"
-export EXPORTS="$HOME/.bash_exports"
-export FUNCTIONS="$HOME/.bash_functions"
+export AL="$HOME/.bash_aliases"
+export BRC="$HOME/.bashrc"
+export ES="$HOME/.bash_exports"
+export FS="$HOME/.bash_functions"
 
 # Shortcuts for fast local navigation
 export GIT="$HOME/Dev/Git"
-export SCHOOL="$HOME/Desktop/School"
+export SC="$HOME/Desktop/School"
 
 export SDK="$HOME/Dev/Git/sdk"
-export DOTFILES="$HOME/Dev/Git/dotfiles"
+export DOT="$HOME/Dev/Git/dotfiles"
 
 # ----------------Python--------------------
 
