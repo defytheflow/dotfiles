@@ -5,7 +5,7 @@
 # |_.__/ \__,_|___/_| |_|_|  \___|
 #
 # Author: Artyom Danilov.
-# Last modification: February 14, 2020.
+# Last modification: February 17, 2020.
 
 # If not running interactively, don't do anything
 case $- in
@@ -14,8 +14,7 @@ case $- in
 esac
 
 # Don't put duplicate lines or lines starting with space in the history.
-HISTCONTROL=ignoreboth
-
+HISTCONTROL=ignoreboth 
 # For setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
@@ -49,29 +48,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# Color prompt
-if [ "$color_prompt" = yes ]; then
-
-    # Colors
-    bold_blue="\[\033[01;34m\]"
-    bold_green="\[\033[01;32m\]"
-    bold_yellow="\[\033[1;33m\]"
-    bold_purple="\[\033[1;35m\]"
-    no_color="\[\033[00m\]"
-
-    # Custom prompt
-    PS1="$bold_yellow\u@\h$bold_purple at $bold_yellow\W \$ $no_color"
-
-    # Default prompt
-    # PS1="$bold_green\u@\h$no_color:$bold_blue\w$no_color\$ "
-
-else
-
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-
-fi
-
-unset color_prompt force_color_prompt
+# unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -82,11 +59,7 @@ case "$TERM" in
         ;;
 esac
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Options for interactive sessions.
+# INTERACTIVE OPTIONS
 
 # Append to the history file, don't overwrite it
 shopt -s histappend
@@ -112,17 +85,26 @@ shopt -s dirspell
 # name expansion
 shopt -s nocaseglob
 
-# Alias definitions.
+# PROMPT.
+if [ "$color_prompt" = yes ]; then
+    if [[ -f $HOME/.bash_prompt ]]; then
+        . $HOME/.bash_prompt
+    fi
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+
+# ALIASES.
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# Function definitions.
+# FUNCTIONS.
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-# Variable definitions.
+# EXPORTS.
 if [ -f ~/.bash_exports ]; then
     . ~/.bash_exports
 fi
