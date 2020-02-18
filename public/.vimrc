@@ -35,16 +35,18 @@ set wrap
 set textwidth=80
 set formatoptions+=t
 
-" Indentation for C/C++ source
-autocmd Filetype    c setlocal shiftwidth=8 softtabstop=8
-autocmd Filetype  cpp setlocal shiftwidth=4 softtabstop=4
+augroup indentation
+    " Indentation for C/C++ source
+    autocmd Filetype    c setlocal shiftwidth=8 softtabstop=8
+    autocmd Filetype  cpp setlocal shiftwidth=4 softtabstop=4
 
-" Indentation for Assembly source
-autocmd Filetype  asm setlocal shiftwidth=4 softtabstop=4
-autocmd Filetype    s setlocal shiftwidth=4 softtabstop=4
+    " Indentation for Assembly source
+    autocmd Filetype  asm setlocal shiftwidth=4 softtabstop=4
+    autocmd Filetype    s setlocal shiftwidth=4 softtabstop=4
 
-" Indentation for HTML source
-autocmd FileType html setlocal shiftwidth=2 softtabstop=2
+    " Indentation for HTML source
+    autocmd FileType html setlocal shiftwidth=2 softtabstop=2
+augroup END
 
 " 2. HIGHLIGHTING
 "
@@ -176,12 +178,12 @@ function! Comment()
     let ft = &filetype
     if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make'
         \ || ft == 'python' || ft == 'perl'
-        silent s/^/\#/
+        silent! s/^/\#/
     elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java'
         \ || ft == 'objc' || ft == 'scala' || ft == 'go'
-        silent s:^:\/\/:g
+        silent! s:^:\/\/:g
     elseif ft == 'vim'
-        silent s:^:\":g
+        silent! s:^:\":g
     endif
 endfunction
 
@@ -190,18 +192,19 @@ function! Uncomment()
     let ft = &filetype
     if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make'
        \ || ft == 'python' || ft == 'perl'
-        silent s/^\#//
+        silent! s/^\#//
     elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java'
         \ || ft == 'objc' || ft == 'scala' || ft == 'go'
-        silent s:^\/\/::g
+        silent! s:^\/\/::g
     elseif ft == 'vim'
-        silent s:^\"::g
+        silent! s:^\"::g
     endif
 endfunction
 
-nnoremap <silent> <leader>c  :call Comment()              <CR>
-nnoremap <silent> <leader>u  :call Uncomment()            <CR>
-nnoremap <silent> <leader>co :call ToggleColorScheme()    <CR>
+nnoremap <silent> <C-c>      :call Comment()              <CR>
+nnoremap <silent> <C-u>      :call Uncomment()            <CR>
+
+nnoremap <silent> <leader>c  :call ToggleColorScheme()    <CR>
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
 nnoremap <silent> <leader>sy :call ToggleSyntax()         <CR>
@@ -216,4 +219,3 @@ nnoremap <leader>sv :source $MYVIMRC <CR>
 
 " escape
 inoremap jk <esc>
-
