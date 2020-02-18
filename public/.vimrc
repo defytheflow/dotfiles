@@ -171,9 +171,39 @@ function! ToggleColorScheme()
     endif
 endfunction
 
-nnoremap <silent> <leader>c :call ToggleColorScheme()    <CR>
-nnoremap <silent> <leader>n :call ToggleNumber()         <CR>
-nnoremap <silent> <leader>r :call ToggleRelativeNumber() <CR>
+" comment out line
+function! Comment()
+    let ft = &filetype
+    if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make'
+        \ || ft == 'python' || ft == 'perl'
+        silent s/^/\#/
+    elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java'
+        \ || ft == 'objc' || ft == 'scala' || ft == 'go'
+        silent s:^:\/\/:g
+    elseif ft == 'vim'
+        silent s:^:\":g
+    endif
+endfunction
+
+" uncomment line
+function! Uncomment()
+    let ft = &filetype
+    if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make'
+       \ || ft == 'python' || ft == 'perl'
+        silent s/^\#//
+    elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java'
+        \ || ft == 'objc' || ft == 'scala' || ft == 'go'
+        silent s:^\/\/::g
+    elseif ft == 'vim'
+        silent s:^\"::g
+    endif
+endfunction
+
+nnoremap <silent> <leader>c  :call Comment()              <CR>
+nnoremap <silent> <leader>u  :call Uncomment()            <CR>
+nnoremap <silent> <leader>co :call ToggleColorScheme()    <CR>
+nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
+nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
 nnoremap <silent> <leader>sy :call ToggleSyntax()         <CR>
 
 " 8. MAPPINGS
@@ -186,3 +216,4 @@ nnoremap <leader>sv :source $MYVIMRC <CR>
 
 " escape
 inoremap jk <esc>
+
