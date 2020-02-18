@@ -10,6 +10,7 @@ export EDITOR=vim;
 # Shortcuts for fast editing
 export AL="$HOME/.bash_aliases"
 export BRC="$HOME/.bashrc"
+export VRC="$HOME/.vimrc"
 export ES="$HOME/.bash_exports"
 export FS="$HOME/.bash_functions"
 

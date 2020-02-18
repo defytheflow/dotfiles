@@ -100,13 +100,11 @@ alias p=python3
 alias py=python3
 alias hs="history | grep"                    # history search
 alias su=sudo
-alias pls=="sudo $(history -p !!)"           # runs the last command as root
 alias rld="source ~/.bashrc && echo Bash reloaded"
 
 # NEW COMMANDS ------------------------
 alias now="date +\"%T\""                     # prints current time
 alias path="echo $PATH | sed -e 's/:/\n/g'"  # lists the path on new line
-alias please=pls
 alias reload=rld
 alias weather="curl http://wttr.in/"
 

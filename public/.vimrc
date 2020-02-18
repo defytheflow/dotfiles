@@ -4,9 +4,9 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 " Author: Artyom Danilov
-" Last Modification: January 27, 2020.
+" Last Modification: January 18, 2020.
 
-" 1. INDENTATION (!)
+" 1. INDENTATION
 "
 " - Each tab is expanded into spaces, amount of spaces depends on the FileType.
 "   Default is 4.
@@ -46,7 +46,7 @@ autocmd Filetype    s setlocal shiftwidth=4 softtabstop=4
 " Indentation for HTML source
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2
 
-" 2. HIGHLIGHTING (!)
+" 2. HIGHLIGHTING
 "
 " - Syntax, Line numbers, Matching brackets, Tabs, Trailing spaces,
 "   81st column.
@@ -57,9 +57,9 @@ set t_Co=256
 set background=dark
 
 " Colorschemes
-colorscheme koehler
-"colorscheme murphy
-"colorscheme zellner
+color koehler
+"color murphy
+"color zellner
 
 " Switches on syntax highlighting.
 syntax enable
@@ -77,7 +77,7 @@ set list listchars=tab:>-,trail:-
 set colorcolumn=81
 highlight ColorColumn ctermbg=5
 
-" 3. SPLIT (!)
+" 3. SPLITS
 
 " Overrides vim default splitting settings
 set splitbelow splitright
@@ -88,7 +88,7 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" 4. BACKUP (!)
+" 4. BACKUP
 
 set backup
 if !isdirectory($HOME . "/.backup/vim")
@@ -96,7 +96,7 @@ if !isdirectory($HOME . "/.backup/vim")
 endif
 set backupdir=~/.backup/vim
 
-" 5. ARROWS (!)
+" 5. DISABLING ARROWS
 
 " Remove arrows in Normal Mode
 nnoremap <Left>  :echo "Type 'h', moron!" <CR>
@@ -110,16 +110,13 @@ vnoremap <Right> :echo "Type 'l', prat!"  <CR>
 vnoremap <Up>    :echo "Type 'k', git!"   <CR>
 vnoremap <Down>  :echo "Type 'j', fool!"  <CR>
 
-" 6. CUSTOM COMMANDS (!)
+" Remove arrows in Insert Mode
+inoremap <Left>  <nop>
+inoremap <Right> <nop>
+inoremap <Up>    <nop>
+inoremap <Down>  <nop>
 
-command EditVim          :edit ~/.vimrc
-command EditTmux         :edit ~/.tmux.conf
-command EditBashRc       :edit ~/.bashrc
-command EditBashLib      :edit ~/.bash_lib
-command EditBashAlias    :edit ~/.bash_aliases
-command EditBashFunction :edit ~/.bash_functions
-
-" 7. OTHER (!)
+" 6. OTHER
 
 " To enable all vim features
 set nocompatible
@@ -130,3 +127,62 @@ set mouse=a
 " Increase the undo limit
 set history=1000
 
+" 7. FUNCTIONS
+
+let mapleader = ";"
+
+" Syntax on or off
+function! ToggleSyntax()
+    if exists("g:syntax_on")
+        syntax off
+    else
+        syntax enable
+    endif
+endfunction
+
+" Relative number on or off
+function! ToggleRelativeNumber()
+    if &relativenumber
+        set norelativenumber
+    else
+        set relativenumber
+    endif
+endfunction
+
+" Number on or off
+function! ToggleNumber()
+    if &number || &relativenumber
+        set nonumber
+        set norelativenumber
+    else
+        set number
+        set relativenumber
+    endif
+endfunction
+
+" Switch colorschemes
+function! ToggleColorScheme()
+    if g:colors_name == "koehler"
+        color murphy
+    elseif g:colors_name == "murphy"
+        color zellner
+    else
+        color koehler
+    endif
+endfunction
+
+nnoremap <silent> <leader>c :call ToggleColorScheme()    <CR>
+nnoremap <silent> <leader>n :call ToggleNumber()         <CR>
+nnoremap <silent> <leader>r :call ToggleRelativeNumber() <CR>
+nnoremap <silent> <leader>sy :call ToggleSyntax()         <CR>
+
+" 8. MAPPINGS
+
+" edit .vimrc
+nnoremap <leader>ev :split $MYVIMRC  <CR>
+
+" source .vimrc
+nnoremap <leader>sv :source $MYVIMRC <CR>
+
+" escape
+inoremap jk <esc>
