@@ -15,11 +15,11 @@ export ES="$HOME/.bash_exports"
 export FS="$HOME/.bash_functions"
 
 # Shortcuts for fast local navigation
-export GIT="$HOME/Dev/Git"
-export SC="$HOME/Desktop/School"
+export GIT="$HOME/dev/git"
+export SC="$HOME/desk/schl"
 
-export SDK="$HOME/Dev/Git/sdk"
-export DOT="$HOME/Dev/Git/dotfiles"
+export SDK="$HOME/dev/git/sdk"
+export DOT="$HOME/dev/git/dotfiles"
 
 # ----------------Python--------------------
 

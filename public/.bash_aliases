@@ -32,9 +32,7 @@ alias la="ls -A"      # list all
 alias lr="ls -R"      # list recursively
 alias lh="ls -d .*"   # list hidden
 alias lf="find -maxdepth 1 -type f -print0 | xargs -0r ls" # list files
-alias lal="ls -l -A"  # list all long
-alias ldir="ls -d */" # list directories
-
+alias lal="ls -l -A"  # list all long alias ldir="ls -d */" # list directories 
 # DIR ---------------------------------
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
@@ -97,9 +95,10 @@ alias f=file
 alias g=git
 alias h=history
 alias p=python3
+alias r=ranger
+alias t=tree
 alias py=python3
 alias hs="history | grep"                    # history search
-alias su=sudo
 alias rld="source ~/.bashrc && echo Bash reloaded"
 
 # NEW COMMANDS ------------------------

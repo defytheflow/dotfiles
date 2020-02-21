@@ -4,7 +4,7 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 " Author: Artyom Danilov
-" Last Modification: January 18, 2020.
+" Last Modification: February 21, 2020.
 
 " 1. INDENTATION
 "
@@ -173,6 +173,15 @@ function! ToggleColorScheme()
     endif
 endfunction
 
+" spell check
+function! ToggleSpellCheck()
+    if &spell
+        set nospell
+    else
+        set spell
+    endif
+endfunction
+
 " comment out line
 function! Comment()
     let ft = &filetype
@@ -201,6 +210,7 @@ function! Uncomment()
     endif
 endfunction
 
+
 nnoremap <silent> <C-c>      :call Comment()              <CR>
 nnoremap <silent> <C-u>      :call Uncomment()            <CR>
 
@@ -208,7 +218,7 @@ nnoremap <silent> <leader>c  :call ToggleColorScheme()    <CR>
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
 nnoremap <silent> <leader>sy :call ToggleSyntax()         <CR>
-
+nnoremap <silent> <leader>sc :call ToggleSpellCheck()     <CR>
 " 8. MAPPINGS
 
 " edit .vimrc
@@ -219,3 +229,8 @@ nnoremap <leader>sv :source $MYVIMRC <CR>
 
 " escape
 inoremap jk <esc>
+
+" 9. ABBREVIATIONS
+
+iabbr #i #include
+iabbr #d #define
