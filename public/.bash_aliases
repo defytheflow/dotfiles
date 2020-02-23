@@ -1,11 +1,14 @@
+#!/bin/bash
+
 #        _ _
 #   __ _| (_) __ _ ___  ___  ___
 #  / _` | | |/ _` / __|/ _ \/ __|
 # | (_| | | | (_| \__ \  __/\__ \
 #  \__,_|_|_|\__,_|___/\___||___/
 #
+
 # Author: Artyom Danilov
-# Last modification date: February 16, 2020.
+# Last modified on February 23, 2020.
 
 # CD ----------------------------------
 # Typing mistakes alias cd..="cd .."
@@ -97,8 +100,9 @@ alias h=history
 alias p=python3
 alias r=ranger
 alias t=tree
+alias hg="history | grep"                    # history search
 alias py=python3
-alias hs="history | grep"                    # history search
+alias sc=shellcheck
 alias rld="source ~/.bashrc && echo Bash reloaded"
 
 # NEW COMMANDS ------------------------

@@ -1,11 +1,14 @@
+#!/bin/bash
+
 #
 # | |__   __ _ ___| |__  _ __ ___
 # | '_ \ / _` / __| '_ \| '__/ __|
 # | |_) | (_| \__ \ | | | | | (__
 # |_.__/ \__,_|___/_| |_|_|  \___|
 #
+
 # Author: Artyom Danilov.
-# Last modification: February 17, 2020.
+# Last modified on February 23, 2020.
 
 # If not running interactively, don't do anything
 case $- in
@@ -14,18 +17,13 @@ case $- in
 esac
 
 # Don't put duplicate lines or lines starting with space in the history.
-HISTCONTROL=ignoreboth 
+HISTCONTROL=ignoreboth
 # For setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=10000
 
 # Make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-#if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-#    debian_chroot=$(cat /etc/debian_chroot)
-#fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -53,7 +51,7 @@ fi
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
     xterm*|rxvt*)
-        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        PS1="\[\e]0;\u@\h: \w\a\]$PS1"
         ;;
     *)
         ;;
@@ -88,10 +86,10 @@ shopt -s nocaseglob
 # PROMPT.
 if [ "$color_prompt" = yes ]; then
     if [[ -f $HOME/.bash_prompt ]]; then
-        . $HOME/.bash_prompt
+        . "$HOME/.bash_prompt"
     fi
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='\u@\h:\w\$ '
 fi
 
 # ALIASES.

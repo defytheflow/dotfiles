@@ -1,18 +1,18 @@
-# -----------------------------------------
-# Author: Artyom Danilov
+#!/bin/bash
 
-# Last modification date: February 16, 2020.
-# ------------------------------------------
+# Author: Artyom Danilov
+# Last modified on February 23, 2020.
 
 # Default Text-Editor
 export EDITOR=vim;
 
 # Shortcuts for fast editing
-export AL="$HOME/.bash_aliases"
+export BA="$HOME/.bash_aliases"
 export BRC="$HOME/.bashrc"
 export VRC="$HOME/.vimrc"
-export ES="$HOME/.bash_exports"
-export FS="$HOME/.bash_functions"
+export BE="$HOME/.bash_exports"
+export BF="$HOME/.bash_functions"
+export BP="$HOME/.bash_prompt"
 
 # Shortcuts for fast local navigation
 export GIT="$HOME/dev/git"
