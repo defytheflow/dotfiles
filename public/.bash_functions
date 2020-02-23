@@ -17,11 +17,11 @@ echoerr() { printf "%s\n" "$*" 1>&2; }
 export -f echoerr
 
 # Returns 0 if $1 is a positive integer.
-isuint() { return "$([[ "$1" =~ ^[0-9]+$ ]])"; }
+isuint() { return $([[ "$1" =~ ^[0-9]+$ ]]); }
 export -f isuint
 
 # Returns 0 if directory is empty.
-isempty() { return "$([[ "$(find "$1" -type f | wc -l)" -eq 0 ]])"; }
+isempty() { return $([[ "$(find "$1" -type f | wc -l)" -eq 0 ]]); }
 export -f isempty
 
 # Make a directory and cd into it.
