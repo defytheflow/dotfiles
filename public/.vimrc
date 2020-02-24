@@ -50,9 +50,12 @@ augroup END
 
 " 2. HIGHLIGHTING
 "
-" - Syntax, Line numbers, Matching brackets, Tabs, Trailing spaces,
+" - Title, Syntax, Line numbers, Matching brackets, Tabs, Trailing spaces,
 "   81st column.
 "
+
+" Sets the terminal title (editing 'file')
+set title
 
 " Compatibility with tmux colors
 set t_Co=256
@@ -101,6 +104,7 @@ set backupdir=~/.backup/vim
 " 5. DISABLING ARROWS
 
 " Remove arrows in Normal Mode
+
 nnoremap <Left>  :echo "Type 'h', moron!" <CR>
 nnoremap <Right> :echo "Type 'l', prat!"  <CR>
 nnoremap <Up>    :echo "Type 'k', git!"   <CR>
@@ -211,13 +215,13 @@ function! Uncomment()
 endfunction
 
 
-nnoremap <silent> <C-c>      :call Comment()              <CR>
-nnoremap <silent> <C-u>      :call Uncomment()            <CR>
+nnoremap <silent> <leader>c      :call Comment()              <CR>
+nnoremap <silent> <leader>u      :call Uncomment()            <CR>
 
-nnoremap <silent> <leader>c  :call ToggleColorScheme()    <CR>
+nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
+nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
-nnoremap <silent> <leader>sy :call ToggleSyntax()         <CR>
 nnoremap <silent> <leader>sc :call ToggleSpellCheck()     <CR>
 " 8. MAPPINGS
 

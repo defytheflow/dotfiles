@@ -83,6 +83,9 @@ shopt -s dirspell
 # name expansion
 shopt -s nocaseglob
 
+# For ctrl mappings
+stty -ixon
+
 # PROMPT.
 if [ "$color_prompt" = yes ]; then
     if [[ -f $HOME/.bash_prompt ]]; then
