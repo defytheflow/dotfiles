@@ -1,6 +1,6 @@
 # Author: Artyom Danilov
 
-# Last Modification 21 February, 2020.
+# Last Modification: 05 March, 2020.
 
 # NOTE: PYTHONSTARTUP environment variable must be set.
 
@@ -29,22 +29,12 @@ from inspect import (signature, ismodule, isclass, isfunction,
 # To explore how coping works
 from copy import copy, deepcopy
 
-# Fast random generation
-from random import randint, choice
-
 try:
     from school import *
-except ModuleNotFoundError:
-    print("\n\tError: 'school' module not found.\n")
+except ImportError:
+    print("\n\tError: unable to load 'school' module.\n")
 
-
-#def refcount(object_):
-#    """
-#        So that not to be confused by the increase of object's refcount
-#        by passing the object as an argument to the 'getrefcount' function call
-#    """
-#    return getrefcount(object_) - 3
-
-def ls():
-    """ Prints the names defined in '__name__' module. """
-    pprint(dir(sys.modules[__name__]))
+try:
+    from interact import *
+except ImportError:
+    print("\n\tError: unable to load 'interact' module.\n")
