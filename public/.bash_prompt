@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Author: Artyom Danilov
-# Last Modified: February 17, 2020.
+# Last Modified: March 6, 2020.
 
 # COLORS
 black="\[\033[1;30m\]"
@@ -17,10 +17,14 @@ no_color="\[\033[00m\]"
 # SMILEYS
 smiley="$green:)$no_color"
 frowny="$red:($no_color"
-select="if [[ \$? -eq 0 ]]; then echo \"$smiley\"; else echo \"$frowny\"; fi"
+select_status="if [[ \$? -eq 0 ]]; then echo \"$smiley\"; else echo \"$frowny\"; fi"
+
+# GIT
+branch="$white on [ $blue$(git branch 2>/dev/null | grep '^*' | colrm 1 2) $white]"
+select_branch="if [[ -d .git ]]; then echo \"$branch\"; fi"
 
 # CUSTOM
-PS1="$yellow\u@\h$white at $yellow\W \`${select}\` $no_color\$ "
+PS1="$yellow\u@\h$white at $yellow\W\`${select_branch}\` \`${select_status}\` \$ "
 
 # DEFAULT
 #PS1="$green\u@\h$no_color:$blue\w$no_color\$ "

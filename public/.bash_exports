@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Author: Artyom Danilov
-# Last modified on February 23, 2020.
+# Modified: March 6, 2020.
 
 # Default Text-Editor
 export EDITOR=vim;
 
-# Shortcuts for fast editing
+# Configuration files
 export BA="$HOME/.bash_aliases"
 export BRC="$HOME/.bashrc"
 export VRC="$HOME/.vimrc"
@@ -14,29 +14,17 @@ export BE="$HOME/.bash_exports"
 export BF="$HOME/.bash_functions"
 export BP="$HOME/.bash_prompt"
 
-# Shortcuts for fast local navigation
+# Current git projects
 export GIT="$HOME/dev/git"
-export SC="$HOME/desk/schl"
-
+export SC="$HOME/dev/git/school"
 export SDK="$HOME/dev/git/sdk"
 export DOT="$HOME/dev/git/dotfiles"
 
-# ----------------Python--------------------
+# Python
+export PYTHONPATH="$HOME/.lib/"            # my modules
+export PYTHONSTARTUP="$HOME/.pythonrc.py"  # "run command" file
 
-# Libraries
-export PYTHONPATH="$HOME/.lib/";
-
-# "Run commands" file
-export PYTHONSTARTUP="$HOME/.pythonrc.py"
-
-# ----------------C/C++---------------------
-
-# Libraries
-export CPATH="$HOME/.lib/"
-export LD_LIBRARY_PATH="$HOME/.lib"
-
-# Colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# ------------------------------------------
-
+# C
+export CFLAGS="-W -Wall -Wextra"          # default flags for make
+export CPATH="$HOME/.lib/"                 # my includes
+export LD_LIBRARY_PATH="$HOME/.lib"        # my libraries (.so, .a)
