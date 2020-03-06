@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#
 # Author: Artyom Danilov
 # Last Modified: March 6, 2020.
 
@@ -21,10 +21,10 @@ select_status="if [[ \$? -eq 0 ]]; then echo \"$smiley\"; else echo \"$frowny\";
 
 # GIT
 branch="$white on [ $blue$(git branch 2>/dev/null | grep '^*' | colrm 1 2) $white]"
-select_branch="if [[ -d .git ]]; then echo \"$branch\"; fi"
+select_branch="if git status > /dev/null 2>&1; then echo \"$branch\"; fi"
 
 # CUSTOM
-PS1="$yellow\u@\h$white at $yellow\W\`${select_branch}\` \`${select_status}\` \$ "
+PS1="$yellow\u@\h$white at $yellow\W \`${select_status}\`\`${select_branch}\` $no_color\$ "
 
 # DEFAULT
 #PS1="$green\u@\h$no_color:$blue\w$no_color\$ "

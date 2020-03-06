@@ -216,7 +216,7 @@ endfunction
 
 
 nnoremap <silent> <leader>c      :call Comment()              <CR>
-nnoremap <silent> <leader>u      :call Uncomment()            <CR>
+nnoremap <silent> <leader>x      :call Uncomment()            <CR>
 
 nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
 nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
