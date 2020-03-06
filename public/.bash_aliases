@@ -8,10 +8,12 @@
 #
 
 # Author: Artyom Danilov
-# Last modified on February 23, 2020.
+# Modified: March 6, 2020.
 
 # CD ----------------------------------
-# Typing mistakes alias cd..="cd .."
+
+# Typing mistakes
+alias cd..="cd .."
 alias cd-="cd -"
 
 # Fast movement
@@ -24,18 +26,16 @@ alias .3="cd ../../../"
 alias .4="cd ../../../../"
 alias .5="cd ../../../../../"
 
-alias back="cd $OLDPWD"
-alias b=back
-
 # LS ----------------------------------
 alias ls="ls -h -F --color=never --group-directories-first"
-alias l=ls
+alias l="ls -1"       # list vertically
 alias ll="ls -l"      # list long
 alias la="ls -A"      # list all
 alias lr="ls -R"      # list recursively
 alias lh="ls -d .*"   # list hidden
 alias lf="find -maxdepth 1 -type f -print0 | xargs -0r ls" # list files
-alias lal="ls -l -A"  # list all long alias ldir="ls -d */" # list directories 
+alias lal="ls -l -A"  # list all long alias ldir="ls -d */" # list directories
+
 # DIR ---------------------------------
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
@@ -70,8 +70,16 @@ alias rm="rm -Iv --preserve-root"
 alias mv="mv -iv"        # interactive and vebose
 alias cp="cp -iv"
 
+# System directories
+alias srm="sudo rm"
+alias smv="sudo mv"
+alias scp="sudo cp"
+
 alias mkdir="mkdir -pv"  # parent and verbose
 alias rmdir="rmdir -pv"
+
+alias smkdir="sudo mkdir -pv"
+alias srmdir="sudo rmdir -pv"
 
 alias del="rm -rfi"
 
@@ -103,17 +111,19 @@ alias t=tree
 alias hg="history | grep"                    # history search
 alias py=python3
 alias sc=shellcheck
+alias shu=shunit2
 alias rld="source ~/.bashrc && echo Bash reloaded"
+
+# EXPLICIT
+alias reload=rld
 
 # NEW COMMANDS ------------------------
 alias now="date +\"%T\""                     # prints current time
 alias path="echo $PATH | sed -e 's/:/\n/g'"  # lists the path on new line
-alias reload=rld
 alias weather="curl http://wttr.in/"
 
 # OTHER -------------------------------
 alias update="sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove"
-alias cpuinfo=lscpu
 
 # FUN ---------------------------------
 alias starwars="telnet towel.blinkenlights.nl"
