@@ -1,0 +1,12 @@
+
+# Subject line:
+#   - Capitalize.                    (!)
+#   - Keep under 50 characters.      (!)
+#   - Do not end with a period.      (!)
+#   - One line separation from body. (!)
+#   - Use imerative mood (e.g. "clean your room", "close the door")
+#     If applied, this commit will "subject". (!)
+
+# Body (if needs explanation and context):
+#   - Wrap at 72 characters.
+#   - Explain what and why

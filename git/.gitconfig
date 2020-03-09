@@ -4,7 +4,14 @@
 	username = defytheflow
 [core]
 	editor = vim
+	excludesfile = /home/dtfl/.gitignore_global
+	pager = less
 [alias]
 	st=status
 	com=commit
-
+[pack]
+	windowMemory = 100m
+	packSizeLimit = 100m
+	threads = 1
+[commit]
+	template = /home/dtfl/.gitmessage.txt
