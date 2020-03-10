@@ -10,3 +10,11 @@
 # Body (if needs explanation and context):
 #   - Wrap at 72 characters.
 #   - Explain what and why
+
+# Type:
+#   - feat:     new feature you're adding to a particular application
+#   - fix:      a bug fix
+#   - style:    feature and updates related to styling
+#   - refactor: refactoring a specific section of the codebase
+#   - test:     everything related to testing
+#   - docs:     everything related to documentation
