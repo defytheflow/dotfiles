@@ -7,8 +7,8 @@
 # |_.__/ \__,_|___/_| |_|_|  \___|
 #
 
-# Author: Artyom Danilov.
-# Last modified on February 23, 2020.
+# Author:   Artyom Danilov
+# Modified: March 13, 2020
 
 # If not running interactively, don't do anything
 case $- in
@@ -31,8 +31,7 @@ case "$TERM" in
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
+# off by default to not distract the user: the focus in a terminal window # should be on the output of commands, not on the prompt
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
@@ -57,7 +56,9 @@ case "$TERM" in
         ;;
 esac
 
-# INTERACTIVE OPTIONS
+# ---------------------------------------------------------------------------- #
+#                             Interactive Options                              #
+# ---------------------------------------------------------------------------- #
 
 # Append to the history file, don't overwrite it
 shopt -s histappend
@@ -86,26 +87,40 @@ shopt -s nocaseglob
 # For ctrl mappings
 stty -ixon
 
-# PROMPT.
+# ---------------------------------------------------------------------------- #
+#                                    Prompt                                    #
+# ---------------------------------------------------------------------------- #
+
 if [ "$color_prompt" = yes ]; then
+
     if [[ -f $HOME/.bash_prompt ]]; then
         . "$HOME/.bash_prompt"
     fi
+
 else
     PS1='\u@\h:\w\$ '
 fi
 
-# ALIASES.
+# ---------------------------------------------------------------------------- #
+#                                   Aliases                                    #
+# ---------------------------------------------------------------------------- #
+
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# FUNCTIONS.
+# ---------------------------------------------------------------------------- #
+#                                  Functions                                   #
+# ---------------------------------------------------------------------------- #
+
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-# EXPORTS.
+# ---------------------------------------------------------------------------- #
+#                                   Exports                                    #
+# ---------------------------------------------------------------------------- #
+
 if [ -f ~/.bash_exports ]; then
     . ~/.bash_exports
 fi
