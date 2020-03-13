@@ -1,22 +1,26 @@
+
 " __   _(_)_ __ ___  _ __ ___
 " \ \ / / | '_ ` _ \| '__/ __|
 "  \ V /| | | | | | | | | (__
 "   \_/ |_|_| |_| |_|_|  \___|
 "
-" Author: Artyom Danilov
-" Last Modification: February 21, 2020.
 
-" 1. INDENTATION
-"
-" - Each tab is expanded into spaces, amount of spaces depends on the FileType.
-"   Default is 4.
-"
+" Author:   Artyom Danilov
+" Modified: March 13, 2020
 
-" In Insert mode uses the approptiate number of spaces to insert a <Tab>.
+" --------------------------------------------------------------------------- "
+"                                Indentation                                  "
+" --------------------------------------------------------------------------- "
+"                                                                             "
+"  Each tab is expanded into spaces, num of spaces depends on the FileType.   "
+"  Default is 4.                                                              "
+"                                                                             "
+" --------------------------------------------------------------------------- "
+
+" In Insert mode inserts spaces instead of <Tab>s.
 set expandtab
 
-" Number of spaces that a <Tab> counts for while performing editing
-" operations.
+" Number of spaces inserted when <Tab> is pressed.
 set softtabstop=4
 
 " Does smart autoindenting when starting a new-line. Looks at the current line
@@ -36,23 +40,33 @@ set textwidth=80
 set formatoptions+=t
 
 augroup indentation
-    " Indentation for C/C++ source
+
+    " For C/C++
     autocmd Filetype    c setlocal shiftwidth=8 softtabstop=8
     autocmd Filetype  cpp setlocal shiftwidth=4 softtabstop=4
 
-    " Indentation for Assembly source
-    autocmd Filetype  asm setlocal shiftwidth=4 softtabstop=4
-    autocmd Filetype    s setlocal shiftwidth=4 softtabstop=4
+    " For Python
+    autocmd Filetype   py,sh setlocal shiftwidth=4 softtabstop=4
 
-    " Indentation for HTML source
+    " For Bash
+    autocmd Filetype   sh setlocal shiftwidth=4 softtabstop=4
+
+    " For Assembly
+    autocmd Filetype  asm,s setlocal shiftwidth=4 softtabstop=4
+
+    " For HTML
     autocmd FileType html setlocal shiftwidth=2 softtabstop=2
+
 augroup END
 
-" 2. HIGHLIGHTING
-"
-" - Title, Syntax, Line numbers, Matching brackets, Tabs, Trailing spaces,
-"   81st column.
-"
+" --------------------------------------------------------------------------- "
+"                                Highlighting                                 "
+" --------------------------------------------------------------------------- "
+"                                                                             "
+"  Title, Syntax, Line numbers, Matching brackets, Tabs, Trailing spaces,     "
+"  81st column.                                                               "
+"                                                                             "
+" --------------------------------------------------------------------------- "
 
 " Sets the terminal title (editing 'file')
 set title
@@ -70,7 +84,8 @@ color koehler
 syntax enable
 
 " Precedes each line with its line number.
-set number relativenumber
+"set number relativenumber
+set number
 
 " When a bracket is inserted, briefly jumps to the matching one.
 set showmatch
@@ -82,7 +97,9 @@ set list listchars=tab:>-,trail:-
 set colorcolumn=81
 highlight ColorColumn ctermbg=5
 
-" 3. SPLITS
+" --------------------------------------------------------------------------- "
+"                                  Splits                                     "
+" --------------------------------------------------------------------------- "
 
 " Overrides vim default splitting settings
 set splitbelow splitright
@@ -93,7 +110,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" 4. BACKUP
+" --------------------------------------------------------------------------- "
+"                                  Back up                                    "
+" --------------------------------------------------------------------------- "
 
 set backup
 if !isdirectory($HOME . "/.backup/vim")
@@ -101,28 +120,31 @@ if !isdirectory($HOME . "/.backup/vim")
 endif
 set backupdir=~/.backup/vim
 
-" 5. DISABLING ARROWS
+" --------------------------------------------------------------------------- "
+"                               Disable Arrows                                "
+" --------------------------------------------------------------------------- "
 
-" Remove arrows in Normal Mode
-
+" Normal Mode
 nnoremap <Left>  :echo "Type 'h', moron!" <CR>
 nnoremap <Right> :echo "Type 'l', prat!"  <CR>
 nnoremap <Up>    :echo "Type 'k', git!"   <CR>
 nnoremap <Down>  :echo "Type 'j', fool!"  <CR>
 
-" Remove arrows in Visual Mode
+" Visual Mode
 vnoremap <Left>  :echo "Type 'h', moron!" <CR>
 vnoremap <Right> :echo "Type 'l', prat!"  <CR>
 vnoremap <Up>    :echo "Type 'k', git!"   <CR>
 vnoremap <Down>  :echo "Type 'j', fool!"  <CR>
 
-" Remove arrows in Insert Mode
+" Insert Mode
 inoremap <Left>  <nop>
 inoremap <Right> <nop>
 inoremap <Up>    <nop>
 inoremap <Down>  <nop>
 
-" 6. OTHER
+" --------------------------------------------------------------------------- "
+"                                  Other                                      "
+" --------------------------------------------------------------------------- "
 
 " To enable all vim features
 set nocompatible
@@ -133,9 +155,9 @@ set mouse=a
 " Increase the undo limit
 set history=1000
 
-" 7. FUNCTIONS
-
-let mapleader = ";"
+" --------------------------------------------------------------------------- "
+"                           Function Definitions                              "
+" --------------------------------------------------------------------------- "
 
 " Syntax on or off
 function! ToggleSyntax()
@@ -214,6 +236,11 @@ function! Uncomment()
     endif
 endfunction
 
+" --------------------------------------------------------------------------- "
+"                                  Mappings                                   "
+" --------------------------------------------------------------------------- "
+
+let mapleader = ";"
 
 nnoremap <silent> <leader>c      :call Comment()              <CR>
 nnoremap <silent> <leader>x      :call Uncomment()            <CR>
@@ -223,7 +250,6 @@ nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
 nnoremap <silent> <leader>sc :call ToggleSpellCheck()     <CR>
-" 8. MAPPINGS
 
 " edit .vimrc
 nnoremap <leader>ev :split $MYVIMRC  <CR>
@@ -234,7 +260,13 @@ nnoremap <leader>sv :source $MYVIMRC <CR>
 " escape
 inoremap jk <esc>
 
-" 9. ABBREVIATIONS
+" quote
+nnoremap <leader>q" ciw""<Esc>P
+nnoremap <leader>q' ciw''<Esc>P
+
+" --------------------------------------------------------------------------- "
+"                                  Abbreviations                              "
+" --------------------------------------------------------------------------- "
 
 iabbr #i #include
 iabbr #d #define
