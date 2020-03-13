@@ -1,30 +1,52 @@
 #!/bin/bash
 
 # Author: Artyom Danilov
-# Modified: March 6, 2020.
+# Modified: March 13, 2020
 
-# Default Text-Editor
-export EDITOR=vim;
+# --------------------------------------------------------------------------- #
+#                             Default Programs                                #
+# --------------------------------------------------------------------------- #
 
-# Configuration files
+export EDITOR="vim"
+
+# --------------------------------------------------------------------------- #
+#                                  Other                                      #
+# --------------------------------------------------------------------------- #
+
+export GITHUB="https://github.com/defytheflow"
+
+# --------------------------------------------------------------------------- #
+#                                  Configs                                    #
+# --------------------------------------------------------------------------- #
+
 export BA="$HOME/.bash_aliases"
-export BRC="$HOME/.bashrc"
-export VRC="$HOME/.vimrc"
 export BE="$HOME/.bash_exports"
 export BF="$HOME/.bash_functions"
 export BP="$HOME/.bash_prompt"
+export BRC="$HOME/.bashrc"
+export VRC="$HOME/.vimrc"
 
-# Current git projects
+# --------------------------------------------------------------------------- #
+#                                Git projects                                 #
+# --------------------------------------------------------------------------- #
+
 export GIT="$HOME/dev/git"
-export SC="$HOME/dev/git/school"
-export SDK="$HOME/dev/git/sdk"
-export DOT="$HOME/dev/git/dotfiles"
+export SCH="$GIT/school"
+export SDK="$GIT/sdk"
+export DOT="$GIT/dot"
+export LIB="$GIT/lib"
 
-# Python
+# --------------------------------------------------------------------------- #
+#                                  Python                                     #
+# --------------------------------------------------------------------------- #
+
 export PYTHONPATH="$HOME/.lib/"            # my modules
 export PYTHONSTARTUP="$HOME/.pythonrc.py"  # "run command" file
 
-# C
-export CFLAGS="-W -Wall -Wextra"          # default flags for make
-export CPATH="$HOME/.lib/"                 # my includes
-export LD_LIBRARY_PATH="$HOME/.lib"        # my libraries (.so, .a)
+# --------------------------------------------------------------------------- #
+#                                   C                                         #
+# --------------------------------------------------------------------------- #
+
+export CFLAGS="-W -Wall -Wextra"     # default flags for make
+export CPATH="$HOME/.lib/"           # my includes
+export LD_LIBRARY_PATH="$HOME/.lib"  # my libraries (.so, .a)
