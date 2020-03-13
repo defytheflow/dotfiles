@@ -161,24 +161,29 @@ set history=1000
 
 " Syntax on or off
 function! ToggleSyntax()
+
     if exists("g:syntax_on")
         syntax off
     else
         syntax enable
     endif
+
 endfunction
 
 " Relative number on or off
 function! ToggleRelativeNumber()
+
     if &relativenumber
         set norelativenumber
     else
         set relativenumber
     endif
+
 endfunction
 
 " Number on or off
 function! ToggleNumber()
+
     if &number || &relativenumber
         set nonumber
         set norelativenumber
@@ -186,10 +191,12 @@ function! ToggleNumber()
         set number
         set relativenumber
     endif
+
 endfunction
 
 " Switch colorschemes
 function! ToggleColorScheme()
+
     if g:colors_name == "koehler"
         color murphy
     elseif g:colors_name == "murphy"
@@ -197,43 +204,86 @@ function! ToggleColorScheme()
     else
         color koehler
     endif
+
 endfunction
 
 " spell check
 function! ToggleSpellCheck()
+
     if &spell
         set nospell
     else
         set spell
     endif
+
 endfunction
 
-" comment out line
-function! Comment()
-    let ft = &filetype
-    if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make'
-        \ || ft == 'python' || ft == 'perl'
-        silent! s/^/\#/
-    elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java'
-        \ || ft == 'objc' || ft == 'scala' || ft == 'go'
-        silent! s:^:\/\/:g
-    elseif ft == 'vim'
-        silent! s:^:\":g
-    endif
-endfunction
+" Return the token used for commenting in a programming language.
+" For example: # in python or // in c++
+function! GetCommentToken(filetype)
 
-" uncomment line
-function! Uncomment()
     let ft = &filetype
+
     if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make'
        \ || ft == 'python' || ft == 'perl'
-        silent! s/^\#//
+        return '#'
     elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java'
         \ || ft == 'objc' || ft == 'scala' || ft == 'go'
-        silent! s:^\/\/::g
+        return '//'
     elseif ft == 'vim'
+        return '"'
+    endif
+
+endfunction
+
+" Comment out line
+function! Comment()
+
+    let comment_token = GetCommentToken(&filetype)
+
+    if comment_token == '#'
+        silent! s/^/\#/
+    elseif comment_token == '//'
+        silent! s:^:\/\/:g
+    elseif comment_token == '"'
+        silent! s:^:\":g
+    endif
+
+endfunction
+
+" Uncomment line
+function! Uncomment()
+
+    let comment_token = GetCommentToken(&filetype)
+
+    if comment_token == '#'
+        silent! s/^\#//
+    elseif comment_token == '//'
+        silent! s:^\/\/::g
+    elseif comment_token == '"'
         silent! s:^\"::g
     endif
+
+endfunction
+
+" Print a Visual Comment
+function! VisualComment()
+
+    let comment_token = GetCommentToken(&filetype)
+    let comment_string = comment_token . ' %s ' . comment_token
+    let comment_char = '-'
+    let comment_text = input("Text: ")
+
+    " Get the number of char to add on left
+    let len   = (80 - len(comment_text) - len(printf(comment_string, '')))
+    let left  = len / 2
+    let right = len - left
+
+    " Insert in the buffer
+    put=printf(comment_string, repeat(comment_char, 76))
+    put=printf(comment_string, repeat(' ', left) . comment_text . repeat(' ',  right))
+    put=printf(comment_string, repeat(comment_char, 76))
+
 endfunction
 
 " --------------------------------------------------------------------------- "
@@ -242,14 +292,16 @@ endfunction
 
 let mapleader = ";"
 
-nnoremap <silent> <leader>c      :call Comment()              <CR>
-nnoremap <silent> <leader>x      :call Uncomment()            <CR>
+nnoremap <silent> <leader>c  :call Comment()              <CR>
+nnoremap <silent> <leader>x  :call Uncomment()            <CR>
+nnoremap <silent> <leader>v  :call VisualComment()        <CR>
 
-nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
-nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
 nnoremap <silent> <leader>sc :call ToggleSpellCheck()     <CR>
+
+nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
+nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 
 " edit .vimrc
 nnoremap <leader>ev :split $MYVIMRC  <CR>
