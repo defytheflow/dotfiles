@@ -42,18 +42,18 @@ fi;                                                              \
 if git status >/dev/null 2>&1; then                              \
     branch="$(git branch 2>/dev/null | grep "^*" | colrm 1 2)";  \
     branch="[${bold_green} ${branch} ${bold_white}]";            \
-    branch=" ${white}on ${bold_white}${branch}";                 \
+    branch=" ${bold_white}on ${bold_white}${branch}";            \
 else                                                             \
     branch="";                                                   \
 fi;                                                              \
                                                                  \
 # Set PS1                                                        \
-PS1="${bold_yellow}\u";                # username                \
-PS1+=" ${white}at ${bold_yellow}\h";   # at host                 \
-PS1+=" ${white}in ${bold_yellow}\w/";  # in directory            \
-PS1+="${branch}";                      # on branch               \
-PS1+=" ${status}\n";                   # last command status     \
-PS1+="${white}└─▶${reset} \$ ";'
+PS1="${bold_yellow}\u";                     # username           \
+PS1+="${bold_white}@${bold_yellow}\h";      # @host              \
+PS1+=" ${bold_white}in ${bold_yellow}\W";   # in directory       \
+PS1+="${branch}";                           # on [ branch ]      \
+PS1+=" ${status}";                          # :) or :(           \
+PS1+="${reset} \$ ";'
 
 # Default
 #PS1="$green\u@\h$reset:$blue\w$reset\$ "
