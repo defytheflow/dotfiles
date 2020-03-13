@@ -8,9 +8,11 @@
 #
 
 # Author: Artyom Danilov
-# Modified: March 6, 2020.
+# Modified: March 13, 2020.
 
-# CD ----------------------------------
+# --------------------------------------------------------------------------- #
+#                                   cd                                        #
+# --------------------------------------------------------------------------- #
 
 # Typing mistakes
 alias cd..="cd .."
@@ -21,109 +23,118 @@ alias ..="cd .."
 alias ...="cd ../../"
 alias ....="cd ../../../"
 alias .....="cd ../../../../"
-alias .2="cd ../../"
-alias .3="cd ../../../"
-alias .4="cd ../../../../"
-alias .5="cd ../../../../../"
 
-# LS ----------------------------------
+# --------------------------------------------------------------------------- #
+#                                  ls/dir                                     #
+# --------------------------------------------------------------------------- #
+
 alias ls="ls -h -F --color=never --group-directories-first"
+
 alias l="ls -1"       # list vertically
 alias ll="ls -l"      # list long
 alias la="ls -A"      # list all
 alias lr="ls -R"      # list recursively
 alias lh="ls -d .*"   # list hidden
 alias lf="find -maxdepth 1 -type f -print0 | xargs -0r ls" # list files
-alias lal="ls -l -A"  # list all long alias ldir="ls -d */" # list directories
+alias lal="ls -l -A"  # list all long
+alias ldir="ls -d */" # list directories
 
-# DIR ---------------------------------
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 
-# CLEAR -------------------------------
-alias clr=clear
-alias cls=clear
+# --------------------------------------------------------------------------- #
+#                                   clear                                     #
+# --------------------------------------------------------------------------- #
 
-# CAT ---------------------------------
+alias clr="clear"
+alias cls="clear"
+
+# --------------------------------------------------------------------------- #
+#                                    cat                                      #
+# --------------------------------------------------------------------------- #
+
 alias ncat="cat -n"
 alias tcat="cat -t"
-alias lcat=lolcat
+alias lcat="lolcat"
+# --------------------------------------------------------------------------- #
+#                                   grep                                      #
+# --------------------------------------------------------------------------- #
 
-# GREP --------------------------------
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias grep="grep --color=auto"
+alias fgrep="fgrep --color=auto"
+alias egrep="egrep --color=auto"
 
-# DIFF
+# --------------------------------------------------------------------------- #
+#                                   diff                                      #
+# --------------------------------------------------------------------------- #
+
 alias diff="diff --side-by-side --suppress-common-lines"
 
-# VIM ---------------------------------
-alias v=vim
-alias vi=vim
+# --------------------------------------------------------------------------- #
+#                                    vim                                      #
+# --------------------------------------------------------------------------- #
+
+alias v="vim"
+alias vi="vim"
 alias svim="sudo vim"
-alias edit=vim
+alias edit="vim"
 
-# FILE MANIPULATION -------------------
+# --------------------------------------------------------------------------- #
+#                            rm/mv/cp/rmdir/mkdir                             #
+# --------------------------------------------------------------------------- #
 
-# Protection
-alias rm="rm -Iv --preserve-root"
-alias mv="mv -iv"        # interactive and vebose
-alias cp="cp -iv"
+# rm/mv/cp
+alias rm="rm -Iv --preserve-root"; alias srm="sudo rm"; alias remove="rm"
+alias mv="mv -iv";                 alias smv="sudo mv"; alias move="mv"
+alias cp="cp -iv";                 alias scp="sudo cp"; alias copy="cp"
 
-# System directories
-alias srm="sudo rm"
-alias smv="sudo mv"
-alias scp="sudo cp"
+# mkdir/rmdir
+alias mkdir="mkdir -pv"; alias mkd="mkdir"; alias smkd="sudo mkdir"
+alias rmdir="rmdir -pv"; alias rmd="rmdir"; alias srmd="sudo rmdir"
 
-alias mkdir="mkdir -pv"  # parent and verbose
-alias rmdir="rmdir -pv"
+alias del="rm -rfi"; alias delete="del"
 
-alias smkdir="sudo mkdir -pv"
-alias srmdir="sudo rmdir -pv"
+# --------------------------------------------------------------------------- #
+#                               Right Versions                                #
+# --------------------------------------------------------------------------- #
 
-alias del="rm -rfi"
+alias pip="pip3"
+alias pylint="pylint3"
+alias python="python3"
 
-# Explicitness
-alias copy=cp
-alias move=mv
-alias remove=rm
+# --------------------------------------------------------------------------- #
+#                                Shorthands                                   #
+# --------------------------------------------------------------------------- #
 
-# POWER OFF ---------------------------
-alias reboot="sudo reboot"
-alias shutdown="sudo shutdown"
+alias f="file"
+alias g="git"
+alias h="history"
+alias p="python3"
+alias r="ranger"
+alias t="tree"
 
-# BROWSER -----------------------------
-alias chrome=google-chrome
-alias browser=chrome
+alias hg="history | grep"
+alias py="python3"
+alias sc="shellcheck"
 
-# RIGHT VERSIONS ----------------------
-alias pip=pip3
-alias pylint=pylint3
-alias python=python3
+alias shu="shunit2"
+alias rld="source ~/.bashrc && echo Bash reloaded"; alias reload="rld"
 
-# SHORTHANDS --------------------------
-alias f=file
-alias g=git
-alias h=history
-alias p=python3
-alias r=ranger
-alias t=tree
-alias hg="history | grep"                    # history search
-alias py=python3
-alias sc=shellcheck
-alias shu=shunit2
-alias rld="source ~/.bashrc && echo Bash reloaded"
+alias chrome="google-chrome"; alias browser="chrome"
+alias update="sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove"
 
-# EXPLICIT
-alias reload=rld
+# --------------------------------------------------------------------------- #
+#                                New commands                                 #
+# --------------------------------------------------------------------------- #
 
-# NEW COMMANDS ------------------------
 alias now="date +\"%T\""                     # prints current time
 alias path="echo $PATH | sed -e 's/:/\n/g'"  # lists the path on new line
 alias weather="curl http://wttr.in/"
-
-# OTHER -------------------------------
-alias update="sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove"
-
-# FUN ---------------------------------
 alias starwars="telnet towel.blinkenlights.nl"
+
+# --------------------------------------------------------------------------- #
+#                                Power Off                                    #
+# --------------------------------------------------------------------------- #
+
+alias reboot="sudo reboot"
+alias shutdown="sudo shutdown"
