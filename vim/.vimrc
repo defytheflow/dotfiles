@@ -5,17 +5,21 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 
-" Author:   Artyom Danilov " Modified: March 14, 2020 
-" --------------------------------------------------------------------------- "
-"                                Indentation                                  "
-" --------------------------------------------------------------------------- "
-"                                                                             "
-"  Each tab is expanded into spaces, num of spaces depends on the FileType.   "
-"  Default is 4.                                                              "
-"                                                                             "
-" --------------------------------------------------------------------------- "
+" Author:      Artyom Danilov
+" Modified:    March 14, 2020
 
-" In Insert mode inserts spaces instead of <Tab>s.
+" ---------------------------------------------------------------------------- "
+"                                 Indentation                                  "
+" ---------------------------------------------------------------------------- "
+" Overview:                                                                    "
+"                                                                              "
+" Each <Tab> is expanded into spaces (default - 4).                            "
+" Number of expanded spaces depends on the filetype.                           "
+" Text is wrapped at 80 characters.                                            "
+"                                                                              "
+" ---------------------------------------------------------------------------- "
+
+" In Insert mode inserts spaces instead of <Tab>.
 set expandtab
 
 " Number of spaces inserted when <Tab> is pressed.
@@ -38,33 +42,33 @@ set textwidth=80
 set formatoptions+=t
 
 augroup indentation
-
-    " For C/C++
-    autocmd Filetype    c setlocal shiftwidth=8 softtabstop=8
-    autocmd Filetype  cpp setlocal shiftwidth=4 softtabstop=4
-
-    " For Python
-    autocmd Filetype   py,sh setlocal shiftwidth=4 softtabstop=4
-
-    " For Bash
-    autocmd Filetype   sh setlocal shiftwidth=4 softtabstop=4
-
-    " For Assembly
-    autocmd Filetype  asm,s setlocal shiftwidth=4 softtabstop=4
-
-    " For HTML
-    autocmd FileType html setlocal shiftwidth=2 softtabstop=2
-
+    " Assembly
+    autocmd Filetype asm,s setlocal shiftwidth=4 softtabstop=4
+    " Bash
+    autocmd Filetype    sh setlocal shiftwidth=4 softtabstop=4
+    " C
+    autocmd Filetype     c setlocal shiftwidth=8 softtabstop=8
+    " C++
+    autocmd Filetype   cpp setlocal shiftwidth=4 softtabstop=4
+    " HTML
+    autocmd FileType  html setlocal shiftwidth=2 softtabstop=2
+    " Python
+    autocmd Filetype    py setlocal shiftwidth=4 softtabstop=4
 augroup END
 
-" --------------------------------------------------------------------------- "
-"                                Highlighting                                 "
-" --------------------------------------------------------------------------- "
-"                                                                             "
-"  Title, Syntax, Line numbers, Matching brackets, Tabs, Trailing spaces,     "
-"  81st column.                                                               "
-"                                                                             "
-" --------------------------------------------------------------------------- "
+" ---------------------------------------------------------------------------- "
+"                                 Highlighting                                 "
+" ---------------------------------------------------------------------------- "
+" Overview:                                                                    "
+"                                                                              "
+" Change terminal title.                                                       "
+" Highlight syntax.                                                            "
+" Display line numbers.                                                        "
+" Highlight matching brackets.                                                 "
+" Show trailing spaces and tabs.                                               "
+" Highlight 81st column.                                                       "
+"                                                                              "
+" ---------------------------------------------------------------------------  "
 
 " Sets the terminal title (editing 'file')
 set title
@@ -82,7 +86,6 @@ color koehler
 syntax enable
 
 " Precedes each line with its line number.
-"set number relativenumber
 set number
 
 " When a bracket is inserted, briefly jumps to the matching one.
@@ -95,9 +98,9 @@ set list listchars=tab:>-,trail:-
 set colorcolumn=81
 highlight ColorColumn ctermbg=5
 
-" --------------------------------------------------------------------------- "
-"                                  Splits                                     "
-" --------------------------------------------------------------------------- "
+" ---------------------------------------------------------------------------- "
+"                                    Splits                                    "
+" ---------------------------------------------------------------------------- "
 
 " Overrides vim default splitting settings
 set splitbelow splitright
@@ -108,9 +111,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-" --------------------------------------------------------------------------- "
-"                                  Back up                                    "
-" --------------------------------------------------------------------------- "
+" ---------------------------------------------------------------------------- "
+"                                   Back up                                    "
+" ---------------------------------------------------------------------------- "
 
 set backup
 if !isdirectory($HOME . "/.backup/vim")
@@ -158,12 +161,6 @@ inoremap <Down>  <nop>
 " ---------------------------------------------------------------------------- "
 
 inoremap jk <esc>
-
-" When enteting vim map Caps Lock to Escape.
-"au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-
-" When leaving vim map  Caps Lock back to being itself.
-"au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'"
 
 " ---------------------------------------------------------------------------- "
 "                             Function Definitions                             "
@@ -217,11 +214,9 @@ function! ToggleColorScheme()
 
 endfunction
 
-" Quote/Unquote Word
 function! UnquoteWord()
 
     let cword = expand('<cWORD>')
-
     if strpart(cword, 0, 1) == '"'
         exec "normal di\"hPl2x"
     elseif strpart(cword, 0, 1) == "'"
