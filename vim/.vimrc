@@ -5,9 +5,7 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 "
 
-" Author:   Artyom Danilov
-" Modified: March 14, 2020
-
+" Author:   Artyom Danilov " Modified: March 14, 2020 
 " --------------------------------------------------------------------------- "
 "                                Indentation                                  "
 " --------------------------------------------------------------------------- "
@@ -162,10 +160,10 @@ inoremap <Down>  <nop>
 inoremap jk <esc>
 
 " When enteting vim map Caps Lock to Escape.
-au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+"au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
 " When leaving vim map  Caps Lock back to being itself.
-au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'"
+"au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'"
 
 " ---------------------------------------------------------------------------- "
 "                             Function Definitions                             "
@@ -219,14 +217,23 @@ function! ToggleColorScheme()
 
 endfunction
 
-" spell check
-function! ToggleSpellCheck()
+" Quote/Unquote Word
+function! UnquoteWord()
 
-    if &spell
-        set nospell
-    else
-        set spell
+    let cword = expand('<cWORD>')
+
+    if strpart(cword, 0, 1) == '"'
+        exec "normal di\"hPl2x"
+    elseif strpart(cword, 0, 1) == "'"
+        exec "normal di\'hPl2x"
     endif
+
+endfunction
+
+function! QuoteWord(quote)
+
+    let cword = expand('<cWORD>')
+    exec "normal ciw" . a:quote . "\<C-r>\"" . a:quote
 
 endfunction
 
@@ -242,9 +249,12 @@ nnoremap <silent> <leader>c  :call comment#CommentUncomment() <CR>
 vnoremap <silent> <leader>c  :call comment#CommentUncomment() <CR>
 nnoremap <silent> <leader>v  :call comment#VisualComment()    <CR>
 
+nnoremap <silent>qq' : call QuoteWord("'") <CR>
+nnoremap <silent>qq" : call QuoteWord('"') <CR>
+nnoremap <silent>qq  : call UnquoteWord()  <CR>
+
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
-nnoremap <silent> <leader>sc :call ToggleSpellCheck()     <CR>
 nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
 nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 
@@ -252,11 +262,6 @@ nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 nnoremap <leader>ev :"split" $MYVIMRC  <CR>
 " Source .vimrc
 nnoremap <leader>sv :source $MYVIMRC <CR>
-
-" Quoting
-"nnoremap <leader>q" ciw""<Esc>P
-"nnoremap <leader>q' ciw''<Esc>P
-nnoremap <leader>q" ciw"<C-r>""
 
 " ---------------------------------------------------------------------------- "
 "                                Abbreviations                                 "
