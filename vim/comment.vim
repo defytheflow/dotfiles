@@ -65,6 +65,7 @@ function! comment#VisualLine()
 
     if len(text) == 0
         return
+    endif
 
     " Get the number of char to add on left and right
     let length   = (wrap - len(text) - len(printf(format, '')))

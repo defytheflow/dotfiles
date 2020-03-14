@@ -155,12 +155,6 @@ inoremap <Up>    <nop>
 inoremap <Down>  <nop>
 
 " ---------------------------------------------------------------------------- "
-"                                 Remap Escape                                 "
-" ---------------------------------------------------------------------------- "
-
-inoremap jk <esc>
-
-" ---------------------------------------------------------------------------- "
 "                             Function Definitions                             "
 " ---------------------------------------------------------------------------- "
 
@@ -213,37 +207,58 @@ function! ToggleColorScheme()
 endfunction
 
 " ---------------------------------------------------------------------------- "
-"                                   Mappings                                   "
+"                                   Sources                                    "
 " ---------------------------------------------------------------------------- "
+
+source ~/.vim/syntax/comment.vim
+source ~/.vim/syntax/quote.vim
 
 let mapleader = ";"
 
-source ~/.vim/syntax/comment.vim
+" ---------------------------------------------------------------------------- "
+"                          Normal Mode Function Maps                           "
+" ---------------------------------------------------------------------------- "
 
 nnoremap <silent> <leader>c  :call comment#ToggleLine() <CR>
-vnoremap <silent> <leader>c  :call comment#ToggleLine() <CR>
 nnoremap <silent> <leader>v  :call comment#VisualLine() <CR>
 
-source ~/.vim/syntax/quote.vim
-
 nnoremap <silent>qw' : call quote#QuoteWord("'") <CR>
-vnoremap <silent>qw' : call quote#QuoteWord("'") <CR>
-
 nnoremap <silent>qw" : call quote#QuoteWord('"') <CR>
-vnoremap <silent>qw" : call quote#QuoteWord('"') <CR>
-
 nnoremap <silent>qw  : call quote#UnquoteWord()  <CR>
-vnoremap <silent>qw  : call quote#UnquoteWord()  <CR>
 
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
 nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
 nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 
+" ---------------------------------------------------------------------------- "
+"                          Visual Mode Function Maps                           "
+" ---------------------------------------------------------------------------- "
+
+vnoremap <silent> <leader>c  :call comment#ToggleLine() <CR>
+
+vnoremap <silent>qw' : call quote#QuoteWord("'") <CR>
+vnoremap <silent>qw" : call quote#QuoteWord('"') <CR>
+vnoremap <silent>qw  : call quote#UnquoteWord()  <CR>
+
+" ---------------------------------------------------------------------------- "
+"                             Normal Mode Key Maps                             "
+" ---------------------------------------------------------------------------- "
+
 " Edit .vimrc
 nnoremap <leader>ev :"split" $MYVIMRC  <CR>
 " Source .vimrc
 nnoremap <leader>sv :source $MYVIMRC <CR>
+" Insert new lines
+nnoremap <silent> oo : <C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent> OO : <C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+
+" ---------------------------------------------------------------------------- "
+"                             Insert Mode Key Maps                             "
+" ---------------------------------------------------------------------------- "
+
+" Escape
+inoremap jk <esc>
 
 " ---------------------------------------------------------------------------- "
 "                                Abbreviations                                 "
