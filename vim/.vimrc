@@ -159,7 +159,7 @@ inoremap <Down>  <nop>
 "                                 Remap Escape                                 "
 " ---------------------------------------------------------------------------- "
 
-inoremap kj <esc>
+inoremap jk <esc>
 
 " When enteting vim map Caps Lock to Escape.
 au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
@@ -236,15 +236,15 @@ endfunction
 
 let mapleader = ";"
 
-nnoremap <silent> <leader>c  :call CommentUncomment() <CR>
-vnoremap <silent> <leader>c  :call CommentUncomment() <CR>
-nnoremap <silent> <leader>v  :call VisualComment()    <CR>
+source ~/.vim/syntax/comment.vim
+
+nnoremap <silent> <leader>c  :call comment#CommentUncomment() <CR>
+vnoremap <silent> <leader>c  :call comment#CommentUncomment() <CR>
+nnoremap <silent> <leader>v  :call comment#VisualComment()    <CR>
 
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
-
 nnoremap <silent> <leader>sc :call ToggleSpellCheck()     <CR>
-
 nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
 nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 

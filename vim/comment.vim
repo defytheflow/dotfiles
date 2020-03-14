@@ -3,7 +3,7 @@
 " Modified: March 14, 2020
 
 " Return the token used for commenting in a programming language.
-function! GetCommentToken(filetype)
+function! comment#GetCommentToken()
 
     let ft = &filetype
 
@@ -20,48 +20,48 @@ function! GetCommentToken(filetype)
 endfunction
 
 " Comment line.
-function! Comment(comment_token)
+function! comment#Comment(comment_token)
 
-    if comment_token == '#'
+    if a:comment_token == '#'
         silent! s/^/\#/
-    elseif comment_token == '//'
+    elseif a:comment_token == '//'
         silent! s:^:\/\/:g
-    elseif comment_token == '"'
+    elseif a:comment_token == '"'
         silent! s:^:\":g
     endif
 
 endfunction
 
 " Uncomment line.
-function! Uncomment(comment_token)
+function! comment#Uncomment(comment_token)
 
-    if comment_token == '#'
+    if a:comment_token == '#'
         silent! s/^\#//
-    elseif comment_token == '//'
+    elseif a:comment_token == '//'
         silent! s:^\/\/::g
-    elseif comment_token == '"'
+    elseif a:comment_token == '"'
         silent! s:^\"::g
     endif
 
 endfunction
 
 " Toggle Comment or Uncomment.
-function! CommentUncomment()
+function! comment#CommentUncomment()
 
-    let comment_token = GetCommentToken(&filetype)
+    let comment_token = comment#GetCommentToken()
 
     if strpart(getline('.'), 0, 1) == comment_token
-        call Uncomment()
+        call comment#Uncomment(comment_token)
     else
-        call Comment()
+        call comment#Comment(comment_token)
     endif
 
 endfunction
 
 " Visual Comment.
-function! VisualComment()
+function! comment#VisualComment()
 
-    let comment_token = GetCommentToken(&filetype)
+    let comment_token = comment#GetCommentToken()
     let comment_format = comment_token . ' %s ' . comment_token
     let comment_char = '-'
     let comment_text = input("Text: ")
