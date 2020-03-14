@@ -36,9 +36,7 @@ set shiftwidth=4
 " Lines longer than the width of the window wrap and displaying continues
 " on the next line.
 set wrap
-
-" Maximum width of the text that is being inserted.
-set textwidth=80
+" Maximum width of the text that is being inserted.  set textwidth=80
 set formatoptions+=t
 
 augroup indentation
@@ -214,24 +212,6 @@ function! ToggleColorScheme()
 
 endfunction
 
-function! UnquoteWord()
-
-    let cword = expand('<cWORD>')
-    if strpart(cword, 0, 1) == '"'
-        exec "normal di\"hPl2x"
-    elseif strpart(cword, 0, 1) == "'"
-        exec "normal di\'hPl2x"
-    endif
-
-endfunction
-
-function! QuoteWord(quote)
-
-    let cword = expand('<cWORD>')
-    exec "normal ciw" . a:quote . "\<C-r>\"" . a:quote
-
-endfunction
-
 " ---------------------------------------------------------------------------- "
 "                                   Mappings                                   "
 " ---------------------------------------------------------------------------- "
@@ -240,13 +220,20 @@ let mapleader = ";"
 
 source ~/.vim/syntax/comment.vim
 
-nnoremap <silent> <leader>c  :call comment#CommentUncomment() <CR>
-vnoremap <silent> <leader>c  :call comment#CommentUncomment() <CR>
-nnoremap <silent> <leader>v  :call comment#VisualComment()    <CR>
+nnoremap <silent> <leader>c  :call comment#ToggleLine() <CR>
+vnoremap <silent> <leader>c  :call comment#ToggleLine() <CR>
+nnoremap <silent> <leader>v  :call comment#VisualLine() <CR>
 
-nnoremap <silent>qq' : call QuoteWord("'") <CR>
-nnoremap <silent>qq" : call QuoteWord('"') <CR>
-nnoremap <silent>qq  : call UnquoteWord()  <CR>
+source ~/.vim/syntax/quote.vim
+
+nnoremap <silent>qw' : call quote#QuoteWord("'") <CR>
+vnoremap <silent>qw' : call quote#QuoteWord("'") <CR>
+
+nnoremap <silent>qw" : call quote#QuoteWord('"') <CR>
+vnoremap <silent>qw" : call quote#QuoteWord('"') <CR>
+
+nnoremap <silent>qw  : call quote#UnquoteWord()  <CR>
+vnoremap <silent>qw  : call quote#UnquoteWord()  <CR>
 
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>

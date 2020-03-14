@@ -3,7 +3,7 @@
 " Modified: March 14, 2020
 
 " Return the token used for commenting in a programming language.
-function! comment#GetCommentToken()
+function! comment#GetToken()
 
     let ft = &filetype
 
@@ -19,61 +19,61 @@ function! comment#GetCommentToken()
 
 endfunction
 
-" Comment line.
-function! comment#Comment(comment_token)
+function! comment#CommentLine(token)
 
-    if a:comment_token == '#'
+    if a:token == '#'
         silent! s/^/\#/
-    elseif a:comment_token == '//'
+    elseif a:token == '//'
         silent! s:^:\/\/:g
-    elseif a:comment_token == '"'
+    elseif a:token == '"'
         silent! s:^:\":g
     endif
 
 endfunction
 
-" Uncomment line.
-function! comment#Uncomment(comment_token)
+function! comment#UncommentLine(token)
 
-    if a:comment_token == '#'
+    if a:token == '#'
         silent! s/^\#//
-    elseif a:comment_token == '//'
+    elseif a:token == '//'
         silent! s:^\/\/::g
-    elseif a:comment_token == '"'
+    elseif a:token == '"'
         silent! s:^\"::g
     endif
 
 endfunction
 
-" Toggle Comment or Uncomment.
-function! comment#CommentUncomment()
+function! comment#ToggleLine()
 
-    let comment_token = comment#GetCommentToken()
+    let token = comment#GetToken()
 
-    if strpart(getline('.'), 0, 1) == comment_token
-        call comment#Uncomment(comment_token)
+    if strpart(getline('.'), 0, 1) == token
+        call comment#UncommentLine(token)
     else
-        call comment#Comment(comment_token)
+        call comment#CommentLine(token)
     endif
 
 endfunction
 
 " Visual Comment.
-function! comment#VisualComment()
+function! comment#VisualLine()
 
-    let comment_token = comment#GetCommentToken()
-    let comment_format = comment_token . ' %s ' . comment_token
-    let comment_char = '-'
-    let comment_text = input("Text: ")
+    let token  = comment#GetToken()
+    let text   = input("Text: ")
+    let format = token . ' %s ' . token
+    let wrap   = 80
 
-    " Get the number of char to add on left
-    let len   = (80 - len(comment_text) - len(printf(comment_format, '')))
-    let left  = len / 2
-    let right = len - left
+    if len(text) == 0
+        return
+
+    " Get the number of char to add on left and right
+    let length   = (wrap - len(text) - len(printf(format, '')))
+    let left  = length / 2
+    let right = length - left
 
     " Insert in the buffer
-    put=printf(comment_format, repeat(comment_char, 76))
-    put=printf(comment_format, repeat(' ', left) . comment_text . repeat(' ',  right))
-    put=printf(comment_format, repeat(comment_char, 76))
+    put = printf(format, repeat('-', wrap - 4))
+    put = printf(format, repeat(' ', left) . text . repeat(' ',  right))
+    put = printf(format, repeat('-', wrap - 4))
 
 endfunction
