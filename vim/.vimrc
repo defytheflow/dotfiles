@@ -6,7 +6,7 @@
 "
 
 " Author:   Artyom Danilov
-" Modified: March 13, 2020
+" Modified: March 14, 2020
 
 " --------------------------------------------------------------------------- "
 "                                Indentation                                  "
@@ -120,9 +120,22 @@ if !isdirectory($HOME . "/.backup/vim")
 endif
 set backupdir=~/.backup/vim
 
-" --------------------------------------------------------------------------- "
-"                               Disable Arrows                                "
-" --------------------------------------------------------------------------- "
+" ---------------------------------------------------------------------------- "
+"                                    Other                                     "
+" ---------------------------------------------------------------------------- "
+
+" To enable all vim features
+set nocompatible
+
+" Enable mouse for scrolling and resizing.
+set mouse=a
+
+" Increase the undo limit
+set history=1000
+
+" ---------------------------------------------------------------------------- "
+"                                Disable Arrows                                "
+" ---------------------------------------------------------------------------- "
 
 " Normal Mode
 nnoremap <Left>  :echo "Type 'h', moron!" <CR>
@@ -142,22 +155,21 @@ inoremap <Right> <nop>
 inoremap <Up>    <nop>
 inoremap <Down>  <nop>
 
-" --------------------------------------------------------------------------- "
-"                                  Other                                      "
-" --------------------------------------------------------------------------- "
+" ---------------------------------------------------------------------------- "
+"                                 Remap Escape                                 "
+" ---------------------------------------------------------------------------- "
 
-" To enable all vim features
-set nocompatible
+inoremap kj <esc>
 
-" Enable mouse for scrolling and resizing.
-set mouse=a
+" When enteting vim map Caps Lock to Escape.
+au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 
-" Increase the undo limit
-set history=1000
+" When leaving vim map  Caps Lock back to being itself.
+au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'"
 
-" --------------------------------------------------------------------------- "
-"                           Function Definitions                              "
-" --------------------------------------------------------------------------- "
+" ---------------------------------------------------------------------------- "
+"                             Function Definitions                             "
+" ---------------------------------------------------------------------------- "
 
 " Syntax on or off
 function! ToggleSyntax()
@@ -218,107 +230,37 @@ function! ToggleSpellCheck()
 
 endfunction
 
-" Return the token used for commenting in a programming language.
-" For example: # in python or // in c++
-function! GetCommentToken(filetype)
-
-    let ft = &filetype
-
-    if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make'
-       \ || ft == 'python' || ft == 'perl'
-        return '#'
-    elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java'
-        \ || ft == 'objc' || ft == 'scala' || ft == 'go'
-        return '//'
-    elseif ft == 'vim'
-        return '"'
-    endif
-
-endfunction
-
-" Comment out line
-function! Comment()
-
-    let comment_token = GetCommentToken(&filetype)
-
-    if comment_token == '#'
-        silent! s/^/\#/
-    elseif comment_token == '//'
-        silent! s:^:\/\/:g
-    elseif comment_token == '"'
-        silent! s:^:\":g
-    endif
-
-endfunction
-
-" Uncomment line
-function! Uncomment()
-
-    let comment_token = GetCommentToken(&filetype)
-
-    if comment_token == '#'
-        silent! s/^\#//
-    elseif comment_token == '//'
-        silent! s:^\/\/::g
-    elseif comment_token == '"'
-        silent! s:^\"::g
-    endif
-
-endfunction
-
-" Print a Visual Comment
-function! VisualComment()
-
-    let comment_token = GetCommentToken(&filetype)
-    let comment_string = comment_token . ' %s ' . comment_token
-    let comment_char = '-'
-    let comment_text = input("Text: ")
-
-    " Get the number of char to add on left
-    let len   = (80 - len(comment_text) - len(printf(comment_string, '')))
-    let left  = len / 2
-    let right = len - left
-
-    " Insert in the buffer
-    put=printf(comment_string, repeat(comment_char, 76))
-    put=printf(comment_string, repeat(' ', left) . comment_text . repeat(' ',  right))
-    put=printf(comment_string, repeat(comment_char, 76))
-
-endfunction
-
-" --------------------------------------------------------------------------- "
-"                                  Mappings                                   "
-" --------------------------------------------------------------------------- "
+" ---------------------------------------------------------------------------- "
+"                                   Mappings                                   "
+" ---------------------------------------------------------------------------- "
 
 let mapleader = ";"
 
-nnoremap <silent> <leader>c  :call Comment()              <CR>
-nnoremap <silent> <leader>x  :call Uncomment()            <CR>
-nnoremap <silent> <leader>v  :call VisualComment()        <CR>
+nnoremap <silent> <leader>c  :call CommentUncomment() <CR>
+vnoremap <silent> <leader>c  :call CommentUncomment() <CR>
+nnoremap <silent> <leader>v  :call VisualComment()    <CR>
 
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
+
 nnoremap <silent> <leader>sc :call ToggleSpellCheck()     <CR>
 
 nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
 nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 
-" edit .vimrc
-nnoremap <leader>ev :split $MYVIMRC  <CR>
-
-" source .vimrc
+" Edit .vimrc
+nnoremap <leader>ev :"split" $MYVIMRC  <CR>
+" Source .vimrc
 nnoremap <leader>sv :source $MYVIMRC <CR>
 
-" escape
-inoremap jk <esc>
+" Quoting
+"nnoremap <leader>q" ciw""<Esc>P
+"nnoremap <leader>q' ciw''<Esc>P
+nnoremap <leader>q" ciw"<C-r>""
 
-" quote
-nnoremap <leader>q" ciw""<Esc>P
-nnoremap <leader>q' ciw''<Esc>P
-
-" --------------------------------------------------------------------------- "
-"                                  Abbreviations                              "
-" --------------------------------------------------------------------------- "
+" ---------------------------------------------------------------------------- "
+"                                Abbreviations                                 "
+" ---------------------------------------------------------------------------- "
 
 iabbr #i #include
 iabbr #d #define
