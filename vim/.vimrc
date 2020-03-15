@@ -114,9 +114,11 @@ map <C-l> <C-w>l
 " ---------------------------------------------------------------------------- "
 
 set backup
+
 if !isdirectory($HOME . "/.backup/vim")
     call mkdir($HOME . "/.backup/vim", "p", 0700)
 endif
+
 set backupdir=~/.backup/vim
 
 " ---------------------------------------------------------------------------- "
@@ -210,21 +212,16 @@ endfunction
 "                                   Sources                                    "
 " ---------------------------------------------------------------------------- "
 
-source ~/.vim/syntax/comment.vim
-source ~/.vim/syntax/quote.vim
+source ~/.vim/comment.vim
+
+" ---------------------------------------------------------------------------- "
+"                                    Normal                                    "
+" ---------------------------------------------------------------------------- "
 
 let mapleader = ";"
 
-" ---------------------------------------------------------------------------- "
-"                          Normal Mode Function Maps                           "
-" ---------------------------------------------------------------------------- "
-
 nnoremap <silent> <leader>c  :call comment#ToggleLine() <CR>
 nnoremap <silent> <leader>v  :call comment#VisualLine() <CR>
-
-nnoremap <silent>qw' : call quote#QuoteWord("'") <CR>
-nnoremap <silent>qw" : call quote#QuoteWord('"') <CR>
-nnoremap <silent>qw  : call quote#UnquoteWord()  <CR>
 
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
@@ -232,29 +229,27 @@ nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
 nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 
 " ---------------------------------------------------------------------------- "
-"                          Visual Mode Function Maps                           "
+"                                    Visual                                    "
 " ---------------------------------------------------------------------------- "
 
 vnoremap <silent> <leader>c  :call comment#ToggleLine() <CR>
 
-vnoremap <silent>qw' : call quote#QuoteWord("'") <CR>
-vnoremap <silent>qw" : call quote#QuoteWord('"') <CR>
-vnoremap <silent>qw  : call quote#UnquoteWord()  <CR>
-
 " ---------------------------------------------------------------------------- "
-"                             Normal Mode Key Maps                             "
+"                                    Normal                                    "
 " ---------------------------------------------------------------------------- "
 
 " Edit .vimrc
 nnoremap <leader>ev :"split" $MYVIMRC  <CR>
+
 " Source .vimrc
 nnoremap <leader>sv :source $MYVIMRC <CR>
+
 " Insert new lines
-nnoremap <silent> oo : <C-u>call append(line("."),   repeat([""], v:count1))<CR>
-nnoremap <silent> OO : <C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+nnoremap <silent> <leader>o : <C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent> <leader>O : <C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
 " ---------------------------------------------------------------------------- "
-"                             Insert Mode Key Maps                             "
+"                                    Insert                                    "
 " ---------------------------------------------------------------------------- "
 
 " Escape
