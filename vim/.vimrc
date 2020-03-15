@@ -30,9 +30,7 @@ set softtabstop=4
 set smartindent
 
 " Controls how many columns text is indented with the reindent operations
-" (<< and >>) and automatic C-style indentation.
-set shiftwidth=4
-
+" (<< and >>) and automatic C-style indentation.  set shiftwidth=4 
 " Lines longer than the width of the window wrap and displaying continues
 " on the next line.
 set wrap
@@ -157,34 +155,40 @@ inoremap <Up>    <nop>
 inoremap <Down>  <nop>
 
 " ---------------------------------------------------------------------------- "
+"                                   Pluggins                                   "
+" ---------------------------------------------------------------------------- "
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+
+call plug#end()
+
+" ---------------------------------------------------------------------------- "
 "                             Function Definitions                             "
 " ---------------------------------------------------------------------------- "
 
 " Syntax on or off
 function! ToggleSyntax()
-
     if exists("g:syntax_on")
         syntax off
     else
         syntax enable
     endif
-
 endfunction
 
 " Relative number on or off
 function! ToggleRelativeNumber()
-
     if &relativenumber
         set norelativenumber
     else
         set relativenumber
     endif
-
 endfunction
 
 " Number on or off
 function! ToggleNumber()
-
     if &number || &relativenumber
         set nonumber
         set norelativenumber
@@ -192,12 +196,10 @@ function! ToggleNumber()
         set number
         set relativenumber
     endif
-
 endfunction
 
 " Switch colorschemes
 function! ToggleColorScheme()
-
     if g:colors_name == "koehler"
         color murphy
     elseif g:colors_name == "murphy"
@@ -205,14 +207,50 @@ function! ToggleColorScheme()
     else
         color koehler
     endif
+endfunction
+
+" Return the token used for commenting in a programming language.
+function! GetCommentToken()
+
+    let l:ft = &filetype
+
+    if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make'
+       \ || ft == 'python' || ft == 'perl'
+        return '#'
+
+    elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java'
+        \ || ft == 'objc' || ft == 'scala' || ft == 'go'
+        return '//'
+
+    elseif ft == 'vim'
+        return '"'
+    endif
 
 endfunction
 
-" ---------------------------------------------------------------------------- "
-"                                   Sources                                    "
-" ---------------------------------------------------------------------------- "
+" Visual Comment.
+function! VisualComment()
 
-source ~/.vim/comment.vim
+    let l:token  = GetCommentToken()
+    let l:text   = input("Text: ")
+    let l:format = token . ' %s ' . token
+    let l:wrap   = 80
+
+    if len(text) == 0
+        return
+    endif
+
+    " Get the number of char to add on left and right
+    let l:length   = (wrap - len(text) - len(printf(format, '')))
+    let l:left  = length / 2
+    let l:right = length - left
+
+    " Insert in the buffer
+    put = printf(format, repeat('-', wrap - 4))
+    put = printf(format, repeat(' ', left) . text . repeat(' ',  right))
+    put = printf(format, repeat('-', wrap - 4))
+
+endfunction
 
 " ---------------------------------------------------------------------------- "
 "                                    Normal                                    "
@@ -220,23 +258,12 @@ source ~/.vim/comment.vim
 
 let mapleader = ";"
 
-nnoremap <silent> <leader>c  :call comment#ToggleLine() <CR>
-nnoremap <silent> <leader>v  :call comment#VisualLine() <CR>
-
 nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
 nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
 nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 
-" ---------------------------------------------------------------------------- "
-"                                    Visual                                    "
-" ---------------------------------------------------------------------------- "
-
-vnoremap <silent> <leader>c  :call comment#ToggleLine() <CR>
-
-" ---------------------------------------------------------------------------- "
-"                                    Normal                                    "
-" ---------------------------------------------------------------------------- "
+nnoremap <silent> <leader>v  :call VisualComment()        <CR>
 
 " Edit .vimrc
 nnoremap <leader>ev :"split" $MYVIMRC  <CR>
