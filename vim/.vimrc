@@ -266,14 +266,17 @@ nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
 nnoremap <silent> <leader>v  :call VisualComment()        <CR>
 
 " Edit .vimrc
-nnoremap <leader>ev :"split" $MYVIMRC  <CR>
+nnoremap <leader>ev :split $MYVIMRC  <CR>
 
 " Source .vimrc
 nnoremap <leader>sv :source $MYVIMRC <CR>
 
-" Insert new lines
+" Insert a new line
 nnoremap <silent> <leader>o : <C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent> <leader>O : <C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+
+" Insert a character
+nnoremap <C-i> i_<Esc>r
 
 " ---------------------------------------------------------------------------- "
 "                                    Insert                                    "
