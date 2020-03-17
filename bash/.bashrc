@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo 'Running .bashrc'
+
 # -----------------------------------------------------------------------------
 #                       _               _
 #                      | |__   __ _ ___| |__  _ __ ___
@@ -27,14 +29,14 @@ esac
 #                                 Color prompt                                 #
 # ---------------------------------------------------------------------------- #
 
-case "$TERM" in
+case "${TERM}" in
     xterm-color | *-256color)
         color_prompt='yes' ;;
 esac
 
 force_color_prompt='yes'
 
-if [ -n "$force_color_prompt" ]; then
+if [ -n "${force_color_prompt}" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
         color_prompt='yes'
     else
@@ -78,9 +80,9 @@ stty -ixon
 #                                    Prompt                                    #
 # ---------------------------------------------------------------------------- #
 
-if [[ "$color_prompt" == 'yes' ]]; then
-    if [[ -f '~/.bash_prompt' ]]; then
-        . '~/.bash_prompt'
+if [[ "${color_prompt}" == 'yes' ]]; then
+    if [[ -f "${HOME}/.bash_prompt" ]]; then
+        . "${HOME}/.bash_prompt"
     fi
 else
     PS1='\u@\h:\w\$ '
@@ -91,8 +93,8 @@ fi
 # ---------------------------------------------------------------------------- #
 
 for file in 'aliases' 'exports' 'functions'; do
-    if [[ -f "~/.bash_${file}" ]]; then
-        . "~/.bash_${file}"
+    if [[ -f "${HOME}/.bash_${file}" ]]; then
+        . "${HOME}/.bash_${file}"
     fi
 done
 
@@ -101,10 +103,9 @@ done
 # ---------------------------------------------------------------------------- #
 
 # If running on wsl:
-if grep -qEi '(Microsoft|WSL)' '/proc/version' > /dev/null 2>&1 ; then
-    echo 'Running on WSL'
-    if [ -f '~/.bash_wsl' ]; then
-        . '~/.bash_wsl'
+if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
+    if [ -f "${HOME}/.bash_wsl" ]; then
+        . "${HOME}/.bash_wsl"
     fi
 fi
 

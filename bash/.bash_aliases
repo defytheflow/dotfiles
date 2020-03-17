@@ -152,14 +152,14 @@ alias py='python3'
 alias sc='shellcheck'
 
 alias shu='shunit2'
-alias rld='source ~/.bash_profile && echo ~/.bash_profile reloaded'
+alias rld="source ${HOME}/.bash_profile"
 
 # ---------------------------------------------------------------------------- #
 #                                 New Commands                                 #
 # ---------------------------------------------------------------------------- #
 
 alias now='date +\"%T\"'                     # prints current time
-alias path="echo $PATH | sed -e 's/:/\n/g'"  # lists the path on new line
+alias path="echo ${PATH} | sed -e 's/:/\n/g'"  # lists the path on new line
 
 alias starwars='telnet towel.blinkenlights.nl'
 alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
