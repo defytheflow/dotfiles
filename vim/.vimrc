@@ -1,12 +1,17 @@
-"        _
-" __   _(_)_ __ ___  _ __ ___
-" \ \ / / | '_ ` _ \| '__/ __|
-"  \ V /| | | | | | | | | (__
-"   \_/ |_|_| |_| |_|_|  \___|
+" ----------------------------------------------------------------------------
+"                               _
+"                        __   _(_)_ __ ___  _ __ ___
+"                        \ \ / / | '_ ` _ \| '__/ __|
+"                         \ V /| | | | | | | | | (__
+"                          \_/ |_|_| |_| |_|_|  \___|
 "
-
-" Author:      Artyom Danilov
-" Modified:    March 17, 2020
+" ----------------------------------------------------------------------------
+" File: .vimrc
+" ----------------------------------------------------------------------------
+" Modified: March 17, 2020
+" ----------------------------------------------------------------------------
+" Author: Artyom Danilov
+" ----------------------------------------------------------------------------
 
 " ---------------------------------------------------------------------------- "
 "                                   Pluggins                                   "
@@ -42,7 +47,7 @@ set laststatus=2
 call plug#end()
 
 " Man pages
-runtime ftplugin/man.vim
+runtime 'ftplugin/man.vim'
 
 " ---------------------------------------------------------------------------- "
 "                                 Indentation                                  "
@@ -66,7 +71,7 @@ set softtabstop=4
 set smartindent
 
 " Controls how many columns text is indented with the reindent operations
-" (<< and >>) and automatic C-style indentation.  set shiftwidth=4 
+" (<< and >>) and automatic C-style indentation.  set shiftwidth=4
 " Lines longer than the width of the window wrap and displaying continues
 " on the next line.
 set wrap
@@ -128,7 +133,7 @@ set showmatch
 set list listchars=tab:>-,trail:-
 
 " Highlight the 81st column with magenta
-set colorcolumn=81
+" set colorcolumn=81
 " highlight ColorColumn ctermbg=5
 
 " ---------------------------------------------------------------------------- "
@@ -176,16 +181,16 @@ set noshowmode
 "                             Function Definitions                             "
 " ---------------------------------------------------------------------------- "
 
-" Syntax on or off
+" Syntax on or off.
 function! ToggleSyntax()
-    if exists("g:syntax_on")
+    if exists('g:syntax_on')
         syntax off
     else
         syntax enable
     endif
 endfunction
 
-" Relative number on or off
+" Relative number on or off.
 function! ToggleRelativeNumber()
     if &relativenumber
         set norelativenumber
@@ -194,7 +199,7 @@ function! ToggleRelativeNumber()
     endif
 endfunction
 
-" Number on or off
+" Number on or off.
 function! ToggleNumber()
     if &number || &relativenumber
         set nonumber
@@ -205,7 +210,7 @@ function! ToggleNumber()
     endif
 endfunction
 
-" Switch colorschemes
+" Switch colorschemes.
 function! ToggleColorScheme()
     if g:colors_name == 'molokai'
         color atom-dark-256
@@ -215,6 +220,22 @@ function! ToggleColorScheme()
         color molokai
     endif
 endfunction
+
+" Color Column on or off.
+function! ToggleColorColumn()
+    if &cc == ''
+        set cc=81
+    else
+        set cc=
+    endif
+endfunction
+
+" Remove traling whitespaces.
+function! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
 
 " Return the token used for commenting in a programming language.
 function! GetCommentToken()
@@ -238,24 +259,26 @@ endfunction
 " Visual Comment.
 function! VisualComment()
 
-    let l:token  = GetCommentToken()
-    let l:text   = input("Text: ")
+    let l:token  = GetCommentToken() " (e.g. #, //)
+    let l:text   = input('Text: ')   " comment text
     let l:format = token . ' %s ' . token
-    let l:wrap   = 80
+    let l:limit  = 80                " max columns
+    let l:space  = 1                 " space character
 
+    " If no input text:
     if len(text) == 0
         return
     endif
 
     " Get the number of char to add on left and right
-    let l:length   = (wrap - len(text) - len(printf(format, '')))
-    let l:left  = length / 2
-    let l:right = length - left
+    let l:length = limit - len(text) - len(format)
+    let l:left   = length / 2
+    let l:right  = length - left
 
     " Insert in the buffer
-    put = printf(format, repeat('-', wrap - 4))
-    put = printf(format, repeat(' ', left) . text . repeat(' ',  right))
-    put = printf(format, repeat('-', wrap - 4))
+    put = printf(format, repeat('-', limit - 2 * space - len(token) * 2))
+    put = printf(format, repeat(' ', left+space).text.repeat(' ',  right+space))
+    put = printf(format, repeat('-', limit - 2 * space - len(token) * 2))
 
 endfunction
 
@@ -276,7 +299,8 @@ nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
 nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
 nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
 nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
-
+nnoremap <silent> <C-x>      :call ToggleColorColumn()    <CR>
+nnoremap <silent> <leader>w  :call TrimWhitespace()       <CR>
 nnoremap <silent> <leader>v  :call VisualComment()        <CR>
 
 " Edit .vimrc
