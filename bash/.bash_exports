@@ -1,52 +1,63 @@
 #!/bin/bash
 
-# Author: Artyom Danilov
-# Modified: March 13, 2020
+# Author:   Artyom Danilov
+# Modified: March 17, 2020
 
-# --------------------------------------------------------------------------- #
-#                             Default Programs                                #
-# --------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                                     bash                                     #
+# ---------------------------------------------------------------------------- #
 
-export EDITOR="vim"
+export BASHRC="$HOME/.bashrc"
+export ALIAS="$HOME/.bash_aliases"
+export EXPORT="$HOME/.bash_exports"
+export FUNCTION="$HOME/.bash_functions"
+export PROMPT="$HOME/.bash_prompt"
 
-# --------------------------------------------------------------------------- #
-#                                  Other                                      #
-# --------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                                      c                                       #
+# ---------------------------------------------------------------------------- #
 
-export GITHUB="https://github.com/defytheflow"
+export CFLAGS='-W -Wall -Wextra'     # default flags for make
+export CPATH="$HOME/.lib/"           # my includes
+export LD_LIBRARY_PATH="$HOME/.lib"  # my libraries (.so, .a)
 
-# --------------------------------------------------------------------------- #
-#                                  Configs                                    #
-# --------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                                     git                                      #
+# ---------------------------------------------------------------------------- #
 
-export BA="$HOME/.bash_aliases"
-export BE="$HOME/.bash_exports"
-export BF="$HOME/.bash_functions"
-export BP="$HOME/.bash_prompt"
-export BRC="$HOME/.bashrc"
-export VRC="$HOME/.vimrc"
-
-# --------------------------------------------------------------------------- #
-#                                Git projects                                 #
-# --------------------------------------------------------------------------- #
-
+export GITHUB='https://github.com/defytheflow'
 export GIT="$HOME/dev/git"
+
+# Current projects
 export SCH="$GIT/school"
 export SDK="$GIT/sdk"
+export SYS="$GIT/sys"
 export DOT="$GIT/dot"
 export LIB="$GIT/lib"
 
-# --------------------------------------------------------------------------- #
-#                                  Python                                     #
-# --------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                                    python                                    #
+# ---------------------------------------------------------------------------- #
 
 export PYTHONPATH="$HOME/.lib/"            # my modules
 export PYTHONSTARTUP="$HOME/.pythonrc.py"  # "run command" file
 
-# --------------------------------------------------------------------------- #
-#                                   C                                         #
-# --------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                                     vim                                      #
+# ---------------------------------------------------------------------------- #
 
-export CFLAGS="-W -Wall -Wextra"     # default flags for make
-export CPATH="$HOME/.lib/"           # my includes
-export LD_LIBRARY_PATH="$HOME/.lib"  # my libraries (.so, .a)
+export EDITOR='vim'                  # default editor used by other programs
+export VIMRC="$HOME/.vimrc"
+
+# ---------------------------------------------------------------------------- #
+#                                     wsl                                      #
+# ---------------------------------------------------------------------------- #
+
+# If being run on wsl
+if grep -qEi '(Microsoft|WSL)' /proc/version &> /dev/null; then
+    WINHOME="$(wslpath $(cmd.exe /C "echo | set /p _=%USERPROFILE%" 2>null ))"
+fi
+
+# ---------------------------------------------------------------------------- #
+#                                     end                                      #
+# ---------------------------------------------------------------------------- #
