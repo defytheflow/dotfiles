@@ -1,66 +1,52 @@
 #!/bin/bash
 
+# -----------------------------------------------------------------------------
+#                       _               _
+#                      | |__   __ _ ___| |__  _ __ ___
+#                      | '_ \ / _` / __| '_ \| '__/ __|
+#                      | |_) | (_| \__ \ | | | | | (__
+#                      |_.__/ \__,_|___/_| |_|_|  \___|
 #
-# | |__   __ _ ___| |__  _ __ ___
-# | '_ \ / _` / __| '_ \| '__/ __|
-# | |_) | (_| \__ \ | | | | | (__
-# |_.__/ \__,_|___/_| |_|_|  \___|
-#
-
-# Author:   Artyom Danilov
-# Modified: March 13, 2020
+# ---------------------------------------------------------------------------- 
+#  File: .bashrc
+# ---------------------------------------------------------------------------- 
+#  Modified: March 17, 2020
+# ---------------------------------------------------------------------------- 
+#  Author: Artyom Danilov
+# ---------------------------------------------------------------------------- 
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return ;;
+    *i*)
+          ;;
+      *)
+          return ;;
 esac
 
-# Don't put duplicate lines or lines starting with space in the history.
-HISTCONTROL=ignoreboth
-# For setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=10000
+# ---------------------------------------------------------------------------- #
+#                                 Color prompt                                 #
+# ---------------------------------------------------------------------------- #
 
-# Make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+    xterm-color | *-256color)
+        color_prompt='yes' ;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window # should be on the output of commands, not on the prompt
-force_color_prompt=yes
+force_color_prompt='yes'
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
+        color_prompt='yes'
     else
-        color_prompt=
+        color_prompt=''
     fi
 fi
 
-# unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-    xterm*|rxvt*)
-        PS1="\[\e]0;\u@\h: \w\a\]$PS1"
-        ;;
-    *)
-        ;;
-esac
-
 # ---------------------------------------------------------------------------- #
-#                             Interactive Options                              #
+#                           Additional Shell Options                           #
 # ---------------------------------------------------------------------------- #
 
-# Append to the history file, don't overwrite it
+# Append to the history file, don't overwrite it.
 shopt -s histappend
 
 # Check the window size after each command and, if necessary,
@@ -84,44 +70,44 @@ shopt -s dirspell
 # name expansion
 shopt -s nocaseglob
 
-# For ctrl mappings
+# Change terminal characteristics.
+# For ctrl mappings in vim (?)
 stty -ixon
 
 # ---------------------------------------------------------------------------- #
 #                                    Prompt                                    #
 # ---------------------------------------------------------------------------- #
 
-if [ "$color_prompt" = yes ]; then
-
-    if [[ -f $HOME/.bash_prompt ]]; then
-        . "$HOME/.bash_prompt"
+if [[ "$color_prompt" == 'yes' ]]; then
+    if [[ -f '~/.bash_prompt' ]]; then
+        . '~/.bash_prompt'
     fi
-
 else
     PS1='\u@\h:\w\$ '
 fi
 
 # ---------------------------------------------------------------------------- #
-#                                   Aliases                                    #
+#                        Aliases - Exports - Functions                         #
 # ---------------------------------------------------------------------------- #
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+for file in 'aliases' 'exports' 'functions'; do
+    if [[ -f "~/.bash_${file}" ]]; then
+        . "~/.bash_${file}"
+    fi
+done
+
+# ---------------------------------------------------------------------------- #
+#                                     WSL                                      #
+# ---------------------------------------------------------------------------- #
+
+# If running on wsl:
+if grep -qEi '(Microsoft|WSL)' '/proc/version' > /dev/null 2>&1 ; then
+    echo 'Running on WSL'
+    if [ -f '~/.bash_wsl' ]; then
+        . '~/.bash_wsl'
+    fi
 fi
 
 # ---------------------------------------------------------------------------- #
-#                                  Functions                                   #
+#                                     End                                      #
 # ---------------------------------------------------------------------------- #
-
-if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
-fi
-
-# ---------------------------------------------------------------------------- #
-#                                   Exports                                    #
-# ---------------------------------------------------------------------------- #
-
-if [ -f ~/.bash_exports ]; then
-    . ~/.bash_exports
-fi
-
