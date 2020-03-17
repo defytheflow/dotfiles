@@ -1,62 +1,97 @@
 #!/bin/bash
 
-# Author:   Artyom Danilov
-# Modified: March 17, 2020
+echo 'Running .bash_exports'
+
+# -----------------------------------------------------------------------------
+#                                                _
+#                      _____  ___ __   ___  _ __| |_ ___
+#                     / _ \ \/ / '_ \ / _ \| '__| __/ __|
+#                    |  __/>  <| |_) | (_) | |  | |_\__ \
+#                     \___/_/\_\ .__/ \___/|_|   \__|___/
+#                              |_|
+#
+# -----------------------------------------------------------------------------
+#  File: .bash_exports
+# ---------------------------------------------------------------------------- 
+#  Modified: March 17, 2020
+# ---------------------------------------------------------------------------- 
+#  Author:   Artyom Danilov
+# ---------------------------------------------------------------------------- 
 
 # ---------------------------------------------------------------------------- #
 #                                     bash                                     #
 # ---------------------------------------------------------------------------- #
 
-export BASHRC="$HOME/.bashrc"
-export ALIAS="$HOME/.bash_aliases"
-export EXPORT="$HOME/.bash_exports"
-export FUNCTION="$HOME/.bash_functions"
-export PROMPT="$HOME/.bash_prompt"
+# Don't save duplicate lines or lines starting with whitespace in the history.
+export HISTCONTROL='ignoredups'
+
+# Number of lines or commands that are stored in memory in a history list while
+# your bash session is ongoing.
+export HISTSIZE=10000
+
+# Number of lines or commands that are allowed in the history file at startup
+# time of a session and are stored in the history files at the end of your
+# bash session for use in future sessions.
+export HISTFILESIZE=10000
+
+# Configuration files.
+export ALIAS="   ${HOME}/.bash_aliases"
+export BASHRC="  ${HOME}/.bashrc"
+export EXPORT="  ${HOME}/.bash_exports"
+export FUNCTION="${HOME}/.bash_functions"
+export PROFILE=" ${HOME}/.bash_profile"
+export PROMPT="  ${HOME}/.bash_prompt"
+export WSL="     ${HOME}/.bash_wsl"
 
 # ---------------------------------------------------------------------------- #
 #                                      c                                       #
 # ---------------------------------------------------------------------------- #
 
-export CFLAGS='-W -Wall -Wextra'     # default flags for make
-export CPATH="$HOME/.lib/"           # my includes
-export LD_LIBRARY_PATH="$HOME/.lib"  # my libraries (.so, .a)
+# Default flags for make.
+export CFLAGS='-W -Wall -Wextra'
+
+# Search for includes here.
+export CPATH="${HOME}/.lib/"
+
+# Link libraries from here.
+export LD_LIBRARY_PATH="${HOME}/.lib"
 
 # ---------------------------------------------------------------------------- #
 #                                     git                                      #
 # ---------------------------------------------------------------------------- #
 
+# My github
 export GITHUB='https://github.com/defytheflow'
-export GIT="$HOME/dev/git"
+
+# Directory for git-tracked projects
+export GITD="${HOME}/dev/git"
 
 # Current projects
-export SCH="$GIT/school"
-export SDK="$GIT/sdk"
-export SYS="$GIT/sys"
-export DOT="$GIT/dot"
-export LIB="$GIT/lib"
+export DOT="${GITD}/dot"
+export LIB="${GITD}/lib"
+export SCH="${GITD}/school"
+export SDK="${GITD}/sdk"
+export SYS="${GITD}/sys"
 
 # ---------------------------------------------------------------------------- #
 #                                    python                                    #
 # ---------------------------------------------------------------------------- #
 
-export PYTHONPATH="$HOME/.lib/"            # my modules
-export PYTHONSTARTUP="$HOME/.pythonrc.py"  # "run command" file
+# Search python modules here.
+export PYTHONPATH="${HOME}/.lib/"
+
+# Run this 'commands' file when starting interpreter.
+export PYTHONSTARTUP="${HOME}/.pythonrc.py"
 
 # ---------------------------------------------------------------------------- #
 #                                     vim                                      #
 # ---------------------------------------------------------------------------- #
 
-export EDITOR='vim'                  # default editor used by other programs
-export VIMRC="$HOME/.vimrc"
+# Use this as default editor by other programs.
+export EDITOR='vim'
 
-# ---------------------------------------------------------------------------- #
-#                                     wsl                                      #
-# ---------------------------------------------------------------------------- #
-
-# If being run on wsl
-if grep -qEi '(Microsoft|WSL)' /proc/version &> /dev/null; then
-    WINHOME="$(wslpath $(cmd.exe /C "echo | set /p _=%USERPROFILE%" 2>null ))"
-fi
+# Condifuration file.
+export VIMRC="${HOME}/.vimrc"
 
 # ---------------------------------------------------------------------------- #
 #                                     end                                      #

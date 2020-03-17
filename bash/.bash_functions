@@ -1,47 +1,76 @@
 #!/bin/bash
 
-# Author: Artyom Danilov
-# Last modified on February 23, 2020.
+echo 'Running .bash_functions'
 
-# Prints the text to the center of the terminal.
-echoc()
-{
-    width=$(stty size | cut -d" " -f2)
-    length=${#1}
-    printf "%$(( length + (width - length) / 2 ))b\n" "$1"
+# ---------------------------------------------------------------------------- 
+#                  __                  _   _
+#                 / _|_   _ _ __   ___| |_(_) ___  _ __  ___
+#                | |_| | | | '_ \ / __| __| |/ _ \| '_ \/ __|
+#                |  _| |_| | | | | (__| |_| | (_) | | | \__ \
+#                |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+#
+# ---------------------------------------------------------------------------- 
+#  File: .bash_functions
+# ---------------------------------------------------------------------------- 
+#  Modified: March 17, 2020
+# ---------------------------------------------------------------------------- 
+#  Author: Artyom Danilov
+# ---------------------------------------------------------------------------- 
+
+# Export following variables and functions.
+set -a
+
+# Print first passed argument to the center of the terminal.
+function echoc() {
+    local text=$1
+    local width=$(stty size | cut -d ' ' -f2)
+    local length=${#text}
+    printf "%$(( length + (width - length) / 2 ))b\n" "${text}"
 }
-export -f echoc
 
-# Returns 0 if directory is empty.
-isempty() { return $([[ "$(find "$1" -type f | wc -l)" -eq 0 ]]); }
-export -f isempty
+# Print all passed arguments to stderr.
+function err() {
+    echo "$*" >&2
+}
 
-# Make a directory and cd into it.
-mkcd() { mkdir -p "$1" && cd "$1" || return; }
-export -f mkcd
+# Return 0 if $1 (directory) is empty.
+function isempty() {
+    local dir=$1
+    return $([[ "$(find "${dir}" -type f | wc -l)" -eq 0 ]])
+}
 
-# Sets terminal title.
-termtitle() { echo -ne "\033]0;$*\007"; }
-export -f termtitle
+# Create a $1 (directory) and cd into it.
+function mkcd() {
+    local dir=$1
+    mkdir -p "${dir}" && cd "${dir}" || return
+}
 
-# Returns number of files in directory.
-filenum()
+# Set all passed arguments as terminal title.
+function termtitle() {
+    echo -ne "\033]0;$*\007"
+}
+
+# Return number of files in $1 (directory).
+function filenum()
 {
+    local dir=$1
     if [[ $# -gt 0 ]]; then
-        find "$1" -maxdepth 1 -type f | wc -l
+        find "${dir}" -maxdepth 1 -type f | wc -l
     else
-        find "."  -maxdepth 1 -type f | wc -l
+        find "."      -maxdepth 1 -type f | wc -l
     fi
 }
-export -f filenum
 
-# Returns number of files in directory.
-dirnum()
+# Return number of directories in $1 (directory).
+function dirnum()
 {
+    local dir=$1
     if [[ $# -gt 0 ]]; then
-        find "$1" -maxdepth 1 -type d | wc -l
+        find "${dir}" -maxdepth 1 -type d | wc -l
     else
-        find "."  -maxdepth 1 -type d | wc -l
+        find "."      -maxdepth 1 -type d | wc -l
     fi
 }
-export -f dirnum
+
+# Don't export following variables and functions.
+set +a
