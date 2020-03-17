@@ -1,4 +1,4 @@
-
+"        _
 " __   _(_)_ __ ___  _ __ ___
 " \ \ / / | '_ ` _ \| '__/ __|
 "  \ V /| | | | | | | | | (__
@@ -6,7 +6,43 @@
 "
 
 " Author:      Artyom Danilov
-" Modified:    March 14, 2020
+" Modified:    March 17, 2020
+
+" ---------------------------------------------------------------------------- "
+"                                   Pluggins                                   "
+" ---------------------------------------------------------------------------- "
+
+call plug#begin('~/.vim/plugged')
+
+" Quotes, tags, parentheses
+Plug 'tpope/vim-surround'
+
+" Comments
+Plug 'tpope/vim-commentary'
+
+" File manipulation
+Plug 'tpope/vim-eunuch'
+
+" Git
+Plug 'tpope/vim-fugitive'
+
+" Parentheses
+Plug 'frazrepo/vim-rainbow'
+let g:rainbow_active = 1
+
+" Colorschemes
+Plug 'tomasr/molokai'
+Plug 'gosukiwi/vim-atom-dark'
+Plug 'drewtempelmeyer/palenight.vim'
+
+" Status line
+Plug 'itchyny/lightline.vim'
+set laststatus=2
+
+call plug#end()
+
+" Man pages
+runtime ftplugin/man.vim
 
 " ---------------------------------------------------------------------------- "
 "                                 Indentation                                  "
@@ -34,6 +70,7 @@ set smartindent
 " Lines longer than the width of the window wrap and displaying continues
 " on the next line.
 set wrap
+
 " Maximum width of the text that is being inserted.  set textwidth=80
 set formatoptions+=t
 
@@ -74,10 +111,10 @@ set t_Co=256
 set background=dark
 
 " Colorschemes
-color koehler
-"color murphy
-"color zellner
-
+colo molokai
+" colo atom-dark-256
+" colo palenight
+"
 " Switches on syntax highlighting.
 syntax enable
 
@@ -92,7 +129,7 @@ set list listchars=tab:>-,trail:-
 
 " Highlight the 81st column with magenta
 set colorcolumn=81
-highlight ColorColumn ctermbg=5
+" highlight ColorColumn ctermbg=5
 
 " ---------------------------------------------------------------------------- "
 "                                    Splits                                    "
@@ -132,38 +169,8 @@ set mouse=a
 " Increase the undo limit
 set history=1000
 
-" ---------------------------------------------------------------------------- "
-"                                Disable Arrows                                "
-" ---------------------------------------------------------------------------- "
-
-" Normal Mode
-nnoremap <Left>  :echo "Type 'h', moron!" <CR>
-nnoremap <Right> :echo "Type 'l', prat!"  <CR>
-nnoremap <Up>    :echo "Type 'k', git!"   <CR>
-nnoremap <Down>  :echo "Type 'j', fool!"  <CR>
-
-" Visual Mode
-vnoremap <Left>  :echo "Type 'h', moron!" <CR>
-vnoremap <Right> :echo "Type 'l', prat!"  <CR>
-vnoremap <Up>    :echo "Type 'k', git!"   <CR>
-vnoremap <Down>  :echo "Type 'j', fool!"  <CR>
-
-" Insert Mode
-inoremap <Left>  <nop>
-inoremap <Right> <nop>
-inoremap <Up>    <nop>
-inoremap <Down>  <nop>
-
-" ---------------------------------------------------------------------------- "
-"                                   Pluggins                                   "
-" ---------------------------------------------------------------------------- "
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-
-call plug#end()
+" Do not display mode in status line
+set noshowmode
 
 " ---------------------------------------------------------------------------- "
 "                             Function Definitions                             "
@@ -200,12 +207,12 @@ endfunction
 
 " Switch colorschemes
 function! ToggleColorScheme()
-    if g:colors_name == "koehler"
-        color murphy
-    elseif g:colors_name == "murphy"
-        color zellner
+    if g:colors_name == 'molokai'
+        color atom-dark-256
+    elseif g:colors_name == 'atom-dark-256'
+        color palenight
     else
-        color koehler
+        color molokai
     endif
 endfunction
 
@@ -253,6 +260,13 @@ function! VisualComment()
 endfunction
 
 " ---------------------------------------------------------------------------- "
+"                                Abbreviations                                 "
+" ---------------------------------------------------------------------------- "
+
+iabbr #i #include
+iabbr #d #define
+
+" ---------------------------------------------------------------------------- "
 "                                    Normal                                    "
 " ---------------------------------------------------------------------------- "
 
@@ -278,16 +292,35 @@ nnoremap <silent> <leader>O : <C-u>call append(line(".")-1, repeat([""], v:count
 " Insert a character
 nnoremap <C-i> i_<Esc>r
 
+" Disable arrows
+nnoremap <Left>  :echo "Type 'h', moron!" <CR>
+nnoremap <Right> :echo "Type 'l', prat!"  <CR>
+nnoremap <Up>    :echo "Type 'k', git!"   <CR>
+nnoremap <Down>  :echo "Type 'j', fool!"  <CR>
+
 " ---------------------------------------------------------------------------- "
 "                                    Insert                                    "
 " ---------------------------------------------------------------------------- "
 
-" Escape
+" Escape alternative
 inoremap jk <esc>
 
+" Disable arrows
+inoremap <Left>  <nop>
+inoremap <Right> <nop>
+inoremap <Up>    <nop>
+inoremap <Down>  <nop>
+
 " ---------------------------------------------------------------------------- "
-"                                Abbreviations                                 "
+"                                    Visual                                    "
 " ---------------------------------------------------------------------------- "
 
-iabbr #i #include
-iabbr #d #define
+" Disable arrows
+vnoremap <Left>  :echo "Type 'h', moron!" <CR>
+vnoremap <Right> :echo "Type 'l', prat!"  <CR>
+vnoremap <Up>    :echo "Type 'k', git!"   <CR>
+vnoremap <Down>  :echo "Type 'j', fool!"  <CR>
+
+" ---------------------------------------------------------------------------- "
+"                                     End                                      "
+" ---------------------------------------------------------------------------- "
