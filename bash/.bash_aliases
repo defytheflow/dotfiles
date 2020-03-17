@@ -1,140 +1,182 @@
 #!/bin/bash
 
-#        _ _
-#   __ _| (_) __ _ ___  ___  ___
-#  / _` | | |/ _` / __|/ _ \/ __|
-# | (_| | | | (_| \__ \  __/\__ \
-#  \__,_|_|_|\__,_|___/\___||___/
+# -----------------------------------------------------------------------------
+#                             _ _
+#                        __ _| (_) __ _ ___  ___  ___
+#                       / _` | | |/ _` / __|/ _ \/ __|
+#                      | (_| | | | (_| \__ \  __/\__ \
+#                       \__,_|_|_|\__,_|___/\___||___/
 #
+# -----------------------------------------------------------------------------
+#  File: .bash_aliases
+# -----------------------------------------------------------------------------
+#  Modified: March 17, 2020
+# ---------------------------------------------------------------------------- 
+#  Author: Artyom Danilov
+# -----------------------------------------------------------------------------
 
-# Author: Artyom Danilov
-# Modified: March 13, 2020.
+# ---------------------------------------------------------------------------- #
+#                                      cd                                      #
+# ---------------------------------------------------------------------------- #
 
-# --------------------------------------------------------------------------- #
-#                                   cd                                        #
-# --------------------------------------------------------------------------- #
+# Typing mistakes.
+alias cd..='cd ..'
+alias cd-=' cd -'
+alias cd~=' cd ~'
 
-# Typing mistakes
-alias cd..="cd .."
-alias cd-="cd -"
+# Faster movement.
+alias ..='   cd ..'
+alias ...='  cd ../../'
+alias ....=' cd ../../../'
+alias .....='cd ../../../../'
 
-# Fast movement
-alias ..="cd .."
-alias ...="cd ../../"
-alias ....="cd ../../../"
-alias .....="cd ../../../../"
+# ---------------------------------------------------------------------------- #
+#                                    ls/dir                                    #
+# ---------------------------------------------------------------------------- #
 
-# --------------------------------------------------------------------------- #
-#                                  ls/dir                                     #
-# --------------------------------------------------------------------------- #
+# Better ls. (-v is natural sort of numbers in names)
+alias ls=' ls -v --classify --color=never --group-directories-first --human-readable'
 
-alias ls="ls -h -F --color=never --group-directories-first"
+# Fast typing.
+alias l='  ls -1'               # list vertically
+alias la=' ls --almost-all'     # list all
+alias lh=' ls --directory .*'   # list hidden
+alias ll=' ls -l'               # list long
+alias lr=' ls --recursive'      # list recursively
+alias lal='ls -l --almost-all'  # list all long
 
-alias l="ls -1"       # list vertically
-alias ll="ls -l"      # list long
-alias la="ls -A"      # list all
-alias lr="ls -R"      # list recursively
-alias lh="ls -d .*"   # list hidden
-alias lf="find -maxdepth 1 -type f -print0 | xargs -0r ls" # list files
-alias lal="ls -l -A"  # list all long
-alias ldir="ls -d */" # list directories
-
-alias dir='dir --color=auto'
+# Colorize output.
+alias dir='dir   --color=auto'
 alias vdir='vdir --color=auto'
 
-# --------------------------------------------------------------------------- #
-#                                   clear                                     #
-# --------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                                    clear                                     #
+# ---------------------------------------------------------------------------- #
 
-alias clr="clear"
-alias cls="clear"
+# For windows cmd users.
+alias cls='clear'
+alias clr='clear'
 
-# --------------------------------------------------------------------------- #
-#                                    cat                                      #
-# --------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                                     cat                                      #
+# ---------------------------------------------------------------------------- #
 
-alias ncat="cat -n"
-alias tcat="cat -t"
-alias lcat="lolcat"
-# --------------------------------------------------------------------------- #
-#                                   grep                                      #
-# --------------------------------------------------------------------------- #
+# Fast typing.
+alias ncat='cat --number'
+alias tcat="cat --show-tabs"
 
-alias grep="grep --color=auto"
-alias fgrep="fgrep --color=auto"
-alias egrep="egrep --color=auto"
+# Colorful cat
+alias lcat='lolcat'
 
-# --------------------------------------------------------------------------- #
-#                                   diff                                      #
-# --------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                                     grep                                     #
+# ---------------------------------------------------------------------------- #
 
-alias diff="diff --side-by-side --suppress-common-lines"
+# Colorize output.
+alias grep='  grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
-# --------------------------------------------------------------------------- #
-#                                    vim                                      #
-# --------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                                     diff                                     #
+# ---------------------------------------------------------------------------- #
 
-alias v="vim"
-alias vi="vim"
-alias svim="sudo vim"
-alias edit="vim"
+# Better diff.
+alias diff='diff --side-by-side --suppress-common-lines'
 
-# --------------------------------------------------------------------------- #
-#                            rm/mv/cp/rmdir/mkdir                             #
-# --------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                                     vim                                      #
+# ---------------------------------------------------------------------------- #
 
-# rm/mv/cp
-alias rm="rm -Iv --preserve-root"; alias srm="sudo rm"; alias remove="rm"
-alias mv="mv -iv";                 alias smv="sudo mv"; alias move="mv"
-alias cp="cp -iv";                 alias scp="sudo cp"; alias copy="cp"
+# Shorthand.
+alias v='vim'
 
-# mkdir/rmdir
-alias mkdir="mkdir -pv"; alias mkd="mkdir"; alias smkd="sudo mkdir"
-alias rmdir="rmdir -pv"; alias rmd="rmdir"; alias srmd="sudo rmdir"
+# Use vim instead of vi.
+alias vi='vim'
 
-alias del="rm -rfi"; alias delete="del"
+# Edit system files.
+alias svim='sudo vim'
 
-# --------------------------------------------------------------------------- #
-#                               Right Versions                                #
-# --------------------------------------------------------------------------- #
+# For windows cmd users.
+alias edit='vim'
 
-alias pip="pip3"
-alias pylint="pylint3"
-alias python="python3"
+# ---------------------------------------------------------------------------- #
+#                             cp/mv/rv/mkdir/rmdir                             #
+# ---------------------------------------------------------------------------- #
 
-# --------------------------------------------------------------------------- #
-#                                Shorthands                                   #
-# --------------------------------------------------------------------------- #
+# Better versions.
+alias rm='rm --interactive=once --preserve-root --verbose'
+alias mv='mv --interactive --verbose'
+alias cp='cp --interactive --verbose'
+alias mkdir='mkdir --parents --verbose'
+alias rmdir='rmdir --parents --verbose'
 
-alias f="file"
-alias g="git"
-alias h="history"
-alias p="python3"
-alias r="ranger"
-alias t="tree"
+# For system files.
+alias scp='sudo cp'
+alias smv='sudo mv'
+alias srm='sudo rm'
+alias smkdir='sudo mkdir'
+alias srmdir='sudo rmdir'
 
-alias hg="history | grep"
-alias py="python3"
-alias sc="shellcheck"
+# For windows cmd users.
+alias copy='cp'
+alias move='mv'
+alias rename='mv'
+alias del='rm'
 
-alias shu="shunit2"
-alias rld="source ~/.bashrc && echo Bash reloaded"; alias reload="rld"
+# Shorthand.
+alias mkd='mkdir'
+alias rmd='rmdir'
 
-alias chrome="google-chrome"; alias browser="chrome"
-alias update="sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove"
+# ---------------------------------------------------------------------------- #
+#                                Right Version                                 #
+# ---------------------------------------------------------------------------- #
 
-# --------------------------------------------------------------------------- #
-#                                New commands                                 #
-# --------------------------------------------------------------------------- #
+alias pip='pip3'
+alias pylint='pylint3'
+alias python='python3'
 
-alias now="date +\"%T\""                     # prints current time
+# ---------------------------------------------------------------------------- #
+#                                  Shorthands                                  #
+# ---------------------------------------------------------------------------- #
+
+alias f='file'
+alias g='git'
+alias h='history'
+alias p='python3'
+alias r='ranger'
+alias t='tree'
+
+alias gh='history | grep'
+alias py='python3'
+alias sc='shellcheck'
+
+alias shu='shunit2'
+alias rld='source ~/.bash_profile && echo ~/.bash_profile reloaded'
+
+# ---------------------------------------------------------------------------- #
+#                                 New Commands                                 #
+# ---------------------------------------------------------------------------- #
+
+alias now='date +\"%T\"'                     # prints current time
 alias path="echo $PATH | sed -e 's/:/\n/g'"  # lists the path on new line
-alias weather="curl http://wttr.in/"
-alias starwars="telnet towel.blinkenlights.nl"
 
-# --------------------------------------------------------------------------- #
-#                                Power Off                                    #
-# --------------------------------------------------------------------------- #
+alias starwars='telnet towel.blinkenlights.nl'
+alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
+alias weather='curl http://wttr.in/'
 
-alias reboot="sudo reboot"
-alias shutdown="sudo shutdown"
+# ---------------------------------------------------------------------------- #
+#                                    Other                                     #
+# ---------------------------------------------------------------------------- #
+
+# Browser
+alias chrome='google-chrome'
+alias browser='chrome'
+
+# Require password.
+alias reboot='sudo reboot'
+alias shutdown='sudo shutdown'
+
+# ---------------------------------------------------------------------------- #
+#                                     End                                      #
+# ---------------------------------------------------------------------------- #
