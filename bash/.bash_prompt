@@ -57,11 +57,11 @@ fi;                                                                            \
 # Get git branch                                                               \
 if git status >/dev/null 2>&1; then                                            \
                                                                                \
-    # Number of commits in repository.                                         \
-    commits="$(git shortlog -s | awk '\''{print $1}'\'')";                     \
-                                                                               \
     # Branch currently on.                                                     \
     branch="$(git branch 2>/dev/null | grep "^*" | colrm 1 2)";                \
+                                                                               \
+    # Number of commits in repository on branch.                               \
+    commits="$(git rev-list --count ${branch})";                               \
                                                                                \
     # Colorize branch, sep, commits.                                           \
     branch="${bold_green}${branch}";                                           \
