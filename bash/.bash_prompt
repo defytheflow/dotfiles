@@ -45,29 +45,42 @@ failure="${bold_red}:(${reset}"
 # ---------------------------------------------------------------------------- #
 
 # Gets executed each time bash prompt is shown.
-PROMPT_COMMAND='\
-# Get last command status                                        \
-if [[ $? -eq 0 ]]; then                                          \
-    status="${success}";                                         \
-else                                                             \
-    status="${failure}";                                         \
-fi;                                                              \
-                                                                 \
-# Get git branch                                                 \
-if git status >/dev/null 2>&1; then                              \
-    branch="$(git branch 2>/dev/null | grep '^*' | colrm 1 2)";  \
-    branch="[${bold_green} ${branch} ${bold_white}]";            \
-    branch=" ${bold_white}on ${bold_white}${branch}";            \
-else                                                             \
-    branch='';                                                   \
-fi;                                                              \
-                                                                 \
-# Set PS1                                                        \
-PS1="${bold_yellow}\u";                     # username           \
-PS1+="${bold_white}@${bold_yellow}\h";      # @host              \
-PS1+=" ${bold_white}in ${bold_yellow}\W";   # in directory       \
-PS1+="${branch}";                           # on [ branch ]      \
-PS1+=" ${status}";                          # :) or :(           \
+PROMPT_COMMAND='                                                               \
+                                                                               \
+# Get last command status                                                      \
+if [[ $? -eq 0 ]]; then                                                        \
+    status="${success}";                                                       \
+else                                                                           \
+    status="${failure}";                                                       \
+fi;                                                                            \
+                                                                               \
+# Get git branch                                                               \
+if git status >/dev/null 2>&1; then                                            \
+                                                                               \
+    # Number of commits in repository.                                         \
+    commits="$(git shortlog -s | awk '\''{print $1}'\'')";                     \
+                                                                               \
+    # Branch currently on.                                                     \
+    branch="$(git branch 2>/dev/null | grep "^*" | colrm 1 2)";                \
+                                                                               \
+    # Colorize branch, sep, commits.                                           \
+    branch="${bold_green}${branch}";                                           \
+    sep="${bold_white}|";                                                      \
+    commits="${bold_cyan}${commits}";                                          \
+                                                                               \
+    # on [ branch | commits ].                                                 \
+    branch="${bold_white} on [ ${branch} ${sep} ${commits} ${bold_white}]";    \
+                                                                               \
+else                                                                           \
+    branch="";                                                                 \
+fi;                                                                            \
+                                                                               \
+# Set PS1                                                                      \
+PS1="${bold_yellow}\u";                     # username                         \
+PS1+="${bold_white}@${bold_yellow}\h";      # @host                            \
+PS1+=" ${bold_white}in ${bold_yellow}\W";   # in directory                     \
+PS1+="${branch}";                           # on [ branch ]                    \
+PS1+=" ${status}";                          # :) or :(                         \
 PS1+="${reset} \$ ";'
 
 # Default
