@@ -142,11 +142,11 @@ alias python='python3'
 #                                  Shorthands                                  #
 # ---------------------------------------------------------------------------- #
 
+alias c='cat'
 alias f='file'
-alias g='git'
+alias g='grep'
 alias h='history'
-alias p='python3'
-alias r='ranger'
+alias p='pwd'
 alias t='tree'
 
 alias gh='history | grep'
