@@ -39,6 +39,9 @@ alias .....='cd ../../../../'
 # Better ls. (-v is natural sort of numbers in names)
 alias ls=' ls -v --classify --color=never --group-directories-first --human-readable'
 
+# Typing mistakes.
+alias LS=ls
+
 # Fast typing.
 alias l='  ls -1'               # list vertically
 alias la=' ls --almost-all'     # list all
@@ -80,11 +83,13 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # ---------------------------------------------------------------------------- #
-#                                     diff                                     #
+#                                   diff/du                                    #
 # ---------------------------------------------------------------------------- #
 
 # Better diff.
 alias diff='diff --side-by-side --suppress-common-lines'
+# Better du.
+alias du='du --human-readable'
 
 # ---------------------------------------------------------------------------- #
 #                                     vim                                      #
@@ -156,29 +161,30 @@ alias sc='shellcheck'
 alias shu='shunit2'
 alias rld="source ${HOME}/.bash_profile"
 
+alias chrome='google-chrome'
+
 # ---------------------------------------------------------------------------- #
 #                                 New Commands                                 #
 # ---------------------------------------------------------------------------- #
 
-alias now='date +\"%T\"'                     # prints current time
-alias path="echo ${PATH} | sed -e 's/:/\n/g'"  # lists the path on new line
-
+# Print the current time.
+alias now='date +\"%T\"'
+# List every dir in the PATH on a separate line. (TODO malfunctions on WSL)
+alias path="echo ${PATH} | sed -e 's/:/\n/g'"
+# Watch starwars in terminal.
 alias starwars='telnet towel.blinkenlights.nl'
+# Fast way to update packages.
 alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
+# Get weather report.
 alias weather='curl http://wttr.in/'
+# Open application store.
+alias store='ubuntu-software'
+
 
 # ---------------------------------------------------------------------------- #
-#                                    Other                                     #
+#                                    System                                    #
 # ---------------------------------------------------------------------------- #
-
-# Browser
-alias chrome='google-chrome'
-alias browser='chrome'
 
 # Require password.
 alias reboot='sudo reboot'
 alias shutdown='sudo shutdown'
-
-# ---------------------------------------------------------------------------- #
-#                                     End                                      #
-# ---------------------------------------------------------------------------- #
