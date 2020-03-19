@@ -81,7 +81,7 @@ export SYS="${GITD}/sys"
 export PYTHONPATH="${HOME}/.lib/"
 
 # Run this 'commands' file when starting interpreter.
-export PYTHONSTARTUP="${HOME}/.pythonrc.py"
+export PYTHONSTARTUP="${HOME}/.pythonrc"
 
 # ---------------------------------------------------------------------------- #
 #                                  shellcheck                                  #
