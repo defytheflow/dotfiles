@@ -23,54 +23,46 @@ echo 'Running ~/.prompt.sh'
 #                                    Colors                                    #
 # ---------------------------------------------------------------------------- #
 
-if [ -n "${ZSH_VERSION}" ]; then
+if [ -n "${BASH_VERSION}" ]; then
 
-    pre_zsh=$'%{\e[38;5;'
-    post_zsh='m%}'
-
-    cyan="${pre_zsh}45${post_zsh}"
-    green="${pre_zsh}82${post_zsh}"
-    limegreen="${pre_zsh}154${post_zsh}"
-    orange="${pre_zsh}166${post_zsh}"
-    purple="${pre_zsh}135${post_zsh}"
-    red="${pre_zsh}9${post_zsh}"
-    white="${pre_zsh}15${post_zsh}"
-
-    nl=$'\n'
-    reset=$'%{\e[0m%}'
-
-elif [ -n "${BASH_VERSION}" ]; then
-
-    pre_bash='\[\e[38;5;'
-    post_bash='m\]'
-
-    cyan="${pre_bash}45${post_bash}"
-    green="${pre_bash}82${post_bash}"
-    limegreen="${pre_bash}154${post_bash}"
-    orange="${pre_bash}166${post_bash}"
-    purple="${pre_bash}135${post_bash}"
-    red="${pre_bash}9${post_bash}"
-    white="${pre_bash}15${post_bash}"
+    start_color='\[\e[38;5;'
+    end_color='m\]'
 
     nl='\n'
     reset='\[\e[0m\]'
+
+elif [ -n "${ZSH_VERSION}" ]; then
+
+    start_color=$'%{\e[38;5;'
+    end_color='m%}'
+
+    nl=$'\n'
+    reset=$'%{\e[0m%}'
 fi
+
+cyan="${start_color}45${end_color}"
+green="${start_color}82${end_color}"
+limegreen="${start_color}154${end_color}"
+orange="${start_color}202${end_color}"
+purple="${start_color}135${end_color}"
+red="${start_color}9${end_color}"
+white="${start_color}15${end_color}"
 
 # ---------------------------------------------------------------------------- #
 #                              Special Variables                               #
 # ---------------------------------------------------------------------------- #
 
-if [ -n "${ZSH_VERSION}" ]; then
-
-    username='%n'
-    hostname='%M'
-    absdir='%~'
-
-elif [ -n "${BASH_VERSION}" ]; then
+if [ -n "${BASH_VERSION}" ]; then
 
     username='\u'
     hostname='\h'
     absdir='\w'
+
+elif [ -n "${ZSH_VERSION}" ]; then
+
+    username='%n'
+    hostname='%M'
+    absdir='%~'
 fi
 
 # ---------------------------------------------------------------------------- #
@@ -80,17 +72,20 @@ fi
 success="${green}:)${reset}"
 failure="${red}:(${reset}"
 
+committed="${green}✓${reset}"
+uncommitted="${red}✗${reset}"
+
 # ---------------------------------------------------------------------------- #
 #                                    Prompt                                    #
 # ---------------------------------------------------------------------------- #
 
-# 'ZSH_VERSION' only defined in Zsh
-# 'precmd' is a special function name known to Zsh
-[ -n "${ZSH_VERSION}" ] && precmd() { my_prompt; }
-
 # 'BASH_VERSION' only defined in Bash
 # 'PROMPT_COMMAND' is a special environment variable name known to Bash
 [ -n "${BASH_VERSION}" ] && PROMPT_COMMAND=my_prompt
+
+# 'ZSH_VERSION' only defined in Zsh
+# 'precmd' is a special function name known to Zsh
+[ -n "${ZSH_VERSION}" ] && precmd() { my_prompt; }
 
 # Gets executed each time prompt is drawn.
 my_prompt() {
@@ -110,13 +105,19 @@ my_prompt() {
         # Number of commits in repository on branch.
         commits="$(git rev-list --count ${branch})"
 
+        if [ -z "$(git status -s)" ]; then
+            git_status="${committed}"
+        else
+            git_status="${uncommitted}"
+        fi
+
         # Colorize branch and commits.
         branch="${cyan}${branch}"
         sep="${white}|"
         commits="${cyan}${commits}"
 
         # Putting all together.
-        branch=" ${white}(${branch}${sep}${commits}${white})"
+        branch=" ${white}(${branch}${sep}${commits}${sep}${git_status}${white} )"
     else
         branch=''
     fi;
