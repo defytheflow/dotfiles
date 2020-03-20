@@ -8,12 +8,12 @@
 #                       \__,_|_|_|\__,_|___/\___||___/
 #
 # -----------------------------------------------------------------------------
-#  File: .aliases
+# | File: .aliases
 # -----------------------------------------------------------------------------
-#  Modified: March 20, 2020
+# | Modified: March 20, 2020
 # ---------------------------------------------------------------------------- 
-#  Author: Artyom Danilov
-#
+# | Author: Artyom Danilov
+# ---------------------------------------------------------------------------- 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 echo 'Running ~/.aliases'
@@ -136,6 +136,13 @@ alias mkd='mkdir'
 alias rmd='rmdir'
 
 # ---------------------------------------------------------------------------- #
+#                                     tree                                     #
+# ---------------------------------------------------------------------------- #
+
+alias t='tree'
+alias tree='tree -I .git'
+
+# ---------------------------------------------------------------------------- #
 #                                Right Version                                 #
 # ---------------------------------------------------------------------------- #
 
@@ -151,7 +158,6 @@ alias f='file'
 alias g='grep'
 alias h='history'
 alias p='pwd'
-alias t='tree'
 
 alias gh='history | grep'
 alias py='python3'
@@ -164,8 +170,8 @@ alias chrome='google-chrome'
 # ---------------------------------------------------------------------------- #
 
 # Reload shells.
-alias brld="source ${HOME}/.bashrc"
-alias zrld="source ${HOME}/.zshrc"
+alias br="source ${HOME}/.bashrc"
+alias zr="source ${HOME}/.zshrc"
 
 # ---------------------------------------------------------------------------- #
 #                                    System                                    #
@@ -191,13 +197,3 @@ alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
 alias weather='curl http://wttr.in/'
 # Open application store.
 alias store='ubuntu-software'
-
-# ---------------------------------------------------------------------------- #
-#                                   Projects                                   #
-# ---------------------------------------------------------------------------- #
-
-alias dot="${HOME}/dev/git/dotfiles"
-alias lib="${HOME}/dev/git/liv"
-alias sch="${HOME}/dev/git/school"
-alias sdk="${HOME}/dev/git/sdk"
-alias sys="${HOME}/dev/git/sys"

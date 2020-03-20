@@ -9,12 +9,12 @@
 #                              |_|
 #
 # -----------------------------------------------------------------------------
-#  File: .exports
+# | File: .exports
 # ---------------------------------------------------------------------------- 
-#  Modified: March 20, 2020
+# | Modified: March 20, 2020
 # ---------------------------------------------------------------------------- 
-#  Author:   Artyom Danilov
-#
+# | Author:   Artyom Danilov
+# ---------------------------------------------------------------------------- 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 echo 'Running ~/.exports'
@@ -39,11 +39,11 @@ export HISTFILESIZE=10000
 export ALIAS="${HOME}/.aliases"
 export EXPORT="${HOME}/.exports"
 export FUNC="${HOME}/.functions"
+export WSL="${HOME}/.wsl"
 
 export BASHRC="${HOME}/.bashrc"
 export ZSHRC="${HOME}/.zshrc"
 
-export WSL="${HOME}/.bash_wsl"
 # export PROFILE="${HOME}/.bash_profile"
 
 # ---------------------------------------------------------------------------- #
@@ -64,7 +64,11 @@ export LD_LIBRARY_PATH="${HOME}/.lib"
 # My github.
 export GITHUB='https://github.com/defytheflow'
 # My git-tracked projects directory.
-export GITDIR="${HOME}/dev/git/"
+export GITD="${HOME}/dev/git/"
+# My current git-projects.
+export DOT="${GITD}/dotfiles"
+export SCH="${GITD}/school"
+export SDK="${GITD}/sdk"
 
 # ---------------------------------------------------------------------------- #
 #                                    python                                    #
