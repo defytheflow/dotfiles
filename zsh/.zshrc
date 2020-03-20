@@ -6,40 +6,38 @@
 #                          /___|___/_| |_|_|  \___|
 #
 # ----------------------------------------------------------------------------
-#  File: .zshrc
+# | File: .zshrc
 # ----------------------------------------------------------------------------
-#  Modified: March 20, 2020
+# | Modified: March 20, 2020
 # ----------------------------------------------------------------------------
-#  Author: Artyom Danilov
-#
+# | Author: Artyom Danilov
+# ----------------------------------------------------------------------------
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 echo 'Running ~/.zshrc'
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
-export ZSH="/home/defytheflow/.oh-my-zsh"
+export ZSH='/home/defytheflow/.oh-my-zsh'
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ---------------------------------------------------------------------------- #
+#                                    Theme                                     #
+# ---------------------------------------------------------------------------- #
+
+ZSH_THEME=''
+#ZSH_THEME_RANDOM_CANDIDATES=()
+
+# ---------------------------------------------------------------------------- #
+#                                Shell Options                                 #
+# ---------------------------------------------------------------------------- #
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE='true'
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -54,13 +52,13 @@ ZSH_THEME="robbyrussell"
 # DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
-DISABLE_LS_COLORS="true"
+DISABLE_LS_COLORS='true'
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE='true'
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION='true'
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -78,35 +76,28 @@ DISABLE_LS_COLORS="true"
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# ---------------------------------------------------------------------------- #
+#                                   Plugins                                    #
+# ---------------------------------------------------------------------------- #
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
+plugins=('colorize' 'git' 'man' 'vi-mode' 'zsh-syntax-highlighting')
+# 'colorize' - ccat files with syntax highlight.
+# 'man' - <Esc> + man previous command.
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# ---------------------------------------------------------------------------- #
+#                    Aliases - Exports - functions - Prompt                    #
+# ---------------------------------------------------------------------------- #
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-for file in 'aliases' 'exports' 'functions'; do
-        [ -f "${HOME}/.${file}" ] && . "${HOME}/.${file}"
+for file in 'aliases' 'exports' 'functions' 'prompt'; do
+        [ -f "${HOME}/.${file}.sh" ] && . "${HOME}/.${file}.sh"
 done
+
+# ---------------------------------------------------------------------------- #
+#                                     WSL                                      #
+# ---------------------------------------------------------------------------- #
+
+# If running on wsl:
+if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
+    [ -f "${HOME}/.wsl.sh" ] && . "${HOME}/.wsl.sh"
+fi

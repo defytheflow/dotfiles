@@ -8,7 +8,7 @@
 #                |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
 #
 # ---------------------------------------------------------------------------- 
-# | File: .functions
+# | File: .functions.sh
 # ---------------------------------------------------------------------------- 
 # | Modified: March 20, 2020
 # ---------------------------------------------------------------------------- 
@@ -16,13 +16,22 @@
 # ---------------------------------------------------------------------------- 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-echo 'Running ~/.functions'
+echo 'Running ~/.functions.sh'
 
 # Export following variables and functions.
 set -a
 
+# Sources .bashrc or .zshrc according to current shell.
+rld() {
+    if [ -n "${BASH_VERSION}" ]; then
+        . "${HOME}/.bashrc"
+    elif [ -n "${ZSH_VERSION}" ]; then
+        . "${HOME}/.zshrc"
+    fi
+}
+
 # Print first passed argument to the center of the terminal.
-function echoc() {
+echoc() {
     local text=$1
     local width=$(stty size | cut -d ' ' -f2)
     local length=${#text}
@@ -30,29 +39,29 @@ function echoc() {
 }
 
 # Print all passed arguments to stderr.
-function err() {
+err() {
     echo "$*" >&2
 }
 
 # Return 0 if $1 (directory) is empty.
-function isempty() {
+isempty() {
     local dir=$1
     return $([[ "$(find "${dir}" -type f | wc -l)" -eq 0 ]])
 }
 
 # Create a $1 (directory) and cd into it.
-function mkcd() {
+mkcd() {
     local dir=$1
     mkdir -p "${dir}" && cd "${dir}" || return
 }
 
 # Set all passed arguments as terminal title.
-function termtitle() {
+termtitle() {
     echo -ne "\033]0;$*\007"
 }
 
 # Return number of files in $1 (directory).
-function filenum()
+filenum()
 {
     local dir=$1
     if [[ $# -gt 0 ]]; then
@@ -63,7 +72,7 @@ function filenum()
 }
 
 # Return number of directories in $1 (directory).
-function dirnum()
+dirnum()
 {
     local dir=$1
     if [[ $# -gt 0 ]]; then
