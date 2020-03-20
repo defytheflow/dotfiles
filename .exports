@@ -1,25 +1,26 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
-echo 'Running .bash_exports'
-
-# -----------------------------------------------------------------------------
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                                                _
 #                      _____  ___ __   ___  _ __| |_ ___
-#                     / _ \ \/ / '_ \ / _ \| '__| __/ __|
+#                     / _ \ \/ / '_ \ / _ \| '__| __/ __
 #                    |  __/>  <| |_) | (_) | |  | |_\__ \
 #                     \___/_/\_\ .__/ \___/|_|   \__|___/
 #                              |_|
 #
 # -----------------------------------------------------------------------------
-#  File: .bash_exports
+#  File: .exports
 # ---------------------------------------------------------------------------- 
-#  Modified: March 17, 2020
+#  Modified: March 20, 2020
 # ---------------------------------------------------------------------------- 
 #  Author:   Artyom Danilov
-# ---------------------------------------------------------------------------- 
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+echo 'Running ~/.exports'
 
 # ---------------------------------------------------------------------------- #
-#                                     bash                                     #
+#                                    shell                                     #
 # ---------------------------------------------------------------------------- #
 
 # Don't save duplicate lines or lines starting with whitespace in the history.
@@ -35,24 +36,24 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 
 # Configuration files.
-export ALIAS="   ${HOME}/.bash_aliases"
-export BASHRC="  ${HOME}/.bashrc"
-export EXPORT="  ${HOME}/.bash_exports"
-export FUNCTION="${HOME}/.bash_functions"
-export PROFILE=" ${HOME}/.bash_profile"
-export PROMPT="  ${HOME}/.bash_prompt"
-export WSL="     ${HOME}/.bash_wsl"
+export ALIAS="${HOME}/.aliases"
+export EXPORT="${HOME}/.exports"
+export FUNC="${HOME}/.functions"
+
+export BASHRC="${HOME}/.bashrc"
+export ZSHRC="${HOME}/.zshrc"
+
+export WSL="${HOME}/.bash_wsl"
+# export PROFILE="${HOME}/.bash_profile"
 
 # ---------------------------------------------------------------------------- #
 #                                      c                                       #
 # ---------------------------------------------------------------------------- #
 
-# Default flags for make.
+# Compilation flags.
 export CFLAGS='-W -Wall -Wextra'
-
 # Search for includes here.
 export CPATH="${HOME}/.lib/"
-
 # Link libraries from here.
 export LD_LIBRARY_PATH="${HOME}/.lib"
 
@@ -60,18 +61,10 @@ export LD_LIBRARY_PATH="${HOME}/.lib"
 #                                     git                                      #
 # ---------------------------------------------------------------------------- #
 
-# My github
+# My github.
 export GITHUB='https://github.com/defytheflow'
-
-# Directory for git-tracked projects
-export GITD="${HOME}/dev/git"
-
-# Current projects
-export DOT="${GITD}/dot"
-export LIB="${GITD}/lib"
-export SCH="${GITD}/school"
-export SDK="${GITD}/sdk"
-export SYS="${GITD}/sys"
+# My git-tracked projects directory.
+export GITDIR="${HOME}/dev/git/"
 
 # ---------------------------------------------------------------------------- #
 #                                    python                                    #
@@ -79,7 +72,6 @@ export SYS="${GITD}/sys"
 
 # Search python modules here.
 export PYTHONPATH="${HOME}/.lib/"
-
 # Run this 'commands' file when starting interpreter.
 export PYTHONSTARTUP="${HOME}/.pythonrc"
 
@@ -87,8 +79,7 @@ export PYTHONSTARTUP="${HOME}/.pythonrc"
 #                                  shellcheck                                  #
 # ---------------------------------------------------------------------------- #
 
-# 1090 - can't follow source
-# 2034 - unused variable
+# 1090 - can't follow source, 2034 - unused variable
 export SHELLCHECK_OPTS="-e SC2034 -e SC1090"
 
 # ---------------------------------------------------------------------------- #
@@ -97,10 +88,5 @@ export SHELLCHECK_OPTS="-e SC2034 -e SC1090"
 
 # Use this as default editor by other programs.
 export EDITOR='vim'
-
 # Condifuration file.
 export VIMRC="${HOME}/.vimrc"
-
-# ---------------------------------------------------------------------------- #
-#                                     end                                      #
-# ---------------------------------------------------------------------------- #

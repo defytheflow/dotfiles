@@ -1,8 +1,6 @@
-#!/bin/bash
+#!/usr/bin/zsh
 
-echo 'Running .bash_aliases'
-
-# -----------------------------------------------------------------------------
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 #                             _ _
 #                        __ _| (_) __ _ ___  ___  ___
 #                       / _` | | |/ _` / __|/ _ \/ __|
@@ -10,12 +8,15 @@ echo 'Running .bash_aliases'
 #                       \__,_|_|_|\__,_|___/\___||___/
 #
 # -----------------------------------------------------------------------------
-#  File: .bash_aliases
+#  File: .aliases
 # -----------------------------------------------------------------------------
-#  Modified: March 17, 2020
+#  Modified: March 20, 2020
 # ---------------------------------------------------------------------------- 
 #  Author: Artyom Danilov
-# -----------------------------------------------------------------------------
+#
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+echo 'Running ~/.aliases'
 
 # ---------------------------------------------------------------------------- #
 #                                      cd                                      #
@@ -25,6 +26,7 @@ echo 'Running .bash_aliases'
 alias cd..='cd ..'
 alias cd-=' cd -'
 alias cd~=' cd ~'
+alias CD='cd'
 
 # Faster movement.
 alias ..='   cd ..'
@@ -66,10 +68,11 @@ alias clr='clear'
 #                                     cat                                      #
 # ---------------------------------------------------------------------------- #
 
+# Shorthand
+alias c='cat'
 # Fast typing.
 alias ncat='cat --number'
 alias tcat="cat --show-tabs"
-
 # Colorful cat
 alias lcat='lolcat'
 
@@ -97,13 +100,10 @@ alias du='du --human-readable'
 
 # Shorthand.
 alias v='vim'
-
 # Use vim instead of vi.
 alias vi='vim'
-
 # Edit system files.
 alias svim='sudo vim'
-
 # For windows cmd users.
 alias edit='vim'
 
@@ -147,7 +147,6 @@ alias python='python3'
 #                                  Shorthands                                  #
 # ---------------------------------------------------------------------------- #
 
-alias c='cat'
 alias f='file'
 alias g='grep'
 alias h='history'
@@ -157,11 +156,24 @@ alias t='tree'
 alias gh='history | grep'
 alias py='python3'
 alias sc='shellcheck'
-
 alias shu='shunit2'
-alias rld="source ${HOME}/.bash_profile"
-
 alias chrome='google-chrome'
+
+# ---------------------------------------------------------------------------- #
+#                                    Config                                    #
+# ---------------------------------------------------------------------------- #
+
+# Reload shells.
+alias brld="source ${HOME}/.bashrc"
+alias zrld="source ${HOME}/.zshrc"
+
+# ---------------------------------------------------------------------------- #
+#                                    System                                    #
+# ---------------------------------------------------------------------------- #
+
+# Require password.
+alias reboot='sudo reboot'
+alias shutdown='sudo shutdown'
 
 # ---------------------------------------------------------------------------- #
 #                                 New Commands                                 #
@@ -180,11 +192,12 @@ alias weather='curl http://wttr.in/'
 # Open application store.
 alias store='ubuntu-software'
 
-
 # ---------------------------------------------------------------------------- #
-#                                    System                                    #
+#                                   Projects                                   #
 # ---------------------------------------------------------------------------- #
 
-# Require password.
-alias reboot='sudo reboot'
-alias shutdown='sudo shutdown'
+alias dot="${HOME}/dev/git/dotfiles"
+alias lib="${HOME}/dev/git/liv"
+alias sch="${HOME}/dev/git/school"
+alias sdk="${HOME}/dev/git/sdk"
+alias sys="${HOME}/dev/git/sys"
