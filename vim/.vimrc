@@ -1,23 +1,20 @@
-" ----------------------------------------------------------------------------
 "                               _
 "                        __   _(_)_ __ ___  _ __ ___
 "                        \ \ / / | '_ ` _ \| '__/ __|
 "                         \ V /| | | | | | | | | (__
 "                          \_/ |_|_| |_| |_|_|  \___|
 "
-" ----------------------------------------------------------------------------
-" File: .vimrc
-" ----------------------------------------------------------------------------
-" Modified: March 17, 2020
-" ----------------------------------------------------------------------------
-" Author: Artyom Danilov
-" ----------------------------------------------------------------------------
+" ------------------------------------------------------------------------------
+"  File: .vimrc
+" ------------------------------------------------------------------------------
+"  Modified: March 21, 2020
+" ------------------------------------------------------------------------------
+"  Author: Artyom Danilov
+" ------------------------------------------------------------------------------
 
-" ---------------------------------------------------------------------------- "
-"                                   Pluggins                                   "
-" ---------------------------------------------------------------------------- "
-
-call plug#begin('~/.vim/plugged')
+" ------------------------------------------------------------------------------
+"                                   Pluggins
+" ------------------------------------------------------------------------------ call plug#begin('~/.vim/plugged')
 
 " Quotes, tags, parentheses
 Plug 'tpope/vim-surround'
@@ -46,19 +43,25 @@ set laststatus=2
 
 call plug#end()
 
-" Man pages
-runtime 'ftplugin/man.vim'
+" Man pages (Do not surround with quotes!)
+runtime ftplugin/man.vim
 
-" ---------------------------------------------------------------------------- "
-"                                 Indentation                                  "
-" ---------------------------------------------------------------------------- "
-" Overview:                                                                    "
-"                                                                              "
-" Each <Tab> is expanded into spaces (default - 4).                            "
-" Number of expanded spaces depends on the filetype.                           "
-" Text is wrapped at 80 characters.                                            "
-"                                                                              "
-" ---------------------------------------------------------------------------- "
+" ------------------------------------------------------------------------------
+"                               Global Variables
+" ------------------------------------------------------------------------------
+
+let g:mapleader = ';'
+
+" ------------------------------------------------------------------------------
+"                                 Indentation
+" ------------------------------------------------------------------------------
+" Overview:
+"
+" Each <Tab> is expanded into spaces (default - 4).
+" Number of expanded spaces depends on the filetype.
+" Text is wrapped at 80 characters.
+"
+" ------------------------------------------------------------------------------
 
 " In Insert mode inserts spaces instead of <Tab>.
 set expandtab
@@ -76,7 +79,8 @@ set smartindent
 " on the next line.
 set wrap
 
-" Maximum width of the text that is being inserted.  set textwidth=80
+" Maximum width of the text that is being inserted.
+set textwidth=80
 set formatoptions+=t
 
 augroup indentation
@@ -94,19 +98,19 @@ augroup indentation
     autocmd Filetype    py setlocal shiftwidth=4 softtabstop=4
 augroup END
 
-" ---------------------------------------------------------------------------- "
-"                                 Highlighting                                 "
-" ---------------------------------------------------------------------------- "
-" Overview:                                                                    "
-"                                                                              "
-" Change terminal title.                                                       "
-" Highlight syntax.                                                            "
-" Display line numbers.                                                        "
-" Highlight matching brackets.                                                 "
-" Show trailing spaces and tabs.                                               "
-" Highlight 81st column.                                                       "
-"                                                                              "
-" ---------------------------------------------------------------------------  "
+" ------------------------------------------------------------------------------
+"                                 Highlighting
+" ------------------------------------------------------------------------------
+" Overview:
+"
+" Change terminal title.
+" Highlight syntax.
+" Display line numbers.
+" Highlight matching brackets.
+" Show trailing spaces and tabs.
+" Highlight 81st column.
+"
+" ------------------------------------------------------------------------------
 
 " Sets the terminal title (editing 'file')
 set title
@@ -132,26 +136,22 @@ set showmatch
 " A list of characters to show instead of tabs and trailing spaces.
 set list listchars=tab:>-,trail:-
 
-" Highlight the 81st column with magenta
-" set colorcolumn=81
-" highlight ColorColumn ctermbg=5
-
-" ---------------------------------------------------------------------------- "
-"                                    Splits                                    "
-" ---------------------------------------------------------------------------- "
+" ------------------------------------------------------------------------------
+"                                    Splits
+" ------------------------------------------------------------------------------
 
 " Overrides vim default splitting settings
 set splitbelow splitright
 
 " Shortcuts for split navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+map <leader>h <C-w>h
+map <leader>j <C-w>j
+map <leader>k <C-w>k
+map <leader>l <C-w>l
 
-" ---------------------------------------------------------------------------- "
-"                                   Back up                                    "
-" ---------------------------------------------------------------------------- "
+" ------------------------------------------------------------------------------
+"                                   Back up
+" ------------------------------------------------------------------------------
 
 set backup
 
@@ -161,9 +161,9 @@ endif
 
 set backupdir=~/.backup/vim
 
-" ---------------------------------------------------------------------------- "
-"                                    Other                                     "
-" ---------------------------------------------------------------------------- "
+" ------------------------------------------------------------------------------
+"                                    Other
+" ------------------------------------------------------------------------------
 
 " To enable all vim features
 set nocompatible
@@ -177,18 +177,9 @@ set history=1000
 " Do not display mode in status line
 set noshowmode
 
-" ---------------------------------------------------------------------------- "
-"                             Function Definitions                             "
-" ---------------------------------------------------------------------------- "
-
-" Syntax on or off.
-function! ToggleSyntax()
-    if exists('g:syntax_on')
-        syntax off
-    else
-        syntax enable
-    endif
-endfunction
+" ------------------------------------------------------------------------------
+"                             Function Definitions
+" ------------------------------------------------------------------------------
 
 " Relative number on or off.
 function! ToggleRelativeNumber()
@@ -224,7 +215,8 @@ endfunction
 " Color Column on or off.
 function! ToggleColorColumn()
     if &cc == ''
-        set cc=81
+        " Highlight column after 'textwidth'
+        set cc=+1
     else
         set cc=
     endif
@@ -237,97 +229,61 @@ function! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
-" Return the token used for commenting in a programming language.
+" Return the commenting token.
 function! GetCommentToken()
-
-    let l:ft = &filetype
-
-    if ft == 'php' || ft == 'ruby' || ft == 'sh' || ft == 'make'
-       \ || ft == 'python' || ft == 'perl'
+    let l:hash = ['php', 'ruby', 'sh', 'make', 'python', 'perl']
+    let l:slashes = ['javascript', 'c', 'cpp', 'java', 'objc', 'scala', 'go']
+    if index(hash, &filetype) >= 0
         return '#'
-
-    elseif ft == 'javascript' || ft == 'c' || ft == 'cpp' || ft == 'java'
-        \ || ft == 'objc' || ft == 'scala' || ft == 'go'
+    elseif index(slashes, &filetype) >= 0
         return '//'
-
-    elseif ft == 'vim'
+    elseif &filetype == 'vim'
         return '"'
+    else
+        return '#'
     endif
-
 endfunction
 
-" Visual Comment.
-function! VisualComment()
-
+function! WriteVisualComment()
     let l:token  = GetCommentToken() " (e.g. #, //)
-    let l:text   = input('Text: ')   " comment text
     let l:format = token . ' %s ' . token
-    let l:limit  = 80                " max columns
     let l:space  = 1                 " space character
 
+    let l:text = input('Text: ')  " comment text
     " If no input text:
     if len(text) == 0
+        echom 'Error: no input text.'
+        return
+    endif
+
+    let l:char = input('Char: ')  " comment char
+    " If comment char is too long:
+    if len(char) != 1
+        echom 'Error: char must be 1 character.'
         return
     endif
 
     " Get the number of char to add on left and right
-    let l:length = limit - len(text) - len(format)
+    let l:length = &textwidth - len(text) - len(format)
     let l:left   = length / 2
     let l:right  = length - left
 
     " Insert in the buffer
-    put = printf(format, repeat('-', limit - 2 * space - len(token) * 2))
+    put = printf(format, repeat(char, &textwidth - 2 * space - len(token) * 2))
     put = printf(format, repeat(' ', left+space).text.repeat(' ',  right+space))
-    put = printf(format, repeat('-', limit - 2 * space - len(token) * 2))
-
+    put = printf(format, repeat(char, &textwidth - 2 * space - len(token) * 2))
 endfunction
 
-" ---------------------------------------------------------------------------- "
-"                                Abbreviations                                 "
-" ---------------------------------------------------------------------------- "
+" ------------------------------------------------------------------------------
+"                                Abbreviations
+" ------------------------------------------------------------------------------
 
 iabbr #i #include
 iabbr #d #define
 
-" ---------------------------------------------------------------------------- "
-"                                    Normal                                    "
-" ---------------------------------------------------------------------------- "
-
-let mapleader = ";"
-
-nnoremap <silent> <leader>n  :call ToggleNumber()         <CR>
-nnoremap <silent> <leader>r  :call ToggleRelativeNumber() <CR>
-nnoremap <silent> <C-c>      :call ToggleColorScheme()    <CR>
-nnoremap <silent> <C-s>      :call ToggleSyntax()         <CR>
-nnoremap <silent> <C-x>      :call ToggleColorColumn()    <CR>
-nnoremap <silent> <leader>w  :call TrimWhitespace()       <CR>
-nnoremap <silent> <leader>v  :call VisualComment()        <CR>
-
-" Edit .vimrc
-nnoremap <leader>ev :split $MYVIMRC  <CR>
-
-" Source .vimrc
-nnoremap <leader>sv :source $MYVIMRC <CR>
-
-" Insert a new line
-nnoremap <silent> <leader>o : <C-u>call append(line("."),   repeat([""], v:count1))<CR>
-nnoremap <silent> <leader>O : <C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
-
-" Insert a character
-nnoremap <C-i> i_<Esc>r
-
-" Disable arrows
-nnoremap <Left>  :echo "Type 'h', moron!" <CR>
-nnoremap <Right> :echo "Type 'l', prat!"  <CR>
-nnoremap <Up>    :echo "Type 'k', git!"   <CR>
-nnoremap <Down>  :echo "Type 'j', fool!"  <CR>
-
-" ---------------------------------------------------------------------------- "
-"                                    Insert                                    "
-" ---------------------------------------------------------------------------- "
-
-" Escape alternative
-inoremap jk <esc>
+" ------------------------------------------------------------------------------
+"                                    Insert
+" ------------------------------------------------------------------------------
 
 " Disable arrows
 inoremap <Left>  <nop>
@@ -335,16 +291,52 @@ inoremap <Right> <nop>
 inoremap <Up>    <nop>
 inoremap <Down>  <nop>
 
-" ---------------------------------------------------------------------------- "
-"                                    Visual                                    "
-" ---------------------------------------------------------------------------- "
+" Escape alternative
+inoremap jk <esc>
+
+" ------------------------------------------------------------------------------
+"                                    Normal
+" ------------------------------------------------------------------------------
 
 " Disable arrows
-vnoremap <Left>  :echo "Type 'h', moron!" <CR>
-vnoremap <Right> :echo "Type 'l', prat!"  <CR>
-vnoremap <Up>    :echo "Type 'k', git!"   <CR>
-vnoremap <Down>  :echo "Type 'j', fool!"  <CR>
+nnoremap <Left>  <nop>
+nnoremap <Right> <nop>
+nnoremap <Up>    <nop>
+nnoremap <Down>  <nop>
 
-" ---------------------------------------------------------------------------- "
-"                                     End                                      "
-" ---------------------------------------------------------------------------- "
+" Edit .vimrc
+nnoremap <leader>ev :split $MYVIMRC  <CR>
+" Source .vimrc
+nnoremap <leader>sv :source $MYVIMRC <CR>
+
+" Insert a character
+nnoremap <C-i> i_<Esc>r
+" Insert a new line
+nnoremap <silent> <leader>o : <C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent> <leader>O : <C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+
+nnoremap <silent> <leader>w  :call TrimWhitespace()     <CR>
+nnoremap <silent> <leader>v  :call WriteVisualComment() <CR>
+
+" Toggles.
+nnoremap <silent> <C-n> :call ToggleNumber()         <CR>
+nnoremap <silent> <C-l> :call ToggleRelativeNumber() <CR>
+nnoremap <silent> <C-c> :call ToggleColorScheme()    <CR>
+nnoremap <silent> <C-x> :call ToggleColorColumn()    <CR>
+
+if &filetype == 'c'
+        " Write a C-style for loop.
+        nnoremap <leader>r :<esc>Ifor (int i = 0; i < ; i++) {<enter>}<esc>O<esc>k6w2li
+        " Write a printf.
+        nnoremap <leader>d :<esc>Iprintf("\n");<esc>4hi
+endif
+
+" ------------------------------------------------------------------------------
+"                                    Visual
+" ------------------------------------------------------------------------------
+
+" Disable arrows
+vnoremap <Left>  <nop>
+vnoremap <Right> <nop>
+vnoremap <Up>    <nop>
+vnoremap <Down>  <nop>
