@@ -14,17 +14,16 @@
 
 " ------------------------------------------------------------------------------
 "                                   Pluggins
-" ------------------------------------------------------------------------------ call plug#begin('~/.vim/plugged')
+" ------------------------------------------------------------------------------
+
+call plug#begin('~/.vim/plugged')
 
 " Quotes, tags, parentheses
 Plug 'tpope/vim-surround'
-
 " Comments
 Plug 'tpope/vim-commentary'
-
 " File manipulation
 Plug 'tpope/vim-eunuch'
-
 " Git
 Plug 'tpope/vim-fugitive'
 
@@ -113,7 +112,7 @@ augroup END
 " ------------------------------------------------------------------------------
 
 " Sets the terminal title (editing 'file')
-set title
+" set title
 
 " Compatibility with tmux colors
 set t_Co=256
@@ -246,7 +245,7 @@ endfunction
 
 function! WriteVisualComment()
     let l:token  = GetCommentToken() " (e.g. #, //)
-    let l:format = token . ' %s ' . token
+    let l:format = token . ' %s'
     let l:space  = 1                 " space character
 
     let l:text = input('Text: ')  " comment text
@@ -269,9 +268,9 @@ function! WriteVisualComment()
     let l:right  = length - left
 
     " Insert in the buffer
-    put = printf(format, repeat(char, &textwidth - 2 * space - len(token) * 2))
-    put = printf(format, repeat(' ', left+space).text.repeat(' ',  right+space))
-    put = printf(format, repeat(char, &textwidth - 2 * space - len(token) * 2))
+    put = printf(format, repeat(char, &textwidth - len(token) * 2))
+    put = printf(format, repeat(' ', left) . text)
+    put = printf(format, repeat(char, &textwidth - len(token) * 2))
 endfunction
 
 " ------------------------------------------------------------------------------

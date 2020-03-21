@@ -22,12 +22,11 @@ echo 'Running ~/.zshrc'
 
 autoload -U compinit
 zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit
 
-# Include hidden files.
+# Include hidden files in autocomplete:
 _comp_options+=(globdots)
-
-# vi mode
-bindkey -v
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -57,5 +56,8 @@ fi
 # ---------------------------------------------------------------------------- #
 
 # Must be last.
-source ~/.dotfiles/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.dotfiles/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_PLUGINS=~/.dotfiles/zsh/plugins
+
+source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${ZSH_PLUGINS}/alias-tips/alias-tips.plugin.zsh
