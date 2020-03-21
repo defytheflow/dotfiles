@@ -9,7 +9,7 @@
 #                              |_|
 #
 # -----------------------------------------------------------------------------
-# | File: .exports.sh
+# | File: exports.sh
 # ---------------------------------------------------------------------------- 
 # | Modified: March 20, 2020
 # ---------------------------------------------------------------------------- 
@@ -17,7 +17,7 @@
 # ---------------------------------------------------------------------------- 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-echo 'Running ~/.exports.sh'
+echo 'Running ~/.dotfiles/exports.sh'
 
 # ---------------------------------------------------------------------------- #
 #                                    shell                                     #
@@ -36,14 +36,14 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 
 # Configuration files.
-export ALIAS="${HOME}/.aliases"
-export EXPORT="${HOME}/.exports"
-export FUNC="${HOME}/.functions"
-export WSL="${HOME}/.wsl"
+export ALIAS="${HOME}/.dotfiles/aliases.sh"
+export EXPORT="${HOME}/.dotfiles/exports.sh"
+export FUNC="${HOME}/.dotfiles/functions.sh"
+export PROM="${HOME}/.dotfiles/prompt.sh"
+export WSL="${HOME}/.dotfiles/wsl.sh"
 
 export BASHRC="${HOME}/.bashrc"
 export ZSHRC="${HOME}/.zshrc"
-
 # export PROFILE="${HOME}/.bash_profile"
 
 # ---------------------------------------------------------------------------- #
@@ -76,8 +76,10 @@ export SDK="${GITD}/sdk"
 
 # Search python modules here.
 export PYTHONPATH="${HOME}/.lib/"
+# Run commands file.
+export PYRC="${HOME}/.dotfiles/python/pythonrc.py"
 # Run this 'commands' file when starting interpreter.
-export PYTHONSTARTUP="${HOME}/.pythonrc"
+export PYTHONSTARTUP="${PYRC}"
 
 # ---------------------------------------------------------------------------- #
 #                                  shellcheck                                  #

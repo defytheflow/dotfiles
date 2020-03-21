@@ -8,7 +8,7 @@
 #                |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
 #
 # ---------------------------------------------------------------------------- 
-# | File: .functions.sh
+# | File: functions.sh
 # ---------------------------------------------------------------------------- 
 # | Modified: March 20, 2020
 # ---------------------------------------------------------------------------- 
@@ -16,10 +16,15 @@
 # ---------------------------------------------------------------------------- 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-echo 'Running ~/.functions.sh'
+echo 'Running ~/.dotfiles/functions.sh'
 
 # Export following variables and functions.
 set -a
+
+# Cd into directory and ls it automatically.
+cd() {
+        builtin cd $1 && ls || return
+}
 
 # Sources .bashrc or .zshrc according to current shell.
 rld() {
