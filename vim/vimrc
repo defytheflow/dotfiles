@@ -1,5 +1,5 @@
 " ------------------------------------------------------------------------------
-" | File:      .vimrc
+" | File:      vimrc
 " ------------------------------------------------------------------------------
 " | Modified:  March 21, 2020
 " ------------------------------------------------------------------------------
@@ -14,16 +14,15 @@ call plug#begin('~/.vim/plugged')
 
 " Quotes, tags, parentheses
 Plug 'tpope/vim-surround'
+
 " Comments
 Plug 'tpope/vim-commentary'
+
 " File manipulation
 Plug 'tpope/vim-eunuch'
+
 " Git
 Plug 'tpope/vim-fugitive'
-
-" Parentheses
-Plug 'frazrepo/vim-rainbow'
-let g:rainbow_active = 1
 
 " Colorschemes
 Plug 'tomasr/molokai'
@@ -124,7 +123,7 @@ syntax enable
 set number
 
 " When a bracket is inserted, briefly jumps to the matching one.
-set showmatch
+" set showmatch
 
 " A list of characters to show instead of tabs and trailing spaces.
 set list listchars=tab:>-,trail:-
@@ -249,12 +248,13 @@ function! WriteVisualComment()
         return
     endif
 
-    let l:char = input('Char: ')  " comment char
+    let l:char = '-'
+    " input('Char: ')  " comment char
     " If comment char is too long:
-    if len(char) != 1
-        echom 'Error: char must be 1 character.'
-        return
-    endif
+    " if len(char) != 1
+    "     echom 'Error: char must be 1 character.'
+    "     return
+    " endif
 
     " Get the number of char to add on left and right
     let l:length = &textwidth - len(text) - len(format)
