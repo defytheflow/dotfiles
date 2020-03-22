@@ -20,8 +20,7 @@ if [ -n "${BASH_VERSION}" ]; then
     start_color='\[\e[38;5;'
     end_color='m\]'
 
-    nl='\n'
-    reset='\[\e[0m\]'
+    nl='\n' reset='\[\e[0m\]'
 
     username='\u'
     hostname='\h'
@@ -62,9 +61,9 @@ red="${start_color}9${end_color}"
 white="${start_color}15${end_color}"
 yellow="${start_color}220${end_color}"
 
-# ---------------------------------------------------------------------------- #
-#                                    Prompt                                    #
-# ---------------------------------------------------------------------------- #
+# ------------------------------------------------------------------------------
+#                                    Prompt
+# ------------------------------------------------------------------------------
 
 # Gets executed each time prompt is drawn.
 my_prompt() {
@@ -81,23 +80,30 @@ my_prompt() {
 
         # Branch currently on.
         branch="$(git branch 2>/dev/null | grep "^\*" | colrm 1 2)"
-        # Number of unstaged files.
-        unstaged="$(git status --porcelain | grep '?' | wc -l)"
-        # Number of modified files.
-        modified="$(git status --porcelain | grep 'M' | wc -l)"
         # Total number of commits in repository on branch.
-        total="$(git rev-list --count "${branch}")"
+        commits="$(git rev-list --count "${branch}")"
 
-        # Colorize.
-        branch="${cyan}${branch}"
-        sep="${white}|"
-        unstaged="${red}${unstaged}${reset}"
-        modified="${yellow}${modified}${reset}"
-        total="${green}${total}"
+        # Returns 0 if there are untracked files in repository.
+        any_untracked() {
+            return $(! git ls-files -o --directory --exclude-standard | sed q);
+        }
+
+        # Returns 0 if there are modified files in repository.
+        any_modified() {
+                return  $( [ "$(git diff --name-only | wc -l)" -gt 0 ] );
+        }
+
+        # Colorize commits.
+        if any_untracked; then
+            commits="${red}U-${commits}"
+        elif any_modified; then
+            commits="${yellow}M-${commits}"
+        else
+            commits="${green}${commits}"
+        fi
 
         # Put all together.
-        stats="${white}[${unstaged}-${modified}-${total}${white}]"
-        branch="${white}${branch} ${stats}${white}"
+        branch="${cyan}${branch} ${commits}"
     else
         branch=''
     fi;
@@ -106,7 +112,7 @@ my_prompt() {
     PS1="${nl}${purple}${username}"             # username
     PS1+="${white} at ${orange}${hostname}"     # at host
     PS1+="${white} in ${limegreen}${absdir}"    # in directory
-    PS1+="${white} on ${branch}"                        # (branch|commits)
+    PS1+="${white} on ${branch}"                # (branch|commits)
     PS1+="${command_status}"                    # :) or :(
     PS1+="${reset}${nl}\$ "
 }
