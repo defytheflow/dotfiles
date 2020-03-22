@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/sh
 
 # ------------------------------------------------------------------------------
 # | File:      prompt.sh
@@ -93,10 +93,10 @@ my_prompt() {
     # Get git branch
     if git status >/dev/null 2>&1; then
         # Branch currently on.
-        branch="$(git branch 2>/dev/null | grep "^*" | colrm 1 2)"
+        branch="$(git branch 2>/dev/null | grep "^\*" | colrm 1 2)"
 
         # Number of commits in repository on branch.
-        commits="$(git rev-list --count ${branch})"
+        commits="$(git rev-list --count "${branch}")"
 
         if [ -z "$(git status -s)" ]; then
             git_status="${committed}"

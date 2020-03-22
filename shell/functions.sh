@@ -1,38 +1,34 @@
-#!/usr/bin/zsh
+#!/usr/bin/sh
 
-# ---------------------------------------------------------------------------- 
+# ------------------------------------------------------------------------------
 # | File:      functions.sh
-# ---------------------------------------------------------------------------- 
+# ------------------------------------------------------------------------------
 # | Modified:  March 20, 2020
-# ---------------------------------------------------------------------------- 
+# ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
-# ---------------------------------------------------------------------------- 
+# ------------------------------------------------------------------------------
 
 echo "Running ${0}"
 
 # Export following variables and functions.
 set -a
 
-# Cd into directory and ls it automatically.
-cd() {
-        builtin cd $1 && ls || return
+# cd into directory and ls it automatically.
+cdls() {
+        cd "${1}" && ls || return
 }
 
 # Sources .bashrc or .zshrc according to current shell.
 rld() {
-    if [ -n "${BASH_VERSION}" ]; then
-        . "${HOME}/.bashrc"
-    elif [ -n "${ZSH_VERSION}" ]; then
-        . "${HOME}/.zshrc"
-    fi
+    [ -n "${BASH_VERSION}" ] && . "${HOME}/.bashrc" && return
+    [ -n "${ZSH_VERSION}" ]  && . "${HOME}/.zshrc" && return
 }
 
 # Print first passed argument to the center of the terminal.
 echoc() {
-    local text=$1
-    local width=$(stty size | cut -d ' ' -f2)
-    local length=${#text}
-    printf "%$(( length + (width - length) / 2 ))b\n" "${text}"
+    width=$(stty size | cut -d ' ' -f2)
+    length=${#1}
+    printf "%$(( length + (width - length) / 2 ))b\n" "${1}"
 }
 
 # Print all passed arguments to stderr.
@@ -42,40 +38,34 @@ err() {
 
 # Return 0 if $1 (directory) is empty.
 isempty() {
-    local dir=$1
-    return $([[ "$(find "${dir}" -type f | wc -l)" -eq 0 ]])
+    return "$([ "$(find "${1}" -type f | wc -l)" -eq 0 ])"
 }
 
 # Create a $1 (directory) and cd into it.
 mkcd() {
-    local dir=$1
-    mkdir -p "${dir}" && cd "${dir}" || return
+    mkdir -p "${1}" && cd "${1}" || return
 }
 
 # Set all passed arguments as terminal title.
-termtitle() {
-    echo -ne "\033]0;$*\007"
+title() {
+    printf "\033]0;%s\007" "$*"
 }
 
 # Return number of files in $1 (directory).
-filenum()
-{
-    local dir=$1
-    if [[ $# -gt 0 ]]; then
-        find "${dir}" -maxdepth 1 -type f | wc -l
+fn() {
+    if [ $# -gt 0 ]; then
+        find "${1}" -maxdepth 1 -type f | wc -l
     else
-        find "."      -maxdepth 1 -type f | wc -l
+        find "."    -maxdepth 1 -type f | wc -l
     fi
 }
 
 # Return number of directories in $1 (directory).
-dirnum()
-{
-    local dir=$1
-    if [[ $# -gt 0 ]]; then
-        find "${dir}" -maxdepth 1 -type d | wc -l
+dn() {
+    if [ $# -gt 0 ]; then
+        find "${1}" -maxdepth 1 -type d | wc -l
     else
-        find "."      -maxdepth 1 -type d | wc -l
+        find "."    -maxdepth 1 -type d | wc -l
     fi
 }
 
