@@ -27,11 +27,11 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 
 # Configuration files.
-export ALIAS="${HOME}/.dotfiles/aliases.sh"
-export EXPORT="${HOME}/.dotfiles/exports.sh"
-export FUNC="${HOME}/.dotfiles/functions.sh"
-export PROM="${HOME}/.dotfiles/prompt.sh"
-export WSL="${HOME}/.dotfiles/wsl.sh"
+export ALIAS="${HOME}/.dotfiles/shell/aliases.sh"
+export EXPORT="${HOME}/.dotfiles/shell/exports.sh"
+export FUNC="${HOME}/.dotfiles/shell/functions.sh"
+export PROM="${HOME}/.dotfiles/shell/prompt.sh"
+export WSL="${HOME}/.dotfiles/shell/wsl.sh"
 
 export BASHRC="${HOME}/.bashrc"
 export ZSHRC="${HOME}/.zshrc"

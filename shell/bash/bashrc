@@ -74,7 +74,7 @@ stty -ixon
 # ---------------------------------------------------------------------------- #
 
 if [ "${color_prompt}" = 'yes' ]; then
-    [ -f "${HOME}/.dotfiles/prompt.sh" ] && . "${HOME}/.dotfiles/prompt.sh"
+    [ -f "${HOME}/.dotfiles/shell/prompt.sh" ] && . "${HOME}/.dotfiles/shell/prompt.sh"
 else
     PS1='\u@\h:\w\$ '
 fi
@@ -84,7 +84,7 @@ fi
 # ---------------------------------------------------------------------------- #
 
 for file in 'aliases' 'exports' 'functions'; do
-    [ -f "${HOME}/.dotfiles/${file}.sh" ] && . "${HOME}/.dotfiles/${file}.sh"
+    [ -f "${HOME}/.dotfiles/shell/${file}.sh" ] && . "${HOME}/.dotfiles/shell/${file}.sh"
 done
 
 # ---------------------------------------------------------------------------- #
@@ -93,5 +93,5 @@ done
 
 # If running on wsl:
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
-    [ -f "${HOME}/.dotfiles/wsl.sh" ] && . "${HOME}/.dotfiles/wsl.sh"
+    [ -f "${HOME}/.dotfiles/shell/wsl.sh" ] && . "${HOME}/.dotfiles/shell/wsl.sh"
 fi

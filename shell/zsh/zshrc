@@ -33,7 +33,7 @@ bindkey -M menuselect 'l' vi-forward-char
 # ---------------------------------------------------------------------------- #
 
 for file in 'aliases' 'exports' 'functions' 'prompt'; do
-        [ -f "${HOME}/.dotfiles/${file}.sh" ] && . "${HOME}/.dotfiles/${file}.sh"
+        [ -f "${HOME}/.dotfiles/shell/${file}.sh" ] && . "${HOME}/.dotfiles/shell/${file}.sh"
 done
 
 # ---------------------------------------------------------------------------- #
@@ -42,7 +42,7 @@ done
 
 # If running on wsl:
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
-    [ -f "${HOME}/.dotfiles/wsl.sh" ] && . "${HOME}/.dotfiles/wsl.sh"
+    [ -f "${HOME}/.dotfiles/shell/wsl.sh" ] && . "${HOME}/.dotfiles/shell/wsl.sh"
 fi
 
 # ---------------------------------------------------------------------------- #
@@ -50,7 +50,7 @@ fi
 # ---------------------------------------------------------------------------- #
 
 # Must be last.
-ZSH_PLUGINS=~/.dotfiles/zsh/plugins
+ZSH_PLUGINS=~/.dotfiles/shell/zsh/plugins
 
 source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
