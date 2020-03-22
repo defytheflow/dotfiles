@@ -8,7 +8,7 @@
 # | Author:    Artyom Danilov
 # ---------------------------------------------------------------------------- 
 
-echo 'Running ~/.dotfiles/functions.sh'
+echo "Running ${0}"
 
 # Export following variables and functions.
 set -a

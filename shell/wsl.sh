@@ -8,7 +8,7 @@
 # | Author:    Artyom Danilov
 # -----------------------------------------------------------------------------
 
-echo 'Running ~/.dotfiles/wsl.sh'
+echo "Running ${0}"
 
 # /mnt/c/Users/YourUserName
 export WINHOME="$(wslpath $(cmd.exe /C 'echo | set /p _=%USERPROFILE%' 2>/dev/null))"
