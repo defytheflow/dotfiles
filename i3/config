@@ -8,22 +8,38 @@ set $left h
 set $right l
 
 # ------------------------------------------------------------------------------
-#                                     Font
+#                                 Applications
 # ------------------------------------------------------------------------------
 
-# Font for window titles.
-font pango:DejaVu Sans Mono 12
+# (<Alt> + o) -> open an application.
+
+bindsym Mod1+o mode "open"
+
+mode "open" {
+    bindsym c exec google-chrome  # open chrome
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# Start a terminal. (<Alt> + <Return>)
+bindsym Mod1+Return exec i3-sensible-terminal
 
 # ------------------------------------------------------------------------------
 #                                    Kill
 # ------------------------------------------------------------------------------
 
 # Kill focused window. (<Alt> + Shift + q)
-bindsym Mod1+Shift+q kill
+bindsym Mod1+q kill
 
 # ------------------------------------------------------------------------------
 #                                    Layout
 # ------------------------------------------------------------------------------
+
+# Font for window titles.
+font pango:DejaVu Sans Mono 12
+
+title_align center
 
 # Orientation for new workspaces
 default_orientation horizontal
@@ -37,13 +53,13 @@ bindsym Mod1+minus split v
 # FullScreen focused window. (<Alt> + f)
 bindsym Mod1+f fullscreen toggle
 
-# Split layout
+# Split larout
 bindsym Mod1+p layout toggle split
 
 # Stacked layout
 bindsym Mod1+s layout stacking
 
-# Tabbed layout
+# Tabbed layou
 bindsym Mod1+t layout tabbed
 
 # ------------------------------------------------------------------------------
@@ -57,7 +73,7 @@ bindsym Mod1+m exec --no-startup-id i3-dmenu-desktop
 #                                   Movement
 # ------------------------------------------------------------------------------
 
-# use Mouse+Mod1 to drag floating windows to their wanted position
+# use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier Mod1
 
 # Toggle tiling / floating
@@ -86,7 +102,6 @@ bindsym Mod1+Shift+$right move right
 bindsym Mod1+r mode "resize"
 
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
         bindsym $left       resize shrink width 10 px or 10 ppt
@@ -96,12 +111,6 @@ mode "resize" {
         bindsym $up         resize shrink height 10 px or 10 ppt
         # Pressing down will grow the window’s height.
         bindsym $down       resize grow height 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize grow height 10 px or 10 ppt
-        bindsym Up          resize shrink height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -143,13 +152,6 @@ bar {
 }
 
 # ------------------------------------------------------------------------------
-#                                   Terminal
-# ------------------------------------------------------------------------------
-
-# Start a terminal. (<Alt> + <Return>)
-bindsym Mod1+Return exec i3-sensible-terminal
-
-# ------------------------------------------------------------------------------
 #                                  Workspace
 # ------------------------------------------------------------------------------
 
@@ -186,4 +188,3 @@ bindsym Mod1+Shift+0 move container to workspace 10
 
 # focus the child container
 # bindsym Mod1+d focus child
-
