@@ -8,7 +8,6 @@
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
 
-# echo "Running ${0}"
 notify-send 'Running .zshrc'
 
 # ------------------------------------------------------------------------------
@@ -33,7 +32,7 @@ bindkey -M menuselect 'l' vi-forward-char
 #                         Aliases | Functions | Prompt
 # ------------------------------------------------------------------------------
 
-for file in 'zshalias' 'zshfun' 'zshprompt'; do
+for file in 'zalias' 'zfun' 'zprompt'; do
         [ -f "${HOME}/.dotfiles/zsh/${file}" ] && . "${HOME}/.dotfiles/zsh/${file}"
 done
 
@@ -43,7 +42,7 @@ done
 
 # If running on wsl:
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
-    [ -f "${HOME}/.dotfiles/zsh/zshwsl" ] && . "${HOME}/.dotfiles/zsh/zshwsl"
+    [ -f "${HOME}/.dotfiles/zsh/zwsl" ] && . "${HOME}/.dotfiles/zsh/zwsl"
 fi
 
 # ------------------------------------------------------------------------------

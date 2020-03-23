@@ -52,12 +52,14 @@ export HISTFILESIZE=10000
 # Change default location of zsh config files.
 export ZDOTDIR="${HOME}/.config/zsh"
 
-# Configuration files.
+# Standard config files.
 export ZSHRC="${HOME}/.dotfiles/zsh/zshrc"
 export ZSHENV="${HOME}/.dotfiles/zsh/zshenv"
-export ZSHFUN="${HOME}/.dotfiles/zsh/zshfun"
-export ZSHALIAS="${HOME}/.dotfiles/zsh/zshalias"
-export ZSHPROMPT="${HOME}/.dotfiles/zsh/zshprompt"
+
+# My config files.
+export ZFUN="${HOME}/.dotfiles/zsh/zfun"
+export ZALIAS="${HOME}/.dotfiles/zsh/zalias"
+export ZPROMPT="${HOME}/.dotfiles/zsh/zprompt"
 
 # ------------------------------------------------------------------------------
 #                                  Shellcheck
