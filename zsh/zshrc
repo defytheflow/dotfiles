@@ -1,14 +1,15 @@
 #!/usr/bin/zsh
 
 # ------------------------------------------------------------------------------
-# | File:      zshrc
+# | File:      .zshrc
 # ------------------------------------------------------------------------------
 # | Modified:  March 23, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
 
-echo "Running ${0}"
+# echo "Running ${0}"
+notify-send 'Running .zshrc'
 
 # ------------------------------------------------------------------------------
 #                              Auto-Tab Complete
@@ -29,11 +30,11 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
 # ------------------------------------------------------------------------------
-#                     Aliases | Envs | Functions | Prompt
+#                         Aliases | Functions | Prompt
 # ------------------------------------------------------------------------------
 
-for file in 'aliases' 'envs' 'functions' 'prompt'; do
-        [ -f "${HOME}/.dotfiles/shell/${file}.sh" ] && . "${HOME}/.dotfiles/shell/${file}.sh"
+for file in 'zshalias' 'zshfun' 'zshprompt'; do
+        [ -f "${HOME}/.dotfiles/zsh/${file}" ] && . "${HOME}/.dotfiles/zsh/${file}"
 done
 
 # ------------------------------------------------------------------------------
@@ -42,7 +43,7 @@ done
 
 # If running on wsl:
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
-    [ -f "${HOME}/.dotfiles/shell/wsl.sh" ] && . "${HOME}/.dotfiles/shell/wsl.sh"
+    [ -f "${HOME}/.dotfiles/zsh/zshwsl" ] && . "${HOME}/.dotfiles/zsh/zshwsl"
 fi
 
 # ------------------------------------------------------------------------------
@@ -50,8 +51,9 @@ fi
 # ------------------------------------------------------------------------------
 
 # Must be last.
-ZSH_PLUGINS=~/.dotfiles/shell/zsh/plugins
+ZSH_PLUGINS=~/.dotfiles/zsh/plugins
 
 source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${ZSH_PLUGINS}/alias-tips/alias-tips.plugin.zsh
+

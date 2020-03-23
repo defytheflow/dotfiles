@@ -7,6 +7,7 @@
 	excludesfile = /home/defytheflow/.dotfiles/git/gitignore_global
 	pager = less
 [alias]
+	pu=push
 	st=status
 	com=commit
 [pack]
@@ -14,4 +15,4 @@
 	packSizeLimit = 100m
 	threads = 1
 [commit]
-	template = /home/defytheflow/.dotfiles/git/gitmessage.txt
+	template = /home/defytheflow/.dotfiles/git/gitmessage

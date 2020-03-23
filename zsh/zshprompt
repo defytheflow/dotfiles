@@ -1,52 +1,25 @@
 #!/usr/bin/zsh
 
 # ------------------------------------------------------------------------------
-# | File:      prompt.sh
+# | File:      zshprompt
 # ------------------------------------------------------------------------------
 # | Modified:  March 23, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
 
-echo "Running ${0}"
+notify-send 'Running zshprompt'
 
-# ------------------------------------------------------------------------------
-#                         Shell-dependent Definitions
-# ------------------------------------------------------------------------------
+start_color=$'%{\e[38;5;'
+end_color='m%}'
 
-# 'BASH_VERSION' only defined in bash.
-if [ -n "${BASH_VERSION}" ]; then
+nl=$'\n'
+reset=$'%{\e[0m%}'
 
-    start_color='\[\e[38;5;'
-    end_color='m\]'
-
-    nl='\n' reset='\[\e[0m\]'
-
-    username='\u'
-    hostname='\h'
-    absdir='\w'
-    reldir='\W'
-
-    # 'PROMPT_COMMAND' is a special environment variable name known to bash.
-    PROMPT_COMMAND=my_prompt
-
-# 'ZSH_VERSION' only defined in zsh.
-elif [ -n "${ZSH_VERSION}" ]; then
-
-    start_color=$'%{\e[38;5;'
-    end_color='m%}'
-
-    nl=$'\n'
-    reset=$'%{\e[0m%}'
-
-    username='%n'
-    hostname='%M'
-    absdir='%~'
-    reldir='%1~'
-
-    # 'precmd' is a special function name known to zsh.
-    precmd() { my_prompt; }
-fi
+username='%n'
+hostname='%M'
+absdir='%~'
+reldir='%1~'
 
 # ------------------------------------------------------------------------------
 #                                    Colors
@@ -66,7 +39,7 @@ yellow="${start_color}220${end_color}"
 # ------------------------------------------------------------------------------
 
 # Gets executed each time prompt is drawn.
-my_prompt() {
+precmd() {
 
     # Get last command status
     if [ $? -eq 0 ]; then
@@ -116,6 +89,3 @@ my_prompt() {
     PS1+="${command_status}"                    # :) or :(
     PS1+="${reset}${nl}\$ "
 }
-
-# Default
-#PS1="$green\u@\h$reset:$blue\w$reset\$ "
