@@ -10,24 +10,25 @@
 
 notify-send 'Running zshprompt'
 
+# ------------------------------------------------------------------------------
+#                               Prompt Variables
+# ------------------------------------------------------------------------------
+
 start_color=$'%{\e[38;5;'
 end_color='m%}'
 
 nl=$'\n'
 reset=$'%{\e[0m%}'
 
-username='%n'
-hostname='%M'
-absdir='%~'
-reldir='%1~'
+user_name='%n'
+host_name='%M'
+abs_dir='%~'
+rel_dir='%1~'
 
-# ------------------------------------------------------------------------------
-#                                    Colors
-# ------------------------------------------------------------------------------
-
+# Colors.
 cyan="${start_color}45${end_color}"
 green="${start_color}82${end_color}"
-limegreen="${start_color}154${end_color}"
+lime_green="${start_color}154${end_color}"
 orange="${start_color}202${end_color}"
 purple="${start_color}135${end_color}"
 red="${start_color}9${end_color}"
@@ -35,7 +36,7 @@ white="${start_color}15${end_color}"
 yellow="${start_color}220${end_color}"
 
 # ------------------------------------------------------------------------------
-#                                    Prompt
+#                               Prompt Function
 # ------------------------------------------------------------------------------
 
 # Gets executed each time prompt is drawn.
@@ -72,20 +73,20 @@ precmd() {
         elif any_modified; then
             commits="${yellow}M-${commits}"
         else
-            commits="${green}${commits}"
+            commits="${green}N-${commits}"
         fi
 
         # Put all together.
-        branch="${cyan}${branch} ${commits}"
+        branch=" on ${cyan}${branch} ${commits}"
     else
         branch=''
     fi;
 
     # Set PS1
-    PS1="${nl}${purple}${username}"             # username
-    PS1+="${white} at ${orange}${hostname}"     # at host
-    PS1+="${white} in ${limegreen}${absdir}"    # in directory
-    PS1+="${white} on ${branch}"                # (branch|commits)
+    PS1="${nl}${purple}${user_name}"            # username
+    PS1+="${white} at ${orange}${host_name}"    # at host
+    PS1+="${white} in ${lime_green}${abs_dir}"  # in directory
+    PS1+="${white}${branch}"                # (branch|commits)
     PS1+="${command_status}"                    # :) or :(
     PS1+="${reset}${nl}\$ "
 }
