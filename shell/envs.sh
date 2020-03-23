@@ -1,9 +1,9 @@
 #!/usr/bin/sh
 
 # ------------------------------------------------------------------------------
-# | File:      exports.sh
+# | File:      envs.sh
 # ------------------------------------------------------------------------------
-# | Modified:  March 20, 2020
+# | Modified:  March 23, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
@@ -29,10 +29,6 @@ export LD_LIBRARY_PATH="${HOME}/.lib"
 export GITHUB='https://github.com/defytheflow'
 # My git-tracked projects directory.
 export GITD="${HOME}/dev/git/"
-# My current git-projects.
-export DOT="${GITD}/dotfiles"
-export SCH="${GITD}/school"
-export SDK="${GITD}/sdk"
 
 # ------------------------------------------------------------------------------
 #                                    Python
@@ -61,8 +57,8 @@ export HISTFILESIZE=10000
 
 # Configuration files.
 export ALIAS="${HOME}/.dotfiles/shell/aliases.sh"
-export EXPORT="${HOME}/.dotfiles/shell/exports.sh"
-export FUNC="${HOME}/.dotfiles/shell/functions.sh"
+export ENV="${HOME}/.dotfiles/shell/envs.sh"
+export FUN="${HOME}/.dotfiles/shell/functions.sh"
 export PROM="${HOME}/.dotfiles/shell/prompt.sh"
 export WSL="${HOME}/.dotfiles/shell/wsl.sh"
 
@@ -83,5 +79,10 @@ export SHELLCHECK_OPTS='-e SC2034 -e SC1090'
 
 # Use this as default editor by other programs.
 export EDITOR='vim'
-# Condifuration file.
-export VIMRC="${HOME}/.vimrc"
+
+# Chande default vimrc location.
+export VIMINIT='source $MYVIMRC'
+export MYVIMRC="${HOME}/.dotfiles/vim/vimrc"
+
+# Condif file.
+export VIMRC="${MYVIMRC}"

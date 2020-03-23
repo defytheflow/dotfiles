@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 # | File:      functions.sh
 # ------------------------------------------------------------------------------
-# | Modified:  March 20, 2020
+# | Modified:  March 23, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
@@ -20,8 +20,8 @@ cdls() {
 
 # Sources .bashrc or .zshrc according to current shell.
 rld() {
-    [ -n "${BASH_VERSION}" ] && . "${HOME}/.bashrc" && return
-    [ -n "${ZSH_VERSION}" ]  && . "${HOME}/.zshrc" && return
+    [ -n "${BASH_VERSION}" ] && exec bash && return
+    [ -n "${ZSH_VERSION}" ]  && exec zsh  && return
 }
 
 # Print first passed argument to the center of the terminal.
