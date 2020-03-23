@@ -85,12 +85,12 @@ my_prompt() {
 
         # Returns 0 if there are untracked files in repository.
         any_untracked() {
-            return $(! git ls-files -o --directory --exclude-standard | sed q);
+            return $([ "$(git ls-files -o --directory --exclude-standard | wc -l)" -gt 0 ]);
         }
 
         # Returns 0 if there are modified files in repository.
         any_modified() {
-                return  $( [ "$(git diff --name-only | wc -l)" -gt 0 ] );
+            return  $([ "$(git diff --name-only | wc -l)" -gt 0 ]);
         }
 
         # Colorize commits.

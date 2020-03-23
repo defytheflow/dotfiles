@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 # | File:      aliases.sh
 # ------------------------------------------------------------------------------
-# | Modified:  March 22, 2020
+# | Modified:  March 23, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
@@ -11,32 +11,48 @@
 echo "Running ${0}"
 
 # ------------------------------------------------------------------------------
-#                                      cd
+#                                    Colors
 # ------------------------------------------------------------------------------
 
-# Typing mistakes.
-alias cd..='cd ..'
-alias cd-=' cd -'
-alias cd~=' cd ~'
-alias CD='cd'
-
-# Faster movement.
-alias ..='   cd ..'
-alias ...='  cd ../../'
-alias ....=' cd ../../../'
-alias .....='cd ../../../../'
+alias \
+    ls='ls --color=never'      \
+    dir='dir --color=auto'     \
+    diff='diff --color=auto'   \
+    vdir='vdir --color=auto'   \
+    grep='grep --color=auto'   \
+    fgrep='fgrep --color=auto' \
+    egrep='egrep --color=auto'
 
 # ------------------------------------------------------------------------------
-#                                    ls/dir
+#                                   Improved
 # ------------------------------------------------------------------------------
 
-# Better ls. (-v is natural sort of numbers in names)
-alias ls=' ls -v --classify --color=never --group-directories-first --human-readable'
+alias \
+    cp='cp --interactive --verbose'                      \
+    du='du --human-readable'                             \
+    ls='ls -vh --classify --group-directories-first'     \
+    mv='mv --interactive --verbose'                      \
+    rm='rm --interactive=once --preserve-root --verbose' \
+    mkdir='mkdir --parents --verbose'                    \
+    rmdir='rmdir --parents --verbose'                    \
+    diff='diff --side-by-side --suppress-common-lines'   \
+    tree='tree -I .git'
 
-# Typing mistakes.
-alias LS=ls
+# ------------------------------------------------------------------------------
+#                                   Mistakes
+# ------------------------------------------------------------------------------
 
-# Fast typing.
+alias \
+    cd..='cd ..' \
+    cd-=' cd -'  \
+    cd~=' cd ~'  \
+    CD='  cd'    \
+    LS=ls
+
+# ------------------------------------------------------------------------------
+#                                   Options
+# ------------------------------------------------------------------------------
+
 alias l='  ls -1'               # list vertically
 alias la=' ls --almost-all'     # list all
 alias lh=' ls --directory .*'   # list hidden
@@ -44,128 +60,73 @@ alias ll=' ls -l'               # list long
 alias lr=' ls --recursive'      # list recursively
 alias lal='ls -l --almost-all'  # list all long
 
-# Colorize output.
-alias dir='dir   --color=auto'
-alias vdir='vdir --color=auto'
-
-# ------------------------------------------------------------------------------
-#                                    clear
-# ------------------------------------------------------------------------------
-
-# For windows cmd users.
-alias cls='clear'
-alias clr='clear'
-
-# ------------------------------------------------------------------------------
-#                                     cat
-# ------------------------------------------------------------------------------
-
-# Shorthand
-alias c='cat'
-# Fast typing.
-alias ncat='cat --number'
-alias tcat="cat --show-tabs"
-# Colorful cat
-alias lcat='lolcat'
-
-# ------------------------------------------------------------------------------
-#                                     grep
-# ------------------------------------------------------------------------------
-
-# Colorize output.
-alias grep='  grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-
-# ------------------------------------------------------------------------------
-#                                   diff/du
-# ------------------------------------------------------------------------------
-
-# Better diff.
-alias diff='diff --side-by-side --suppress-common-lines'
-# Better du.
-alias du='du --human-readable'
-
-# ------------------------------------------------------------------------------
-#                                     vim
-# ------------------------------------------------------------------------------
-
-# Shorthand.
-alias v='vim'
-# Use vim instead of vi.
-alias vi='vim'
-# Edit system files.
-alias svim='sudo vim'
-# For windows cmd users.
-alias edit='vim'
-
-# ------------------------------------------------------------------------------
-#                             cp/mv/rv/mkdir/rmdir
-# ------------------------------------------------------------------------------
-
-# Better versions.
-alias rm='rm --interactive=once --preserve-root --verbose'
-alias mv='mv --interactive --verbose'
-alias cp='cp --interactive --verbose'
-alias mkdir='mkdir --parents --verbose'
-alias rmdir='rmdir --parents --verbose'
-
-# For system files.
-alias scp='sudo cp'
-alias smv='sudo mv'
-alias srm='sudo rm'
-alias smkdir='sudo mkdir'
-alias srmdir='sudo rmdir'
-
-# For windows cmd users.
-alias copy='cp'
-alias move='mv'
-alias rename='mv'
-alias del='rm'
-
-# Shorthand.
-alias mkd='mkdir'
-alias rmd='rmdir'
-
-# ------------------------------------------------------------------------------
-#                                     tree
-# ------------------------------------------------------------------------------
-
-alias t='tree'
-alias tree='tree -I .git'
+alias \
+    ccat='highlight --out-format=ansi' \
+    lcat='lolcat'                      \
+    ncat='cat --number'                \
+    tcat="cat --show-tabs"
 
 # ------------------------------------------------------------------------------
 #                                Right Version
 # ------------------------------------------------------------------------------
 
-alias pip='pip3'
-alias pylint='pylint3'
-alias python='python3'
+alias \
+    pip='pip3'       \
+    pylint='pylint3' \
+    python='python3'
 
 # ------------------------------------------------------------------------------
-#                                  Shorthands
+#                                  Shortcuts
 # ------------------------------------------------------------------------------
 
-alias f='file'
-alias g='grep'
-alias h='history'
-alias p='pwd'
-alias s='source'
-alias t='touch'
+# One-letter.
+alias \
+    c='cat'     \
+    f='file'    \
+    g='git'     \
+    h='history' \
+    p='pwd'     \
+    s='source'  \
+    t='tree'    \
+    v='vim'
 
-alias gh='history | grep'
-alias py='python3'
-alias sc='shellcheck'
-alias shu='shunit2'
-alias chrome='google-chrome'
+# Two-letter.
+alias \
+    gh='history | grep' \
+    py='python3'        \
+    sc='shellcheck'     \
+    tc='touch'          \
+    vi='vim'            \
+    ..='cd ..'
+
+
+# Three-letter.
+alias \
+    clr='clear'   \
+    mkd='mkdir'   \
+    rmd='rmdir'   \
+    shu='shunit2' \
+    ...='cd ../../'
+
+# Other.
+alias \
+    ....=' cd ../../../'    \
+    .....='cd ../../../../' \
+    chrome='google-chrome'
 
 # ------------------------------------------------------------------------------
-#                                    System
+#                                     sudo
 # ------------------------------------------------------------------------------
 
-# Require password.
-alias reboot='sudo reboot'
-alias shutdown='sudo shutdown'
+alias \
+    scp='sudo cp'       \
+    smv='sudo mv'       \
+    srm='sudo rm'       \
+    svim='sudo vim'     \
+    smkdir='sudo mkdir' \
+    srmdir='sudo rmdir' \
+    reboot='sudo reboot'     \
+    shutdown='sudo shutdown'
 
 # ------------------------------------------------------------------------------
 #                                 New Commands
@@ -183,3 +144,15 @@ alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
 alias weather='curl http://wttr.in/'
 # Open application store.
 alias store='ubuntu-software'
+
+# ------------------------------------------------------------------------------
+#                             Windows Command Line
+# ------------------------------------------------------------------------------
+
+alias \
+    edit='vim'  \
+    del='rm'    \
+    cls='clear' \
+    copy='cp'   \
+    move='mv'   \
+    rename='mv'
