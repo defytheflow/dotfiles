@@ -8,7 +8,7 @@
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
 
-notify-send 'Running zfun'
+echo 'Running zfun'
 
 # Export following variables and functions.
 set -a

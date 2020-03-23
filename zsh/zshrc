@@ -8,16 +8,28 @@
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
 
-notify-send 'Running .zshrc'
+echo 'Running .zshrc'
 
 # ------------------------------------------------------------------------------
-#                              Auto-Tab Complete
+#                                   Options
 # ------------------------------------------------------------------------------
 
+# Don't type cd to change directories.
+setopt autocd autopushd
+
+# Tab completion
 autoload -U compinit
+compinit
+
+# Enable vim bindings.
+bindkey -v
+
+# ------------------------------------------------------------------------------
+#                                Tab competion
+# ------------------------------------------------------------------------------
+
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
 
 # Include hidden files in autocomplete:
 _comp_options+=(globdots)
@@ -55,4 +67,4 @@ ZSH_PLUGINS=~/.dotfiles/zsh/plugins
 source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${ZSH_PLUGINS}/alias-tips/alias-tips.plugin.zsh
-
+source ${ZSH_PLUGINS}/zsh-z/zsh-z.plugin.zsh
