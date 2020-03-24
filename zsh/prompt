@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 # | File:      zsh/prompt
 # ------------------------------------------------------------------------------
-# | Purpose:   customization
+# | Purpose:   prompt customization
 # ------------------------------------------------------------------------------
 # | Modified:  March 24, 2020
 # ------------------------------------------------------------------------------
@@ -33,6 +33,22 @@ red="${start_color}196${end_color}"
 white="${start_color}15${end_color}"
 yellow="${start_color}226${end_color}"
 
+# Functions used in the prompt.
+function any_untracked() {
+    # Returns 0 if there are untracked files in repository.
+    return $([ "$(git ls-files -o --directory --exclude-standard | wc -l)" -gt 0 ]);
+}
+
+function any_modified() {
+    # Returns 0 if there are modified files in repository.
+    return $([ "$(git status --porcelain | grep 'M' | wc -l)" -gt 0 ]);
+}
+
+function any_renamed() {
+    # Return 0 if there are renamed files in repository.
+    return $([ "$(git status --porcelain | grep 'R' | wc -l)" -gt 0 ]);
+}
+
 # Prompt function (gets executed each time prompt is drawn).
 precmd() {
     # Get last command status
@@ -41,37 +57,25 @@ precmd() {
     else
         command_status=" ${red}:(${reset}"
     fi
-
-    # If inside git repository
+    # Check if inside git repository.
     if git status >/dev/null 2>&1; then
-
         # Branch currently on.
         branch="$(git branch 2>/dev/null | grep "^\*" | colrm 1 2)"
         # Total number of commits in repository on branch.
         commits="$(git rev-list --count "${branch}")"
 
-        # Returns 0 if there are untracked files in repository.
-        any_untracked() {
-            return $([ "$(git ls-files -o --directory --exclude-standard | wc -l)" -gt 0 ]);
-        }
-
-        # Returns 0 if there are modified files in repository.
-        any_modified() {
-            return  $([ "$(git diff --name-only | wc -l)" -gt 0 ]);
-        }
-
-        # Return 0 if there are renamed files in repository.
-        any_renamed() {
-            return $([ "$(git status --porcelain | grep 'R' | wc -l)" -gt 0 ]);
-        }
-
-        # Colorize commits.
-        if any_untracked; then
-            commits="${red}U-${commits}"
-        elif any_modified; then
-            commits="${yellow}M-${commits}"
-        elif any_renamed; then
-            commits="${dark_green}R-${commits}"
+        # Check if there are any changes.
+        if [ -n "$(git status --porcelain)" ]; then
+            # Colorize commits according to changes.
+            if any_untracked; then
+                commits="${red}U-${commits}"
+            elif any_modified; then
+                commits="${yellow}M-${commits}"
+            elif any_renamed; then
+                commits="${dark_green}R-${commits}"
+            else
+                echo "Error: precmd() in zsh/prompt" >&2
+            fi
         else
             commits="${green}N-${commits}"
         fi

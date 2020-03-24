@@ -1,79 +1,84 @@
 #!/bin/bash
 
 # ------------------------------------------------------------------------------
-# | File:      prompt
+# | File:      bash/prompt
 # ------------------------------------------------------------------------------
-# | Purpose:   custom prompt
+# | Purpose:   prompt customization
 # ------------------------------------------------------------------------------
 # | Modified:  March 24, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
 
-# ------------------------------------------------------------------------------
-#                               Prompt Variables
-# ------------------------------------------------------------------------------
-
+# Prompt variables.
 start_color='\[\e[38;5;'
 end_color='m\]'
 
 nl='\n'
 reset='\[\e[0m\]'
 
-username='\u'
-hostname='\h'
-absdir='\w'
-reldir='\W'
+user_name='\u'
+host_name='\h'
+abs_dir='\w'
+rel_dir='\W'
 
+# Reference to function that gets executed each time prompt is drawn
 PROMPT_COMMAND=my_prompt
 
 # Colors.
 cyan="${start_color}45${end_color}"
 green="${start_color}82${end_color}"
-limegreen="${start_color}154${end_color}"
+dark_green="${start_color}22${end_color}"
+lime_green="${start_color}154${end_color}"
 orange="${start_color}202${end_color}"
 purple="${start_color}135${end_color}"
 red="${start_color}9${end_color}"
 white="${start_color}15${end_color}"
 yellow="${start_color}220${end_color}"
 
-# ------------------------------------------------------------------------------
-#                               Prompt Function
-# ------------------------------------------------------------------------------
+# Functions used in the prompt.
+function any_untracked() {
+    # Returns 0 if there are untracked files in repository.
+    return $([ "$(git ls-files -o --directory --exclude-standard | wc -l)" -gt 0 ]);
+}
 
-# Gets executed each time prompt is drawn.
+function any_modified() {
+    # Returns 0 if there are modified files in repository.
+    return  $([ "$(git status --porcelain | grep 'M' | wc -l)" -gt 0 ]);
+}
+
+function any_renamed() {
+    # Return 0 if there are renamed files in repository.
+    return $([ "$(git status --porcelain | grep 'R' | wc -l)" -gt 0 ]);
+}
+
+# Prompt function (gets executed each time prompt is drawn).
 my_prompt() {
-
     # Get last command status
     if [ $? -eq 0 ]; then
         command_status=" ${green}:)${reset}"
     else
         command_status=" ${red}:(${reset}"
     fi
-
-    # Get git branch
+    # Check if inside git repository.
     if git status >/dev/null 2>&1; then
-
         # Branch currently on.
         branch="$(git branch 2>/dev/null | grep "^\*" | colrm 1 2)"
         # Total number of commits in repository on branch.
         commits="$(git rev-list --count "${branch}")"
 
-        # Returns 0 if there are untracked files in repository.
-        any_untracked() {
-            return $([ "$(git ls-files -o --directory --exclude-standard | wc -l)" -gt 0 ]);
-        }
-
-        # Returns 0 if there are modified files in repository.
-        any_modified() {
-            return  $([ "$(git diff --name-only | wc -l)" -gt 0 ]);
-        }
-
-        # Colorize commits.
-        if any_untracked; then
-            commits="${red}U-${commits}"
-        elif any_modified; then
-            commits="${yellow}M-${commits}"
+        # Check if there are any changes.
+        if [ -n "$(git status --porcelain)" ]; then
+            # Colorize commits according to changes.
+            if any_untracked; then
+                commits="${red}U-${commits}"
+            elif any_modified; then
+                commits="${yellow}M-${commits}"
+            elif any_renamed; then
+                commits="${dark_green}R-${commits}"
+            else
+                echo "Error: my_prompt() in bash/prompt" >&2
+            fi
         else
             commits="${green}N-${commits}"
         fi
@@ -85,9 +90,9 @@ my_prompt() {
     fi;
 
     # Set PS1
-    PS1="${nl}${purple}${username}"             # username
-    PS1+="${white} at ${orange}${hostname}"     # at host
-    PS1+="${white} in ${limegreen}${absdir}"    # in directory
+    PS1="${nl}${purple}${user_name}"            # username
+    PS1+="${white} at ${orange}${host_name}"    # at host
+    PS1+="${white} in ${lime_green}${abs_dir}"  # in directory
     PS1+="${white} on ${branch}"                # (branch|commits)
     PS1+="${command_status}"                    # :) or :(
     PS1+="${reset}${nl}\$ "
