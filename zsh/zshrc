@@ -41,7 +41,6 @@ bindkey -M menuselect 'l' vi-forward-char
 # ------------------------------------------------------------------------------
 #                         Aliases | Functions | Prompt
 # ------------------------------------------------------------------------------
-
 for file in 'alias' 'env' 'function' 'prompt'; do
         [ -f "${HOME}/.dotfiles/zsh/${file}" ] && . "${HOME}/.dotfiles/zsh/${file}"
 done
@@ -52,7 +51,7 @@ done
 
 # If running on wsl:
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
-    [ -f "${HOME}/.dotfiles/zsh/wsl" ] && . "${HOME}/.dotfiles/zsh/wsl"
+    [ -f "${HOME}/.dotfiles/wsl/env" ] && . "${HOME}/.dotfiles/wsl/env"
 fi
 
 # ------------------------------------------------------------------------------

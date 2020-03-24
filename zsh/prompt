@@ -3,9 +3,9 @@
 # ------------------------------------------------------------------------------
 # | File:      prompt
 # ------------------------------------------------------------------------------
-# | Purpose:   custom prompt.
+# | Purpose:   custom prompt
 # ------------------------------------------------------------------------------
-# | Modified:  March 23, 2020
+# | Modified:  March 24, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ precmd() {
     PS1="${nl}${purple}${user_name}"            # username
     PS1+="${white} at ${orange}${host_name}"    # at host
     PS1+="${white} in ${lime_green}${abs_dir}"  # in directory
-    PS1+="${white}${branch}"                # (branch|commits)
+    PS1+="${white}${branch}"                    # (branch|commits)
     PS1+="${command_status}"                    # :) or :(
     PS1+="${reset}${nl}\$ "
 }
