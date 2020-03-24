@@ -1,19 +1,16 @@
 #!/usr/bin/zsh
 
 # ------------------------------------------------------------------------------
-# | File:      prompt
+# | File:      zsh/prompt
 # ------------------------------------------------------------------------------
-# | Purpose:   custom prompt
+# | Purpose:   customization
 # ------------------------------------------------------------------------------
 # | Modified:  March 24, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
 
-# ------------------------------------------------------------------------------
-#                               Prompt Variables
-# ------------------------------------------------------------------------------
-
+# Prompt variables.
 start_color=$'%{\e[38;5;'
 end_color='m%}'
 
@@ -28,20 +25,16 @@ rel_dir='%1~'
 # Colors.
 cyan="${start_color}45${end_color}"
 green="${start_color}82${end_color}"
+dark_green="${start_color}22${end_color}"
 lime_green="${start_color}154${end_color}"
 orange="${start_color}202${end_color}"
 purple="${start_color}135${end_color}"
-red="${start_color}9${end_color}"
+red="${start_color}196${end_color}"
 white="${start_color}15${end_color}"
-yellow="${start_color}220${end_color}"
+yellow="${start_color}226${end_color}"
 
-# ------------------------------------------------------------------------------
-#                               Prompt Function
-# ------------------------------------------------------------------------------
-
-# Gets executed each time prompt is drawn.
+# Prompt function (gets executed each time prompt is drawn).
 precmd() {
-
     # Get last command status
     if [ $? -eq 0 ]; then
         command_status=" ${green}:)${reset}"
@@ -49,7 +42,7 @@ precmd() {
         command_status=" ${red}:(${reset}"
     fi
 
-    # Get git branch
+    # If inside git repository
     if git status >/dev/null 2>&1; then
 
         # Branch currently on.
@@ -67,11 +60,18 @@ precmd() {
             return  $([ "$(git diff --name-only | wc -l)" -gt 0 ]);
         }
 
+        # Return 0 if there are renamed files in repository.
+        any_renamed() {
+            return $([ "$(git status --porcelain | grep 'R' | wc -l)" -gt 0 ]);
+        }
+
         # Colorize commits.
         if any_untracked; then
             commits="${red}U-${commits}"
         elif any_modified; then
             commits="${yellow}M-${commits}"
+        elif any_renamed; then
+            commits="${dark_green}R-${commits}"
         else
             commits="${green}N-${commits}"
         fi
