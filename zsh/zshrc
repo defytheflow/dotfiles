@@ -8,8 +8,6 @@
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
 
-echo 'Running .zshrc'
-
 # ------------------------------------------------------------------------------
 #                                   Options
 # ------------------------------------------------------------------------------
@@ -44,7 +42,7 @@ bindkey -M menuselect 'l' vi-forward-char
 #                         Aliases | Functions | Prompt
 # ------------------------------------------------------------------------------
 
-for file in 'zalias' 'zfun' 'zprompt'; do
+for file in 'alias' 'env' 'function' 'prompt'; do
         [ -f "${HOME}/.dotfiles/zsh/${file}" ] && . "${HOME}/.dotfiles/zsh/${file}"
 done
 
@@ -54,7 +52,7 @@ done
 
 # If running on wsl:
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
-    [ -f "${HOME}/.dotfiles/zsh/zwsl" ] && . "${HOME}/.dotfiles/zsh/zwsl"
+    [ -f "${HOME}/.dotfiles/zsh/wsl" ] && . "${HOME}/.dotfiles/zsh/wsl"
 fi
 
 # ------------------------------------------------------------------------------
@@ -67,4 +65,3 @@ ZSH_PLUGINS=~/.dotfiles/zsh/plugins
 source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${ZSH_PLUGINS}/alias-tips/alias-tips.plugin.zsh
-source ${ZSH_PLUGINS}/zsh-z/zsh-z.plugin.zsh

@@ -1,14 +1,17 @@
 #!/usr/bin/zsh
 
 # ------------------------------------------------------------------------------
-# | File:      zalias
+# | File:      alias
+# ------------------------------------------------------------------------------
+# | Purpose:   define shortcuts for commands, add default arguments and
+# |            abbreviate long one-liners.
 # ------------------------------------------------------------------------------
 # | Modified:  March 23, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
 
-echo 'Running zalias'
+# Order is important. It can break if you chage it.
 
 # ------------------------------------------------------------------------------
 #                                    Colors
@@ -36,7 +39,7 @@ alias \
     mkdir='mkdir --parents --verbose'                    \
     rmdir='rmdir --parents --verbose'                    \
     diff='diff --side-by-side --suppress-common-lines'   \
-    tree='tree -I .git'
+    tree='tree -I .git -I plugins'
 
 # ------------------------------------------------------------------------------
 #                                   Mistakes

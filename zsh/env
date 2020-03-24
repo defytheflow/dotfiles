@@ -1,14 +1,14 @@
 #!/usr/bin/zsh
 
 # ------------------------------------------------------------------------------
-# | File:      .zshenv
+# | File:      env
+# ------------------------------------------------------------------------------
+# | Purpose:   define environment variables
 # ------------------------------------------------------------------------------
 # | Modified:  March 23, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
-
-notify-send 'Running .zshenv'
 
 # ------------------------------------------------------------------------------
 #                                      C
@@ -37,7 +37,7 @@ export GITD="${HOME}/dev/git/"
 # Search python modules here.
 export PYTHONPATH="${HOME}/.lib/"
 # Run commands file.
-export PYTHONRC="${HOME}/.dotfiles/python/pythonrc"
+export PYTHONRC="${HOME}/.pythonrc"
 # Run this 'commands' file when starting interpreter.
 export PYTHONSTARTUP="${PYTHONRC}"
 
@@ -49,17 +49,12 @@ export HISTCONTROL='ignoredups'
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 
-# Change default location of zsh config files.
-export ZDOTDIR="${HOME}/.config/zsh"
-
-# Standard config files.
-export ZSHRC="${HOME}/.dotfiles/zsh/zshrc"
-export ZSHENV="${HOME}/.dotfiles/zsh/zshenv"
-
 # My config files.
-export ZFUN="${HOME}/.dotfiles/zsh/zfun"
-export ZALIAS="${HOME}/.dotfiles/zsh/zalias"
-export ZPROMPT="${HOME}/.dotfiles/zsh/zprompt"
+export ZSHRC="${HOME}/.dotfiles/zsh/zshrc"
+export ALIAS="${HOME}/.dotfiles/zsh/alias"
+export ENV="${HOME}/.dotfiles/zsh/env"
+export FUNCTION="${HOME}/.dotfiles/zsh/function"
+export MYPROMPT="${HOME}/.dotfiles/zsh/prompt"
 
 # ------------------------------------------------------------------------------
 #                                  Shellcheck
@@ -74,10 +69,5 @@ export SHELLCHECK_OPTS='-e SC2034 -e SC1090'
 
 # Use this as default editor by other programs.
 export EDITOR='vim'
-
-# Chande default vimrc location.
-export VIMINIT='source $MYVIMRC'
-export MYVIMRC="${HOME}/.dotfiles/vim/vimrc"
-
 # Configuration file.
-export VIMRC="${MYVIMRC}"
+export VIMRC="${HOME}/.dotfiles/vim/vimrc"

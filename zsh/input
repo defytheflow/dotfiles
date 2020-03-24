@@ -1,18 +1,11 @@
 #!/usr/bin/zsh
 
 # ------------------------------------------------------------------------------
-# | File:      zwsl
+# | File:      input
 # ------------------------------------------------------------------------------
-# | Modified:  20 March, 2020
+# | Purpose:   change behavior of command line input and add keybindings.
+# ------------------------------------------------------------------------------
+# | Modified:  March 23, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
-
-echo 'Running zwsl'
-
-# Like: '/mnt/c/Users/UserName'
-WINHOME="$(wslpath "$(cmd.exe /C 'echo | set /p _=%USERPROFILE%' 2>/dev/null)")"
-export WINHOME
-
-# /mnt/c/Users/YourUserName/Desktop
-export WINDESK="${WINHOME}/Desktop"

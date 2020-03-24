@@ -24,12 +24,15 @@ exec --no-startup-id 'feg --bg-fill --randomize ~/pictures/wallpapers/nature/*'
 # Open terminal.
 exec --no-startup-id i3-sensible-terminal
 
+# Enable russian keyboard.
+exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:caps_toggle"
+
 # ------------------------------------------------------------------------------
 #                                 Applications
 # ------------------------------------------------------------------------------
 
 # Start dmenu.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec --no-startup-id dmenu_run
 
 # Start Google-chrome.
 bindsym $mod+g exec --no-startup-id google-chrome
@@ -105,9 +108,6 @@ bindsym $mod+Shift+q kill
 # Reload the Configuration file.
 bindsym $mod+Shift+w reload
 
-# Exit i3.
-bindsym $mod+Shift+e exit
-
 # Restart i3 inplace.
 bindsym $mod+Shift+r restart
 
@@ -126,9 +126,11 @@ bindsym $mod+Shift+minus move scratchpad
 # ------------------------------------------------------------------------------
 
 bar {
-        status_command i3status
-        font pango:mono 10
+        status_command i3blocks
+        font pango:DejaVu Sans Mono 10
         position top
+        mode dock
+        modifier None
 }
 
 # ------------------------------------------------------------------------------

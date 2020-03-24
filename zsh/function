@@ -1,58 +1,59 @@
 #!/usr/bin/zsh
 
 # ------------------------------------------------------------------------------
-# | File:      zfun
+# | File:      function
+# ------------------------------------------------------------------------------
+# | Purpose:   commands that are too complex for an alias and too small for
+# |            a stand-alone script.
 # ------------------------------------------------------------------------------
 # | Modified:  March 23, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
 
-echo 'Running zfun'
-
 # Export following variables and functions.
 set -a
 
 # cd into directory and ls it automatically.
-cdls() {
+function cdls() {
         cd "${1}" && ls || return
 }
 
 # Sources .bashrc or .zshrc according to current shell.
-rld() {
+function rld() {
     [ -n "${BASH_VERSION}" ] && exec bash && return
     [ -n "${ZSH_VERSION}" ]  && exec zsh  && return
 }
 
 # Print first passed argument to the center of the terminal.
-echoc() {
+function echoc() {
     width=$(stty size | cut -d ' ' -f2)
     length=${#1}
     printf "%$(( length + (width - length) / 2 ))b\n" "${1}"
 }
 
 # Print all passed arguments to stderr.
-err() {
+function err() {
     echo "$*" >&2
 }
 
 # Return 0 if $1 (directory) is empty.
-isempty() {
+function isempty() {
     return "$([ "$(find "${1}" -type f | wc -l)" -eq 0 ])"
 }
 
 # Create a $1 (directory) and cd into it.
-mkcd() {
+function mkcd() {
     mkdir -p "${1}" && cd "${1}" || return
 }
 
 # Set all passed arguments as terminal title.
-title() {
+function title() {
     printf "\033]0;%s\007" "$*"
 }
 
 # Return number of files in $1 (directory).
-fn() {
+function fn() {
     if [ $# -gt 0 ]; then
         find "${1}" -maxdepth 1 -type f | wc -l
     else
@@ -61,7 +62,7 @@ fn() {
 }
 
 # Return number of directories in $1 (directory).
-dn() {
+function dn() {
     if [ $# -gt 0 ]; then
         find "${1}" -maxdepth 1 -type d | wc -l
     else
