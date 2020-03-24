@@ -44,6 +44,11 @@ function any_modified() {
     return $([ "$(git status --porcelain | grep 'M' | wc -l)" -gt 0 ]);
 }
 
+function any_deleted() {
+    # Return 0 if there are renamed files in repository.
+    return $([ "$(git status --porcelain | grep 'D' | wc -l)" -gt 0 ]);
+}
+
 function any_renamed() {
     # Return 0 if there are renamed files in repository.
     return $([ "$(git status --porcelain | grep 'R' | wc -l)" -gt 0 ]);
@@ -71,8 +76,10 @@ precmd() {
                 commits="${red}U-${commits}"
             elif any_modified; then
                 commits="${yellow}M-${commits}"
+            elif any_deleted; then
+                commits="${yellow}D-${commits}"
             elif any_renamed; then
-                commits="${dark_green}R-${commits}"
+                commits="${yellow}R-${commits}"
             else
                 echo "Error: precmd() in zsh/prompt" >&2
             fi
