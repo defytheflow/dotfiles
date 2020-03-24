@@ -1,73 +1,26 @@
 #!/usr/bin/zsh
 
 # ------------------------------------------------------------------------------
-# | File:      env
+# | File:      zsh/env
 # ------------------------------------------------------------------------------
-# | Purpose:   define environment variables
+# | Purpose:   define zsh-specific environment variables
 # ------------------------------------------------------------------------------
-# | Modified:  March 23, 2020
+# | Modified:  March 24, 2020
 # ------------------------------------------------------------------------------
 # | Author:    Artyom Danilov
 # ------------------------------------------------------------------------------
 
-# ------------------------------------------------------------------------------
-#                                      C
-# ------------------------------------------------------------------------------
-
-# Compilation flags.
-export CFLAGS='-W -Wall -Wextra'
-# Search for includes here.
-export CPATH="${HOME}/.lib/"
-# Link libraries from here.
-export LD_LIBRARY_PATH="${HOME}/.lib"
-
-# ------------------------------------------------------------------------------
-#                                     Git
-# ------------------------------------------------------------------------------
-
-# My github.
-export GITHUB='https://github.com/defytheflow'
-# My git-tracked projects directory.
-export GITD="${HOME}/dev/git/"
-
-# ------------------------------------------------------------------------------
-#                                    Python
-# ------------------------------------------------------------------------------
-
-# Search python modules here.
-export PYTHONPATH="${HOME}/.lib/"
-# Run commands file.
-export PYTHONRC="${HOME}/.pythonrc"
-# Run this 'commands' file when starting interpreter.
-export PYTHONSTARTUP="${PYTHONRC}"
-
-# ------------------------------------------------------------------------------
-#                                     zsh
-# ------------------------------------------------------------------------------
-
+# History settings.
 export HISTCONTROL='ignoredups'
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 
-# My config files.
+# Config files.
 export ZSHRC="${HOME}/.dotfiles/zsh/zshrc"
 export ALIAS="${HOME}/.dotfiles/zsh/alias"
 export ENV="${HOME}/.dotfiles/zsh/env"
 export FUNCTION="${HOME}/.dotfiles/zsh/function"
 export MYPROMPT="${HOME}/.dotfiles/zsh/prompt"
 
-# ------------------------------------------------------------------------------
-#                                  Shellcheck
-# ------------------------------------------------------------------------------
-
-# 1090 - can't follow source, 2034 - unused variable
-export SHELLCHECK_OPTS='-e SC2034 -e SC1090'
-
-# ------------------------------------------------------------------------------
-#                                     Vim
-# ------------------------------------------------------------------------------
-
-# Use this as default editor by other programs.
-export EDITOR='vim'
-# Configuration file.
-export VIMRC="${HOME}/.dotfiles/vim/vimrc"
+# Plugins are here.
+export ZSHPLUG="${HOME}/.dotfiles/zsh/plugins"

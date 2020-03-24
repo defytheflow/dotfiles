@@ -68,28 +68,30 @@ shopt -s nocaseglob
 stty -ixon
 
 # ------------------------------------------------------------------------------
-#                                    Prompt
+#                                 Config files
 # ------------------------------------------------------------------------------
 
+# Prompt.
 if [ "${color_prompt}" = 'yes' ]; then
     [ -f "${HOME}/.dotfiles/bash/prompt" ] && . "${HOME}/.dotfiles/bash/prompt"
 else
     PS1='\u@\h:\w\$ '
 fi
 
-# ------------------------------------------------------------------------------
-#                          Aliases | Envs | Functions
-# ------------------------------------------------------------------------------
+# Load shell-independent config files.
+for file in ${HOME}/.dotfiles/shell/*; do
+    . "${file}"
+done
 
+# Load bash-specific config files.
 for file in 'alias' 'env' 'function'; do
     [ -f "${HOME}/.dotfiles/bash/${file}" ] && . "${HOME}/.dotfiles/bash/${file}"
 done
 
-# ------------------------------------------------------------------------------
-#                                     WSL
-# ------------------------------------------------------------------------------
-
-# If running on wsl:
+# Check if running on wsl:
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
-    [ -f "${HOME}/.dotfiles/wsl/env" ] && . "${HOME}/.dotfiles/wsl/env"
+    # Load wsl-specific config files.
+    for file in ${HOME}/.dotfiles/wsl/*; do
+        . "${file}"
+    done
 fi

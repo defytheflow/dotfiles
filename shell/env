@@ -1,0 +1,32 @@
+# ------------------------------------------------------------------------------
+# | File:      shell/env
+# ------------------------------------------------------------------------------
+# | Purpose:   define shell-independent environment variables
+# ------------------------------------------------------------------------------
+# | Modified:  March 24, 2020
+# ------------------------------------------------------------------------------
+# | Author:    Artyom Danilov
+# ------------------------------------------------------------------------------
+
+# C/C++
+export CFLAGS='-W -Wall -Wextra'       # Compilation flags.
+export CPATH="${HOME}/.lib/"           # Search for includes here.
+export LD_LIBRARY_PATH="${HOME}/.lib"  # Link libraries from here.
+
+# Git
+export MYGITHUB='https://github.com/defytheflow'  # My github url.
+export GITD="${HOME}/dev/git/"  # My git-tracked projects directory.
+
+# Python
+export PYTHONPATH="${HOME}/.lib/"   # Search python modules here.
+export PYTHONRC="${HOME}/.pythonrc" # Config file.
+export PYTHONSTARTUP="${PYTHONRC}"  # Run this file when in interactive mode.
+
+# Shellcheck
+export SHELLCHECK_OPTS='-e SC2034 -e SC1090'  # Run-time options.
+# 1090 - can't follow source
+# 2034 - unused variable
+
+# Vim
+export EDITOR='vim'  # Use as default editor by other programs.
+export VIMRC="${HOME}/.dotfiles/vim/vimrc" # Config file.
