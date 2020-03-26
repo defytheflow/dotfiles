@@ -4,7 +4,7 @@
 	username = defytheflow
 [core]
 	editor = vim
-	excludesfile = /home/defytheflow/.dotfiles/git/gitignore_global
+	excludesfile = /home/defytheflow/.dotfiles/git/ignore_global
 	pager = less
 [alias]
 	pu=push
@@ -15,4 +15,4 @@
 	packSizeLimit = 100m
 	threads = 1
 [commit]
-	template = /home/defytheflow/.dotfiles/git/gitmessage
+	template = /home/defytheflow/.dotfiles/git/message
