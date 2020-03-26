@@ -1,8 +1,8 @@
 #!/usr/bin/zsh
 
 # File:      .zshrc
-# Purpose:
-# Modified:  March 24, 2020
+# Purpose:   set user interactive configurations
+# Modified:  March 26, 2020
 # Author:    Artyom Danilov
 
 # ------------------------------------------------------------------------------
@@ -12,16 +12,12 @@
 # Don't type cd to change directories.
 setopt autocd autopushd
 
-# Tab completion
-autoload -U compinit
+# Enable autocompletion.
+autoload -Uz compinit
 compinit
 
 # Enable vim bindings.
 bindkey -v
-
-# ------------------------------------------------------------------------------
-#                                Tab competion
-# ------------------------------------------------------------------------------
 
 zstyle ':completion:*' menu select
 zmodload zsh/complist
@@ -35,29 +31,27 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-# ------------------------------------------------------------------------------
-#                                 Config files
-# ------------------------------------------------------------------------------
+# Config files.
 
 # Load shell-independent config files.
-for file in ${HOME}/.dotfiles/shell/*; do
+for file in "${HOME}/.dotfiles/shell/*"; do
     . "${file}"
 done
 
-# Load zsh-specific aliases, environment variables, functions and prompt.
+# Load zsh-specific config files.
 for file in 'alias' 'env' 'function' 'prompt'; do
     [ -f "${HOME}/.dotfiles/zsh/${file}" ] && . "${HOME}/.dotfiles/zsh/${file}"
 done
 
-# Check if running on wsl:
+# Check if running on wsl.
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
     # Load wsl-specific config files.
-    for file in ${HOME}/.dotfiles/wsl/*; do
+    for file in "${HOME}/.dotfiles/wsl/*"; do
         . "${file}"
     done
 fi
 
 # Load plugins (must be last).
-source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ${ZSH_PLUGINS}/alias-tips/alias-tips.plugin.zsh
+. ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
+. ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+. ${ZSH_PLUGINS}/alias-tips/alias-tips.plugin.zsh

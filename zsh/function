@@ -1,0 +1,12 @@
+#!/usr/bin/zsh
+
+# File:      zsh/function
+# Purpose:   define functions that only work in zsh environment
+# Modified:  March 26, 2020
+# Author:    Artyom Danilov
+
+
+function shtype() {
+# Echo shell type (login or interactive).
+    [[ -o login ]] && print 'login' || print 'interactive'
+}
