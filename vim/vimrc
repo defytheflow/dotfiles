@@ -155,11 +155,11 @@ map <leader>l <C-w>l
 
 set backup
 
-if !isdirectory($HOME . "/.backup/vim")
-    call mkdir($HOME . "/.backup/vim", "p", 0700)
+if !isdirectory($HOME . "/.vim/backup")
+    call mkdir($HOME . "/.vim/backup", "p", 0700)
 endif
 
-set backupdir=~/.backup/vim
+set backupdir=~/.vim/backup
 
 " ------------------------------------------------------------------------------
 "                                    Other

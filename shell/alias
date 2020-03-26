@@ -81,6 +81,7 @@ alias \
     f='file'    \
     g='git'     \
     h='history' \
+    n='ls -a | wc -l' \
     p='pwd'     \
     s='source'  \
     t='tree'    \

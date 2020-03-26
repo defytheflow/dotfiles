@@ -6,6 +6,14 @@
 # Author:    Artyom Danilov
 
 
+# For user-specific configuration files.
+export XDG_CONFIG_HOME="${HOME}/.config"
+# For user-specific non-essential (cached) data.
+export XDG_CACHE_HOME="${HOME}/.cache"
+
+# TODO research.
+export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"
+
 # C/C++
 export CFLAGS='-W -Wall -Wextra'       # Compilation flags.
 export CPATH="${HOME}/.lib/"           # Search for includes here.
@@ -29,6 +37,9 @@ export MYGITHUB='https://github.com/defytheflow'  # My github url.
 export GITD="${HOME}/dev/git/"  # My git-tracked projects directory.
 export GITCONF="${HOME}/.dotfiles/git/config"
 
+# Less
+export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
+
 # Python
 export PYTHONPATH="${HOME}/.lib/"   # Search python modules here.
 export PYTHONRC="${HOME}/.pythonrc" # Config file.
@@ -38,6 +49,10 @@ export PYTHONSTARTUP="${PYTHONRC}"  # Run this file when in interactive mode.
 export SHELLCHECK_OPTS='-e SC2034 -e SC1090'  # Run-time options.
 # 1090 - can't follow source
 # 2034 - unused variable
+
+# Task
+export TASKDATA="${XDG_CONFIG_HOME}/task"
+export TASKRC="${XDG_CONFIG_HOME}/task/taskrc"
 
 # Vim
 export EDITOR='vim'  # Use as default editor by other programs.

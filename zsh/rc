@@ -1,29 +1,30 @@
 #!/usr/bin/zsh
 
 # File:      .zshrc
-# Purpose:   set user interactive configurations
+# Purpose:   configure user interactive shell
 # Modified:  March 26, 2020
 # Author:    Artyom Danilov
 
-# ------------------------------------------------------------------------------
-#                                   Options
-# ------------------------------------------------------------------------------
+
+# Options.
 
 # Don't type cd to change directories.
 setopt autocd autopushd
 
 # Enable autocompletion.
 autoload -Uz compinit
-compinit
+compinit -d ${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}
 
-# Enable vim bindings.
-bindkey -v
-
+# Enable arrow-key driven interface (to activate menu press <Tab> twice).
 zstyle ':completion:*' menu select
+
 zmodload zsh/complist
 
 # Include hidden files in autocomplete:
 _comp_options+=(globdots)
+
+# Enable vim bindings.
+bindkey -v
 
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
@@ -31,10 +32,14 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
+# ------------------------------------------------------------------------------
+#                                 Config files
+# ------------------------------------------------------------------------------
+
 # Config files.
 
 # Load shell-independent config files.
-for file in "${HOME}/.dotfiles/shell/*"; do
+for file in ${HOME}/.dotfiles/shell/*; do
     . "${file}"
 done
 
@@ -46,10 +51,14 @@ done
 # Check if running on wsl.
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
     # Load wsl-specific config files.
-    for file in "${HOME}/.dotfiles/wsl/*"; do
+    for file in ${HOME}/.dotfiles/wsl/*; do
         . "${file}"
     done
 fi
+
+# ------------------------------------------------------------------------------
+#                                   Plugins
+# ------------------------------------------------------------------------------
 
 # Load plugins (must be last).
 . ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
