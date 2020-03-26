@@ -1,26 +1,40 @@
+# vim: filetype=gitconfig
+
 [user]
-	name = Artyom Danilov
-	email = defytheflow@gmail.com
-	username = defytheflow
+        name  = Artyom Danilov
+        email = defytheflow@gmail.com
+        username = defytheflow
+
 [core]
-	editor = vim
-	excludesfile = /home/defytheflow/.dotfiles/git/ignore
-	pager = less
+        editor = vim
+        pager  = less
+        excludesfile = /home/defytheflow/.dotfiles/git/ignore
+
 [alias]
-	amend = commit --amend
-	br = branch
-	co = checkout
-	cl = clone
-	cm = commit
-	df = diff
-	pf = push --force
-	ps = push
-	pl = pull
-	re = reset
-	st = status
+        alias = config --get-regexp alias # List aliases
+        amend = commit --amend
+
+        br = branch
+        cl = clone
+        cm = commit
+        co = checkout
+        df = diff
+        p  = push
+        pf = push --force
+        pl = pull
+        re = reset
+        st = status
+
+        whoami = config user.email
+
+[help]
+        # Automatically correct and execute mistyped commands.
+        autocorrect = 1
+
 [pack]
-	windowMemory = 100m
-	packSizeLimit = 100m
-	threads = 1
+        windowMemory  = 100m
+        packSizeLimit = 100m
+        threads = 1
+
 [commit]
-	template = /home/defytheflow/.dotfiles/git/message
+        template = /home/defytheflow/.dotfiles/git/message

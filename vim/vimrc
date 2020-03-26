@@ -1,10 +1,7 @@
-" ------------------------------------------------------------------------------
-" | File:      vimrc
-" ------------------------------------------------------------------------------
-" | Modified:  March 21, 2020
-" ------------------------------------------------------------------------------
-" | Author:    Artyom Danilov
-" ------------------------------------------------------------------------------
+
+" File:      vimrc
+" Modified:  March 21, 2020
+" Author:    Artyom Danilov
 
 function! g:FckThatMatchParen ()
     if exists(":NoMatchParen")
@@ -320,6 +317,7 @@ nnoremap <silent> <leader>o : <C-u>call append(line("."),   repeat([""], v:count
 nnoremap <silent> <leader>O : <C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
 nnoremap <silent> <leader>w  :call TrimWhitespace()     <CR>
+nnoremap <silent> <leader>r  :retab <CR>
 nnoremap <silent> <leader>v  :call WriteVisualComment() <CR>
 
 " Toggles.

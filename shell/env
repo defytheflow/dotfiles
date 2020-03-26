@@ -27,6 +27,7 @@ export RESET="$(tput sgr0)"
 # Git
 export MYGITHUB='https://github.com/defytheflow'  # My github url.
 export GITD="${HOME}/dev/git/"  # My git-tracked projects directory.
+export GITCONF="${HOME}/.dotfiles/git/config"
 
 # Python
 export PYTHONPATH="${HOME}/.lib/"   # Search python modules here.
@@ -40,4 +41,4 @@ export SHELLCHECK_OPTS='-e SC2034 -e SC1090'  # Run-time options.
 
 # Vim
 export EDITOR='vim'  # Use as default editor by other programs.
-export VIMRC="${HOME}/.dotfiles/vim/rc" # Config file.
+export VIMRC="${HOME}/.dotfiles/vim/vimrc" # Config file.
