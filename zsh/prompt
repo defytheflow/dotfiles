@@ -14,13 +14,6 @@ function precmd() {
         exit_status=" ${RED}:("
     fi
 
-    # get git branch.
-    if branch="$(git branch 2>/dev/null)"; then
-        branch=$(echo "${branch}" | colrm 1 2)
-        branch="${WHITE} on ${CYAN}${branch}"
-    fi
-
-    # set PS1.
     PS1=$'\n'
     # if root, highlight everything in red.
     if [ "$(whoami)" = 'root' ]; then
@@ -32,7 +25,6 @@ function precmd() {
         PS1+="${WHITE} at ${ORANGE}%M"      # host
         PS1+="${WHITE} in ${LIME_GREEN}%~"  # absolute directory
     fi
-    PS1+="${branch}"                        # git branch
     PS1+="${exit_status}${RESET}"           # :) or :(
     PS1+=$'\n$ '
 }
