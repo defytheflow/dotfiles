@@ -1,0 +1,59 @@
+# vim: filetype=sh
+
+#  File:      function
+#  Purpose:   commands that are too complex for an alias and too small for
+#             a stand-alone script.
+#  Modified:  March 26, 2020
+#  Author:    Artyom Danilov
+
+
+# Return number of directories in directory (top-level).
+dn() {
+    if [ $# -gt 0 ]; then
+        find "${1}" -maxdepth 1 -type d | wc -l
+    else
+        echo $(( $(find "."    -maxdepth 1 -type d | wc -l) - 1))
+    fi
+}
+
+
+# Return number of files in directory (top-level).
+fn() {
+    if [ $# -gt 0 ]; then
+        find "${1}" -maxdepth 1 -type f | wc -l
+    else
+        find "."    -maxdepth 1 -type f | wc -l
+    fi
+}
+
+
+ff() {
+# Find a file in the current directory.
+    find . -type f -iname "${1}*"
+}
+
+
+fd() {
+# Find a directory in the current directory.
+    find . -type d -iname "${1}"
+}
+
+
+mk() {
+# Create a $1 (directory) and cd into it.
+    mkdir -p "${1}" && cd "${1}" || return
+}
+
+
+title() {
+# Set all passed arguments as terminal title.
+    printf "\033]0;%s\007" "$*"
+}
+
+
+echoc() {
+# Print first passed argument to the center of the terminal.
+    width=$(stty size | cut -d ' ' -f2)
+    length=${#1}
+    printf "%$(( length + (width - length) / 2 ))b\n" "${1}"
+}

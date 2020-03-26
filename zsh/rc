@@ -63,4 +63,4 @@ fi
 # Load plugins (must be last).
 source ${ZSHPLUG}/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${ZSHPLUG}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source ${ZSHPLUG}/alias-tips/alias-tips.plugin.zsh
+source ${ZSHPLUG}/alias-tips/alias-tips.plugin.zsh

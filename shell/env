@@ -27,12 +27,6 @@ export RESET="$(tput sgr0)"
 export MYGITHUB='https://github.com/defytheflow'  # My github url.
 export GITD="${HOME}/dev/git/"  # My git-tracked projects directory.
 
-# Less
-# Bold texts fg is dark blue.
-# export LESS_TERMCAP_md=$(tput bold; tput setaf 62)
-# Status bar fg is white and bg is blue.
-# export LESS_TERMCAP_so=$(tput bold; tput setaf 7; tput setab 4)
-
 # Python
 export PYTHONPATH="${HOME}/.lib/"   # Search python modules here.
 export PYTHONRC="${HOME}/.pythonrc" # Config file.
