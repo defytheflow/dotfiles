@@ -1,12 +1,9 @@
 #!/usr/bin/zsh
 
-# ------------------------------------------------------------------------------
-# | File:      .zshrc
-# ------------------------------------------------------------------------------
-# | Modified:  March 24, 2020
-# ------------------------------------------------------------------------------
-# | Author:    Artyom Danilov
-# ------------------------------------------------------------------------------
+# File:      .zshrc
+# Purpose:
+# Modified:  March 24, 2020
+# Author:    Artyom Danilov
 
 # ------------------------------------------------------------------------------
 #                                   Options
@@ -61,6 +58,6 @@ if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
 fi
 
 # Load plugins (must be last).
-source ${ZSHPLUG}/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ${ZSHPLUG}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ${ZSHPLUG}/alias-tips/alias-tips.plugin.zsh
+source ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${ZSH_PLUGINS}/alias-tips/alias-tips.plugin.zsh

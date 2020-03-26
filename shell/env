@@ -1,4 +1,4 @@
-# vim: filetype=sh
+#!/bin/sh
 
 # File:      shell/env
 # Purpose:   define shell-independent environment variables
@@ -18,9 +18,10 @@ export DARK_GREEN="$(tput setaf 22)"
 export LIME_GREEN="$(tput setaf 154)"
 export ORANGE="$(tput setaf 202)"
 export PURPLE="$(tput setaf 135)"
-export RED="$(tput setaf 9)"
+export RED="$(tput setaf 160)"
 export WHITE="$(tput setaf 15)"
 export YELLOW="$(tput setaf 220)"
+export BOLD="$(tput bold)"
 export RESET="$(tput sgr0)"
 
 # Git

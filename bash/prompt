@@ -5,29 +5,34 @@
 #  Modified:  March 26, 2020
 #  Author:    Artyom Danilov
 
-# Executes each time prompt is drawn.
+# Execute each time prompt is drawn.
 PROMPT_COMMAND=my_prompt
 
 function my_prompt() {
-    local branch exit_status
-
-    # Get last command exit_status
+    # get last command exit status.
     if [ $? -eq 0 ]; then
         exit_status=" ${GREEN}:)"
     else
         exit_status=" ${RED}:("
     fi
 
-    # Get git branch.
+    # get git branch.
     if branch="$(git branch 2>/dev/null)"; then
         branch=$(echo "${branch}" | colrm 1 2)
         branch="${WHITE} on ${CYAN}${branch}"
     fi
 
-    # Set PS1
-    PS1="\n${PURPLE}\u"                 # username
-    PS1+="${WHITE} at ${ORANGE}\h"      # host
-    PS1+="${WHITE} in ${LIME_GREEN}\w"  # absolute directory
-    PS1+="${branch}"
-    PS1+="${exit_status}${RESET}\n\$ "  # :) or :(
+    # set PS1.
+    # if root, highlight everything in red.
+    if [ "$(whoami)" = 'root' ]; then
+        PS1="\n${RED}\u"                    # root
+        PS1+="${WHITE} at ${RED}\h"         # host
+        PS1+="${WHITE} in ${RED}\w"         # absolute directory
+    else
+        PS1="\n${PURPLE}\u"                 # username
+        PS1+="${WHITE} at ${ORANGE}\h"      # host
+        PS1+="${WHITE} in ${LIME_GREEN}\w"  # absolute directory
+    fi
+    PS1+="${branch}"                        # git branch
+    PS1+="${exit_status}${RESET}\n\$ "           # :) or :(
 }

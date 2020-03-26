@@ -5,29 +5,34 @@
 # Modified:  March 26, 2020
 # Author:    Artyom Danilov
 
-# Executes each time prompt is drawn.
+# Execute each time prompt is drawn.
 function precmd() {
-    local branch exit_status
-
-    # Get last command exit_status
+    # get last command exit status.
     if [ $? -eq 0 ]; then
         exit_status=" ${GREEN}:)"
     else
         exit_status=" ${RED}:("
     fi
 
-    # Get git branch.
+    # get git branch.
     if branch="$(git branch 2>/dev/null)"; then
         branch=$(echo "${branch}" | colrm 1 2)
         branch="${WHITE} on ${CYAN}${branch}"
     fi
 
-    # Set PS1
+    # set PS1.
     PS1=$'\n'
-    PS1+="${PURPLE}%n"                  # username
-    PS1+="${WHITE} at ${ORANGE}%M"      # host
-    PS1+="${WHITE} in ${LIME_GREEN}%~"  # absolute directory
-    PS1+="${branch}"
-    PS1+="${exit_status}${RESET}"       # :) or :(
+    # if root, highlight everything in red.
+    if [ "$(whoami)" = 'root' ]; then
+        PS1+="${RED}%n"                     # root
+        PS1+="${WHITE} at ${RED}%M"         # host
+        PS1+="${WHITE} in ${RED}%~"         # absolute directory
+    else
+        PS1+="${PURPLE}%n"                  # username
+        PS1+="${WHITE} at ${ORANGE}%M"      # host
+        PS1+="${WHITE} in ${LIME_GREEN}%~"  # absolute directory
+    fi
+    PS1+="${branch}"                        # git branch
+    PS1+="${exit_status}${RESET}"           # :) or :(
     PS1+=$'\n$ '
 }
