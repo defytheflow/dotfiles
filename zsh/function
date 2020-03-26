@@ -19,12 +19,6 @@ function cdls() {
         cd "${1}" && ls || return
 }
 
-# Sources .bashrc or .zshrc according to current shell.
-function rld() {
-    [ -n "${BASH_VERSION}" ] && exec bash && return
-    [ -n "${ZSH_VERSION}" ]  && exec zsh  && return
-}
-
 # Print first passed argument to the center of the terminal.
 function echoc() {
     width=$(stty size | cut -d ' ' -f2)

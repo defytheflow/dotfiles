@@ -1,103 +1,33 @@
 #!/usr/bin/zsh
 
-# ------------------------------------------------------------------------------
-# | File:      zsh/prompt
-# ------------------------------------------------------------------------------
-# | Purpose:   prompt customization
-# ------------------------------------------------------------------------------
-# | Modified:  March 24, 2020
-# ------------------------------------------------------------------------------
-# | Author:    Artyom Danilov
-# ------------------------------------------------------------------------------
+# File:      zsh/prompt
+# Purpose:   customize prompt
+# Modified:  March 26, 2020
+# Author:    Artyom Danilov
 
-# Prompt variables.
-start_color=$'%{\e[38;5;'
-end_color='m%}'
+# Executes each time prompt is drawn.
+function precmd() {
+    local branch exit_status
 
-nl=$'\n'
-reset=$'%{\e[0m%}'
-
-user_name='%n'
-host_name='%M'
-abs_dir='%~'
-rel_dir='%1~'
-
-# Colors.
-cyan="${start_color}45${end_color}"
-green="${start_color}82${end_color}"
-dark_green="${start_color}22${end_color}"
-lime_green="${start_color}154${end_color}"
-orange="${start_color}202${end_color}"
-purple="${start_color}135${end_color}"
-red="${start_color}196${end_color}"
-white="${start_color}15${end_color}"
-yellow="${start_color}226${end_color}"
-
-# Functions used in the prompt.
-function any_untracked() {
-    # Returns 0 if there are untracked files in repository.
-    return $([ "$(git ls-files -o --directory --exclude-standard | wc -l)" -gt 0 ]);
-}
-
-function any_modified() {
-    # Returns 0 if there are modified files in repository.
-    return $([ "$(git status --porcelain | grep 'M' | wc -l)" -gt 0 ]);
-}
-
-function any_deleted() {
-    # Return 0 if there are renamed files in repository.
-    return $([ "$(git status --porcelain | grep 'D' | wc -l)" -gt 0 ]);
-}
-
-function any_renamed() {
-    # Return 0 if there are renamed files in repository.
-    return $([ "$(git status --porcelain | grep 'R' | wc -l)" -gt 0 ]);
-}
-
-# Prompt function (gets executed each time prompt is drawn).
-precmd() {
-    # Get last command status
+    # Get last command exit_status
     if [ $? -eq 0 ]; then
-        command_status=" ${green}:)${reset}"
+        exit_status=" ${GREEN}:)"
     else
-        command_status=" ${red}:(${reset}"
+        exit_status=" ${RED}:("
     fi
-    # Check if inside git repository.
-    if git status >/dev/null 2>&1; then
-        # Branch currently on.
-        branch="$(git branch 2>/dev/null | grep "^\*" | colrm 1 2)"
-        # Total number of commits in repository on branch.
-        commits="$(git rev-list --count "${branch}")"
 
-        # Check if there are any changes.
-        if [ -n "$(git status --porcelain)" ]; then
-            # Colorize commits according to changes.
-            if any_untracked; then
-                commits="${red}U-${commits}"
-            elif any_modified; then
-                commits="${yellow}M-${commits}"
-            elif any_deleted; then
-                commits="${yellow}D-${commits}"
-            elif any_renamed; then
-                commits="${yellow}R-${commits}"
-            else
-                echo "Error: precmd() in zsh/prompt" >&2
-            fi
-        else
-            commits="${green}N-${commits}"
-        fi
-
-        # Put all together.
-        branch=" on ${cyan}${branch} ${commits}"
-    else
-        branch=''
-    fi;
+    # Get git branch.
+    if branch="$(git branch 2>/dev/null)"; then
+        branch=$(echo "${branch}" | colrm 1 2)
+        branch="${WHITE} on ${CYAN}${branch}"
+    fi
 
     # Set PS1
-    PS1="${nl}${purple}${user_name}"            # username
-    PS1+="${white} at ${orange}${host_name}"    # at host
-    PS1+="${white} in ${lime_green}${abs_dir}"  # in directory
-    PS1+="${white}${branch}"                    # (branch|commits)
-    PS1+="${command_status}"                    # :) or :(
-    PS1+="${reset}${nl}\$ "
+    PS1=$'\n'
+    PS1+="${PURPLE}%n"                  # username
+    PS1+="${WHITE} at ${ORANGE}%M"      # host
+    PS1+="${WHITE} in ${LIME_GREEN}%~"  # absolute directory
+    PS1+="${branch}"
+    PS1+="${exit_status}${RESET}"       # :) or :(
+    PS1+=$'\n$ '
 }

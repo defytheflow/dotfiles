@@ -18,16 +18,16 @@ alias \
     egrep='egrep --color=auto'
 
 
-# Improve.
+# Default options.
 alias \
-    cp='cp --interactive --verbose'                      \
-    du='du --human-readable'                             \
-    ls='ls -vh --classify --group-directories-first'     \
-    mv='mv --interactive --verbose'                      \
-    rm='rm --interactive=once --preserve-root --verbose' \
-    mkdir='mkdir --parents --verbose'                    \
-    rmdir='rmdir --parents --verbose'                    \
-    diff='diff --side-by-side --suppress-common-lines'   \
+    cp='cp -iv'                            \
+    du='du -h'                             \
+    ls='ls -vhF --group-directories-first' \
+    mv='mv -iv'                            \
+    rm='rm -vI --preserve-root '           \
+    mkdir='mkdir -pv'                      \
+    rmdir='rmdir -pv'                      \
+    diff='diff -y --suppress-common-lines' \
     tree='tree -I .git -I plugins'
 
 
@@ -40,22 +40,32 @@ alias \
     LS=ls
 
 
-# ls options.
+# Options (ls).
 alias \
-    l='  ls -1'              \
-    la=' ls --almost-all'    \
-    lh=' ls --directory .*'  \
-    ll=' ls -l'              \
-    lr=' ls --recursive'     \
-    lal='ls --almost-all -l'
+    l='  ls -1'    \
+    la=' ls -A'    \
+    lh=' ls -d .*' \
+    ll=' ls -l'    \
+    lr=' ls -r'    \
+    lal='ls -Al'
+
+
+# Options (tree).
+alias \
+    ta='tree -a' \
+    td='tree -d'
+
+
+# Options (rm).
+alias rr='rm -rfI'
 
 
 # cat options.
 alias \
     ccat='highlight --out-format=ansi' \
     lcat='lolcat'                      \
-    ncat='cat --number'                \
-    tcat="cat --show-tabs"
+    ncat='cat -nr'                     \
+    tcat="cat -t"
 
 
 # Right version.
@@ -65,7 +75,7 @@ alias \
     python='python3'
 
 
-# One-letter shortcuts.
+# Shortcuts (one-letter).
 alias \
     c='cat'     \
     f='file'    \
@@ -76,8 +86,10 @@ alias \
     t='tree'    \
     v='vim'
 
+alias -- -='cd -'  # Type '-' to go to previous dir.
 
-# Two-letter shortcuts.
+
+# Shortcuts (two-letter).
 alias \
     gh='history | grep' \
     py='python3'        \
@@ -87,7 +99,7 @@ alias \
     ..='cd ..'
 
 
-# Three-letter shortcuts.
+# Shortcuts (three-letter).
 alias \
     clr='clear'   \
     mkd='mkdir'   \
@@ -96,7 +108,7 @@ alias \
     ...='cd ../../'
 
 
-# Other shortcuts.
+# Shortcuts (other).
 alias \
     ....=' cd ../../../'    \
     .....='cd ../../../../' \
@@ -127,9 +139,9 @@ alias \
 
 # Curls.
 alias \
-    corona='curl https://corona-stats.online'             \
-    corona-ru='curl "https://corona-stats.online/Russia"' \
-    starwars='telnet towel.blinkenlights.nl'              \
+    corona='curl https://corona-stats.online'            \
+    coronaru='curl "https://corona-stats.online/Russia"' \
+    starwars='telnet towel.blinkenlights.nl'             \
     weather='curl http://wttr.in/'
 
 
