@@ -14,7 +14,7 @@
 	cm = commit
 	df = diff
 	pf = push --force
-	ph = push
+	ps = push
 	pl = pull
 	re = reset
 	st = status

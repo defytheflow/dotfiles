@@ -23,4 +23,4 @@ export FUNCTION="${HOME}/.dotfiles/zsh/function"
 export MYPROMPT="${HOME}/.dotfiles/zsh/prompt"
 
 # Plugins are here.
-export ZSHPLUG="${HOME}/.dotfiles/zsh/plugins"
+export ZSH_PLUGINS="${HOME}/.dotfiles/zsh/plugins"
