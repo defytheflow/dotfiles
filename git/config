@@ -4,12 +4,20 @@
 	username = defytheflow
 [core]
 	editor = vim
-	excludesfile = /home/defytheflow/.dotfiles/git/ignore_global
+	excludesfile = /home/defytheflow/.dotfiles/git/ignore
 	pager = less
 [alias]
-	pu=push
-	st=status
-	com=commit
+	amend = commit --amend
+	br = branch
+	co = checkout
+	cl = clone
+	cm = commit
+	df = diff
+	pf = push --force
+	ph = push
+	pl = pull
+	re = reset
+	st = status
 [pack]
 	windowMemory = 100m
 	packSizeLimit = 100m
