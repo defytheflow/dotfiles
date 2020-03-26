@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# File:      bash/alias
+# Purpose:   Define aliases specific for bash
+# Modified:  March 26, 2020
+# Author:    Artyom Danilov
+
+
+alias rld='source ~/.bashrc'

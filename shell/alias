@@ -1,22 +1,13 @@
-#!/usr/bin/zsh
+# vim: filetype=sh
 
-# ------------------------------------------------------------------------------
-# | File:      alias
-# ------------------------------------------------------------------------------
-# | Purpose:   define shortcuts for commands, add default arguments and
-# |            abbreviate long one-liners.
-# ------------------------------------------------------------------------------
-# | Modified:  March 23, 2020
-# ------------------------------------------------------------------------------
-# | Author:    Artyom Danilov
-# ------------------------------------------------------------------------------
+# File:      shell/alias
+# Purpose:   Define shortcuts for commandsa and add default arguments
+# Modified:  March 26, 2020
+# Author:    Artyom Danilov
+# Notes:     Order is important, aliases can break if you change it
 
-# Order is important. It can break if you chage it.
 
-# ------------------------------------------------------------------------------
-#                                    Colors
-# ------------------------------------------------------------------------------
-
+# Colorize.
 alias \
     ls='ls --color=never'      \
     dir='dir --color=auto'     \
@@ -26,10 +17,8 @@ alias \
     fgrep='fgrep --color=auto' \
     egrep='egrep --color=auto'
 
-# ------------------------------------------------------------------------------
-#                                   Improved
-# ------------------------------------------------------------------------------
 
+# Improve.
 alias \
     cp='cp --interactive --verbose'                      \
     du='du --human-readable'                             \
@@ -41,10 +30,8 @@ alias \
     diff='diff --side-by-side --suppress-common-lines'   \
     tree='tree -I .git -I plugins'
 
-# ------------------------------------------------------------------------------
-#                                   Mistakes
-# ------------------------------------------------------------------------------
 
+# Typing mistakes.
 alias \
     cd..='cd ..' \
     cd-=' cd -'  \
@@ -52,37 +39,33 @@ alias \
     CD='  cd'    \
     LS=ls
 
-# ------------------------------------------------------------------------------
-#                                   Options
-# ------------------------------------------------------------------------------
 
-alias l='  ls -1'               # list vertically
-alias la=' ls --almost-all'     # list all
-alias lh=' ls --directory .*'   # list hidden
-alias ll=' ls -l'               # list long
-alias lr=' ls --recursive'      # list recursively
-alias lal='ls -l --almost-all'  # list all long
+# ls options.
+alias \
+    l='  ls -1'              \
+    la=' ls --almost-all'    \
+    lh=' ls --directory .*'  \
+    ll=' ls -l'              \
+    lr=' ls --recursive'     \
+    lal='ls --almost-all -l'
 
+
+# cat options.
 alias \
     ccat='highlight --out-format=ansi' \
     lcat='lolcat'                      \
     ncat='cat --number'                \
     tcat="cat --show-tabs"
 
-# ------------------------------------------------------------------------------
-#                                Right Version
-# ------------------------------------------------------------------------------
 
+# Right version.
 alias \
     pip='pip3'       \
     pylint='pylint3' \
     python='python3'
 
-# ------------------------------------------------------------------------------
-#                                  Shortcuts
-# ------------------------------------------------------------------------------
 
-# One-letter.
+# One-letter shortcuts.
 alias \
     c='cat'     \
     f='file'    \
@@ -93,7 +76,8 @@ alias \
     t='tree'    \
     v='vim'
 
-# Two-letter.
+
+# Two-letter shortcuts.
 alias \
     gh='history | grep' \
     py='python3'        \
@@ -103,7 +87,7 @@ alias \
     ..='cd ..'
 
 
-# Three-letter.
+# Three-letter shortcuts.
 alias \
     clr='clear'   \
     mkd='mkdir'   \
@@ -111,47 +95,27 @@ alias \
     shu='shunit2' \
     ...='cd ../../'
 
-# Other.
+
+# Other shortcuts.
 alias \
     ....=' cd ../../../'    \
     .....='cd ../../../../' \
     chrome='google-chrome'
 
-# ------------------------------------------------------------------------------
-#                                     sudo
-# ------------------------------------------------------------------------------
 
+# Sudo.
 alias \
-    scp='sudo cp'       \
-    smv='sudo mv'       \
-    srm='sudo rm'       \
-    svim='sudo vim'     \
-    smkdir='sudo mkdir' \
-    srmdir='sudo rmdir' \
-    reboot='sudo reboot'     \
+    scp='sudo cp'        \
+    smv='sudo mv'        \
+    srm='sudo rm'        \
+    svim='sudo vim'      \
+    smkdir='sudo mkdir'  \
+    srmdir='sudo rmdir'  \
+    reboot='sudo reboot' \
     shutdown='sudo shutdown'
 
-# ------------------------------------------------------------------------------
-#                                 New Commands
-# ------------------------------------------------------------------------------
 
-# Print the current time.
-alias now='date +\"%T\"'
-# List every dir in the PATH on a separate line. (TODO malfunctions on WSL)
-alias path='echo ${PATH} | sed -e "s/:/\n/g"'
-# Watch starwars in terminal.
-alias starwars='telnet towel.blinkenlights.nl'
-# Fast way to update packages.
-alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
-# Get weather report.
-alias weather='curl http://wttr.in/'
-# Open application store.
-alias store='ubuntu-software'
-
-# ------------------------------------------------------------------------------
-#                             Windows Command Line
-# ------------------------------------------------------------------------------
-
+# Windows cmd.
 alias \
     edit='vim'  \
     del='rm'    \
@@ -159,3 +123,21 @@ alias \
     copy='cp'   \
     move='mv'   \
     rename='mv'
+
+
+# Curls.
+alias \
+    corona='curl https://corona-stats.online'             \
+    corona-ru='curl "https://corona-stats.online/Russia"' \
+    starwars='telnet towel.blinkenlights.nl'              \
+    weather='curl http://wttr.in/'
+
+
+# Print time (e.g. 13:29:43)
+alias now='date +\"%T\"'
+# List every dir in PATH on a separate line.
+alias path='echo ${PATH} | sed -e "s|:|\n|g"'
+# Open application store.
+alias store='ubuntu-software'
+# Fast way to update packages.
+alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'

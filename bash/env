@@ -16,7 +16,7 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 
 # Config files.
-export BASHRC="${HOME}/.dotfiles/bash/bashrc"
+export BASHRC="${HOME}/.dotfiles/bash/rc"
 export ALIAS="${HOME}/.dotfiles/bash/alias"
 export ENV="${HOME}/.dotfiles/bash/env"
 export FUNCTION="${HOME}/.dotfiles/bash/function"

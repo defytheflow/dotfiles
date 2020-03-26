@@ -1,0 +1,9 @@
+#!/usr/bin/zsh
+
+# File:      zsh/alias
+# Purpose:   Define aliases specific for zsh
+# Modified:  March 26, 2020
+# Author:    Artyom Danilov
+
+
+alias rld='source ~/.zshrc'
