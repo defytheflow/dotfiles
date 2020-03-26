@@ -3,29 +3,31 @@
 <pre>
 ├── install.sh
 ├── <b>bash</b>
-│   ├── bashrc
+│   ├── alias
 │   ├── env
-│   └── prompt
+│   ├── prompt
+│   └── rc
 ├── <b>git</b>
-│   ├── gitconfig
-│   ├── gitignore_global
-│   └── gitmessage
+│   ├── config
+│   ├── ignore
+│   └── message
 ├── <b>i3</b>
 │   └── config
 ├── <b>python</b>
-│   └── pythonrc
+│   └── rc
 ├── <b>shell</b>
 │   ├── alias
-│   └── env
+│   ├── env
+│   └── function
 ├── <b>tmux</b>
-│   └── tmux.conf
+│   └── config
 ├── <b>vim</b>
-│   └── vimrc
+│   └── rc
 ├── <b>wsl</b>
 │   └── env
 └── <b>zsh</b>
+    ├── alias
     ├── env
-    ├── function
     ├── prompt
-    └── zshrc
+    └── rc
 </pre>
