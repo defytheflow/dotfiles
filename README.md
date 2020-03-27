@@ -1,9 +1,9 @@
 # Structure
 
 <pre>
-├── install.sh  <-- set up everything
+├── install.sh <---------- set everything up
 |
-├── <b>bash</b> <-- bash-specific stuff
+├── <b>bash</b> <---------- bash-specific stuff
 │   ├── alias
 │   ├── env
 │   ├── prompt
@@ -20,7 +20,7 @@
 ├── <b>python</b>
 │   └── pythonrc
 │
-├── <b>shell</b> <-- shell-independent stuff
+├── <b>shell</b> <---------- shell-independent stuff
 │   ├── alias
 │   ├── env
 │   └── function
@@ -31,10 +31,10 @@
 ├── <b>vim</b>
 │   └── vimrc
 │
-├── <b>wsl</b> <-- wsl-specific stuff
+├── <b>wsl</b> <---------- wsl-specific stuff
 │   └── env
 │
-└── <b>zsh</b> <-- zsh-specific stuff
+└── <b>zsh</b> <---------- zsh-specific stuff
     ├── alias
     ├── env
     ├── prompt

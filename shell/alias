@@ -145,6 +145,8 @@ alias \
     starwars='telnet towel.blinkenlights.nl'             \
     weather='curl http://wttr.in/'
 
+# Allow running sudo with aliases
+alias sudo='sudo '
 
 # Print time (e.g. 13:29:43)
 alias now='date +\"%T\"'
