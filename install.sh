@@ -61,6 +61,6 @@ create_symlinks() {
 
 backup_dotfiles
 create_symlinks
-init_vim_plugins
 [ "${SHELL}" = /usr/bin/zsh ] && init_zsh_plugins
+init_vim_plugins
 exit 0

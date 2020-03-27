@@ -119,11 +119,13 @@ augroup END
 set t_Co=256
 set background=dark
 
-" Colorschemes
-colo molokai
-" colo atom-dark-256
-" colo palenight
-"
+" Colorscheme
+try
+    colo molokai
+catch /^Vim\%((\a\+)\)\=:E185/
+    colo koehler
+endtry
+
 " Switches on syntax highlighting.
 syntax enable
 
