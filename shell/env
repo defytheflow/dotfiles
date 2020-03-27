@@ -10,14 +10,8 @@
 export XDG_CONFIG_HOME="${HOME}/.config"
 # For user-specific non-essential (cached) data.
 export XDG_CACHE_HOME="${HOME}/.cache"
-
-export EDITOR='vim'  # Use as default editor by other programs.
-export BROWSER='google-chrome'
-export TERMINAL='gnome-terminal'
-
+# Path
 export PATH="${PATH}:${HOME}/.local/bin"
-
-export I3CONF="${HOME}/.dotfiles/i3/config"
 
 # TODO research.
 export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"
@@ -39,6 +33,9 @@ export WHITE="$(tput setaf 15)"
 export YELLOW="$(tput setaf 220)"
 export BOLD="$(tput bold)"
 export RESET="$(tput sgr0)"
+
+# i3
+export I3CONF="${HOME}/.dotfiles/i3/config"
 
 # Git
 export MYGITHUB='https://github.com/defytheflow'  # My github url.
@@ -63,4 +60,5 @@ export TASKDATA="${XDG_CONFIG_HOME}/task"
 export TASKRC="${XDG_CONFIG_HOME}/task/taskrc"
 
 # Vim
-export VIMRC="${HOME}/.dotfiles/vim/vimrc" # Config file.
+export EDITOR='vim'  # Use as default editor by other programs.
+export VIMRC="${HOME}/.vimrc" # Config file.

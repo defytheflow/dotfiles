@@ -21,7 +21,7 @@ exec --no-startup-id $terminal
 exec --no-startup-id $browser
 
 # Set background image.
-exec_always --no-startup-id nitrogen --set-auto $wallpaper
+exec_always --no-startup-id nitrogen --head=1xinerama --set-auto $wallpaper
 
 # Enable russian keyboard (switch on CapsLock).
 exec_always --no-startup-id setxkbmap -layout us,ru -option grp:caps_toggle

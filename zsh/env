@@ -16,7 +16,7 @@ export HISTSIZE=10000
 export SAVEHIST=10000
 
 # Config files.
-export ZSHRC="${HOME}/.dotfiles/zsh/rc"
+export ZSHRC="${HOME}/.zshrc"
 export ALIAS="${HOME}/.dotfiles/zsh/alias"
 export ENV="${HOME}/.dotfiles/zsh/env"
 export FUNCTION="${HOME}/.dotfiles/zsh/function"
