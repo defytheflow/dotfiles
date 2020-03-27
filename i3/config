@@ -1,143 +1,120 @@
-# ------------------------------------------------------------------------------
-# | File:      i3/config
-# ------------------------------------------------------------------------------
-# | Modified:  March 22, 2020
-# ------------------------------------------------------------------------------
-# | Author:    Artyom Danilov
-# ------------------------------------------------------------------------------
+# File:      i3/config
+# Purpose:   customization
+# Modified:  March 27, 2020
+# Author:    Artyom Danilov
 
-# Variables.
+
+# Set variables
+# ------------------------------------------------------------------------------
 set $mod Mod1
+set $browser   google-chrome
+set $terminal  gnome-terminal
+set $wallpaper ~/pictures/wallpapers/night-city.jpg
+set $inner_gaps 15
+set $outer_gaps 5
+floating_modifier $mod
 
-set $left j
-set $right semicolon
-set $up l
-set $down k
 
+# Startup commands.
 # ------------------------------------------------------------------------------
-#                                   Start-up
-# ------------------------------------------------------------------------------
+exec --no-startup-id $terminal
+exec --no-startup-id $browser
 
-# Set random background image.
-exec --no-startup-id 'feg --bg-fill --randomize ~/pictures/wallpapers/nature/*'
+# Set background image.
+exec_always --no-startup-id nitrogen --set-auto $wallpaper
 
-# Open terminal.
-exec --no-startup-id i3-sensible-terminal
+# Enable russian keyboard (switch on CapsLock).
+exec_always --no-startup-id setxkbmap -layout us,ru -option grp:caps_toggle
 
-# Enable russian keyboard.
-exec_always "setxkbmap -model pc104 -layout us,ru -variant ,, -option grp:caps_toggle"
-
-# ------------------------------------------------------------------------------
-#                                 Applications
-# ------------------------------------------------------------------------------
-
-# Start dmenu.
-bindsym $mod+d exec --no-startup-id dmenu_run
-
-# Start Google-chrome.
-bindsym $mod+g exec --no-startup-id google-chrome
-
-# Start Terminal.
-bindsym $mod+t exec i3-sensible-terminal
-bindsym $mod+Return exec i3-sensible-terminal
-
-# ------------------------------------------------------------------------------
-#                                    Layout
-# ------------------------------------------------------------------------------
-
-# Window Title font.
+# Window title font
 font pango:DejaVu Sans Mono 12
 
-# Window Title allignment.
+# Window title allignment
 title_align center
 
-# Orientation for new workspaces
+# Workspace orientation
 default_orientation horizontal
 
-# Full Screen focused window.
-bindsym $mod+f fullscreen toggle
+# Gaps between windows (requires i3-gaps).
+gaps inner $inner_gaps
+gaps outer $outer_gaps
 
-# Horizontal split.
-bindsym $mod+h split h
 
-# Vertical split.
-bindsym $mod+v split v
-
-# Split layout.
-bindsym $mod+Shift+s layout toggle split
-
-# Tabbed layout.
-bindsym $mod+Shift+t layout tabbed
-
+# Launch Apps.
 # ------------------------------------------------------------------------------
-#                                   Movement
+bindsym $mod+w       exec --no-startup-id $browser
+bindsym $mod+d       exec --no-startup-id dmenu_run
+bindsym $mod+r       exec --no-startup-id $terminal -e ranger
+bindsym $mod+Return  exec --no-startup-id $terminal
+
+
+# Exit, kill, reload, restart.
 # ------------------------------------------------------------------------------
-
-# Change focus between windows.
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-
-# Move focused window.
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-
-# Resize window.
-bindsym $mod+r mode "resize"
-
-mode "resize" {
-        bindsym $left       resize shrink width 10 px or 10 ppt
-        bindsym $right      resize grow width 10 px or 10 ppt
-        bindsym $up         resize shrink height 10 px or 10 ppt
-        bindsym $down       resize grow height 10 px or 10 ppt
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-# ------------------------------------------------------------------------------
-#                             Restart/Reload/Exit
-# ------------------------------------------------------------------------------
-
-# Quit/Kill window.
+bindsym $mod+Escape  exit
 bindsym $mod+Shift+q kill
-
-# Reload the Configuration file.
-bindsym $mod+Shift+w reload
-
-# Restart i3 inplace.
+bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-# ------------------------------------------------------------------------------
-#                                  Scratchpad
-# ------------------------------------------------------------------------------
 
-# Show the first scratchpad window.
-bindsym $mod+minus scratchpad show
-
-# Make the currently focused window a scratchpad.
-bindsym $mod+Shift+minus move scratchpad
-
+# Status bar.
 # ------------------------------------------------------------------------------
-#                                  Status Bar
-# ------------------------------------------------------------------------------
-
 bar {
-        status_command i3blocks
-        font pango:DejaVu Sans Mono 10
+        status_command ~/.local/bin/bumblebee-status  \
+                       -m cpu memory disk battery-upower \
+                          weather datetime amixer \
+                       -t gruvbox-powerline
         position top
-        mode dock
-        modifier None
 }
 
-# ------------------------------------------------------------------------------
-#                                  Workspace
-# ------------------------------------------------------------------------------
 
-# Switch workspaces. (<Alt> + 1..10)
+# Layout.
+# ------------------------------------------------------------------------------
+bindsym $mod+f  fullscreen toggle
+# Change split.
+bindsym $mod+t  split  toggle
+
+# bindsym $mod+Shift+s layout toggle split
+# bindsym $mod+Shift+t layout tabbed
+
+bindsym $mod+space        focus mode_toggle
+bindsym $mod+Shift+space  floating toggle
+
+
+# Gaps.
+# ------------------------------------------------------------------------------
+# Set gaps to default.
+bindsym $mod+0        gaps inner current set $inner_gaps; \
+                      gaps outer current set $outer_gaps
+# Remove gaps.
+bindsym $mod+Shift+0  gaps inner current set 0; \
+                      gaps outer current set 0
+# Decrease gaps.
+bindsym $mod+plus     gaps inner current minus 5
+# Increase gaps.
+bindsym $mod+minus    gaps inner current plus 5
+
+
+# Movement.
+# ------------------------------------------------------------------------------
+# Change window.
+bindsym $mod+h  focus left
+bindsym $mod+j  focus down
+bindsym $mod+k  focus up
+bindsym $mod+l  focus right
+
+# Move window.
+bindsym $mod+Shift+h  move left
+bindsym $mod+Shift+j  move down
+bindsym $mod+Shift+k  move up
+bindsym $mod+Shift+l  move right
+
+# Resize window.
+bindsym $mod+y  resize grow   width  10 px or 10 ppt
+bindsym $mod+u  resize grow   height 10 px or 10 ppt
+bindsym $mod+i  resize shrink height 10 px or 10 ppt
+bindsym $mod+o  resize shrink width  10 px or 10 ppt
+
+# Switch workspace.
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -147,9 +124,8 @@ bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
 
-# Move focused container to workspace
+# Move window to workspace.
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
 bindsym $mod+Shift+3 move container to workspace 3
@@ -159,16 +135,9 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
 
+
+# Scratchpad.
 # ------------------------------------------------------------------------------
-#                                   Floating
-# ------------------------------------------------------------------------------
-
-floating_modifier $mod
-
-# Toggle tiling/floating.
-bindsym $mod+Shift+space floating toggle
-
-# Change focus between tiling/floating windows.
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+minus scratchpad show
+# bindsym $mod+Shift+minus move scratchpad

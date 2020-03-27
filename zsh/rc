@@ -64,3 +64,4 @@ fi
 . ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 . ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 . ${ZSH_PLUGINS}/alias-tips/alias-tips.plugin.zsh
+. ${ZSH_PLUGINS}/command-not-found/command-not-found.plugin.zsh
