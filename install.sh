@@ -25,8 +25,17 @@ init_zsh_plugins() {
         wget -P "${zsh_plugins}"/command-not-found "${url}"
 }
 
-init_dotfiles() {
-# Create symlinks.
+init_vim_plugins() {
+
+    [ ! -f "${HOME}"/.vim/autoload/plug.vim ] && \
+        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+    vim +'PlugInstall' +qall
+}
+
+backup_dotfiles() {
+
     backup_dir="${HOME}"/.config/dotfiles/backup
 
     [ ! -d "${backup_dir}" ] &&  mkdir -p "${backup_dir}"
@@ -37,9 +46,11 @@ init_dotfiles() {
     done
 
     [ -f "${HOME}"/.config/git/config ] &&
-        mv "${HOME}"/.config/git/config "${backup_dir}"
+        mv "${HOME}"/.config/git/config "${backup_dir}"/.gitconfig
+}
 
-    # Symlink new dotfiles.
+create_symlinks() {
+# Symlink new dotfiles.
     ln -s "${HOME}"/.dotfiles/bash/bashrc     "${HOME}"/.bashrc
     ln -s "${HOME}"/.dotfiles/python/pythonrc "${HOME}"/.pythonrc
     ln -s "${HOME}"/.dotfiles/tmux/config     "${HOME}"/.tmux.conf
@@ -48,6 +59,8 @@ init_dotfiles() {
     ln -s "${HOME}"/.dotfiles/git/config      "${HOME}"/.config/git/config
 }
 
-init_dotfiles
+backup_dotfiles
+create_symlinks
+init_vim_plugins
 [ "${SHELL}" = /usr/bin/zsh ] && init_zsh_plugins
 exit 0
