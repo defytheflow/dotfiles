@@ -5,7 +5,7 @@ backup_dotfiles() {
     backup_dir="${HOME}"/.cache/dotfiles/backup
     [ ! -d "${backup_dir}" ] &&  mkdir -p "${backup_dir}"
 
-    for dotfile in '.bashrc' '.pythonrc' '.tmux.conf' '.vimrc' '.zshrc'; do
+    for dotfile in '.bashrc' '.vimrc' '.zshrc' '.tmux.conf'; do
         [ -f "${HOME}/${dotfile}" ] && mv "${HOME}/${dotfile}" "${backup_dir}"
     done
 
@@ -21,7 +21,7 @@ create_symlinks() {
     ln -s "${HOME}"/.dotfiles/bash/bashrc     "${HOME}"/.bashrc
     ln -s "${HOME}"/.dotfiles/vim/vimrc       "${HOME}"/.vimrc
     ln -s "${HOME}"/.dotfiles/zsh/zshrc       "${HOME}"/.zshrc
-    ln -s "${HOME}"/.dotfiles/tmux/tmux.conf  "${HOME}"/.tmux.conf
+    ln -s "${HOME}"/.dotfiles/tmux/tmux.conf  "${HOME}"/.config/tmux/tmux.conf
     ln -s "${HOME}"/.dotfiles/git/config      "${HOME}"/.config/git/config
     ln -s "${HOME}"/.dotfiles/python/pythonrc "${HOME}"/.config/python/pythonrc
 }

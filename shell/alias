@@ -8,8 +8,7 @@
 # Notes:     Order is important, aliases can break if you change it
 
 
-# Allow running sudo with aliases.
-alias sudo='sudo '
+# Allow running sudo with aliases.  alias sudo='sudo '
 
 
 # Colorize.
@@ -149,6 +148,12 @@ alias \
     coronaru='curl "https://corona-stats.online/Russia"' \
     starwars='telnet towel.blinkenlights.nl'             \
     weather='curl http://wttr.in/'
+
+
+# Change config/history files locations.
+alias \
+    wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts' \
+    tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
 
 
 # Print time (e.g. 13:29:43)
