@@ -1,1 +1,10 @@
-nitrogen --head=xinerama --set-auto ~/.config/wallpaper
+#!/bin/sh
+
+# File:      .xprofile
+# Purpose:   execute commands before the window manager is started
+# Created:   28.03.2020
+# Modified:  28.03.2020
+# Author:    Artyom Danilov
+
+
+command -v nitrogen && nitrogen --head=xinerama --set-auto ~/.config/wallpaper
