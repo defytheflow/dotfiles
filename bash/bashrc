@@ -1,12 +1,11 @@
 #!/bin/bash
 
-# ------------------------------------------------------------------------------
-# | File:      .bashrc
-# ------------------------------------------------------------------------------
-# | Modified:  March 23, 2020
-# ------------------------------------------------------------------------------
-# | Author:    Artyom Danilov
-# ------------------------------------------------------------------------------
+# File:      .bashrc
+# Purpose:   configure user interactive shell
+# Created:   30.12.2019
+# Modified:  28.03.2020
+# Author:    Artyom Danilov
+
 
 # If not running interactively, don't do anything.
 case $- in
@@ -16,10 +15,9 @@ case $- in
           return ;;
 esac
 
-# ------------------------------------------------------------------------------
-#                                 Color Prompt
-# ------------------------------------------------------------------------------
 
+# Colorize prompt
+# ------------------------------------------------------------------------------
 case "${TERM}" in
     xterm-color | *-256color)
         color_prompt='yes' ;;
@@ -35,10 +33,9 @@ if [ -n "${force_color_prompt}" ]; then
     fi
 fi
 
-# ------------------------------------------------------------------------------
-#                                Shell Options
-# ------------------------------------------------------------------------------
 
+# Shell options
+# ------------------------------------------------------------------------------
 # Append to the history file, don't overwrite it.
 shopt -s histappend
 
@@ -63,35 +60,33 @@ shopt -s dirspell
 # name expansion
 shopt -s nocaseglob
 
-# Change terminal characteristics.
-# For ctrl mappings in vim (?)
+# For ctrl mappings in vim.
 stty -ixon
 
-# ------------------------------------------------------------------------------
-#                                 Config files
-# ------------------------------------------------------------------------------
 
-# Prompt.
+# Config files
+# ------------------------------------------------------------------------------
+# Load shell-independent config files.
+for file in "${HOME}"/.dotfiles/shell/*; do
+    . "${file}"
+done
+
+# Load prompt.
 if [ "${color_prompt}" = 'yes' ]; then
-    [ -f "${HOME}/.dotfiles/bash/prompt" ] && . "${HOME}/.dotfiles/bash/prompt"
+    [ -f "${HOME}"/.dotfiles/bash/prompt ] && . "${HOME}"/.dotfiles/bash/prompt
 else
     PS1='\u@\h:\w\$ '
 fi
 
-# Load shell-independent config files.
-for file in ${HOME}/.dotfiles/shell/*; do
-    . "${file}"
-done
-
 # Load bash-specific config files.
 for file in 'alias' 'env' 'function'; do
-    [ -f "${HOME}/.dotfiles/bash/${file}" ] && . "${HOME}/.dotfiles/bash/${file}"
+    [ -f "${HOME}"/.dotfiles/bash/$"{file}" ] && . "${HOME}"/.dotfiles/bash/"${file}"
 done
 
 # Check if running on wsl:
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
     # Load wsl-specific config files.
-    for file in ${HOME}/.dotfiles/wsl/*; do
+    for file in "${HOME}"/.dotfiles/wsl/*; do
         . "${file}"
     done
 fi

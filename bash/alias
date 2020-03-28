@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # File:      bash/alias
-# Purpose:   Define aliases specific for bash
-# Modified:  March 26, 2020
+# Purpose:   Define bash-specific aliases
+# Created:   26.03.2020
+# Modified:  28.03.2020
 # Author:    Artyom Danilov
 
 

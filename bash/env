@@ -1,14 +1,11 @@
 #!/bin/bash
 
-# ------------------------------------------------------------------------------
-# | File:      bash/env
-# ------------------------------------------------------------------------------
-# | Purpose:   define bash-specific environment variables
-# ------------------------------------------------------------------------------
-# | Modified:  March 24, 2020
-# ------------------------------------------------------------------------------
-# | Author:    Artyom Danilov
-# ------------------------------------------------------------------------------
+# File:      bash/env
+# Purpose:   Define bash-specific environment variables
+# Created:   26.03.2020
+# Modified:  28.03.2020
+# Author:    Artyom Danilov
+
 
 # History settings.
 export HISTCONTROL='ignoredups'
@@ -16,8 +13,7 @@ export HISTSIZE=10000
 export HISTFILESIZE=10000
 
 # Config files.
-export BASHRC="${HOME}/.bashrc"
-export ALIAS="${HOME}/.dotfiles/bash/alias"
-export ENV="${HOME}/.dotfiles/bash/env"
-export FUNCTION="${HOME}/.dotfiles/bash/function"
-export MYPROMPT="${HOME}/.dotfiles/bash/prompt"
+export ALIAS="${HOME}"/.dotfiles/bash/alias
+export ENV="${HOME}"/.dotfiles/bash/env
+export FUNCTION="${HOME}"/.dotfiles/bash/function
+export MYPROMPT="${HOME}"/.dotfiles/bash/prompt
