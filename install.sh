@@ -1,57 +1,51 @@
 #!/bin/sh
 
-backup_dotfiles() {
-# Backup old dotfiles.
-    backup_dir="${HOME}"/.cache/dotfiles/backup
-    [ ! -d "${backup_dir}" ] &&  mkdir -p "${backup_dir}"
+# File:      install.sh
+# Purpose:   Install all dotfiles
+# Created:   26.03.2020
+# Modified:  28.03.2020
+# Author:    Artyom Danilov
 
-    for dotfile in '.bashrc' '.vimrc' '.zshrc' '.tmux.conf'; do
-        [ -f "${HOME}/${dotfile}" ] && mv "${HOME}/${dotfile}" "${backup_dir}"
-    done
 
-    [ -f "${HOME}"/.config/git/config ] &&
-        mv "${HOME}"/.config/git/config "${backup_dir}"/.gitconfig
+# Load essential environment variables.
+. "$(pwd)"/profile
 
-    [ -f "${HOME}"/.config/python/pythonrc ] &&
-        mv "${HOME}"/.config/python/pythonrc "${backup_dir}"/.pythonrc
-}
 
 create_symlinks() {
-# Symlink new dotfiles.
-    ln -s "${HOME}"/.dotfiles/bash/bashrc     "${HOME}"/.bashrc
-    ln -s "${HOME}"/.dotfiles/vim/vimrc       "${HOME}"/.vimrc
-    ln -s "${HOME}"/.dotfiles/zsh/zshrc       "${HOME}"/.zshrc
-    ln -s "${HOME}"/.dotfiles/tmux/tmux.conf  "${HOME}"/.config/tmux/tmux.conf
-    ln -s "${HOME}"/.dotfiles/git/config      "${HOME}"/.config/git/config
-    ln -s "${HOME}"/.dotfiles/python/pythonrc "${HOME}"/.config/python/pythonrc
+    ln -sf "${DOTFILES_HOME}"/profile         "${HOME}"/.profile
+    ln -sf "${DOTFILES_HOME}"/xprofile        "${HOME}"/.xprofile
+    ln -sf "${DOTFILES_HOME}"/bash/bashrc     "${HOME}"/.bashrc
+    ln -sf "${DOTFILES_HOME}"/vim/vimrc       "${HOME}"/.vimrc
+    ln -sf "${DOTFILES_HOME}"/zsh/zshrc       "${HOME}"/.zshrc
+    ln -sf "${DOTFILES_HOME}"/tmux/tmux.conf  "${XDG_CONFIG_HOME}"/tmux/tmux.conf
+    ln -sf "${DOTFILES_HOME}"/git/config      "${XDG_CONFIG_HOME}"/git/config
+    ln -sf "${DOTFILES_HOME}"/python/pythonrc "${XDG_CONFIG_HOME}"/python/pythonrc
 }
 
-init_zsh_plugins() {
-# Download zsh plugins.
-    zsh_plugins="${HOME}"/.dotfiles/zsh/plugins
 
-    [ ! -d "${zsh_plugins}" ] && mkdir "${zsh_plugins}"
+download_zsh_plugins() {
+    [ ! -d "${ZSH_PLUGINS}" ] && mkdir "${ZSH_PLUGINS}"
 
-    [ ! -d "${zsh_plugins}"/zsh-syntax-highlighting ] && \
+    [ ! -d "${ZSH_PLUGINS}"/zsh-syntax-highlighting ] && \
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-        "${zsh_plugins}"/zsh-syntax-highlighting
+        "${ZSH_PLUGINS}"/zsh-syntax-highlighting
 
-    [ ! -d "${zsh_plugins}"/zsh-autosuggestions ] && \
+    [ ! -d "${ZSH_PLUGINS}"/zsh-autosuggestions ] && \
         git clone https://github.com/zsh-users/zsh-autosuggestions \
-        "${zsh_plugins}"/zsh-autosuggestions
+        "${ZSH_PLUGINS}"/zsh-autosuggestions
 
-    [ ! -d "${zsh_plugins}"/alias-tips ] && \
+    [ ! -d "${ZSH_PLUGINS}"/alias-tips ] && \
         git clone https://github.com/djui/alias-tips.git \
-        "${zsh_plugins}"/alias-tips
+        "${ZSH_PLUGINS}"/alias-tips
 
-    [ ! -d "${zsh_plugins}"/command-not-found ] && \
-        mkdir "${zsh_plugins}"/command-not-found && \
+    [ ! -d "${ZSH_PLUGINS}"/command-not-found ] && \
+        mkdir "${ZSH_PLUGINS}"/command-not-found && \
         url=https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master && \
         url="${url}"/plugins/command-not-found/command-not-found.plugin.zsh && \
-        wget -P "${zsh_plugins}"/command-not-found "${url}"
+        wget -P "${ZSH_PLUGINS}"/command-not-found "${url}"
 }
 
-backup_dotfiles
+
 create_symlinks
-[ "${SHELL}" = /usr/bin/zsh ] && init_zsh_plugins
+[ "${SHELL}" = /usr/bin/zsh ] && download_zsh_plugins
 exit 0

@@ -67,26 +67,26 @@ stty -ixon
 # Config files
 # ------------------------------------------------------------------------------
 # Load shell-independent config files.
-for file in "${HOME}"/.dotfiles/shell/*; do
+for file in "${DOTFILES_HOME}"/shell/*; do
     . "${file}"
 done
 
 # Load prompt.
 if [ "${color_prompt}" = 'yes' ]; then
-    [ -f "${HOME}"/.dotfiles/bash/prompt ] && . "${HOME}"/.dotfiles/bash/prompt
+    [ -f "${DOTFILES_HOME}"/bash/prompt ] && . "${DOTFILES_HOME}"/bash/prompt
 else
     PS1='\u@\h:\w\$ '
 fi
 
 # Load bash-specific config files.
 for file in 'alias' 'env' 'function'; do
-    [ -f "${HOME}"/.dotfiles/bash/$"{file}" ] && . "${HOME}"/.dotfiles/bash/"${file}"
+    [ -f "${DOTFILES_HOME}"/bash/"${file}" ] && . "${DOTFILES_HOME}"/bash/"${file}"
 done
 
 # Check if running on wsl:
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
     # Load wsl-specific config files.
-    for file in "${HOME}"/.dotfiles/wsl/*; do
+    for file in "${DOTFILES_HOME}"/wsl/*; do
         . "${file}"
     done
 fi

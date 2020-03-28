@@ -11,9 +11,9 @@
 function precmd() {
     # get last command exit status.
     if [ $? -eq 0 ]; then
-        exit_status=" ${GREEN}:)"
+        local exit_status=" ${GREEN}:)"
     else
-        exit_status=" ${RED}:("
+        local exit_status=" ${RED}:("
     fi
 
     PS1=$'\n'

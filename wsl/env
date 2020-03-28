@@ -1,13 +1,15 @@
 #!/bin/sh
 
 # File:      wsl/env
-# Purpose:   define wsl-specific environment variables
-# Modified:  March 26, 2020
+# Purpose:   Define wsl-specific environment variables
+# Created:   26.03.2020
+# Modified:  28.03.2020
 # Author:    Artyom Danilov
+
 
 # like: '/mnt/c/Users/UserName'
 WINHOME="$(wslpath "$(cmd.exe /C 'echo | set /p _=%USERPROFILE%' 2>/dev/null)")"
 export WINHOME
 
 # like: '/mnt/c/Users/UserName/Desktop'
-export WINDESK="${WINHOME}/Desktop"
+export WINDESK="${WINHOME}"/Desktop

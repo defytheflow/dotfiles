@@ -13,9 +13,9 @@ PROMPT_COMMAND=my_prompt
 function my_prompt() {
     # get last command exit status.
     if [ $? -eq 0 ]; then
-        exit_status=" ${GREEN}:)"
+        local exit_status=" ${GREEN}:)"
     else
-        exit_status=" ${RED}:("
+        local exit_status=" ${RED}:("
     fi
 
     # if root, highlight everything in red.

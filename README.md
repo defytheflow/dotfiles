@@ -2,6 +2,8 @@
 
 <pre>
 ├── install.sh <---------- set everything up
+|
+├── profile
 ├── xprofile
 |
 ├── <b>bash</b> <---------- bash-specific stuff

@@ -15,7 +15,7 @@ setopt autocd autopushd
 
 # Enable autocompletion.
 autoload -Uz compinit
-compinit -d ${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}
+compinit -d "${XDG_CACHE_HOME}"/zsh/zcompdump-"${ZSH_VERSION}"
 
 # Enable arrow-key driven interface (to activate menu press <Tab> twice).
 zstyle ':completion:*' menu select
@@ -38,19 +38,19 @@ bindkey -M menuselect 'l' vi-forward-char
 # Config files
 # ------------------------------------------------------------------------------
 # Load shell-independent config files (must be first).
-for file in "${HOME}"/.dotfiles/shell/*; do
+for file in "${DOTFILES_HOME}"/shell/*; do
     . "${file}"
 done
 
 # Load zsh-specific config files.
 for file in 'alias' 'env' 'function' 'prompt'; do
-    [ -f "${HOME}"/.dotfiles/zsh/"${file}" ] && . "${HOME}"/.dotfiles/zsh/"${file}"
+    [ -f "${DOTFILES_HOME}"/zsh/"${file}" ] && . "${DOTFILES_HOME}"/zsh/"${file}"
 done
 
 # Check if running on wsl.
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
     # Load wsl-specific config files.
-    for file in "${HOME}"/.dotfiles/wsl/*; do
+    for file in "${DOTFILES_HOME}"/wsl/*; do
         . "${file}"
     done
 fi

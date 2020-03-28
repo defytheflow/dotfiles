@@ -7,11 +7,6 @@
 # Author:    Artyom Danilov
 
 
-# XDG Base Directory (must be defined at the top).
-export XDG_CACHE_HOME="${HOME}"/.cache
-export XDG_CONFIG_HOME="${HOME}"/.config
-export XDG_DATA_HOME="${HOME}"/.local/share
-
 # Default system editor (must be defined at the top).
 export EDITOR='vim'
 
@@ -69,3 +64,4 @@ export VIMRC="${HOME}"/.vimrc  # config file.
 
 # Zsh
 export ZSHRC="${HOME}"/.zshrc  # config file.
+export ZSH_PLUGINS="${DOTFILES_HOME}"/zsh/plugins
