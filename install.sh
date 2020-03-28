@@ -2,7 +2,7 @@
 
 backup_dotfiles() {
 # Backup old dotfiles.
-    backup_dir="${HOME}"/.config/dotfiles/backup
+    backup_dir="${HOME}"/.cache/dotfiles/backup
     [ ! -d "${backup_dir}" ] &&  mkdir -p "${backup_dir}"
 
     for dotfile in '.bashrc' '.pythonrc' '.tmux.conf' '.vimrc' '.zshrc'; do
