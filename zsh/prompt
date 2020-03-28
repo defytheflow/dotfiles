@@ -1,9 +1,11 @@
 #!/usr/bin/zsh
 
 # File:      zsh/prompt
-# Purpose:   customize prompt
-# Modified:  March 26, 2020
+# Purpose:   Customize prompt
+# Created:   26.03.2020
+# Modified:  28.03.2020
 # Author:    Artyom Danilov
+
 
 # Execute each time prompt is drawn.
 function precmd() {

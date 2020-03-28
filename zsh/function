@@ -1,8 +1,9 @@
 #!/usr/bin/zsh
 
 # File:      zsh/function
-# Purpose:   define functions that only work in zsh environment
-# Modified:  March 26, 2020
+# Purpose:   Define zsh-specific functions
+# Created:   26.03.2020
+# Modified:  28.03.2020
 # Author:    Artyom Danilov
 
 

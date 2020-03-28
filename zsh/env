@@ -1,26 +1,22 @@
 #!/usr/bin/zsh
 
-# ------------------------------------------------------------------------------
-# | File:      zsh/env
-# ------------------------------------------------------------------------------
-# | Purpose:   define zsh-specific environment variables
-# ------------------------------------------------------------------------------
-# | Modified:  March 24, 2020
-# ------------------------------------------------------------------------------
-# | Author:    Artyom Danilov
-# ------------------------------------------------------------------------------
+# File:      zsh/env
+# Purpose:   Define zsh-specific environment variables
+# Created:   26.03.2020
+# Modified:  28.03.2020
+# Author:    Artyom Danilov
+
 
 # History settings.
-export HISTFILE="${HOME}/.cache/zsh/history"
+export HISTFILE="${XDG_CACHE_HOME}"/zsh/history
 export HISTSIZE=10000
 export SAVEHIST=10000
 
 # Config files.
-export ZSHRC="${HOME}/.zshrc"
-export ALIAS="${HOME}/.dotfiles/zsh/alias"
-export ENV="${HOME}/.dotfiles/zsh/env"
-export FUNCTION="${HOME}/.dotfiles/zsh/function"
-export MYPROMPT="${HOME}/.dotfiles/zsh/prompt"
+export ALIAS="${HOME}"/.dotfiles/zsh/alias
+export ENV="${HOME}"/.dotfiles/zsh/env
+export FUNCTION="${HOME}"/.dotfiles/zsh/function
+export MYPROMPT="${HOME}"/.dotfiles/zsh/prompt
 
 # Plugins are here.
-export ZSH_PLUGINS="${HOME}/.dotfiles/zsh/plugins"
+export ZSH_PLUGINS="${HOME}"/.dotfiles/zsh/plugins

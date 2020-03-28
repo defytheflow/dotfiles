@@ -2,11 +2,13 @@
 
 # File:      .zshrc
 # Purpose:   configure user interactive shell
-# Modified:  March 26, 2020
+# Created:   22.03.2020
+# Modified:  28.03.2020
 # Author:    Artyom Danilov
 
 
-# Options.
+# Options
+# ------------------------------------------------------------------------------
 
 # Don't type cd to change directories.
 setopt autocd autopushd
@@ -32,34 +34,30 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-# ------------------------------------------------------------------------------
-#                                 Config files
-# ------------------------------------------------------------------------------
 
-# Config files.
-
-# Load shell-independent config files.
-for file in ${HOME}/.dotfiles/shell/*; do
+# Config files
+# ------------------------------------------------------------------------------
+# Load shell-independent config files (must be first).
+for file in "${HOME}"/.dotfiles/shell/; do
     . "${file}"
 done
 
 # Load zsh-specific config files.
 for file in 'alias' 'env' 'function' 'prompt'; do
-    [ -f "${HOME}/.dotfiles/zsh/${file}" ] && . "${HOME}/.dotfiles/zsh/${file}"
+    [ -f "${HOME}"/.dotfiles/zsh/$"{file}" ] && . "${HOME}"/.dotfiles/zsh/$"{file}"
 done
 
 # Check if running on wsl.
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
     # Load wsl-specific config files.
-    for file in ${HOME}/.dotfiles/wsl/*; do
+    for file in "${HOME}"/.dotfiles/wsl/*; do
         . "${file}"
     done
 fi
 
-# ------------------------------------------------------------------------------
-#                                   Plugins
-# ------------------------------------------------------------------------------
 
+# Plugins
+# ------------------------------------------------------------------------------
 # Load plugins (must be last).
 . ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
 . ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
