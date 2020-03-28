@@ -26,14 +26,6 @@ create_symlinks() {
     ln -s "${HOME}"/.dotfiles/python/pythonrc "${HOME}"/.config/python/pythonrc
 }
 
-init_vim_plugins() {
-# Download vim plugins.
-    [ ! -f "${HOME}"/.vim/autoload/plug.vim ] && \
-        curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    vim +'PlugInstall' +qall
-}
-
 init_zsh_plugins() {
 # Download zsh plugins.
     zsh_plugins="${HOME}"/.dotfiles/zsh/plugins
@@ -62,4 +54,4 @@ init_zsh_plugins() {
 backup_dotfiles
 create_symlinks
 [ "${SHELL}" = /usr/bin/zsh ] && init_zsh_plugins
-init_vim_plugins
+exit 0

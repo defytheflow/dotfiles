@@ -7,28 +7,26 @@
 
 " Pluggins
 " ------------------------------------------------------------------------------
+if ! filereadable(expand('~/.vim/autoload/plug.vim'))
+    echo "Downloading 'vim-plug' to manage plugins..."
+    silent !mkdir -p ~/.vim/autoload/
+    silent !curl 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' > ~/.vim/autoload/plug.vim
+    autocmd VimEnter * PlugInstall
+endif
+
 call plug#begin('~/.vim/plugged')
 
-" Quotes, tags, parentheses
-Plug 'tpope/vim-surround'
+" Functionalty.
+Plug 'tpope/vim-surround'    " Quotes, tags, parentheses
+Plug 'tpope/vim-commentary'  " Comments
+Plug 'tpope/vim-eunuch'      " File manipulation
+Plug 'tpope/vim-fugitive'    " Git
 
-" Comments
-Plug 'tpope/vim-commentary'
-
-" File manipulation
-Plug 'tpope/vim-eunuch'
-
-" Git
-Plug 'tpope/vim-fugitive'
-
-" Colorschemes
-Plug 'tomasr/molokai'
+" Appearance.
+Plug 'itchyny/lightline.vim' " Status line
+Plug 'tomasr/molokai'        " Colorshemes
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'drewtempelmeyer/palenight.vim'
-
-" Status line
-Plug 'itchyny/lightline.vim'
-set laststatus=2
 
 call plug#end()
 
@@ -135,6 +133,8 @@ set history=1000
 
 " Do not display mode in status line.
 set noshowmode
+
+set laststatus=2
 
 autocmd VimEnter * :NoMatchParen
 

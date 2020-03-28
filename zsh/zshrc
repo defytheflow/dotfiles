@@ -38,13 +38,13 @@ bindkey -M menuselect 'l' vi-forward-char
 # Config files
 # ------------------------------------------------------------------------------
 # Load shell-independent config files (must be first).
-for file in "${HOME}"/.dotfiles/shell/; do
+for file in "${HOME}"/.dotfiles/shell/*; do
     . "${file}"
 done
 
 # Load zsh-specific config files.
 for file in 'alias' 'env' 'function' 'prompt'; do
-    [ -f "${HOME}"/.dotfiles/zsh/$"{file}" ] && . "${HOME}"/.dotfiles/zsh/$"{file}"
+    [ -f "${HOME}"/.dotfiles/zsh/"${file}" ] && . "${HOME}"/.dotfiles/zsh/"${file}"
 done
 
 # Check if running on wsl.
