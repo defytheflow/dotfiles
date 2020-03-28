@@ -6,20 +6,16 @@
 # Author:    Artyom Danilov
 
 
-# For user-specific configuration files.
-export XDG_CONFIG_HOME="${HOME}/.config"
-# For user-specific non-essential (cached) data.
-export XDG_CACHE_HOME="${HOME}/.cache"
-# Path
-export PATH="${PATH}:${HOME}/.local/bin"
+# XDG Base Directory (must be defined at the top).
+export XDG_CACHE_HOME="${HOME}"/.cache
+export XDG_CONFIG_HOME="${HOME}"/.config
+export XDG_DATA_HOME="${HOME}"/.local/share
 
-# TODO research.
-export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"
+# Default system editor (must be defined at the top).
+export EDITOR='vim'
 
-# C/C++
-export CFLAGS='-W -Wall -Wextra'       # Compilation flags.
-export CPATH="${HOME}/.lib/"           # Search for includes here.
-export LD_LIBRARY_PATH="${HOME}/.lib"  # Link libraries from here.
+# Extend PATH. (must be defined at the top).
+export PATH="${PATH}":"${HOME}"/.local/bin
 
 # Colors
 export CYAN="$(tput setaf 45)"
@@ -34,31 +30,35 @@ export YELLOW="$(tput setaf 220)"
 export BOLD="$(tput bold)"
 export RESET="$(tput sgr0)"
 
-# i3
-export I3CONF="${HOME}/.dotfiles/i3/config"
+# C
+export CFLAGS='-W -Wall -Wextra'  # compilation flags
+export CPATH=''                   # include headers
+export LD_LIBRARY_PATH=''         # link libraries
 
-# Git
-export MYGITHUB='https://github.com/defytheflow'  # My github url.
-export GITD="${HOME}/dev/git/"  # My git-tracked projects directory.
-export GITCONF="${HOME}/.dotfiles/git/config"
+# i3
+export I3CONF="${XDG_CONFIG_HOME}"/i3/config  # config file
+
+# ?
+export ICEAUTHORITY="${XDG_CACHE_HOME}"/ICEauthority
+
+# git
+export MYGITHUB='https://github.com/defytheflow'
+export GITCONF="${XDG_CONFIG_HOME}"/git/config    # config file
 
 # Less
-export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
+export LESSHISTFILE="${XDG_CACHE_HOME}"/less/history
 
 # Python
-export PYTHONPATH="${HOME}/.lib/"   # Search python modules here.
-export PYTHONRC="${HOME}/.pythonrc" # Config file.
-export PYTHONSTARTUP="${PYTHONRC}"  # Run this file when in interactive mode.
+export PYTHONPATH="${HOME}"/.lib  # include modules
+export PYTHONRC="${XDG_CONFIG_HOME}"/python/pythonrc  # config file
+export PYTHONSTARTUP="${PYTHONRC}"  # config file
 
 # Shellcheck
-export SHELLCHECK_OPTS='-e SC2034 -e SC1090'  # Run-time options.
-# 1090 - can't follow source
-# 2034 - unused variable
+export SHELLCHECK_OPTS=''  # run-time options
 
 # Task
-export TASKDATA="${XDG_CONFIG_HOME}/task"
-export TASKRC="${XDG_CONFIG_HOME}/task/taskrc"
+export TASKDATA="${XDG_DATA_HOME}"/task
+export TASKRC="${XDG_CONFIG_HOME}"/task/taskrc
 
 # Vim
-export EDITOR='vim'  # Use as default editor by other programs.
-export VIMRC="${HOME}/.vimrc" # Config file.
+export VIMRC="${HOME}"/.vimrc  # config file.

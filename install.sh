@@ -8,18 +8,22 @@ backup_dotfiles() {
     for dotfile in '.bashrc' '.pythonrc' '.tmux.conf' '.vimrc' '.zshrc'; do
         [ -f "${HOME}/${dotfile}" ] && mv "${HOME}/${dotfile}" "${backup_dir}"
     done
+
     [ -f "${HOME}"/.config/git/config ] &&
         mv "${HOME}"/.config/git/config "${backup_dir}"/.gitconfig
+
+    [ -f "${HOME}"/.config/python/pythonrc ] &&
+        mv "${HOME}"/.config/python/pythonrc "${backup_dir}"/.pythonrc
 }
 
 create_symlinks() {
 # Symlink new dotfiles.
     ln -s "${HOME}"/.dotfiles/bash/bashrc     "${HOME}"/.bashrc
-    ln -s "${HOME}"/.dotfiles/python/pythonrc "${HOME}"/.pythonrc
-    ln -s "${HOME}"/.dotfiles/tmux/config     "${HOME}"/.tmux.conf
     ln -s "${HOME}"/.dotfiles/vim/vimrc       "${HOME}"/.vimrc
     ln -s "${HOME}"/.dotfiles/zsh/zshrc       "${HOME}"/.zshrc
+    ln -s "${HOME}"/.dotfiles/tmux/tmux.conf  "${HOME}"/.tmux.conf
     ln -s "${HOME}"/.dotfiles/git/config      "${HOME}"/.config/git/config
+    ln -s "${HOME}"/.dotfiles/python/pythonrc "${HOME}"/.config/python/pythonrc
 }
 
 init_vim_plugins() {

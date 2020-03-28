@@ -26,7 +26,7 @@
 │   └── function
 │
 ├── <b>tmux</b>
-│   └── config
+│   └── tmux.conf
 │
 ├── <b>vim</b>
 │   └── vimrc
@@ -37,6 +37,23 @@
 └── <b>zsh</b> <---------- zsh-specific stuff
     ├── alias
     ├── env
+    ├── function
     ├── prompt
     └── zshrc
 </pre>
+
+### shell/env
+
+```sh
+XDG_CACHE_HOME  - user-specific non-essential (cached) data.
+XDG_CONFIG_HOME - user-specific configuration files.
+XDG_DATA_HOME   - user-specific data files.
+
+EDITOR - default system editor.
+```
+### wsl/env
+
+```sh
+WINHOME - windows home directory
+WINDESK - windows desktop directory
+```
