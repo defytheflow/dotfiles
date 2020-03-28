@@ -1,23 +1,12 @@
-
 " File:      vimrc
-" Modified:  March 21, 2020
+" Purpose:   customize vim
+" Created:   30.12.2019
+" Modified:  28.03.2020
 " Author:    Artyom Danilov
 
-function! g:FckThatMatchParen ()
-    if exists(":NoMatchParen")
-        :NoMatchParen
-    endif
-endfunction
 
-augroup plugin_initialize
-    autocmd!
-    autocmd VimEnter * call FckThatMatchParen()
-augroup END
-
+" Pluggins
 " ------------------------------------------------------------------------------
-"                                   Pluggins
-" ------------------------------------------------------------------------------
-
 call plug#begin('~/.vim/plugged')
 
 " Quotes, tags, parentheses
@@ -46,21 +35,13 @@ call plug#end()
 " Man pages (Do not surround with quotes!)
 runtime ftplugin/man.vim
 
-" ------------------------------------------------------------------------------
-"                               Global Variables
-" ------------------------------------------------------------------------------
 
+" Global Variables
+" ------------------------------------------------------------------------------
 let g:mapleader = ';'
 
-" ------------------------------------------------------------------------------
-"                                 Indentation
-" ------------------------------------------------------------------------------
-" Overview:
-"
-" Each <Tab> is expanded into spaces (default - 4).
-" Number of expanded spaces depends on the filetype.
-" Text is wrapped at 80 characters.
-"
+
+" Indentation
 " ------------------------------------------------------------------------------
 
 " In Insert mode inserts spaces instead of <Tab>.
@@ -74,7 +55,9 @@ set softtabstop=4
 set smartindent
 
 " Controls how many columns text is indented with the reindent operations
-" (<< and >>) and automatic C-style indentation.  set shiftwidth=4
+" (<< and >>) and automatic C-style indentation.
+set shiftwidth=4
+
 " Lines longer than the width of the window wrap and displaying continues
 " on the next line.
 set wrap
@@ -98,249 +81,73 @@ augroup indentation
     autocmd Filetype    py setlocal shiftwidth=4 softtabstop=4
 augroup END
 
-" ------------------------------------------------------------------------------
-"                                 Highlighting
-" ------------------------------------------------------------------------------
-" Overview:
-"
-" Change terminal title.
-" Highlight syntax.
-" Display line numbers.
-" Highlight matching brackets.
-" Show trailing spaces and tabs.
-" Highlight 81st column.
-"
+
+" Highlighting
 " ------------------------------------------------------------------------------
 
-" Sets the terminal title (editing 'file')
-" set title
-
-" Compatibility with tmux colors
+" Color settings.
 set t_Co=256
 set background=dark
 
-" Colorscheme
+" Coloscheme.
 try
     colo molokai
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry
 
-" Switches on syntax highlighting.
+" Switch on syntax highlighting.
 syntax enable
 
-" Precedes each line with its line number.
+" Precede each line with its line number.
 set number
 
-" When a bracket is inserted, briefly jumps to the matching one.
-" set showmatch
+" Show these characters instead of tabs and trailing space.
+set list listchars=tab:>-,trail:?
 
-" A list of characters to show instead of tabs and trailing spaces.
-set list listchars=tab:>-,trail:-
 
+" Splits
 " ------------------------------------------------------------------------------
-"                                    Splits
-" ------------------------------------------------------------------------------
-
-" Overrides vim default splitting settings
+" Override vim default splitting settings.
 set splitbelow splitright
 
-" Shortcuts for split navigation
-map <leader>h <C-w>h
-map <leader>j <C-w>j
-map <leader>k <C-w>k
-map <leader>l <C-w>l
 
+" Backup
 " ------------------------------------------------------------------------------
-"                                   Back up
-" ------------------------------------------------------------------------------
-
 set backup
-
-if !isdirectory($HOME . "/.vim/backup")
-    call mkdir($HOME . "/.vim/backup", "p", 0700)
-endif
-
 set backupdir=~/.vim/backup
 
-" ------------------------------------------------------------------------------
-"                                    Other
-" ------------------------------------------------------------------------------
+if !isdirectory($HOME . '/.vim/backup')
+    call mkdir($HOME . '/.vim/backup', 'p', 0700)
+endif
 
-" To enable all vim features
+
+" Other
+" ------------------------------------------------------------------------------
+" Enable all vim features.
 set nocompatible
 
 " Enable mouse for scrolling and resizing.
 set mouse=a
 
-" Increase the undo limit
+" Increase the undo limit.
 set history=1000
 
-" Do not display mode in status line
+" Do not display mode in status line.
 set noshowmode
 
+autocmd VimEnter * :NoMatchParen
+
+
+" Custom vim Abreviations
 " ------------------------------------------------------------------------------
-"                             Function Definitions
-" ------------------------------------------------------------------------------
-
-" Relative number on or off.
-function! ToggleRelativeNumber()
-    if &relativenumber
-        set norelativenumber
-    else
-        set relativenumber
-    endif
-endfunction
-
-" Number on or off.
-function! ToggleNumber()
-    if &number || &relativenumber
-        set nonumber
-        set norelativenumber
-    else
-        set number
-        set relativenumber
-    endif
-endfunction
-
-" Switch colorschemes.
-function! ToggleColorScheme()
-    if g:colors_name == 'molokai'
-        color atom-dark-256
-    elseif g:colors_name == 'atom-dark-256'
-        color palenight
-    else
-        color molokai
-    endif
-endfunction
-
-" Color Column on or off.
-function! ToggleColorColumn()
-    if &cc == ''
-        " Highlight column after 'textwidth'
-        set cc=+1
-    else
-        set cc=
-    endif
-endfunction
-
-" Remove traling whitespaces.
-function! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-" Return the commenting token.
-function! GetCommentToken()
-    let l:hash = ['php', 'ruby', 'sh', 'make', 'python', 'perl']
-    let l:slashes = ['javascript', 'c', 'cpp', 'java', 'objc', 'scala', 'go']
-    if index(hash, &filetype) >= 0
-        return '#'
-    elseif index(slashes, &filetype) >= 0
-        return '//'
-    elseif &filetype == 'vim'
-        return '"'
-    else
-        return '#'
-    endif
-endfunction
-
-function! WriteVisualComment()
-    let l:token  = GetCommentToken() " (e.g. #, //)
-    let l:format = token . ' %s'
-    let l:space  = 1                 " space character
-
-    let l:text = input('Text: ')  " comment text
-    " If no input text:
-    if len(text) == 0
-        echom 'Error: no input text.'
-        return
-    endif
-
-    let l:char = '-'
-    " input('Char: ')  " comment char
-    " If comment char is too long:
-    " if len(char) != 1
-    "     echom 'Error: char must be 1 character.'
-    "     return
-    " endif
-
-    " Get the number of char to add on left and right
-    let l:length = &textwidth - len(text) - len(format)
-    let l:left   = length / 2
-    let l:right  = length - left
-
-    " Insert in the buffer
-    put = printf(format, repeat(char, &textwidth - len(token) * 2))
-    put = printf(format, repeat(' ', left) . text)
-    put = printf(format, repeat(char, &textwidth - len(token) * 2))
-endfunction
-
-" ------------------------------------------------------------------------------
-"                                Abbreviations
-" ------------------------------------------------------------------------------
-
 iabbr #i #include
 iabbr #d #define
 
+" Custom vim Functions (must be before bind.vim).
 " ------------------------------------------------------------------------------
-"                                    Insert
+source $HOME/.dotfiles/vim/function.vim
+
+" Custom vim Bindings (must be at the bottom).
 " ------------------------------------------------------------------------------
-
-" Disable arrows
-inoremap <Left>  <nop>
-inoremap <Right> <nop>
-inoremap <Up>    <nop>
-inoremap <Down>  <nop>
-
-" Escape alternative
-inoremap jk <esc>
-
-" ------------------------------------------------------------------------------
-"                                    Normal
-" ------------------------------------------------------------------------------
-
-" Disable arrows
-nnoremap <Left>  <nop>
-nnoremap <Right> <nop>
-nnoremap <Up>    <nop>
-nnoremap <Down>  <nop>
-
-" Edit .vimrc
-nnoremap <leader>ev :split $MYVIMRC  <CR>
-" Source .vimrc
-nnoremap <leader>sv :source $MYVIMRC <CR>
-
-" Insert a character
-nnoremap <C-i> i_<Esc>r
-" Insert a new line
-nnoremap <silent> <leader>o : <C-u>call append(line("."),   repeat([""], v:count1))<CR>
-nnoremap <silent> <leader>O : <C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
-
-nnoremap <silent> <leader>w  :call TrimWhitespace()     <CR>
-nnoremap <silent> <leader>r  :retab <CR>
-nnoremap <silent> <leader>v  :call WriteVisualComment() <CR>
-
-" Toggles.
-nnoremap <silent> <C-n> :call ToggleNumber()         <CR>
-nnoremap <silent> <C-l> :call ToggleRelativeNumber() <CR>
-nnoremap <silent> <C-c> :call ToggleColorScheme()    <CR>
-nnoremap <silent> <C-x> :call ToggleColorColumn()    <CR>
-
-if &filetype == 'c'
-        " Write a C-style for loop.
-        nnoremap <leader>r :<esc>Ifor (int i = 0; i < ; i++) {<enter>}<esc>O<esc>k6w2li
-        " Write a printf.
-        nnoremap <leader>d :<esc>Iprintf("\n");<esc>4hi
-endif
-
-" ------------------------------------------------------------------------------
-"                                    Visual
-" ------------------------------------------------------------------------------
-
-" Disable arrows
-vnoremap <Left>  <nop>
-vnoremap <Right> <nop>
-vnoremap <Up>    <nop>
-vnoremap <Down>  <nop>
+source $HOME/.dotfiles/vim/bind.vim

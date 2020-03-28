@@ -29,6 +29,8 @@
 │   └── tmux.conf
 │
 ├── <b>vim</b>
+│   ├── bind.vim
+│   ├── function.vim
 │   └── vimrc
 │
 ├── <b>wsl</b> <---------- wsl-specific stuff
