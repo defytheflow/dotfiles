@@ -1,17 +1,25 @@
 # File:      i3/config
 # Purpose:   customization
-# Modified:  March 27, 2020
+# Created:   22.03.2020
+# Modified:  28.03.2020
 # Author:    Artyom Danilov
 
 
 # Set variables
 # ------------------------------------------------------------------------------
 set $mod Mod1
+
 set $browser   google-chrome
 set $terminal  gnome-terminal
+
 set $wallpaper ~/pictures/wallpapers/night-city.jpg
+
+set $in_monitor eDP-1
+set $ex_monitor HDMI-1
+
 set $inner_gaps 15
 set $outer_gaps 5
+
 floating_modifier $mod
 
 
@@ -38,6 +46,12 @@ default_orientation horizontal
 # Gaps between windows (requires i3-gaps).
 gaps inner $inner_gaps
 gaps outer $outer_gaps
+
+
+# Monitors.
+# ------------------------------------------------------------------------------
+bindsym $mod+m        exec --no-startup-id "xrandr --output $in_monitor --off"
+bindsym $mod+Shift+m  exec --no-startup-id "xrandr --output $in_monitor --auto"
 
 
 # Launch Apps.

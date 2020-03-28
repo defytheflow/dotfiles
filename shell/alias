@@ -7,6 +7,10 @@
 # Notes:     Order is important, aliases can break if you change it
 
 
+# Allow running sudo with aliases.
+alias sudo='sudo '
+
+
 # Colorize.
 alias \
     ls='ls --color=never'      \
@@ -144,9 +148,6 @@ alias \
     coronaru='curl "https://corona-stats.online/Russia"' \
     starwars='telnet towel.blinkenlights.nl'             \
     weather='curl http://wttr.in/'
-
-# Allow running sudo with aliases
-alias sudo='sudo '
 
 # Print time (e.g. 13:29:43)
 alias now='date +\"%T\"'
