@@ -2,6 +2,7 @@
 
 <pre>
 ├── install.sh <---------- set everything up
+├── xprofile
 |
 ├── <b>bash</b> <---------- bash-specific stuff
 │   ├── alias
