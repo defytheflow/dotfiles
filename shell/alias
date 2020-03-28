@@ -1,8 +1,9 @@
-# vim: filetype=sh
+#!/bin/sh
 
 # File:      shell/alias
-# Purpose:   Define shortcuts for commandsa and add default arguments
-# Modified:  March 26, 2020
+# Purpose:   Define shortcuts for commands and add default arguments
+# Created:   30.12.2019
+# Modified:  28.03.2020
 # Author:    Artyom Danilov
 # Notes:     Order is important, aliases can break if you change it
 
@@ -148,6 +149,7 @@ alias \
     coronaru='curl "https://corona-stats.online/Russia"' \
     starwars='telnet towel.blinkenlights.nl'             \
     weather='curl http://wttr.in/'
+
 
 # Print time (e.g. 13:29:43)
 alias now='date +\"%T\"'
