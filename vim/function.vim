@@ -32,32 +32,6 @@ function! ToggleColorScheme()
 endfunction
 
 
-function! ToggleNumber()
-    " Number on/off.
-
-    if &number || &relativenumber
-        set nonumber
-        set norelativenumber
-    else
-        set number
-        set relativenumber
-    endif
-
-endfunction
-
-
-function! ToggleRelativeNumber()
-    " Relative number on/off.
-
-    if &relativenumber
-        set norelativenumber
-    else
-        set relativenumber
-    endif
-
-endfunction
-
-
 function! TrimWhitespace()
     " Remove traling whitespace in the whole file.
 

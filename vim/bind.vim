@@ -25,6 +25,10 @@ nnoremap <Right> <nop>
 nnoremap <Up>    <nop>
 nnoremap <Down>  <nop>
 
+" Write and quit.
+nnoremap <leader>q :wq<CR>
+nnoremap <leader>w :w<CR>
+
 " Split navigation.
 nnoremap <leader>h <C-w>h
 nnoremap <leader>j <C-w>j
@@ -50,10 +54,11 @@ nnoremap <silent> <leader>w  :call TrimWhitespace() <CR>
 nnoremap <silent> <leader>v  :call WriteVisualComment() <CR>
 
 " Toggles.
-nnoremap <silent> <C-n> :call ToggleNumber()         <CR>
-nnoremap <silent> <C-l> :call ToggleRelativeNumber() <CR>
-nnoremap <silent> <C-c> :call ToggleColorScheme()    <CR>
-nnoremap <silent> <C-x> :call ToggleColorColumn()    <CR>
+nnoremap <silent> <C-c> :call ToggleColorScheme()<CR>
+nnoremap <silent> <C-x> :call ToggleColorColumn()<CR>
+
+nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>g :Goyo<CR>
 
 
 " Visual mode

@@ -7,37 +7,11 @@
 
 " Pluggins
 " ------------------------------------------------------------------------------
-if ! filereadable(expand('~/.vim/autoload/plug.vim'))
-    echo "Downloading 'vim-plug' to manage plugins..."
-    silent !mkdir -p ~/.vim/autoload/
-    silent !curl 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' > ~/.vim/autoload/plug.vim
-    autocmd VimEnter * PlugInstall
-endif
-
-call plug#begin('~/.vim/plugged')
-
-" Functionalty.
-Plug 'tpope/vim-surround'    " Quotes, tags, parentheses
-Plug 'tpope/vim-commentary'  " Comments
-Plug 'tpope/vim-eunuch'      " File manipulation
-Plug 'tpope/vim-fugitive'    " Git
-
-" Appearance.
-Plug 'itchyny/lightline.vim' " Status line
-Plug 'tomasr/molokai'        " Colorshemes
-Plug 'gosukiwi/vim-atom-dark'
-Plug 'drewtempelmeyer/palenight.vim'
-
-call plug#end()
-
-" Man pages (Do not surround with quotes!)
-runtime ftplugin/man.vim
-
+source $DOTFILES_HOME/vim/plugin.vim
 
 " Global Variables
 " ------------------------------------------------------------------------------
 let g:mapleader = ';'
-
 
 " Indentation
 " ------------------------------------------------------------------------------
@@ -146,8 +120,8 @@ iabbr #d #define
 
 " Custom vim Functions (must be before bind.vim).
 " ------------------------------------------------------------------------------
-source $HOME/.dotfiles/vim/function.vim
+source $DOTFILES_HOME/vim/function.vim
 
 " Custom vim Bindings (must be at the bottom).
 " ------------------------------------------------------------------------------
-source $HOME/.dotfiles/vim/bind.vim
+source $DOTFILES_HOME/vim/bind.vim
