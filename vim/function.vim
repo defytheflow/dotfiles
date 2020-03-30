@@ -1,7 +1,8 @@
 " File:      function.vim
-" Purpose:   define custom vim functions
+" Purpose:   Move custom vim functions to a separate place.
+" Use:       Sourced by .vimrc
 " Created:   28.02.2020
-" Modified:  28.03.2020
+" Modified:  30.03.2020
 " Author:    Artyom Danilov
 
 
@@ -16,7 +17,6 @@ function! ToggleColorColumn()
     endif
 
 endfunction
-
 
 function! ToggleColorScheme()
     " Switch colorscheme.

@@ -1,5 +1,5 @@
 " File:      vimrc
-" Purpose:   customize vim
+" Purpose:   Loaded every time you open vim.
 " Created:   30.12.2019
 " Modified:  28.03.2020
 " Author:    Artyom Danilov
@@ -15,7 +15,6 @@ let g:mapleader = ';'
 
 " Indentation
 " ------------------------------------------------------------------------------
-
 " In Insert mode inserts spaces instead of <Tab>.
 set expandtab
 
@@ -56,7 +55,6 @@ augroup END
 
 " Highlighting
 " ------------------------------------------------------------------------------
-
 " Color settings.
 set t_Co=256
 set background=dark

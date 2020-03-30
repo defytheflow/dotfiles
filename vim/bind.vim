@@ -1,7 +1,8 @@
 " File:      bind.vim
-" Purpose:   define custom vim bindings
+" Purpose:   Move all custom bindings to a separate place.
+" Use:       Sourced by .vimrc
 " Created:   28.03.2020
-" Modified:  28.03.2020
+" Modified:  30.03.2020
 " Author:    Artyom Danilov
 
 
