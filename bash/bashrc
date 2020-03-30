@@ -87,8 +87,8 @@ for file in 'alias' 'function'; do
 done
 
 # Check if running on wsl:
-if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
-    # Load aliases, functions and environment vars, that can only be used in wsl.
+if [ -n "${WSL_DISTRO_NAME}" ]; then
+    # Load aliases and functions, that can only be used in wsl.
     for file in "${DOTFILES_HOME}"/wsl/*; do
         . "${file}"
     done

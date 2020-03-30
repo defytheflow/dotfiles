@@ -1,65 +1,61 @@
 #!/bin/sh
 
 # File:      .profile
-# Purpose:   Define essential environment variables.
+# Purpose:   Define environment variables, that will be used by other programs
+#            and shell startup files.
+# Use:       This file is sourced by your shell every time you login into system
+#            (when you type your login and password at the lock screen).
 # Created:   28.03.2020
-# Modified:  28.03.2020
+# Modified:  30.03.2020
 # Author:    Artyom Danilov
 
 
 # XDG Base Directory
-export XDG_CACHE_HOME="${HOME}"/.cache
-export XDG_CONFIG_HOME="${HOME}"/.config
-export XDG_DATA_HOME="${HOME}"/.local/share
+export XDG_CACHE_HOME="${HOME}"/.cache       # <-- user cache files
+export XDG_CONFIG_HOME="${HOME}"/.config     # <-- user config files
+export XDG_DATA_HOME="${HOME}"/.local/share  # <-- user data files
 
-# Dotfiles
-export DOTFILES_HOME="${HOME}"/.dotfiles
-
-# Zsh plugins
-export ZPLUG_HOME="${XDG_CONFIG_HOME}"/zplug
-export ZPLUG_CACHE_DIR="${XDG_CACHE_HOME}"/zplug
+# Homes.
+export DOTFILES_HOME="${HOME}"/.dotfiles      # <-- dotfiles
+export ZPLUG_HOME="${XDG_CONFIG_HOME}"/zplug  # <-- zplug
 
 # System editor
 export EDITOR='vim'
 
-# Extend path
+# Path extensions.
 export PATH="${PATH}":"${HOME}"/.local/bin
+export CPATH=''                   # <-- C headers
+export LD_LIBRARY_PATH=''         # <-- C libraries
+export PYTHONPATH="${HOME}"/.lib  # <-- Python modules
 
-# Bash
-export BASHRC="${HOME}"/.bashrc  # config file
+# Options/Flags
+export CFLAGS='-W -Wall -Wextra'    # <-- C
+export SHELLCHECK_OPTS=''           # <-- shellcheck
+export PYTHONSTARTUP="${PYTHONRC}"  # <-- python
 
-# C
-export CFLAGS='-W -Wall -Wextra'  # compilation flags
-export CPATH=''                   # include headers
-export LD_LIBRARY_PATH=''         # link libraries
+# Config files
+export BASHRC="${HOME}"/.bashrc                       # <-- bash
+export VIMRC="${HOME}"/.vimrc                         # <-- vim
+export ZSHRC="${HOME}"/.zshrc                         # <-- zsh
+export PYTHONRC="${XDG_CONFIG_HOME}"/python/pythonrc  # <-- python
+export I3CONF="${XDG_CONFIG_HOME}"/i3/config          # <-- i3
+export GITCONF="${XDG_CONFIG_HOME}"/git/config        # <-- git
+export TASKRC="${XDG_CONFIG_HOME}"/task/taskrc        # <-- task
 
-# i3
-export I3CONF="${XDG_CONFIG_HOME}"/i3/config  # config file
+# Cache/Data files
+export LESSHISTFILE="${XDG_CACHE_HOME}"/less/history  # <-- less
+export ICEAUTHORITY="${XDG_CACHE_HOME}"/ICEauthority  # <-- (?)
+export TASKDATA="${XDG_DATA_HOME}"/task               # <-- task
+export ZPLUG_CACHE_DIR="${XDG_CACHE_HOME}"/zplug      # <-- zplug
 
-# ?
-export ICEAUTHORITY="${XDG_CACHE_HOME}"/ICEauthority
+# User related.
+export MYGITHUB='https://github.com/defytheflow'      # <-- github
 
-# git
-export MYGITHUB='https://github.com/defytheflow'
-export GITCONF="${XDG_CONFIG_HOME}"/git/config    # config file
-
-# Less
-export LESSHISTFILE="${XDG_CACHE_HOME}"/less/history
-
-# Python
-export PYTHONPATH="${HOME}"/.lib  # include modules
-export PYTHONRC="${XDG_CONFIG_HOME}"/python/pythonrc  # config file
-export PYTHONSTARTUP="${PYTHONRC}"  # config file
-
-# Shellcheck
-export SHELLCHECK_OPTS=''  # run-time options
-
-# Task
-export TASKDATA="${XDG_DATA_HOME}"/task
-export TASKRC="${XDG_CONFIG_HOME}"/task/taskrc
-
-# Vim
-export VIMRC="${HOME}"/.vimrc  # config file.
-
-# Zsh
-export ZSHRC="${HOME}"/.zshrc  # config file.
+# If running on wsl -> set wsl environment variables.
+if [ -n "${WSL_DISTRO_NAME}" ]; then
+    # Like: '/mnt/c/Users/UserName'
+    WINHOME="$(wslpath "$(cmd.exe /C 'echo | set /p _=%USERPROFILE%' 2>/dev/null)")"
+    export WINHOME                       # <-- windows home directory
+    # Like: '/mnt/c/Users/UserName/Desktop'
+    export WINDESK="${WINHOME}"/Desktop  # <-- windows desktop
+fi

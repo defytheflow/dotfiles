@@ -1,14 +1,27 @@
 #!/bin/sh
 
 # File:      install.sh
-# Purpose:   Install all dotfiles
+# Purpose:   Automate dotfiles installation.
+# Use:       Run this file to create all the required directories and symlinks.
 # Created:   26.03.2020
-# Modified:  28.03.2020
+# Modified:  30.03.2020
 # Author:    Artyom Danilov
 
 
-# Load essential environment variables.
+# Load environment variables. (XDG_CACHE_HOME, XDG_CONFIG_HOME, DOTFILES_HOME...)
 . "$(pwd)"/profile
+
+create_directories() {
+    for prog in 'zsh' 'bash'; do
+        [ -d "${XDG_CACHE_HOME}"/"${prog}" ] || \
+            mkdir -p "${XDG_CACHE_HOME}"/"${prog}"
+    done
+
+    for prog in 'tmux' 'git' 'python'; do
+        [ -d "${XDG_CONFIG_HOME}"/"${prog}" ] || \
+            mkdir -p "${XDG_CONFIG_HOME}"/"${prog}"
+    done
+}
 
 create_symlinks() {
     ln -sf "${DOTFILES_HOME}"/profile         "${HOME}"/.profile
@@ -22,4 +35,5 @@ create_symlinks() {
     ln -sf "${DOTFILES_HOME}"/python/pythonrc "${XDG_CONFIG_HOME}"/python/pythonrc
 }
 
+create_directories
 create_symlinks
