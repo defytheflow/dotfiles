@@ -8,8 +8,8 @@
 # Notes:     Order is important, aliases can break if you change it
 
 
-# Allow running sudo with aliases.  alias sudo='sudo '
-
+# Allow running sudo with aliases.
+alias sudo='sudo '
 
 # Colorize.
 alias \
@@ -32,7 +32,7 @@ alias \
     mkdir='mkdir -pv'                      \
     rmdir='rmdir -pv'                      \
     diff='diff -y --suppress-common-lines' \
-    tree='tree -I .git -I plugins'
+    tree='tree -I .git'
 
 
 # Typing mistakes.
