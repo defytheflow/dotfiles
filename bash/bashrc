@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # File:      .bashrc
-# Purpose:   configure user interactive shell
+# Purpose:   This file is sourced every zsh interactive session
+#            (every time you open a terminal with bash as default shell).
 # Created:   30.12.2019
 # Modified:  28.03.2020
 # Author:    Artyom Danilov
@@ -14,6 +15,14 @@ case $- in
       *)
           return ;;
 esac
+
+
+# History
+# ------------------------------------------------------------------------------
+export HISTCONTROL='ignoredups'
+export HISTFILE="${XDG_CACHE_HOME}"/bash/history  # <-- Store history in here
+export HISTSIZE=10000
+export HISTFILESIZE=10000
 
 
 # Colorize prompt
@@ -66,27 +75,30 @@ stty -ixon
 
 # Config files
 # ------------------------------------------------------------------------------
-# Load shell-independent config files.
+# Load aliases and functions, that can be used in any posix shell.
 for file in "${DOTFILES_HOME}"/shell/*; do
     . "${file}"
 done
 
-# Load prompt.
-if [ "${color_prompt}" = 'yes' ]; then
-    [ -f "${DOTFILES_HOME}"/bash/prompt ] && . "${DOTFILES_HOME}"/bash/prompt
-else
-    PS1='\u@\h:\w\$ '
-fi
 
-# Load bash-specific config files.
-for file in 'alias' 'env' 'function'; do
+# Load aliases and functions, that can be used only in bash.
+for file in 'alias' 'function'; do
     [ -f "${DOTFILES_HOME}"/bash/"${file}" ] && . "${DOTFILES_HOME}"/bash/"${file}"
 done
 
 # Check if running on wsl:
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
-    # Load wsl-specific config files.
+    # Load aliases, functions and environment vars, that can only be used in wsl.
     for file in "${DOTFILES_HOME}"/wsl/*; do
         . "${file}"
     done
+fi
+
+
+# Prompt.
+# ------------------------------------------------------------------------------
+if [ "${color_prompt}" = 'yes' ]; then
+    [ -f "${DOTFILES_HOME}"/bash/prompt ] && . "${DOTFILES_HOME}"/bash/prompt
+else
+    PS1='\u@\h:\w\$ '
 fi
