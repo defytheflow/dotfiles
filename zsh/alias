@@ -1,10 +1,11 @@
-#!/usr/bin/zsh
+#!/bin/zsh
 
 # File:      zsh/alias
-# Purpose:   Define zsh-specific aliases
+# Purpose:   Define aliases for use during zsh interactive session.
+# Notes:     This file is sourced by .zshrc
 # Created:   26.03.2020
-# Modified:  28.03.2020
+# Modified:  30.03.2020
 # Author:    Artyom Danilov
 
 
-alias rld='source ~/.zshrc'
+alias rld='exec zsh' # <-- reload zsh

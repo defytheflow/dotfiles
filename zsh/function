@@ -1,7 +1,8 @@
-#!/usr/bin/zsh
+#!/bin/zsh
 
 # File:      zsh/function
-# Purpose:   Define zsh-specific functions
+# Purpose:   Define functions for use during zsh interactive session.
+# Notes:     This file is sourced by .zshrc
 # Created:   26.03.2020
 # Modified:  28.03.2020
 # Author:    Artyom Danilov

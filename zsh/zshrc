@@ -1,30 +1,42 @@
-#!/usr/bin/zsh
+#!/bin/zsh
 
 # File:      .zshrc
-# Purpose:   configure user interactive shell
+# Purpose:   This file is sourced every zsh interactive session
+#            (every time you open a terminal with zsh as default shell).
 # Created:   22.03.2020
-# Modified:  28.03.2020
+# Modified:  30.03.2020
 # Author:    Artyom Danilov
+
+
+# History
+# ------------------------------------------------------------------------------
+export HISTFILE="${XDG_CACHE_HOME}"/zsh/history # <-- Save history here
+export HISTSIZE=10000  # <-- Lines to store during interactive session
+export SAVEHIST=10000  # <-- Lines to save after interactive session
 
 
 # Options
 # ------------------------------------------------------------------------------
-
 # Don't type cd to change directories.
 setopt autocd autopushd
 
-# Enable autocompletion.
-autoload -Uz compinit
-compinit -d "${XDG_CACHE_HOME}"/zsh/zcompdump-"${ZSH_VERSION}"
 
-# Enable arrow-key driven interface (to activate menu press <Tab> twice).
+# Autocompletion
+# ------------------------------------------------------------------------------
+autoload -Uz compinit  # <-- Mark 'compinit' as function.
+zmodload zsh/complist  # <-- Load this module to enhance completion features.
+
+_comp_options+=(globdots) # <-- Include hidden files in autocomplete.
+
+# Do menu-driven completion. (zstyle is a builtin)
 zstyle ':completion:*' menu select
 
-zmodload zsh/complist
+# Initialize completion.
+compinit -d "${XDG_CACHE_HOME}"/zsh/zcompdump-"${ZSH_VERSION}"
 
-# Include hidden files in autocomplete:
-_comp_options+=(globdots)
 
+# Vim mode
+# ------------------------------------------------------------------------------
 # Enable vim bindings.
 bindkey -v
 
@@ -34,22 +46,26 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
+# Fix bug when you can't backspace after being in vim mode.
+bindkey -v '^?' backward-delete-char
+export KEYTIMEOUT=1  # <-- Faster enter normal mode
+
 
 # Config files
 # ------------------------------------------------------------------------------
-# Load shell-independent config files (must be first).
+# Load aliases and functions, that can be used in any posix shell.
 for file in "${DOTFILES_HOME}"/shell/*; do
     . "${file}"
 done
 
-# Load zsh-specific config files.
-for file in 'alias' 'env' 'function' 'prompt'; do
+# Load aliases and functions, that can be used only in zsh.
+for file in 'alias' 'function' ; do
     [ -f "${DOTFILES_HOME}"/zsh/"${file}" ] && . "${DOTFILES_HOME}"/zsh/"${file}"
 done
 
 # Check if running on wsl.
 if grep -qEi '(Microsoft|WSL)' /proc/version > /dev/null 2>&1; then
-    # Load wsl-specific config files.
+    # Load aliases, functions and environment vars, that can only be used in  wsl.
     for file in "${DOTFILES_HOME}"/wsl/*; do
         . "${file}"
     done
@@ -58,8 +74,29 @@ fi
 
 # Plugins
 # ------------------------------------------------------------------------------
-# Load plugins (must be last).
-. ${ZSH_PLUGINS}/zsh-autosuggestions/zsh-autosuggestions.zsh
-. ${ZSH_PLUGINS}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-. ${ZSH_PLUGINS}/alias-tips/alias-tips.plugin.zsh
-. ${ZSH_PLUGINS}/command-not-found/command-not-found.plugin.zsh
+# Install zplug if not installed.
+[ -d "${ZPLUG_HOME}" ] || \
+    git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
+
+# Essential.
+. "${ZPLUG_HOME}"/init.zsh && zplug update >/dev/null
+
+zplug "zsh-users/zsh-autosuggestions"
+# Highlight commands, literals, etc.
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+# Suggest aliases for commands.
+zplug "djui/alias-tips"
+# Prompt theme.
+zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+
+# Install packages that have not been installed yet.
+zplug check || zplug install
+
+# Load plugins.
+zplug load
+
+
+# Prompt
+# ------------------------------------------------------------------------------
+[ -f "${DOTFILES_HOME}"/zsh/prompt ] && . "${DOTFILES_HOME}"/zsh/prompt
+

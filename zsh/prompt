@@ -1,32 +1,77 @@
-#!/usr/bin/zsh
+#!/bin/zsh
 
 # File:      zsh/prompt
-# Purpose:   Customize prompt
+# Purpose:   This file stores settings for my zsh spaceship prompt.
+# Notes:     This file is sourced by .zshrc
 # Created:   26.03.2020
-# Modified:  28.03.2020
+# Modified:  30.03.2020
 # Author:    Artyom Danilov
 
 
-# Execute each time prompt is drawn.
-function precmd() {
-    # get last command exit status.
-    if [ $? -eq 0 ]; then
-        local exit_status=" ${GREEN}:)"
-    else
-        local exit_status=" ${RED}:("
-    fi
-
-    PS1=$'\n'
-    # if root, highlight everything in red.
-    if [ "$(whoami)" = 'root' ]; then
-        PS1+="${RED}%n"                     # root
-        PS1+="${WHITE} at ${RED}%M"         # host
-        PS1+="${WHITE} in ${RED}%~"         # absolute directory
-    else
-        PS1+="${PURPLE}%n"                  # username
-        PS1+="${WHITE} at ${ORANGE}%M"      # host
-        PS1+="${WHITE} in ${LIME_GREEN}%~"  # absolute directory
-    fi
-    PS1+="${exit_status}${RESET}"           # :) or :(
-    PS1+=$'\n$ '
+# Unbold prompt.
+() {
+  local z=$'\0'
+  PROMPT='${${${$(spaceship_prompt)//\%\%/'${z}'}//\%B}//'${z}'/%%}'
 }
+
+# Remove newlines.
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+
+# Char.
+SPACESHIP_CHAR_PREFIX=''
+SPACESHIP_CHAR_SYMBOL='➜'
+SPACESHIP_CHAR_SUFFIX=' '
+
+# Directory.
+SPACESHIP_DIR_SHOW=true
+SPACESHIP_DIR_COLOR=135  # <-- purple
+SPACESHIP_DIR_PREFIX='in '
+SPACESHIP_DIR_TRUNC=0  # <-- show all folders of cwd
+
+# Git.
+SPACESHIP_GIT_SHOW=true
+SPACESHIP_GIT_PREFIX=''
+
+# Git branch.
+SPACESHIP_GIT_BRANCH_SHOW=true
+SPACESHIP_GIT_BRANCH_COLOR=45  # <-- cyan
+
+# Git status.
+SPACESHIP_GIT_STATUS_SHOW=true
+SPACESHIP_GIT_STATUS_PREFIX=' ('
+SPACESHIP_GIT_STATUS_SUFFIX=')'
+SPACESHIP_GIT_STATUS_COLOR=220  # <-- yellow
+
+# Execution time of last command.
+SPACESHIP_EXEC_TIME_SHOW=true
+SPACESHIP_EXEC_TIME_COLOR=202  # <-- orange
+
+# Stuff I don't use.
+SPACESHIP_HG_SHOW=false
+SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_NODE_SHOW=false
+SPACESHIP_RUBY_SHOW=false
+SPACESHIP_ELM_SHOW=false
+SPACESHIP_ELIXIR_SHOW=false
+SPACESHIP_XCODE_SHOW_LOCAL=false
+SPACESHIP_SWIFT_SHOW_LOCAL=false
+SPACESHIP_GOLANG_SHOW=false
+SPACESHIP_PHP_SHOW=false
+SPACESHIP_RUST_SHOW=false
+SPACESHIP_JULIA_SHOW=false
+SPACESHIP_HASKELL_SHOW=false
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_DOCKER_CONTEXT_SHOW=false
+SPACESHIP_AWS_SHOW=false
+SPACESHIP_CONDA_SHOW=false
+SPACESHIP_VENV_SHOW=false
+SPACESHIP_PYENV_SHOW=false
+SPACESHIP_DOTNET_SHOW=false
+SPACESHIP_EMBER_SHOW=false
+SPACESHIP_KUBECONTEXT_SHOW=false
+SPACESHIP_TERRAFORM_SHOW=false
+SPACESHIP_BATTERY_SHOW=false
+SPACESHIP_VI_MODE_SHOW=false
+SPACESHIP_JOBS_SHOW=false
+SPACESHIP_EXIT_CODE_SHOW=false
