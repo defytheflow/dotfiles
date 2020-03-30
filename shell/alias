@@ -55,7 +55,7 @@ alias \
     lal='ls -Al'
 
 
-# Options (tree).
+# trees.
 alias \
     ta='tree -a' \
     td='tree -d'
@@ -65,12 +65,10 @@ alias \
 alias rr='rm -rfI'
 
 
-# cat options.
+# cats.
 alias \
-    ccat='highlight --out-format=ansi' \
-    lcat='lolcat'                      \
-    ncat='cat -nr'                     \
-    tcat="cat -t"
+    nc='cat -n' \
+    cc='highlight --out-format=ansi'
 
 
 # Right version.
@@ -82,7 +80,6 @@ alias \
 
 # Shortcuts (one-letter).
 alias \
-    c='cat'     \
     f='file'    \
     g='git'     \
     h='history' \

@@ -13,6 +13,7 @@
 create_symlinks() {
     ln -sf "${DOTFILES_HOME}"/profile         "${HOME}"/.profile
     ln -sf "${DOTFILES_HOME}"/xprofile        "${HOME}"/.xprofile
+    ln -sf "${DOTFILES_HOME}"/zshenv          "${HOME}"/.zshenv
     ln -sf "${DOTFILES_HOME}"/bash/bashrc     "${HOME}"/.bashrc
     ln -sf "${DOTFILES_HOME}"/vim/vimrc       "${HOME}"/.vimrc
     ln -sf "${DOTFILES_HOME}"/zsh/zshrc       "${HOME}"/.zshrc
