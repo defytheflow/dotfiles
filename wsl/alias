@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# File:      bash/alias
+# Purpose:   Define aliases to use when you are working in wsl.
+# Use:       This file is sourced by .zshrc and .bashrc if shell is being run
+#            in wsl.
+# Created:   30.03.2020
+# Modified:  30.03.2020
+# Author:    Artyom Danilov
+
+
+# Don't type exe.
+alias \
+    calc='calc.exe'             \
+    cmd='cmd.exe'               \
+    explorer='explorer.exe'     \
+    notepad='notepad.exe'       \
+    powershell='powershell.exe' \
+    write='write.exe'
+
+# Google-chrome.
+alias chrome='${WIN_PROG_FILES_86}/Google/Chrome/Application/chrome.exe'
