@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # File:      .profile
-# Purpose:   define important environment variables.
+# Purpose:   Define essential environment variables.
 # Created:   28.03.2020
 # Modified:  28.03.2020
 # Author:    Artyom Danilov
