@@ -37,6 +37,8 @@ set wrap
 set textwidth=80
 set formatoptions+=t
 
+set foldmethod=marker
+
 augroup indentation
     " Assembly
     autocmd Filetype asm,s setlocal shiftwidth=4 softtabstop=4

@@ -61,7 +61,7 @@ function! GetCommentToken()
 endfunction
 
 
-function! WriteVisualComment()
+function! VisualComment()
 
     let l:token  = GetCommentToken() " (e.g. #, //)
     let l:char = '-'
