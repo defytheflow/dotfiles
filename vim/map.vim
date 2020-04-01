@@ -1,10 +1,9 @@
 "
-" Filename:  bind.vim
-" Purpose:   Separate custom bindings.
-" Use:       Sourced by .vimrc
-" Created:   28.03.2020
-" Modified:  01.04.2020
-" Author:    Artyom Danilov
+" Filename:     bind.vim
+" Description:  Custom key mappings
+"
+" Created:      28.03.2020
+" Author:       Artyom Danilov
 "
 
 

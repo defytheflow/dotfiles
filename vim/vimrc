@@ -1,8 +1,10 @@
-" File:      vimrc
-" Purpose:   Loaded every time you open vim.
-" Created:   30.12.2019
-" Modified:  28.03.2020
-" Author:    Artyom Danilov
+"
+" Filename:     .vimrc
+" Description:  Settings
+"
+" Created:      30.12.2019
+" Author:       Artyom Danilov
+"
 
 
 " Pluggins
@@ -124,4 +126,4 @@ source $DOTFILES_HOME/vim/function.vim
 
 " Custom vim Bindings (must be at the bottom).
 " ------------------------------------------------------------------------------
-source $DOTFILES_HOME/vim/bind.vim
+source $DOTFILES_HOME/vim/map.vim

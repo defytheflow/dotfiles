@@ -1,9 +1,10 @@
-" File:      function.vim
-" Purpose:   Move custom vim functions to a separate place.
-" Use:       Sourced by .vimrc
-" Created:   28.02.2020
-" Modified:  30.03.2020
-" Author:    Artyom Danilov
+"
+" Filename:     function.vim
+" Description:  Custom commands
+"
+" Created:      28.02.2020
+" Author:       Artyom Danilov
+"
 
 
 function! ToggleColorColumn()

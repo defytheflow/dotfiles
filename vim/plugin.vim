@@ -1,11 +1,9 @@
 "
-" Filename:  plugin.vim
-" Purpose:   Separate plugin-related settings.
-" Usage:     Sourced by .vimrc
+" Filename:     plugin.vim
+" Description:  Plugins
 "
-" Created:   29.03.2020
-" Modified:  01.04.2020
-" Author:    Artyom Danilov
+" Created:      29.03.2020
+" Author:       Artyom Danilov
 "
 
 
