@@ -51,7 +51,7 @@ nnoremap <silent><leader>ev :split $MYVIMRC<CR>
 nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 
 " DeTab
-nnoremap <silent><leader>dt :retab<CR>
+nnoremap <silent><leader>rt :retab<CR>
 
 " Trim Whitespace
 nnoremap <silent><leader>tw :call TrimWhitespace()<CR>

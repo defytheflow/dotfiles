@@ -22,11 +22,12 @@ endif
 " Missing plugins.
 for plugin in ['vim-surround', 'vim-commentary', 'vim-eunuch', 'goyo.vim',
 \              'quick-scope', 'vim-easymotion', 'vim-move', 'nerdtree',
-\              'vim-airline', 'molokai', 'vim-atom-dark', 'palenight.vim']
+\              'vim-airline', 'molokai', 'vim-atom-dark', 'palenight.vim', 
+\              'vim-preview']
 
     if !isdirectory($HOME . '/.config/nvim/plugged/' . plugin)
         autocmd VimEnter * PlugInstall | source $MYVIMRC
-	break
+        break
     endif
 
 endfor
@@ -37,6 +38,9 @@ endfor
 " Source {{{
 
 call plug#begin('~/.config/nvim/plugged')
+
+" Preview markup
+Plug 'greyblake/vim-preview'
 
 " Quotes, parentheses, tags.
 Plug 'tpope/vim-surround'
