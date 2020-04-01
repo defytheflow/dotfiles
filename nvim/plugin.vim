@@ -10,12 +10,12 @@
 " Install {{{
 
 " Vim-plug
-if empty($HOME . '/.vim/autoload/plug.vim')
+if !filereadable($HOME . '/.config/nvim/autoload/plug.vim')
 
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
 
 endif
 
@@ -24,8 +24,9 @@ for plugin in ['vim-surround', 'vim-commentary', 'vim-eunuch', 'goyo.vim',
 \              'quick-scope', 'vim-easymotion', 'vim-move', 'nerdtree',
 \              'vim-airline', 'molokai', 'vim-atom-dark', 'palenight.vim']
 
-    if !isdirectory($HOME . '/.vim/plugged/' . plugin)
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    if !isdirectory($HOME . '/.config/nvim/plugged/' . plugin)
+        autocmd VimEnter * PlugInstall | source $MYVIMRC
+	break
     endif
 
 endfor
@@ -35,7 +36,7 @@ endfor
 
 " Source {{{
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Quotes, parentheses, tags.
 Plug 'tpope/vim-surround'

@@ -1,8 +1,11 @@
+#
 # File:      i3/config
 # Purpose:   customization
+#
 # Created:   22.03.2020
 # Modified:  28.03.2020
 # Author:    Artyom Danilov
+#
 
 
 # Set variables
@@ -70,6 +73,7 @@ bindsym $mod+Shift+r restart
 bar {
         status_command ~/.local/bin/bumblebee-status  \
                        -m cpu memory disk battery-upower \
+                          brightness \
                           weather datetime amixer \
                        -t gruvbox-powerline
         position top

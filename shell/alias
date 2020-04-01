@@ -9,6 +9,9 @@
 # Caution:   Order is important, some aliases can and will break if you change it
 
 
+alias bp='sudo brightnessctl set 100+'
+alias bm='sudo brightnessctl set 100-'
+
 # Allow running sudo with aliases.
 alias sudo='sudo '
 

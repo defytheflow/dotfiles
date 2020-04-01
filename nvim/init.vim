@@ -1,5 +1,5 @@
 "
-" Filename:     .vimrc
+" Filename:     nvim/init.vim
 " Description:  Settings
 "
 " Created:      30.12.2019
@@ -9,7 +9,7 @@
 
 " Pluggins
 " ------------------------------------------------------------------------------
-source $DOTFILES_HOME/vim/plugin.vim
+source $DOTFILES_HOME/nvim/plugin.vim
 
 " Global Variables
 " ------------------------------------------------------------------------------
@@ -89,10 +89,10 @@ set splitbelow splitright
 " Backup
 " ------------------------------------------------------------------------------
 set backup
-set backupdir=~/.vim/backup
+set backupdir=~/.config/nvim/backup
 
-if !isdirectory($HOME . '/.vim/backup')
-    call mkdir($HOME . '/.vim/backup', 'p', 0700)
+if !isdirectory($HOME . '/.config/nvim/backup')
+    call mkdir($HOME . '/.config/nvim/backup', 'p', 0700)
 endif
 
 
@@ -122,8 +122,8 @@ iabbr #d #define
 
 " Custom vim Functions (must be before bind.vim).
 " ------------------------------------------------------------------------------
-source $DOTFILES_HOME/vim/function.vim
+source $DOTFILES_HOME/nvim/function.vim
 
 " Custom vim Bindings (must be at the bottom).
 " ------------------------------------------------------------------------------
-source $DOTFILES_HOME/vim/map.vim
+source $DOTFILES_HOME/nvim/map.vim

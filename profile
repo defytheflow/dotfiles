@@ -16,14 +16,16 @@ export XDG_CACHE_HOME="${HOME}"/.cache       # <-- user cache files
 export XDG_CONFIG_HOME="${HOME}"/.config     # <-- user config files
 export XDG_DATA_HOME="${HOME}"/.local/share  # <-- user data files
 
-# Homes.
+# To use gnome-control-senter in i3 session.
+export XDG_CURRENT_DESKTOP=GNOME
+
+# Dotfiles
 # ------------------------------------------------------------------------------
 export DOTFILES_HOME="${HOME}"/.dotfiles      # <-- dotfiles
-export ZPLUG_HOME="${XDG_CONFIG_HOME}"/zplug  # <-- zplug
 
 # Default programs.
 # ------------------------------------------------------------------------------
-export EDITOR='vim'
+export EDITOR='nvim'
 export BROWSER='google-chrome'
 
 # Path extensions.
@@ -42,12 +44,13 @@ export PYTHONSTARTUP="${PYTHONRC}"  # <-- python
 # Config files
 # ------------------------------------------------------------------------------
 export BASHRC="${HOME}"/.bashrc                       # <-- bash
-export VIMRC="${HOME}"/.vimrc                         # <-- vim
 export ZSHRC="${HOME}"/.zshrc                         # <-- zsh
+export VIMRC="${XDG_CONFIG_HOME}"/nvim/init.vim       # <-- nvim
 export PYTHONRC="${XDG_CONFIG_HOME}"/python/pythonrc  # <-- python
 export I3CONF="${XDG_CONFIG_HOME}"/i3/config          # <-- i3
 export GITCONF="${XDG_CONFIG_HOME}"/git/config        # <-- git
 export TASKRC="${XDG_CONFIG_HOME}"/task/taskrc        # <-- task
+export ZPLUG_HOME="${XDG_CONFIG_HOME}"/zplug          # <-- zplug
 
 # Cache/Data files
 # ------------------------------------------------------------------------------
@@ -55,6 +58,7 @@ export LESSHISTFILE="${XDG_CACHE_HOME}"/less/history  # <-- less
 export ICEAUTHORITY="${XDG_CACHE_HOME}"/ICEauthority  # <-- (?)
 export TASKDATA="${XDG_DATA_HOME}"/task               # <-- task
 export ZPLUG_CACHE_DIR="${XDG_CACHE_HOME}"/zplug      # <-- zplug
+export PYLINTHOME="${XSD_CACHE_HOME}"/pylint          # <-- pylint
 
 # User.
 # ------------------------------------------------------------------------------

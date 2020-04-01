@@ -17,7 +17,7 @@ create_directories() {
             mkdir -p "${XDG_CACHE_HOME}"/"${prog}"
     done
 
-    for prog in 'tmux' 'git' 'python'; do
+    for prog in 'tmux' 'git' 'python' 'nvim'; do
         [ -d "${XDG_CONFIG_HOME}"/"${prog}" ] || \
             mkdir -p "${XDG_CONFIG_HOME}"/"${prog}"
     done
@@ -28,8 +28,8 @@ create_symlinks() {
     ln -sf "${DOTFILES_HOME}"/xprofile        "${HOME}"/.xprofile
     ln -sf "${DOTFILES_HOME}"/zshenv          "${HOME}"/.zshenv
     ln -sf "${DOTFILES_HOME}"/bash/bashrc     "${HOME}"/.bashrc
-    ln -sf "${DOTFILES_HOME}"/vim/vimrc       "${HOME}"/.vimrc
     ln -sf "${DOTFILES_HOME}"/zsh/zshrc       "${HOME}"/.zshrc
+    ln -sf "${DOTFILES_HOME}"/nvim/init.vim   "${XDG_CONFIG_HOME}"/nvim/init.vim
     ln -sf "${DOTFILES_HOME}"/tmux/tmux.conf  "${XDG_CONFIG_HOME}"/tmux/tmux.conf
     ln -sf "${DOTFILES_HOME}"/git/config      "${XDG_CONFIG_HOME}"/git/config
     ln -sf "${DOTFILES_HOME}"/python/pythonrc "${XDG_CONFIG_HOME}"/python/pythonrc
