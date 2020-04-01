@@ -29,6 +29,7 @@ nnoremap <silent><leader>g :Goyo<CR>
 " Toggle NERDTree
 nnoremap <silent><leader>n :NERDTreeToggle<CR>
 
+
 " Splits Navigation
 nnoremap <silent><leader>h <C-w>h
 nnoremap <silent><leader>j <C-w>j
@@ -36,8 +37,8 @@ nnoremap <silent><leader>k <C-w>k
 nnoremap <silent><leader>l <C-w>l
 
 " Insert new-line
-nnoremap <silent><leader>o: <C-u>call append(line("."),   repeat([""], v:count1))<CR>
-nnoremap <silent><leader>O: <C-u>call append(line(".")-2, repeat([""], v:count1))<CR>
+nnoremap <silent><leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent><leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
 "}}}
 

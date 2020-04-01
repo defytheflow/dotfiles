@@ -1,36 +1,50 @@
-" Name:      plugin.vim
-" Purpose:   Move plugin related stuff to a separate place.
-" Use:       Sourced by .vimrc
+"
+" Filename:  plugin.vim
+" Purpose:   Separate plugin-related settings.
+" Usage:     Sourced by .vimrc
+"
 " Created:   29.03.2020
-" Modified:  30.03.2020
+" Modified:  01.04.2020
 " Author:    Artyom Danilov
+"
 
 
-" Plugin manager
-" ------------------------------------------------------------------------------
-" If 'vim-plug' is not installed -> download it.
-if ! filereadable(expand('~/.vim/autoload/plug.vim'))
-    echo "Downloading 'vim-plug' to manage plugins..."
-    silent !mkdir -p ~/.vim/autoload/
-    silent !curl 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' > ~/.vim/autoload/plug.vim
-    autocmd VimEnter * PlugInstall
+" Install {{{
+
+" Vim-plug
+if empty($HOME . '/.vim/autoload/plug.vim')
+
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+
 endif
 
-" Plugins
-" ------------------------------------------------------------------------------
+" Missing plugins.
+for plugin in ['vim-surround', 'vim-commentary', 'vim-eunuch', 'goyo.vim',
+\              'quick-scope', 'vim-easymotion', 'vim-move', 'nerdtree',
+\              'vim-airline', 'molokai', 'vim-atom-dark', 'palenight.vim']
+
+    if !isdirectory($HOME . '/.vim/plugged/' . plugin)
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+
+endfor
+
+"}}}
+
+
+" Source {{{
+
 call plug#begin('~/.vim/plugged')
 
-" Editing.
-" ------------------------------------------------------------------------------
-" Quotes, tags, parentheses
+" Quotes, parentheses, tags.
 Plug 'tpope/vim-surround'
 
 " Comments.
 Plug 'tpope/vim-commentary'
 
-
-" Movement
-" ------------------------------------------------------------------------------
 " Center text.
 Plug 'junegunn/goyo.vim'
 
@@ -40,13 +54,10 @@ Plug 'unblevable/quick-scope'
 " Vertical navigarion.
 Plug 'easymotion/vim-easymotion'
 
-" Move selected text.
+" Selected text movement.
 Plug 'matze/vim-move'
 let g:move_key_modifier = 'C'
 
-
-" Files
-" ------------------------------------------------------------------------------
 " Common Unix Commands.
 Plug 'tpope/vim-eunuch'
 
@@ -54,12 +65,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'preservim/nerdtree'
 let NERDTreeShowHidden = 1
 
-" Man pages (Do not surround with quotes!)
-runtime ftplugin/man.vim
-
-
-" Appearance
-" ------------------------------------------------------------------------------
 " Status/tabline
 Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
@@ -70,3 +75,9 @@ Plug 'gosukiwi/vim-atom-dark'
 Plug 'drewtempelmeyer/palenight.vim'
 
 call plug#end()
+
+" }}}
+
+
+" Man pages (Do not surround with quotes!)
+runtime ftplugin/man.vim
