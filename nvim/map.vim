@@ -1,39 +1,71 @@
-"
-" Filename:     bind.vim
+
+" Filename:     map.vim
 " Description:  Custom key mappings
-"
+
 " Created:      28.03.2020
 " Author:       Artyom Danilov
-"
 
 
-" Fast <Esc>.
+" Escape
 inoremap jk <esc>
 
-" Toggle folding
+" Folding
 nnoremap <space> za
+
+autocmd FileType python map <buffer><leader>f :call flake8#Flake8()<CR>
+
+" Buffers {{{
+
+" Buffer previous
+nnoremap <silent>bp :bprev<CR>
+
+" Buffer next
+nnoremap <silent>bn :bnext<CR>
+
+" }}}
+
+
+" Tabs {{{
+
+" Tab previous
+nnoremap <silent>tp :tabprev<CR>
+
+" Tab next
+nnoremap <silent>tn :tabnext<CR>
+
+" Tab open
+nnoremap to :tabedit<Space>
+
+" Tab quit
+nnoremap <silent>tq :tabclose<CR>
+
+" To start using new mappings
+nnoremap gt <nop>
+nnoremap gT <nop>
+
+" }}}
+
+
+" Splits {{{
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" }}}
 
 
 " <leader> [a-zA-Z] {{{
 
-" Write
-nnoremap <silent><leader>w :w<CR>
-
-" Write and quit.
-nnoremap <silent><leader>q :wq<CR>
-
 " Toggle Goyo
 nnoremap <silent><leader>g :Goyo<CR>
 
+" Open terminal
+nnoremap <silent><leader>t :terminal<CR>
+
 " Toggle NERDTree
 nnoremap <silent><leader>n :NERDTreeToggle<CR>
-
-
-" Splits Navigation
-nnoremap <silent><leader>h <C-w>h
-nnoremap <silent><leader>j <C-w>j
-nnoremap <silent><leader>k <C-w>k
-nnoremap <silent><leader>l <C-w>l
 
 " Insert new-line
 nnoremap <silent><leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
@@ -43,6 +75,7 @@ nnoremap <silent><leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1)
 
 
 " <leader> [a-zA-Z]{2} {{{
+
 
 " Edit Vim
 nnoremap <silent><leader>ev :split $MYVIMRC<CR>

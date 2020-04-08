@@ -33,7 +33,7 @@ export BROWSER='google-chrome'
 export PATH="${PATH}":"${HOME}"/.local/bin  # <-- Add '~/.local/bin'
 export CPATH=''                             # <-- C headers
 export LD_LIBRARY_PATH=''                   # <-- C libraries
-export PYTHONPATH="${HOME}"/.lib            # <-- Python modules
+export PYTHONPATH=''                        # <-- Python modules
 
 # Options/Flags
 # ------------------------------------------------------------------------------

@@ -1,10 +1,9 @@
-"
+
 " Filename:     plugin.vim
 " Description:  Plugins
-"
+
 " Created:      29.03.2020
 " Author:       Artyom Danilov
-"
 
 
 " Install {{{
@@ -19,13 +18,16 @@ if !filereadable($HOME . '/.config/nvim/autoload/plug.vim')
 
 endif
 
+let g:plugged_home = $HOME . '/.config/nvim/plugged/'
+
 " Missing plugins.
 for plugin in ['vim-surround', 'vim-commentary', 'vim-eunuch', 'goyo.vim',
 \              'quick-scope', 'vim-easymotion', 'vim-move', 'nerdtree',
-\              'vim-airline', 'molokai', 'vim-atom-dark', 'palenight.vim', 
-\              'vim-preview']
+\              'vim-airline', 'molokai', 'vim-atom-dark', 'palenight.vim',
+\              'vim-preview', 'auto-pairs', 'deoplete.nvim', 'deoplete-jedi',
+\              'indentLine']
 
-    if !isdirectory($HOME . '/.config/nvim/plugged/' . plugin)
+    if !isdirectory(g:plugged_home . plugin)
         autocmd VimEnter * PlugInstall | source $MYVIMRC
         break
     endif
@@ -37,7 +39,36 @@ endfor
 
 " Source {{{
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin(g:plugged_home)
+
+" Python code folding
+Plug 'tmhedberg/SimpylFold'
+let g:SimpylFold_docstring_preview = 1  " Preview docstrings in folds
+let g:SimpylFold_fold_import = 0        " Do not fold imports
+
+" Syntax Checking
+Plug 'vim-syntastic/syntastic'
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+" Autocompletion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+
+" Python autocompletion
+Plug 'deoplete-plugins/deoplete-jedi'
+
+" Indentation levels
+Plug 'Yggdroot/indentLine'
+let g:indentLine_char =  '¦'
+let g:indentLine_leadingSpacChar='·'
+let g:indentLine_leadingSpaceEnabled='1'
+
+" Automatic quote and bracket completion
+Plug 'jiangmiao/auto-pairs'
+
+" Filetype icons
+Plug 'ryanoasis/vim-devicons'
 
 " Preview markup
 Plug 'greyblake/vim-preview'
@@ -56,10 +87,6 @@ Plug 'unblevable/quick-scope'
 
 " Vertical navigarion.
 Plug 'easymotion/vim-easymotion'
-
-" Selected text movement.
-Plug 'matze/vim-move'
-let g:move_key_modifier = 'C'
 
 " Common Unix Commands.
 Plug 'tpope/vim-eunuch'
