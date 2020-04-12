@@ -3,83 +3,95 @@
 # File:      shell/alias
 # Purpose:   Define shortcuts for commands and add default arguments.
 # Notes:     This file is sourced by .zshrc and .bashrc accordingly.
+
 # Created:   30.12.2019
-# Modified:  30.03.2020
 # Author:    Artyom Danilov
 # Caution:   Order is important, some aliases can and will break if you change it
 
 
-alias bp='sudo brightnessctl set 100+'
-alias bm='sudo brightnessctl set 100-'
-
 # Allow running sudo with aliases.
 alias sudo='sudo '
 
-# Colorize.
+# cd {{{
 alias \
-    ls='ls --color=never'      \
-    dir='dir --color=auto'     \
-    diff='diff --color=auto'   \
-    vdir='vdir --color=auto'   \
+    ..='cd ..' \
+    ...='cd ../../' \
+    ....=' cd ../../../' \
+    .....='cd ../../../../' \
+    cd..='cd ..' \
+    cd-='cd -'   \
+    cd~='cd ~'   \
+    CD='cd'
+
+# Type '-' to go to previous dir.
+alias -- -='cd -'
+#}}}
+
+# cat {{{
+alias \
+    nc='cat -n' \
+    cc='highlight --out-format=ansi'
+#}}}
+
+# diff {{{
+alias \
+    diff='diff -y --suppress-common-lines' \
+    diff='diff --color=auto'
+#}}}
+
+# dir {{{
+alias \
+    dir='dir --color=auto'  \
+    vdir='vdir --color=auto'
+#}}}
+
+# exa {{{
+alias \
+    ex='exa --icons --group-directories-first --git-ignore' \
+    e='ex -1'  \
+    ea='ex -a' \
+    el='ex -l' \
+    er='ex -R' \
+    et='ex -T'
+#}}}
+
+# grep{{{
+alias \
     grep='grep --color=auto'   \
     fgrep='fgrep --color=auto' \
     egrep='egrep --color=auto'
+#}}}
 
-
-# Default options.
+# ls {{{
 alias \
-    cp='cp -iv'                            \
-    du='du -h'                             \
-    ls='ls -vhF --group-directories-first' \
-    mv='mv -iv'                            \
-    rm='rm -vI --preserve-root '           \
-    mkdir='mkdir -pv'                      \
-    rmdir='rmdir -pv'                      \
-    diff='diff -y --suppress-common-lines' \
-    tree='tree -I .git'
-
-
-# Typing mistakes.
-alias \
-    cd..='cd ..' \
-    cd-=' cd -'  \
-    cd~=' cd ~'  \
-    CD='  cd'    \
-    LS=ls
-
-
-# Options (ls).
-alias \
+    ls='ls -vhF --color=never --group-directories-first' \
     l='  ls -1'    \
     la=' ls -A'    \
     lh=' ls -d .*' \
     ll=' ls -l'    \
     lr=' ls -r'    \
-    lal='ls -Al'
+    lal='ls -Al'   \
+    LS=ls
+#}}}
 
-
-# trees.
+# tree {{{
 alias \
-    ta='tree -a' \
+    tree='tree -I .git' \
+    ta='tree -a'        \
     td='tree -d'
+#}}}
 
+# Default options.
+alias \
+    cp='cp -iv'                            \
+    du='du -h'                             \
+    mv='mv -iv'                            \
+    rm='rm -vI --preserve-root '           \
+    mkdir='mkdir -pv'                      \
+    rmdir='rmdir -pv'                      \
 
 # Options (rm).
 alias rr='rm -rfI'
-
-
-# cats.
-alias \
-    nc='cat -n' \
-    cc='highlight --out-format=ansi'
-
-
-# Right version.
-alias \
-    pip='pip3'       \
-    pylint='pylint3' \
-    python='python3'
-
 
 # Shortcuts (one-letter).
 alias \
@@ -92,34 +104,23 @@ alias \
     t='tree'    \
     v='vim'
 
-alias -- -='cd -'  # Type '-' to go to previous dir.
-
-
 # Shortcuts (two-letter).
 alias \
     gh='history | grep' \
     py='python3'        \
     sc='shellcheck'     \
     tc='touch'          \
-    vi='vim'            \
-    ..='cd ..'
-
+    vi='vim'
 
 # Shortcuts (three-letter).
 alias \
     clr='clear'   \
     mkd='mkdir'   \
     rmd='rmdir'   \
-    shu='shunit2' \
-    ...='cd ../../'
-
+    shu='shunit2'
 
 # Shortcuts (other).
-alias \
-    ....=' cd ../../../'    \
-    .....='cd ../../../../' \
-    chrome='google-chrome'
-
+alias chrome='google-chrome'
 
 # Sudo.
 alias \
@@ -132,8 +133,7 @@ alias \
     reboot='sudo reboot' \
     shutdown='sudo shutdown'
 
-
-# Windows cmd.
+# Windows cmd {{{
 alias \
     edit='vim'  \
     del='rm'    \
@@ -141,21 +141,30 @@ alias \
     copy='cp'   \
     move='mv'   \
     rename='mv'
+#}}}
 
-
-# Curls.
+# Curls {{{
 alias \
     corona='curl https://corona-stats.online'            \
     coronaru='curl "https://corona-stats.online/Russia"' \
     starwars='telnet towel.blinkenlights.nl'             \
     weather='curl http://wttr.in/'
 
+#}}}
 
-# Change config/history files locations.
+# Version conflicts {{{
+alias \
+    pip='pip3'       \
+    pylint='pylint3' \
+    python='python3'
+
+#}}}
+
+# Config/History files locations {{{
 alias \
     wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts' \
     tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
-
+#}}}
 
 # Print time (e.g. 13:29:43)
 alias now='date +\"%T\"'
