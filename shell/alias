@@ -17,14 +17,19 @@ alias \
     ..='cd ..' \
     ...='cd ../../' \
     ....=' cd ../../../' \
-    .....='cd ../../../../' \
+    .....='cd ../../../../'
+# Typing mistakes.
+alias \
     cd..='cd ..' \
-    cd-='cd -'   \
     cd~='cd ~'   \
+    cd-='cd -'   \
     CD='cd'
-
 # Type '-' to go to previous dir.
 alias -- -='cd -'
+#}}}
+
+# cp {{{
+alias cp='cp -iv'
 #}}}
 
 # cat {{{
@@ -43,6 +48,10 @@ alias \
 alias \
     dir='dir --color=auto'  \
     vdir='vdir --color=auto'
+#}}}
+
+# du {{{
+alias du='du -h'
 #}}}
 
 # exa {{{
@@ -74,26 +83,37 @@ alias \
     LS=ls
 #}}}
 
+# mkdir {{{
+alias \
+    mkdir='mkdir -pv' \
+    mkd='mkdir'
+#}}}
+
+# mv {{{
+alias mv='mv -iv'
+#}}}
+
+# rmdir {{{
+alias \
+    rmdir='rmdir -pv' \
+    rmd='rmdir'
+#}}}
+
+# rm {{{
+alias \
+    rm='rm -vI --preserve-root ' \
+    rr='rm -rfI'
+#}}}
+
 # tree {{{
 alias \
     tree='tree -I .git' \
     ta='tree -a'        \
-    td='tree -d'
+    td='tree -d'        \
+    t='tree'
 #}}}
 
-# Default options.
-alias \
-    cp='cp -iv'                            \
-    du='du -h'                             \
-    mv='mv -iv'                            \
-    rm='rm -vI --preserve-root '           \
-    mkdir='mkdir -pv'                      \
-    rmdir='rmdir -pv'                      \
-
-# Options (rm).
-alias rr='rm -rfI'
-
-# Shortcuts (one-letter).
+# Shortcuts [a-z] {{{
 alias \
     f='file'    \
     g='git'     \
@@ -101,28 +121,28 @@ alias \
     n='ls -A | wc -l' \
     p='pwd'     \
     s='source'  \
-    t='tree'    \
     v='vim'
+#}}}
 
-# Shortcuts (two-letter).
+# Shortcuts [a-z]{2} {{{
 alias \
     gh='history | grep' \
     py='python3'        \
     sc='shellcheck'     \
     tc='touch'          \
     vi='vim'
+#}}}
 
-# Shortcuts (three-letter).
+# Shortcuts [a-z]{3} {{{
 alias \
     clr='clear'   \
-    mkd='mkdir'   \
-    rmd='rmdir'   \
     shu='shunit2'
+#}}}
 
 # Shortcuts (other).
 alias chrome='google-chrome'
 
-# Sudo.
+# Sudo priveleges {{{
 alias \
     scp='sudo cp'        \
     smv='sudo mv'        \
@@ -132,6 +152,7 @@ alias \
     srmdir='sudo rmdir'  \
     reboot='sudo reboot' \
     shutdown='sudo shutdown'
+#}}}
 
 # Windows cmd {{{
 alias \
@@ -149,7 +170,6 @@ alias \
     coronaru='curl "https://corona-stats.online/Russia"' \
     starwars='telnet towel.blinkenlights.nl'             \
     weather='curl http://wttr.in/'
-
 #}}}
 
 # Version conflicts {{{
@@ -157,7 +177,6 @@ alias \
     pip='pip3'       \
     pylint='pylint3' \
     python='python3'
-
 #}}}
 
 # Config/History files locations {{{
