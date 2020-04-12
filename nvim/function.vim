@@ -1,27 +1,22 @@
-"
+
 " Filename:     function.vim
 " Description:  Custom commands
-"
+
 " Created:      28.02.2020
 " Author:       Artyom Danilov
-"
-
 
 function! ToggleColorColumn()
     " ColorColumn on/off.
-
     if &cc == ''
         " Highlight column after 'textwidth'
         set cc=+1
     else
         set cc=
     endif
-
 endfunction
 
 function! ToggleColorScheme()
     " Switch colorscheme.
-
     if g:colors_name == 'molokai'
         color atom-dark-256
     elseif g:colors_name == 'atom-dark-256'
@@ -29,23 +24,17 @@ function! ToggleColorScheme()
     else
         color molokai
     endif
-
 endfunction
-
 
 function! TrimWhitespace()
     " Remove traling whitespace in the whole file.
-
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
-
 endfun
-
 
 function! GetCommentToken()
     " Return the comment token used in a prog language.
-
     let l:hash = ['php', 'ruby', 'sh', 'make', 'python', 'perl']
     let l:slashes = ['javascript', 'c', 'cpp', 'java', 'objc', 'scala', 'go']
 
@@ -58,12 +47,9 @@ function! GetCommentToken()
     else
         return '#'
     endif
-
 endfunction
 
-
 function! VisualComment()
-
     let l:token  = GetCommentToken() " (e.g. #, //)
     let l:char = '-'
     let l:format = token . ' %s'
@@ -85,5 +71,4 @@ function! VisualComment()
     put = printf(format, repeat(char, &textwidth - len(token) * 2))
     put = printf(format, repeat(' ', left) . text)
     put = printf(format, repeat(char, &textwidth - len(token) * 2))
-
 endfunction

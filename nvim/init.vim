@@ -1,60 +1,21 @@
 
-" Filename:     nvim/init.vim
-" Description:  Settings
+" Filename:     init.vim
+" Description:  nvim settings
 
 " Created:      30.12.2019
 " Author:       Artyom Danilov
 
 
-" Pluggins
-source $DOTFILES_HOME/nvim/plugin.vim
+source $DOTFILES_HOME/nvim/plugin.vim  " Pluggins
 
 let g:mapleader = ';'  " Leader
 
-" Indentation {{{
-set foldmethod=marker  " Fold on markers.
-set expandtab          " Insert spaces instead of tabs.
-set softtabstop=4      " Number of spaces inserted for tab.
-set shiftwidth=4       " Number of columns to shift with (<< and >>).
-set smartindent        " Indent on braces and previous indentation level.
-set wrap               " Long lines continue to display on the next line.
-set textwidth=80       " Maximum width of the text that is being inserted.
-set formatoptions+=t   " Wrap text using &textwidth
-
-" Disable auto-commenting.
-au BufEnter * set fo-=c fo-=r fo-=o
-" Indentation for different file types.
-au BufNewFile,BufRead *.c
-    \    setlocal shiftwidth=8 softtabstop=8  " c
-au BufNewFile,BufRead *.html,*.css
-    \    setlocal shiftwidth=2 softtabstop=2  " html, css
-au BufNewFile,BufRead *.py,*.cpp,*.asm,*.sh,
-    \    setlocal shiftwidth=4 softtabstop=4  " python, c++, assembly
-" }}}
-
-" Highlight {{{
-syntax enable        " Switch on syntax highlighting.
-set background=dark  " Adjust colors for dark mode
-set number           " Show line numbers.
-set hlsearch         " Highlight search.
-
-" Colorscheme.
-try
-    colo molokai
-catch /^Vim\%((\a\+)\)\=:E185/
-    colo koehler
-endtry
-
-" Show these characters instead of tabs and trailing space.
-set list listchars=tab:>-,trail:-
-" Disable highlighting matching parentheses.
-autocmd VimEnter * :NoMatchParen
-" Highlight trailing whitespaces.
-highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+" abbreviate + {{{
+iabbr #i #include
+iabbr #d #define
 "}}}
 
-" Backup {{{
+" backup + {{{
 set backup
 set backupdir=~/.config/nvim/backup
 set noswapfile
@@ -64,30 +25,85 @@ if !isdirectory(&backupdir)
 endif
 "}}}
 
-set splitbelow splitright  " Splits
+" color-scheme + {{{
+set background=dark  " Adjust colors for dark mode
+try
+    colo palenight
+catch /^Vim\%((\a\+)\)\=:E185/
+    colo koehler
+endtry
+"}}}
 
-" Other {{{
+" filetype + {{{
+filetype on
+filetype plugin on
+filetype indent on
+"}}}
 
-set nocompatible  " Enable all vim features.
+" folding + {{{
+set foldmethod=marker  " Fold on markers.
+"}}}
 
-set encoding=UTF-8
+" indentation + {{{
+set expandtab          " Insert spaces instead of tabs.
+set softtabstop=4      " Number of spaces inserted for tab.
+set shiftwidth=4       " Number of columns to shift with (<< and >>).
+set smartindent        " Indent on braces and previous indentation level.
 
-set mouse=a       " Enable mouse for scrolling and resizing.
-
-set history=1000  " Increase the undo limit.
-
-set noshowmode    " Do not display mode in status line.
-
-set ignorecase    " Case insensitive search
-
-set laststatus=2
-
-
+" Indentation for different file types.
+au BufNewFile,BufRead *.c
+    \    setlocal shiftwidth=8 softtabstop=8  " c
+au BufNewFile,BufRead *.html
+    \    setlocal shiftwidth=2 softtabstop=2  " html, css
+au BufNewFile,BufRead *.py,*.cpp,*.asm,*.sh,
+    \    setlocal shiftwidth=4 softtabstop=4  " python, c++, assembly
 " }}}
 
-" Abreviations
-iabbr #i #include
-iabbr #d #define
+" mouse + {{{
+set mouse=a  " Enable mouse for scrolling and resizing.
+"}}}
+
+" text-width + {{{
+set wrap               " Long lines continue to display on the next line.
+set textwidth=80       " Maximum width of the text that is being inserted.
+set formatoptions+=t   " Wrap text using &textwidth
+set colorcolumn=+0     " Display a color-column to indicate textwidth
+"}}}
+
+" whitespace + {{{
+set list listchars=tab:>-,trail:- " Display tabs and trailing whitespace
+"}}}
+
+" search + {{{
+" set incsearch   " Highlight search.
+set hlsearch    " Highlight all search matches.
+set ignorecase  " Case insensitive search
+"}}}
+
+" status-line + {{{
+set ruler         " Show the line and column number of cursor.
+set showcmd       " Show last typed command
+set noshowmode    " Do not display mode in status line.
+set laststatus=2  " ALways display a status line
+"}}}
+
+" splits + {{{
+set splitbelow splitright  " Splits
+"}}}
+
+" syntax + {{{
+syntax enable   " Syntax highlighting.
+"}}}
+
+" other {{{
+set encoding=UTF-8
+set history=1000  " Increase the undo limit.
+set number      " Line numbers.
+" Disable highlighting matching parentheses.
+au VimEnter * :NoMatchParen
+" Disable auto-commenting.
+au BufEnter * set fo-=c fo-=r fo-=o
+"}}}
 
 " Custom Functions (must be sourced before map.vim).
 source $DOTFILES_HOME/nvim/function.vim

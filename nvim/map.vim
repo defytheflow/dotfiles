@@ -9,77 +9,62 @@
 " Escape
 inoremap jk <esc>
 
-" Folding
+" Fold
 nnoremap <space> za
 
-nnoremap mm M
-
-" Buffers {{{
-
-" Buffer previous
-nnoremap <silent>bp :bprev<CR>
-" Buffer next
-nnoremap <silent>bn :bnext<CR>
-
+" Insert new-line + {{{
+nnoremap <silent><leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+nnoremap <silent><leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 "}}}
 
-" Tabs {{{
+" nerd-tree + {{{
+" nnoremap <silent><leader>n :NERDTreeToggle<CR>
+nnoremap <silent><leader>t :NERDTreeTabsToggle<CR>
+"}}}
 
-" Tab previous
+" goyo + {{{
+nnoremap <silent><leader>g :Goyo<CR>
+"}}}
+
+" Buffer[Previous|Next] + {{{
+nnoremap <silent>bp :bprev<CR>
+nnoremap <silent>bn :bnext<CR>
+"}}}
+
+" Tab[Previous|Next|Open|Quit] + {{{
 nnoremap <silent>tp :tabprev<CR>
-" Tab next
 nnoremap <silent>tn :tabnext<CR>
-" Tab open
-nnoremap to :tabedit<Space>
-" Tab quit
+nnoremap         to :tabedit<Space>
 nnoremap <silent>tq :tabclose<CR>
+
 " Disable default tab navifation
 nnoremap gt <nop>
 nnoremap gT <nop>
-
 "}}}
 
-" <leader> [a-zA-Z] {{{
-
-" Toggle Goyo
-nnoremap <silent><leader>g :Goyo<CR>
-" Open terminal
-nnoremap <silent><leader>t :terminal<CR>
-" Toggle NERDTree
-nnoremap <silent><leader>n :NERDTreeToggle<CR>
-" Insert new-line
-nnoremap <silent><leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
-nnoremap <silent><leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
-
-"}}}
-
-" <leader> [a-zA-Z]{2} {{{
-
-" Edit Vim
-nnoremap <silent><leader>ev :split $MYVIMRC<CR>
-" Source Vim
-nnoremap <silent><leader>sv :source $MYVIMRC<CR>
-" DeTab
+" Remove[Tab|Whitespace] + {{{
 nnoremap <silent><leader>rt :retab<CR>
-" Trim Whitespace
-nnoremap <silent><leader>tw :call TrimWhitespace()<CR>
-" Visual Comment
-nnoremap <silent><leader>vc :call VisualComment()<CR>
-" Toggle Color Sheme
-nnoremap <silent><leader>cs :call ToggleColorScheme()<CR>
-" Toggle Color column
-nnoremap <silent><leader>cc :call ToggleColorColumn()<CR>
-
+nnoremap <silent><leader>rw :call TrimWhitespace()<CR>
 "}}}
 
-" Splits {{{
+" [Edit|Source]vim + {{{
+nnoremap <silent><leader>ev :split $MYVIMRC<CR>
+nnoremap <silent><leader>sv :source $MYVIMRC<CR>
+"}}}
+
+" Color[Scheme|Column] + {{{
+nnoremap <silent><leader>cs :call ToggleColorScheme()<CR>
+nnoremap <silent><leader>cc :call ToggleColorColumn()<CR>
+" }}}
+
+" Splits + {{{
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 "}}}
 
-" Arrow keys {{{
+" Arrow keys + {{{
 inoremap <Left>  <nop>
 inoremap <Right> <nop>
 inoremap <Up>    <nop>
@@ -95,3 +80,6 @@ vnoremap <Right> <nop>
 vnoremap <Up>    <nop>
 vnoremap <Down>  <nop>
 "}}}
+
+" Visual Comment
+nnoremap <silent><leader>vc :call VisualComment()<CR>
