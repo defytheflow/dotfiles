@@ -17,7 +17,7 @@ endif
 let g:plugged_home = $HOME . '/.config/nvim/plugged/'
 for plugin in ['vim-surround', 'vim-commentary', 'goyo.vim', 'quick-scope',
 \              'indentLine', 'vim-gitgutter', 'vim-better-whitespace',
-\              'auto-pairs', 'vim-closetag'
+\              'auto-pairs', 'vim-closetag',
 \              'nerdtree', 'vim-nerdtree-tabs', 'vim-devicons', 'ctrlp.vim',
 \              'vim-airline', 'molokai', 'vim-atom-dark', 'palenight.vim']
     if !isdirectory(g:plugged_home . plugin)
@@ -35,8 +35,14 @@ Plug 'junegunn/goyo.vim'       " Center text.
 Plug 'unblevable/quick-scope'  " Horizontal navigation.
 Plug 'ctrlpvim/ctrlp.vim'      " Fuzzy find files.
 Plug 'airblade/vim-gitgutter'  " Show git difference in the number column.
+Plug 'tpope/vim-fugitive'      " Git commands.
 Plug 'jiangmiao/auto-pairs'    " Auto-completion of quotes and brackets.
 Plug 'alvan/vim-closetag'      " Auto-completion of html tags.
+
+" deoplete {{{
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+"}}}
 
 " better-whitespace {{{
 Plug 'ntpeters/vim-better-whitespace'

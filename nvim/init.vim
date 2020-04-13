@@ -10,6 +10,8 @@ source $DOTFILES_HOME/nvim/plugin.vim  " Pluggins
 
 let g:mapleader = ';'  " Leader
 
+let g:python3_host_prog='/usr/bin/python3'
+
 " abbreviate + {{{
 iabbr #i #include
 iabbr #d #define
@@ -93,6 +95,7 @@ set splitbelow splitright  " Splits
 
 " syntax + {{{
 syntax enable   " Syntax highlighting.
+au BufNewFile,BufRead *.html set filetype=htmldjango
 "}}}
 
 " other {{{

@@ -26,9 +26,10 @@ nnoremap <silent><leader>t :NERDTreeTabsToggle<CR>
 nnoremap <silent><leader>g :Goyo<CR>
 "}}}
 
-" Buffer[Previous|Next] + {{{
+" Buffer[Previous|Next|Delete] + {{{
 nnoremap <silent>bp :bprev<CR>
 nnoremap <silent>bn :bnext<CR>
+nnoremap <silent>bd :bdelete<CR>
 "}}}
 
 " Tab[Previous|Next|Open|Quit] + {{{

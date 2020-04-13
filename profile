@@ -75,3 +75,11 @@ if [ -n "${WSL_DISTRO_NAME}" ]; then
     export WIN_PROG_FILES="/mnt/c/Program Files"
     export WIN_PROG_FILES_86="/mnt/c/Program Files (x86)"
 fi
+
+# virtualenvwrapper
+# ------------------------------------------------------------------------------
+export WORKON_HOME="${HOME}"/.envs  # virtualenvwrapper
+export PROJECT_HOME="${HOME}"/repos # development project directories
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV="${HOME}"/.local/bin/virtualenv
+source "${HOME}"/.local/bin/virtualenvwrapper.sh

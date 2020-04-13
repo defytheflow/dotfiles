@@ -56,7 +56,7 @@ alias du='du -h'
 
 # exa {{{
 alias \
-    ex='exa --icons --group-directories-first --git-ignore' \
+    ex='exa --icons --group-directories-first --git-ignore -I __pycache__' \
     e='ex -1'  \
     ea='ex -a' \
     el='ex -l' \
