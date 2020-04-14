@@ -29,15 +29,16 @@ endfor
 
 call plug#begin(g:plugged_home)
 
-Plug 'tpope/vim-surround'      " Editing quotes, parentheses, tags.
-Plug 'tpope/vim-commentary'    " Commenting.
 Plug 'junegunn/goyo.vim'       " Center text.
-Plug 'unblevable/quick-scope'  " Horizontal navigation.
 Plug 'ctrlpvim/ctrlp.vim'      " Fuzzy find files.
 Plug 'airblade/vim-gitgutter'  " Show git difference in the number column.
 Plug 'tpope/vim-fugitive'      " Git commands.
 Plug 'jiangmiao/auto-pairs'    " Auto-completion of quotes and brackets.
 Plug 'alvan/vim-closetag'      " Auto-completion of html tags.
+Plug 'tpope/vim-surround'      " Editing quotes, parentheses, tags.
+Plug 'tpope/vim-commentary'    " Commenting.
+Plug 'unblevable/quick-scope'  " Horizontal navigation.
+Plug 'inkarkat/vim-ReplaceWithRegister' " Replacing text.
 
 " deoplete {{{
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

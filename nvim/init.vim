@@ -9,10 +9,9 @@
 source $DOTFILES_HOME/nvim/plugin.vim  " Pluggins
 
 let g:mapleader = ';'  " Leader
+let g:python3_host_prog='/usr/bin/python3'  " Python3 interpreter
 
-let g:python3_host_prog='/usr/bin/python3'
-
-" abbreviate + {{{
+" abbreviations + {{{
 iabbr #i #include
 iabbr #d #define
 "}}}
@@ -20,7 +19,7 @@ iabbr #d #define
 " backup + {{{
 set backup
 set backupdir=~/.config/nvim/backup
-set noswapfile
+set noswapfile         " Don't create swap files
 
 if !isdirectory(&backupdir)
     call mkdir(&backupdir, 'p', 0700)
@@ -28,22 +27,12 @@ endif
 "}}}
 
 " color-scheme + {{{
-set background=dark  " Adjust colors for dark mode
+set background=dark    " Adjust colors for dark mode
 try
     colo palenight
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry
-"}}}
-
-" filetype + {{{
-filetype on
-filetype plugin on
-filetype indent on
-"}}}
-
-" folding + {{{
-set foldmethod=marker  " Fold on markers.
 "}}}
 
 " indentation + {{{
@@ -52,56 +41,60 @@ set softtabstop=4      " Number of spaces inserted for tab.
 set shiftwidth=4       " Number of columns to shift with (<< and >>).
 set smartindent        " Indent on braces and previous indentation level.
 
+filetype plugin indent on
+
 " Indentation for different file types.
 au BufNewFile,BufRead *.c
     \    setlocal shiftwidth=8 softtabstop=8  " c
-au BufNewFile,BufRead *.html
+au BufNewFile,BufRead *.html,*.css
     \    setlocal shiftwidth=2 softtabstop=2  " html, css
 au BufNewFile,BufRead *.py,*.cpp,*.asm,*.sh,
     \    setlocal shiftwidth=4 softtabstop=4  " python, c++, assembly
 " }}}
 
-" mouse + {{{
-set mouse=a  " Enable mouse for scrolling and resizing.
-"}}}
-
 " text-width + {{{
 set wrap               " Long lines continue to display on the next line.
 set textwidth=80       " Maximum width of the text that is being inserted.
-set formatoptions+=t   " Wrap text using &textwidth
-set colorcolumn=+0     " Display a color-column to indicate textwidth
+set formatoptions+=t   " Wrap text using &textwidth.
+set colorcolumn=+0     " Display a color-column to indicate textwidth.
 "}}}
 
 " whitespace + {{{
-set list listchars=tab:>-,trail:- " Display tabs and trailing whitespace
+set list listchars=tab:>-,trail:- " Display tabs and trailing whitespace.
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
 "}}}
 
 " search + {{{
-" set incsearch   " Highlight search.
-set hlsearch    " Highlight all search matches.
-set ignorecase  " Case insensitive search
+" set incsearch        " Highlight search..
+set hlsearch           " Highlight all search matches.
+set ignorecase         " Case insensitive search.
 "}}}
 
 " status-line + {{{
-set ruler         " Show the line and column number of cursor.
-set showcmd       " Show last typed command
-set noshowmode    " Do not display mode in status line.
-set laststatus=2  " ALways display a status line
-"}}}
-
-" splits + {{{
-set splitbelow splitright  " Splits
+set ruler              " Show the line and column number of cursor.
+set showcmd            " Show last typed command.
+set noshowmode         " Do not display mode in status line.
+set laststatus=2       " ALways display a status line.
 "}}}
 
 " syntax + {{{
-syntax enable   " Syntax highlighting.
+syntax enable          " Highlight syntax.
+
+" Highligh django syntax in html files.
 au BufNewFile,BufRead *.html set filetype=htmldjango
 "}}}
 
 " other {{{
-set encoding=UTF-8
-set history=1000  " Increase the undo limit.
-set number      " Line numbers.
+set clipboard+=unnamedplus      " Use system clipboard.
+set history=1000                " History size.
+set number                      " Line numbers.
+set mouse=a                     " Enable mouse in all modes.
+set splitbelow splitright       " Change splits pos.
+set foldmethod=marker           " Fold on markers.
+set wildmode=longest,list,full  " Autocompletion.
+
 " Disable highlighting matching parentheses.
 au VimEnter * :NoMatchParen
 " Disable auto-commenting.
