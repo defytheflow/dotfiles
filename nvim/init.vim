@@ -29,10 +29,12 @@ endif
 " color-scheme + {{{
 set background=dark    " Adjust colors for dark mode
 try
-    colo palenight
+    colo alduin
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry
+
+" autocmd FileType java colo alduin
 "}}}
 
 " indentation + {{{

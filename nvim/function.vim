@@ -6,7 +6,7 @@
 " Author:       Artyom Danilov
 
 function! ToggleColorColumn()
-    " ColorColumn on/off.
+    " ColorColumn on/off. "
     if &cc == ''
         " Highlight column after 'textwidth'
         set cc=+1
@@ -16,25 +16,32 @@ function! ToggleColorColumn()
 endfunction
 
 function! ToggleColorScheme()
-    " Switch colorscheme.
-    if g:colors_name == 'molokai'
-        color atom-dark-256
-    elseif g:colors_name == 'atom-dark-256'
-        color palenight
-    else
-        color molokai
-    endif
+    " Switch colorscheme. "
+    let l:colors = ['molokai', 'atom-dark-256', 'palenight', 'alduin']
+
+    let l:i = 0
+    while i < len(colors)
+        if colors[i] == g:colors_name
+            if i < len(colors) - 1
+                execute ':colo ' . l:colors[i+1]
+            else
+                execute ':colo ' . l:colors[0]
+            endif
+            break
+        endif
+        let l:i += 1
+    endwhile
 endfunction
 
 function! TrimWhitespace()
-    " Remove traling whitespace in the whole file.
+    " Remove traling whitespace in the whole file. "
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
-endfun
+endfunction
 
 function! GetCommentToken()
-    " Return the comment token used in a prog language.
+    " Return the comment token used in a prog language. "
     let l:hash = ['php', 'ruby', 'sh', 'make', 'python', 'perl']
     let l:slashes = ['javascript', 'c', 'cpp', 'java', 'objc', 'scala', 'go']
 

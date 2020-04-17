@@ -40,6 +40,25 @@ Plug 'tpope/vim-commentary'    " Commenting.
 Plug 'unblevable/quick-scope'  " Horizontal navigation.
 Plug 'inkarkat/vim-ReplaceWithRegister' " Replacing text.
 
+" syntastic {{{
+Plug 'vim-syntastic/syntastic'
+
+" Load errors into the location list to jump between them.
+let g:syntastic_always_populate_loc_list = 1
+" Check for errors when file is opened.
+let g:syntastic_check_on_open = 0
+" Check for errors when file is saved.
+let g:syntastic_check_on_wq = 1
+" Indicate a line with error.
+let g:syntastic_error_symbol = "✗"
+"}}}
+
+" java-complete {{{
+Plug 'artur-shaik/vim-javacomplete2' " Java autocomletion
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+let g:JavaComplete_ClosingBrace = 0
+"}}}
+
 " deoplete {{{
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
@@ -68,11 +87,11 @@ let NERDTreeMinimalUI  = 1
 " Automatically delete the buffer of the file you just deleted.
 let NERDTreeAutoDeleteBuffer = 1
 " Don't show these entries.
-let NERDTreeIgnore=['__pycache__']
+let NERDTreeIgnore=['__pycache__', '\.o$', '\.class$']
 
 " Tab settings for nerdtree.
 Plug 'jistr/vim-nerdtree-tabs'
-let g:nerdtree_tabs_open_on_console_startup = 1
+let g:nerdtree_tabs_open_on_console_startup = 2
 
 " Icon settings for nerdtree.
 Plug 'ryanoasis/vim-devicons'
@@ -93,6 +112,9 @@ let g:airline#extensions#hunks#non_zero_only = 1
 Plug 'tomasr/molokai'
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'AlessandroYorba/Alduin'
+let g:alduin_Shout_Become_Ethereal = 1
+let g:alduin_Shout_Fire_Breath = 1
 "}}}
 
 call plug#end()

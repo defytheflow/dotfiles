@@ -58,7 +58,7 @@ export LESSHISTFILE="${XDG_CACHE_HOME}"/less/history  # <-- less
 export ICEAUTHORITY="${XDG_CACHE_HOME}"/ICEauthority  # <-- (?)
 export TASKDATA="${XDG_DATA_HOME}"/task               # <-- task
 export ZPLUG_CACHE_DIR="${XDG_CACHE_HOME}"/zplug      # <-- zplug
-export PYLINTHOME="${XSD_CACHE_HOME}"/pylint          # <-- pylint
+export PYLINTHOME="${XDG_DATA_HOME}"/pylint           # <-- pylint
 
 # User.
 # ------------------------------------------------------------------------------
