@@ -13,22 +13,23 @@ inoremap jk <esc>
 nnoremap <space> za
 
 " Toggle search higlighting
-noremap <leader>h :set hlsearch! hlsearch?<CR>
-nnoremap <leader>e :SyntasticCheck<CR>
+nnoremap <leader>h :set hlsearch! hlsearch?<CR>
+
+" Remove tabs
+nnoremap <silent><leader>rt :retab<CR>
+
+" Visual Comment
+nnoremap <silent><leader>vc :call VisualComment()<CR>
+
+" Plugin Toggles {{{
+nnoremap <silent><leader>e :SyntasticCheck<CR>
+nnoremap <silent><leader>t :NERDTreeTabsToggle<CR>
+nnoremap <silent><leader>g :Goyo<CR>
+"}}}
 
 " Insert new-line + {{{
 nnoremap <silent><leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent><leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
-"}}}
-
-" nerd-tree + {{{
-" nnoremap <silent><leader>n :NERDTreeToggle<CR>
-" nnoremap <silent><leader>r :NERDTreeFocus<cr>R<c-w><c-p>
-nnoremap <silent><leader>t :NERDTreeTabsToggle<CR>
-"}}}
-
-" goyo + {{{
-nnoremap <silent><leader>g :Goyo<CR>
 "}}}
 
 " Buffer[Previous|Next|Delete] + {{{
@@ -42,15 +43,6 @@ nnoremap <silent>tp :tabprev<CR>
 nnoremap <silent>tn :tabnext<CR>
 nnoremap         to :tabedit<Space>
 nnoremap <silent>tq :tabclose<CR>
-
-" Disable default tab navifation
-nnoremap gt <nop>
-nnoremap gT <nop>
-"}}}
-
-" Remove[Tab|Whitespace] + {{{
-nnoremap <silent><leader>rt :retab<CR>
-nnoremap <silent><leader>rw :call TrimWhitespace()<CR>
 "}}}
 
 " [Edit|Source]vim + {{{
@@ -58,9 +50,10 @@ nnoremap <silent><leader>ev :split $MYVIMRC<CR>
 nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 "}}}
 
-" Color[Scheme|Column] + {{{
-nnoremap <silent><leader>cs :call ToggleColorScheme()<CR>
-nnoremap <silent><leader>cc :call ToggleColorColumn()<CR>
+" ColorScheme, ColumnColumn + {{{
+nnoremap <silent><leader>cs :call ColorSchemeSwitch()<CR>
+nnoremap <silent><leader>cw :call ColorSchemeSave()<CR>
+nnoremap <silent><leader>cc :call ColorColumnToggle()<CR>
 " }}}
 
 " Splits + {{{
@@ -101,6 +94,3 @@ vnoremap <Right> <nop>
 vnoremap <Up>    <nop>
 vnoremap <Down>  <nop>
 "}}}
-
-" Visual Comment
-nnoremap <silent><leader>vc :call VisualComment()<CR>

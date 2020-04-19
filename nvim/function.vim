@@ -5,7 +5,8 @@
 " Created:      28.02.2020
 " Author:       Artyom Danilov
 
-function! ToggleColorColumn()
+
+fun! ColorColumnToggle()
     " ColorColumn on/off. "
     if &cc == ''
         " Highlight column after 'textwidth'
@@ -13,9 +14,15 @@ function! ToggleColorColumn()
     else
         set cc=
     endif
-endfunction
+endfun
 
-function! ToggleColorScheme()
+fun! ColorSchemeSave()
+    " Permanently save current color scheme.
+    let l:tag = '<-ColoSave->'
+    execute '!sed -i -E "s/colo .+ ' . l:tag . '/colo ' . g:colors_name . '  \" ' . l:tag . '/g" ' . $DOTFILES_HOME . '/nvim/init.vim'
+endfun
+
+fun! ColorSchemeSwitch()
     " Switch colorscheme. "
     let l:colors = ['molokai', 'atom-dark-256', 'palenight', 'alduin', 'dracula']
 
@@ -31,16 +38,9 @@ function! ToggleColorScheme()
         endif
         let l:i += 1
     endwhile
-endfunction
+endfun
 
-function! TrimWhitespace()
-    " Remove traling whitespace in the whole file. "
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfunction
-
-function! GetCommentToken()
+fun! GetCommentToken()
     " Return the comment token used in a prog language. "
     let l:hash = ['php', 'ruby', 'sh', 'make', 'python', 'perl']
     let l:slashes = ['javascript', 'c', 'cpp', 'java', 'objc', 'scala', 'go']
@@ -54,9 +54,9 @@ function! GetCommentToken()
     else
         return '#'
     endif
-endfunction
+endfun
 
-function! VisualComment()
+fun! VisualComment()
     let l:token  = GetCommentToken() " (e.g. #, //)
     let l:char = '-'
     let l:format = token . ' %s'
@@ -78,4 +78,4 @@ function! VisualComment()
     put = printf(format, repeat(char, &textwidth - len(token) * 2))
     put = printf(format, repeat(' ', left) . text)
     put = printf(format, repeat(char, &textwidth - len(token) * 2))
-endfunction
+endfun

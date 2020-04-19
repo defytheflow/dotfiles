@@ -28,13 +28,13 @@ endif
 
 " color-scheme + {{{
 set background=dark    " Adjust colors for dark mode
+
+" Don't remove the <-ColoSave-> tag. It is used by ColorSchemeSave function.
 try
-    colo dracula
+    colo dracula  " <-ColoSave->
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry
-
-" autocmd FileType java colo alduin
 "}}}
 
 " indentation + {{{
