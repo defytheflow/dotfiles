@@ -3,8 +3,8 @@
 # File:      zsh/alias
 # Purpose:   Define aliases for use during zsh interactive session.
 # Notes:     This file is sourced by .zshrc
+
 # Created:   26.03.2020
-# Modified:  30.03.2020
 # Author:    Artyom Danilov
 
 

@@ -4,8 +4,8 @@
 # Purpose:   Define commands that are too complex for an alias and too small for
 #            a stand-alone script.
 # Notes:     This file is sourced by .zshrc and .bashec accordingly.
+
 # Created:   30.12.2019
-# Modified:  30.03.2020
 # Author:    Artyom Danilov
 
 

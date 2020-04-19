@@ -3,8 +3,8 @@
 # File:      zsh/prompt
 # Purpose:   This file stores settings for my zsh spaceship prompt.
 # Notes:     This file is sourced by .zshrc
+
 # Created:   26.03.2020
-# Modified:  30.03.2020
 # Author:    Artyom Danilov
 
 
@@ -49,6 +49,7 @@ SPACESHIP_EXEC_TIME_COLOR=202  # <-- orange
 
 # Python Virtual environment
 SPACESHIP_VENV_SHOW=true
+SPACESHIP_PYENV_SHOW=true
 
 # Stuff I don't use.
 SPACESHIP_HG_SHOW=false
@@ -68,7 +69,6 @@ SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_DOCKER_CONTEXT_SHOW=false
 SPACESHIP_AWS_SHOW=false
 SPACESHIP_CONDA_SHOW=false
-SPACESHIP_PYENV_SHOW=false
 SPACESHIP_DOTNET_SHOW=false
 SPACESHIP_EMBER_SHOW=false
 SPACESHIP_KUBECONTEXT_SHOW=false

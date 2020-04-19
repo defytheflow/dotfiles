@@ -1,10 +1,9 @@
 #!/bin/bash
 
 # File:      bash/prompt
-# Purpose:   Store settings for my bash prompt.
-# Notes:     This file is sourced by .zshrc
+# Purpose:   Prompt settings.
+
 # Created:   26.03.2020
-# Modified:  30.03.2020
 # Author:    Artyom Danilov
 
 

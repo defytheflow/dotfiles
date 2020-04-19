@@ -3,8 +3,8 @@
 # File:      .zshrc
 # Purpose:   This file is sourced every zsh interactive session
 #            (every time you open a terminal with zsh as default shell).
+
 # Created:   22.03.2020
-# Modified:  30.03.2020
 # Author:    Artyom Danilov
 
 
@@ -14,12 +14,10 @@ export HISTFILE="${XDG_CACHE_HOME}"/zsh/history # <-- Save history here
 export HISTSIZE=10000  # <-- Lines to store during interactive session
 export SAVEHIST=10000  # <-- Lines to save after interactive session
 
-
 # Options
 # ------------------------------------------------------------------------------
 # Don't type cd to change directories.
 setopt autocd autopushd
-
 
 # Autocompletion
 # ------------------------------------------------------------------------------
@@ -33,7 +31,6 @@ zstyle ':completion:*' menu select
 
 # Initialize completion.
 compinit -d "${XDG_CACHE_HOME}"/zsh/zcompdump-"${ZSH_VERSION}"
-
 
 # Vim mode
 # ------------------------------------------------------------------------------
@@ -49,7 +46,6 @@ bindkey -M menuselect 'l' vi-forward-char
 # Fix bug when you can't backspace after being in vim mode.
 bindkey -v '^?' backward-delete-char
 export KEYTIMEOUT=1  # <-- Faster enter normal mode
-
 
 # Config files
 # ------------------------------------------------------------------------------
@@ -70,7 +66,6 @@ if [ -n "${WSL_DISTRO_NAME}" ]; then
         . "${file}"
     done
 fi
-
 
 # Plugins
 # ------------------------------------------------------------------------------
@@ -94,7 +89,6 @@ zplug check || zplug install
 
 # Load plugins.
 zplug load
-
 
 # Prompt
 # ------------------------------------------------------------------------------

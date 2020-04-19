@@ -3,8 +3,8 @@
 # File:      install.sh
 # Purpose:   Automate dotfiles installation.
 # Use:       Run this file to create all the required directories and symlinks.
+
 # Created:   26.03.2020
-# Modified:  30.03.2020
 # Author:    Artyom Danilov
 
 

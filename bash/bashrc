@@ -3,8 +3,8 @@
 # File:      .bashrc
 # Purpose:   This file is sourced every zsh interactive session
 #            (every time you open a terminal with bash as default shell).
+
 # Created:   30.12.2019
-# Modified:  28.03.2020
 # Author:    Artyom Danilov
 
 
@@ -16,14 +16,12 @@ case $- in
           return ;;
 esac
 
-
 # History
 # ------------------------------------------------------------------------------
 export HISTCONTROL='ignoredups'
 export HISTFILE="${XDG_CACHE_HOME}"/bash/history  # <-- Store history in here
 export HISTSIZE=10000
 export HISTFILESIZE=10000
-
 
 # Colorize prompt
 # ------------------------------------------------------------------------------
@@ -41,7 +39,6 @@ if [ -n "${force_color_prompt}" ]; then
         color_prompt=''
     fi
 fi
-
 
 # Shell options
 # ------------------------------------------------------------------------------
@@ -72,14 +69,12 @@ shopt -s nocaseglob
 # For ctrl mappings in vim.
 stty -ixon
 
-
 # Config files
 # ------------------------------------------------------------------------------
 # Load aliases and functions, that can be used in any posix shell.
 for file in "${DOTFILES_HOME}"/shell/*; do
     . "${file}"
 done
-
 
 # Load aliases and functions, that can be used only in bash.
 for file in 'alias' 'function'; do
@@ -93,7 +88,6 @@ if [ -n "${WSL_DISTRO_NAME}" ]; then
         . "${file}"
     done
 fi
-
 
 # Prompt.
 # ------------------------------------------------------------------------------
