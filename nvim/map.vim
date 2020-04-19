@@ -11,9 +11,9 @@ inoremap jk <esc>
 
 " Fold
 nnoremap <space> za
+
 " Toggle search higlighting
 noremap <leader>h :set hlsearch! hlsearch?<CR>
-
 nnoremap <leader>e :SyntasticCheck<CR>
 
 " Insert new-line + {{{
@@ -23,6 +23,7 @@ nnoremap <silent><leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1)
 
 " nerd-tree + {{{
 " nnoremap <silent><leader>n :NERDTreeToggle<CR>
+" nnoremap <silent><leader>r :NERDTreeFocus<cr>R<c-w><c-p>
 nnoremap <silent><leader>t :NERDTreeTabsToggle<CR>
 "}}}
 
@@ -63,6 +64,11 @@ nnoremap <silent><leader>cc :call ToggleColorColumn()<CR>
 " }}}
 
 " Splits + {{{
+
+" Resizing
+nnoremap <C-y> <C-w><
+nnoremap <C-o> <C-w>>
+
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k

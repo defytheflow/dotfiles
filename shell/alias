@@ -95,7 +95,7 @@ alias mv='mv -iv'
 
 # rmdir {{{
 alias \
-    rmdir='rmdir -pv' \
+    rmdir='rmdir -v' \
     rmd='rmdir'
 #}}}
 

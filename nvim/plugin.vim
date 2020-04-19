@@ -53,15 +53,15 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_error_symbol = "✗"
 "}}}
 
+" deoplete {{{
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+"}}}
+
 " java-complete {{{
 Plug 'artur-shaik/vim-javacomplete2' " Java autocomletion
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 let g:JavaComplete_ClosingBrace = 0
-"}}}
-
-" deoplete {{{
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
 "}}}
 
 " better-whitespace {{{
@@ -87,7 +87,7 @@ let NERDTreeMinimalUI  = 1
 " Automatically delete the buffer of the file you just deleted.
 let NERDTreeAutoDeleteBuffer = 1
 " Don't show these entries.
-let NERDTreeIgnore=['__pycache__', '\.o$', '\.class$']
+let NERDTreeIgnore=['__pycache__', '.git', '\.o$', '\.class$']
 
 " Tab settings for nerdtree.
 Plug 'jistr/vim-nerdtree-tabs'
@@ -100,11 +100,9 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 
 " air-line {{{
 Plug 'vim-airline/vim-airline'
-" Show PASTE in paste mode
-let g:airline_detect_paste=1
 " Show airline for tabs too
 let g:airline#extensions#tabline#enabled = 1
-" Display hunks if the diff is non-zer0
+" Display hunks if the diff is non-zero.
 let g:airline#extensions#hunks#non_zero_only = 1
 "}}}
 
@@ -112,6 +110,7 @@ let g:airline#extensions#hunks#non_zero_only = 1
 Plug 'tomasr/molokai'
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'dracula/vim'
 Plug 'AlessandroYorba/Alduin'
 let g:alduin_Shout_Become_Ethereal = 1
 let g:alduin_Shout_Fire_Breath = 1

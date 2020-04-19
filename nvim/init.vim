@@ -29,7 +29,7 @@ endif
 " color-scheme + {{{
 set background=dark    " Adjust colors for dark mode
 try
-    colo alduin
+    colo dracula
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry

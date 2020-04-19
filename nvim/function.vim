@@ -17,7 +17,7 @@ endfunction
 
 function! ToggleColorScheme()
     " Switch colorscheme. "
-    let l:colors = ['molokai', 'atom-dark-256', 'palenight', 'alduin']
+    let l:colors = ['molokai', 'atom-dark-256', 'palenight', 'alduin', 'dracula']
 
     let l:i = 0
     while i < len(colors)
