@@ -8,16 +8,13 @@
 
 " Escape
 inoremap jk <esc>
-
 " Fold
 nnoremap <space> za
 
 " Toggle search higlighting
 nnoremap <leader>h :set hlsearch! hlsearch?<CR>
-
 " Remove tabs
 nnoremap <silent><leader>rt :retab<CR>
-
 " Visual Comment
 nnoremap <silent><leader>vc :call VisualComment()<CR>
 
@@ -25,35 +22,37 @@ nnoremap <silent><leader>vc :call VisualComment()<CR>
 nnoremap <silent><leader>e :SyntasticCheck<CR>
 nnoremap <silent><leader>t :NERDTreeTabsToggle<CR>
 nnoremap <silent><leader>g :Goyo<CR>
+nnoremap <silent><leader>l :Limelight!!<CR>
 "}}}
 
-" Insert new-line + {{{
+" Insert newline + {{{
 nnoremap <silent><leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent><leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 "}}}
 
-" Buffer[Previous|Next|Delete] + {{{
+" Buffers + {{{
 nnoremap <silent>bp :bprev<CR>
 nnoremap <silent>bn :bnext<CR>
 nnoremap <silent>bd :bdelete<CR>
 "}}}
 
-" Tab[Previous|Next|Open|Quit] + {{{
+" Tabs + {{{
+nnoremap to :tabedit<Space>
 nnoremap <silent>tp :tabprev<CR>
 nnoremap <silent>tn :tabnext<CR>
-nnoremap         to :tabedit<Space>
 nnoremap <silent>tq :tabclose<CR>
 "}}}
 
-" [Edit|Source]vim + {{{
+" Vim Config + {{{
 nnoremap <silent><leader>ev :split $MYVIMRC<CR>
 nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 "}}}
 
-" ColorScheme, ColumnColumn + {{{
+" Color Toggles + {{{
 nnoremap <silent><leader>cs :call ColorSchemeSwitch()<CR>
 nnoremap <silent><leader>cw :call ColorSchemeSave()<CR>
 nnoremap <silent><leader>cc :call ColorColumnToggle()<CR>
+nnoremap <silent><leader>cr :call CursorLineToggle()<CR>
 " }}}
 
 " Splits + {{{

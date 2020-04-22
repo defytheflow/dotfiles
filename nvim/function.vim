@@ -10,9 +10,18 @@ fun! ColorColumnToggle()
     " ColorColumn on/off. "
     if &cc == ''
         " Highlight column after 'textwidth'
-        set cc=+1
+        set colorcolumn=+1
     else
-        set cc=
+        set colorcolumn=
+    endif
+endfun
+
+fun! CursorLineToggle()
+    " CursorLine on/off
+    if &cul == 1
+        set nocursorline
+    else
+        set cursorline
     endif
 endfun
 
