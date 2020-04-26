@@ -37,12 +37,29 @@ Plug 'alvan/vim-closetag'      " Auto-completion of html tags.
 Plug 'tpope/vim-surround'      " Editing quotes, parentheses, tags.
 Plug 'tpope/vim-commentary'    " Commenting.
 Plug 'unblevable/quick-scope'  " Horizontal navigation.
-
 " Text object replacement.
 Plug 'inkarkat/vim-ReplaceWithRegister'
-
 " Python syntax higlight.
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" Transparent background.
+Plug 'miyakogi/seiya.vim'
+let g:seiya_auto_enable=1
+
+" vim-snippets {{{
+" Track the engine.
+Plug 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plug 'honza/vim-snippets'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+"}}}
 
 " Syntastic {{{
 Plug 'vim-syntastic/syntastic'
@@ -67,6 +84,8 @@ let g:deoplete#enable_at_startup = 1
 
 " Python.
 Plug 'deoplete-plugins/deoplete-jedi'
+" C/C++.
+Plug 'zchee/deoplete-clang'
 "}}}
 
 " Java-complete {{{

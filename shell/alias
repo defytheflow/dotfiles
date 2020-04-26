@@ -12,6 +12,9 @@
 # Allow running sudo with aliases.
 alias sudo='sudo '
 
+alias jc='javac'
+alias j='java'
+
 # cd {{{
 alias \
     ..='cd ..' \

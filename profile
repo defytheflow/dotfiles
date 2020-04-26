@@ -91,3 +91,11 @@ export VIRTUALENVWRAPPER_VIRTUALENV="${HOME}"/.local/bin/virtualenv
 [ -f "${HOME}"/.local/bin/virtualenvwrapper.sh ] && \
     . "${HOME}"/.local/bin/virtualenvwrapper.sh
 #}}}
+
+# Java
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+export PATH=$PATH:$JAVA_HOME/bin
+
+# So that scripts and programs could use these values (Important).
+export LINES COLUMNS

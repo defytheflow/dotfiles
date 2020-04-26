@@ -51,7 +51,7 @@ au BufNewFile,BufRead *.c
     \    setlocal shiftwidth=8 softtabstop=8  " c
 au BufNewFile,BufRead *.html,*.css
     \    setlocal shiftwidth=2 softtabstop=2  " html, css
-au BufNewFile,BufRead *.py,*.cpp,*.asm,*.sh,
+au BufNewFile,BufRead *.py,*.cpp,*.asm,*.sh,*.java
     \    setlocal shiftwidth=4 softtabstop=4  " python, c++, assembly
 " }}}
 
@@ -90,6 +90,7 @@ set splitbelow splitright          " Change splits pos.
 set wildmode=longest,list,full     " Autocompletion.
 set cursorline
 set list listchars=tab:>-,trail:-  " Display tabs and trailing whitespace.
+set relativenumber
 
 " Disable highlighting matching parentheses.
 au VimEnter * :NoMatchParen

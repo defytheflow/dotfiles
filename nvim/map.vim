@@ -23,6 +23,8 @@ nnoremap <silent><leader>e :SyntasticCheck<CR>
 nnoremap <silent><leader>t :NERDTreeTabsToggle<CR>
 nnoremap <silent><leader>g :Goyo<CR>
 nnoremap <silent><leader>l :Limelight!!<CR>
+nnoremap <silent><leader>se :SeiyaEnable<CR>
+nnoremap <silent><leader>sd :SeiyaDisable<CR>
 "}}}
 
 " Insert newline + {{{
@@ -60,6 +62,8 @@ nnoremap <silent><leader>cr :call CursorLineToggle()<CR>
 " Resizing
 nnoremap <C-y> <C-w><
 nnoremap <C-o> <C-w>>
+nnoremap <C-u> <C-w>-
+nnoremap <C-i> <C-w>+
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
