@@ -5,29 +5,22 @@
 " Created:      29.03.2020
 " Author:       Artyom Danilov
 
-" Download vim-plug {{{
-if !filereadable($HOME . '/.config/nvim/autoload/plug.vim')
+" Auto-download vim-plug + {{{
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 "}}}
 
-" Download pluggins {{{
-let g:plugged_home = $HOME . '/.config/nvim/plugged/'
-for plugin in ['vim-surround', 'vim-commentary', 'goyo.vim', 'quick-scope',
-\              'indentLine', 'vim-gitgutter', 'vim-better-whitespace',
-\              'auto-pairs', 'vim-closetag',
-\              'nerdtree', 'vim-nerdtree-tabs', 'vim-devicons', 'ctrlp.vim',
-\              'vim-airline', 'molokai', 'vim-atom-dark', 'palenight.vim']
-    if !isdirectory(g:plugged_home . plugin)
-        autocmd VimEnter * PlugInstall | source $MYVIMRC
-        break
-    endif
-endfor
+" Auto-download missing pluggins + {{{
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
 "}}}
 
-call plug#begin(g:plugged_home)
+call plug#begin($HOME . '/.config/nvim/plugged/')
 
 Plug 'airblade/vim-gitgutter'  " Show git difference in the number column.
 Plug 'tpope/vim-fugitive'      " Git commands.
@@ -37,27 +30,27 @@ Plug 'alvan/vim-closetag'      " Auto-completion of html tags.
 Plug 'tpope/vim-surround'      " Editing quotes, parentheses, tags.
 Plug 'tpope/vim-commentary'    " Commenting.
 Plug 'unblevable/quick-scope'  " Horizontal navigation.
+Plug 'sheerun/vim-polyglot'    " Better syntax support.
+Plug 'mhinz/vim-startify'      " Start screen.
+
 " Text object replacement.
 Plug 'inkarkat/vim-ReplaceWithRegister'
 " Python syntax higlight.
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-" Transparent background.
-Plug 'miyakogi/seiya.vim'
-let g:seiya_auto_enable=1
 
-" vim-snippets {{{
-" Track the engine.
-Plug 'SirVer/ultisnips'
+" Ranger {{{
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
+let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
+"}}}
 
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
+" Vim-snippets {{{
+Plug 'SirVer/ultisnips'    " Engline
+Plug 'honza/vim-snippets'  " Snippets
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 "}}}
 
@@ -81,11 +74,6 @@ let g:syntastic_python_checkers = ['python']
 " Deoplete {{{
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
-
-" Python.
-Plug 'deoplete-plugins/deoplete-jedi'
-" C/C++.
-Plug 'zchee/deoplete-clang'
 "}}}
 
 " Java-complete {{{
@@ -170,8 +158,13 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
+" Seiya {{{
+Plug 'miyakogi/seiya.vim'  " Transparent background.
+let g:seiya_auto_enable=1
+"}}}
+
 " Colors {{{
-Plug 'tomasr/molokai'
+Plug 'tomasr/molokai'      " Colorschemes
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'dracula/vim'

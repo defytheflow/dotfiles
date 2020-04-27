@@ -18,7 +18,7 @@ nnoremap <silent><leader>rt :retab<CR>
 " Visual Comment
 nnoremap <silent><leader>vc :call VisualComment()<CR>
 
-" Plugin Toggles {{{
+" Plugin Toggles + {{{
 nnoremap <silent><leader>e :SyntasticCheck<CR>
 nnoremap <silent><leader>t :NERDTreeTabsToggle<CR>
 nnoremap <silent><leader>g :Goyo<CR>
@@ -51,10 +51,11 @@ nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 "}}}
 
 " Color Toggles + {{{
-nnoremap <silent><leader>cs :call ColorSchemeSwitch()<CR>
 nnoremap <silent><leader>cw :call ColorSchemeSave()<CR>
+nnoremap <silent><leader>cs :call ColorSchemeSwitch()<CR>
 nnoremap <silent><leader>cc :call ColorColumnToggle()<CR>
-nnoremap <silent><leader>cr :call CursorLineToggle()<CR>
+nnoremap <silent><leader>cl :call CursorLineToggle()<CR>
+nnoremap <silent><leader>ck :call CursorColumnToggle()<CR>
 " }}}
 
 " Splits + {{{

@@ -25,6 +25,15 @@ fun! CursorLineToggle()
     endif
 endfun
 
+fun! CursorColumnToggle()
+    " CursorColumn on/off
+    if &cuc == 1
+        set nocursorcolumn
+    else
+        set cursorcolumn
+    endif
+endfun
+
 fun! ColorSchemeSave()
     " Permanently save current color scheme.
     let l:tag = '<-ColoSave->'

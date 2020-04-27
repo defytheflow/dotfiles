@@ -196,3 +196,7 @@ alias path='echo ${PATH} | sed -e "s|:|\n|g"'
 alias store='ubuntu-software'
 # Fast way to update packages.
 alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
+
+command -v exa >/dev/null && \
+    alias l='ex' \
+    alias t='et'
