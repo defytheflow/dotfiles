@@ -2,4 +2,3 @@
 .*.swp
 .zcompdump
 __pycache__
-*.class
