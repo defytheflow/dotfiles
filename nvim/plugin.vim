@@ -32,6 +32,7 @@ Plug 'tpope/vim-commentary'    " Commenting.
 Plug 'unblevable/quick-scope'  " Horizontal navigation.
 Plug 'sheerun/vim-polyglot'    " Better syntax support.
 Plug 'mhinz/vim-startify'      " Start screen.
+Plug 'othree/xml.vim'          " XML files editing.
 
 " Text object replacement.
 Plug 'inkarkat/vim-ReplaceWithRegister'
@@ -107,7 +108,7 @@ let NERDTreeMinimalUI  = 1
 " Automatically delete the buffer of the file you just deleted.
 let NERDTreeAutoDeleteBuffer = 1
 " Don't show these entries.
-let NERDTreeIgnore=['__pycache__', '.git', '\.o$', '\.class$']
+let NERDTreeIgnore=['__pycache__', '.git', '\.o$']
 
 " Tab settings for nerdtree.
 Plug 'jistr/vim-nerdtree-tabs'

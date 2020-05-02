@@ -35,7 +35,7 @@ endtry
 set foldmethod=marker
 
 " For python
-au BufNewFile,BufRead *.py set foldmethod=indent
+" au BufNewFile,BufRead *.py set foldmethod=indent
 "}}}
 
 " Indentation + {{{

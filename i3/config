@@ -12,10 +12,10 @@ floating_modifier $mod
 
 set $ws1 "1 Term"
 set $ws2 "2 Web"
-set $ws3 "3 Code"
-set $ws4 "4 Float"
-set $ws5 5
-set $ws6 6
+set $ws3 "3 Code Tile"
+set $ws4 "4 Code Float"
+set $ws5 "5 Remote"
+set $ws6 "6 Music"
 set $ws7 7
 set $ws8 8
 set $ws9 9
@@ -74,6 +74,14 @@ bar {
 
 # Bindings
 # ------------------------------------------------------------------------------
+
+# The middle button over a titlebar kills the window
+# bindsym --release button2 kill
+
+# The middle button and a modifer over any part of the window kills the window
+# bindsym --border $mod+button1 move left
+# bindsym --whole-window $mod+button3 move right
+
 
 # Sound {{{
 bindsym F1  exec amixer -D pulse set Master 1+ toggle
@@ -159,6 +167,16 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 
+bindsym $mod+KP_End   workspace $ws1
+bindsym $mod+KP_Down  workspace $ws2
+bindsym $mod+KP_Next  workspace $ws3
+bindsym $mod+KP_Left  workspace $ws4
+bindsym $mod+KP_Begin workspace $ws5
+bindsym $mod+KP_Right workspace $ws6
+bindsym $mod+KP_Home  workspace $ws7
+bindsym $mod+KP_Up    workspace $ws8
+bindsym $mod+KP_Prior workspace $ws9
+
 # Move window to workspace.
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -169,6 +187,16 @@ bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
+
+bindsym $mod+Shift+KP_End   move container to workspace $ws1
+bindsym $mod+Shift+KP_Down  move container to workspace $ws2
+bindsym $mod+Shift+KP_Next  move container to workspace $ws3
+bindsym $mod+Shift+KP_Left  move container to workspace $ws4
+bindsym $mod+Shift+KP_Begin move container to workspace $ws5
+bindsym $mod+Shift+KP_Right move container to workspace $ws6
+bindsym $mod+Shift+KP_Home  move container to workspace $ws7
+bindsym $mod+Shift+KP_Up    move container to workspace $ws8
+bindsym $mod+Shift+KP_Prior move container to workspace $ws9
 #}}}
 
 # Shutdown Menu {{{
