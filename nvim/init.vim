@@ -25,7 +25,7 @@ endif
 set background=dark
 " Don't remove the <-ColoSave-> tag. It is used by ColorSchemeSave function.
 try
-    colo dracula  " <-ColoSave->
+    colo molokai  " <-ColoSave->
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry

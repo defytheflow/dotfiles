@@ -5,41 +5,39 @@
 # Created:   22.03.2020
 # Author:    Artyom Danilov
 
-# Variables
+# Variables {{{
 # ------------------------------------------------------------------------------
 set $mod Mod1
 floating_modifier $mod
 
-set $ws1 "1 Term"
-set $ws2 "2 Web"
-set $ws3 "3 Code Tile"
-set $ws4 "4 Code Float"
-set $ws5 "5 Remote"
-set $ws6 "6 Music"
+# Workspaces
+set $ws1 "1 Term 🌊"
+set $ws2 "2 Web 🌐"
+set $ws3 "3 Code ⚡"
+set $ws4 "4 Code 🔥"
+set $ws5 "5 Remote 🌟"
+set $ws6 "6 Music 🎧"
 set $ws7 7
 set $ws8 8
 set $ws9 9
 
-set $terminal 'gnome-terminal'
-set $browser 'google-chrome'
+# Applications
+set $terminal "gnome-terminal"
+set $browser  "google-chrome"
 
-set $in_monitor eDP-1
-set $ex_monitor HDMI-1
+# Monitors
+set $in_monitor "eDP-1"
+set $ex_monitor "HDMI-1"
 
+# Gaps
 set $inner_gaps 10
 set $outer_gaps 5
+#}}}
 
 # Startup
 # ------------------------------------------------------------------------------
-exec --no-startup-id i3-msg 'workspace $ws1; exec $terminal'
-exec --no-startup-id i3-msg 'workspace $ws2; exec $browser'
-exec --no-startup-id clipit
-
-# ALl windows here are floating
-for_window [workspace=$ws4] floating enable
-
-# Hardcoded with xprop for my java app.
-for_window [class="seabattle-App"] floating enable
+exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
+exec --no-startup-id i3-msg "workspace $ws2; exec $browser"
 
 # Enable terminal transparency.
 exec_always --no-startup-id xcompmgr -c -f -n
@@ -47,18 +45,39 @@ exec_always --no-startup-id xcompmgr -c -f -n
 # Enable russian keyboard (switch on CapsLock).
 exec_always --no-startup-id setxkbmap -layout us,ru -option grp:caps_toggle
 
+# All windows here are floating.
+for_window [workspace=$ws4] floating enable
+
 # Settings
 # ------------------------------------------------------------------------------
 
-# Windows {{{
-title_align center                       # Window title allignment
-font pango:DejaVu Sans Mono 10           # Window title font
-default_orientation horizontal           # Workspace orientation
-# focus_follows_mouse no
-workspace_auto_back_and_forth yes
+# Colors {{{
+# ------------------------------------------------------------------------------
+# class                 border  backgr. text    indicator child_border
+client.focused          #000066 #1b2323 #ffffff #2e9ef4   #000066
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
 #}}}
 
-# Gaps {{{
+# Windows {{{
+# ------------------------------------------------------------------------------
+# Window title allignment
+title_align center
+
+# Window title font
+font pango:DejaVu Sans Mono 10
+
+# Workspace orientation
+default_orientation horizontal
+
+# Workspace switching
+workspace_auto_back_and_forth yes
+
+# Gaps
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 #}}}
@@ -66,61 +85,23 @@ gaps outer $outer_gaps
 # Status bar {{{
 bar {
     position bottom
-    status_command ~/.local/bin/bumblebee-status  \
-         -m cpu memory disk brightness weather datetime amixer battery \
-         -t iceberg
+    status_command ~/.local/bin/bumblebee-status      \
+             -m cpu memory disk brightness weather    \
+                datetime amixer bluetooth battery     \
+             -t iceberg
 }
 #}}}
 
 # Bindings
 # ------------------------------------------------------------------------------
 
-# The middle button over a titlebar kills the window
-# bindsym --release button2 kill
-
-# The middle button and a modifer over any part of the window kills the window
-# bindsym --border $mod+button1 move left
-# bindsym --whole-window $mod+button3 move right
-
-
-# Sound {{{
-bindsym F1  exec amixer -D pulse set Master 1+ toggle
-bindsym F2  exec amixer -q set Master 5%-
-bindsym F3  exec amixer -q set Master 5%+
-#}}}
-
-# Monitors {{{
-bindsym $mod+bracketleft        exec --no-startup-id "xrandr --output $in_monitor --auto"
-bindsym $mod+Shift+bracketleft  exec --no-startup-id "xrandr --output $in_monitor --off"
-
-bindsym $mod+bracketright        exec --no-startup-id "xrandr --output $ex_monitor --auto"
-bindsym $mod+Shift+bracketright  exec --no-startup-id "xrandr --output $ex_monitor --off"
-#}}}
-
-# Apps {{{
+# Applications {{{
 bindsym $mod+w        exec --no-startup-id $browser
 bindsym $mod+d        exec --no-startup-id dmenu_run
 bindsym $mod+r        exec --no-startup-id $terminal -e ranger
 bindsym $mod+Return   exec --no-startup-id $terminal
 bindsym $mod+Shift+t  exec --no-startup-id teamviewer
 bindsym $mod+Shift+a  exec --no-startup-id anydesk
-#}}}
-
-# Kill|Reload|Restart {{{
-bindsym $mod+Shift+q kill
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-# }}}
-
-# Layout {{{
-bindsym $mod+f  fullscreen toggle
-bindsym $mod+t  split  toggle
-
-# bindsym $mod+Shift+s layout toggle split
-# bindsym $mod+Shift+t layout tabbed
-
-bindsym $mod+space        focus mode_toggle
-bindsym $mod+Shift+space  floating toggle
 #}}}
 
 # Gaps {{{
@@ -134,6 +115,27 @@ bindsym $mod+Shift+0  gaps inner current set 0; gaps outer current set 0
 # Increase|Decrease.
 bindsym $mod+plus     gaps outer current plus 5
 bindsym $mod+minus    gaps outer current minus 5
+#}}}
+
+# Kill|Reload|Restart {{{
+bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+# }}}
+
+# Layout {{{
+bindsym $mod+f  fullscreen toggle
+bindsym $mod+t  split toggle
+
+bindsym $mod+space        focus mode_toggle
+bindsym $mod+Shift+space  floating toggle
+#}}}
+
+# Monitors {{{
+bindsym $mod+bracketleft        exec --no-startup-id "xrandr --output $in_monitor --auto"
+bindsym $mod+Shift+bracketleft  exec --no-startup-id "xrandr --output $in_monitor --off"
+bindsym $mod+bracketright       exec --no-startup-id "xrandr --output $ex_monitor --auto"
+bindsym $mod+Shift+bracketright exec --no-startup-id "xrandr --output $ex_monitor --off"
 #}}}
 
 # Movement {{{
@@ -156,7 +158,7 @@ bindsym $mod+u  resize grow   height 1 px or 1 ppt
 bindsym $mod+i  resize shrink height 1 px or 1 ppt
 bindsym $mod+o  resize grow   width 1 px or 1 ppt
 
-# Switch workspace.
+# Switch workspace (number keys).
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -167,6 +169,7 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 
+# Switch workspace (numpad keys).
 bindsym $mod+KP_End   workspace $ws1
 bindsym $mod+KP_Down  workspace $ws2
 bindsym $mod+KP_Next  workspace $ws3
@@ -177,7 +180,7 @@ bindsym $mod+KP_Home  workspace $ws7
 bindsym $mod+KP_Up    workspace $ws8
 bindsym $mod+KP_Prior workspace $ws9
 
-# Move window to workspace.
+# Move window to workspace (number keys).
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -188,6 +191,7 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 
+# Move window to workspace (numpad keys).
 bindsym $mod+Shift+KP_End   move container to workspace $ws1
 bindsym $mod+Shift+KP_Down  move container to workspace $ws2
 bindsym $mod+Shift+KP_Next  move container to workspace $ws3
@@ -218,6 +222,23 @@ mode "$mode_system" {
 
 bindsym $mod+Escape mode "$mode_system"
 # }}}
+
+# Sound {{{
+bindsym F1  exec "amixer -D pulse set Master 1+ toggle"
+bindsym F2  exec "amixer -q set Master 5%-"
+bindsym F3  exec "amixer -q set Master 5%+"
+#}}}
+
+# Unused
+# ------------------------------------------------------------------------------
+
+# Mouse {{{
+# The middle button over a titlebar kills the window
+# bindsym --release button2 kill
+# The middle button and a modifer over any part of the window kills the window
+# bindsym --border $mod+button1 move left
+# bindsym --whole-window $mod+button3 move right
+#}}}
 
 # Scratchpad {{{
 # bindsym $mod+minus scratchpad show

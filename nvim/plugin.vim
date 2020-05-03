@@ -33,6 +33,7 @@ Plug 'unblevable/quick-scope'  " Horizontal navigation.
 Plug 'sheerun/vim-polyglot'    " Better syntax support.
 Plug 'mhinz/vim-startify'      " Start screen.
 Plug 'othree/xml.vim'          " XML files editing.
+Plug 'lilydjwg/colorizer'      " Highlight rgb/hex colors.
 
 " Text object replacement.
 Plug 'inkarkat/vim-ReplaceWithRegister'
@@ -164,8 +165,8 @@ Plug 'miyakogi/seiya.vim'  " Transparent background.
 let g:seiya_auto_enable=1
 "}}}
 
-" Colors {{{
-Plug 'tomasr/molokai'      " Colorschemes
+" Colorschemes {{{
+Plug 'tomasr/molokai'
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'dracula/vim'
