@@ -30,7 +30,7 @@ export BROWSER='google-chrome'
 
 # Paths {{{
 # ------------------------------------------------------------------------------
-export PATH="${PATH}":"${HOME}"/.local/bin  # <-- Add '~/.local/bin'
+export PATH="${PATH}":"${HOME}"/.local/bin:/snap/bin
 export CPATH=''                             # <-- C headers
 export LD_LIBRARY_PATH=''                   # <-- C libraries
 export PYTHONPATH=''                        # <-- Python modules
@@ -92,10 +92,11 @@ export VIRTUALENVWRAPPER_VIRTUALENV="${HOME}"/.local/bin/virtualenv
     . "${HOME}"/.local/bin/virtualenvwrapper.sh
 #}}}
 
-# Java
+# Java {{{
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
-export PATH=$PATH:$JAVA_HOME/bin
+export PATH="${PATH}":"${JAVA_HOME}"/bin
+#}}}
 
 # So that scripts and programs could use these values (Important).
 export LINES COLUMNS
