@@ -27,12 +27,11 @@ Plug 'tpope/vim-fugitive'      " Git commands.
 Plug 'ctrlpvim/ctrlp.vim'      " Fuzzy find files.
 Plug 'jiangmiao/auto-pairs'    " Auto-completion of quotes and brackets.
 Plug 'alvan/vim-closetag'      " Auto-completion of html tags.
+Plug 'othree/xml.vim'          " Auto-completion o f xml tags.
 Plug 'tpope/vim-surround'      " Editing quotes, parentheses, tags.
 Plug 'tpope/vim-commentary'    " Commenting.
 Plug 'unblevable/quick-scope'  " Horizontal navigation.
-Plug 'sheerun/vim-polyglot'    " Better syntax support.
 Plug 'mhinz/vim-startify'      " Start screen.
-Plug 'othree/xml.vim'          " XML files editing.
 Plug 'lilydjwg/colorizer'      " Highlight rgb/hex colors.
 
 " Text object replacement.
@@ -40,10 +39,11 @@ Plug 'inkarkat/vim-ReplaceWithRegister'
 " Python syntax higlight.
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
-" Ranger {{{
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
-let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
+Plug 'vimwiki/vimwiki'
+
+" Sneak {{{
+Plug 'justinmk/vim-sneak'
+let g:sneak#s_next = 1
 "}}}
 
 " Vim-snippets {{{
@@ -70,12 +70,17 @@ let g:syntastic_error_symbol = "✗"
 
 " Check python3 syntax.
 let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_checkers = ['python']
+let g:syntastic_python_checkers = ['flake8']
 "}}}
 
 " Deoplete {{{
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
+
+" Python
+" Plug 'deoplete-plugins/deoplete-jedi' Fucking bullshit
+" let g:deoplete#sources#jedi#show_docstring=1
+
 "}}}
 
 " Java-complete {{{

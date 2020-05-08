@@ -47,11 +47,9 @@ set smartindent        " Indent on braces and previous indentation level.
 filetype plugin indent on
 
 " Indentation for different file types.
-au BufNewFile,BufRead *.c
-    \    setlocal shiftwidth=8 softtabstop=8  " c
 au BufNewFile,BufRead *.html,*.css
     \    setlocal shiftwidth=2 softtabstop=2  " html, css
-au BufNewFile,BufRead *.py,*.cpp,*.asm,*.sh,*.java
+au BufNewFile,BufRead *,c,*.py,*.cpp,*.asm,*.sh,*.java
     \    setlocal shiftwidth=4 softtabstop=4  " python, c++, assembly
 " }}}
 

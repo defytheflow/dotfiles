@@ -11,12 +11,14 @@ inoremap jk <esc>
 " Fold
 nnoremap <space> za
 
+" Other {{{
 " Toggle search higlighting
 nnoremap <leader>h :set hlsearch! hlsearch?<CR>
 " Remove tabs
 nnoremap <silent><leader>rt :retab<CR>
 " Visual Comment
 nnoremap <silent><leader>vc :call VisualComment()<CR>
+"}}}
 
 " Plugin Toggles + {{{
 nnoremap <silent><leader>e :SyntasticCheck<CR>

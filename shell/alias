@@ -150,7 +150,7 @@ alias \
     scp='sudo cp'        \
     smv='sudo mv'        \
     srm='sudo rm'        \
-    svim='sudo vim'      \
+    snvim='sudo nvim'    \
     smkdir='sudo mkdir'  \
     srmdir='sudo rmdir'  \
     reboot='sudo reboot' \

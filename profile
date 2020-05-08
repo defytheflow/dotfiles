@@ -26,6 +26,7 @@ export DOTFILES_HOME="${HOME}"/.dotfiles      # <-- dotfiles
 # ------------------------------------------------------------------------------
 export EDITOR='nvim'
 export BROWSER='google-chrome'
+export TERMINAL='alacritty'
 #}}}
 
 # Paths {{{

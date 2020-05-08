@@ -22,12 +22,12 @@ set $ws8 8
 set $ws9 9
 
 # Applications
-set $terminal "alacritty"
-set $browser  "google-chrome"
+set $terminal alacritty
+set $browser  google-chrome
 
 # Monitors
-set $in_monitor "eDP-1"
-set $ex_monitor "HDMI-1"
+set $in_monitor eDP-1
+set $ex_monitor HDMI-1
 
 # Gaps
 set $inner_gaps 10

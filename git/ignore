@@ -2,3 +2,4 @@
 .*.swp
 .zcompdump
 __pycache__
+*.o
