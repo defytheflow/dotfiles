@@ -32,7 +32,7 @@ Plug 'tpope/vim-surround'      " Editing quotes, parentheses, tags.
 Plug 'tpope/vim-commentary'    " Commenting.
 Plug 'unblevable/quick-scope'  " Horizontal navigation.
 Plug 'mhinz/vim-startify'      " Start screen.
-Plug 'lilydjwg/colorizer'      " Highlight rgb/hex colors.
+" Plug 'lilydjwg/colorizer'      " Highlight rgb/hex colors.
 
 " Text object replacement.
 Plug 'inkarkat/vim-ReplaceWithRegister'
@@ -40,6 +40,8 @@ Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 Plug 'vimwiki/vimwiki'
+
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 " Sneak {{{
 Plug 'justinmk/vim-sneak'
@@ -71,16 +73,12 @@ let g:syntastic_error_symbol = "✗"
 " Check python3 syntax.
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_post_args='--ignore=E501'
 "}}}
 
 " Deoplete {{{
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
-
-" Python
-" Plug 'deoplete-plugins/deoplete-jedi' Fucking bullshit
-" let g:deoplete#sources#jedi#show_docstring=1
-
 "}}}
 
 " Java-complete {{{
@@ -114,11 +112,12 @@ let NERDTreeMinimalUI  = 1
 " Automatically delete the buffer of the file you just deleted.
 let NERDTreeAutoDeleteBuffer = 1
 " Don't show these entries.
-let NERDTreeIgnore=['__pycache__', '.git', '\.o$']
+let NERDTreeIgnore=['__pycache__', '.git']
 
 " Tab settings for nerdtree.
 Plug 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_open_on_console_startup = 2
+let g:nerdtree_tabs_autoclose = 0
 
 " Icon settings for nerdtree.
 Plug 'ryanoasis/vim-devicons'

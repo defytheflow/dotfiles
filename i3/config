@@ -32,6 +32,7 @@ set $ex_monitor HDMI-1
 # Gaps
 set $inner_gaps 10
 set $outer_gaps 5
+
 #}}}
 
 # Startup
@@ -78,17 +79,19 @@ default_orientation horizontal
 workspace_auto_back_and_forth yes
 
 # Gaps
-gaps inner $inner_gaps
-gaps outer $outer_gaps
+# gaps inner $inner_gaps
+# gaps outer $outer_gaps
 #}}}
 
 # Status bar {{{
 bar {
     position bottom
-    status_command ~/.local/bin/bumblebee-status      \
-             -m cpu memory disk brightness weather    \
-                datetime amixer bluetooth battery     \
-             -t iceberg
+    status_command ~/.local/bin/bumblebee-status    \
+            -m cpu memory disk brightness weather   \
+               amixer bluetooth battery layout-xkb  \
+                date time uptime \
+            -p date.format="%a %x" \
+            -t iceberg
 }
 #}}}
 
@@ -241,6 +244,6 @@ bindsym F3  exec "amixer -q set Master 5%+"
 #}}}
 
 # Scratchpad {{{
-# bindsym $mod+minus scratchpad show
-# bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+s move scratchpad
+bindsym $mod+Shift+s scratchpad show
 #}}}

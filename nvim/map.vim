@@ -65,7 +65,7 @@ nnoremap <silent><leader>ck :call CursorColumnToggle()<CR>
 " Resizing
 nnoremap <C-y> <C-w><
 nnoremap <C-o> <C-w>>
-nnoremap <C-u> <C-w>-
+" nnoremap <C-u> <C-w>-
 nnoremap <C-i> <C-w>+
 
 nnoremap <C-h> <C-w>h

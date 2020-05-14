@@ -34,7 +34,7 @@ endtry
 " Folding {{{
 set foldmethod=marker
 
-" For python
+" Python
 " au BufNewFile,BufRead *.py set foldmethod=indent
 "}}}
 
@@ -58,6 +58,10 @@ set wrap               " Long lines continue to display on the next line.
 set textwidth=80       " Maximum width of the text that is being inserted.
 set formatoptions+=t   " Wrap text using &textwidth.
 set colorcolumn=+0     " Display a color-column to indicate textwidth.
+
+
+" Python
+au BufNewFile,BufRead *.py set textwidth=100
 "}}}
 
 " Searching + {{{
