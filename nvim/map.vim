@@ -21,10 +21,10 @@ nnoremap <silent><leader>vc :call VisualComment()<CR>
 "}}}
 
 " Plugin Toggles + {{{
-nnoremap <silent><leader>e :SyntasticCheck<CR>
-nnoremap <silent><leader>t :NERDTreeTabsToggle<CR>
 nnoremap <silent><leader>g :Goyo<CR>
+nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
 nnoremap <silent><leader>l :Limelight!!<CR>
+nnoremap <silent><leader>t :TlistToggle<CR>
 nnoremap <silent><leader>se :SeiyaEnable<CR>
 nnoremap <silent><leader>sd :SeiyaDisable<CR>
 "}}}
@@ -54,7 +54,7 @@ nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 
 " Color Toggles + {{{
 nnoremap <silent><leader>cw :call ColorSchemeSave()<CR>
-nnoremap <silent><leader>cs :call ColorSchemeSwitch()<CR>
+" nnoremap <silent><leader>cs :call ColorSchemeSwitch()<CR>
 nnoremap <silent><leader>cc :call ColorColumnToggle()<CR>
 nnoremap <silent><leader>cl :call CursorLineToggle()<CR>
 nnoremap <silent><leader>ck :call CursorColumnToggle()<CR>
@@ -62,12 +62,13 @@ nnoremap <silent><leader>ck :call CursorColumnToggle()<CR>
 
 " Splits + {{{
 
-" Resizing
-nnoremap <C-y> <C-w><
-nnoremap <C-o> <C-w>>
-" nnoremap <C-u> <C-w>-
-nnoremap <C-i> <C-w>+
+" Resize.
+nnoremap <S-h> <C-w><
+nnoremap <S-j> <C-w>-
+nnoremap <S-k> <C-w>+
+nnoremap <S-l> <C-w>>
 
+" Move focus.
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k

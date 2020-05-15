@@ -36,9 +36,7 @@ alias cp='cp -iv'
 #}}}
 
 # cat {{{
-alias \
-    nc='cat -n' \
-    cc='highlight --out-format=ansi --force'
+alias c='highlight --out-format=ansi --force'
 #}}}
 
 # diff {{{

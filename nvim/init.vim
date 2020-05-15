@@ -22,10 +22,11 @@ endif
 "}}}
 
 " Colors + {{{
+set termguicolors
 set background=dark
 " Don't remove the <-ColoSave-> tag. It is used by ColorSchemeSave function.
 try
-    colo molokai  " <-ColoSave->
+    colo nightfly  " <-ColoSave->
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry

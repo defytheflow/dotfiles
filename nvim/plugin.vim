@@ -22,33 +22,30 @@ autocmd VimEnter *
 
 call plug#begin($HOME . '/.config/nvim/plugged/')
 
-Plug 'airblade/vim-gitgutter'  " Show git difference in the number column.
-Plug 'tpope/vim-fugitive'      " Git commands.
-Plug 'ctrlpvim/ctrlp.vim'      " Fuzzy find files.
-Plug 'jiangmiao/auto-pairs'    " Auto-completion of quotes and brackets.
-Plug 'alvan/vim-closetag'      " Auto-completion of html tags.
-Plug 'othree/xml.vim'          " Auto-completion o f xml tags.
-Plug 'tpope/vim-surround'      " Editing quotes, parentheses, tags.
-Plug 'tpope/vim-commentary'    " Commenting.
-Plug 'unblevable/quick-scope'  " Horizontal navigation.
-Plug 'mhinz/vim-startify'      " Start screen.
-" Plug 'lilydjwg/colorizer'      " Highlight rgb/hex colors.
+Plug 'airblade/vim-gitgutter'           " Git stats in number column.
+Plug 'tpope/vim-fugitive'               " Git commands.
+Plug 'ctrlpvim/ctrlp.vim'               " Fuzzy find files.
+Plug 'jiangmiao/auto-pairs'             " Auto-completion of quotes, brackets.
+Plug 'alvan/vim-closetag'               " Auto-completion of html tags.
+Plug 'othree/xml.vim'                   " Auto-completion of xml tags.
+Plug 'tpope/vim-surround'               " Edit quotes, parentheses, tags.
+Plug 'tpope/vim-commentary'             " Commenting.
+Plug 'unblevable/quick-scope'           " Horizontal navigation.
+Plug 'mhinz/vim-startify'               " Start screen.
+Plug 'vim-scripts/taglist.vim'          " Tags view.
+Plug 'ron89/thesaurus_query.vim'        " Word synonyms.
+Plug 'vimwiki/vimwiki'                  " Note taking.
+Plug 'inkarkat/vim-ReplaceWithRegister' " Text object replacement.
+Plug 'tpope/vim-unimpaired'
 
-" Text object replacement.
-Plug 'inkarkat/vim-ReplaceWithRegister'
-" Python syntax higlight.
+" Python {{{
+" Syntax higlight.
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-
-Plug 'vimwiki/vimwiki'
-
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-
-" Sneak {{{
-Plug 'justinmk/vim-sneak'
-let g:sneak#s_next = 1
+" A lof of stuff.
+" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 "}}}
 
-" Vim-snippets {{{
+" Vim-snippets (Snippets engline) {{{
 Plug 'SirVer/ultisnips'    " Engline
 Plug 'honza/vim-snippets'  " Snippets
 
@@ -58,7 +55,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 "}}}
 
-" Syntastic {{{
+" Syntastic (Syntax Errors) {{{
 Plug 'vim-syntastic/syntastic'
 
 " Load errors into the location list to jump between them.
@@ -76,25 +73,28 @@ let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_python_flake8_post_args='--ignore=E501'
 "}}}
 
-" Deoplete {{{
+" Deoplete (Auto-completion engine) {{{
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 let g:deoplete#enable_at_startup = 1
 "}}}
 
 " Java-complete {{{
-Plug 'artur-shaik/vim-javacomplete2' " Java autocomletion
+Plug 'artur-shaik/vim-javacomplete2'
+
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 let g:JavaComplete_ClosingBrace = 0
 "}}}
 
-" Better-whitespace {{{
+" Better-whitespace (Extra whitespace) {{{
 Plug 'ntpeters/vim-better-whitespace'
+
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 "}}}
 
-" Indent-line  {{{
+" Indent-line (Indentation display) {{{
 Plug 'Yggdroot/indentLine'
 
 let g:indentLine_char =  '¦'
@@ -102,7 +102,7 @@ let g:indentLine_leadingSpacChar='·'
 let g:indentLine_leadingSpaceEnabled='1'
 "}}}
 
-" Nerdtree {{{
+" Nerdtree (File tree) {{{
 Plug 'preservim/nerdtree'
 
 " Show hidden files.
@@ -124,7 +124,7 @@ Plug 'ryanoasis/vim-devicons'
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "}}}
 
-" Airline {{{
+" Airline (Status line) {{{
 Plug 'vim-airline/vim-airline'
 
 " Show airline for tabs too
@@ -133,7 +133,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 "}}}
 
-" Limelight {{{
+" Limelight (Focus mode) {{{
 Plug 'junegunn/limelight.vim'
 
 " Color name (:help cterm-colors) or ANSI code
@@ -145,7 +145,7 @@ let g:limelight_conceal_guifg = 'DarkGray'
 let g:limelight_conceal_guifg = '#777777'
 "}}}
 
-" Goyo {{{
+" Goyo (Focus mode) {{{
 Plug 'junegunn/goyo.vim'
 
 function! s:goyo_enter()
@@ -164,17 +164,17 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
-" Seiya {{{
-Plug 'miyakogi/seiya.vim'  " Transparent background.
+" Seiya (Transparent background) {{{
+Plug 'miyakogi/seiya.vim'
 let g:seiya_auto_enable=1
 "}}}
 
 " Colorschemes {{{
-Plug 'tomasr/molokai'
-Plug 'gosukiwi/vim-atom-dark'
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'dracula/vim'
-Plug 'AlessandroYorba/Alduin'
+Plug 'tomasr/molokai'                   " molokai
+Plug 'drewtempelmeyer/palenight.vim'    " palenight
+Plug 'dracula/vim'                      " dracula
+Plug 'bluz71/vim-nightfly-guicolors'    " nightfly
+Plug 'AlessandroYorba/Alduin'           " alduin
 let g:alduin_Shout_Become_Ethereal = 1
 let g:alduin_Shout_Fire_Breath = 1
 "}}}
