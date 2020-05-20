@@ -10,6 +10,8 @@ source $DOTFILES_HOME/nvim/plugin.vim       " Pluggins
 
 let g:mapleader = ';'                       " Leader
 let g:python3_host_prog='/usr/bin/python3'  " Python3 interpreter
+" Search for files here.
+let &path.="/usr/include/,/usr/lib/gcc/x86_64-linux-gnu/8/include"
 
 " Backup + {{{
 set backup
@@ -48,7 +50,7 @@ set smartindent        " Indent on braces and previous indentation level.
 filetype plugin indent on
 
 " Indentation for different file types.
-au BufNewFile,BufRead *.html,*.css
+au BufNewFile,BufRead *.html,*.css,*.wiki,
     \    setlocal shiftwidth=2 softtabstop=2  " html, css
 au BufNewFile,BufRead *,c,*.py,*.cpp,*.asm,*.sh,*.java
     \    setlocal shiftwidth=4 softtabstop=4  " python, c++, assembly
@@ -67,7 +69,7 @@ au BufNewFile,BufRead *.py set textwidth=100
 
 " Searching + {{{
 set hlsearch           " Highlight all search matches.
-set ignorecase         " Case insensitive search.
+" set ignorecase         " Case insensitive search.
 "}}}
 
 " Status-line + {{{

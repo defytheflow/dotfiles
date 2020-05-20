@@ -83,17 +83,6 @@ workspace_auto_back_and_forth yes
 # gaps outer $outer_gaps
 #}}}
 
-# Status bar {{{
-bar {
-    position bottom
-    status_command ~/.local/bin/bumblebee-status    \
-            -m cpu memory disk brightness weather   \
-               amixer bluetooth battery layout-xkb  \
-                date time uptime \
-            -p date.format="%a %x" \
-            -t iceberg
-}
-#}}}
 
 # Bindings
 # ------------------------------------------------------------------------------
@@ -232,6 +221,11 @@ bindsym F2  exec "amixer -q set Master 5%-"
 bindsym F3  exec "amixer -q set Master 5%+"
 #}}}
 
+# Scratchpad {{{
+bindsym $mod+s move scratchpad
+bindsym $mod+Shift+s scratchpad show
+#}}}
+
 # Unused
 # ------------------------------------------------------------------------------
 
@@ -243,7 +237,14 @@ bindsym F3  exec "amixer -q set Master 5%+"
 # bindsym --whole-window $mod+button3 move right
 #}}}
 
-# Scratchpad {{{
-bindsym $mod+s move scratchpad
-bindsym $mod+Shift+s scratchpad show
+# Status bar {{{
+bar {
+    position bottom
+    status_command ~/.local/bin/bumblebee-status  \
+            -m memory disk weather sun            \
+               amixer battery layout-xkb          \
+               date time uptime                   \
+            # -p date.format="%a %x"                \
+            -t drakula
+}
 #}}}

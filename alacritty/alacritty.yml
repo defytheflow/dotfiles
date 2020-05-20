@@ -63,7 +63,7 @@ window:
   #startup_mode: Windowed
 
   # Window title
-  title: Never Give Up
+  title: Motivation is temporary, Discipline is permanent.
 
   # Window class (Linux/BSD only):
   #class:
@@ -230,15 +230,15 @@ colors:
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
-  #dim:
-  #  black:   '#000000'
-  #  red:     '#8c3336'
-  #  green:   '#7a8530'
-  #  yellow:  '#97822e'
-  #  blue:    '#506d8f'
-  #  magenta: '#80638e'
-  #  cyan:    '#497e7a'
-  #  white:   '#9a9a9a'
+  dim:
+    black:   '#000000'
+    red:     '#8c3336'
+    green:   '#7a8530'
+    yellow:  '#97822e'
+    blue:    '#506d8f'
+    magenta: '#80638e'
+    cyan:    '#497e7a'
+    white:   '#9a9a9a'
 
   # Indexed Colors
   #
@@ -277,10 +277,10 @@ colors:
 #  color: '#ffffff'
 
 # Background opacity
-#
+
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.6
+background_opacity: 1.0
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -289,16 +289,16 @@ background_opacity: 0.6
   #save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
-#dynamic_title: true
+dynamic_title: true
 
-#cursor:
+cursor:
   # Cursor style
   #
   # Values for `style`:
   #   - ▇ Block
   #   - _ Underline
   #   - | Beam
-  #style: Block
+  style: Block
 
   # Vi mode cursor style
   #
@@ -314,10 +314,10 @@ background_opacity: 0.6
 
   # Thickness of the cursor relative to the cell width as floating point number
   # from `0.0` to `1.0`.
-  #thickness: 0.15
+  thickness: 0.15
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #
@@ -337,7 +337,7 @@ background_opacity: 0.6
 #
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-#working_directory: None
+working_directory: None
 
 # WinPTY backend (Windows only)
 #

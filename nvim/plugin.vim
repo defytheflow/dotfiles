@@ -32,11 +32,17 @@ Plug 'tpope/vim-surround'               " Edit quotes, parentheses, tags.
 Plug 'tpope/vim-commentary'             " Commenting.
 Plug 'unblevable/quick-scope'           " Horizontal navigation.
 Plug 'mhinz/vim-startify'               " Start screen.
-Plug 'vim-scripts/taglist.vim'          " Tags view.
 Plug 'ron89/thesaurus_query.vim'        " Word synonyms.
 Plug 'vimwiki/vimwiki'                  " Note taking.
 Plug 'inkarkat/vim-ReplaceWithRegister' " Text object replacement.
 Plug 'tpope/vim-unimpaired'
+
+" Taglist {{{
+Plug 'vim-scripts/taglist.vim'
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Use_Right_Window = 1
+"}}}
 
 " Python {{{
 " Syntax higlight.

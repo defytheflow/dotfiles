@@ -8,8 +8,15 @@
 
 " Escape
 inoremap jk <esc>
+
 " Fold
 nnoremap <space> za
+
+" Edit file under cursor in horizontal split.
+nnoremap <leader>sfg <C-W>f
+
+" Edit file under cursor in vertical split.
+nnoremap <leader>vfg <C-W>vgf
 
 " Other {{{
 " Toggle search higlighting
