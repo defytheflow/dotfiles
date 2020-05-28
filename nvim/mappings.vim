@@ -6,26 +6,20 @@
 " Author:       Artyom Danilov
 
 
-" Escape
-inoremap jk <esc>
-
-" Fold
-nnoremap <space> za
-
 " Edit file under cursor in horizontal split.
 nnoremap <leader>sfg <C-W>f
-
 " Edit file under cursor in vertical split.
 nnoremap <leader>vfg <C-W>vgf
 
-" Other {{{
-" Toggle search higlighting
-nnoremap <leader>h :set hlsearch! hlsearch?<CR>
+" Escape
+inoremap jk <esc>
+" Fold
+nnoremap <space> za
+
 " Remove tabs
 nnoremap <silent><leader>rt :retab<CR>
 " Visual Comment
 nnoremap <silent><leader>vc :call VisualComment()<CR>
-"}}}
 
 " Plugin Toggles + {{{
 nnoremap <silent><leader>g :Goyo<CR>
@@ -36,15 +30,26 @@ nnoremap <silent><leader>se :SeiyaEnable<CR>
 nnoremap <silent><leader>sd :SeiyaDisable<CR>
 "}}}
 
+" Custom Toggles + {{{
+nnoremap <silent><leader>cc :call ColorColumnToggle()<CR>
+nnoremap <silent><leader>cl :call CursorLineToggle()<CR>
+nnoremap <silent><leader>ck :call CursorColumnToggle()<CR>
+nnoremap <silent><leader>h  :call HighlightSearchToggle()<CR>
+" }}}
+
 " Insert newline + {{{
 nnoremap <silent><leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent><leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 "}}}
 
+" Shifting + {{{
+vnoremap < <gv
+vnoremap > >gv
+"}}}
+
 " Buffers + {{{
-nnoremap <silent>bp :bprev<CR>
-nnoremap <silent>bn :bnext<CR>
-nnoremap <silent>bd :bdelete<CR>
+nnoremap <TAB> :bnext<CR>
+nnoremap <S-TAB> :bprev<CR>
 "}}}
 
 " Tabs + {{{
@@ -58,14 +63,6 @@ nnoremap <silent>tq :tabclose<CR>
 nnoremap <silent><leader>ev :split $MYVIMRC<CR>
 nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 "}}}
-
-" Color Toggles + {{{
-nnoremap <silent><leader>cw :call ColorSchemeSave()<CR>
-" nnoremap <silent><leader>cs :call ColorSchemeSwitch()<CR>
-nnoremap <silent><leader>cc :call ColorColumnToggle()<CR>
-nnoremap <silent><leader>cl :call CursorLineToggle()<CR>
-nnoremap <silent><leader>ck :call CursorColumnToggle()<CR>
-" }}}
 
 " Splits + {{{
 

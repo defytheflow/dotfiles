@@ -39,7 +39,7 @@ export PYTHONPATH=''                        # <-- Python modules
 
 # Options/Flags {{{
 # ------------------------------------------------------------------------------
-export CFLAGS='-W -Wall -Wextra'    # <-- C
+export CFLAGS='-g -W -Wall -Wextra' # <-- C
 export SHELLCHECK_OPTS=''           # <-- shellcheck
 export PYTHONSTARTUP="${PYTHONRC}"  # <-- python
 #}}}

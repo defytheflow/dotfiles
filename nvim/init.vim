@@ -6,29 +6,35 @@
 " Author:       Artyom Danilov
 
 
-source $DOTFILES_HOME/nvim/plugin.vim       " Pluggins
+" Must be sources at the top.
+source $DOTFILES_HOME/nvim/plugins.vim
 
-let g:mapleader = ';'                       " Leader
-let g:python3_host_prog='/usr/bin/python3'  " Python3 interpreter
-" Search for files here.
-let &path.="/usr/include/,/usr/lib/gcc/x86_64-linux-gnu/8/include"
+" Global Variables + {{{
+let g:mapleader = ';'
+let g:python3_host_prog = '/usr/bin/python3'
+let &path = '/usr/include/,/usr/lib/gcc/x86_64-linux-gnu/8/include'
+"}}}
 
 " Backup + {{{
 set backup
 set noswapfile
 set backupdir=~/.config/nvim/backup
-
 if !isdirectory(&backupdir)
     call mkdir(&backupdir, 'p', 0700)
+endif
+
+set undofile
+set undodir=~/.config/nvim/undodir
+if !isdirectory(&undodir)
+    call mkdir(&undodir, 'p', 0700)
 endif
 "}}}
 
 " Colors + {{{
 set termguicolors
 set background=dark
-" Don't remove the <-ColoSave-> tag. It is used by ColorSchemeSave function.
 try
-    colo nightfly  " <-ColoSave->
+    colo monokai
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry
@@ -56,23 +62,25 @@ au BufNewFile,BufRead *,c,*.py,*.cpp,*.asm,*.sh,*.java
     \    setlocal shiftwidth=4 softtabstop=4  " python, c++, assembly
 " }}}
 
-" Text-width + {{{
-set wrap               " Long lines continue to display on the next line.
+" Text Width + {{{
+set nowrap
+" set wrap               " Long lines continue to display on the next line.
 set textwidth=80       " Maximum width of the text that is being inserted.
 set formatoptions+=t   " Wrap text using &textwidth.
 set colorcolumn=+0     " Display a color-column to indicate textwidth.
 
-
 " Python
-au BufNewFile,BufRead *.py set textwidth=100
+" au BufNewFile,BufRead *.py set textwidth=100
 "}}}
 
 " Searching + {{{
-set hlsearch           " Highlight all search matches.
-" set ignorecase         " Case insensitive search.
+set hlsearch         " Highlight all search matches.
+set incsearch
+set ignorecase       " Case insensitive search.
+set smartcase
 "}}}
 
-" Status-line + {{{
+" Status Line + {{{
 set ruler              " Show the line and column number of cursor.
 set showcmd            " Show last typed command.
 set noshowmode         " Do not display mode in status line.
@@ -103,8 +111,8 @@ au VimEnter * :NoMatchParen
 au BufEnter * set fo-=c fo-=r fo-=o
 "}}}
 
-" Custom Functions (must be sourced before map.vim).
-source $DOTFILES_HOME/nvim/function.vim
+" Must be sourced before 'mappings.vim'.
+source $DOTFILES_HOME/nvim/functions.vim
 
-" Custom Mappings (must be sourced last).
-source $DOTFILES_HOME/nvim/map.vim
+" Must be sourced last.
+source $DOTFILES_HOME/nvim/mappings.vim

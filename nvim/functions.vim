@@ -7,7 +7,6 @@
 
 
 fun! ColorColumnToggle()
-    " ColorColumn on/off. "
     if &cc == ''
         " Highlight column after 'textwidth'
         set colorcolumn=+1
@@ -17,7 +16,6 @@ fun! ColorColumnToggle()
 endfun
 
 fun! CursorLineToggle()
-    " CursorLine on/off
     if &cul == 1
         set nocursorline
     else
@@ -26,7 +24,6 @@ fun! CursorLineToggle()
 endfun
 
 fun! CursorColumnToggle()
-    " CursorColumn on/off
     if &cuc == 1
         set nocursorcolumn
     else
@@ -34,28 +31,12 @@ fun! CursorColumnToggle()
     endif
 endfun
 
-fun! ColorSchemeSave()
-    " Permanently save current color scheme.
-    let l:tag = '<-ColoSave->'
-    execute '!sed -i -E "s/colo .+ ' . l:tag . '/colo ' . g:colors_name . '  \" ' . l:tag . '/g" ' . $DOTFILES_HOME . '/nvim/init.vim'
-endfun
-
-fun! ColorSchemeSwitch()
-    " Switch colorscheme. "
-    let l:colors = ['molokai', 'atom-dark-256', 'palenight', 'alduin', 'dracula']
-
-    let l:i = 0
-    while i < len(colors)
-        if colors[i] == g:colors_name
-            if i < len(colors) - 1
-                execute ':colo ' . l:colors[i+1]
-            else
-                execute ':colo ' . l:colors[0]
-            endif
-            break
-        endif
-        let l:i += 1
-    endwhile
+fun! HighlightSearchToggle()
+    if &hlsearch == 1
+        set nohlsearch
+    else
+        set hlsearch
+    endif
 endfun
 
 fun! GetCommentToken()

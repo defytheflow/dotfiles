@@ -5,7 +5,8 @@
 " Created:      29.03.2020
 " Author:       Artyom Danilov
 
-" Auto-download vim-plug + {{{
+
+" Download vim-plug + {{{
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -13,7 +14,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 "}}}
 
-" Auto-download missing pluggins + {{{
+" Download pluggins + {{{
 autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \|   PlugInstall --sync | q
@@ -35,20 +36,25 @@ Plug 'mhinz/vim-startify'               " Start screen.
 Plug 'ron89/thesaurus_query.vim'        " Word synonyms.
 Plug 'vimwiki/vimwiki'                  " Note taking.
 Plug 'inkarkat/vim-ReplaceWithRegister' " Text object replacement.
-Plug 'tpope/vim-unimpaired'
+
+" Pymode {{{
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+
+" Code checking.
+let g:pymode_lint = 0
+" let g:pymode_lint_on_fly = 1
+" Syntax.
+let g:pymode_syntax_print_as_function = 1
+" Refactoring.
+let g:pymode_rope_rename_bind = '<leader>pr'
+"}}}
 
 " Taglist {{{
 Plug 'vim-scripts/taglist.vim'
+
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 1
-"}}}
-
-" Python {{{
-" Syntax higlight.
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-" A lof of stuff.
-" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 "}}}
 
 " Vim-snippets (Snippets engline) {{{
@@ -62,7 +68,7 @@ let g:UltiSnipsEditSplit="vertical"
 "}}}
 
 " Syntastic (Syntax Errors) {{{
-Plug 'vim-syntastic/syntastic'
+" Plug 'vim-syntastic/syntastic'
 
 " Load errors into the location list to jump between them.
 let g:syntastic_always_populate_loc_list = 1
@@ -72,7 +78,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 " Indicate a line with error.
 let g:syntastic_error_symbol = "✗"
-
+let g:syntastic_ignore_files = ['[a-z][A-Z][0-9]*.asm']
 " Check python3 syntax.
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['flake8']
@@ -172,17 +178,26 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Seiya (Transparent background) {{{
 Plug 'miyakogi/seiya.vim'
+
 let g:seiya_auto_enable=1
 "}}}
 
 " Colorschemes {{{
+
+" Classic
 Plug 'tomasr/molokai'                   " molokai
+Plug 'doums/darcula'                    " darcula
+Plug 'sickill/vim-monokai'              " monokai
+
+" Other
 Plug 'drewtempelmeyer/palenight.vim'    " palenight
 Plug 'dracula/vim'                      " dracula
 Plug 'bluz71/vim-nightfly-guicolors'    " nightfly
+Plug 'habamax/vim-colors-lessthan'      " lessthan
 Plug 'AlessandroYorba/Alduin'           " alduin
 let g:alduin_Shout_Become_Ethereal = 1
 let g:alduin_Shout_Fire_Breath = 1
+
 "}}}
 
 call plug#end()
