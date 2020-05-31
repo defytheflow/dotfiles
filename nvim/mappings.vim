@@ -11,11 +11,6 @@ nnoremap <leader>sfg <C-W>f
 " Edit file under cursor in vertical split.
 nnoremap <leader>vfg <C-W>vgf
 
-" Escape
-inoremap jk <esc>
-" Fold
-nnoremap <space> za
-
 " Remove tabs
 nnoremap <silent><leader>rt :retab<CR>
 " Visual Comment
@@ -37,9 +32,13 @@ nnoremap <silent><leader>ck :call CursorColumnToggle()<CR>
 nnoremap <silent><leader>h  :call HighlightSearchToggle()<CR>
 " }}}
 
-" Insert newline + {{{
+" General + {{{
 nnoremap <silent><leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 nnoremap <silent><leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+nnoremap S :%s//g<Left><Left>
+nnoremap Y y$
+inoremap jk <esc>
+nnoremap <space> za
 "}}}
 
 " Shifting + {{{

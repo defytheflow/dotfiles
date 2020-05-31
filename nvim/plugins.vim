@@ -36,17 +36,16 @@ Plug 'mhinz/vim-startify'               " Start screen.
 Plug 'ron89/thesaurus_query.vim'        " Word synonyms.
 Plug 'vimwiki/vimwiki'                  " Note taking.
 Plug 'inkarkat/vim-ReplaceWithRegister' " Text object replacement.
+Plug 'metakirby5/codi.vim'
 
 " Pymode {{{
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 " Code checking.
 let g:pymode_lint = 0
-" let g:pymode_lint_on_fly = 1
+
 " Syntax.
 let g:pymode_syntax_print_as_function = 1
-" Refactoring.
-let g:pymode_rope_rename_bind = '<leader>pr'
 "}}}
 
 " Taglist {{{
@@ -68,7 +67,7 @@ let g:UltiSnipsEditSplit="vertical"
 "}}}
 
 " Syntastic (Syntax Errors) {{{
-" Plug 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 
 " Load errors into the location list to jump between them.
 let g:syntastic_always_populate_loc_list = 1
@@ -81,7 +80,7 @@ let g:syntastic_error_symbol = "✗"
 let g:syntastic_ignore_files = ['[a-z][A-Z][0-9]*.asm']
 " Check python3 syntax.
 let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_checkers = ['mypy', 'pylint']
 let g:syntastic_python_flake8_post_args='--ignore=E501'
 "}}}
 
@@ -124,7 +123,7 @@ let NERDTreeMinimalUI  = 1
 " Automatically delete the buffer of the file you just deleted.
 let NERDTreeAutoDeleteBuffer = 1
 " Don't show these entries.
-let NERDTreeIgnore=['__pycache__', '.git']
+let NERDTreeIgnore=['__pycache__', '.git', '.mypy_cache']
 
 " Tab settings for nerdtree.
 Plug 'jistr/vim-nerdtree-tabs'

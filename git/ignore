@@ -3,3 +3,4 @@
 .zcompdump
 __pycache__
 *.o
+.mypy_cache
