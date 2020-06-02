@@ -4,3 +4,4 @@
 __pycache__
 *.o
 .mypy_cache
+.idea

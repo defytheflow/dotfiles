@@ -244,7 +244,7 @@ bar {
             -m memory disk weather sun            \
                amixer battery layout-xkb          \
                date time uptime                   \
-            # -p date.format="%a %x"                \
-            -t drakula
+            -p date.format="%a %x"                \
+            -t gruvbox
 }
 #}}}

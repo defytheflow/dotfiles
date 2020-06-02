@@ -34,7 +34,7 @@ endif
 set termguicolors
 set background=dark
 try
-    colo monokai
+    colo molokai
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry

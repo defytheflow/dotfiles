@@ -76,7 +76,7 @@ let g:syntastic_check_on_open = 0
 " Check for errors when file is saved.
 let g:syntastic_check_on_wq = 1
 " Indicate a line with error.
-let g:syntastic_error_symbol = "✗"
+" let g:syntastic_error_symbol = "✗"
 let g:syntastic_ignore_files = ['[a-z][A-Z][0-9]*.asm']
 " Check python3 syntax.
 let g:syntastic_python_python_exec = 'python3'
@@ -123,7 +123,7 @@ let NERDTreeMinimalUI  = 1
 " Automatically delete the buffer of the file you just deleted.
 let NERDTreeAutoDeleteBuffer = 1
 " Don't show these entries.
-let NERDTreeIgnore=['__pycache__', '.git', '.mypy_cache']
+let NERDTreeIgnore=['__pycache__', '.git', '.mypy_cache', '.idea']
 
 " Tab settings for nerdtree.
 Plug 'jistr/vim-nerdtree-tabs'
