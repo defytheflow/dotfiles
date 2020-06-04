@@ -1,13 +1,12 @@
 
-# File:      config
-# Purpose:   i3 settings
-
+# File:      i3/config
 # Created:   22.03.2020
 # Author:    Artyom Danilov
 
+# SETTINGS.
+
 # Variables {{{
-# ------------------------------------------------------------------------------
-set $mod Mod1
+set $mod Mod4
 floating_modifier $mod
 
 # Workspaces
@@ -16,7 +15,7 @@ set $ws2 "2 Web 🌐"
 set $ws3 "3 Code ⚡"
 set $ws4 "4 Code 🔥"
 set $ws5 "5 Remote 🌟"
-set $ws6 "6 Music 🎧"
+set $ws6 6
 set $ws7 7
 set $ws8 8
 set $ws9 9
@@ -32,28 +31,27 @@ set $ex_monitor HDMI-1
 # Gaps
 set $inner_gaps 10
 set $outer_gaps 5
-
 #}}}
 
-# Startup
-# ------------------------------------------------------------------------------
+# Startup {{{
 exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
 exec --no-startup-id i3-msg "workspace $ws2; exec $browser"
 
 # Enable terminal transparency.
 exec_always --no-startup-id xcompmgr -c -f -n
 
-# Enable russian keyboard (switch on CapsLock).
-exec_always --no-startup-id setxkbmap -layout us,ru -option grp:caps_toggle
+# Enable russian keyboard <Shift-Alt>.
+exec_always --no-startup-id setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'
+
+# Swap <Escape> and <CapsLock>,
+exec_always --no-startup-id setxkbmap -option 'caps:swapescape'
 
 # All windows here are floating.
 for_window [workspace=$ws4] floating enable
-
-# Settings
-# ------------------------------------------------------------------------------
+# }}}
 
 # Colors {{{
-# ------------------------------------------------------------------------------
+
 # class                 border  backgr. text    indicator child_border
 client.focused          #000066 #1b2323 #ffffff #2e9ef4   #000066
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
@@ -65,7 +63,7 @@ client.background       #ffffff
 #}}}
 
 # Windows {{{
-# ------------------------------------------------------------------------------
+
 # Window title allignment
 title_align center
 
@@ -83,21 +81,30 @@ workspace_auto_back_and_forth yes
 # gaps outer $outer_gaps
 #}}}
 
+# Status bar {{{
+bar {
+    position bottom
+    status_command ~/.local/bin/bumblebee-status  \
+            -m memory disk weather sun            \
+               amixer battery layout-xkb          \
+               date time uptime                   \
+            -p date.format="%a %x"                \
+            -t gruvbox
+}
+#}}}
 
-# Bindings
-# ------------------------------------------------------------------------------
+# BINDS.
 
 # Applications {{{
 bindsym $mod+w        exec --no-startup-id $browser
 bindsym $mod+d        exec --no-startup-id dmenu_run
-bindsym $mod+r        exec --no-startup-id $terminal -e ranger
 bindsym $mod+Return   exec --no-startup-id $terminal
 bindsym $mod+Shift+t  exec --no-startup-id teamviewer
 bindsym $mod+Shift+a  exec --no-startup-id anydesk
 #}}}
 
 # Gaps {{{
-# ------------------------------------------------------------------------------
+
 # Set default.
 bindsym $mod+0        gaps inner current set $inner_gaps; \
                       gaps outer current set $outer_gaps
@@ -131,7 +138,7 @@ bindsym $mod+Shift+bracketright exec --no-startup-id "xrandr --output $ex_monito
 #}}}
 
 # Movement {{{
-# ------------------------------------------------------------------------------
+
 # Change window.
 bindsym $mod+h  focus left
 bindsym $mod+j  focus down
@@ -224,27 +231,4 @@ bindsym F3  exec "amixer -q set Master 5%+"
 # Scratchpad {{{
 bindsym $mod+s move scratchpad
 bindsym $mod+Shift+s scratchpad show
-#}}}
-
-# Unused
-# ------------------------------------------------------------------------------
-
-# Mouse {{{
-# The middle button over a titlebar kills the window
-# bindsym --release button2 kill
-# The middle button and a modifer over any part of the window kills the window
-# bindsym --border $mod+button1 move left
-# bindsym --whole-window $mod+button3 move right
-#}}}
-
-# Status bar {{{
-bar {
-    position bottom
-    status_command ~/.local/bin/bumblebee-status  \
-            -m memory disk weather sun            \
-               amixer battery layout-xkb          \
-               date time uptime                   \
-            -p date.format="%a %x"                \
-            -t gruvbox
-}
 #}}}
