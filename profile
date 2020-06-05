@@ -6,66 +6,62 @@
 
 
 # XDG Base Directory {{{
-# ------------------------------------------------------------------------------
-export XDG_CACHE_HOME="${HOME}"/.cache       # <-- user cache files
-export XDG_CONFIG_HOME="${HOME}"/.config     # <-- user config files
-export XDG_DATA_HOME="${HOME}"/.local/share  # <-- user data files
+export XDG_CACHE_HOME="${HOME}"/.cache
+export XDG_CONFIG_HOME="${HOME}"/.config
+export XDG_DATA_HOME="${HOME}"/.local/share
 
 # To use gnome-control-senter in i3 session.
 export XDG_CURRENT_DESKTOP=GNOME
 #}}}
 
+# Homes {{{
+export CARGO_HOME="${XDG_CONFIG_HOME}"/cargo
 export DOTFILES_HOME="${HOME}"/.dotfiles
+export GEM_HOME="${XDG_CONFIG_HOME}"/gem
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+export PYLINTHOME="${XDG_DATA_HOME}"/pylint
+export RUSTUP_HOME="${XDG_CONFIG_HOME}"/rustup
+export TASKDATA="${XDG_DATA_HOME}"/task
+export ZPLUG_HOME="${XDG_CONFIG_HOME}"/zplug
+#}}}
 
-# Default programs {{{
-# ------------------------------------------------------------------------------
+# Defaults {{{
 export EDITOR='nvim'
 export BROWSER='google-chrome'
 export TERMINAL='alacritty'
 #}}}
 
 # Paths {{{
-# ------------------------------------------------------------------------------
-export PATH="${PATH}":"${HOME}"/.local/bin:/snap/bin
+export PATH="${PATH}":"${HOME}"/.local/bin:/snap/bin:"${JAVA_HOME}"/bin
 export CPATH=''                             # <-- C headers
 export LD_LIBRARY_PATH=''                   # <-- C libraries
 export PYTHONPATH=''                        # <-- Python modules
 #}}}
 
-# Options/Flags {{{
-# ------------------------------------------------------------------------------
+# Flags {{{
 export CFLAGS='-g -W -Wall -Wextra' # <-- C
 export SHELLCHECK_OPTS=''           # <-- shellcheck
 export PYTHONSTARTUP="${PYTHONRC}"  # <-- python
 #}}}
 
-# Config {{{
-# ------------------------------------------------------------------------------
-export BASHRC="${HOME}"/.bashrc                       # <-- bash
-export ZSHRC="${HOME}"/.zshrc                         # <-- zsh
-export VIMRC="${XDG_CONFIG_HOME}"/nvim/init.vim       # <-- nvim
-export PYTHONRC="${XDG_CONFIG_HOME}"/python/pythonrc  # <-- python
-export I3CONF="${XDG_CONFIG_HOME}"/i3/config          # <-- i3
-export GITCONF="${XDG_CONFIG_HOME}"/git/config        # <-- git
-export TASKRC="${XDG_CONFIG_HOME}"/task/taskrc        # <-- task
-export ZPLUG_HOME="${XDG_CONFIG_HOME}"/zplug          # <-- zplug
+# Configs {{{
+export BASHRC="${HOME}"/.bashrc
+export ZSHRC="${HOME}"/.zshrc
+export VIMRC="${XDG_CONFIG_HOME}"/nvim/init.vim
+export PYTHONRC="${XDG_CONFIG_HOME}"/python/pythonrc
+export I3CONF="${XDG_CONFIG_HOME}"/i3/config
+export GITCONF="${XDG_CONFIG_HOME}"/git/config
+export TASKRC="${XDG_CONFIG_HOME}"/task/taskrc
 #}}}
 
-# Cache {{{
-# ------------------------------------------------------------------------------
-export LESSHISTFILE="${XDG_CACHE_HOME}"/less/history  # <-- less
-export ICEAUTHORITY="${XDG_CACHE_HOME}"/ICEauthority  # <-- (?)
-export ZPLUG_CACHE_DIR="${XDG_CACHE_HOME}"/zplug      # <-- zplug
+# Caches {{{
+export ICEAUTHORITY="${XDG_CACHE_HOME}"/ICEauthority
+export LESSHISTFILE="${XDG_CACHE_HOME}"/less/history
+export ZPLUG_CACHE_DIR="${XDG_CACHE_HOME}"/zplug
 #}}}
 
-# Data {{{
-# ------------------------------------------------------------------------------
-export TASKDATA="${XDG_DATA_HOME}"/task               # <-- task
-export PYLINTHOME="${XDG_DATA_HOME}"/pylint           # <-- pylint
-#}}}
-
-# WSL {{{
-# ------------------------------------------------------------------------------
+# Wsl {{{
 if [ -n "${WSL_DISTRO_NAME}" ]; then
     WIN_USER="$(powershell.exe '$env:UserName' | sed -e 's/\r//g')"
     export WIN_USER                        # <-- Windows user name.
@@ -77,8 +73,7 @@ if [ -n "${WSL_DISTRO_NAME}" ]; then
 fi
 #}}}
 
-# virtualenvwrapper {{{
-# ------------------------------------------------------------------------------
+# Virtualenvwrapper {{{
 export WORKON_HOME="${HOME}"/.envs  # virtualenvwrapper
 export PROJECT_HOME="${HOME}"/repos # development project directories
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
@@ -86,12 +81,6 @@ export VIRTUALENVWRAPPER_VIRTUALENV="${HOME}"/.local/bin/virtualenv
 # Must be at the bottom
 [ -f "${HOME}"/.local/bin/virtualenvwrapper.sh ] && \
     . "${HOME}"/.local/bin/virtualenvwrapper.sh
-#}}}
-
-# Java {{{
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
-export PATH="${PATH}":"${JAVA_HOME}"/bin
 #}}}
 
 # So that scripts and programs could use these values (Important).
