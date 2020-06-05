@@ -1,9 +1,6 @@
 #!/bin/bash
 
 # File:      .bashrc
-# Purpose:   This file is sourced every zsh interactive session
-#            (every time you open a terminal with bash as default shell).
-
 # Created:   30.12.2019
 # Author:    Artyom Danilov
 

@@ -1,11 +1,6 @@
 #!/bin/sh
 
 # File:      .profile
-# Purpose:   Define environment variables, that will be used by other programs
-#            and shell startup files.
-# Use:       This file is sourced by your shell every time you login into system
-#            (when you type your login and password at the lock screen).
-
 # Created:   28.03.2020
 # Author:    Artyom Danilov
 
@@ -20,7 +15,7 @@ export XDG_DATA_HOME="${HOME}"/.local/share  # <-- user data files
 export XDG_CURRENT_DESKTOP=GNOME
 #}}}
 
-export DOTFILES_HOME="${HOME}"/.dotfiles      # <-- dotfiles
+export DOTFILES_HOME="${HOME}"/.dotfiles
 
 # Default programs {{{
 # ------------------------------------------------------------------------------
