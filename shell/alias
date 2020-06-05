@@ -1,201 +1,97 @@
 #!/bin/sh
 
 # File:      shell/alias
-# Purpose:   Define shortcuts for commands and add default arguments.
-# Notes:     This file is sourced by .zshrc and .bashrc accordingly.
-
 # Created:   30.12.2019
 # Author:    Artyom Danilov
-# Caution:   Order is important, some aliases can and will break if you change it
 
+alias sudo='sudo ' # Run 'sudo {alias}'
 
-# Allow running sudo with aliases.
-alias sudo='sudo '
-
-alias jc='javac'
+alias c='highlight --out-format=ansi --force'
+alias e='exa -1'
+alias f='file'
+alias g='git'
+alias h='history'
 alias j='java'
-
+alias l='ls'
+alias n='ls -A | wc -l'
+alias p='pwd'
+alias s='source'
+alias t='tree'
 alias v='nvim'
 
-# cd {{{
-alias \
-    ..='cd ..' \
-    ...='cd ../../' \
-    ....=' cd ../../../' \
-    .....='cd ../../../../'
-# Typing mistakes.
-alias \
-    cd..='cd ..' \
-    cd~='cd ~'   \
-    cd-='cd -'   \
-    CD='cd'
-# Type '-' to go to previous dir.
-alias -- -='cd -'
-#}}}
+alias cl='clear'
+alias gh='history | grep'
+alias jc='javac'
+alias py='python3'
+alias sc='shellcheck'
+alias tc='touch'
+alias vi='nvim'
 
-# cp {{{
-alias cp='cp -iv'
-#}}}
-
-# cat {{{
-alias c='highlight --out-format=ansi --force'
-#}}}
-
-# diff {{{
-alias \
-    diff='diff -y --suppress-common-lines' \
-    diff='diff --color=auto'
-#}}}
-
-# dir {{{
-alias \
-    dir='dir --color=auto'  \
-    vdir='vdir --color=auto'
-#}}}
-
-# du {{{
-alias du='du -h'
-#}}}
-
-# exa {{{
-alias \
-    ex='exa --icons --group-directories-first --git-ignore -I __pycache__' \
-    e='ex -1'  \
-    ea='ex -a' \
-    el='ex -l' \
-    er='ex -R' \
-    et='ex -T'
-#}}}
-
-# grep{{{
-alias \
-    grep='grep --color=auto'   \
-    fgrep='fgrep --color=auto' \
-    egrep='egrep --color=auto'
-#}}}
-
-# ls {{{
-alias \
-    ls='ls -vhF --color=never --group-directories-first' \
-    l='  ls -1'    \
-    la=' ls -A'    \
-    lh=' ls -d .*' \
-    ll=' ls -l'    \
-    lr=' ls -r'    \
-    lal='ls -Al'   \
-    LS=ls
-#}}}
-
-# mkdir {{{
-alias \
-    mkdir='mkdir -pv' \
-    mkd='mkdir'
-#}}}
-
-# mv {{{
-alias mv='mv -iv'
-#}}}
-
-# rmdir {{{
-alias \
-    rmdir='rmdir -v' \
-    rmd='rmdir'
-#}}}
-
-# rm {{{
-alias \
-    rm='rm -vI --preserve-root ' \
-    rr='rm -rfI'
-#}}}
-
-# tree {{{
-alias \
-    tree='tree -I .git' \
-    ta='tree -a'        \
-    td='tree -d'        \
-    t='tree'
-#}}}
-
-# Shortcuts [a-z] {{{
-alias \
-    f='file'    \
-    g='git'     \
-    h='history' \
-    n='ls -A | wc -l' \
-    p='pwd'     \
-    s='source'  \
-#}}}
-
-# Shortcuts [a-z]{2} {{{
-alias \
-    gh='history | grep' \
-    py='python3'        \
-    sc='shellcheck'     \
-    tc='touch'          \
-    vi='vim'
-#}}}
-
-# Shortcuts [a-z]{3} {{{
-alias \
-    clr='clear'   \
-    shu='shunit2'
-#}}}
-
-# Shortcuts (other).
+alias now='date +\"%T\"'
+alias open='xdg-open'
+alias path='echo ${PATH} | sed -e "s|:|\n|g"'
+alias shu='shunit2'
+alias store='ubuntu-software'
+alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
 alias chrome='google-chrome'
 
-# Sudo priveleges {{{
-alias \
-    scp='sudo cp'        \
-    smv='sudo mv'        \
-    srm='sudo rm'        \
-    snvim='sudo nvim'    \
-    smkdir='sudo mkdir'  \
-    srmdir='sudo rmdir'  \
-    reboot='sudo reboot' \
-    shutdown='sudo shutdown'
-#}}}
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....=' cd ../../../'
+alias .....='cd ../../../../'
+alias -- -='cd -' # Type '-' to go to previous dir.
 
-# Windows cmd {{{
-alias \
-    edit='vim'  \
-    del='rm'    \
-    cls='clear' \
-    copy='cp'   \
-    move='mv'   \
-    rename='mv'
-#}}}
+alias ls='ls -vhF --color=never --group-directories-first'
+alias la='ls -A'
+alias lh='ls -d .*'
+alias ll='ls -l'
+alias lr='ls -r'
+alias lal='ls -Al'
 
-# Curls {{{
-alias \
-    corona='curl https://corona-stats.online'            \
-    coronaru='curl "https://corona-stats.online/Russia"' \
-    starwars='telnet towel.blinkenlights.nl'             \
-    weather='curl http://wttr.in/'
-#}}}
+alias tree='tree -I .git'
+alias ta='tree -a'
+alias td='tree -d'
 
-# Version conflicts {{{
-alias \
-    pip='pip3'       \
-    pylint='pylint3' \
-    python='python3'
-#}}}
+alias rm='rm -vi --preserve-root '
+alias rr='rm -rfI'
 
-# Config/History files locations {{{
-alias \
-    wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts' \
-    tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
-#}}}
+alias cp='cp -iv'
+alias du='du -h'
+alias mv='mv -iv'
 
-# Print time (e.g. 13:29:43)
-alias now='date +\"%T\"'
-# List every dir in PATH on a separate line.
-alias path='echo ${PATH} | sed -e "s|:|\n|g"'
-# Open application store.
-alias store='ubuntu-software'
-# Fast way to update packages.
-alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
+alias mkdir='mkdir -pv'
+alias rmdir='rmdir -v'
 
-command -v exa >/dev/null && \
-    alias l='ex' \
-    alias t='et'
+alias exa='exa --icons --group-directories-first --git-ignore -I __pycache__'
+alias diff='diff -y --suppress-common-lines --color=auto'
+alias grep='grep --color=auto'
+
+alias edit='vim'
+alias del='rm'
+alias cls='clear'
+alias copy='cp'
+alias move='mv'
+alias rename='mv'
+
+alias scp='sudo cp'
+alias smv='sudo mv'
+alias srm='sudo rm'
+alias snvim='sudo nvim'
+alias smkdir='sudo mkdir'
+alias srmdir='sudo rmdir'
+
+alias pip='pip3'
+alias pylint='pylint3'
+alias python='python3'
+
+alias wget='wget --hsts-file=${xdg_cache_home}/wget-hsts'
+alias tmux='tmux -f ${xdg_config_home}/tmux/tmux.conf'
+
+alias corona='curl https://corona-stats.online'
+alias coronaru='curl "https://corona-stats.online/Russia"'
+alias starwars='telnet towel.blinkenlights.nl'
+
+if command -v exa >/dev/null; then
+    alias l='exa'
+    alias t='exa -T'
+fi
