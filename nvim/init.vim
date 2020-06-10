@@ -34,7 +34,7 @@ endif
 set termguicolors
 set background=dark
 try
-    colo molokai
+    colo gruvbox
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry
@@ -70,7 +70,7 @@ set formatoptions+=t   " Wrap text using &textwidth.
 set colorcolumn=+0     " Display a color-column to indicate textwidth.
 
 " Python
-" au BufNewFile,BufRead *.py set textwidth=100
+au BufNewFile,BufRead *.py set textwidth=90
 "}}}
 
 " Searching + {{{

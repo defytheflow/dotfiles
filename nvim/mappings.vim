@@ -16,6 +16,10 @@ nnoremap <silent><leader>rt :retab<CR>
 " Visual Comment
 nnoremap <silent><leader>vc :call VisualComment()<CR>
 
+" Enable and disable auto comment
+nnoremap <leader>x :setlocal formatoptions-=cro<CR>
+nnoremap <leader>X :setlocal formatoptions=cro<CR>
+
 " Plugin Toggles + {{{
 nnoremap <silent><leader>g :Goyo<CR>
 nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>

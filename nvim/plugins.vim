@@ -36,7 +36,6 @@ Plug 'mhinz/vim-startify'               " Start screen.
 Plug 'ron89/thesaurus_query.vim'        " Word synonyms.
 Plug 'vimwiki/vimwiki'                  " Note taking.
 Plug 'inkarkat/vim-ReplaceWithRegister' " Text object replacement.
-Plug 'metakirby5/codi.vim'
 
 " Pymode {{{
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
@@ -184,18 +183,21 @@ let g:seiya_auto_enable=1
 " Colorschemes {{{
 
 " Classic
+Plug 'tomasiser/vim-code-dark'          " codedark (VsCode default)
+Plug 'doums/darcula'                    " darcula  (PyCharm default)
+Plug 'morhetz/gruvbox'                  " grubbox
 Plug 'tomasr/molokai'                   " molokai
-Plug 'doums/darcula'                    " darcula
-Plug 'sickill/vim-monokai'              " monokai
+Plug 'sickill/vim-monokai'              " monokai  (Sublime default)
 
 " Other
-Plug 'drewtempelmeyer/palenight.vim'    " palenight
-Plug 'dracula/vim'                      " dracula
-Plug 'bluz71/vim-nightfly-guicolors'    " nightfly
-Plug 'habamax/vim-colors-lessthan'      " lessthan
 Plug 'AlessandroYorba/Alduin'           " alduin
 let g:alduin_Shout_Become_Ethereal = 1
 let g:alduin_Shout_Fire_Breath = 1
+Plug 'atahabaki/archman-vim'            " archman
+Plug 'dracula/vim'                      " dracula
+Plug 'habamax/vim-colors-lessthan'      " lessthan
+Plug 'bluz71/vim-nightfly-guicolors'    " nightfly
+Plug 'drewtempelmeyer/palenight.vim'    " palenight
 
 "}}}
 

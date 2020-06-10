@@ -38,10 +38,7 @@ exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
 exec --no-startup-id i3-msg "workspace $ws2; exec $browser"
 
 # Enable terminal transparency.
-exec_always --no-startup-id xcompmgr -c -f -n
-
-# Enable russian keyboard <Shift-Alt>.
-exec_always --no-startup-id setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'
+exec --no-startup-id xcompmgr -cfn
 
 # All windows here are floating.
 for_window [workspace=$ws4] floating enable

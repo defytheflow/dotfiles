@@ -84,6 +84,7 @@ alias srmdir='sudo rmdir'
 alias pip='pip3'
 alias pylint='pylint3'
 alias python='python3'
+alias ipython='ipython3'
 
 alias wget='wget --hsts-file=${xdg_cache_home}/wget-hsts'
 alias tmux='tmux -f ${xdg_config_home}/tmux/tmux.conf'
