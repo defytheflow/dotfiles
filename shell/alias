@@ -4,6 +4,7 @@
 # Created:   30.12.2019
 # Author:    Artyom Danilov
 
+
 alias sudo='sudo ' # Run 'sudo {alias}'
 
 alias c='highlight --out-format=ansi --force'
@@ -20,6 +21,7 @@ alias t='tree'
 alias v='vim'
 
 alias cl='clear'
+alias gr='grep'
 alias tl='trash-list'
 alias gh='history | grep'
 alias jc='javac'
@@ -29,68 +31,89 @@ alias sc='shellcheck'
 alias tc='touch'
 alias vi='vim'
 
-alias del='trash'
-alias now='date +\"%T\"'
-alias open='xdg-open'
-alias path='echo ${PATH} | sed -e "s|:|\n|g"'
+alias ipy='ipython'
 alias shu='shunit2'
+alias trs='trash'
+
+alias open='xdg-open'
+alias chrome='google-chrome'
 alias store='ubuntu-software'
 alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
-alias chrome='google-chrome'
+
+# commands
+alias path='echo ${PATH} | sed -e "s|:|\n|g"'
 alias xrld='source ~/.xprofile'
 
+# cd
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....=' cd ../../../'
 alias .....='cd ../../../../'
 alias -- -='cd -' # Type '-' to go to previous dir.
 
+# git
+alias ga='git add --all'
+alias gb='git branch'
+alias gc='git commit'
+alias gca='git commit --amend'
+alias go='git checkout'
+alias gd='git diff'
+alias gl='git log'
+alias gp='git push'
+alias gs='git status'
+
+# ls
 alias ls='ls -vhF --color=never --group-directories-first'
 alias la='ls -A'
+alias lal='ls -Al'
 alias lh='ls -d .*'
 alias ll='ls -l'
 alias lr='ls -r'
-alias lal='ls -Al'
 
+# tree
 alias tree='tree -I .git'
 alias ta='tree -a'
 alias td='tree -d'
 
-alias rm='rm -vi --preserve-root '
-alias rr='rm -rfI'
-
+# files
 alias cp='cp -iv'
 alias du='du -h'
 alias mv='mv -iv'
-
 alias mkdir='mkdir -pv'
 alias rmdir='rmdir -v'
+alias rm='rm -vi --preserve-root '
+alias rr='rm -rfi'
 
+# config
 alias exa='exa --icons --group-directories-first --git-ignore -I __pycache__'
 alias diff='diff -y --suppress-common-lines --color=auto'
 alias grep='grep --color=auto'
+alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
+alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
 
+# windows
 alias cls='clear'
 alias copy='cp'
 alias edit='nvim'
 alias move='mv'
 alias rename='mv'
 
+# sudo
 alias scp='sudo cp'
 alias smv='sudo mv'
 alias smkdir='sudo mkdir'
+alias snv='sudo nvim'
 alias snvim='sudo nvim'
 alias srm='sudo rm'
 alias srmdir='sudo rmdir'
 
+# version
+alias ipython='ipython3'
 alias pip='pip3'
 alias pylint='pylint3'
 alias python='python3'
-alias ipython='ipython3'
 
-alias wget='wget --hsts-file=${xdg_cache_home}/wget-hsts'
-alias tmux='tmux -f ${xdg_config_home}/tmux/tmux.conf'
-
+# fun
 alias starwars='telnet towel.blinkenlights.nl'
 
 if command -v exa >/dev/null; then
