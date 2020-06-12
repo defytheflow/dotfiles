@@ -16,10 +16,6 @@ nnoremap <silent><leader>rt :retab<CR>
 " Visual Comment
 nnoremap <silent><leader>vc :call VisualComment()<CR>
 
-" Enable and disable auto comment
-nnoremap <leader>x :setlocal formatoptions-=cro<CR>
-nnoremap <leader>X :setlocal formatoptions=cro<CR>
-
 " Plugin Toggles + {{{
 nnoremap <silent><leader>g :Goyo<CR>
 nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
@@ -34,6 +30,7 @@ nnoremap <silent><leader>cc :call ColorColumnToggle()<CR>
 nnoremap <silent><leader>cl :call CursorLineToggle()<CR>
 nnoremap <silent><leader>ck :call CursorColumnToggle()<CR>
 nnoremap <silent><leader>h  :call HighlightSearchToggle()<CR>
+nnoremap <silent><leader>x  :call AutoCommentToggle()<CR>
 " }}}
 
 " General + {{{

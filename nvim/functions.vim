@@ -39,6 +39,14 @@ fun! HighlightSearchToggle()
     endif
 endfun
 
+fun! AutoCommentToggle()
+    if matchstr(&formatoptions, 'cro') == 'cro'
+        setlocal formatoptions-=cro
+    else
+        setlocal formatoptions=cro
+    endif
+endfun
+
 fun! GetCommentToken()
     " Return the comment token used in a prog language. "
     let l:hash = ['php', 'ruby', 'sh', 'make', 'python', 'perl']

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# File:      shell/alias
+# File:      alias
 # Created:   30.12.2019
 # Author:    Artyom Danilov
 
@@ -17,16 +17,17 @@ alias n='ls -A | wc -l'
 alias p='pwd'
 alias s='source'
 alias t='tree'
-alias v='nvim'
+alias v='vim'
 
 alias cl='clear'
 alias tl='trash-list'
 alias gh='history | grep'
 alias jc='javac'
+alias nv='nvim'
 alias py='python3'
 alias sc='shellcheck'
 alias tc='touch'
-alias vi='nvim'
+alias vi='vim'
 
 alias del='trash'
 alias now='date +\"%T\"'
@@ -36,6 +37,7 @@ alias shu='shunit2'
 alias store='ubuntu-software'
 alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
 alias chrome='google-chrome'
+alias xrld='source ~/.xprofile'
 
 alias ..='cd ..'
 alias ...='cd ../../'
@@ -69,16 +71,16 @@ alias diff='diff -y --suppress-common-lines --color=auto'
 alias grep='grep --color=auto'
 
 alias cls='clear'
-alias edit='nvim'
 alias copy='cp'
+alias edit='nvim'
 alias move='mv'
 alias rename='mv'
 
 alias scp='sudo cp'
 alias smv='sudo mv'
-alias srm='sudo rm'
-alias snvim='sudo nvim'
 alias smkdir='sudo mkdir'
+alias snvim='sudo nvim'
+alias srm='sudo rm'
 alias srmdir='sudo rmdir'
 
 alias pip='pip3'
@@ -89,8 +91,6 @@ alias ipython='ipython3'
 alias wget='wget --hsts-file=${xdg_cache_home}/wget-hsts'
 alias tmux='tmux -f ${xdg_config_home}/tmux/tmux.conf'
 
-alias corona='curl https://corona-stats.online'
-alias coronaru='curl "https://corona-stats.online/Russia"'
 alias starwars='telnet towel.blinkenlights.nl'
 
 if command -v exa >/dev/null; then

@@ -1,11 +1,11 @@
 #!/bin/sh
 
-# File:      .xprofile
-# Created:   28.03.2020
-# Author:    Artyom Danilov
+# File:     .xprofile
+# Created:  28.03.2020
+# Author:   Artyom Danilov
 
-# Set wallpaper.
-command -v nitrogen && nitrogen --head=xinerama --set-auto ~/.config/wallpaper
+# Set Wallpaper.
+command -v nitrogen >/dev/null && nitrogen --head=xinerama --set-auto ~/.config/wallpaper
 
 # Swap <CapsLock> and <Escape>.
 setxkbmap -option 'caps:swapescape'
