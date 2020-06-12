@@ -10,23 +10,6 @@
         pager  = less
         excludesfile = /home/defytheflow/.dotfiles/git/ignore
 
-[alias]
-        alias = config --get-regexp alias # List aliases
-        amend = commit --amend
-
-        br = branch
-        cl = clone
-        cm = commit
-        co = checkout
-        df = diff
-        p  = push
-        pf = push --force
-        pl = pull
-        re = reset
-        st = status
-
-        whoami = config user.email
-
 [help]
         # Automatically correct and execute mistyped commands.
         autocorrect = 1
