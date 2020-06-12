@@ -92,3 +92,8 @@ zplug load
 # Prompt
 # ------------------------------------------------------------------------------
 [ -f "${DOTFILES_HOME}"/zsh/prompt ] && . "${DOTFILES_HOME}"/zsh/prompt
+
+
+# Must be at the bottom
+[ -f "${HOME}"/.local/bin/virtualenvwrapper.sh ] && \
+    . "${HOME}"/.local/bin/virtualenvwrapper.sh

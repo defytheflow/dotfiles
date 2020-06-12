@@ -10,13 +10,11 @@
 
 create_directories() {
     for prog in 'zsh' 'bash'; do
-        [ -d "${XDG_CACHE_HOME}"/"${prog}" ] || \
-            mkdir -p "${XDG_CACHE_HOME}"/"${prog}"
+        [ -d "${XDG_CACHE_HOME}"/"${prog}" ] || mkdir -p "${XDG_CACHE_HOME}"/"${prog}"
     done
 
     for prog in 'tmux' 'git' 'python' 'nvim'; do
-        [ -d "${XDG_CONFIG_HOME}"/"${prog}" ] || \
-            mkdir -p "${XDG_CONFIG_HOME}"/"${prog}"
+        [ -d "${XDG_CONFIG_HOME}"/"${prog}" ] || mkdir -p "${XDG_CONFIG_HOME}"/"${prog}"
     done
 }
 
@@ -32,5 +30,12 @@ create_symlinks() {
     ln -sf "${DOTFILES_HOME}"/python/pythonrc "${XDG_CONFIG_HOME}"/python/pythonrc
 }
 
+install_software() {
+    for prog in 'highlight' 'nvim' 'tree'; do
+        command -v "${prog}" >/dev/null || sudo apt-get install "${prog}"
+    done
+}
+
 create_directories
 create_symlinks
+install_software
