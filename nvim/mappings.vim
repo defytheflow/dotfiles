@@ -4,15 +4,33 @@
 " Author:   Artyom Danilov
 
 
+" plugin toggles
+nnoremap <silent><leader>g :Goyo<CR>
+nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
+nnoremap <silent><leader>l :Limelight!!<CR>
+nnoremap <silent><leader>t :TlistToggle<CR>
+nnoremap <silent><leader>se :SeiyaEnable<CR>
+nnoremap <silent><leader>sd :SeiyaDisable<CR>
+
+" floaterm
+nnoremap <silent><A-Return> :FloatermNew<CR>
+nnoremap <silent><A-q>      :FloatermKill<CR>
+
 " miscellaneous
 nnoremap <space> za
 nnoremap S :%s//g<Left><Left>
 nnoremap Y y$
 inoremap jk <esc>
+nnoremap <silent><leader>rt :retab<CR>
+nnoremap <silent><leader>vc :call VisualComment()<CR>
+
+" vim
+nnoremap <silent><leader>ev :split $MYVIMRC<CR>
+nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 
 " buffers
 nnoremap <tab>   :bnext<cr>
-nnoremap <s-tab> :bprev<cr>
+nnoremap <S-tab> :bprev<cr>
 
 " tabs
 nnoremap to :tabedit<Space>
@@ -23,19 +41,6 @@ nnoremap <silent>tq :tabclose<CR>
 " shift
 vnoremap < <gv
 vnoremap > >gv
-
-nnoremap <silent><leader>rt :retab<CR>
-nnoremap <silent><leader>vc :call VisualComment()<CR>
-nnoremap <silent><leader>ev :split $MYVIMRC<CR>
-nnoremap <silent><leader>sv :source $MYVIMRC<CR>
-
-" plugin toggles
-nnoremap <silent><leader>g :Goyo<CR>
-nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
-nnoremap <silent><leader>l :Limelight!!<CR>
-nnoremap <silent><leader>t :TlistToggle<CR>
-nnoremap <silent><leader>se :SeiyaEnable<CR>
-nnoremap <silent><leader>sd :SeiyaDisable<CR>
 
 " custom toggles
 nnoremap <silent><leader>h  :call HighlightSearchToggle()<CR>

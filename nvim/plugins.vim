@@ -33,10 +33,10 @@ Plug 'tpope/vim-repeat'                 " Repeat plugin commands with '.'.
 Plug 'tpope/vim-unimpaired'             " Handy paired mappings.
 Plug 'unblevable/quick-scope'           " Horizontal navigation.
 Plug 'mhinz/vim-startify'               " Start screen.
-Plug 'ron89/thesaurus_query.vim'        " Word synonyms.
 Plug 'vimwiki/vimwiki'                  " Note taking.
 Plug 'inkarkat/vim-ReplaceWithRegister' " Text object replacement.
 Plug 'sheerun/vim-polyglot'             " Syntax highlight.
+Plug 'voldikss/vim-floaterm'            " Floating terminal.
 
 " Pymode {{{
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
