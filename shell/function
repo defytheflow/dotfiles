@@ -5,17 +5,30 @@
 # Author:    Artyom Danilov
 
 
-# Opens a pdf file for reading.
+# Opens a pdf file.
 bread() {
-    [ -n "${READER}" ] && [ -n "${1}" ] && ("${READER}" "${1}" &)
+    if [ -f "${1}" ] && command -v "${READER}" >/dev/null; then
+        ("${READER}" "${1}" &)
+    else
+        return 1
+    fi
 }
 
-# Sets all passed arguments as terminal title.
+# Sets background image.
+setbg() {
+    if [ -f "${1}" ] && command -v nitrogen >/dev/null; then
+        nitrogen --head=xinerama --set-auto "${1}" && cp "${1}" "${WALLPAPER_HOME}"
+    else
+        return 1
+    fi
+}
+
+# Sets terminal title.
 title() {
-    printf "\033]0;%s\007" "$*"
+    printf "\033]0;%s\007" "${*}"
 }
 
-# Print first passed argument to the center of the terminal.
+# Prints to the center of the terminal.
 echoc() {
     width=$(stty size | cut -d ' ' -f2)
     length=${#1}

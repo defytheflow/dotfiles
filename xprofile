@@ -4,8 +4,9 @@
 # Created:  28.03.2020
 # Author:   Artyom Danilov
 
-# Set Wallpaper.
-command -v nitrogen >/dev/null && nitrogen --head=xinerama --set-auto ~/.config/wallpaper
+
+# Set background image.
+command -v nitrogen >/dev/null && nitrogen --head=xinerama --set-auto "${WALLPAPER_HOME}"
 
 # Swap <CapsLock> and <Escape>.
 setxkbmap -option 'caps:swapescape'

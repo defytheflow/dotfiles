@@ -39,7 +39,7 @@ alias trs='trash'
 alias open='xdg-open'
 alias chrome='google-chrome'
 alias store='ubuntu-software'
-alias ghst='github-stats --user $(whoami)'
+alias ghs='github-stats --user $(whoami)'
 
 # commands
 alias path='echo ${PATH} | sed -e "s|:|\n|g"'
