@@ -27,6 +27,7 @@ export ZPLUG_HOME="${XDG_CONFIG_HOME}"/zplug
 # default
 export EDITOR='nvim'
 export BROWSER='google-chrome'
+export READER='zathura'
 export TERMINAL='alacritty'
 
 # paths

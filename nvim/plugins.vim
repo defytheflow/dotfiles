@@ -36,6 +36,7 @@ Plug 'mhinz/vim-startify'               " Start screen.
 Plug 'ron89/thesaurus_query.vim'        " Word synonyms.
 Plug 'vimwiki/vimwiki'                  " Note taking.
 Plug 'inkarkat/vim-ReplaceWithRegister' " Text object replacement.
+Plug 'sheerun/vim-polyglot'             " Syntax highlight.
 
 " Pymode {{{
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
