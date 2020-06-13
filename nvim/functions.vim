@@ -1,9 +1,7 @@
 
-" Filename:     function.vim
-" Description:  Custom commands
-
-" Created:      28.02.2020
-" Author:       Artyom Danilov
+" File:     functions.vim
+" Created:  28.02.2020
+" Author:   Artyom Danilov
 
 
 fun! ColorColumnToggle()

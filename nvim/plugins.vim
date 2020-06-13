@@ -1,9 +1,7 @@
 
-" Filename:     plugin.vim
-" Description:  Pluggins download and settings.
-
-" Created:      29.03.2020
-" Author:       Artyom Danilov
+" File:     plugins.vim
+" Created:  29.03.2020
+" Author:   Artyom Danilov
 
 
 " Download vim-plug + {{{
@@ -24,13 +22,15 @@ autocmd VimEnter *
 call plug#begin($HOME . '/.config/nvim/plugged/')
 
 Plug 'airblade/vim-gitgutter'           " Git stats in number column.
-Plug 'tpope/vim-fugitive'               " Git commands.
 Plug 'ctrlpvim/ctrlp.vim'               " Fuzzy find files.
 Plug 'jiangmiao/auto-pairs'             " Auto-completion of quotes, brackets.
 Plug 'alvan/vim-closetag'               " Auto-completion of html tags.
 Plug 'othree/xml.vim'                   " Auto-completion of xml tags.
+Plug 'tpope/vim-fugitive'               " Git commands.
 Plug 'tpope/vim-surround'               " Edit quotes, parentheses, tags.
 Plug 'tpope/vim-commentary'             " Commenting.
+Plug 'tpope/vim-repeat'                 " Repeat plugin commands with '.'.
+Plug 'tpope/vim-unimpaired'             " Handy paired mappings.
 Plug 'unblevable/quick-scope'           " Horizontal navigation.
 Plug 'mhinz/vim-startify'               " Start screen.
 Plug 'ron89/thesaurus_query.vim'        " Word synonyms.
@@ -124,6 +124,8 @@ let NERDTreeMinimalUI  = 1
 let NERDTreeAutoDeleteBuffer = 1
 " Don't show these entries.
 let NERDTreeIgnore=['__pycache__', '.git', '.mypy_cache', '.idea']
+" Change bookmarks file location.
+let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
 
 " Tab settings for nerdtree.
 Plug 'jistr/vim-nerdtree-tabs'
