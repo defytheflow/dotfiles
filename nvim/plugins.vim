@@ -21,178 +21,130 @@ autocmd VimEnter *
 
 call plug#begin($HOME . '/.config/nvim/plugged/')
 
-Plug 'airblade/vim-gitgutter'           " Git stats in number column.
-Plug 'ctrlpvim/ctrlp.vim'               " Fuzzy find files.
-Plug 'jiangmiao/auto-pairs'             " Auto-completion of quotes, brackets.
-Plug 'alvan/vim-closetag'               " Auto-completion of html tags.
-Plug 'othree/xml.vim'                   " Auto-completion of xml tags.
-Plug 'tpope/vim-fugitive'               " Git commands.
-Plug 'tpope/vim-surround'               " Edit quotes, parentheses, tags.
-Plug 'tpope/vim-commentary'             " Commenting.
-Plug 'tpope/vim-repeat'                 " Repeat plugin commands with '.'.
-Plug 'tpope/vim-unimpaired'             " Handy paired mappings.
-Plug 'unblevable/quick-scope'           " Horizontal navigation.
-Plug 'mhinz/vim-startify'               " Start screen.
-Plug 'vimwiki/vimwiki'                  " Note taking.
-Plug 'inkarkat/vim-ReplaceWithRegister' " Text object replacement.
-Plug 'sheerun/vim-polyglot'             " Syntax highlight.
-Plug 'voldikss/vim-floaterm'            " Floating terminal.
+Plug 'airblade/vim-gitgutter'           " git stats in number column.
+Plug 'ctrlpvim/ctrlp.vim'               " fuzzy find files.
+Plug 'jiangmiao/auto-pairs'             " auto-complete quotes, brackets.
+Plug 'alvan/vim-closetag'               " auto-complete html tags.
+Plug 'othree/xml.vim'                   " auto-complete xml tags.
+Plug 'tpope/vim-fugitive'               " git commands.
+Plug 'tpope/vim-surround'               " editing quotes, parentheses, tags.
+Plug 'tpope/vim-commentary'             " commenting.
+Plug 'tpope/vim-repeat'                 " repeat plugin commands with '.'.
+Plug 'tpope/vim-unimpaired'             " miscellaneous paired mappings.
+Plug 'unblevable/quick-scope'           " horizontal navigation.
+Plug 'mhinz/vim-startify'               " start screen.
+Plug 'vimwiki/vimwiki'                  " note taking.
+Plug 'inkarkat/vim-ReplaceWithRegister' " text object replacement.
+Plug 'sheerun/vim-polyglot'             " syntax highlight.
+Plug 'voldikss/vim-floaterm'            " floating terminal.
+Plug 'majutsushi/tagbar'                " tagbar.
 
-" Pymode {{{
+" pymode {{{
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-
-" Code checking.
 let g:pymode_lint = 0
-
-" Syntax.
 let g:pymode_syntax_print_as_function = 1
 "}}}
 
-" Taglist {{{
-Plug 'vim-scripts/taglist.vim'
-
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1
+" vim-snippets {{{
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+let g:UltiSnipsExpandTrigger = '<tab>'
 "}}}
 
-" Vim-snippets (Snippets engline) {{{
-Plug 'SirVer/ultisnips'    " Engline
-Plug 'honza/vim-snippets'  " Snippets
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsEditSplit="vertical"
-"}}}
-
-" Syntastic (Syntax Errors) {{{
+" syntastic {{{
 Plug 'vim-syntastic/syntastic'
-
-" Load errors into the location list to jump between them.
 let g:syntastic_always_populate_loc_list = 1
-" Check for errors when file is opened.
 let g:syntastic_check_on_open = 0
-" Check for errors when file is saved.
 let g:syntastic_check_on_wq = 1
-" Indicate a line with error.
-" let g:syntastic_error_symbol = "✗"
 let g:syntastic_ignore_files = ['[a-z][A-Z][0-9]*.asm']
-" Check python3 syntax.
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['mypy', 'pylint']
 let g:syntastic_python_flake8_post_args='--ignore=E501'
 "}}}
 
-" Deoplete (Auto-completion engine) {{{
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
+" deoplete {{{
+Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-clang'
 let g:deoplete#enable_at_startup = 1
 "}}}
 
-" Java-complete {{{
+" java-complete {{{
 Plug 'artur-shaik/vim-javacomplete2'
-
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 let g:JavaComplete_ClosingBrace = 0
 "}}}
 
-" Better-whitespace (Extra whitespace) {{{
+" better-whitespace {{{
 Plug 'ntpeters/vim-better-whitespace'
-
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
 "}}}
 
-" Indent-line (Indentation display) {{{
+" indentline {{{
 Plug 'Yggdroot/indentLine'
-
 let g:indentLine_char =  '¦'
 let g:indentLine_leadingSpacChar='·'
 let g:indentLine_leadingSpaceEnabled='1'
 "}}}
 
-" Nerdtree (File tree) {{{
+" nerdtree {{{
 Plug 'preservim/nerdtree'
-
-" Show hidden files.
 let NERDTreeShowHidden = 1
-" Disable '?' help at the top
-let NERDTreeMinimalUI  = 1
-" Automatically delete the buffer of the file you just deleted.
+let NERDTreeMinimalUI  = 1  " Disable '?' help at the top
 let NERDTreeAutoDeleteBuffer = 1
-" Don't show these entries.
 let NERDTreeIgnore=['__pycache__', '.git', '.mypy_cache', '.idea']
-" Change bookmarks file location.
 let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-
-" Tab settings for nerdtree.
 Plug 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_open_on_console_startup = 2
 let g:nerdtree_tabs_autoclose = 0
-
-" Icon settings for nerdtree.
 Plug 'ryanoasis/vim-devicons'
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "}}}
 
-" Airline (Status line) {{{
+" airline {{{
 Plug 'vim-airline/vim-airline'
-
-" Show airline for tabs too
 let g:airline#extensions#tabline#enabled = 1
-" Display hunks if the diff is non-zero.
 let g:airline#extensions#hunks#non_zero_only = 1
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_theme='luna'
 "}}}
 
-" Limelight (Focus mode) {{{
+" limelight {{{
 Plug 'junegunn/limelight.vim'
-
-" Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
-
-" Color name (:help gui-colors) or RGB color
 let g:limelight_conceal_guifg = 'DarkGray'
 let g:limelight_conceal_guifg = '#777777'
 "}}}
 
-" Goyo (Focus mode) {{{
+" goyo {{{
 Plug 'junegunn/goyo.vim'
-
-function! s:goyo_enter()
+fun! s:goyo_enter()
     set noshowmode
     set noshowcmd
     Limelight
-endfunction
-
-function! s:goyo_leave()
+endfun
+fun! s:goyo_leave()
     set showmode
     set showcmd
     Limelight!
-endfunction
-
+endfun
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
-" Seiya (Transparent background) {{{
+" seiya {{{
 Plug 'miyakogi/seiya.vim'
-
 let g:seiya_auto_enable=1
 "}}}
 
-" Colorschemes {{{
-
-" Classic
+" colors {{{
 Plug 'tomasiser/vim-code-dark'          " codedark (VsCode default)
 Plug 'doums/darcula'                    " darcula  (PyCharm default)
 Plug 'morhetz/gruvbox'                  " grubbox
 Plug 'tomasr/molokai'                   " molokai
 Plug 'sickill/vim-monokai'              " monokai  (Sublime default)
-
-" Other
 Plug 'AlessandroYorba/Alduin'           " alduin
 let g:alduin_Shout_Become_Ethereal = 1
 let g:alduin_Shout_Fire_Breath = 1
@@ -201,7 +153,6 @@ Plug 'dracula/vim'                      " dracula
 Plug 'habamax/vim-colors-lessthan'      " lessthan
 Plug 'bluz71/vim-nightfly-guicolors'    " nightfly
 Plug 'drewtempelmeyer/palenight.vim'    " palenight
-
 "}}}
 
 call plug#end()

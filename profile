@@ -34,9 +34,10 @@ export READER='zathura'
 export TERMINAL='alacritty'
 
 # paths
-export CPATH=''
-export LD_LIBRARY_PATH=''
-export PYTHONPATH=''
+export CPATH=
+# For neovim c/c++ autocomplete
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}":/usr/lib/llvm-3.9/lib
+export PYTHONPATH=
 
 # flags
 export CFLAGS='-g -W -Wall -Wextra'
