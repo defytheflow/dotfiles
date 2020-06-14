@@ -134,11 +134,6 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
-" seiya {{{
-Plug 'miyakogi/seiya.vim'
-let g:seiya_auto_enable=1
-"}}}
-
 " colors {{{
 Plug 'tomasiser/vim-code-dark'          " codedark (VsCode default)
 Plug 'doums/darcula'                    " darcula  (PyCharm default)

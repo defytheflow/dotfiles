@@ -1,5 +1,5 @@
 
-" File:     mappings.vim
+" File:     maps.vim
 " Created:  28.03.2020
 " Author:   Artyom Danilov
 
@@ -9,8 +9,6 @@ nnoremap <silent><leader>g :Goyo<CR>
 nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
 nnoremap <silent><leader>l :Limelight!!<CR>
 nnoremap <silent><leader>t :TagbarToggle<CR>
-nnoremap <silent><leader>se :SeiyaEnable<CR>
-nnoremap <silent><leader>sd :SeiyaDisable<CR>
 
 " floaterm
 nnoremap <silent><A-Return> :FloatermNew<CR>
@@ -22,7 +20,6 @@ nnoremap S :%s//g<Left><Left>
 nnoremap Y y$
 inoremap jk <esc>
 nnoremap <silent><leader>rt :retab<CR>
-nnoremap <silent><leader>vc :call VisualComment()<CR>
 
 " vim
 nnoremap <silent><leader>ev :split $MYVIMRC<CR>

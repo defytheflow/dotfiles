@@ -4,7 +4,7 @@
 " Author:   Artyom Danilov
 
 
-" Must be sources at the top.
+" Must be sourced at the top.
 source $DOTFILES_HOME/nvim/plugins.vim
 
 " globals + {{{
@@ -98,8 +98,8 @@ au VimEnter * :NoMatchParen
 au BufEnter * set fo-=c fo-=r fo-=o
 "}}}
 
-" Must be sourced before 'mappings.vim'.
-source $DOTFILES_HOME/nvim/functions.vim
+" Must be sourced before 'maps.vim'.
+source $DOTFILES_HOME/nvim/funcs.vim
 
 " Must be sourced last.
-source $DOTFILES_HOME/nvim/mappings.vim
+source $DOTFILES_HOME/nvim/maps.vim
