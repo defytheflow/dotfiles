@@ -37,6 +37,8 @@ Plug 'vimwiki/vimwiki'                  " note taking.
 Plug 'inkarkat/vim-ReplaceWithRegister' " text object replacement.
 Plug 'sheerun/vim-polyglot'             " syntax highlight.
 Plug 'vim-scripts/a.vim'                " switch between .c --> .h
+Plug 'majutsushi/tagbar'                " tagbar.
+Plug 'voldikss/vim-floaterm'            " floating terminal.
 
 " airline {{{
 Plug 'vim-airline/vim-airline'
@@ -56,26 +58,22 @@ let g:strip_whitespace_confirm=0
 " clang-format {{{
 Plug 'rhysd/vim-clang-format'
 let g:clang_format#style_options = {
-    \ "accessmodifieroffset" : -4,
-    \ "allowshortifstatementsonasingleline" : "false",
-    \ "allowshortfunctionsonasingleline" : "false",
-    \ "breakbeforebraces" : "stroustrup",
-    \ "indentwidth" : 4,
-    \ "usetab" : "never"}
-autocmd FileType c,cpp nnoremap <silent><leader>f :ClangFormat<CR>
-autocmd FileType c,cpp vnoremap <silent><leader>f :ClangFormat<CR>
+    \ "AccessModifierOffset" : -4,
+    \ "AllowShortIfStatementsOnASingleLine" : "false",
+    \ "AllowShortFunctionsOnASingleLine" : "false",
+    \ "BreakBeforeBraces" : "Stroustrup",
+    \ "ColumnLimit" : 90,
+    \ "IndentWidth" : 4,
+    \ "MaxEmptyLinesToKeep": 2,
+    \ "SpacesBeforeTrailingComments": 2,
+    \ "SpaceAfterCStyleCast": "true",
+    \ "UseTab" : "Never"}
 "}}}
 
 " deoplete {{{
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-clang'
 let g:deoplete#enable_at_startup = 1
-"}}}
-
-" floaterm {{{
-Plug 'voldikss/vim-floaterm'
-nnoremap <silent><A-Return> :FloatermNew<CR>
-nnoremap <silent><A-q>      :FloatermKill<CR>
 "}}}
 
 " goyo {{{
@@ -92,7 +90,6 @@ fun! s:goyo_leave()
 endfun
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-nnoremap <silent><leader>g :Goyo<CR>
 "}}}
 
 " indentline {{{
@@ -114,7 +111,6 @@ let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 let g:limelight_conceal_guifg = 'DarkGray'
 let g:limelight_conceal_guifg = '#777777'
-nnoremap <silent><leader>l :Limelight!!<CR>
 "}}}
 
 " nerdtree {{{
@@ -124,7 +120,6 @@ let NERDTreeMinimalUI  = 1  " Disable '?' help at the top
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeIgnore=['__pycache__', '.git', '.mypy_cache', '.idea']
 let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
 Plug 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_open_on_console_startup = 2
 let g:nerdtree_tabs_autoclose = 0
@@ -153,11 +148,6 @@ let g:syntastic_ignore_files = ['[a-z][A-Z][0-9]*.asm']
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['mypy', 'pylint']
 let g:syntastic_python_flake8_post_args='--ignore=E501'
-"}}}
-
-" tagbar {{{
-Plug 'majutsushi/tagbar'                " tagbar.
-nnoremap <silent><leader>t :TagbarToggle<CR>
 "}}}
 
 " colors {{{

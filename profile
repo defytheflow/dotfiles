@@ -7,6 +7,7 @@
 
 # path
 export PATH="${PATH}":"${HOME}"/.local/bin
+export PATH="${PATH}":"${HOME}"/games
 export PATH="${PATH}":"${JAVA_HOME}"/bin
 
 # xdg

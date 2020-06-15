@@ -30,7 +30,7 @@ endfor
 set termguicolors
 set background=dark
 try
-    colo molokai
+    colo codedark
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry
@@ -82,7 +82,7 @@ syntax enable
 au BufNewFile,BufRead *.html set filetype=htmldjango
 "}}}
 
-" settings {{{
+" miscellaneous {{{
 set clipboard+=unnamedplus         " Use system clipboard.
 set history=1000                   " History size.
 set number                         " Line numbers.

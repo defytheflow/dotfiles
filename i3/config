@@ -31,6 +31,8 @@ set $ex_monitor HDMI-1
 # Gaps
 set $inner_gaps 10
 set $outer_gaps 5
+
+set $resize 5
 #}}}
 
 # Startup {{{
@@ -146,10 +148,10 @@ bindsym $mod+Shift+k  move up
 bindsym $mod+Shift+l  move right
 
 # Resize window.
-bindsym $mod+y  resize shrink width 1 px or 1 ppt
-bindsym $mod+u  resize grow   height 1 px or 1 ppt
-bindsym $mod+i  resize shrink height 1 px or 1 ppt
-bindsym $mod+o  resize grow   width 1 px or 1 ppt
+bindsym $mod+y  resize shrink width $resize px or $resize ppt
+bindsym $mod+u  resize grow   height $resize px or $resize ppt
+bindsym $mod+i  resize shrink height $resize px or $resize ppt
+bindsym $mod+o  resize grow   width $resize px or $resize ppt
 
 # Switch workspace (number keys).
 bindsym $mod+1 workspace $ws1

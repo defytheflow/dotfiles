@@ -4,6 +4,16 @@
 " Author:   Artyom Danilov
 
 
+" plugins
+autocmd FileType c,cpp nnoremap <silent><leader>f :ClangFormat<CR>
+autocmd FileType c,cpp vnoremap <silent><leader>f :ClangFormat<CR>
+nnoremap <silent><A-Return> :FloatermNew<CR>
+nnoremap <silent><A-q>      :FloatermKill<CR>
+nnoremap <silent><leader>g :Goyo<CR>
+nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
+nnoremap <silent><leader>t :TagbarToggle<CR>
+nnoremap <silent><leader>l :Limelight!!<CR>
+
 " miscellaneous
 nnoremap <space> za
 nnoremap S :%s//g<Left><Left>
