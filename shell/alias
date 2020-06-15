@@ -7,7 +7,6 @@
 
 alias sudo='sudo ' # Run 'sudo {alias}'
 
-alias c='highlight --out-format=ansi --force'
 alias e='exa -1'
 alias f='file'
 alias g='git'
@@ -22,7 +21,6 @@ alias t='tree'
 alias v='vim'
 
 alias cl='clear'
-alias gr='grep'
 alias tl='trash-list'
 alias gh='history | grep'
 alias jc='javac'
@@ -42,6 +40,7 @@ alias store='ubuntu-software'
 alias ghs='github-stats --user $(whoami)'
 
 # commands
+alias ccat='highlight --out-format=ansi --force'
 alias path='echo ${PATH} | sed -e "s|:|\n|g"'
 alias xrld='source ~/.xprofile'
 

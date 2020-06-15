@@ -4,16 +4,6 @@
 " Author:   Artyom Danilov
 
 
-" plugin toggles
-nnoremap <silent><leader>g :Goyo<CR>
-nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
-nnoremap <silent><leader>l :Limelight!!<CR>
-nnoremap <silent><leader>t :TagbarToggle<CR>
-
-" floaterm
-nnoremap <silent><A-Return> :FloatermNew<CR>
-nnoremap <silent><A-q>      :FloatermKill<CR>
-
 " miscellaneous
 nnoremap <space> za
 nnoremap S :%s//g<Left><Left>
