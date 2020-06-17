@@ -13,13 +13,13 @@ endif
 "}}}
 
 " Download pluggins + {{{
-autocmd VimEnter *
-  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | q
-  \| endif
+" autocmd VimEnter *
+" \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+" \|   PlugInstall --sync | q
+" \| endif
 "}}}
 
-call plug#begin($HOME . '/.config/nvim/plugged/')
+call plug#begin($HOME . '/.config/nvim/plugins/')
 
 Plug 'airblade/vim-gitgutter'           " git stats in number column.
 Plug 'ctrlpvim/ctrlp.vim'               " fuzzy find files.
@@ -53,6 +53,12 @@ Plug 'ntpeters/vim-better-whitespace'
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
+"}}}
+
+" chromatica {{{
+Plug 'arakashic/chromatica.nvim'
+let g:chromatica#libclang_path='/usr/lib/llvm-3.9/lib/'
+let g:chromatica#enable_at_startup=1
 "}}}
 
 " clang-format {{{
@@ -127,12 +133,6 @@ Plug 'ryanoasis/vim-devicons'
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "}}}
 
-" pymode {{{
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-let g:pymode_lint = 0
-let g:pymode_syntax_print_as_function = 1
-"}}}
-
 " snippets {{{
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -148,20 +148,6 @@ let g:syntastic_ignore_files = ['[a-z][A-Z][0-9]*.asm']
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['mypy', 'pylint']
 let g:syntastic_python_flake8_post_args='--ignore=E501'
-"}}}
-
-" colors {{{
-Plug 'atahabaki/archman-vim'            " archman
-Plug 'tomasiser/vim-code-dark'          " codedark
-Plug 'doums/darcula'                    " darcula
-Plug 'dracula/vim'                      " dracula
-Plug 'morhetz/gruvbox'                  " gruvbox
-Plug 'habamax/vim-colors-lessthan'      " lessthan
-Plug 'tomasr/molokai'                   " molokai
-Plug 'sickill/vim-monokai'              " monokai
-Plug 'bluz71/vim-nightfly-guicolors'    " nightfly
-Plug 'drewtempelmeyer/palenight.vim'    " palenight
-Plug 'tpope/vim-vividchalk'             " vividchalk
 "}}}
 
 call plug#end()

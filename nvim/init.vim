@@ -15,10 +15,10 @@ let &path = '/usr/include/,/usr/lib/gcc/x86_64-linux-gnu/8/include'
 
 " backup + {{{
 set backup
-set backupdir=~/.config/nvim/backup
 set undofile
-set undodir=~/.config/nvim/undodir
 set noswapfile
+set backupdir=~/.local/share/nvim/backup
+set undodir=~/.local/share/nvim/undodir
 for dir in [&backupdir, &undodir]
     if !isdirectory(dir)
         call mkdir(dir, 'p', 0700)
