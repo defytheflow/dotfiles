@@ -1,6 +1,7 @@
 # Structure
 
 <pre>
+│
 ├── install.sh
 ├── .profile
 ├── .xprofile
@@ -21,14 +22,14 @@
 │   └── config
 │
 ├── <b>nvim</b>
-│   ├── autoload
-│   ├── colors
+│   ├── autoload/
+│   ├── colors/
 │   ├── funcs.vim
 │   ├── init.vim
 │   ├── maps.vim
-│   ├── plugins
+│   ├── plugins/
 │   ├── plugins.vim
-│   └── syntax
+│   └── syntax/
 │
 ├── <b>python</b>
 │   └── pythonrc
@@ -44,13 +45,12 @@
 │   └── tmux.conf
 │
 ├── <b>wallpapers</b>
-│   └── firewatch
+│   └── firewatch/
 │
 ├── <b>wsl</b>
-│   └── alias
+│   └── aliases
 │
 └── <b>zsh</b>
-    ├── .zcompdump
     ├── .zshenv
     ├── .zshprompt
     └── .zshrc

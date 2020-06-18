@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# File:      wsl/alias
-# Created:   30.03.2020
-# Author:    Artyom Danilov
+# File:     wsl/aliases
+# Created:  30.03.2020
+# Author:   Artyom Danilov
 
 
 alias calc='calc.exe'
