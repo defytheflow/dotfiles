@@ -73,11 +73,6 @@ for file in "${DOTFILES_HOME}"/shell/*; do
     . "${file}"
 done
 
-# Load aliases and functions, that can be used only in bash.
-for file in 'alias' 'function'; do
-    [ -f "${DOTFILES_HOME}"/bash/"${file}" ] && . "${DOTFILES_HOME}"/bash/"${file}"
-done
-
 # Check if running on wsl:
 if [ -n "${WSL_DISTRO_NAME}" ]; then
     # Load aliases and functions, that can only be used in wsl.
@@ -89,7 +84,8 @@ fi
 # Prompt.
 # ------------------------------------------------------------------------------
 if [ "${color_prompt}" = 'yes' ]; then
-    [ -f "${DOTFILES_HOME}"/bash/prompt ] && . "${DOTFILES_HOME}"/bash/prompt
+    [ -f "${DOTFILES_HOME}"/bash/.bashprompt ] && \
+        . "${DOTFILES_HOME}"/bash/.bashprompt
 else
     PS1='\u@\h:\w\$ '
 fi

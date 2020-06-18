@@ -1,17 +1,13 @@
 #!/bin/sh
 
-# File:      function
-# Created:   30.12.2019
-# Author:    Artyom Danilov
+# File:     functions
+# Created:  30.12.2019
+# Author:   Artyom Danilov
 
 
-# Opens a pdf file.
-bread() {
-    if [ -f "${1}" ] && command -v "${READER}" >/dev/null; then
-        ("${READER}" "${1}" &)
-    else
-        return 1
-    fi
+# Reloads currently running shell.
+rld() {
+    [ -n "${ZSH_NAME}" ] && exec zsh || [ -n "${BASH}" ] && . ~/.bashrc
 }
 
 # Sets background image.

@@ -25,6 +25,7 @@ export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 export PYLINTHOME="${XDG_DATA_HOME}"/pylint
 export RUSTUP_HOME="${XDG_CONFIG_HOME}"/rustup
 export TASKDATA="${XDG_DATA_HOME}"/task
+export ZDOTDIR="${XDG_CONFIG_HOME}"/zsh
 export ZPLUG_HOME="${XDG_CONFIG_HOME}"/zplug
 export WALLPAPER_HOME="${XDG_CONFIG_HOME}"/wallpaper
 
@@ -44,15 +45,6 @@ export PYTHONPATH=
 export CFLAGS='-g -W -Wall -Wextra'
 export SHELLCHECK_OPTS=''
 export PYTHONSTARTUP="${PYTHONRC}"
-
-# configs
-export BASHRC="${HOME}"/.bashrc
-export ZSHRC="${HOME}"/.zshrc
-export VIMRC="${XDG_CONFIG_HOME}"/nvim/init.vim
-export PYTHONRC="${XDG_CONFIG_HOME}"/python/pythonrc
-export I3CONF="${XDG_CONFIG_HOME}"/i3/config
-export GITCONF="${XDG_CONFIG_HOME}"/git/config
-export TASKRC="${XDG_CONFIG_HOME}"/task/taskrc
 
 # caches
 export ICEAUTHORITY="${XDG_CACHE_HOME}"/ICEauthority

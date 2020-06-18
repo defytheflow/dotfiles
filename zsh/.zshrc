@@ -51,11 +51,6 @@ for file in "${DOTFILES_HOME}"/shell/*; do
     . "${file}"
 done
 
-# Load aliases and functions, that can be used only in zsh.
-for file in 'alias' 'function' ; do
-    [ -f "${DOTFILES_HOME}"/zsh/"${file}" ] && . "${DOTFILES_HOME}"/zsh/"${file}"
-done
-
 # Check if running on wsl.
 if [ -n "${WSL_DISTRO_NAME}" ]; then
     # Load aliases and functions, that can only be used in  wsl.
@@ -91,7 +86,7 @@ zplug load
 
 # Prompt
 # ------------------------------------------------------------------------------
-[ -f "${DOTFILES_HOME}"/zsh/prompt ] && . "${DOTFILES_HOME}"/zsh/prompt
+[ -f "${ZDOTDIR}"/.zshprompt ] && . "${ZDOTDIR}"/.zshprompt
 
 
 # Must be at the bottom

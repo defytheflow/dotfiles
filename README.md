@@ -1,17 +1,16 @@
 # Structure
 
 <pre>
-├── install.sh <---------- set everything up
-|
-├── zshenv
-├── profile
-├── xprofile
-|
-├── <b>bash</b> <---------- bash-specific stuff
-│   ├── alias
-│   ├── function
-│   ├── prompt
-│   └── bashrc
+├── install.sh
+├── .profile
+├── .xprofile
+│
+├── <b>alacritty</b>
+│   └── alacritty.yml
+│
+├── <b>bash</b>
+│   ├── .bashprompt
+│   └── .bashrc
 │
 ├── <b>git</b>
 │   ├── config
@@ -22,28 +21,37 @@
 │   └── config
 │
 ├── <b>nvim</b>
-│   ├── function.vim
+│   ├── autoload
+│   ├── colors
+│   ├── funcs.vim
 │   ├── init.vim
-│   ├── map.vim
-│   └── plugin.vim
+│   ├── maps.vim
+│   ├── plugins
+│   ├── plugins.vim
+│   └── syntax
 │
 ├── <b>python</b>
 │   └── pythonrc
 │
-├── <b>shell</b> <---------- shell-independent stuff
-│   ├── alias
-│   └── function
+├── <b>ranger</b>
+│   └── rc.conf
+│
+├── <b>shell</b>
+│   ├── aliases
+│   └── functions
 │
 ├── <b>tmux</b>
 │   └── tmux.conf
 │
-├── <b>wsl</b> <---------- wsl-specific stuff
-│   ├── alias
-│   └── function
+├── <b>wallpapers</b>
+│   └── firewatch
 │
-└── <b>zsh</b> <---------- zsh-specific stuff
-    ├── alias
-    ├── function
-    ├── prompt
-    └── zshrc
+├── <b>wsl</b>
+│   └── alias
+│
+└── <b>zsh</b>
+    ├── .zcompdump
+    ├── .zshenv
+    ├── .zshprompt
+    └── .zshrc
 </pre>

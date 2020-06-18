@@ -1,21 +1,18 @@
 #!/bin/sh
 
-# File:      alias
-# Created:   30.12.2019
-# Author:    Artyom Danilov
+# File:     aliases
+# Created:  30.12.2019
+# Author:   Artyom Danilov
 
 
 alias sudo='sudo ' # Run 'sudo {alias}'
 
-alias e='exa -1'
 alias f='file'
 alias g='git'
 alias h='history'
 alias j='java'
 alias l='ls'
-alias m='make'
 alias n='ls -A | wc -l'
-alias p='pwd'
 alias s='source'
 alias t='tree'
 alias v='vim'
@@ -75,7 +72,7 @@ alias grl='git rev-list --count HEAD'
 alias gs='git status'
 
 # ls
-alias ls='ls -vhF --color=never --group-directories-first'
+alias ls='ls -vhF --color=auto --group-directories-first'
 alias la='ls -A'
 alias lal='ls -Al'
 alias lh='ls -d .*'
@@ -83,7 +80,7 @@ alias ll='ls -l'
 alias lr='ls -r'
 
 # tree
-alias tree='tree -I .git'
+alias tree='tree -C -I .git'
 alias ta='tree -a'
 alias td='tree -d'
 
@@ -97,7 +94,6 @@ alias rm='rm -vi --preserve-root '
 alias rr='rm -rfi'
 
 # config
-alias exa='exa --icons --group-directories-first --git-ignore -I __pycache__'
 alias diff='diff -y --suppress-common-lines --color=auto'
 alias grep='grep --color=auto'
 alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
@@ -127,8 +123,3 @@ alias python='python3'
 
 # fun
 alias starwars='telnet towel.blinkenlights.nl'
-
-if command -v exa >/dev/null; then
-    alias l='exa'
-    alias t='exa -T'
-fi
