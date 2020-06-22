@@ -122,3 +122,14 @@ alias python='python3'
 
 # fun
 alias starwars='telnet towel.blinkenlights.nl'
+
+# wsl
+if [ -n "${WSL_DISTRO_NAME}" ]; then
+    alias calc='calc.exe'
+    alias cmd='cmd.exe'
+    alias explorer='explorer.exe'
+    alias notepad='notepad.exe'
+    alias powershell='powershell.exe'
+    alias write='write.exe'
+    alias chrome='${WIN_PROG_FILES_86}/Google/Chrome/Application/chrome.exe'
+fi
