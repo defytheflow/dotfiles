@@ -27,6 +27,7 @@ export RUSTUP_HOME="${XDG_CONFIG_HOME}"/rustup
 export TASKDATA="${XDG_DATA_HOME}"/task
 export ZDOTDIR="${XDG_CONFIG_HOME}"/zsh
 export ZPLUG_HOME="${XDG_CONFIG_HOME}"/zplug
+export IPYTHONDIR="${XDG_CONFIG_HOME}"/ipython
 export WALLPAPER_HOME="${XDG_CONFIG_HOME}"/wallpaper
 
 # defaults
@@ -44,7 +45,7 @@ export PYTHONPATH=
 # flags
 export CFLAGS='-g -W -Wall -Wextra'
 export SHELLCHECK_OPTS=''
-export PYTHONSTARTUP="${PYTHONRC}"
+export PYTHONSTARTUP="${XDG_CONFIG_HOME}"/python/pythonrc
 
 # caches
 export ICEAUTHORITY="${XDG_CACHE_HOME}"/ICEauthority

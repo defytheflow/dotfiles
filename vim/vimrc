@@ -6,6 +6,7 @@
 
 let g:mapleader = ';'
 
+set nocompatible
 set viminfo+=n${XDG_CACHE_HOME}/vim/viminfo
 
 " backup
@@ -55,7 +56,6 @@ au BufWritePre * %s/\n\+\%$//e         " remove trailing newlines.
 
 " miscellaneous
 syntax on
-set nocompatible
 set cursorline
 set encoding=utf-8
 set relativenumber
