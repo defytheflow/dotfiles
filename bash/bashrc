@@ -84,8 +84,8 @@ fi
 # Prompt.
 # ------------------------------------------------------------------------------
 if [ "${color_prompt}" = 'yes' ]; then
-    [ -f "${DOTFILES_HOME}"/bash/.bashprompt ] && \
-        . "${DOTFILES_HOME}"/bash/.bashprompt
+    [ -f "${DOTFILES_HOME}"/bash/bashprompt ] && \
+        . "${DOTFILES_HOME}"/bash/bashprompt
 else
     PS1='\u@\h:\w\$ '
 fi

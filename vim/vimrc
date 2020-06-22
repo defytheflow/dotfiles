@@ -1,0 +1,3 @@
+
+
+set viminfo+=n${XDG_CACHE_HOME}/vim/viminfo  " viminfo file location.

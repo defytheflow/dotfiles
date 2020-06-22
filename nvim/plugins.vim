@@ -65,7 +65,10 @@ let g:chromatica#enable_at_startup=1
 Plug 'rhysd/vim-clang-format'
 let g:clang_format#style_options = {
     \ "AccessModifierOffset" : -4,
-    \ "AllowShortIfStatementsOnASingleLine" : "false",
+    \ "AlignConsecutiveAssignments": "false",
+    \ "AlignConsecutiveDeclarations": "false",
+    \ "AllowShortIfStatementsOnASingleLine" : "true",
+    \ "AllowShortCaseLabelsOnASingleLine": "true",
     \ "AllowShortFunctionsOnASingleLine" : "false",
     \ "BreakBeforeBraces" : "Stroustrup",
     \ "ColumnLimit" : 90,
@@ -73,7 +76,9 @@ let g:clang_format#style_options = {
     \ "MaxEmptyLinesToKeep": 2,
     \ "SpacesBeforeTrailingComments": 2,
     \ "SpaceAfterCStyleCast": "true",
+    \ "IndentCaseLabels": "false",
     \ "UseTab" : "Never"}
+" autocmd FileType c ClangFormatAutoEnable
 "}}}
 
 " deoplete {{{
@@ -146,7 +151,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:syntastic_ignore_files = ['[a-z][A-Z][0-9]*.asm']
 let g:syntastic_python_python_exec = 'python3'
-let g:syntastic_python_checkers = ['mypy', 'pylint']
+let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_flake8_post_args='--ignore=E501'
 "}}}
 

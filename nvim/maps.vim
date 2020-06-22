@@ -13,6 +13,7 @@ nnoremap <silent><leader>g :Goyo<CR>
 nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
 nnoremap <silent><leader>t :TagbarToggle<CR>
 nnoremap <silent><leader>l :Limelight!!<CR>
+nnoremap <silent><leader>a :A<CR>
 
 " miscellaneous
 nnoremap <space> za

@@ -18,7 +18,6 @@ alias t='tree'
 alias v='vim'
 
 alias cl='clear'
-alias tl='trash-list'
 alias gh='history | grep'
 alias jc='javac'
 alias nv='nvim'
@@ -29,12 +28,11 @@ alias vi='vim'
 
 alias ipy='ipython'
 alias shu='shunit2'
-alias trs='trash'
+alias ghs='github-stats --user $(whoami)'
 
 alias open='xdg-open'
 alias chrome='google-chrome'
 alias store='ubuntu-software'
-alias ghs='github-stats --user $(whoami)'
 
 # commands
 alias ccat='highlight --out-format=ansi --force'
@@ -72,7 +70,7 @@ alias grl='git rev-list --count HEAD'
 alias gs='git status'
 
 # ls
-alias ls='ls -vhF --color=auto --group-directories-first'
+alias ls='ls -vh --color=auto --group-directories-first'
 alias la='ls -A'
 alias lal='ls -Al'
 alias lh='ls -d .*'
@@ -83,6 +81,7 @@ alias lr='ls -r'
 alias tree='tree -C -I .git'
 alias ta='tree -a'
 alias td='tree -d'
+alias tl='tree -a -L 2'
 
 # files
 alias cp='cp -iv'
