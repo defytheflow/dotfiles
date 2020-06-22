@@ -3,15 +3,16 @@
 <pre>
 │
 ├── install.sh
-├── .profile
+│
 ├── .xprofile
+├── .profile
 │
 ├── <b>alacritty</b>
 │   └── alacritty.yml
 │
 ├── <b>bash</b>
-│   ├── .bashprompt
-│   └── .bashrc
+│   ├── bashprompt
+│   └── bashrc
 │
 ├── <b>git</b>
 │   ├── config
@@ -22,14 +23,12 @@
 │   └── config
 │
 ├── <b>nvim</b>
-│   ├── autoload/
-│   ├── colors/
+│   ├── autoload
+│   ├── colors
 │   ├── funcs.vim
 │   ├── init.vim
 │   ├── maps.vim
-│   ├── plugins/
 │   ├── plugins.vim
-│   └── syntax/
 │
 ├── <b>python</b>
 │   └── pythonrc
@@ -44,11 +43,8 @@
 ├── <b>tmux</b>
 │   └── tmux.conf
 │
-├── <b>wallpapers</b>
-│   └── firewatch/
-│
-├── <b>wsl</b>
-│   └── aliases
+├── <b>vim</b>
+│   └── vimrc
 │
 └── <b>zsh</b>
     ├── .zshenv

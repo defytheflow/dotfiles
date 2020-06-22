@@ -1,3 +1,87 @@
 
-set viminfo+=n${XDG_CACHE_HOME}/vim/viminfo  " viminfo file location.
-set noswapfile				     " do not write swapfiles.
+" File:     vimrc
+" Created:  06.22.2020
+" Author:   Artyom Danilov
+
+
+let g:mapleader = ';'
+
+set viminfo+=n${XDG_CACHE_HOME}/vim/viminfo
+
+" backup
+set nobackup
+set noswapfile
+
+" color
+set termguicolors
+set background=dark
+colorscheme murphy
+
+" commandline
+set history=1000
+set wildmode=longest,list,full         " autocompletion.
+
+" fold
+set foldmethod=marker
+
+" indent
+filetype plugin indent on
+set expandtab                          " convert tabs to spaces.
+set softtabstop=4                      " number of spaces inserted for tab.
+set shiftwidth=4                       " number of columns to shift with (<< and >>).
+set smartindent                        " indent on braces and previous indentation level.
+
+" textwidth
+set nowrap
+set textwidth=90
+set formatoptions+=t                   " wrap text using &textwidth.
+set colorcolumn=+0                     " display a colorcolumn using &textwidth.
+
+" search
+set hlsearch                           " highlight search matches.
+set incsearch                          " highlight while typing search pattern.
+set smartcase                          " ignore case if search pattern is lowercase.
+
+" statusline
+set ruler                              " show the line and column number of cursor.
+set showcmd                            " show last typed command.
+set noshowmode                         " do not display mode in status line.
+set laststatus=2                       " always display a status line.
+
+" whitespace
+set list listchars=tab:>-,trail:-
+au BufWritePre * %s/\s\+$//e           " remove trailing spaces.
+au BufWritePre * %s/\n\+\%$//e         " remove trailing newlines.
+
+" miscellaneous
+syntax on
+set nocompatible
+set cursorline
+set encoding=utf-8
+set relativenumber
+set splitbelow splitright
+set mouse=a                            " enable mouse in all modes.
+au VimEnter * :NoMatchParen            " disable highlighting matching parentheses.
+au BufEnter * set fo-=c fo-=r fo-=o    " disable auto-commenting.
+
+nnoremap Y y$
+nnoremap S :%s//g<Left><Left>
+
+nnoremap <silent><leader>ev :split $MYVIMRC<CR>
+nnoremap <silent><leader>sv :source $MYVIMRC<CR>
+
+" repeat shift
+vnoremap < <gv
+vnoremap > >gv
+
+" switch splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" resize splits
+nnoremap <S-h> <C-w><
+nnoremap <S-j> <C-w>-
+nnoremap <S-k> <C-w>+
+nnoremap <S-l> <C-w>>

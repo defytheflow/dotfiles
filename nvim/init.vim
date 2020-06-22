@@ -4,31 +4,26 @@
 " Author:   Artyom Danilov
 
 
-" Must be sourced at the top.
-source $DOTFILES_HOME/nvim/plugins.vim
-
-" globals + {{{
+" Globals.
 let g:mapleader = ';'
 let g:python3_host_prog = '/usr/bin/python3'
 let &path = '/usr/include/,/usr/lib/gcc/x86_64-linux-gnu/8/include'
-"}}}
 
-" backup + {{{
-set backup
-set undofile
+" Must be sourced at the top.
+source $DOTFILES_HOME/nvim/plugins.vim
+
+" backup {{{
 set noswapfile
-set backupdir=~/.local/share/nvim/backup
-set undodir=~/.local/share/nvim/undodir
-for dir in [&backupdir, &undodir]
-    if !isdirectory(dir)
-        call mkdir(dir, 'p', 0700)
-    endif
-endfor
+set backup
+set backupdir=${XDG_DATA_HOME}/nvim/backup
+if !isdirectory(&backupdir)
+    call mkdir(dir, 'p', 0700)
+endif
 "}}}
 
-" colors + {{{
+" colors {{{
 set termguicolors
-set background=dark
+set background=dark    " adjust colors.
 try
     colo codedark
 catch /^Vim\%((\a\+)\)\=:E185/
@@ -36,66 +31,58 @@ catch /^Vim\%((\a\+)\)\=:E185/
 endtry
 "}}}
 
-" folding {{{
-set foldmethod=marker
-" au BufNewFile,BufRead *.py set foldmethod=indent
+" commandline {{{
+set history=1000                    " history size.
+set wildmode=longest,list,full      " autocompletion.
 "}}}
 
-" indentation + {{{
+" fold {{{
+set foldmethod=marker
+"}}}
+
+" indent {{{
 filetype plugin indent on
-set expandtab          " Insert spaces instead of tabs.
-set softtabstop=4      " Number of spaces inserted for tab.
-set shiftwidth=4       " Number of columns to shift with (<< and >>).
-set smartindent        " Indent on braces and previous indentation level.
-au BufNewFile,BufRead *.html,*.css,*.wiki,
-    \    setlocal shiftwidth=2 softtabstop=2  " html, css
-au BufNewFile,BufRead *,c,*.py,*.cpp,*.asm,*.sh,*.java
-    \    setlocal shiftwidth=4 softtabstop=4  " python, c++, assembly
+set expandtab          " convert tabs to spaces.
+set softtabstop=4      " number of spaces inserted per tab.
+set shiftwidth=4       " number of columns to shift with << and >>.
+set smartindent        " indent on braces and previous indentation level.
+au BufNewFile,BufRead *.html,*.css,*.wiki setlocal shiftwidth=2 softtabstop=2
 " }}}
 
-" textwidth + {{{
+" textwidth {{{
 set nowrap
-" set wrap               " Long lines continue to display on the next line.
-set textwidth=80       " Maximum width of the text that is being inserted.
-set formatoptions+=t   " Wrap text using &textwidth.
-set colorcolumn=+0     " Display a color-column to indicate textwidth.
-au BufNewFile,BufRead *.c  set textwidth=90
-au BufNewFile,BufRead *.py set textwidth=90
+set textwidth=90
+set formatoptions+=t   " wrap text using &textwidth.
+set colorcolumn=+0     " display a color-column to indicate textwidth.
 "}}}
 
-" searching + {{{
-set hlsearch         " Highlight all search matches.
-set incsearch
-set ignorecase       " Case insensitive search.
-set smartcase
+" search {{{
+set hlsearch           " highlight search matches.
+set incsearch          " highlight while typing search pattern.
+set smartcase          " ignore case if search pattern is lowercase.
 "}}}
 
-" statusline + {{{
-set ruler              " Show the line and column number of cursor.
-set showcmd            " Show last typed command.
-set noshowmode         " Do not display mode in status line.
-set laststatus=2       " ALways display a status line.
+" statusline {{{
+set ruler              " show the line and column number of cursor.
+set showcmd            " show last typed command.
+set noshowmode         " do not display mode in status line.
+set laststatus=2       " always display a status line.
 "}}}
 
-" syntax + {{{
+" syntax {{{
 syntax enable
 au BufNewFile,BufRead *.html set filetype=htmldjango
 "}}}
 
 " miscellaneous {{{
-set clipboard+=unnamedplus         " Use system clipboard.
-set history=1000                   " History size.
-set number                         " Line numbers.
-set mouse=a                        " Enable mouse in all modes.
-set splitbelow splitright          " Change splits pos.
-set wildmode=longest,list,full     " Autocompletion.
-set cursorline
-set list listchars=tab:>-,trail:-  " Display tabs and trailing whitespace.
-set relativenumber
-" Disable highlighting matching parentheses.
-au VimEnter * :NoMatchParen
-" Disable auto-commenting.
-au BufEnter * set fo-=c fo-=r fo-=o
+set clipboard+=unnamedplus          " use system clipboard.
+set cursorline                      " show cursorline.
+set relativenumber                  " show relative line numbers.
+set mouse=a                         " enable mouse in all modes.
+set splitbelow splitright           " change splits position.
+set list listchars=tab:>-,trail:-   " display tabs and trailing whitespace.
+au VimEnter * :NoMatchParen         " disable highlighting matching parentheses.
+au BufEnter * set fo-=c fo-=r fo-=o " disable auto-commenting.
 "}}}
 
 " Must be sourced before 'maps.vim'.

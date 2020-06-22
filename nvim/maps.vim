@@ -16,11 +16,8 @@ nnoremap <silent><leader>l :Limelight!!<CR>
 nnoremap <silent><leader>a :A<CR>
 
 " miscellaneous
-nnoremap <space> za
 nnoremap S :%s//g<Left><Left>
 nnoremap Y y$
-inoremap jk <esc>
-nnoremap <silent><leader>rt :retab<CR>
 
 " vim
 nnoremap <silent><leader>ev :split $MYVIMRC<CR>
@@ -29,12 +26,6 @@ nnoremap <silent><leader>sv :source $MYVIMRC<CR>
 " buffers
 nnoremap <tab>   :bnext<cr>
 nnoremap <S-tab> :bprev<cr>
-
-" tabs
-nnoremap to :tabedit<Space>
-nnoremap <silent>tp :tabprev<CR>
-nnoremap <silent>tn :tabnext<CR>
-nnoremap <silent>tq :tabclose<CR>
 
 " shift
 vnoremap < <gv
@@ -67,19 +58,3 @@ tnoremap <C-h> <C-\><C-N><C-w>h
 tnoremap <C-j> <C-\><C-N><C-w>j
 tnoremap <C-k> <C-\><C-N><C-w>k
 tnoremap <C-l> <C-\><C-N><C-w>l
-
-" arrows
-inoremap <Left>  <nop>
-inoremap <Right> <nop>
-inoremap <Up>    <nop>
-inoremap <Down>  <nop>
-
-nnoremap <Left>  <nop>
-nnoremap <Right> <nop>
-nnoremap <Up>    <nop>
-nnoremap <Down>  <nop>
-
-vnoremap <Left>  <nop>
-vnoremap <Right> <nop>
-vnoremap <Up>    <nop>
-vnoremap <Down>  <nop>
