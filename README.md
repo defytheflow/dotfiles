@@ -4,8 +4,9 @@
 │
 ├── install.sh
 │
-├── .xprofile
 ├── .profile
+├── .xprofile
+├── .zprofile
 │
 ├── <b>alacritty</b>
 │   └── alacritty.yml
@@ -16,19 +17,18 @@
 │
 ├── <b>git</b>
 │   ├── config
-│   ├── ignore
-│   └── message
+│   └── ignore
 │
 ├── <b>i3</b>
 │   └── config
 │
 ├── <b>nvim</b>
-│   ├── autoload
-│   ├── colors
+│   ├── autoload/
+│   ├── colors/
 │   ├── funcs.vim
 │   ├── init.vim
 │   ├── maps.vim
-│   ├── plugins.vim
+│   └── plugins.vim
 │
 ├── <b>python</b>
 │   └── pythonrc

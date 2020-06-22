@@ -106,7 +106,6 @@ alias move='mv'
 alias rename='mv'
 
 # sudo
-alias scp='sudo cp'
 alias smv='sudo mv'
 alias smkdir='sudo mkdir'
 alias snv='sudo nvim'
