@@ -8,31 +8,31 @@
 # Load environment variables. (XDG_CACHE_HOME, XDG_CONFIG_HOME, DOTFILES_HOME...)
 . "$(pwd)"/.profile
 
-create_directories() {
-    for prog in 'zsh' 'bash'; do
+create_dirs() {
+    for prog in 'bash' 'python' 'vim' 'zsh'; do
         [ -d "${XDG_CACHE_HOME}"/"${prog}" ] || mkdir -p "${XDG_CACHE_HOME}"/"${prog}"
     done
 }
 
-create_symlinks() {
-    ln -sf "${DOTFILES_HOME}"/bash/bashrc      "${HOME}"/.bashrc
-    ln -sf "${DOTFILES_HOME}"/.profile         "${HOME}"/.profile
-    ln -sf "${DOTFILES_HOME}"/.xprofile        "${HOME}"/.xprofile
-    ln -sf "${DOTFILES_HOME}"/.zprofile        "${HOME}"/.zprofile
-    ln -sf "${DOTFILES_HOME}"/nvim             "${XDG_CONFIG_HOME}"/nvim
-    ln -sf "${DOTFILES_HOME}"/zsh              "${XDG_CONFIG_HOME}"/zsh
-    ln -sf "${DOTFILES_HOME}"/git              "${XDG_CONFIG_HOME}"/git
-    ln -sf "${DOTFILES_HOME}"/tmux             "${XDG_CONFIG_HOME}"/tmux
-    ln -sf "${DOTFILES_HOME}"/python           "${XDG_CONFIG_HOME}"/python
-    ln -sf "${DOTFILES_HOME}"/vim              "${XDG_CONFIG_HOME}"/vim
+create_links() {
+    ln -sf "${DOTFILES_HOME}"/bash/bashrc  "${HOME}"/.bashrc
+
+    for file in '.profile' '.xprofile' '.zprofile'; do
+        ln -sf "${DOTFILES_HOME}"/"${file}" "${HOME}"/"${file}"
+    done
+
+    for dir in 'git' 'nvim' 'python' 'tmux' 'vim' 'zsh'; do
+        [ -L "${XDG_CONFIG_HOME}"/"${dir}" ] && rm "${XDG_CONFIG_HOME}"/"${dir}"
+        ln -sf "${DOTFILES_HOME}"/"${dir}" "${XDG_CONFIG_HOME}"/"${dir}"
+    done
 }
 
 install_software() {
-    for prog in 'highlight' 'nvim' 'tree' 'xclip' 'zsh'; do
+    for prog in 'highlight' 'tree' 'xclip' 'zsh'; do
         command -v "${prog}" >/dev/null || sudo apt-get install "${prog}"
     done
 }
 
-create_directories
-create_symlinks
+create_dirs
+create_links
 install_software
