@@ -10,14 +10,7 @@
         pager  = less
         excludesfile = /home/defytheflow/.dotfiles/git/ignore
 
-[help]
-        # Automatically correct and execute mistyped commands.
-        autocorrect = 1
-
 [pack]
         windowMemory  = 100m
         packSizeLimit = 100m
         threads = 1
-
-[commit]
-        template = /home/defytheflow/.dotfiles/git/message

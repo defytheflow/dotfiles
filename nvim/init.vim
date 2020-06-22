@@ -17,7 +17,7 @@ set noswapfile
 set backup
 set backupdir=${XDG_DATA_HOME}/nvim/backup
 if !isdirectory(&backupdir)
-    call mkdir(dir, 'p', 0700)
+    call mkdir(&backupdir, 'p', 0700)
 endif
 "}}}
 
