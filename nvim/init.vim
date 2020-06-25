@@ -46,7 +46,7 @@ set expandtab          " convert tabs to spaces.
 set softtabstop=4      " number of spaces inserted per tab.
 set shiftwidth=4       " number of columns to shift with << and >>.
 set smartindent        " indent on braces and previous indentation level.
-au BufNewFile,BufRead *.html,*.css,*.wiki setlocal shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.html,*.css,*.wiki,*.js,*.ts,*.tsx setlocal shiftwidth=2 softtabstop=2
 " }}}
 
 " textwidth {{{
@@ -77,7 +77,7 @@ au BufNewFile,BufRead *.html set filetype=htmldjango
 " miscellaneous {{{
 set clipboard+=unnamedplus          " use system clipboard.
 set cursorline                      " show cursorline.
-set relativenumber                  " show relative line numbers.
+set number relativenumber           " show relative line numbers.
 set mouse=a                         " enable mouse in all modes.
 set splitbelow splitright           " change splits position.
 set list listchars=tab:>-,trail:-   " display tabs and trailing whitespace.

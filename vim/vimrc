@@ -16,7 +16,7 @@ set noswapfile
 " color
 set termguicolors
 set background=dark
-colorscheme murphy
+" colorscheme murphy
 
 " commandline
 set history=1000

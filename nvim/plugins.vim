@@ -22,7 +22,6 @@ endif
 call plug#begin($HOME . '/.config/nvim/plugins/')
 
 Plug 'airblade/vim-gitgutter'           " git stats in number column.
-Plug 'ctrlpvim/ctrlp.vim'               " fuzzy find files.
 Plug 'jiangmiao/auto-pairs'             " auto-complete quotes, brackets.
 Plug 'alvan/vim-closetag'               " auto-complete html tags.
 Plug 'othree/xml.vim'                   " auto-complete xml tags.
@@ -79,6 +78,11 @@ let g:clang_format#style_options = {
     \ "IndentCaseLabels": "false",
     \ "UseTab" : "Never"}
 " autocmd FileType c ClangFormatAutoEnable
+"}}}
+
+" ctrlp {{{
+Plug 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 "}}}
 
 " deoplete {{{
