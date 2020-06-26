@@ -34,24 +34,18 @@ alias ghs='github-stats --user $(whoami)'
 alias open='xdg-open'
 alias chrome='google-chrome'
 alias store='ubuntu-software'
+alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
 
 # commands
-alias ccat='highlight --out-format=ansi --force'
 alias path='echo ${PATH} | sed -e "s|:|\n|g"'
 alias xrld='source ~/.xprofile'
-
-# apt-get
-alias install='sudo apt-get install'
-alias purge='sudo apt-get purge'
-alias remove='sudo apt-get remove'
-alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
 
 # cd
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....=' cd ../../../'
 alias .....='cd ../../../../'
-alias -- -='cd -' # Type '-' to go to previous dir.
+alias -- -='cd -'  # Type '-' to go to previous dir.
 
 # git
 alias ga='git add'

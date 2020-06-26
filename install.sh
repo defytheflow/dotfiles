@@ -28,7 +28,7 @@ create_links() {
 }
 
 install_software() {
-    for prog in 'highlight' 'tree' 'xclip' 'zsh'; do
+    for prog in 'tree' 'xclip' 'zsh'; do
         command -v "${prog}" >/dev/null || sudo apt-get install "${prog}"
     done
 }
