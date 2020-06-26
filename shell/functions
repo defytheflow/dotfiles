@@ -5,6 +5,11 @@
 # Author:   Artyom Danilov
 
 
+# 'whereis' wrapper that lists every result on a separe line.
+whereis() {
+    echo $(command whereis $*) | sed -e 's/ /\n/g'
+}
+
 # Reloads currently running shell.
 rld() {
     [ -n "${ZSH_NAME}" ] && exec zsh || [ -n "${BASH}" ] && . ~/.bashrc
