@@ -1,87 +1,78 @@
 
 " File:     vimrc
-" Created:  06.22.2020
+" Created:  26.06.2020
 " Author:   Artyom Danilov
 
+
+" This line should not be removed as it ensures that various options are
+" properly set to work with the Vim-related packages available in Debian.
+runtime! debian.vim
+
+" Jump to the last position when reopening a file.
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 let g:mapleader = ';'
 
 set nocompatible
+set mouse=a         " enable mouse usage in all modes.
+set encoding=utf-8
+set hidden          " hide buffers when they are abandoned.
+set autowrite       " automatically save before commands like :next and :make.
 set viminfo+=n${XDG_CACHE_HOME}/vim/viminfo
 
-" backup
+syntax on
+filetype plugin indent on  " load indentation rules and plugins according to the detected filetype.
+
 set nobackup
 set noswapfile
 
-" color
+colorscheme gruvbox
 set termguicolors
 set background=dark
-" colorscheme murphy
 
-" commandline
 set history=1000
-set wildmode=longest,list,full         " autocompletion.
+set wildmode=longest,list,full  " autocompletion.
 
-" fold
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set smartindent
+
+set ruler
+set showcmd
+set showmatch  " show matching brackets.
+
+set number relativenumber
+set cursorline
+set splitbelow splitright
 set foldmethod=marker
 
-" indent
-filetype plugin indent on
-set expandtab                          " convert tabs to spaces.
-set softtabstop=4                      " number of spaces inserted for tab.
-set shiftwidth=4                       " number of columns to shift with (<< and >>).
-set smartindent                        " indent on braces and previous indentation level.
+set hlsearch
+set incsearch
+set smartcase
 
-" textwidth
 set nowrap
 set textwidth=90
-set formatoptions+=t                   " wrap text using &textwidth.
-set colorcolumn=+0                     " display a colorcolumn using &textwidth.
+set colorcolumn=+0  " display colorcolumn using &textwidth.
 
-" search
-set hlsearch                           " highlight search matches.
-set incsearch                          " highlight while typing search pattern.
-set smartcase                          " ignore case if search pattern is lowercase.
-
-" statusline
-set ruler                              " show the line and column number of cursor.
-set showcmd                            " show last typed command.
-set noshowmode                         " do not display mode in status line.
-set laststatus=2                       " always display a status line.
-
-" whitespace
 set list listchars=tab:>-,trail:-
-au BufWritePre * %s/\s\+$//e           " remove trailing spaces.
-au BufWritePre * %s/\n\+\%$//e         " remove trailing newlines.
+if has('autocmd')
+    au BufWritePre * %s/\s\+$//e           " remove trailing spaces.
+    au BufWritePre * %s/\n\+\%$//e         " remove trailing newlines.
+endif
 
-" miscellaneous
-syntax on
-set cursorline
-set encoding=utf-8
-set relativenumber
-set splitbelow splitright
-set mouse=a                            " enable mouse in all modes.
-au VimEnter * :NoMatchParen            " disable highlighting matching parentheses.
-au BufEnter * set fo-=c fo-=r fo-=o    " disable auto-commenting.
+if has('autocmd')
+    au VimEnter * :NoMatchParen            " disable highlighting matching parentheses.
+    au BufEnter * set fo-=c fo-=r fo-=o    " disable auto-commenting.
+endif
 
 nnoremap Y y$
 nnoremap S :%s//g<Left><Left>
 
-nnoremap <silent><leader>ev :split $MYVIMRC<CR>
-nnoremap <silent><leader>sv :source $MYVIMRC<CR>
-
-" repeat shift
 vnoremap < <gv
 vnoremap > >gv
 
-" switch splits
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" resize splits
-nnoremap <S-h> <C-w><
-nnoremap <S-j> <C-w>-
-nnoremap <S-k> <C-w>+
-nnoremap <S-l> <C-w>>
+nnoremap <silent><leader>ev :split $MYVIMRC<CR>
+nnoremap <silent><leader>sv :source $MYVIMRC<CR>
