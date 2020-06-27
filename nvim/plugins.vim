@@ -13,23 +13,22 @@ endif
 "}}}
 
 " Download pluggins + {{{
-" autocmd VimEnter *
-" \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-" \|   PlugInstall --sync | q
-" \| endif
+autocmd VimEnter *
+\  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+\|   PlugInstall --sync | q
+\| endif
 "}}}
 
 call plug#begin($HOME . '/.config/nvim/plugins/')
 
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
+
 Plug 'airblade/vim-gitgutter'           " git stats in number column.
 Plug 'jiangmiao/auto-pairs'             " auto-complete quotes, brackets.
-Plug 'alvan/vim-closetag'               " auto-complete html tags.
-Plug 'othree/xml.vim'                   " auto-complete xml tags.
-Plug 'tpope/vim-fugitive'               " git commands.
-Plug 'tpope/vim-surround'               " editing quotes, parentheses, tags.
-Plug 'tpope/vim-commentary'             " commenting.
-Plug 'tpope/vim-repeat'                 " repeat plugin commands with '.'.
-Plug 'tpope/vim-unimpaired'             " miscellaneous paired mappings.
 Plug 'unblevable/quick-scope'           " horizontal navigation.
 Plug 'mhinz/vim-startify'               " start screen.
 Plug 'vimwiki/vimwiki'                  " note taking.
@@ -38,6 +37,8 @@ Plug 'sheerun/vim-polyglot'             " syntax highlight.
 Plug 'vim-scripts/a.vim'                " switch between .c --> .h
 Plug 'majutsushi/tagbar'                " tagbar.
 Plug 'voldikss/vim-floaterm'            " floating terminal.
+Plug 'maxmellon/vim-jsx-pretty'         " react syntax higlight.
+
 
 " airline {{{
 Plug 'vim-airline/vim-airline'
@@ -78,6 +79,14 @@ let g:clang_format#style_options = {
     \ "IndentCaseLabels": "false",
     \ "UseTab" : "Never"}
 " autocmd FileType c ClangFormatAutoEnable
+"}}}
+
+" closetag {{{
+Plug 'alvan/vim-closetag'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*js'
+let g:closetag_filetypes = 'html,xhtml,phtml,js'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,js'
 "}}}
 
 " ctrlp {{{
@@ -140,6 +149,12 @@ let g:nerdtree_tabs_open_on_console_startup = 2
 let g:nerdtree_tabs_autoclose = 0
 Plug 'ryanoasis/vim-devicons'
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
+"}}}
+
+" prettier {{{
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 "}}}
 
 " snippets {{{

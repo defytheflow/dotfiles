@@ -27,9 +27,11 @@ alias sc='shellcheck'
 alias tc='touch'
 alias vi='vim'
 
+alias exa='exa --git-ignore --icons --group-directories-first'
 alias ipy='ipython'
 alias shu='shunit2'
 alias ghs='github-stats --user $(whoami)'
+alias stl='systemctl'
 
 alias open='xdg-open'
 alias chrome='google-chrome'
