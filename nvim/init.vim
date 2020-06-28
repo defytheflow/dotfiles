@@ -46,7 +46,7 @@ set expandtab          " convert tabs to spaces.
 set softtabstop=4      " number of spaces inserted per tab.
 set shiftwidth=4       " number of columns to shift with << and >>.
 set smartindent        " indent on braces and previous indentation level.
-au BufNewFile,BufRead *.html,*.css,*.wiki,*.js,*.jsx setlocal shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.html,*.css,*.wiki,*.js,*.jsx,*,*.ts,*.tsx setlocal shiftwidth=2 softtabstop=2
 " }}}
 
 " textwidth {{{

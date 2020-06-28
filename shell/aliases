@@ -27,7 +27,6 @@ alias sc='shellcheck'
 alias tc='touch'
 alias vi='vim'
 
-alias exa='exa --git-ignore --icons --group-directories-first'
 alias ipy='ipython'
 alias shu='shunit2'
 alias ghs='github-stats --user $(whoami)'
@@ -63,6 +62,7 @@ alias gm='git mv'
 alias gp='git push'
 alias gpf='git push --force'
 alias gpl='git pull'
+alias gr='git reset'
 alias grl='git rev-list --count HEAD'
 alias gs='git status'
 
@@ -73,6 +73,10 @@ alias lal='ls -Al'
 alias lh='ls -d .*'
 alias ll='ls -l'
 alias lr='ls -r'
+
+# exa
+alias exa='exa --git-ignore --icons --group-directories-first'
+alias et='exa -T'
 
 # tree
 alias tree='tree -C -I .git'
@@ -118,6 +122,9 @@ alias python='python3'
 
 # fun
 alias starwars='telnet towel.blinkenlights.nl'
+
+# dirs
+alias work='cd ~/dev/repos/work'
 
 # wsl
 if [ -n "${WSL_DISTRO_NAME}" ]; then

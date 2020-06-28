@@ -39,7 +39,6 @@ Plug 'majutsushi/tagbar'                " tagbar.
 Plug 'voldikss/vim-floaterm'            " floating terminal.
 Plug 'maxmellon/vim-jsx-pretty'         " react syntax higlight.
 
-
 " airline {{{
 Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
@@ -83,10 +82,10 @@ let g:clang_format#style_options = {
 
 " closetag {{{
 Plug 'alvan/vim-closetag'
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*js'
-let g:closetag_filetypes = 'html,xhtml,phtml,js'
-let g:closetag_xhtml_filetypes = 'xhtml,jsx,js'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
+let g:closetag_filetypes = 'html,xhtml,phtml'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,tsx'
 "}}}
 
 " ctrlp {{{
