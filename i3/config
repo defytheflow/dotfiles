@@ -22,7 +22,7 @@ set $ws9 9
 
 # Applications
 set $terminal alacritty
-set $browser  google-chrome
+set $browser  qutebrowser
 
 # Monitors
 set $in_monitor eDP-1
