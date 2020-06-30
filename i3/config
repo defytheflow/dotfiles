@@ -85,7 +85,7 @@ bar {
                amixer battery layout-xkb          \
                date time uptime                   \
             -p date.format="%a %x"                \
-            -t gruvbox
+            # -t gruvbox
 }
 #}}}
 

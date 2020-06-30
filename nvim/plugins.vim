@@ -36,31 +36,12 @@ Plug 'inkarkat/vim-ReplaceWithRegister' " text object replacement.
 Plug 'sheerun/vim-polyglot'             " syntax highlight.
 Plug 'vim-scripts/a.vim'                " switch between .c --> .h
 Plug 'majutsushi/tagbar'                " tagbar.
-Plug 'voldikss/vim-floaterm'            " floating terminal.
-Plug 'maxmellon/vim-jsx-pretty'         " react syntax higlight.
 
-" airline {{{
-Plug 'vim-airline/vim-airline'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#hunks#non_zero_only = 1
-Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='luna'
-"}}}
 
-" better-whitespace {{{
-Plug 'ntpeters/vim-better-whitespace'
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
-let g:strip_whitespace_confirm=0
-"}}}
-
-" chromatica {{{
+" c/c++ {{{
 Plug 'arakashic/chromatica.nvim'
 let g:chromatica#libclang_path='/usr/lib/llvm-3.9/lib/'
 let g:chromatica#enable_at_startup=1
-"}}}
-
-" clang-format {{{
 Plug 'rhysd/vim-clang-format'
 let g:clang_format#style_options = {
     \ "AccessModifierOffset" : -4,
@@ -78,14 +59,57 @@ let g:clang_format#style_options = {
     \ "IndentCaseLabels": "false",
     \ "UseTab" : "Never"}
 " autocmd FileType c ClangFormatAutoEnable
+" }}}
+
+" java {{{
+Plug 'artur-shaik/vim-javacomplete2'
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+let g:JavaComplete_ClosingBrace = 0
+"}}}
+
+" javascript {{{
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+"}}}
+
+" typescript {{{
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+"}}}
+
+
+" ale {{{
+Plug 'dense-analysis/ale'
+"}}}
+
+" airline {{{
+Plug 'vim-airline/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#hunks#non_zero_only = 1
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_theme='luna'
+"}}}
+
+" better-whitespace {{{
+Plug 'ntpeters/vim-better-whitespace'
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
 "}}}
 
 " closetag {{{
 Plug 'alvan/vim-closetag'
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
-let g:closetag_filetypes = 'html,xhtml,phtml'
-let g:closetag_xhtml_filetypes = 'xhtml,jsx,tsx'
+" These are the file extensions where this plugin is enabled.
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.tsx'
+" This will make the list of non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+" These are the file types where this plugin is enabled.
+let g:closetag_filetypes = 'html,xhtml,phtml,jsx,tsx'
+" This will make the list of non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
 "}}}
 
 " ctrlp {{{
@@ -122,12 +146,6 @@ let g:indentLine_leadingSpacChar='·'
 let g:indentLine_leadingSpaceEnabled='1'
 "}}}
 
-" java-complete {{{
-Plug 'artur-shaik/vim-javacomplete2'
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-let g:JavaComplete_ClosingBrace = 0
-"}}}
-
 " limelight {{{
 Plug 'junegunn/limelight.vim'
 let g:limelight_conceal_ctermfg = 'gray'
@@ -148,12 +166,6 @@ let g:nerdtree_tabs_open_on_console_startup = 2
 let g:nerdtree_tabs_autoclose = 0
 Plug 'ryanoasis/vim-devicons'
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
-"}}}
-
-" prettier {{{
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 "}}}
 
 " snippets {{{

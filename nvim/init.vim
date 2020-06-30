@@ -25,7 +25,7 @@ endif
 set termguicolors
 set background=dark    " adjust colors.
 try
-    colo gruvbox
+    colo codedark
 catch /^Vim\%((\a\+)\)\=:E185/
     colo koehler
 endtry
