@@ -1,3 +1,2 @@
-nvim/plugins/
-nvim/doc/
+nvim/plugged/
 zsh/.zcompdump
