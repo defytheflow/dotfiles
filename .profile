@@ -6,10 +6,12 @@
 
 
 # path
-export PATH="${PATH}":"${HOME}"/.local/bin
 export PATH="${PATH}":"${HOME}"/games
-export PATH="${PATH}":"${JAVA_HOME}"/bin
+export PATH="${PATH}":"${HOME}"/.local/bin
+export PATH="${PATH}":"${HOME}"/.config/cargo/bin
 export PATH="${PATH}":/snap/bin
+# export PATH="${PATH}":"${JAVA_HOME}"/bin
+
 
 # xdg
 export XDG_CACHE_HOME="${HOME}"/.cache

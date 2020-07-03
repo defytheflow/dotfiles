@@ -75,7 +75,9 @@ alias ll='ls -l'
 alias lr='ls -r'
 
 # exa
-alias exa='exa --git-ignore --icons --group-directories-first'
+alias exa='exa --icons --group-directories-first -I "__pycache__|plugged|node_modules"'
+alias ea='exa -a'
+alias el='exa -l'
 alias et='exa -T'
 
 # tree
@@ -124,7 +126,9 @@ alias python='python3'
 alias starwars='telnet towel.blinkenlights.nl'
 
 # dirs
-alias work='cd ~/dev/repos/work'
+alias api='cd ~/dev/repos/work/api'
+alias web='cd ~/dev/repos/work/web'
+alias cfg='cd ~/dev/repos/work/cfg'
 
 # wsl
 if [ -n "${WSL_DISTRO_NAME}" ]; then

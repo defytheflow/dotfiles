@@ -68,6 +68,9 @@ if has('autocmd')
     au BufEnter * set fo-=c fo-=r fo-=o    " disable auto-commenting.
 endif
 
+au VimEnter * :NoMatchParen                " disable highlighting matching parentheses.
+
+nnoremap <Space> za
 nnoremap Y y$
 nnoremap S :%s//g<Left><Left>
 
