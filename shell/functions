@@ -5,12 +5,17 @@
 # Author:   Artyom Danilov
 
 
-# 'whereis' wrapper that lists every result on a separe line.
-whereis() {
-    echo $(command whereis $*) | sed -e 's/ /\n/g'
+# Prints number of entries in a directory.
+n() {
+    [ -n "${1}" ] && ls -A "${1}" | wc -l || ls -A | wc -l
 }
 
-# Reloads currently running shell.
+# 'whereis' wrapper that lists every result on a separe line.
+whereis() {
+    command whereis "$@" | sed -e 's/ /\n/g'
+}
+
+# Reloads current running shell.
 rld() {
     [ -n "${ZSH_NAME}" ] && exec zsh || [ -n "${BASH}" ] && . ~/.bashrc
 }
@@ -27,11 +32,4 @@ setbg() {
 # Sets terminal title.
 title() {
     printf "\033]0;%s\007" "${*}"
-}
-
-# Prints to the center of the terminal.
-echoc() {
-    width=$(stty size | cut -d ' ' -f2)
-    length=${#1}
-    printf "%$(( length + (width - length) / 2 ))b\n" "${1}"
 }
