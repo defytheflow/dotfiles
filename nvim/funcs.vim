@@ -28,14 +28,6 @@ fun! CursorColumnToggle()
     endif
 endfun
 
-fun! HighlightSearchToggle()
-    if &hlsearch == 1
-        set nohlsearch
-    else
-        set hlsearch
-    endif
-endfun
-
 fun! AutoCommentToggle()
     if matchstr(&formatoptions, 'cro') == 'cro'
         setlocal formatoptions-=cro

@@ -11,13 +11,13 @@ nnoremap <silent><leader>l :Limelight!!<CR>
 nnoremap <silent><leader>a :A<CR>
 
 " mine
-nnoremap <silent><leader>h  :call HighlightSearchToggle()<CR>
 nnoremap <silent><leader>x  :call AutoCommentToggle()<CR>
 nnoremap <silent><leader>cc :call ColorColumnToggle()<CR>
 nnoremap <silent><leader>cl :call CursorLineToggle()<CR>
 nnoremap <silent><leader>ck :call CursorColumnToggle()<CR>
 
 " miscellaneous
+nnoremap <C-n>  :nohl<CR>
 nnoremap <Space> za
 nnoremap S :%s//g<Left><Left>
 nnoremap Y y$
