@@ -22,7 +22,7 @@ endif
 "}}}
 
 " colors {{{
-set termguicolors
+" set termguicolors
 set background=dark    " adjust colors.
 try
     colo codedark

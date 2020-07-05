@@ -7,7 +7,6 @@
 " plugins
 nnoremap <silent><leader>g :Goyo<CR>
 nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
-nnoremap <silent><leader>t :TagbarToggle<CR>
 nnoremap <silent><leader>l :Limelight!!<CR>
 nnoremap <silent><leader>a :A<CR>
 
@@ -36,24 +35,3 @@ nnoremap <S-tab> :bprev<cr>
 " shift
 vnoremap < <gv
 vnoremap > >gv
-
-" splits
-" nnoremap <S-h> <C-w><
-" nnoremap <S-j> <C-w>-
-" nnoremap <S-k> <C-w>+
-" nnoremap <S-l> <C-w>>
-
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
-
-" inoremap <C-h> <C-\><C-N><C-w>h
-" inoremap <C-j> <C-\><C-N><C-w>j
-" inoremap <C-k> <C-\><C-N><C-w>k
-" inoremap <C-l> <C-\><C-N><C-w>l
-
-" tnoremap <C-h> <C-\><C-N><C-w>h
-" tnoremap <C-j> <C-\><C-N><C-w>j
-" tnoremap <C-k> <C-\><C-N><C-w>k
-" tnoremap <C-l> <C-\><C-N><C-w>l
