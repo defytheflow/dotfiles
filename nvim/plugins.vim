@@ -31,6 +31,7 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
+Plug 'michaeljsmith/vim-indent-object'
 
 Plug 'airblade/vim-gitgutter'           " git stats in number column.
 Plug 'jiangmiao/auto-pairs'             " auto-complete quotes, brackets.

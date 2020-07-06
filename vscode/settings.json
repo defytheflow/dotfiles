@@ -1,9 +1,19 @@
 {
+    "window.zoomLevel": -1,
+
+    "editor.fontSize": 16,
+
+    "files.exclude": {
+        "**/.git": false
+    },
+
     "keyboard.dispatch": "keyCode",
 
+    "vim.leader": ";",
+    "vim.camelCaseMotion.enable": true,
+    "vim.replaceWithRegister": true,
     "vim.incsearch": true,
     "vim.hlsearch": true,
-    "vim.replaceWithRegister": true,
     "vim.useSystemClipboard": true,
     "vim.visualModeKeyBindingsNonRecursive": [
         {
@@ -13,7 +23,7 @@
         {
             "before": ["<"],
             "commands": ["editor.action.outdentLines"]
-        }
+        },
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         {
@@ -24,5 +34,5 @@
             "before": ["Z", "Z"],
             "commands": [":wq"]
         }
-    ]
+    ],
 }
