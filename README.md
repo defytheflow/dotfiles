@@ -16,7 +16,8 @@
 │
 ├──  <b>git</b>
 │  ├──  config
-│  └──  ignore
+│  ├──  ignore
+│  └──  message
 │
 ├──  <b>i3</b>
 │  └──  config
@@ -40,7 +41,8 @@
 │  └──  plugins.vim
 │
 ├──  <b>python</b>
-│  └──  pythonrc
+│  ├──  pythonrc
+│  └──  setup.cfg
 │
 ├──  <b>ranger</b>
 │  └──  rc.conf
