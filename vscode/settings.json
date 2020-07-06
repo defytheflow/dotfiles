@@ -1,23 +1,9 @@
 {
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    "python.linting.pylintArgs": [
-        "--enable=W0614",
-        "--disable=C0111"
-    ],
-
-    "editor.formatOnSave": true,
-    "python.formatting.provider": "yapf",
-    "[python]": {
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": true
-        }
-    },
-
     "keyboard.dispatch": "keyCode",
-    "vim.replaceWithRegister": true,
+
     "vim.incsearch": true,
     "vim.hlsearch": true,
+    "vim.replaceWithRegister": true,
     "vim.useSystemClipboard": true,
     "vim.visualModeKeyBindingsNonRecursive": [
         {
