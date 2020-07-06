@@ -35,11 +35,13 @@ Plug 'kana/vim-textobj-entire'
 Plug 'airblade/vim-gitgutter'           " git stats in number column.
 Plug 'jiangmiao/auto-pairs'             " auto-complete quotes, brackets.
 Plug 'unblevable/quick-scope'           " horizontal navigation.
-Plug 'vimwiki/vimwiki'                  " note taking.
 Plug 'inkarkat/vim-ReplaceWithRegister' " text object replacement.
 Plug 'sheerun/vim-polyglot'             " syntax highlight.
 Plug 'vim-scripts/a.vim'                " switch between .c --> .h
 Plug 'miyakogi/seiya.vim'               " transparent background.
+
+Plug 'bkad/CamelCaseMotion'
+let g:camelcasemotion_key = '<leader>'
 
 " airline {{{
 Plug 'vim-airline/vim-airline'
