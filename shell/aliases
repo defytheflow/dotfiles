@@ -47,6 +47,15 @@ alias ....=' cd ../../../'
 alias .....='cd ../../../../'
 alias -- -='cd -'  # Type '-' to go to previous dir.
 
+# django
+alias djdb='django-admin dbshell'
+alias djm='django-admin migrate'
+alias djmm='django-admin makemigrations'
+alias djr='django-admin runserver'
+alias djsh='django-admin shell'
+alias djsu='django-admin createsuperuser'
+alias djt='django-admin test'
+
 # git
 alias ga='git add'
 alias gaa='git add --all'
