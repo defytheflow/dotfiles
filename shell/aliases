@@ -7,6 +7,7 @@
 
 alias sudo='sudo ' # Run 'sudo {alias}'
 
+alias e='exa'
 alias f='file'
 alias g='git'
 alias h='history'
@@ -47,7 +48,15 @@ alias ....=' cd ../../../'
 alias .....='cd ../../../../'
 alias -- -='cd -'  # Type '-' to go to previous dir.
 
+# pip
+alias pip='pip3'
+alias pif='pip freeze'
+alias pin='pip install'
+alias pun='pip uninstall'
+
 # django
+alias djsa='django-admin startapp'
+alias djch='django-admin check'
 alias djdb='django-admin dbshell'
 alias djm='django-admin migrate'
 alias djmm='django-admin makemigrations'
@@ -59,27 +68,22 @@ alias djt='django-admin test'
 # git
 alias ga='git add'
 alias gaa='git add --all'
-
 alias gb='git branch'
-
 alias gc='git commit'
 alias gca='git commit --amend'
 alias gcl='git clone'
 alias gco='git checkout'
-
 alias gd='git diff'
 alias gl='git log'
+alias gm='git merge'
 alias gmv='git mv'
-
 alias gp='git push'
 alias gpf='git push --force'
 alias gpl='git pull'
-
 alias grb='git rebase -i'
 alias grl='git rev-list --count HEAD'
 alias grs='git reset'
 alias grv='git revert'
-
 alias gs='git status'
 
 # ls
@@ -134,8 +138,6 @@ alias srmdir='sudo rmdir'
 
 # version
 alias ipython='ipython3'
-alias pip='pip3'
-alias pylint='pylint3'
 alias python='python3'
 
 # fun

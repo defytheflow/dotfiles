@@ -2,6 +2,7 @@
     "window.zoomLevel": -1,
 
     "editor.fontSize": 16,
+    "editor.lineNumbers": "relative",
 
     "files.exclude": {
         "**/.git": false
