@@ -41,8 +41,9 @@
 │  └──  plugins.vim
 │
 ├──  <b>python</b>
+│  ├──  isort.cfg
 │  ├──  pythonrc
-│  └──  setup.cfg
+│  └──  style.yapf
 │
 ├──  <b>ranger</b>
 │  └──  rc.conf
