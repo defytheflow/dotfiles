@@ -85,6 +85,7 @@ alias grl='git rev-list --count HEAD'
 alias grs='git reset'
 alias grv='git revert'
 alias gs='git status'
+alias gsh='git show'
 
 # ls
 alias ls='ls -vh --color=auto --group-directories-first'

@@ -1,39 +1,49 @@
 {
-    "window.zoomLevel": -1,
+  "window.zoomLevel": -1,
+  "editor.lineNumbers": "relative",
 
-    "editor.fontSize": 16,
-    "editor.lineNumbers": "relative",
+  "files.exclude": {
+    "**/.git": false
+  },
 
-    "files.exclude": {
-        "**/.git": false
+  "keyboard.dispatch": "keyCode",
+
+  "vim.leader": ";",
+  "vim.camelCaseMotion.enable": true,
+  "vim.replaceWithRegister": true,
+  "vim.incsearch": true,
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
     },
-
-    "keyboard.dispatch": "keyCode",
-
-    "vim.leader": ";",
-    "vim.camelCaseMotion.enable": true,
-    "vim.replaceWithRegister": true,
-    "vim.incsearch": true,
-    "vim.hlsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.visualModeKeyBindingsNonRecursive": [
-        {
-            "before": [">"],
-            "commands": ["editor.action.indentLines"]
-        },
-        {
-            "before": ["<"],
-            "commands": ["editor.action.outdentLines"]
-        },
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": ["<C-n>"],
-            "commands": [":nohl"]
-        },
-        {
-            "before": ["Z", "Z"],
-            "commands": [":wq"]
-        }
-    ],
+    {
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    },
+    {
+      "before": ["Z", "Z"],
+      "commands": [":wq"]
+    },
+    {
+      "before": ["leader", "w"],
+      "commands": ["workbench.action.files.save"]
+    },
+    {
+      "before": ["leader", "d"],
+      "after": ["d", "d"]
+    },
+    {
+      "before": [":"],
+      "commands": ["workbench.action.showCommands"]
+    }
+  ]
 }
