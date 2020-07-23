@@ -30,11 +30,8 @@
 │  │  ├──  codedark.vim
 │  │  ├──  darcula.vim
 │  │  ├──  gruvbox.vim
-│  │  ├──  lessthan.vim
 │  │  ├──  molokai.vim
-│  │  ├──  monokai.vim
-│  │  ├──  nightfly.vim
-│  │  └──  vividchalk.vim
+│  │  └──  monokai.vim
 │  ├──  funcs.vim
 │  ├──  init.vim
 │  ├──  maps.vim
@@ -57,7 +54,12 @@
 │
 ├──  <b>vim</b>
 │  ├──  colors
-│  │  └──  gruvbox.vim
+│  │  ├──  archman.vim
+│  │  ├──  codedark.vim
+│  │  ├──  darcula.vim
+│  │  ├──  gruvbox.vim
+│  │  ├──  molokai.vim
+│  │  └──  monokai.vim
 │  ├──  plugin
 │  │  ├──  commentary.vim
 │  │  ├──  ReplaceWithRegister.vim
