@@ -16,6 +16,7 @@ create_dirs() {
 
 create_links() {
     ln -sf "${DOTFILES_HOME}"/bash/bashrc  "${HOME}"/.bashrc
+    ln -sf "${DOTFILES_HOME}"/vim "${HOME}"/.vim
 
     for file in '.profile' '.xprofile' '.zprofile'; do
         ln -sf "${DOTFILES_HOME}"/"${file}" "${HOME}"/"${file}"
@@ -33,6 +34,15 @@ install_software() {
     done
 }
 
+install_neovim() {
+    sudo add-apt-repository ppa:neovim-ppa/stable
+    sudo apt-get update
+    sudo apt-get install neovim
+    sudo apt-get install python3-neovim
+    pip3 install pynvim
+}
+
 create_dirs
 create_links
 install_software
+install_neovim
