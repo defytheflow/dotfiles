@@ -28,7 +28,7 @@ filetype plugin indent on  " load indentation rules and plugins according to the
 set nobackup
 set noswapfile
 
-colorscheme gruvbox
+colorscheme codedark
 set termguicolors
 set background=dark
 
