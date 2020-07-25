@@ -32,6 +32,8 @@ create_links() {
         [ -L "${XDG_CONFIG_HOME}"/"${dir}" ] && rm "${XDG_CONFIG_HOME}"/"${dir}"
         ln -sf "${DOTFILES_HOME}"/"${dir}" "${XDG_CONFIG_HOME}"/"${dir}"
     done
+
+    ln -sf "${DOTFILES_HOME}"/user-dirs.dirs "${XDG_CONFIG_HOME}"/user-dirs.dirs
 }
 
 install_software() {
