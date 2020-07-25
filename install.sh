@@ -47,10 +47,17 @@ install_software() {
     sudo apt-get upgrade
     sudo apt-get autoremove
 
-    for prog in 'tree' 'xclip'; do
+    # install through apt-get.
+    for prog in 'mlocate' 'tree' 'xclip'; do
         command -v "${prog}" >/dev/null || sudo apt-get install -y "${prog}"
     done
 
+    # install through snap.
+    for prog in 'ripgrep'; do
+        command -v "${prog}" >/dev/null || sudo apt-get install -y "${prog}"
+    done
+
+    # install through functions.
     command -v 'alacritty' >/dev/null || install_alacritty
     command -v 'bat'       >/dev/null || install_bat
     command -v 'exa'       >/dev/null || install_exa

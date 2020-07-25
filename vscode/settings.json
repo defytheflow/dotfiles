@@ -41,9 +41,5 @@
       "before": ["leader", "d"],
       "after": ["d", "d"]
     },
-    {
-      "before": [":"],
-      "commands": ["workbench.action.showCommands"]
-    }
   ]
 }
