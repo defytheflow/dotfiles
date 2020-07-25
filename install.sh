@@ -16,20 +16,19 @@ if [ -z "${DOTFILES_HOME}" ]; then
 fi
 
 create_dirs() {
-    for prog in 'bash' 'python' 'vim' 'zsh'; do
+    for prog in 'bash' 'python' 'zsh'; do
         [ -d "${XDG_CACHE_HOME}"/"${prog}" ] || mkdir -p "${XDG_CACHE_HOME}"/"${prog}"
     done
 }
 
 create_links() {
     ln -sf "${DOTFILES_HOME}"/bash/bashrc  "${HOME}"/.bashrc
-    ln -sf "${DOTFILES_HOME}"/vim "${HOME}"/.vim
 
     for file in '.profile' '.xprofile' '.zprofile'; do
         ln -sf "${DOTFILES_HOME}"/"${file}" "${HOME}"/"${file}"
     done
 
-    for dir in 'alacritty' 'git' 'nvim' 'python' 'tmux' 'vim' 'zsh'; do
+    for dir in 'alacritty' 'git' 'nvim' 'python' 'tmux' 'zsh'; do
         [ -L "${XDG_CONFIG_HOME}"/"${dir}" ] && rm "${XDG_CONFIG_HOME}"/"${dir}"
         ln -sf "${DOTFILES_HOME}"/"${dir}" "${XDG_CONFIG_HOME}"/"${dir}"
     done
@@ -40,7 +39,7 @@ install_software() {
     sudo apt-get upgrade
     sudo apt-get autoremove
 
-    for prog in 'tree' 'vim' 'xclip'; do
+    for prog in 'tree' 'xclip'; do
         command -v "${prog}" >/dev/null || sudo apt-get install -y "${prog}"
     done
 
