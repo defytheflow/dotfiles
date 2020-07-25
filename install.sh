@@ -29,7 +29,7 @@ create_links() {
         ln -sf "${DOTFILES_HOME}"/"${file}" "${HOME}"/"${file}"
     done
 
-    for dir in 'git' 'nvim' 'python' 'tmux' 'vim' 'zsh'; do
+    for dir in 'alacritty' 'git' 'nvim' 'python' 'tmux' 'vim' 'zsh'; do
         [ -L "${XDG_CONFIG_HOME}"/"${dir}" ] && rm "${XDG_CONFIG_HOME}"/"${dir}"
         ln -sf "${DOTFILES_HOME}"/"${dir}" "${XDG_CONFIG_HOME}"/"${dir}"
     done
@@ -44,9 +44,19 @@ install_software() {
         command -v "${prog}" >/dev/null || sudo apt-get install -y "${prog}"
     done
 
-    command -v 'exa'  >/dev/null || install_exa
-    command -v 'nvim' >/dev/null || install_neovim
-    command -v 'zsh'  >/dev/null || install_zsh
+    command -v 'alacritty' >/dev/null || install_alacritty
+    command -v 'exa'       >/dev/null || install_exa
+    command -v 'nvim'      >/dev/null || install_neovim
+    command -v 'zsh'       >/dev/null || install_zsh
+}
+
+install_alacritty() {
+    deb='Alacritty-v0.4.3-ubuntu_18_04_amd64.deb'
+    wget "https://github.com/alacritty/alacritty/releases/download/v0.4.3/${deb}"
+    sudo dpkg -i "${deb}"
+    rm "${deb}"
+    sudo update-alternatives \
+        --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/alacritty 50
 }
 
 install_exa() {
@@ -62,15 +72,11 @@ install_neovim() {
 }
 
 install_zsh() {
-    sudo apt-get install -y zsh
+    # fonts-powerline for zsh spaceship prompt.
+    sudo apt-get install -y zsh fonts-powerline
     sudo chsh -s $(which zsh)
-}
-
-install_fonts() {
-    sudo apt-get install -y fonts-powerline     # spaceship prompt
 }
 
 create_dirs
 create_links
-install_fonts
 install_software
