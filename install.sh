@@ -44,8 +44,14 @@ install_software() {
         command -v "${prog}" >/dev/null || sudo apt-get install -y "${prog}"
     done
 
+    command -v 'exa'  >/dev/null || install_exa
     command -v 'nvim' >/dev/null || install_neovim
     command -v 'zsh'  >/dev/null || install_zsh
+}
+
+install_exa() {
+    command -v 'cargo' >/dev/null || sudo apt-get install -y cargo
+    sudo cargo install exa
 }
 
 install_neovim() {
