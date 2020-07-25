@@ -6,3 +6,4 @@
 
 
 . "${HOME}"/.profile
+. "${HOME}"/.xprofile

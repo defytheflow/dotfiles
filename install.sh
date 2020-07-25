@@ -24,6 +24,7 @@ create_dirs() {
 
 create_links() {
     ln -sf "${DOTFILES_HOME}"/bash/bashrc  "${HOME}"/.bashrc
+    ln -sf "${DOTFILES_HOME}"/user-dirs.dirs "${XDG_CONFIG_HOME}"/user-dirs.dirs
 
     for file in '.profile' '.xprofile' '.zprofile'; do
         ln -sf "${DOTFILES_HOME}"/"${file}" "${HOME}"/"${file}"
@@ -34,7 +35,11 @@ create_links() {
         ln -sf "${DOTFILES_HOME}"/"${dir}" "${XDG_CONFIG_HOME}"/"${dir}"
     done
 
-    ln -sf "${DOTFILES_HOME}"/user-dirs.dirs "${XDG_CONFIG_HOME}"/user-dirs.dirs
+    if command -v 'code' >/dev/null; then
+        dest="${DOTFILES_HOME}"/vscode/settings.json
+        src="${XDG_CONFIG_HOME}"/Code/User/settings.json
+        ln -sf "${dest}" "${src}"
+    fi
 }
 
 install_software() {
