@@ -16,6 +16,7 @@ if [ -z "${DOTFILES_HOME}" ]; then
 fi
 
 create_dirs() {
+    mkdir -p "${HOME}"/.local/bin
     for prog in 'bash' 'python' 'zsh'; do
         [ -d "${XDG_CACHE_HOME}"/"${prog}" ] || mkdir -p "${XDG_CACHE_HOME}"/"${prog}"
     done
@@ -46,6 +47,7 @@ install_software() {
     done
 
     command -v 'alacritty' >/dev/null || install_alacritty
+    command -v 'bat'       >/dev/null || install_bat
     command -v 'exa'       >/dev/null || install_exa
     command -v 'nvim'      >/dev/null || install_neovim
     command -v 'zsh'       >/dev/null || install_zsh
@@ -60,6 +62,11 @@ install_alacritty() {
         --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/alacritty 50
 }
 
+install_bat() {
+    sudo apt-get install -y bat && \
+    ln -s /usr/bin/batcat "${HOME}"/.local/bin/bat
+}
+
 install_exa() {
     command -v 'cargo' >/dev/null || sudo apt-get install -y cargo
     sudo cargo install exa
@@ -69,6 +76,7 @@ install_neovim() {
     sudo add-apt-repository ppa:neovim-ppa/stable
     sudo apt-get update
     sudo apt-get install -y neovim python3-neovim
+    command -v 'pip3' >/vev/null || sudo apt-get install -y python3-pip
     sudo pip3 install pynvim
 }
 
