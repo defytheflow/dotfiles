@@ -1,5 +1,5 @@
 
-" File:     windows_nvim/init.vim
+" File:     windows_init.vim
 " Created:  30.12.2019
 " Author:   Artyom Danilov
 
