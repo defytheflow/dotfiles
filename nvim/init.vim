@@ -10,7 +10,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 let &path = '/usr/include/,/usr/lib/gcc/x86_64-linux-gnu/8/include'
 
 " Must be sourced at the top.
-source $DOTFILES_HOME/nvim/plugins.vim
+source ./nvim/plugins.vim
 
 " backup {{{
 set noswapfile
@@ -86,7 +86,7 @@ au BufEnter * set fo-=c fo-=r fo-=o " disable auto-commenting.
 "}}}
 
 " Must be sourced before 'maps.vim'.
-source $DOTFILES_HOME/nvim/funcs.vim
+source ./nvim/funcs.vim
 
 " Must be sourced last.
-source $DOTFILES_HOME/nvim/maps.vim
+source ./nvim/maps.vim
