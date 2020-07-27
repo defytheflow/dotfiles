@@ -9,6 +9,7 @@
 export PATH="${PATH}":"${HOME}"/games
 export PATH="${PATH}":"${HOME}"/.local/bin
 export PATH="${PATH}":"${HOME}"/.config/cargo/bin
+export PATH="${PATH}":"${HOME}"/.cargo/bin
 export PATH="${PATH}":/snap/bin
 # export PATH="${PATH}":"${JAVA_HOME}"/bin
 

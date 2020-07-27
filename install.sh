@@ -35,7 +35,7 @@ create_links() {
         ln -sf "${DOTFILES_HOME}"/"${dir}" "${XDG_CONFIG_HOME}"/"${dir}"
     done
 
-    if command -v 'code' >/dev/null; then
+    if command -v 'code' >/dev/null && [ -z "${WSL_DISTRO_NAME}" ]; then
         dest="${DOTFILES_HOME}"/vscode/settings.json
         src="${XDG_CONFIG_HOME}"/Code/User/settings.json
         ln -sf "${dest}" "${src}"
@@ -43,9 +43,9 @@ create_links() {
 }
 
 install_software() {
-    sudo apt-get update
-    sudo apt-get upgrade
-    sudo apt-get autoremove
+    sudo apt-get update -y
+    sudo apt-get upgrade -y
+    sudo apt-get autoremove -y
 
     # install through apt-get.
     for prog in 'mlocate' 'tree' 'xclip'; do
@@ -58,25 +58,23 @@ install_software() {
     done
 
     # install through functions.
-    command -v 'alacritty' >/dev/null || install_alacritty
+    command -v 'alacritty' >/dev/null || [ -n "${WSL_DISTRO_NAME}" ] || install_alacritty
     command -v 'bat'       >/dev/null || install_bat
     command -v 'exa'       >/dev/null || install_exa
-    command -v 'nvim'      >/dev/null || install_neovim
+    command -v 'nvim'      >/dev/null || [ -n "${WSL_DISTRO_NAME}" ] || install_neovim
     command -v 'zsh'       >/dev/null || install_zsh
 }
 
 install_alacritty() {
-    deb='Alacritty-v0.4.3-ubuntu_18_04_amd64.deb'
-    wget "https://github.com/alacritty/alacritty/releases/download/v0.4.3/${deb}"
-    sudo dpkg -i "${deb}"
-    rm "${deb}"
+    link='https://github.com/alacritty/alacritty/releases/download/v0.4.3'
+    link=${link}/'Alacritty-v0.4.3-ubuntu_18_04_amd64.deb'
+    wget "${link}" && sudo dpkg -i "${deb}" && rm "${deb}"
     sudo update-alternatives \
         --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/alacritty 50
 }
 
 install_bat() {
-    sudo apt-get install -y bat && \
-    ln -s /usr/bin/batcat "${HOME}"/.local/bin/bat
+    sudo apt-get install -y bat && ln -s /usr/bin/batcat "${HOME}"/.local/bin/bat
 }
 
 install_exa() {
