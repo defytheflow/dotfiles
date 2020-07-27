@@ -25,17 +25,15 @@
 ├──  <b>nvim</b>
 │  ├──  autoload
 │  │  └──  plug.vim
-│  ├──  colors
-│  │  ├──  archman.vim
-│  │  ├──  codedark.vim
-│  │  ├──  darcula.vim
-│  │  ├──  gruvbox.vim
-│  │  ├──  molokai.vim
-│  │  └──  monokai.vim
+│  ├──  colors  -> ../vim/colors
 │  ├──  funcs.vim
 │  ├──  init.vim
 │  ├──  maps.vim
-│  └──  plugins.vim
+│  ├──  plugins.vim
+│  └──  windows_init.vim
+│
+├──  <b>powershell</b>
+│  └──  profile.ps1
 │
 ├──  <b>python</b>
 │  ├──  isort.cfg
@@ -62,6 +60,7 @@
 │  │  └──  monokai.vim
 │  ├──  plugin
 │  │  ├──  commentary.vim
+│  │  ├──  repeat.vim
 │  │  ├──  ReplaceWithRegister.vim
 │  │  └──  surround.vim
 │  └──  vimrc
@@ -69,8 +68,13 @@
 ├──  <b>vscode</b>
 │  └──  settings.json
 │
+├──  <b>windows_terminal</b>
+│  └──  settings.json
+│
 ├──  <b>zsh</b>
 │  ├──  .zshenv
 │  ├──  .zshprompt
 │  └──  .zshrc
+│
+├── user-dirs.dirs
 </pre>
