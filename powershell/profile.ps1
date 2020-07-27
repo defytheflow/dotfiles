@@ -4,6 +4,11 @@
 # Author:   Artyom Danilov
 
 
+# dirs
+function api { cd ~/Dev/Repos/Work/api }
+function web { cd ~/Dev/Repos/Work/web }
+function cfg { cd ~/Dev/Repos/Work/cfg }
+
 # vim
 New-Alias -Name 'v'   -Value 'nvim'
 New-Alias -Name 'vi'  -Value 'nvim'
@@ -30,47 +35,47 @@ function lh { ls -Hidden }
 function lr { ls -Recurse }
 
 # git
-function GitAdd         { & git add }
-function GitAddAll      { & git add --all }
-function GitBranch      { & git branch }
-function GitCommit      { & git commit }
-function GitCommitAmend { & git commit --amend }
-function GitClone       { & git clone }
-function GitCheckout    { & git checkout }
-function GitDiff        { & git diff }
-function GitLog         { & git log }
-function GitMerge       { & git merge }
-function GitMove        { & git mv }
-function GitPush        { & git push }
-function GitPushForce   { & git push --force }
-function GitPull        { & git pull }
-function GitRebase      { & git rebase -i }
-function GitRevList     { & git rev-list --count HEAD }
-function GitReset       { & git reset }
-function GitRevert      { & git revert }
-function GitStatus      { & git status }
-function GitShow        { & git show }
+function Git-Add { & git add }
+function Git-Add-All { & git add --all }
+function Git-Branch { & git branch }
+function Git-Commit-Amend { & git commit --amend }
+function Git-Commit { & git commit }
+function Git-Clone { & git clone }
+function Git-Checkout { & git checkout }
+function Git-Diff { & git diff }
+function Git-Log { & git log }
+function Git-Merge { & git merge }
+function Git-Move { & git mv }
+function Git-Push { & git push }
+function Git-Push-Force { & git push --force }
+function Git-Pull { & git pull }
+function Git-Rebase { & git rebase -i }
+function Git-Rev-List { & git rev-list --count HEAD }
+function Git-Reset { & git reset }
+function Git-Revert { & git revert }
+function Git-Status { & git status }
+function Git-Show { & git show }
 
-New-Alias -Name 'gia'  -Value 'GitAdd'
-New-Alias -Name 'giaa' -Value 'GitAddAll'
-New-Alias -Name 'gib'  -Value 'GitBranch'
-New-Alias -Name 'gic'  -Value 'GitCommit'
-New-Alias -Name 'gica' -Value 'GitCommitAmend'
-New-Alias -Name 'gicl' -Value 'GitClone'
-New-Alias -Name 'gico' -Value 'GitCheckout'
-New-Alias -Name 'gid'  -Value 'GitDiff'
-New-Alias -Name 'gil'  -Value 'GitLog'
-New-Alias -Name 'gim'  -Value 'GitMerge'
-New-Alias -Name 'gimv' -Value 'Gitmove'
-New-Alias -Name 'gip'  -Value 'GitPush'
-New-Alias -Name 'gipf' -Value 'GitPushForce'
-New-Alias -Name 'gipl' -Value 'GitPull'
-New-Alias -Name 'girb' -Value 'GitRebase'
-New-Alias -Name 'girl' -Value 'GitRevList'
-New-Alias -Name 'girs' -Value 'GitReset'
-New-Alias -Name 'girv' -Value 'GitRevert'
-New-Alias -Name 'gis'  -Value 'GitStatus'
-New-Alias -Name 'gish' -Value 'GitShow'
+New-Alias -Name 'ga'  -Value 'Git-Add'
+New-Alias -Name 'gaa' -Value 'Git-Add-All'
+New-Alias -Name 'gb'  -Value 'Git-Branch'
+New-Alias -Name 'gca' -Value 'Git-Commit-Amend'
+New-Alias -Name 'gco' -Value 'Git-Commit'
+New-Alias -Name 'gcl' -Value 'Git-Clone'
+New-Alias -Name 'gch' -Value 'Git-Checkout'
+New-Alias -Name 'gd'  -Value 'Git-Diff'
+New-Alias -Name 'glo'  -Value 'Git-Log'
+New-Alias -Name 'gme'  -Value 'Git-Merge'
+New-Alias -Name 'gmv' -Value 'Git-Move'
+New-Alias -Name 'gpu'  -Value 'Git-Push'
+New-Alias -Name 'gpf' -Value 'Git-Push-Force'
+New-Alias -Name 'gpl' -Value 'Git-Pull'
+New-Alias -Name 'grb' -Value 'Git-Rebase'
+New-Alias -Name 'grl' -Value 'Git-Rev-List'
+New-Alias -Name 'grs' -Value 'Git-Reset'
+New-Alias -Name 'grv' -Value 'Git-Revert'
+New-Alias -Name 'gs'  -Value 'Git-Status'
+New-Alias -Name 'gsh' -Value 'Git-Show'
 
 # pip
 # Set-Alias pip='pip3'
@@ -95,7 +100,3 @@ New-Alias -Name 'gish' -Value 'GitShow'
 # Set-Alias ipython='ipython3'
 # Set-Alias python='python3'
 
-# # dirs
-# Set-Alias api='cd ~/dev/repos/work/api'
-# Set-Alias web='cd ~/dev/repos/work/web'
-# Set-Alias cfg='cd ~/dev/repos/work/cfg'
