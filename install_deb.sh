@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# File:      install.sh
+# File:      install_deb.sh
 # Created:   26.03.2020
 # Author:    Artyom Danilov
 
@@ -91,7 +91,6 @@ install_neovim() {
 }
 
 install_zsh() {
-    # fonts-powerline for zsh spaceship prompt.
     sudo apt-get install -y zsh fonts-powerline
     sudo chsh -s $(which zsh)
 }
