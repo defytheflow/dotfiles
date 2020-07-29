@@ -16,7 +16,7 @@ setopt autocd autopushd  # don't type cd to change directories.
 # called evety time directory is changed.
 function chpwd() {
     emulate -L zsh
-    ls -vh -F --group-directories-first
+    ls -vh --color=auto --group-directories-first
 }
 
 # autocompletion.
