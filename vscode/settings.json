@@ -3,7 +3,7 @@
   "editor.lineNumbers": "relative",
 
   "files.exclude": {
-    "**/.git": false
+    "**/.git": true
   },
 
   "keyboard.dispatch": "keyCode",
@@ -34,12 +34,9 @@
       "commands": [":wq"]
     },
     {
-      "before": ["leader", "w"],
-      "commands": ["workbench.action.files.save"]
-    },
-    {
       "before": ["leader", "d"],
       "after": ["d", "d"]
     },
-  ]
+  ],
+  "editor.fontSize": 15
 }

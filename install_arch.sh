@@ -68,7 +68,8 @@ install_software() {
 
 install_neovim() {
     sudo pacman -S neovim python-neovim && \
-    pip3 install pynvim
+    pip3 install pynvim                 && \
+    sudo ln -sf "$(which nvim)" "$(which vim)"
 }
 
 install_zsh() {
