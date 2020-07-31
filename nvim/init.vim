@@ -5,7 +5,7 @@
 
 
 " vars {{{
-let g:mapleader = ';'
+let g:mapleader = '\'
 let g:python3_host_prog = '/usr/bin/python3'
 let &path = '/usr/include/,/usr/lib/gcc/x86_64-linux-gnu/8/include'
 "}}}
@@ -22,9 +22,9 @@ endif
 
 " download pluggins {{{
 autocmd VimEnter *
-    \| if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
     \|      PlugInstall --sync | q
-    \  endif
+    \| endif
 "}}}
 
 call plug#begin($HOME . '/.config/nvim/plugged/')
@@ -72,11 +72,6 @@ let g:indentLine_leadingSpacChar='·'
 let g:indentLine_leadingSpaceEnabled='1'
 "}}}
 
-" junegunn {{{
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/goyo.vim'
-"}}}
-
 " nerdtree {{{
 Plug 'preservim/nerdtree'
 let NERDTreeShowHidden = 1
@@ -112,12 +107,14 @@ Plug 'tpope/vim-unimpaired'
 
 " miscellaneous {{{
 Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/goyo.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'unblevable/quick-scope'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/a.vim'
 Plug 'miyakogi/seiya.vim'
+Plug 'majutsushi/tagbar'
 "}}}
 
 call plug#end()
@@ -261,10 +258,10 @@ nnoremap <silent><leader>ck :call CursorColumnToggle()<CR>
 "}}}
 
 " plugins {{{
-nnoremap <silent><leader>g :Goyo<CR>
-nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
-nnoremap <silent><leader>l :Limelight!!<CR>
 nnoremap <silent><leader>a :A<CR>
+nnoremap <silent><leader>f :Goyo<CR>
+nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
+nnoremap <silent><leader>t :TagbarToggle<CR>
 "}}}
 
 " shift {{{
