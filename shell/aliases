@@ -86,6 +86,7 @@ alias grs='git reset'
 alias grv='git revert'
 alias gs='git status'
 alias gsh='git show'
+alias gst='git stash'
 
 # ls
 alias ls='ls -vh --color=auto --group-directories-first'

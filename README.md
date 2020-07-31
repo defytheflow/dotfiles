@@ -1,7 +1,8 @@
 # Structure
 
 <pre>
-├──  install.sh
+├──  install_arch.sh
+├──  install_deb.sh
 │
 ├──  .profile
 ├──  .xprofile
@@ -26,10 +27,7 @@
 │  ├──  autoload
 │  │  └──  plug.vim
 │  ├──  colors  -> ../vim/colors
-│  ├──  funcs.vim
 │  ├──  init.vim
-│  ├──  maps.vim
-│  ├──  plugins.vim
 │  └──  windows_init.vim
 │
 ├──  <b>powershell</b>
