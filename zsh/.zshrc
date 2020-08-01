@@ -1,54 +1,74 @@
 #!/bin/zsh
 
-# File:      .zshrc
-# Created:   22.03.2020
-# Author:    Artyom Danilov
+# File:     .zshrc
+# Created:  22.03.2020
+# Author:   Artyom Danilov (@defytheflow)
 
 
-# history.
-export HISTFILE="${XDG_CACHE_HOME}"/zsh/history
-export HISTSIZE=10000  # lines to store during interactive session.
-export SAVEHIST=10000  # lines to save after interactive session.
+ZSH_CACHE="${XDG_CACHE_HOME}/zsh"
 
-# options.
-setopt autocd autopushd  # don't type cd to change directories.
+# history
+export HISTFILE="${ZSH_CACHE}/history"
+export HISTSIZE=10000                 # lines to store during session.
+export SAVEHIST=10000                 # lines to save after session.
 
-# called evety time directory is changed.
+# don't type cd to change directories.
+setopt autocd autopushd
+
+# called every time directory is changed.
 function chpwd() {
     emulate -L zsh
     ls -vh --color=auto --group-directories-first
 }
 
-# autocompletion.
-autoload -Uz compinit      # mark 'compinit' as function.
-zmodload zsh/complist      # load this module to enhance completion features.
-_comp_options+=(globdots)  # include hidden files in autocomplete.
+# load completion modules.
+autoload -Uz compinit
+zmodload zsh/complist
 
-zstyle ':completion:*' menu select  # do menu-driven completion.
-compinit -d "${XDG_CACHE_HOME}"/zsh/zcompdump-"${ZSH_VERSION}"  # initialize completion.
+# include hidden files in autocompletion.
+_comp_options+=(globdots)
 
-# vim mode.
-bindkey -v  # enable vim bindings.
+# do menu-driven completion.
+zstyle ':completion:*' menu select
 
-# use vim keys in tab complete menu.
+# initalize completion.
+compinit -d "${ZSH_CACHE}/zcompdump-${ZSH_VERSION}"
+
+# enable vi-mode.
+bindkey -v
+bindkey -v '^?' backward-delete-char  # to use backspace after vi-mode.
+export KEYTIMEOUT=1                   # to faster enter normal mode.
+
+# change cursor shape in normal and insert modes.
+zle-keymap-select () {
+    if [ $KEYMAP = vicmd ]; then
+        printf '\033[2 q'
+    else
+        printf '\033[6 q'
+    fi
+}
+zle-line-init () {
+    zle -K viins
+    printf '\033[6 q'
+}
+zle -N zle-keymap-select
+zle -N zle-line-init
+
+# tab completion menu.
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-# fix bug when you can't backspace after being in vim mode.
-bindkey -v '^?' backward-delete-char
-export KEYTIMEOUT=1  # faster enter normal mode.
-
-# load aliases and functions, that can be used in any posix shell.
+# source shell-independent files (aliases, functions).
 for file in "${DOTFILES_HOME}"/shell/*; do
     . "${file}"
 done
 
-# install zplug if not installed.
+# install zplug.
 [ -d "${ZPLUG_HOME}" ] || git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
 
-# essential.
+# source zplug.
 . "${ZPLUG_HOME}"/init.zsh && zplug update >/dev/null
 
 zplug "zsh-users/zsh-autosuggestions"
@@ -57,10 +77,11 @@ zplug "djui/alias-tips"
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
-zplug check || zplug install  # install packages that have not been installed yet.
-zplug load  # load plugins.
+# install packages.
+zplug check || zplug install
 
-[ -f "${ZDOTDIR}"/.zshprompt ] && . "${ZDOTDIR}"/.zshprompt  # load prompt.
+# load plugins.
+zplug load
 
-# load virtualenvwrapper (must be source last).
-[ -f "${HOME}"/.local/bin/virtualenvwrapper.sh ] && . "${HOME}"/.local/bin/virtualenvwrapper.sh
+# load prompt configuration.
+[ -f "${ZDOTDIR}"/.zshprompt ] && . "${ZDOTDIR}"/.zshprompt

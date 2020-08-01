@@ -1,54 +1,63 @@
 #!/bin/zsh
 
-# File:      prompt
-# Created:   26.03.2020
-# Author:    Artyom Danilov
+# File:     .zshprompt
+# Created:  26.03.2020
+# Author:   Artyom Danilov (@defytheflow)
 
 
-# Unbold prompt.
+# unbold prompt.
 () {
   local z=$'\0'
   PROMPT='${${${$(spaceship_prompt)//\%\%/'${z}'}//\%B}//'${z}'/%%}'
 }
 
-# Remove newlines.
+# remove newlines.
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
 
-# Char.
+# char.
 SPACESHIP_CHAR_PREFIX=''
-SPACESHIP_CHAR_SYMBOL='➔ '
+SPACESHIP_CHAR_SYMBOL='$'
 SPACESHIP_CHAR_SUFFIX=' '
 
-# Directory.
+# directory.
 SPACESHIP_DIR_SHOW=true
-SPACESHIP_DIR_COLOR=135  # <-- purple
+SPACESHIP_DIR_TRUNC_REPO=true
+SPACESHIP_DIR_COLOR=135  # <-- purple.
 SPACESHIP_DIR_PREFIX='in '
-SPACESHIP_DIR_TRUNC=0  # <-- show all folders of cwd
+SPACESHIP_DIR_TRUNC=0  # <-- show all folders in cwd.
 
-# Git.
+# git.
 SPACESHIP_GIT_SHOW=true
 SPACESHIP_GIT_PREFIX=''
 
-# Git branch.
+# git-branch.
 SPACESHIP_GIT_BRANCH_SHOW=true
-SPACESHIP_GIT_BRANCH_COLOR=45  # <-- cyan
+SPACESHIP_GIT_BRANCH_COLOR=45  # <-- cyan.
 
-# Git status.
+# git-status.
 SPACESHIP_GIT_STATUS_SHOW=true
 SPACESHIP_GIT_STATUS_PREFIX=' ('
 SPACESHIP_GIT_STATUS_SUFFIX=')'
-SPACESHIP_GIT_STATUS_COLOR=220  # <-- yellow
+SPACESHIP_GIT_STATUS_COLOR=220  # <-- yellow.
 
-# Execution time of last command.
+# exec-time.
 SPACESHIP_EXEC_TIME_SHOW=true
-SPACESHIP_EXEC_TIME_COLOR=202  # <-- orange
+SPACESHIP_EXEC_TIME_COLOR=202  # <-- orange.
 
-# Python Virtual environment
+# python-venv.
 SPACESHIP_VENV_SHOW=true
 SPACESHIP_PYENV_SHOW=true
 
-# Stuff I don't use.
+# vi-mode.
+SPACESHIP_VI_MODE_SHOW=false
+
+# exit-code.
+SPACESHIP_EXIT_CODE_SHOW=true
+SPACESHIP_EXIT_CODE_SYMBOL=
+SPACESHIP_EXIT_CODE_COLOR=196  # <-- bright red.
+
+# unused.
 SPACESHIP_HG_SHOW=false
 SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_NODE_SHOW=false
@@ -71,6 +80,4 @@ SPACESHIP_EMBER_SHOW=false
 SPACESHIP_KUBECONTEXT_SHOW=false
 SPACESHIP_TERRAFORM_SHOW=false
 SPACESHIP_BATTERY_SHOW=false
-SPACESHIP_VI_MODE_SHOW=false
 SPACESHIP_JOBS_SHOW=false
-SPACESHIP_EXIT_CODE_SHOW=false
