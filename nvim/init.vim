@@ -4,6 +4,11 @@
 " Author:   Artyom Danilov (@defytheflow)
 
 
+" Jump to the last position when reopening a file.
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 " vars {{{
 let g:mapleader = '\'
 let g:python3_host_prog = '/usr/bin/python3'
@@ -128,6 +133,11 @@ set backup
 set backupdir=${XDG_DATA_HOME}/nvim/backup
 if !isdirectory(&backupdir)
     call mkdir(&backupdir, 'p', 0700)
+endif
+set undofile
+set undodir=${XDG_DATA_HOME}/nvim/undo
+if !isdirectory(&undodir)
+    call mkdir(&undodir, 'p', 0700)
 endif
 "}}}
 
