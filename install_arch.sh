@@ -17,7 +17,7 @@ fi
 
 create_dirs() {
     create_dir_if_not_exists "${HOME}/.local/bin"
-    for prog in 'bash' 'less' 'python' 'zsh'; do
+    for prog in 'bash' 'less' 'postgres' 'python' 'zsh'; do
         create_dir_if_not_exists "${XDG_CACHE_HOME}/${prog}"
     done
 }

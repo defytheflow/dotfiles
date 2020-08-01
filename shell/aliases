@@ -36,9 +36,6 @@ alias -- -='cd -'  # Type '-' to go to previous dir.
 
 # pip
 alias pip='pip3'
-alias pif='pip3 freeze'
-alias pin='pip3 install'
-alias pun='pip3 uninstall'
 
 # python
 alias py='python3'
@@ -150,6 +147,7 @@ alias xrld='source ~/.xprofile'
 alias api='cd ~/dev/repos/work/api'
 alias web='cd ~/dev/repos/work/web'
 alias cfg='cd ~/dev/repos/work/cfg'
+alias pers='cd ~/dev/repos/personal'
 
 # fun
 alias starwars='telnet towel.blinkenlights.nl'

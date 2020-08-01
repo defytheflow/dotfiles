@@ -85,3 +85,6 @@ zplug load
 
 # load prompt configuration.
 [ -f "${ZDOTDIR}"/.zshprompt ] && . "${ZDOTDIR}"/.zshprompt
+
+# init pyenv.
+command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
