@@ -4,11 +4,6 @@
 " Author:   Artyom Danilov (@defytheflow)
 
 
-" Jump to the last position when reopening a file.
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
 " vars {{{
 let g:mapleader = '\'
 let g:python3_host_prog = '/usr/bin/python3'
@@ -17,19 +12,12 @@ let &path = '/usr/include/,/usr/lib/gcc/x86_64-linux-gnu/8/include'
 
 " plugins {{{
 
-" download vim-plug {{{
+" vim-plug {{{
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    au VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-"}}}
-
-" download pluggins {{{
-autocmd VimEnter *
-    \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    \|      PlugInstall --sync | q
-    \| endif
 "}}}
 
 call plug#begin($HOME . '/.config/nvim/plugged/')
@@ -40,6 +28,14 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='luna'
+"}}}
+
+" ale {{{
+Plug 'dense-analysis/ale'
+let g:ale_fixers = {
+\   'python': ['isort', 'yapf'],
+\}
+let g:ale_fix_on_save = 1
 "}}}
 
 " better-whitespace {{{
@@ -166,7 +162,7 @@ set expandtab          " convert tabs to spaces.
 set softtabstop=4      " number of spaces inserted per tab.
 set shiftwidth=4       " number of columns to shift with << and >>.
 set smartindent        " indent on braces and previous indentation level.
-au BufNewFile,BufRead *.html,*.css,*.wiki,*.js,*.jsx,*.ts,*.tsx setlocal shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.html,*.css,*.js,*.jsx,*.ts,*.tsx setlocal shiftwidth=2 softtabstop=2
 " }}}
 
 " textwidth {{{
@@ -201,8 +197,6 @@ set number relativenumber           " show relative line numbers.
 set mouse=a                         " enable mouse in all modes.
 set splitbelow splitright           " change splits position.
 set list listchars=tab:>-,trail:-   " display tabs and trailing whitespace.
-au VimEnter * :NoMatchParen         " disable highlighting matching parentheses.
-au BufEnter * set fo-=c fo-=r fo-=o " disable auto-commenting.
 "}}}
 
 "}}}
@@ -291,4 +285,15 @@ nnoremap S :%s//g<Left><Left>
 nnoremap Y y$
 "}}}
 
+"}}}
+
+" autocmds {{{
+" jump to the last position when reopening a file.
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" disable highlighting matching parentheses.
+au VimEnter * :NoMatchParen
+" disable auto-commenting.
+au BufEnter * set fo-=c fo-=r fo-=o
+" install pluggins.
+au VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
 "}}}
