@@ -1,13 +1,6 @@
 # Structure
 
 <pre>
-├──  install_arch.sh
-├──  install_deb.sh
-│
-├──  .profile
-├──  .xprofile
-├──  .zprofile
-│
 ├──  <b>alacritty</b>
 │  └──  alacritty.yml
 │
@@ -74,5 +67,12 @@
 │  ├──  .zshprompt
 │  └──  .zshrc
 │
-├── user-dirs.dirs
+├──  .profile
+├──  .xprofile
+├──  .zprofile
+│
+├──  install_arch.sh
+├──  install_deb.sh
+│
+└──  user-dirs.dirs
 </pre>

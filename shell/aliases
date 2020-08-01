@@ -97,10 +97,11 @@ alias ll='ls -l'
 alias lr='ls -r'
 
 # exa
-alias exa='exa --icons --group-directories-first -I "__pycache__|plugged|node_modules"'
+alias exa='exa --icons --group-directories-first -I "__pycache__|plugged|node_modules|.git"'
 alias ea='exa -a'
 alias el='exa -l'
 alias et='exa -T'
+alias eta='exa -Ta'
 
 # grep
 alias grep='grep --color=auto'
