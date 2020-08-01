@@ -5,6 +5,9 @@
 # Author:   Artyom Danilov (@defytheflow)
 
 
+# script name.
+__name__='install_arch'
+
 # Load essential environment variables.
 . "${PWD}/.profile"
 
@@ -14,6 +17,55 @@ if [ -z "${DOTFILES_HOME}" ]; then
             'Aborting installation...' 1>&2
     exit 1
 fi
+
+main() {
+    check_internet
+    update_system
+    install_software
+    create_dirs
+    create_symlinks
+}
+
+check_internet() {
+    echo "${__name__}: checking your internet connection..."
+    if ! wget -q --spider https://google.com; then
+        echo "${__name__}: no internet connection" >&2
+        exit 1
+    fi
+}
+
+update_system() {
+    read -rep "${__name__}: update system? [y/n] " ans
+    if [ "${ans}" = 'y' ]; then
+        yes | sudo pacman -Syu
+        clear
+    fi
+}
+
+install_software() {
+    for prog in 'alacritty' 'bat' 'cargo' 'tree' 'vim' 'xclip'; do
+        command -v "${prog}" >/dev/null || sudo pacman -S "${prog}"
+    done
+
+    command -v exa    >/dev/null || cargo install exa
+    command -v locate >/dev/null || sudo pacman -S mlocate
+    command -v pip3   >/dev/null || sudo pacman -S python-pip
+    command -v code   >/dev/null || sudo snap install code --classic
+    command -v rg     >/dev/null || sudo snap install ripgrep --classic
+    command -v nvim   >/dev/null || install_neovim
+    command -v zsh    >/dev/null || install_zsh
+}
+
+install_neovim() {
+    sudo pacman -S neovim python-neovim && \
+    pip3 install pynvim                 && \
+    sudo ln -sf "$(which nvim)" "$(which vim)"
+}
+
+install_zsh() {
+    sudo pacman -S zsh fonts-powerline && \
+    sudo chsh -s $(which zsh)
+}
 
 create_dirs() {
     create_dir_if_not_exists "${HOME}/.local/bin"
@@ -52,31 +104,4 @@ create_dir_if_not_exists() {
     [ -d ${1} ] || mkdir -p ${1}
 }
 
-install_software() {
-    for prog in 'alacritty' 'bat' 'cargo' 'tree' 'vim' 'xclip'; do
-        command -v "${prog}" >/dev/null || sudo pacman -S "${prog}"
-    done
-
-    command -v exa    >/dev/null || cargo install exa
-    command -v locate >/dev/null || sudo pacman -S mlocate
-    command -v pip3   >/dev/null || sudo pacman -S python-pip
-    command -v code   >/dev/null || sudo snap install code --classic
-    command -v rg     >/dev/null || sudo snap install ripgrep --classic
-    command -v nvim   >/dev/null || install_neovim
-    command -v zsh    >/dev/null || install_zsh
-}
-
-install_neovim() {
-    sudo pacman -S neovim python-neovim && \
-    pip3 install pynvim                 && \
-    sudo ln -sf "$(which nvim)" "$(which vim)"
-}
-
-install_zsh() {
-    sudo pacman -S zsh fonts-powerline && \
-    sudo chsh -s $(which zsh)
-}
-
-install_software
-create_dirs
-create_symlinks
+main
