@@ -17,7 +17,7 @@ fi
 
 create_dirs() {
     create_dir_if_not_exists "${HOME}/.local/bin"
-    for prog in 'bash' 'python' 'zsh'; do
+    for prog in 'bash' 'less' 'python' 'zsh'; do
         create_dir_if_not_exists "${XDG_CACHE_HOME}/${prog}"
     done
 }
@@ -26,7 +26,7 @@ create_symlinks() {
     ln -sf "${DOTFILES_HOME}/bash/bashrc"    "${HOME}/.bashrc"
     ln -sf "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
 
-    for file in '.profile' '.xprofile' '.zprofile'; do
+    for file in '.profile' '.xprofile'; do
         ln -sf "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
     done
 

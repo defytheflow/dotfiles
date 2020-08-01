@@ -63,13 +63,13 @@
 │  └──  settings.json
 │
 ├──  <b>zsh</b>
+│  ├──  .zprofile
 │  ├──  .zshenv
 │  ├──  .zshprompt
 │  └──  .zshrc
 │
 ├──  .profile
 ├──  .xprofile
-├──  .zprofile
 │
 ├──  install_arch.sh
 ├──  install_deb.sh
