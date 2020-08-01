@@ -2,7 +2,7 @@
 
 # File:     aliases
 # Created:  30.12.2019
-# Author:   Artyom Danilov
+# Author:   Artyom Danilov (@defytheflow)
 
 
 alias sudo='sudo ' # Run 'sudo {alias}'
@@ -21,25 +21,11 @@ alias cl='clear'
 alias gh='history | grep'
 alias jc='javac'
 alias me='curl https://ipinfo.io/ip'
-alias nv='nvim'
-alias py='python3'
 alias sc='shellcheck'
-alias tc='touch'
-alias vi='vim'
 
-alias ipy='ipython'
-alias shu='shunit2'
-alias ghs='github-stats --user $(whoami)'
 alias stl='systemctl'
-
 alias open='xdg-open'
 alias chrome='google-chrome'
-alias store='ubuntu-software'
-alias update='sudo apt-get update;sudo apt-get upgrade;sudo apt-get autoremove'
-
-# commands
-alias path='echo ${PATH} | sed -e "s|:|\n|g"'
-alias xrld='source ~/.xprofile'
 
 # cd
 alias ..='cd ..'
@@ -50,9 +36,15 @@ alias -- -='cd -'  # Type '-' to go to previous dir.
 
 # pip
 alias pip='pip3'
-alias pif='pip freeze'
-alias pin='pip install'
-alias pun='pip uninstall'
+alias pif='pip3 freeze'
+alias pin='pip3 install'
+alias pun='pip3 uninstall'
+
+# python
+alias py='python3'
+alias python='python3'
+alias ipy='ipython3'
+alias ipython='ipython3'
 
 # django
 alias djsa='django-admin startapp'
@@ -65,6 +57,11 @@ alias djsh='django-admin shell'
 alias djsu='django-admin createsuperuser'
 alias djt='django-admin test'
 
+# vim
+alias nv='nvim'
+alias vi='vim'
+alias snv='sudo nvim'
+
 # git
 alias ga='git add'
 alias gaa='git add --all'
@@ -74,6 +71,7 @@ alias gca='git commit --amend'
 alias gcl='git clone'
 alias gch='git checkout'
 alias gd='git diff'
+alias gds='git diff --staged'
 alias gl='git log'
 alias glg='git log --grep'
 alias gm='git merge'
@@ -82,6 +80,7 @@ alias gp='git push'
 alias gpf='git push --force'
 alias gpl='git pull'
 alias grb='git rebase -i'
+alias grm='git rm'
 alias grl='git rev-list --count HEAD'
 alias grs='git reset'
 alias grv='git revert'
@@ -103,6 +102,13 @@ alias ea='exa -a'
 alias el='exa -l'
 alias et='exa -T'
 
+# grep
+alias grep='grep --color=auto'
+alias igrep='grep -i'
+
+# diff
+alias diff='diff -y --suppress-common-lines --color=auto'
+
 # tree
 alias tree='tree -C -I .git'
 alias ta='tree -a'
@@ -112,17 +118,17 @@ alias tl='tree -a -L 2'
 # files
 alias cp='cp -iv'
 alias du='du -h'
+alias md='mkdir -pv'
 alias mv='mv -iv'
-alias mkdir='mkdir -pv'
-alias rmdir='rmdir -v'
+alias rd='rmdir -v'
 alias rm='rm -vi --preserve-root '
 alias rr='rm -rfi'
-
-# config
-alias diff='diff -y --suppress-common-lines --color=auto'
-alias grep='grep --color=auto'
-alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
-alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
+alias smv='sudo mv'
+alias smd='sudo mkdir'
+alias srd='sudo rmdir'
+alias srm='sudo rm'
+alias tc='touch'
+alias stc='sudo touch'
 
 # windows
 alias cls='clear'
@@ -131,27 +137,23 @@ alias edit='nvim'
 alias move='mv'
 alias rename='mv'
 
-# sudo
-alias smv='sudo mv'
-alias smkdir='sudo mkdir'
-alias snv='sudo nvim'
-alias snvim='sudo nvim'
-alias srm='sudo rm'
-alias srmdir='sudo rmdir'
+# config
+alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
+alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
 
-# version
-alias ipython='ipython3'
-alias python='python3'
-
-# fun
-alias starwars='telnet towel.blinkenlights.nl'
+# commands
+alias path='echo ${PATH} | sed -e "s|:|\n|g"'
+alias xrld='source ~/.xprofile'
 
 # dirs
 alias api='cd ~/dev/repos/work/api'
 alias web='cd ~/dev/repos/work/web'
 alias cfg='cd ~/dev/repos/work/cfg'
 
+# fun
+alias starwars='telnet towel.blinkenlights.nl'
+
 # wsl
 if [ -n "${WSL_DISTRO_NAME}" ]; then
-    alias ls='ls --color=never -F'  # on windows terminal ls colors are awful.
+    alias ls='ls --color=never -F'  # on windows terminals 'ls' colors are awful.
 fi
