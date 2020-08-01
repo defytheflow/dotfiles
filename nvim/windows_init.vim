@@ -1,7 +1,7 @@
 
 " File:     windows_init.vim
 " Created:  30.12.2019
-" Author:   Artyom Danilov
+" Author:   Artyom Danilov (@defytheflow)
 
 
 let g:mapleader = ';'

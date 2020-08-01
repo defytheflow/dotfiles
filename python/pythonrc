@@ -2,7 +2,7 @@
 
 # File:     pythonrc
 # Created:  29.01.2020
-# Author:   Artyom Danilov
+# Author:   Artyom Danilov (@defytheflow)
 
 
 def configure_history():

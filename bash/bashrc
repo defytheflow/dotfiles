@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# File:      .bashrc
-# Created:   30.12.2019
-# Author:    Artyom Danilov
+# File:     .bashrc
+# Created:  30.12.2019
+# Author:   Artyom Danilov (@defytheflow)
 
 
 # If not running interactively, don't do anything.

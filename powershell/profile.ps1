@@ -1,7 +1,7 @@
 
 # File:     profile.ps1
 # Created:  27.07.2020
-# Author:   Artyom Danilov
+# Author:   Artyom Danilov (@defytheflow)
 
 
 # dirs

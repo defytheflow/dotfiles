@@ -1,4 +1,8 @@
-# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+# File:     alacritty.yaml
+# Created:  03.05.2020
+# Author:   Artyom Danilov (@defytheflow)
+
 
 # Any items in the `env` entry below will be added as environment variables.
 # Some entries may override variables set by alacritty itself.

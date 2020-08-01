@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# File:      install_deb.sh
-# Created:   26.03.2020
-# Author:    Artyom Danilov
+# File:     install_deb.sh
+# Created:  26.03.2020
+# Author:   Artyom Danilov (@defytheflow)
 
 
 # Load environment variables. (XDG_CACHE_HOME, XDG_CONFIG_HOME, DOTFILES_HOME...)

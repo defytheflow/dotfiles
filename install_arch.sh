@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# File:      install_arch.sh
-# Created:   29.07.2020
-# Author:    Artyom Danilov
+# File:     install_arch.sh
+# Created:  29.07.2020
+# Author:   Artyom Danilov (@defytheflow)
 
 
 # Load essential environment variables.
