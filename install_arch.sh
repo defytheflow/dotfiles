@@ -54,6 +54,8 @@ install_software() {
     command -v rg     >/dev/null || sudo snap install ripgrep --classic
     command -v nvim   >/dev/null || install_neovim
     command -v zsh    >/dev/null || install_zsh
+
+    install_python_packages
 }
 
 install_neovim() {
@@ -65,6 +67,12 @@ install_neovim() {
 install_zsh() {
     sudo pacman -S zsh fonts-powerline && \
     sudo chsh -s $(which zsh)
+}
+
+install_python_packages() {
+    for package in 'isort' 'yapf' 'pipenv' 'flake8' 'rope' 'mypy'; do
+        command -v "${package}" >/dev/null || pip3 install "${package}"
+    done
 }
 
 create_dirs() {

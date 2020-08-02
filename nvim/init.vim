@@ -116,6 +116,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/a.vim'
 Plug 'miyakogi/seiya.vim'
 Plug 'majutsushi/tagbar'
+Plug 'kshenoy/vim-signature'
+Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 "}}}
 
 call plug#end()
