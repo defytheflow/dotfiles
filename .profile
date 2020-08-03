@@ -54,6 +54,9 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
+# node.
+export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"
+
 # pipenv.
 export PIPENV_VENV_IN_PROJECT=1
 export PIPENV_VERBOSITY=-1
@@ -75,7 +78,7 @@ export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
 export GEM_HOME="${XDG_CONFIG_HOME}/gem"
 
 # shellcheck.
-export SHELLCHECK_OPTS=
+export SHELLCHECK_OPTS='--exclude=SC1072,SC1073,SC1090'
 
 # zsh.
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
