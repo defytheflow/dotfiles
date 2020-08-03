@@ -11,7 +11,7 @@ main() {
     check_environ
     check_internet
     update_system
-    install_software
+    install_packages
     create_dirs
     create_symlinks
 }
@@ -37,50 +37,52 @@ update_system() {
     [ "${ans}" = 'y' ] && yes | sudo pacman -Syu
 }
 
-install_software() {
-    echo "${0}: Installing software..."
-
-    for prog in 'alacritty' 'bat' 'cargo' 'shellcheck' 'tree' 'vim' 'xclip' 'yay'; do
-        command -v "${prog}" >/dev/null || sudo pacman -S "${prog}"
+install_packages() {
+    echo "${0}: Installing pacman packges..."
+    for package in    \
+        'alacritty'   \
+        'bat'         \
+        'cargo'       \
+        'mlocate'     \
+        'python-pip'  \
+        'ripgrep'     \
+        'shellcheck'  \
+        'tree'        \
+        'xclip'       \
+        'yay'
+    do
+        sudo pacman -Qi "${package}" >/dev/null || yes | sudo pacman -S "${package}"
     done
 
-    command -v exa    >/dev/null || cargo install exa
-    command -v locate >/dev/null || sudo pacman -S mlocate
-    command -v pip3   >/dev/null || sudo pacman -S python-pip
-    command -v rg     >/dev/null || sudo pacman -S ripgrep
-    command -v code   >/dev/null || install_vscode
-    command -v nvim   >/dev/null || install_neovim
-    command -v zsh    >/dev/null || install_zsh
+    echo "${0}: Installing python packages..."
+    for package in  \
+        'flake8'    \
+        'isort'     \
+        'mypy'      \
+        'pipenv'    \
+        'rope'      \
+        'yapf'
+    do
+        pip3 show "${package}" >/dev/null || yes | pip3 install "${package}"
+    done
 
-    install_python_packages
+    command -v exa  >/dev/null || cargo install exa
+    command -v code >/dev/null || yay code
+    command -v nvim >/dev/null || install_neovim
+    command -v zsh  >/dev/null || install_zsh
 }
 
 install_neovim() {
     echo "${0}: Installing neovim..."
     sudo pacman -S neovim python-neovim && \
     pip3 install pynvim                 && \
-    sudo ln -sf "$(which nvim)" "$(which vim)"
-}
-
-install_vscode() {
-    echo "${0}: Installing vscode..."
-    yay code
-    dest="${DOTFILES_HOME}/vscode/settings.json"
-    src="${XDG_CONFIG_HOME}/Code/User/settings.json"
-    ln -sf "${dest}" "${src}"
+    sudo ln -sf "$(which nvim)" '/usr/bin/vim'
 }
 
 install_zsh() {
     echo "${0}: Installing zsh..."
     sudo pacman -S zsh fonts-powerline && \
     sudo chsh -s "$(which zsh)"
-}
-
-install_python_packages() {
-    echo "${0}: Installing python packages..."
-    for package in 'flake8' 'isort' 'mypy' 'pipenv' 'rope' 'yapf';  do
-        pip3 show "${package}" >/dev/null || pip3 install "${package}"
-    done
 }
 
 create_dirs() {
@@ -96,6 +98,7 @@ create_symlinks() {
 
     ln -sf "${DOTFILES_HOME}/bash/bashrc"    "${HOME}/.bashrc"
     ln -sf "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
+    ln -sf "${DOTFILES_HOME}/vscode/settings.json" "${XDG_CONFIG_HOME}/Code/User/settings.json"
 
     for file in '.profile' '.xprofile'; do
         ln -sf "${DOTFILES_HOME}/${file}" "${HOME}/${file}"

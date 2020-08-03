@@ -144,6 +144,7 @@ alias path='echo ${PATH} | sed -e "s|:|\n|g"'
 alias xrld='source ~/.xprofile'
 
 # dirs
+alias dot='cd ~/.dotfiles'
 alias work='cd ~/dev/repos/work'
 alias pers='cd ~/dev/repos/personal'
 alias sand='cd ~/dev/sand'
