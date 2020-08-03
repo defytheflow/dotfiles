@@ -5,76 +5,70 @@
 # Author:   Artyom Danilov (@defytheflow)
 
 
-# Load environment variables. (XDG_CACHE_HOME, XDG_CONFIG_HOME, DOTFILES_HOME...)
-. "${PWD}"/.profile
+. "${PWD}/.profile"
 
-# Make sure environment variables loaded correctly.
-if [ -z "${DOTFILES_HOME}" ]; then
-    echo -e '$DOTFILES_HOME environment variable has not been set properly.\n' \
-            'Aborting installation...' 1>&2
-    exit 1
-fi
-
-create_dirs() {
-    mkdir -p "${HOME}"/.local/bin
-    for prog in 'bash' 'python' 'zsh'; do
-        [ -d "${XDG_CACHE_HOME}"/"${prog}" ] || mkdir -p "${XDG_CACHE_HOME}"/"${prog}"
-    done
+main() {
+    check_environ
+    check_internet
+    update_system
+    install_packages
+    create_dirs
+    create_symlinks
 }
 
-create_links() {
-    ln -sf "${DOTFILES_HOME}"/bash/bashrc  "${HOME}"/.bashrc
-    ln -sf "${DOTFILES_HOME}"/user-dirs.dirs "${XDG_CONFIG_HOME}"/user-dirs.dirs
-
-    for file in '.profile' '.xprofile' '.zprofile'; do
-        ln -sf "${DOTFILES_HOME}"/"${file}" "${HOME}"/"${file}"
-    done
-
-    for dir in 'alacritty' 'git' 'nvim' 'python' 'tmux' 'zsh'; do
-        [ -L "${XDG_CONFIG_HOME}"/"${dir}" ] && rm "${XDG_CONFIG_HOME}"/"${dir}"
-        ln -sf "${DOTFILES_HOME}"/"${dir}" "${XDG_CONFIG_HOME}"/"${dir}"
-    done
-
-    if command -v 'code' >/dev/null && [ -z "${WSL_DISTRO_NAME}" ]; then
-        dest="${DOTFILES_HOME}"/vscode/settings.json
-        src="${XDG_CONFIG_HOME}"/Code/User/settings.json
-        ln -sf "${dest}" "${src}"
+check_environ() {
+    echo "${0}: Checking environment variables..."
+    if [ -z "${DOTFILES_HOME}" ]; then
+        echo "${0}: DOTFILES_HOME environment variable has not been set." >&2
+        exit 1
     fi
 }
 
-install_software() {
-    sudo apt-get update -y
-    sudo apt-get upgrade -y
-    sudo apt-get autoremove -y
+check_internet() {
+    echo "${0}: Checking internet connection..."
+    if ! wget -q --spider https://google.com; then
+        echo "${0}: no internet connection" >&2
+        exit 1
+    fi
+}
 
-    # install through apt-get.
-    for prog in 'mlocate' 'tree' 'xclip'; do
-        command -v "${prog}" >/dev/null || sudo apt-get install -y "${prog}"
+update_system() {
+    printf '%s' "${0}: Update system? [y/n] " && read -r ans
+    [ "${ans}" = 'y' ] && \
+        sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y
+}
+
+install_packages() {
+    echo "${0}: Installing apt-get packages..."
+    for package in  \
+        'mlocate'   \
+        'ripgrep'   \
+        'tree'      \
+        'xclip'
+    do
+        dpkg "${package}" >/dev/null || sudo apt-get install -y "${package}"
     done
 
-    # install through snap.
-    for prog in 'ripgrep'; do
-        command -v "${prog}" >/dev/null || sudo apt-get install -y "${prog}"
-    done
-
-    # install through functions.
-    command -v 'alacritty' >/dev/null || [ -n "${WSL_DISTRO_NAME}" ] || install_alacritty
+    command -v 'alacritty' >/dev/null || install_alacritty
     command -v 'bat'       >/dev/null || install_bat
     command -v 'exa'       >/dev/null || install_exa
-    command -v 'nvim'      >/dev/null || [ -n "${WSL_DISTRO_NAME}" ] || install_neovim
+    command -v 'nvim'      >/dev/null || install_neovim
     command -v 'zsh'       >/dev/null || install_zsh
 }
 
 install_alacritty() {
+    echo "${0}: Installing alacritty..."
     link='https://github.com/alacritty/alacritty/releases/download/v0.4.3'
-    link=${link}/'Alacritty-v0.4.3-ubuntu_18_04_amd64.deb'
-    wget "${link}" && sudo dpkg -i "${deb}" && rm "${deb}"
+    deb='Alacritty-v0.4.3-ubuntu_18_04_amd64.deb'
+    wget "${link}/${deb}" && sudo dpkg -i "${deb}" && rm "${deb}"
     sudo update-alternatives \
         --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/alacritty 50
 }
 
 install_bat() {
-    sudo apt-get install -y bat && ln -s /usr/bin/batcat "${HOME}"/.local/bin/bat
+    echo "${0}: Installing bat..."
+    sudo apt-get install -y bat && \
+    ln -s /usr/bin/batcat "${HOME}/.local/bin/bat"
 }
 
 install_exa() {
@@ -83,18 +77,50 @@ install_exa() {
 }
 
 install_neovim() {
-    sudo add-apt-repository ppa:neovim-ppa/stable
-    sudo apt-get update
-    sudo apt-get install -y neovim python3-neovim
-    command -v 'pip3' >/vev/null || sudo apt-get install -y python3-pip
+    echo "${0}: Installing neovim..."
+    sudo add-apt-repository ppa:neovim-ppa/stable   && \
+    sudo apt-get update                             && \
+    sudo apt-get install -y neovim python3-neovim   && \
     sudo pip3 install pynvim
 }
 
 install_zsh() {
-    sudo apt-get install -y zsh fonts-powerline
-    sudo chsh -s $(which zsh)
+    echo "${0}: Installing zsh..."
+    sudo apt-get install -y zsh fonts-powerline && \
+    sudo chsh -s "$(which zsh)"
 }
 
-create_dirs
-create_links
-install_software
+create_dirs() {
+    echo "${0}: Creating cache directories..."
+    mkdir -p "${HOME}"/.local/bin
+    for prog in 'bash' 'python' 'zsh'; do
+        [ -d "${XDG_CACHE_HOME}"/"${prog}" ] || mkdir -p "${XDG_CACHE_HOME}"/"${prog}"
+    done
+}
+
+create_symlinks() {
+    echo "${0}: Creating dotfiles symlinks..."
+
+    ln -sf "${DOTFILES_HOME}"/bash/bashrc  "${HOME}"/.bashrc
+    ln -sf "${DOTFILES_HOME}"/user-dirs.dirs "${XDG_CONFIG_HOME}"/user-dirs.dirs
+    ln -sf "${DOTFILES_HOME}/vscode/settings.json" "${XDG_CONFIG_HOME}/Code/User/settings.json"
+
+    for file in '.profile' '.xprofile'; do
+        ln -sf "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
+    done
+
+    for dir in 'alacritty' 'git' 'nvim' 'python' 'tmux' 'zsh'; do
+        symlink_dir "${DOTFILES_HOME}/${dir}" "${XDG_CONFIG_HOME}/${dir}"
+    done
+}
+
+symlink_dir() {
+    [ -d "${2}" ] && rm -r "${2}"
+    ln -sf "${1}" "${2}"
+}
+
+create_dir_if_not_exists() {
+    [ -d "${1}" ] || mkdir -p "${1}"
+}
+
+main

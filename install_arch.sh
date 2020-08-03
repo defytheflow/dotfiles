@@ -104,8 +104,6 @@ create_symlinks() {
         ln -sf "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
     done
 
-    symlink_dir "${DOTFILES_HOME}"/vim "${HOME}"/.vim
-
     for dir in 'alacritty' 'git' 'nvim' 'python' 'tmux' 'zsh'; do
         symlink_dir "${DOTFILES_HOME}/${dir}" "${XDG_CONFIG_HOME}/${dir}"
     done
