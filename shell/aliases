@@ -105,7 +105,7 @@ alias grep='grep --color=auto'
 alias igrep='grep -i'
 
 # diff
-alias diff='diff -y --suppress-common-lines --color=auto'
+alias diff='diff --side-by-side --suppress-common-lines --color=auto'
 
 # tree
 alias tree='tree -C -I .git'
@@ -127,6 +127,9 @@ alias srd='sudo rmdir'
 alias srm='sudo rm'
 alias tc='touch'
 alias stc='sudo touch'
+
+# ssh
+alias ssh='TERM=xterm-color ssh'  # 'tput: unknown terminal bug'
 
 # windows
 alias cls='clear'

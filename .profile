@@ -24,7 +24,6 @@ export PATH="${PATH}":"${PYENV_ROOT}/bin"
 export EDITOR='vim'
 export BROWSER='firefox'
 export PAGER='less'
-export TERMINAL='alacritty'
 
 # c.
 export CPATH=
