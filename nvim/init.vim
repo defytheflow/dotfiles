@@ -106,6 +106,12 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 "}}}
 
+" xkb-switch {{{
+Plug 'lyokha/vim-xkbswitch'
+let g:XkbSwitchEnabled = 1
+let g:XkbSwitchIMappings = ['ru']
+"}}}
+
 " miscellaneous {{{
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/goyo.vim'
