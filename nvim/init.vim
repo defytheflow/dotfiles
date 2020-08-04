@@ -32,10 +32,18 @@ let g:airline_theme='luna'
 
 " ale {{{
 Plug 'dense-analysis/ale'
+let g:ale_linters = {
+\   'python': ['flake8'],
+\}
+" E701 - multiple statements on one line.
+let g:ale_python_flake8_options = '--ignore E701'
 let g:ale_fixers = {
+\   'html': ['prettier'],
+\   'javascript': ['prettier'],
 \   'python': ['isort', 'yapf'],
 \}
 let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
 "}}}
 
 " better-whitespace {{{
@@ -69,7 +77,7 @@ let g:deoplete#enable_at_startup = 1
 " indentline {{{
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char =  '¦'
-let g:indentLine_leadingSpacChar='·'
+let g:indentLine_leadingSpaceChar='·'
 let g:indentLine_leadingSpaceEnabled='1'
 "}}}
 
@@ -104,6 +112,38 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+"}}}
+
+" vim-lsp {{{
+Plug 'prabirshrestha/vim-lsp'
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
 "}}}
 
 " xkb-switch {{{
@@ -171,6 +211,7 @@ set softtabstop=4      " number of spaces inserted per tab.
 set shiftwidth=4       " number of columns to shift with << and >>.
 set smartindent        " indent on braces and previous indentation level.
 au BufNewFile,BufRead *.html,*.css,*.js,*.jsx,*.ts,*.tsx setlocal shiftwidth=2 softtabstop=2
+au FileType sh setlocal shiftwidth=2 softtabstop=2
 " }}}
 
 " textwidth {{{
@@ -193,12 +234,8 @@ set noshowmode         " do not display mode in status line.
 set laststatus=2       " always display a status line.
 "}}}
 
-" syntax {{{
-syntax enable
-au BufNewFile,BufRead *.html set filetype=htmldjango
-"}}}
-
 " miscellaneous {{{
+syntax enable
 set clipboard+=unnamedplus          " use system clipboard.
 set cursorline                      " show cursorline.
 set number relativenumber           " show relative line numbers.
