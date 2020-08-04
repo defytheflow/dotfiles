@@ -43,7 +43,6 @@ let g:ale_fixers = {
 \   'python': ['isort', 'yapf'],
 \}
 let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 1
 "}}}
 
 " better-whitespace {{{

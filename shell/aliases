@@ -15,7 +15,6 @@ alias j='java'
 alias l='ls'
 alias s='source'
 alias t='tree'
-alias v='vim'
 
 alias cl='clear'
 alias gh='history | grep'

@@ -44,6 +44,7 @@ install_packages() {
         'bat'         \
         'cargo'       \
         'mlocate'     \
+        'npm'         \
         'python-pip'  \
         'ripgrep'     \
         'shellcheck'  \
@@ -60,11 +61,20 @@ install_packages() {
         'isort'     \
         'mypy'      \
         'pipenv'    \
+        'python-language-server' \
         'rope'      \
         'yapf'
     do
         pip3 show "${package}" >/dev/null || yes | pip3 install "${package}"
     done
+
+    echo "${0}: Installing npm packages..."
+    for package in   \
+        'prettier'
+    do
+        npm list -g "${package}" >/dev/null || yes | sudo npm install -g "${package}"
+    done
+
 
     command -v exa  >/dev/null || cargo install exa
     command -v code >/dev/null || yay code
