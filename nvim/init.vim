@@ -14,9 +14,9 @@ let &path = '/usr/include/,/usr/lib/gcc/x86_64-linux-gnu/8/include'
 
 " vim-plug {{{
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    au VimEnter * PlugInstall --sync | source $MYVIMRC
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  au VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 "}}}
 
@@ -33,16 +33,22 @@ let g:airline_theme='luna'
 " ale {{{
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
-\   'python': ['flake8'],
+\  'python': ['pyls', 'flake8'],
 \}
-" E701 - multiple statements on one line.
-let g:ale_python_flake8_options = '--ignore E701'
+" let g:ale_python_pyls_config = {
+" \    "plugins": {
+"   \"pycodestyle": {
+"       \  "enabled": "false"
+"       \}
+"       \}
+" \}
 let g:ale_fixers = {
-\   'html': ['prettier'],
-\   'javascript': ['prettier'],
-\   'python': ['isort', 'yapf'],
+\ 'html': ['prettier'],
+\ 'javascript': ['prettier'],
+\ 'python': ['isort', 'yapf'],
 \}
 let g:ale_fix_on_save = 1
+let g:ale_python_auto_pipenv = 1
 "}}}
 
 " better-whitespace {{{
@@ -107,42 +113,11 @@ Plug 'michaeljsmith/vim-indent-object'
 "}}}
 
 " tpope {{{
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-"}}}
-
-" vim-lsp {{{
-Plug 'prabirshrestha/vim-lsp'
-if executable('pyls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'allowlist': ['python'],
-        \ })
-endif
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-
-    " refer to doc to add more commands
-endfunction
-
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+Plug 'tpope/vim-fugitive'
 "}}}
 
 " xkb-switch {{{
@@ -175,32 +150,28 @@ set noswapfile
 set backup
 set backupdir=${XDG_DATA_HOME}/nvim/backup
 if !isdirectory(&backupdir)
-    call mkdir(&backupdir, 'p', 0700)
+  call mkdir(&backupdir, 'p', 0700)
 endif
 set undofile
 set undodir=${XDG_DATA_HOME}/nvim/undo
 if !isdirectory(&undodir)
-    call mkdir(&undodir, 'p', 0700)
+  call mkdir(&undodir, 'p', 0700)
 endif
 "}}}
 
 " colors {{{
 " set termguicolors
-set background=dark    " adjust colors.
+set background=dark
 try
-    colo codedark
+  colo codedark
 catch /^Vim\%((\a\+)\)\=:E185/
-    colo koehler
+  colo koehler
 endtry
 "}}}
 
 " commandline {{{
 set history=1000                    " history size.
 set wildmode=longest,list,full      " autocompletion.
-"}}}
-
-" fold {{{
-set foldmethod=marker
 "}}}
 
 " indent {{{
@@ -210,7 +181,8 @@ set softtabstop=4      " number of spaces inserted per tab.
 set shiftwidth=4       " number of columns to shift with << and >>.
 set smartindent        " indent on braces and previous indentation level.
 au BufNewFile,BufRead *.html,*.css,*.js,*.jsx,*.ts,*.tsx setlocal shiftwidth=2 softtabstop=2
-au FileType sh setlocal shiftwidth=2 softtabstop=2
+au FileType sh  setlocal shiftwidth=2 softtabstop=2
+au FileType vim setlocal shiftwidth=2 softtabstop=2
 " }}}
 
 " textwidth {{{
@@ -235,6 +207,7 @@ set laststatus=2       " always display a status line.
 
 " miscellaneous {{{
 syntax enable
+set foldmethod=marker
 set clipboard+=unnamedplus          " use system clipboard.
 set cursorline                      " show cursorline.
 set number relativenumber           " show relative line numbers.
@@ -249,41 +222,41 @@ set list listchars=tab:>-,trail:-   " display tabs and trailing whitespace.
 
 " AutoCommentToggle {{{
 fun! AutoCommentToggle()
-    if matchstr(&formatoptions, 'cro') == 'cro'
-        setlocal formatoptions-=cro
-    else
-        setlocal formatoptions+=cro
-    endif
+  if matchstr(&formatoptions, 'cro') == 'cro'
+    setlocal formatoptions-=cro
+  else
+    setlocal formatoptions+=cro
+  endif
 endfun
 "}}}
 
 " ColorColumnToggle {{{
 fun! ColorColumnToggle()
-    if &cc == ''
-        set colorcolumn=+1  " Highlight column after 'textwidth'
-    else
-        set colorcolumn=
-    endif
+  if &cc == ''
+    set colorcolumn=+1  " Highlight column after 'textwidth'
+  else
+    set colorcolumn=
+  endif
 endfun
 "}}}
 
 " CursorColumnToggle {{{
 fun! CursorColumnToggle()
-    if &cuc == 1
-        set nocursorcolumn
-    else
-        set cursorcolumn
-    endif
+  if &cuc == 1
+    set nocursorcolumn
+  else
+    set cursorcolumn
+  endif
 endfun
 "}}}
 
 " CursorLineToggle {{{
 fun! CursorLineToggle()
-    if &cul == 1
-        set nocursorline
-    else
-        set cursorline
-    endif
+  if &cul == 1
+    set nocursorline
+  else
+    set cursorline
+  endif
 endfun
 "}}}
 
@@ -291,25 +264,31 @@ endfun
 
 " mappings {{{
 
+" ale {{{
+nmap <silent> gd :ALEGoToDefinition<CR>
+nmap <silent> gf :ALEFindReferences<CR>
+nmap <silent> ]g :ALEPrevious<CR>
+nmap <silent> [g :ALENext<CR>
+nmap <silent> K  :ALEHover<CR>
+"}}}
+
 " buffers {{{
-command! BufOnly execute '%bdelete|edit #|normal `"'
-nnoremap <silent><leader>b :BufOnly<CR>
-nnoremap <tab>   :bnext<cr>
-nnoremap <S-tab> :bprev<cr>
+nnoremap <silent> <tab>   :bnext<CR>
+nnoremap <silent> <S-tab> :bprev<CR>
 "}}}
 
 " functions {{{
-nnoremap <silent><leader>x  :call AutoCommentToggle()<CR>
-nnoremap <silent><leader>cc :call ColorColumnToggle()<CR>
-nnoremap <silent><leader>cl :call CursorLineToggle()<CR>
-nnoremap <silent><leader>ck :call CursorColumnToggle()<CR>
+nnoremap <silent> <leader>x  :call AutoCommentToggle()<CR>
+nnoremap <silent> <leader>cc :call ColorColumnToggle()<CR>
+nnoremap <silent> <leader>cl :call CursorLineToggle()<CR>
+nnoremap <silent> <leader>ck :call CursorColumnToggle()<CR>
 "}}}
 
 " plugins {{{
-nnoremap <silent><leader>a :A<CR>
-nnoremap <silent><leader>f :Goyo<CR>
-nnoremap <silent><leader>n :NERDTreeTabsToggle<CR>
-nnoremap <silent><leader>t :TagbarToggle<CR>
+nnoremap <silent> <leader>a :A<CR>
+nnoremap <silent> <leader>f :Goyo<CR>
+nnoremap <silent> <leader>n :NERDTreeTabsToggle<CR>
+nnoremap <silent> <leader>t :TagbarToggle<CR>
 "}}}
 
 " shift {{{
@@ -318,12 +297,12 @@ vnoremap > >gv
 "}}}
 
 " vim {{{
-nnoremap <silent><leader>ev :split $MYVIMRC<CR>
-nnoremap <silent><leader>sv :source $MYVIMRC<CR>
+nnoremap <silent> <leader>ev :tabnew $MYVIMRC<CR>
+nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 "}}}
 
 " miscellaneous {{{
-nnoremap <C-n>  :nohl<CR>
+nnoremap <silent> <C-n>  :nohl<CR>
 nnoremap <Space> za
 nnoremap S :%s//g<Left><Left>
 nnoremap Y y$

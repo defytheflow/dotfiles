@@ -62,7 +62,6 @@ install_packages() {
     'mypy'      \
     'pipenv'    \
     'python-language-server' \
-    'rope'      \
     'yapf'
   do
     pip3 show "${package}" >/dev/null || yes | pip3 install "${package}"
