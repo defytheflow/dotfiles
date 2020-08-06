@@ -62,9 +62,6 @@
 ├──  <b>vscode</b>
 │  └──  settings.json
 │
-├──  <b>windows_terminal</b>
-│  └──  settings.json
-│
 ├──  <b>zsh</b>
 │  ├──  .zprofile
 │  ├──  .zshenv
