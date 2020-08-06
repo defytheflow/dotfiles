@@ -8,6 +8,9 @@
 │  ├──  bashprompt
 │  └──  bashrc
 │
+├──  <b>clang</b>
+│  └──  clang-format
+│
 ├──  <b>git</b>
 │  ├──  config
 │  ├──  ignore

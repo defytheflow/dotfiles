@@ -39,10 +39,11 @@ update_system() {
 
 install_packages() {
   echo "${0}: Installing pacman packges..."
-  for package in    \
+  for package in  \
     'alacritty'   \
     'bat'         \
     'cargo'       \
+    'clang'       \
     'mlocate'     \
     'npm'         \
     'python-pip'  \
@@ -57,10 +58,10 @@ install_packages() {
 
   echo "${0}: Installing python packages..."
   for package in  \
-    'flake8'    \
-    'isort'     \
-    'mypy'      \
-    'pipenv'    \
+    'flake8'      \
+    'isort'       \
+    'mypy'        \
+    'pipenv'      \
     'python-language-server' \
     'yapf'
   do
@@ -105,9 +106,10 @@ create_symlinks() {
   echo "${0}: Creating dotfiles symlinks..."
 
   ln -sf "${DOTFILES_HOME}/bash/bashrc"    "${HOME}/.bashrc"
-  ln -sf "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
-  ln -sf "${DOTFILES_HOME}/vscode/settings.json" "${XDG_CONFIG_HOME}/Code/User/settings.json"
+  ln -sf "${DOTFILES_HOME}/clang/clang-format" "${HOME}/.clang-format"
   ln -sf "${DOTFILES_HOME}/python/flake8" "${XDG_CONFIG_HOME}/flake8"
+  ln -sf "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
+  # ln -sf "${DOTFILES_HOME}/vscode/settings.json" "${XDG_CONFIG_HOME}/Code/User/settings.json"
 
   for file in '.profile' '.xprofile'; do
     ln -sf "${DOTFILES_HOME}/${file}" "${HOME}/${file}"

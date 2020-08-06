@@ -33,16 +33,11 @@ let g:airline_theme='luna'
 " ale {{{
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
+\  'c': ['clangd'],
 \  'python': ['pyls', 'flake8'],
 \}
-" let g:ale_python_pyls_config = {
-" \    "plugins": {
-"   \"pycodestyle": {
-"       \  "enabled": "false"
-"       \}
-"       \}
-" \}
 let g:ale_fixers = {
+\ 'c': ['clang-format'],
 \ 'html': ['prettier'],
 \ 'javascript': ['prettier'],
 \ 'python': ['isort', 'yapf'],
@@ -71,7 +66,12 @@ let g:closetag_filetypes = 'html,xhtml,phtml,jsx,tsx'
 
 " ctrlp {{{
 Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_custom_ignore = {
+\ 'dir':  '\v[\/]\.(git|hg|svn|venv)$',
+\ 'file': '\v\.(exe|so|dll)$',
+\ 'link': 'some_bad_symbolic_links',
+\ }
 "}}}
 
 " deoplete {{{
@@ -285,10 +285,9 @@ nnoremap <silent> <leader>ck :call CursorColumnToggle()<CR>
 "}}}
 
 " plugins {{{
-nnoremap <silent> <leader>a :A<CR>
 nnoremap <silent> <leader>f :Goyo<CR>
-nnoremap <silent> <leader>n :NERDTreeTabsToggle<CR>
 nnoremap <silent> <leader>t :TagbarToggle<CR>
+nnoremap <silent> <leader>T :NERDTreeTabsToggle<CR>
 "}}}
 
 " shift {{{
@@ -297,7 +296,7 @@ vnoremap > >gv
 "}}}
 
 " vim {{{
-nnoremap <silent> <leader>ev :tabnew $MYVIMRC<CR>
+nnoremap <silent> <leader>ev :edit   $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 "}}}
 
