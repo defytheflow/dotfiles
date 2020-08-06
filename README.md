@@ -34,9 +34,6 @@
 │  ├──  pythonrc
 │  └──  style.yapf
 │
-├──  <b>ranger</b>
-│  └──  rc.conf
-│
 ├──  <b>shell</b>
 │  ├──  aliases
 │  └──  functions
