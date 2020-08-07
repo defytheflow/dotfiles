@@ -49,6 +49,7 @@ install_packages() {
     'python-pip'  \
     'ripgrep'     \
     'shellcheck'  \
+    'tmux'        \
     'tree'        \
     'xclip'       \
     'yay'
