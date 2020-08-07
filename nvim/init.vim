@@ -33,7 +33,7 @@ let g:airline_theme='luna'
 " ale {{{
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
-\  'c': ['clangd'],
+\  'c': ['ccls', 'clang'],
 \  'python': ['pyls', 'flake8'],
 \}
 let g:ale_fixers = {
@@ -118,12 +118,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
-"}}}
-
-" xkb-switch {{{
-Plug 'lyokha/vim-xkbswitch'
-let g:XkbSwitchEnabled = 1
-let g:XkbSwitchIMappings = ['ru']
 "}}}
 
 " miscellaneous {{{
@@ -301,10 +295,12 @@ nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 "}}}
 
 " miscellaneous {{{
-nnoremap <silent> <C-n>  :nohl<CR>
-nnoremap <Space> za
+nnoremap <silent> <C-n> :nohl<CR>
+nnoremap <silent> <C-s> :w<CR>
 nnoremap S :%s//g<Left><Left>
 nnoremap Y y$
+nnoremap <Space> za
+tnoremap <Esc> <C-\><C-n>
 "}}}
 
 "}}}
