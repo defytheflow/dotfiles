@@ -123,15 +123,14 @@ Plug 'tpope/vim-fugitive'
 " miscellaneous {{{
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/goyo.vim'
-Plug 'jiangmiao/auto-pairs'
 Plug 'unblevable/quick-scope'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'sheerun/vim-polyglot'
-Plug 'vim-scripts/a.vim'
 Plug 'miyakogi/seiya.vim'
 Plug 'majutsushi/tagbar'
 Plug 'kshenoy/vim-signature'
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+Plug 'Raimondi/delimitMate'
 "}}}
 
 call plug#end()
