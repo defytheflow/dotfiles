@@ -63,6 +63,7 @@ install_packages() {
     'isort'       \
     'mypy'        \
     'pipenv'      \
+    'pydocstyle'  \
     'python-language-server' \
     'yapf'
   do

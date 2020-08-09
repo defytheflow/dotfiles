@@ -79,6 +79,7 @@ alias grb='git rebase -i'
 alias grm='git rm'
 alias grl='git rev-list --count HEAD'
 alias grs='git reset'
+alias grsu="git reset 'HEAD@{1}'"
 alias grv='git revert'
 alias gs='git status'
 alias gsh='git show'
