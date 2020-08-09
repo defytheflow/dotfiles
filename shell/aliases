@@ -144,7 +144,6 @@ alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
 alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
 
 # commands
-alias path='echo ${PATH} | sed -e "s|:|\n|g"'
 alias xrld='source ~/.xprofile'
 
 # dirs

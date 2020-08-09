@@ -5,31 +5,60 @@
 # Author:   Artyom Danilov (@defytheflow)
 
 
-# Prints number of entries in a directory.
+# Print number of entries in a directory.
 n() {
     [ -n "${1}" ] && ls -A "${1}" | wc -l || ls -A | wc -l
 }
 
-# 'whereis' wrapper that lists every result on a separe line.
-whereis() {
-    command whereis "$@" | sed -e 's/ /\n/g'
-}
-
-# Reloads current running shell.
+# Reload current running shell.
 rld() {
     [ -n "${ZSH_NAME}" ] && exec zsh || [ -n "${BASH}" ] && . ~/.bashrc
 }
 
-# Sets background image.
+# Print each path entry on a newline.
+path() {
+  echo "${PATH}" | sed -e 's|:|\n|g'
+}
+
+# Print each whereis entry on a newline.
+whereis() {
+    command whereis "$@" | sed -e 's/ /\n/g'
+}
+
+# Set terminal title.
+title() {
+    printf "\033]0;%s\007" "${*}"
+}
+
+exc() {
+  [ -z "${1}" ] && echo "${0}: <pattern> argument required." >&2 && return 1
+  find . -maxdepth 1 -type f -not -name "${1}" -exec rm -v {} \;
+}
+
+# Remove files in cwd.
+clean() {
+  x_flag=0  # executable.
+  f_flag=0  # force.
+
+  while getopts ':xf' opt; do
+    case ${opt} in
+      x) x_flag=1 ;;
+      f) f_flag=1 ;;
+      *) echo "${0}: unknown option: ${OPTARG}" >&2 && return 1;;
+    esac
+  done
+
+  if [ ${x_flag} -eq 1 ]; then
+    [ ${f_flag} -eq 0 ] && rm_opts="-vi" || rm_opts='-v'
+    find . -executable -type f -exec rm "${rm_opts}" {} \;
+  fi
+}
+
+# Set background image.
 setbg() {
     if [ -f "${1}" ] && command -v nitrogen >/dev/null; then
         nitrogen --head=xinerama --set-auto "${1}" && cp "${1}" "${WALLPAPER_HOME}"
     else
         return 1
     fi
-}
-
-# Sets terminal title.
-title() {
-    printf "\033]0;%s\007" "${*}"
 }
