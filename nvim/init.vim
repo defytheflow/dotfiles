@@ -34,7 +34,7 @@ let g:airline_theme='luna'
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
 \  'c': ['ccls', 'clang'],
-\  'python': ['pyls', 'flake8'],
+\  'python': ['pyls', 'flake8', 'pydocstyle'],
 \}
 let g:ale_fixers = {
 \ 'c': ['clang-format'],
@@ -43,7 +43,6 @@ let g:ale_fixers = {
 \ 'python': ['isort', 'yapf'],
 \}
 let g:ale_fix_on_save = 1
-let g:ale_python_auto_pipenv = 1
 "}}}
 
 " better-whitespace {{{

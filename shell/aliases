@@ -17,6 +17,7 @@ alias s='source'
 alias t='tree'
 
 alias cl='clear'
+alias fr='free -h'
 alias gh='history | grep'
 alias jc='javac'
 alias me='curl https://ipinfo.io/ip'
