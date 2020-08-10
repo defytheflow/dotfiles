@@ -35,12 +35,14 @@ Plug 'dense-analysis/ale'
 let g:ale_linters = {
 \  'c': ['ccls', 'clang'],
 \  'python': ['pyls', 'flake8', 'pydocstyle'],
+\  'sh': ['shellcheck'],
 \}
 let g:ale_fixers = {
 \ 'c': ['clang-format'],
 \ 'html': ['prettier'],
 \ 'javascript': ['prettier'],
 \ 'python': ['isort', 'yapf'],
+\ 'sh': ['shfmt'],
 \}
 let g:ale_fix_on_save = 1
 "}}}
