@@ -13,12 +13,12 @@ alias g='git'
 alias h='history'
 alias j='java'
 alias l='ls'
+alias p='pacman'
 alias s='source'
 alias t='tree'
 
 alias cl='clear'
 alias fr='free -h'
-alias gh='history | grep'
 alias jc='javac'
 alias me='curl https://ipinfo.io/ip'
 alias sc='shellcheck'
@@ -157,5 +157,5 @@ alias starwars='telnet towel.blinkenlights.nl'
 
 # wsl
 if [ -n "${WSL_DISTRO_NAME}" ]; then
-    alias ls='ls --color=never -F'  # on windows terminals 'ls' colors are awful.
+  alias ls='ls --color=never -F'  # on windows terminals 'ls' colors are awful.
 fi
