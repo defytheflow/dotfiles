@@ -4,7 +4,6 @@
 # Created:  29.07.2020
 # Author:   Artyom Danilov (@defytheflow)
 
-
 . "${PWD}/.profile"
 
 main() {
@@ -19,16 +18,16 @@ main() {
 check_environ() {
   echo "${0}: Checking environment variables..."
   if [ -z "${DOTFILES_HOME}" ]; then
-      echo "${0}: DOTFILES_HOME environment variable has not been set." >&2
-      exit 1
+    echo "${0}: DOTFILES_HOME environment variable has not been set." >&2
+    exit 1
   fi
 }
 
 check_internet() {
   echo "${0}: Checking internet connection..."
   if ! wget -q --spider https://google.com; then
-      echo "${0}: no internet connection" >&2
-      exit 1
+    echo "${0}: no internet connection" >&2
+    exit 1
   fi
 }
 
@@ -39,62 +38,60 @@ update_system() {
 
 install_packages() {
   echo "${0}: Installing pacman packges..."
-  for package in  \
-    'alacritty'   \
-    'bat'         \
-    'cargo'       \
-    'clang'       \
-    'mlocate'     \
-    'npm'         \
-    'python-pip'  \
-    'ripgrep'     \
-    'shellcheck'  \
-    'shfmt'       \
-    'tmux'        \
-    'tree'        \
-    'xclip'       \
-    'yay'
-  do
+  for package in \
+    'alacritty' \
+    'bat' \
+    'cargo' \
+    'clang' \
+    'mlocate' \
+    'npm' \
+    'python-pip' \
+    'ripgrep' \
+    'shellcheck' \
+    'shfmt' \
+    'tmux' \
+    'tree' \
+    'xclip' \
+    'yay'; do
     sudo pacman -Qi "${package}" >/dev/null || yes | sudo pacman -S "${package}"
   done
 
   echo "${0}: Installing python packages..."
-  for package in  \
-    'flake8'      \
-    'isort'       \
-    'mypy'        \
-    'pipenv'      \
-    'pydocstyle'  \
+  for package in \
+    'flake8' \
+    'isort' \
+    'mypy' \
+    'pipenv' \
+    'pydocstyle' \
     'python-language-server' \
-    'yapf'
-  do
+    'vim-vint' \
+    'yapf'; do
     pip3 show "${package}" >/dev/null || yes | pip3 install "${package}"
   done
 
   echo "${0}: Installing npm packages..."
-  for package in   \
-    'prettier'
-  do
+  for package in \
+    'prettier'; do
     npm list -g "${package}" >/dev/null || yes | sudo npm install -g "${package}"
   done
 
-  command -v exa  >/dev/null || cargo install exa
+  command -v exa >/dev/null || cargo install exa
   command -v code >/dev/null || yay code
   command -v nvim >/dev/null || install_neovim
-  command -v zsh  >/dev/null || install_zsh
+  command -v zsh >/dev/null || install_zsh
 }
 
 install_neovim() {
   echo "${0}: Installing neovim..."
-  sudo pacman -S neovim python-neovim && \
-  pip3 install pynvim                 && \
-  sudo ln -sf "$(which nvim)" '/usr/bin/vim'
+  sudo pacman -S neovim python-neovim &&
+    pip3 install pynvim &&
+    sudo ln -sf "$(which nvim)" '/usr/bin/vim'
 }
 
 install_zsh() {
   echo "${0}: Installing zsh..."
-  sudo pacman -S zsh fonts-powerline && \
-  sudo chsh -s "$(which zsh)"
+  sudo pacman -S zsh fonts-powerline &&
+    sudo chsh -s "$(which zsh)"
 }
 
 create_dirs() {
@@ -108,7 +105,7 @@ create_dirs() {
 create_symlinks() {
   echo "${0}: Creating dotfiles symlinks..."
 
-  ln -sf "${DOTFILES_HOME}/bash/bashrc"    "${HOME}/.bashrc"
+  ln -sf "${DOTFILES_HOME}/bash/bashrc" "${HOME}/.bashrc"
   ln -sf "${DOTFILES_HOME}/clang/clang-format" "${HOME}/.clang-format"
   ln -sf "${DOTFILES_HOME}/python/flake8" "${XDG_CONFIG_HOME}/flake8"
   ln -sf "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"

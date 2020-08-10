@@ -4,7 +4,6 @@
 # Created:  26.03.2020
 # Author:   Artyom Danilov (@defytheflow)
 
-
 . "${PWD}/.profile"
 
 main() {
@@ -34,26 +33,25 @@ check_internet() {
 
 update_system() {
   printf '%s' "${0}: Update system? [y/n] " && read -r ans
-  [ "${ans}" = 'y' ] && \
+  [ "${ans}" = 'y' ] &&
     sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt-get autoremove -y
 }
 
 install_packages() {
   echo "${0}: Installing apt-get packages..."
-  for package in  \
-    'mlocate'     \
-    'ripgrep'     \
-    'tree'        \
-    'xclip'
-  do
+  for package in \
+    'mlocate' \
+    'ripgrep' \
+    'tree' \
+    'xclip'; do
     dpkg "${package}" >/dev/null || sudo apt-get install -y "${package}"
   done
 
   command -v 'alacritty' >/dev/null || install_alacritty
-  command -v 'bat'       >/dev/null || install_bat
-  command -v 'exa'       >/dev/null || install_exa
-  command -v 'nvim'      >/dev/null || install_neovim
-  command -v 'zsh'       >/dev/null || install_zsh
+  command -v 'bat' >/dev/null || install_bat
+  command -v 'exa' >/dev/null || install_exa
+  command -v 'nvim' >/dev/null || install_neovim
+  command -v 'zsh' >/dev/null || install_zsh
 }
 
 install_alacritty() {
@@ -62,13 +60,13 @@ install_alacritty() {
   deb='Alacritty-v0.4.3-ubuntu_18_04_amd64.deb'
   wget "${link}/${deb}" && sudo dpkg -i "${deb}" && rm "${deb}"
   sudo update-alternatives \
-      --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/alacritty 50
+    --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/alacritty 50
 }
 
 install_bat() {
   echo "${0}: Installing bat..."
-  sudo apt-get install -y bat && \
-  ln -s /usr/bin/batcat "${HOME}/.local/bin/bat"
+  sudo apt-get install -y bat &&
+    ln -s /usr/bin/batcat "${HOME}/.local/bin/bat"
 }
 
 install_exa() {
@@ -78,16 +76,16 @@ install_exa() {
 
 install_neovim() {
   echo "${0}: Installing neovim..."
-  sudo add-apt-repository ppa:neovim-ppa/stable   && \
-  sudo apt-get update                             && \
-  sudo apt-get install -y neovim python3-neovim   && \
-  sudo pip3 install pynvim
+  sudo add-apt-repository ppa:neovim-ppa/stable &&
+    sudo apt-get update &&
+    sudo apt-get install -y neovim python3-neovim &&
+    sudo pip3 install pynvim
 }
 
 install_zsh() {
   echo "${0}: Installing zsh..."
-  sudo apt-get install -y zsh fonts-powerline && \
-  sudo chsh -s "$(which zsh)"
+  sudo apt-get install -y zsh fonts-powerline &&
+    sudo chsh -s "$(which zsh)"
 }
 
 create_dirs() {
@@ -101,7 +99,7 @@ create_dirs() {
 create_symlinks() {
   echo "${0}: Creating dotfiles symlinks..."
 
-  ln -sf "${DOTFILES_HOME}"/bash/bashrc  "${HOME}"/.bashrc
+  ln -sf "${DOTFILES_HOME}"/bash/bashrc "${HOME}"/.bashrc
   ln -sf "${DOTFILES_HOME}"/user-dirs.dirs "${XDG_CONFIG_HOME}"/user-dirs.dirs
   ln -sf "${DOTFILES_HOME}/vscode/settings.json" "${XDG_CONFIG_HOME}/Code/User/settings.json"
 

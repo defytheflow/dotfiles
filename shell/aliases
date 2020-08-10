@@ -4,7 +4,6 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
-
 alias sudo='sudo ' # Run 'sudo {alias}'
 
 alias e='exa'
@@ -32,7 +31,7 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....=' cd ../../../'
 alias .....='cd ../../../../'
-alias -- -='cd -'  # Type '-' to go to previous dir.
+alias -- -='cd -' # Type '-' to go to previous dir.
 
 # pip
 alias pip='pip3'
@@ -129,8 +128,11 @@ alias srm='sudo rm'
 alias tc='touch'
 alias stc='sudo touch'
 
+# rmtrash
+alias rmt='rmtrash'
+
 # ssh
-alias ssh='TERM=xterm-color ssh'  # 'tput: unknown terminal bug'
+alias ssh='TERM=xterm-color ssh' # 'tput: unknown terminal bug'
 
 # windows
 alias cls='clear'
@@ -157,5 +159,5 @@ alias starwars='telnet towel.blinkenlights.nl'
 
 # wsl
 if [ -n "${WSL_DISTRO_NAME}" ]; then
-  alias ls='ls --color=never -F'  # on windows terminals 'ls' colors are awful.
+  alias ls='ls --color=never -F' # on windows terminals 'ls' colors are awful.
 fi

@@ -4,7 +4,6 @@
 # Created:  28.03.2020
 # Author:   Artyom Danilov (@defytheflow)
 
-
 # xdg
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_CONFIG_HOME="${HOME}/.config"
@@ -13,12 +12,13 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 # mine.
 export DOTFILES_HOME="${HOME}/.dotfiles"
 export WALLPAPER_HOME="${XDG_CONFIG_HOME}/wallpaper"
+export PATH="${PATH}:${HOME}/.scripts"
 
 # path
-export PATH="${PATH}":/snap/bin
-export PATH="${PATH}":"${HOME}/.local/bin"
-export PATH="${PATH}":"${XDG_CONFIG_HOME}/cargo/bin"
-export PATH="${PATH}":"${PYENV_ROOT}/bin"
+export PATH="${PATH}:/snap/bin"
+export PATH="${PATH}:${HOME}/.local/bin"
+export PATH="${PATH}:${XDG_CONFIG_HOME}/cargo/bin"
+export PATH="${PATH}:${PYENV_ROOT}/bin"
 
 # default.
 export EDITOR='vim'
@@ -91,9 +91,9 @@ export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"
 
 # wsl.
 if [ -n "${WSL_DISTRO_NAME}" ]; then
-    export WIN_USER="$(powershell.exe '$env:UserName' | sed -e 's/\r//g')"
-    export WIN_HOME="$(wslpath "$(cmd.exe /C 'echo | set /p _=%USERPROFILE%' 2>/dev/null)")"
-    export WIN_DESK="${WIN_HOME}"/Desktop
+  export WIN_USER="$(powershell.exe '$env:UserName' | sed -e 's/\r//g')"
+  export WIN_HOME="$(wslpath "$(cmd.exe /C 'echo | set /p _=%USERPROFILE%' 2>/dev/null)")"
+  export WIN_DESK="${WIN_HOME}"/Desktop
 fi
 
-export LINES COLUMNS  # For use by external scripts and programs. (!)
+export LINES COLUMNS # For use by external scripts and programs. (!)
