@@ -4,6 +4,7 @@ scriptencoding utf-8
 " Created:  30.12.2019
 " Author:   Artyom Danilov (@defytheflow)
 
+
 " vars {{{
 let g:mapleader = '\'
 let g:python3_host_prog = '/usr/bin/python3'
@@ -141,14 +142,8 @@ call plug#end()
 
 " backup {{{
 set backup
-set backupdir=${XDG_DATA_HOME}/nvim/backup
+set backupdir=${HOME}/.local/share/nvim/backup
 if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
-"}}}
-
-" undo {{{
-set undofile
-set undodir=${XDG_DATA_HOME}/nvim/undo
-if !isdirectory(&undodir) | call mkdir(&undodir, 'p', 0700) | endif
 "}}}
 
 " colors {{{
@@ -175,6 +170,11 @@ set shiftwidth=4       " number of columns to shift with << and >>.
 set smartindent        " indent on braces and previous indentation level.
 " }}}
 
+" language {{{
+set langmenu=en_US
+let $LANG = 'en_US'
+"}}}
+
 " textwidth {{{
 set nowrap
 set textwidth=90
@@ -198,6 +198,12 @@ set ruler              " show the line and column number of cursor.
 set showcmd            " show last typed command.
 set noshowmode         " do not display mode in status line.
 set laststatus=2       " always display a status line.
+"}}}
+
+" undo {{{
+set undofile
+set undodir=${HOME}/.local/share/nvim/undo
+if !isdirectory(&undodir) | call mkdir(&undodir, 'p', 0700) | endif
 "}}}
 
 " miscellaneous {{{
