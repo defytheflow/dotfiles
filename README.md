@@ -23,13 +23,13 @@
 │  ├──  autoload
 │  │  └──  plug.vim
 │  ├──  colors  -> ../vim/colors
-│  ├──  init.vim
-│  └──  windows_init.vim
+│  └──  init.vim
 │
 ├──  <b>powershell</b>
 │  └──  profile.ps1
 │
 ├──  <b>python</b>
+│  ├──  flake8
 │  ├──  isort.cfg
 │  ├──  pythonrc
 │  └──  style.yapf
