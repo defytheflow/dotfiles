@@ -1,13 +1,12 @@
+scriptencoding utf-8
 
 " File:     init.vim
 " Created:  30.12.2019
 " Author:   Artyom Danilov (@defytheflow)
 
-
 " vars {{{
 let g:mapleader = '\'
 let g:python3_host_prog = '/usr/bin/python3'
-let &path = '/usr/include/,/usr/lib/gcc/x86_64-linux-gnu/8/include'
 "}}}
 
 " plugins {{{
@@ -16,7 +15,6 @@ let &path = '/usr/include/,/usr/lib/gcc/x86_64-linux-gnu/8/include'
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  au VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 "}}}
 
@@ -36,6 +34,7 @@ let g:ale_linters = {
 \  'c': ['ccls', 'clang'],
 \  'python': ['pyls', 'flake8', 'pydocstyle'],
 \  'sh': ['shellcheck'],
+\  'vim': ['vint'],
 \}
 let g:ale_fixers = {
 \ 'c': ['clang-format'],
@@ -52,6 +51,7 @@ Plug 'ntpeters/vim-better-whitespace'
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
+let g:strip_max_file_size = 10000
 "}}}
 
 " camel-case-motion {{{
@@ -140,17 +140,15 @@ call plug#end()
 " settings {{{
 
 " backup {{{
-set noswapfile
 set backup
 set backupdir=${XDG_DATA_HOME}/nvim/backup
-if !isdirectory(&backupdir)
-  call mkdir(&backupdir, 'p', 0700)
-endif
+if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
+"}}}
+
+" undo {{{
 set undofile
 set undodir=${XDG_DATA_HOME}/nvim/undo
-if !isdirectory(&undodir)
-  call mkdir(&undodir, 'p', 0700)
-endif
+if !isdirectory(&undodir) | call mkdir(&undodir, 'p', 0700) | endif
 "}}}
 
 " colors {{{
@@ -164,19 +162,17 @@ endtry
 "}}}
 
 " commandline {{{
-set history=1000                    " history size.
-set wildmode=longest,list,full      " autocompletion.
+set history=1000
+set wildmenu " autocompletion.
+set wildmode=longest,list,full
 "}}}
 
-" indent {{{
+" indentation {{{
 filetype plugin indent on
 set expandtab          " convert tabs to spaces.
 set softtabstop=4      " number of spaces inserted per tab.
 set shiftwidth=4       " number of columns to shift with << and >>.
 set smartindent        " indent on braces and previous indentation level.
-au BufNewFile,BufRead *.html,*.css,*.js,*.jsx,*.ts,*.tsx setlocal shiftwidth=2 softtabstop=2
-au FileType sh  setlocal shiftwidth=2 softtabstop=2
-au FileType vim setlocal shiftwidth=2 softtabstop=2
 " }}}
 
 " textwidth {{{
@@ -186,10 +182,15 @@ set formatoptions+=t   " wrap text using &textwidth.
 set colorcolumn=+0     " display a color-column to indicate textwidth.
 "}}}
 
+" scrolloff {{{
+set scrolloff=30
+set sidescrolloff=30
+"}}}
+
 " search {{{
-set hlsearch           " highlight search matches.
-set incsearch          " highlight while typing search pattern.
-set smartcase          " ignore case if search pattern is lowercase.
+set hlsearch
+set incsearch
+set smartcase
 "}}}
 
 " statusline {{{
@@ -201,59 +202,30 @@ set laststatus=2       " always display a status line.
 
 " miscellaneous {{{
 syntax enable
+set mouse=a
+set cursorline
+set noswapfile
 set foldmethod=marker
-set clipboard+=unnamedplus          " use system clipboard.
-set cursorline                      " show cursorline.
-set number relativenumber           " show relative line numbers.
-set mouse=a                         " enable mouse in all modes.
-set splitbelow splitright           " change splits position.
-set list listchars=tab:>-,trail:-   " display tabs and trailing whitespace.
+set number relativenumber
+set splitbelow splitright
+set clipboard+=unnamedplus " use system clipboard.
+set list listchars=tab:>-,trail:-
 "}}}
 
 "}}}
 
 " functions {{{
-
-" AutoCommentToggle {{{
-fun! AutoCommentToggle()
-  if matchstr(&formatoptions, 'cro') == 'cro'
-    setlocal formatoptions-=cro
-  else
-    setlocal formatoptions+=cro
-  endif
-endfun
-"}}}
-
-" ColorColumnToggle {{{
 fun! ColorColumnToggle()
-  if &cc == ''
-    set colorcolumn=+1  " Highlight column after 'textwidth'
-  else
-    set colorcolumn=
-  endif
+  if strlen(&colorcolumn) == 0 | set colorcolumn=+1 | else | set colorcolumn= | endif
 endfun
-"}}}
 
-" CursorColumnToggle {{{
 fun! CursorColumnToggle()
-  if &cuc == 1
-    set nocursorcolumn
-  else
-    set cursorcolumn
-  endif
+  if &cursorcolumn == 1 | set nocursorcolumn | else | set cursorcolumn | endif
 endfun
-"}}}
 
-" CursorLineToggle {{{
 fun! CursorLineToggle()
-  if &cul == 1
-    set nocursorline
-  else
-    set cursorline
-  endif
+  if &cursorline == 1 | set nocursorline | else | set cursorline | endif
 endfun
-"}}}
-
 "}}}
 
 " mappings {{{
@@ -266,20 +238,23 @@ nmap <silent> [g :ALENext<CR>
 nmap <silent> K  :ALEHover<CR>
 "}}}
 
+" better-whitespace {{{
+nnoremap <silent> ]w :NextTrailingWhitespace<CR>
+nnoremap <silent> [w :PrevTrailingWhitespace<CR>
+"}}}
+
 " buffers {{{
 nnoremap <silent> <tab>   :bnext<CR>
 nnoremap <silent> <S-tab> :bprev<CR>
 "}}}
 
 " functions {{{
-nnoremap <silent> <leader>x  :call AutoCommentToggle()<CR>
 nnoremap <silent> <leader>cc :call ColorColumnToggle()<CR>
-nnoremap <silent> <leader>cl :call CursorLineToggle()<CR>
 nnoremap <silent> <leader>ck :call CursorColumnToggle()<CR>
+nnoremap <silent> <leader>cl :call CursorLineToggle()<CR>
 "}}}
 
 " plugins {{{
-nnoremap <silent> <leader>f :Goyo<CR>
 nnoremap <silent> <leader>t :TagbarToggle<CR>
 nnoremap <silent> <leader>T :NERDTreeTabsToggle<CR>
 "}}}
@@ -290,13 +265,13 @@ vnoremap > >gv
 "}}}
 
 " vim {{{
-nnoremap <silent> <leader>ev :edit   $MYVIMRC<CR>
+nnoremap <silent> <leader>ev :split  $MYVIMRC<CR>
 nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
 "}}}
 
 " miscellaneous {{{
-nnoremap <silent> <C-n> :nohl<CR>
-nnoremap <silent> <C-s> :w<CR>
+nnoremap <silent> <C-l> :nohlsearch<CR>
+nnoremap <silent> <C-s> :write<CR>
 nnoremap S :%s//g<Left><Left>
 nnoremap Y y$
 nnoremap <Space> za
@@ -306,12 +281,24 @@ tnoremap <Esc> <C-\><C-n>
 "}}}
 
 " autocmds {{{
-" jump to the last position when reopening a file.
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" disable highlighting matching parentheses.
-au VimEnter * :NoMatchParen
-" disable auto-commenting.
-au BufEnter * set fo-=c fo-=r fo-=o
-" install pluggins.
-au VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
+augroup vimrc_indentation
+  autocmd!
+  autocmd FileType sh,vim setlocal shiftwidth=2 softtabstop=2
+  autocmd FileType css,html setlocal shiftwidth=2 softtabstop=2
+augroup END
+
+augroup vimrc_miscellaneous
+  autocmd!
+  " Install pluggins.
+  autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
+
+  " Jump to the last position when reopening a file.
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+  " Disable auto-commenting.
+  autocmd FileType * set formatoptions-=cro
+
+  " Disable highlighting matching parentheses.
+  autocmd VimEnter * :NoMatchParen
+augroup END
 "}}}
