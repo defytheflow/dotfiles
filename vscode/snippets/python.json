@@ -35,5 +35,15 @@
       "        return ${0}"
     ],
     "description": "django rest permission."
+  },
+
+  "Print Debug": {
+    "prefix": ["prd"],
+    "body": [
+      "print(f'${1} is {${1}}')"
+    ],
+    "description": "print debug"
   }
+
+
 }

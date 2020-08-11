@@ -5,14 +5,34 @@
   "editor.lineNumbers": "relative",
   "editor.insertSpaces": true,
   "editor.tabCompletion": "on",
+  "editor.rulers": [90],
 
   "[json]": {
-      "editor.tabSize": 2
+    "editor.tabSize": 2
   },
 
   "files.exclude": {
-    "**/.git": true
+    "**/.git": true,
+    "**/.venv/**": true
   },
+
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.pydocstyleEnabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.ignorePatterns": [
+      "**/test*.py",
+      "**/site-packages/**/*.py"
+  ],
+  "python.formatting.provider": "yapf",
+
+ "[python]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+
 
   "keyboard.dispatch": "keyCode",
 
