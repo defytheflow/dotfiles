@@ -47,14 +47,6 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 "}}}
 
-" better-whitespace {{{
-Plug 'ntpeters/vim-better-whitespace'
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
-let g:strip_whitespace_confirm=0
-let g:strip_max_file_size = 10000
-"}}}
-
 " camel-case-motion {{{
 Plug 'bkad/CamelCaseMotion'
 let g:camelcasemotion_key = '<leader>'
@@ -88,20 +80,6 @@ let g:indentLine_leadingSpaceChar='·'
 let g:indentLine_leadingSpaceEnabled='1'
 "}}}
 
-" nerdtree {{{
-Plug 'preservim/nerdtree'
-let NERDTreeShowHidden = 1
-let NERDTreeMinimalUI  = 1  " Disable '?' help at the top
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeIgnore=['__pycache__', '.git', '.mypy_cache', '.idea']
-let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-Plug 'jistr/vim-nerdtree-tabs'
-let g:nerdtree_tabs_open_on_console_startup = 2
-let g:nerdtree_tabs_autoclose = 0
-Plug 'ryanoasis/vim-devicons'
-let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
-"}}}
-
 " snippets {{{
 Plug 'SirVer/ultisnips' " engine
 Plug 'honza/vim-snippets' " snippets
@@ -131,7 +109,6 @@ Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'sheerun/vim-polyglot'
 Plug 'miyakogi/seiya.vim'
 Plug 'majutsushi/tagbar'
-Plug 'kshenoy/vim-signature'
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 Plug 'Raimondi/delimitMate'
 "}}}
@@ -294,17 +271,19 @@ augroup vimrc_indentation
   autocmd FileType css,html,json setlocal shiftwidth=2 softtabstop=2
 augroup END
 
+augroup vimrc_whitespace
+  autocmd BufWritePre * %s/\s\+$//e " remove trailing spaces.
+  autocmd BufWritePre * %s/\n\+\%$//e " remove trailing newlines.
+augroup END
+
 augroup vimrc_miscellaneous
   autocmd!
   " Install pluggins.
   autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
-
   " Jump to the last position when reopening a file.
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
   " Disable auto-commenting.
   autocmd FileType * set formatoptions-=cro
-
   " Disable highlighting matching parentheses.
   autocmd VimEnter * :NoMatchParen
 augroup END
