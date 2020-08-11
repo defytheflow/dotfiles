@@ -64,6 +64,7 @@ install_packages() {
     'mypy' \
     'pipenv' \
     'pydocstyle' \
+    'pynvim' \
     'python-language-server' \
     'vim-vint' \
     'yapf'; do
@@ -72,7 +73,8 @@ install_packages() {
 
   echo "${0}: Installing npm packages..."
   for package in \
-    'prettier'; do
+    'prettier' \
+    'neovim'; do
     npm list -g "${package}" >/dev/null || yes | sudo npm install -g "${package}"
   done
 
@@ -85,7 +87,6 @@ install_packages() {
 install_neovim() {
   echo "${0}: Installing neovim..."
   sudo pacman -S neovim python-neovim &&
-    pip3 install pynvim &&
     sudo ln -sf "$(which nvim)" '/usr/bin/vim'
 }
 
