@@ -37,6 +37,30 @@
     "description": "django rest permission."
   },
 
+  "Django TestCase": {
+    "prefix": ["djt"],
+    "body": [
+      "class ${1}(TestCase):",
+      "",
+      "    @classmethod",
+      "    def setUpTestData(cls):",
+      "        ${0}"
+    ],
+    "description": "django test case."
+  },
+
+  "Django Rest TestCase": {
+    "prefix": ["djrt"],
+    "body": [
+      "class ${1}(APITestCase):",
+      "",
+      "    @classmethod",
+      "    def setUpTestData(cls):",
+      "        ${0}"
+    ],
+    "description": "django rest test case."
+  },
+
   "Print Debug": {
     "prefix": ["prd"],
     "body": [
@@ -44,6 +68,4 @@
     ],
     "description": "print debug"
   }
-
-
 }

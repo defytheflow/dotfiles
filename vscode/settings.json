@@ -33,7 +33,6 @@
     }
   },
 
-
   "keyboard.dispatch": "keyCode",
 
   "vim.leader": "\\",
@@ -54,7 +53,7 @@
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["<C-n>"],
+      "before": ["<C-l>"],
       "commands": [":nohl"]
     },
     {
@@ -72,6 +71,10 @@
     {
       "before": ["<leader>", "<tab>"],
       "after": ["g", "T"]
+    },
+    {
+      "before": ["Y"],
+      "after": ["y", "$"]
     }
   ]
 }
