@@ -20,9 +20,16 @@
 │  └──  config
 │
 ├──  <b>nvim</b>
+│  ├──  _snippets
+│  │  └──  c.snippets
 │  ├──  autoload
 │  │  └──  plug.vim
-│  ├──  colors  -> ../vim/colors
+│  ├──  colors
+│  │  ├──  codedark.vim
+│  │  ├──  darcula.vim
+│  │  ├──  gruvbox.vim
+│  │  ├──  molokai.vim
+│  │  └──  monokai.vim
 │  └──  init.vim
 │
 ├──  <b>powershell</b>
@@ -42,18 +49,6 @@
 │  └──  tmux.conf
 │
 ├──  <b>vim</b>
-│  ├──  colors
-│  │  ├──  archman.vim
-│  │  ├──  codedark.vim
-│  │  ├──  darcula.vim
-│  │  ├──  gruvbox.vim
-│  │  ├──  molokai.vim
-│  │  └──  monokai.vim
-│  ├──  plugin
-│  │  ├──  commentary.vim
-│  │  ├──  repeat.vim
-│  │  ├──  ReplaceWithRegister.vim
-│  │  └──  surround.vim
 │  └──  vimrc
 │
 ├──  <b>vscode</b>
