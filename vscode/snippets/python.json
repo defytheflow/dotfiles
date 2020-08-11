@@ -1,0 +1,38 @@
+{
+	"Django Model": {
+		"prefix": ["djm"],
+		"body": [
+			"class ${1}(models.Model):",
+			"    ${0}"
+		],
+		"description": "django model definition."
+	},
+
+	"Django Rest Serializer": {	
+		"prefix": ["djrs"],
+		"body": [
+			"class ${1}Serializer(serializers.Serializer):",
+			"    ${0}"
+		],
+		"description": "django rest serializer."
+	},
+
+	"Django Rest ModelSerializer": {
+		"prefix": ["djrms"],
+		"body": [
+			"class ${1}Serializer(serializers.ModelSerializer):",
+			"    ${0}"
+		],
+		"description": "django rest model serializer."
+	},
+
+	"Django Rest Permission": {
+		"prefix": ["djrp"],
+		"body": [
+			"class ${1}(permissions.BasePermission):",
+			"",
+			"    def has_permission(self, request, view):",
+			"        return ${0}"
+		]
+	}
+}

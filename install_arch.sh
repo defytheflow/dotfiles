@@ -59,6 +59,7 @@ install_packages() {
   echo "${0}: Installing python packages..."
   for package in \
     'flake8' \
+    'ipython' \
     'isort' \
     'mypy' \
     'pipenv' \
@@ -110,6 +111,7 @@ create_symlinks() {
   ln -sf "${DOTFILES_HOME}/python/flake8" "${XDG_CONFIG_HOME}/flake8"
   ln -sf "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
   # ln -sf "${DOTFILES_HOME}/vscode/settings.json" "${XDG_CONFIG_HOME}/Code/User/settings.json"
+  # ln -sf "${DOTFILES_HOME}/vscode/snippets" "{XDG_CONFIG_HOME}/Code/User/snippets"
 
   for file in '.profile' '.xprofile'; do
     ln -sf "${DOTFILES_HOME}/${file}" "${HOME}/${file}"

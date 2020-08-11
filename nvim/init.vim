@@ -291,7 +291,7 @@ tnoremap <Esc> <C-\><C-n>
 augroup vimrc_indentation
   autocmd!
   autocmd FileType sh,vim setlocal shiftwidth=2 softtabstop=2
-  autocmd FileType css,html setlocal shiftwidth=2 softtabstop=2
+  autocmd FileType css,html,json setlocal shiftwidth=2 softtabstop=2
 augroup END
 
 augroup vimrc_miscellaneous

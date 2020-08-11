@@ -52,6 +52,8 @@
 │  └──  vimrc
 │
 ├──  <b>vscode</b>
+│  ├──  snippets
+│  │  └──  python.json
 │  └──  settings.json
 │
 ├──  <b>zsh</b>

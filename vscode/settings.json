@@ -1,6 +1,13 @@
 {
   "window.zoomLevel": -2,
+
+  "editor.fontSize": 15,
   "editor.lineNumbers": "relative",
+  "editor.tabCompletion": "on",
+
+  "[json]": {
+      "editor.tabSize": 2
+  },
 
   "files.exclude": {
     "**/.git": true
@@ -8,7 +15,7 @@
 
   "keyboard.dispatch": "keyCode",
 
-  "vim.leader": ";",
+  "vim.leader": "\\",
   "vim.camelCaseMotion.enable": true,
   "vim.replaceWithRegister": true,
   "vim.incsearch": true,
@@ -37,6 +44,13 @@
       "before": ["leader", "d"],
       "after": ["d", "d"]
     },
-  ],
-  "editor.fontSize": 15
+    {
+      "before": ["<tab>"],
+      "after": ["g", "t"]
+    },
+    {
+      "before": ["<leader>", "<tab>"],
+      "after": ["g", "T"]
+    }
+  ]
 }
