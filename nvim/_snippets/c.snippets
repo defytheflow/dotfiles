@@ -1,0 +1,38 @@
+
+# File:     c.snippets
+# Created:  11.08.2020
+# Author:   Artyom Danilov (@defytheflow)
+
+snippet main
+int main(void)
+{
+    $1
+    return 0;
+}
+endsnippet
+
+snippet tds
+typedef struct {
+
+} $1_t;
+endsnippet
+
+snippet tde
+typedef enum {
+
+} $1_t;
+endsnippet
+
+snippet as
+assert($1);
+endsnippet
+
+snippet class
+typedef struct {
+
+} $1_t;
+
+$1_t* new_$1();
+void delete_$1($1_t*);
+void print_$1(const $1_t*);
+endsnippet

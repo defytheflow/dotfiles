@@ -103,9 +103,10 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "}}}
 
 " snippets {{{
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' " engine
+Plug 'honza/vim-snippets' " snippets
 let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsSnippetDirectories=['UltiSnips', '_snippets']
 "}}}
 
 " text-object {{{
@@ -183,8 +184,8 @@ set colorcolumn=+0     " display a color-column to indicate textwidth.
 "}}}
 
 " scrolloff {{{
-set scrolloff=30
-set sidescrolloff=30
+set scrolloff=5
+set sidescrolloff=5
 "}}}
 
 " search {{{
