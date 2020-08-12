@@ -107,7 +107,7 @@ create_dirs() {
 create_symlinks() {
   echo "${0}: Creating dotfiles symlinks..."
 
-  ln -sf "${DOTFILES_HOME}/bash/bashrc" "${HOME}/.bashrc"
+  ln -sf "${DOTFILES_HOME}/bash/.bashrc" "${HOME}/.bashrc"
   ln -sf "${DOTFILES_HOME}/clang/clang-format" "${HOME}/.clang-format"
   ln -sf "${DOTFILES_HOME}/python/flake8" "${XDG_CONFIG_HOME}/flake8"
   ln -sf "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"

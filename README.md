@@ -5,8 +5,8 @@
 │  └──  alacritty.yml
 │
 ├──  <b>bash</b>
-│  ├──  bashprompt
-│  └──  bashrc
+│  ├──  .bashprompt
+│  └──  .bashrc
 │
 ├──  <b>clang</b>
 │  └──  clang-format
