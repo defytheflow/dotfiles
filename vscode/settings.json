@@ -1,14 +1,23 @@
 {
+  "keyboard.dispatch": "keyCode",
+
   "window.zoomLevel": -2,
 
+  "editor.detectIndentation": true,
   "editor.fontSize": 15,
-  "editor.lineNumbers": "relative",
   "editor.insertSpaces": true,
-  "editor.tabCompletion": "on",
+  "editor.lineNumbers": "relative",
+  "editor.renderWhitespace": "all",
   "editor.rulers": [90],
+  "editor.tabCompletion": "on",
+
+
+  "workbench.colorCustomizations": {
+    "editor.lineHighlightBackground": "#333",
+  },
 
   "[json]": {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
   },
 
   "files.exclude": {
@@ -26,14 +35,12 @@
   ],
   "python.formatting.provider": "yapf",
 
- "[python]": {
+  "[python]": {
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     }
   },
-
-  "keyboard.dispatch": "keyCode",
 
   "vim.leader": "\\",
   "vim.camelCaseMotion.enable": true,
@@ -43,38 +50,33 @@
   "vim.useSystemClipboard": true,
   "vim.visualModeKeyBindingsNonRecursive": [
     {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
+      "before": [">"], "commands": ["editor.action.indentLines"]
     },
     {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
+      "before": ["<"], "commands": ["editor.action.outdentLines"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["<C-l>"],
-      "commands": [":nohl"]
+      "before": ["Y"], "after": ["y", "$"]
     },
     {
-      "before": ["Z", "Z"],
-      "commands": [":wq"]
+      "before": ["<C-l>"], "commands": [":nohl"]
     },
     {
-      "before": ["leader", "d"],
-      "after": ["d", "d"]
+      "before": ["Z", "Z"], "commands": [":wq"]
     },
     {
-      "before": ["<tab>"],
-      "after": ["g", "t"]
+      "before": ["<tab>"], "after": ["g", "t"]
     },
     {
-      "before": ["<leader>", "<tab>"],
-      "after": ["g", "T"]
+      "before": ["<leader>", "<tab>"], "after": ["g", "T"]
     },
     {
-      "before": ["Y"],
-      "after": ["y", "$"]
-    }
+      "before": ["leader", "r"], "commands": ["workbench.action.reloadWindow"],
+    },
+    {
+      "before": ["leader", "p"], "commands": ["workbench.action.showCommands"],
+    },
   ]
 }
