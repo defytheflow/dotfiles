@@ -16,7 +16,7 @@ esac
 # History
 # ------------------------------------------------------------------------------
 export HISTCONTROL='ignoredups'
-export HISTFILE="${XDG_CACHE_HOME}"/bash/history # <-- Store history in here
+export HISTFILE="${XDG_CACHE_HOME}/bash/history"
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 
@@ -38,8 +38,11 @@ if [ -n "${force_color_prompt}" ]; then
   fi
 fi
 
-# Shell options
+# Options.
 # ------------------------------------------------------------------------------
+# Enable vi mode.
+set -o vi
+
 # Append to the history file, don't overwrite it.
 shopt -s histappend
 
@@ -66,13 +69,6 @@ shopt -s nocaseglob
 
 # For ctrl mappings in vim.
 stty -ixon
-
-# Config files
-# ------------------------------------------------------------------------------
-# Load aliases and functions, that can be used in any posix shell.
-for file in "${DOTFILES_HOME}"/shell/*; do
-  . "${file}"
-done
 
 # Prompt.
 # ------------------------------------------------------------------------------
@@ -108,3 +104,8 @@ function my_prompt() {
   fi
   PS1+="${exit_status}${reset}\n\$ "
 }
+
+# Other.
+# ------------------------------------------------------------------------------
+# Source shell-independent files (aliases, functions).
+for file in "${DOTFILES_HOME}"/shell/*; do . "${file}"; done

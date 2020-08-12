@@ -61,9 +61,7 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
 # source shell-independent files (aliases, functions).
-for file in "${DOTFILES_HOME}"/shell/*; do
-    . "${file}"
-done
+for file in "${DOTFILES_HOME}"/shell/*; do . "${file}"; done
 
 # install zplug.
 [ -d "${ZPLUG_HOME}" ] || git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
