@@ -4,37 +4,38 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
-
 # If not running interactively, don't do anything.
 case $- in
-    *i*)
-          ;;
-      *)
-          return ;;
+*i*) ;;
+
+*)
+  return
+  ;;
 esac
 
 # History
 # ------------------------------------------------------------------------------
 export HISTCONTROL='ignoredups'
-export HISTFILE="${XDG_CACHE_HOME}"/bash/history  # <-- Store history in here
+export HISTFILE="${XDG_CACHE_HOME}"/bash/history # <-- Store history in here
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 
 # Colorize prompt
 # ------------------------------------------------------------------------------
 case "${TERM}" in
-    xterm-color | *-256color)
-        color_prompt='yes' ;;
+xterm-color | *-256color)
+  color_prompt='yes'
+  ;;
 esac
 
 force_color_prompt='yes'
 
 if [ -n "${force_color_prompt}" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        color_prompt='yes'
-    else
-        color_prompt=''
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    color_prompt='yes'
+  else
+    color_prompt=''
+  fi
 fi
 
 # Shell options
@@ -70,22 +71,14 @@ stty -ixon
 # ------------------------------------------------------------------------------
 # Load aliases and functions, that can be used in any posix shell.
 for file in "${DOTFILES_HOME}"/shell/*; do
-    . "${file}"
+  . "${file}"
 done
-
-# Check if running on wsl:
-if [ -n "${WSL_DISTRO_NAME}" ]; then
-    # Load aliases and functions, that can only be used in wsl.
-    for file in "${DOTFILES_HOME}"/wsl/*; do
-        . "${file}"
-    done
-fi
 
 # Prompt.
 # ------------------------------------------------------------------------------
 if [ "${color_prompt}" = 'yes' ]; then
-    [ -f "${DOTFILES_HOME}"/bash/.bashprompt ] && \
-        . "${DOTFILES_HOME}"/bash/.bashprompt
+  [ -f "${DOTFILES_HOME}"/bash/.bashprompt ] &&
+    . "${DOTFILES_HOME}"/bash/.bashprompt
 else
-    PS1='\u@\h:\w\$ '
+  PS1='\u@\h:\w\$ '
 fi
