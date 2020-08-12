@@ -8,7 +8,7 @@
 │  └──  .bashrc
 │
 ├──  <b>clang</b>
-│  └──  clang-format
+│  └──  .clang-format
 │
 ├──  <b>git</b>
 │  ├──  config
