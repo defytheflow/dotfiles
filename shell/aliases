@@ -43,6 +43,7 @@ alias ipy='ipython3'
 alias ipython='ipython3'
 
 # django
+alias dj='django-admin'
 alias djsa='django-admin startapp'
 alias djch='django-admin check'
 alias djdb='django-admin dbshell'
@@ -55,8 +56,8 @@ alias djt='django-admin test'
 
 # vim
 alias nv='nvim'
-alias vi='vim'
-alias snv='sudo nvim'
+alias vi='nvim'
+alias vim='nvim'
 
 # git
 alias ga='git add'
@@ -149,7 +150,6 @@ alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
 alias xrld='source ~/.xprofile'
 
 # dirs
-alias dot='cd ~/.dotfiles'
 alias work='cd ~/dev/repos/work'
 alias pers='cd ~/dev/repos/personal'
 alias sand='cd ~/dev/sand'

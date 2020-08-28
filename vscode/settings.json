@@ -67,6 +67,9 @@
       "before": ["Z", "Z"], "commands": [":wq"]
     },
     {
+      "before": ["<Space>"], "after": ["z", "a"]
+    },
+    {
       "before": ["<tab>"], "after": ["g", "t"]
     },
     {

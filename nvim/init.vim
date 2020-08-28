@@ -33,7 +33,7 @@ let g:airline_theme='luna'
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
 \  'c': ['ccls', 'clang'],
-\  'python': ['pyls', 'flake8', 'pydocstyle'],
+\  'python': ['pyls', 'flake8'],
 \  'sh': ['shellcheck'],
 \  'vim': ['vint'],
 \}
@@ -194,6 +194,7 @@ set number relativenumber
 set splitbelow splitright
 set clipboard+=unnamedplus " use system clipboard.
 set list listchars=tab:>-,trail:-
+set hidden " hide buffers when they are abandoned.
 "}}}
 
 "}}}
@@ -258,13 +259,17 @@ nnoremap <silent> <C-l> :nohlsearch<CR>
 nnoremap <silent> <C-s> :write<CR>
 nnoremap S :%s//g<Left><Left>
 nnoremap Y y$
-nnoremap <Space> za
 tnoremap <Esc> <C-\><C-n>
 "}}}
 
 "}}}
 
 " autocmds {{{
+augroup vimrc_gui
+  autocmd!
+  autocmd GUIEnter * set vb t_vb=
+augroup END
+
 augroup vimrc_indentation
   autocmd!
   autocmd FileType sh,vim setlocal shiftwidth=2 softtabstop=2
@@ -272,8 +277,8 @@ augroup vimrc_indentation
 augroup END
 
 augroup vimrc_whitespace
-  autocmd BufWritePre * %s/\s\+$//e " remove trailing spaces.
-  autocmd BufWritePre * %s/\n\+\%$//e " remove trailing newlines.
+  autocmd BufWritePre * %s/\s\+$//e
+  autocmd BufWritePre * %s/\n\+\%$//e
 augroup END
 
 augroup vimrc_miscellaneous
@@ -282,9 +287,7 @@ augroup vimrc_miscellaneous
   autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
   " Jump to the last position when reopening a file.
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  " Disable auto-commenting.
   autocmd FileType * set formatoptions-=cro
-  " Disable highlighting matching parentheses.
   autocmd VimEnter * :NoMatchParen
 augroup END
 "}}}

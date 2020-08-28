@@ -43,6 +43,8 @@ install_packages() {
     'bat' \
     'cargo' \
     'clang' \
+    'dmenu'\
+    'i3-gaps' \
     'mlocate' \
     'npm' \
     'python-pip' \
@@ -59,6 +61,7 @@ install_packages() {
   echo "${0}: Installing python packages..."
   for package in \
     'flake8' \
+    'flake8-quotes' \
     'ipython' \
     'isort' \
     'mypy' \
@@ -108,7 +111,7 @@ create_symlinks() {
   echo "${0}: Creating dotfiles symlinks..."
 
   ln -sf "${DOTFILES_HOME}/bash/.bashrc" "${HOME}/.bashrc"
-  ln -sf "${DOTFILES_HOME}/clang/clang-format" "${HOME}/.clang-format"
+  ln -sf "${DOTFILES_HOME}/clang/.clang-format" "${HOME}/.clang-format"
   ln -sf "${DOTFILES_HOME}/python/flake8" "${XDG_CONFIG_HOME}/flake8"
   ln -sf "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
   # ln -sf "${DOTFILES_HOME}/vscode/settings.json" "${XDG_CONFIG_HOME}/Code/User/settings.json"
@@ -119,7 +122,7 @@ create_symlinks() {
     ln -sf "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
   done
 
-  for dir in 'alacritty' 'git' 'nvim' 'python' 'tmux' 'zsh'; do
+  for dir in 'alacritty' 'i3' 'git' 'nvim' 'python' 'tmux' 'zsh'; do
     symlink_dir "${DOTFILES_HOME}/${dir}" "${XDG_CONFIG_HOME}/${dir}"
   done
 }

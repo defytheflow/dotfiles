@@ -32,6 +32,9 @@
       "class ${1}(permissions.BasePermission):",
       "",
       "    def has_permission(self, request, view):",
+      "        return ${0}",
+      "",
+      "    def has_object_permission(self, request, view, obj):",
       "        return ${0}"
     ],
     "description": "django rest permission."
