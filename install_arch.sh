@@ -46,6 +46,7 @@ install_packages() {
     'dmenu' \
     'i3-gaps' \
     'mlocate' \
+    'nitrogen' \
     'npm' \
     'python-pip' \
     'ripgrep' \
@@ -54,6 +55,7 @@ install_packages() {
     'tmux' \
     'tree' \
     'xclip' \
+    'xcompmgr' \
     'yay'; do
     sudo pacman -Qi "${package}" >/dev/null || yes | sudo pacman -S "${package}"
   done
