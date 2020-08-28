@@ -111,6 +111,7 @@ Plug 'miyakogi/seiya.vim'
 Plug 'majutsushi/tagbar'
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 Plug 'Raimondi/delimitMate'
+Plug 'chrisbra/Colorizer'
 "}}}
 
 call plug#end()
@@ -235,6 +236,7 @@ nnoremap <silent> <S-tab> :bprev<CR>
 
 " functions {{{
 nnoremap <silent> <leader>cc :call ColorColumnToggle()<CR>
+nnoremap <silent> <leader>ch :ColorHighlight<CR>
 nnoremap <silent> <leader>ck :call CursorColumnToggle()<CR>
 nnoremap <silent> <leader>cl :call CursorLineToggle()<CR>
 "}}}
