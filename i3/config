@@ -3,50 +3,40 @@
 # Created:  22.03.2020
 # Author:   Artyom Danilov (@defytheflow)
 
-# SETTINGS.
 
-# Variables {{{
+# vars {{{
 set $mod Mod4
 floating_modifier $mod
 
-# Workspaces
-set $ws1 "1 Term 🌊"
-set $ws2 "2 Web 🌐"
-set $ws3 "3 Code ⚡"
-set $ws4 "4 Code 🔥"
-set $ws5 "5 Remote 🌟"
+set $ws1 "1 TTY"
+set $ws2 "2 WEB"
+set $ws3 "3 CODE"
+set $ws4 "4 REMOTE"
+set $ws5 5
 set $ws6 6
 set $ws7 7
 set $ws8 8
 set $ws9 9
 
-# Applications
 set $terminal alacritty
-set $browser  google-chrome
+set $browser  firefox
 
-# Monitors
-set $in_monitor eDP-1
+set $in_monitor eDP1
 set $ex_monitor HDMI-1
 
-# Gaps
 set $inner_gaps 10
 set $outer_gaps 5
 
 set $resize 5
 #}}}
 
-# Startup {{{
+# startup {{{
 exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
 exec --no-startup-id i3-msg "workspace $ws2; exec $browser"
-
-# Enable terminal transparency.
-exec --no-startup-id xcompmgr -cfn
-
-# All windows here are floating.
-for_window [workspace=$ws4] floating enable
+exec --no-startup-id xcompmgr -cfn  # enable terminal transparency.
 # }}}
 
-# Colors {{{
+# colors {{{
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #000066 #1b2323 #ffffff #2e9ef4   #000066
@@ -54,44 +44,31 @@ client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-
 client.background       #ffffff
 #}}}
 
-# Windows {{{
-
-# Window title allignment
+# windows {{{
 title_align center
-
-# Window title font
 font pango:DejaVu Sans Mono 10
-
-# Workspace orientation
 default_orientation horizontal
-
-# Workspace switching
 workspace_auto_back_and_forth yes
-
-# Gaps
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 #}}}
 
-# Status bar {{{
+# status bar {{{
 bar {
     position bottom
-    status_command ~/.local/bin/bumblebee-status  \
-            -m memory disk weather sun            \
-               amixer battery layout-xkb          \
-               date time uptime                   \
-            -p date.format="%a %x"                \
-            # -t gruvbox
+    status_command ~/.local/bin/bumblebee-status \
+        -m nic memory disk weather amixer battery-upower date time \
+        -p date.format="%a %x" \
+        -t gruvbox-powerline
 }
 #}}}
 
-# BINDS.
+# binds {{{
 
-# Applications {{{
+# apps {{{
 bindsym $mod+w        exec --no-startup-id $browser
 bindsym $mod+d        exec --no-startup-id dmenu_run
 bindsym $mod+Return   exec --no-startup-id $terminal
@@ -99,41 +76,34 @@ bindsym $mod+Shift+t  exec --no-startup-id teamviewer
 bindsym $mod+Shift+a  exec --no-startup-id anydesk
 #}}}
 
-# Gaps {{{
-
-# Set default.
-bindsym $mod+0        gaps inner current set $inner_gaps; \
-                      gaps outer current set $outer_gaps
-# Remove.
+# gaps {{{
+bindsym $mod+0        gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
 bindsym $mod+Shift+0  gaps inner current set 0; gaps outer current set 0
-
-# Increase|Decrease.
 bindsym $mod+plus     gaps outer current plus 5
 bindsym $mod+minus    gaps outer current minus 5
 #}}}
 
-# Kill|Reload|Restart {{{
+# miscellaneous {{{
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # }}}
 
-# Layout {{{
-bindsym $mod+f  fullscreen toggle
-bindsym $mod+t  split toggle
-
+# layout {{{
+bindsym $mod+f            fullscreen toggle
+bindsym $mod+t            split toggle
 bindsym $mod+space        focus mode_toggle
 bindsym $mod+Shift+space  floating toggle
 #}}}
 
-# Monitors {{{
+# monitors {{{
 bindsym $mod+bracketleft        exec --no-startup-id "xrandr --output $in_monitor --auto"
 bindsym $mod+Shift+bracketleft  exec --no-startup-id "xrandr --output $in_monitor --off"
 bindsym $mod+bracketright       exec --no-startup-id "xrandr --output $ex_monitor --auto"
 bindsym $mod+Shift+bracketright exec --no-startup-id "xrandr --output $ex_monitor --off"
 #}}}
 
-# Movement {{{
+# movement {{{
 
 # Change window.
 bindsym $mod+h  focus left
@@ -198,7 +168,18 @@ bindsym $mod+Shift+KP_Up    move container to workspace $ws8
 bindsym $mod+Shift+KP_Prior move container to workspace $ws9
 #}}}
 
-# Shutdown Menu {{{
+# sound {{{
+bindsym F1  exec "amixer -D pulse set Master 1+ toggle"
+bindsym F2  exec "amixer -q set Master 5%-"
+bindsym F3  exec "amixer -q set Master 5%+"
+#}}}
+
+# scratchpad {{{
+bindsym $mod+s move scratchpad
+bindsym $mod+Shift+s scratchpad show
+#}}}
+
+# shutdown menu {{{
 set $Locker i3lock && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -218,13 +199,4 @@ mode "$mode_system" {
 bindsym $mod+Escape mode "$mode_system"
 # }}}
 
-# Sound {{{
-bindsym F1  exec "amixer -D pulse set Master 1+ toggle"
-bindsym F2  exec "amixer -q set Master 5%-"
-bindsym F3  exec "amixer -q set Master 5%+"
-#}}}
-
-# Scratchpad {{{
-bindsym $mod+s move scratchpad
-bindsym $mod+Shift+s scratchpad show
 #}}}

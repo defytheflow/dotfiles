@@ -43,7 +43,7 @@ install_packages() {
     'bat' \
     'cargo' \
     'clang' \
-    'dmenu'\
+    'dmenu' \
     'i3-gaps' \
     'mlocate' \
     'npm' \
@@ -60,6 +60,7 @@ install_packages() {
 
   echo "${0}: Installing python packages..."
   for package in \
+    'bumblebee-status' \
     'flake8' \
     'flake8-quotes' \
     'ipython' \
