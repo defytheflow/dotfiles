@@ -159,9 +159,9 @@ draw_bold_text_with_bright_colors: true
 
 # Colorscheme - (iTerm2)
 colors:
-  # primary:
-  #   background: '#101421'
-  #   foreground: '#fffbf6'
+  primary:
+    background: '#101421'
+    foreground: '#fffbf6'
 
   normal:
     black:   '#2e2e2e'
@@ -204,14 +204,14 @@ colors:
 #   - Linear
 #
 # Specifying a `duration` of `0` will disable the visual bell.
-visual_bell:
+bell:
  animation: EaseOutExpo
  duration: 0
  color: '#ffffff'
 
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.5
+background_opacity: 0.8
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -220,7 +220,7 @@ selection:
   save_to_clipboard: true
 
 # Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
+window.dynamic_title: true
 
 cursor:
   # Values for `style`:

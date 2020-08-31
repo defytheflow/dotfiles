@@ -5,19 +5,21 @@
 
   "editor.detectIndentation": true,
   "editor.fontSize": 15,
+  "editor.folding": true,
   "editor.insertSpaces": true,
   "editor.lineNumbers": "relative",
   "editor.renderWhitespace": "all",
   "editor.rulers": [90],
   "editor.tabCompletion": "on",
 
-
+  "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
+  "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
   "workbench.colorCustomizations": {
-    "editor.lineHighlightBackground": "#333",
+    "editor.lineHighlightBackground": "#333"
   },
 
   "[json]": {
-    "editor.tabSize": 2,
+    "editor.tabSize": 2
   },
 
   "files.exclude": {
@@ -27,7 +29,7 @@
 
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
-  "python.linting.pydocstyleEnabled": true,
+  "python.linting.pydocstyleEnabled": false,
   "python.linting.pylintEnabled": false,
   "python.linting.ignorePatterns": [
       "**/test*.py",
@@ -40,6 +42,10 @@
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     }
+  },
+
+  "[cpp]": {
+    "editor.formatOnSave": true
   },
 
   "vim.leader": "\\",
@@ -76,10 +82,10 @@
       "before": ["<leader>", "<tab>"], "after": ["g", "T"]
     },
     {
-      "before": ["leader", "r"], "commands": ["workbench.action.reloadWindow"],
+      "before": ["leader", "r"], "commands": ["workbench.action.reloadWindow"]
     },
     {
-      "before": ["leader", "p"], "commands": ["workbench.action.showCommands"],
-    },
+      "before": ["leader", "p"], "commands": ["workbench.action.showCommands"]
+    }
   ]
 }
