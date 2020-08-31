@@ -105,6 +105,7 @@ install_zsh() {
 create_dirs() {
   echo "${0}: Creating cache directories..."
   create_dir_if_not_exists "${HOME}/.local/bin"
+  create_dir_if_not_exists "${XDG_CONFIG_HOME}/yapf"
   for prog in 'bash' 'less' 'postgres' 'python' 'zsh'; do
     create_dir_if_not_exists "${XDG_CACHE_HOME}/${prog}"
   done
@@ -116,6 +117,8 @@ create_symlinks() {
   ln -sf "${DOTFILES_HOME}/bash/.bashrc" "${HOME}/.bashrc"
   ln -sf "${DOTFILES_HOME}/clang/.clang-format" "${HOME}/.clang-format"
   ln -sf "${DOTFILES_HOME}/python/flake8" "${XDG_CONFIG_HOME}/flake8"
+  ln -sf "${DOTFILES_HOME}/python/pycodestyle" "${XDG_CONFIG_HOME}/pycodestyle"
+  ln -sf "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
   ln -sf "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
   # ln -sf "${DOTFILES_HOME}/vscode/settings.json" "${XDG_CONFIG_HOME}/Code/User/settings.json"
   # ln -sf "${DOTFILES_HOME}/vscode/snippets" "{XDG_CONFIG_HOME}/Code/User/snippets"
