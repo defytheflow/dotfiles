@@ -54,9 +54,12 @@ install_packages() {
     'shfmt' \
     'tmux' \
     'tree' \
+    'valgrind' \
     'xclip' \
     'xcompmgr' \
-    'yay'; do
+    'yay' \
+    'zathura' \
+    'zathura-pdf-mupdf'; do
     sudo pacman -Qi "${package}" >/dev/null || yes | sudo pacman -S "${package}"
   done
 
@@ -120,6 +123,7 @@ create_symlinks() {
   ln -sf "${DOTFILES_HOME}/python/pycodestyle" "${XDG_CONFIG_HOME}/pycodestyle"
   ln -sf "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
   ln -sf "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
+
   # ln -sf "${DOTFILES_HOME}/vscode/settings.json" "${XDG_CONFIG_HOME}/Code/User/settings.json"
   # ln -sf "${DOTFILES_HOME}/vscode/snippets" "{XDG_CONFIG_HOME}/Code/User/snippets"
   # ln -sf "${DOTFILES_HOME}/vscode/keybindings.json" "{XDG_CONFIG_HOME}/Code/User/keybindings.json"

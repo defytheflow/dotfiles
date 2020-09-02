@@ -11,7 +11,6 @@ alias f='file'
 alias g='git'
 alias h='history'
 alias j='java'
-alias l='ls'
 alias p='pacman'
 alias t='tree'
 
@@ -25,6 +24,7 @@ alias so='source'
 alias sch='shellcheck'
 alias stl='systemctl'
 alias open='xdg-open'
+alias sqlite='sqlite3'
 
 # cd
 alias ..='cd ..'
@@ -152,9 +152,7 @@ alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
 alias xrld='source ~/.xprofile'
 
 # dirs
-alias work='cd ~/dev/repos/work'
-alias pers='cd ~/dev/repos/personal'
-alias sand='cd ~/dev/sand'
+alias api='cd ~/dev/repos/properoom-api'
 
 # fun
 alias starwars='telnet towel.blinkenlights.nl'

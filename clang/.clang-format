@@ -48,7 +48,7 @@ BraceWrapping:
   SplitEmptyNamespace: true
 
 BreakBeforeBinaryOperators: None
-BreakBeforeBraces: WebKit
+BreakBeforeBraces: Custom
 BreakBeforeInheritanceComma: false
 BreakInheritanceList: BeforeColon
 BreakBeforeTernaryOperators: true

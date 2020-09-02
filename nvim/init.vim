@@ -73,6 +73,11 @@ Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 "}}}
 
+" delimitmate {{{
+Plug 'Raimondi/delimitMate'
+let delimitMate_matchpairs = '(:),[:],{:}'
+"}}}
+
 " indentline {{{
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char =  '¦'
@@ -110,7 +115,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'miyakogi/seiya.vim'
 Plug 'majutsushi/tagbar'
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
-Plug 'Raimondi/delimitMate'
 Plug 'chrisbra/Colorizer'
 "}}}
 
