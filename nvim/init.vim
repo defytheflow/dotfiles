@@ -133,7 +133,7 @@ if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
 " set termguicolors
 set background=dark
 try
-  colo codedark
+  colo molokai
 catch /^Vim\%((\a\+)\)\=:E185/
   colo koehler
 endtry
