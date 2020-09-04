@@ -21,9 +21,7 @@
 ├──  <b>nvim</b>
 │  ├──  _snippets
 │  │  └──  c.snippets
-│  ├──  autoload
-│  │  └──  plug.vim
-│  ├──  colors
+│  │  └──  python.snippets
 │  └──  init.vim
 │
 ├──  <b>powershell</b>
