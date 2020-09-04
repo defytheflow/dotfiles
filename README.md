@@ -1,64 +1,65 @@
 # Structure
 
 <pre>
-├──  <b>alacritty</b>
-│  └──  alacritty.yml
+├── <b>alacritty</b>
+│  └── alacritty.yml
 │
-├──  <b>bash</b>
-│  └──  .bashrc
+├── <b>bash</b>
+│  └── .bashrc
 │
-├──  <b>clang</b>
-│  └──  .clang-format
+├── <b>clang</b>
+│  └── .clang-format
 │
-├──  <b>git</b>
-│  ├──  config
-│  ├──  ignore
-│  └──  message
+├── <b>git</b>
+│  ├── config
+│  ├── ignore
+│  └── message
 │
-├──  <b>i3</b>
-│  └──  config
+├── <b>i3</b>
+│  └── config
 │
-├──  <b>nvim</b>
-│  ├──  _snippets
-│  │  └──  c.snippets
-│  │  └──  python.snippets
-│  └──  init.vim
+├── <b>nvim</b>
+│  ├── _snippets
+│  │  └── c.snippets
+│  │  └── python.snippets
+│  └── init.vim
 │
-├──  <b>powershell</b>
-│  └──  profile.ps1
+├── <b>powershell</b>
+│  └── profile.ps1
 │
-├──  <b>python</b>
-│  ├──  flake8
-│  ├──  isort.cfg
-│  ├──  pythonrc
-│  └──  style.yapf
+├── <b>python</b>
+│  ├── flake8
+│  ├── isort.cfg
+│  ├── pycodestyle
+│  ├── pythonrc
+│  └── style.yapf
 │
-├──  <b>shell</b>
-│  ├──  aliases
-│  └──  functions
+├── <b>shell</b>
+│  ├── aliases
+│  └── functions
 │
-├──  <b>tmux</b>
-│  └──  tmux.conf
+├── <b>tmux</b>
+│  └── tmux.conf
 │
-├──  <b>vim</b>
-│  └──  vimrc
+├── <b>vim</b>
+│  └── vimrc
 │
-├──  <b>vscode</b>
-│  ├──  snippets
-│  │  └──  python.json
-│  └──  settings.json
+├── <b>vscode</b>
+│  ├── snippets
+│  │  └── python.json
+│  └── settings.json
 │
-├──  <b>zsh</b>
-│  ├──  .zprofile
-│  ├──  .zshenv
-│  ├──  .zshprompt
-│  └──  .zshrc
+├── <b>zsh</b>
+│  ├── .zprofile
+│  ├── .zshenv
+│  ├── .zshprompt
+│  └── .zshrc
 │
-├──  .profile
-├──  .xprofile
+├── .profile
+├── .xprofile
 │
-├──  install_arch.sh
-├──  install_deb.sh
+├── install_arch.sh
+├── install_deb.sh
 │
-└──  user-dirs.dirs
+└── user-dirs.dirs
 </pre>
