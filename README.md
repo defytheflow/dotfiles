@@ -24,11 +24,6 @@
 │  ├──  autoload
 │  │  └──  plug.vim
 │  ├──  colors
-│  │  ├──  codedark.vim
-│  │  ├──  darcula.vim
-│  │  ├──  gruvbox.vim
-│  │  ├──  molokai.vim
-│  │  └──  monokai.vim
 │  └──  init.vim
 │
 ├──  <b>powershell</b>
