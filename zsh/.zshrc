@@ -7,66 +7,97 @@
 
 ZSH_CACHE="${XDG_CACHE_HOME}/zsh"
 
-# history
-export HISTFILE="${ZSH_CACHE}/history"
-export HISTSIZE=10000                 # lines to store during session.
-export SAVEHIST=10000                 # lines to save after session.
-
-# don't type cd to change directories.
+# don't type cd.
 setopt autocd autopushd
 
-# called every time directory is changed.
-function chpwd() {
-    emulate -L zsh
-    ls -vh --color=auto --group-directories-first
+# ls directory after cd.
+chpwd() {
+  emulate -L zsh
+  ls -vh --color=auto --group-directories-first
 }
 
-# load completion modules.
+# history {{{
+export HISTFILE="${ZSH_CACHE}/history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+bindkey '^R' history-incremental-pattern-search-backward
+#}}}
+
+# completion {{{
 autoload -Uz compinit
 zmodload zsh/complist
-
-# include hidden files in autocompletion.
-_comp_options+=(globdots)
-
-# do menu-driven completion.
 zstyle ':completion:*' menu select
-
-# initalize completion.
+zstyle ':completion:*' matcher-list '' \
+  'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' # case insensitivity.
 compinit -d "${ZSH_CACHE}/zcompdump-${ZSH_VERSION}"
+_comp_options+=(globdots) # include hidden files.
+#}}}
 
-# enable vi-mode.
+# vi-mode {{{
+
+# enable {{{
 bindkey -v
-bindkey -v '^?' backward-delete-char  # to use backspace after vi-mode.
-export KEYTIMEOUT=1                   # to faster enter normal mode.
+bindkey -v '^?' backward-delete-char # use backspace after vi-mode.
+export KEYTIMEOUT=1 # faster enter normal mode.
+#}}}
 
-# change cursor shape in normal and insert modes.
-zle-keymap-select () {
-    if [ $KEYMAP = vicmd ]; then
-        printf '\033[2 q'
-    else
-        printf '\033[6 q'
-    fi
-}
-zle-line-init () {
-    zle -K viins
-    printf '\033[6 q'
+# edit-line {{{
+autoload edit-command-line && zle -N edit-command-line && bindkey '^v' edit-command-line
+autoload -U edit-command-line && zle -N edit-command-line && bindkey -M vicmd "^v" edit-command-line
+#}}}
+
+# cursor-shape {{{
+zle-keymap-select() {
+  if [ $KEYMAP = vicmd ] || [ $1 = 'block' ]; then
+    echo -ne '\e[1 q'
+  elif [ $KEYMAP = main ] || [ $KEYMAP = viins ] || [ $KEYMAP = '' ] || [ $1 = 'beam' ]; then
+    echo -ne '\e[5 q'
+  fi
 }
 zle -N zle-keymap-select
+zle-line-init() {
+  zle -K viins
+  echo -ne '\e[5 q'
+}
 zle -N zle-line-init
+#}}}
 
-# tab completion menu.
+# ci", ci', ci`, di", etc {{{
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+  for c in {a,i}{\',\",\`}; do
+    bindkey -M $m $c select-quoted
+  done
+done
+#}}}
+
+# ci{, ci(, ci<, di{, etc {{{
+autoload -U select-bracketed
+zle -N select-bracketed
+for m in visual viopp; do
+  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+    bindkey -M $m $c select-bracketed
+  done
+done
+#}}}
+
+# completion-menu {{{
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
+#}}}
 
-# source shell-independent files (aliases, functions).
+#}}}
+
+# configs {{{
 for file in "${DOTFILES_HOME}"/shell/*; do . "${file}"; done
+[ -f "${ZDOTDIR}"/.zshprompt ] && . "${ZDOTDIR}"/.zshprompt
+#}}}
 
-# install zplug.
+# plugins {{{
 [ -d "${ZPLUG_HOME}" ] || git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
-
-# source zplug.
 . "${ZPLUG_HOME}"/init.zsh && zplug update >/dev/null
 
 zplug "zsh-users/zsh-autosuggestions"
@@ -75,14 +106,9 @@ zplug "djui/alias-tips"
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
-# install packages.
 zplug check || zplug install
-
-# load plugins.
 zplug load
+#}}}
 
-# load prompt configuration.
-[ -f "${ZDOTDIR}"/.zshprompt ] && . "${ZDOTDIR}"/.zshprompt
-
-# init pyenv.
+# should be last.
 command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
