@@ -97,7 +97,7 @@ set foldtext=gitgutter#fold#foldtext()
 Plug 'SirVer/ultisnips' " engine
 Plug 'honza/vim-snippets' " snippets
 let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsSnippetDirectories=['UltiSnips', '_snippets']
+let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snippet']
 "}}}
 
 " text-object {{{

@@ -19,7 +19,7 @@
 │  └── config
 │
 ├── <b>nvim</b>
-│  ├── _snippets
+│  ├── snippet
 │  │  └── c.snippets
 │  │  └── python.snippets
 │  └── init.vim
