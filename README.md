@@ -41,9 +41,6 @@
 ├── <b>tmux</b>
 │  └── tmux.conf
 │
-├── <b>vim</b>
-│  └── vimrc
-│
 ├── <b>vscode</b>
 │  ├── snippets
 │  │  └── python.json
