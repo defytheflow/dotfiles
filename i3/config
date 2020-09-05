@@ -18,8 +18,9 @@ set $ws7 7
 set $ws8 8
 set $ws9 9
 
-set $terminal alacritty
-set $browser  firefox
+set $browser      firefox
+set $menu         rofi -show run
+set $terminal     alacritty
 
 set $in_monitor eDP1
 set $ex_monitor HDMI-1
@@ -69,7 +70,7 @@ bar {
 
 # apps {{{
 bindsym $mod+w        exec --no-startup-id $browser
-bindsym $mod+d        exec --no-startup-id dmenu_run
+bindsym $mod+d        exec --no-startup-id $menu
 bindsym $mod+Return   exec --no-startup-id $terminal
 bindsym $mod+Shift+t  exec --no-startup-id teamviewer
 bindsym $mod+Shift+a  exec --no-startup-id anydesk

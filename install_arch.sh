@@ -51,6 +51,7 @@ install_packages() {
     'npm' \
     'python-pip' \
     'ripgrep' \
+    'rofi' \
     'shellcheck' \
     'shfmt' \
     'tmux' \
