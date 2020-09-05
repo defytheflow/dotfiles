@@ -45,6 +45,7 @@ install_packages() {
     'clang' \
     'dmenu' \
     'i3-gaps' \
+    'gdb' \
     'mlocate' \
     'nitrogen' \
     'npm' \

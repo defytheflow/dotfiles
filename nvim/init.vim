@@ -94,8 +94,8 @@ set foldtext=gitgutter#fold#foldtext()
 "}}}
 
 " vim-snippets {{{
-Plug 'SirVer/ultisnips' " engine
-Plug 'honza/vim-snippets' " snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snippet']
 "}}}
@@ -137,6 +137,7 @@ call plug#end()
 " settings {{{
 
 " backup {{{
+set noswapfile
 set backup
 set backupdir=${HOME}/.local/share/nvim/backup
 if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
@@ -145,8 +146,8 @@ if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
 " colors {{{
 syntax enable
 set background=dark
-try | colo codedark | catch /^Vim\%((\a\+)\)\=:E185/ |colo koehler | endtry
-let g:airline_theme='codedark'
+try | colo codedark | catch |colo koehler | endtry
+let g:airline_theme = 'codedark'
 highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
 highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
 highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
@@ -154,29 +155,35 @@ highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
 
 " command-line {{{
 set history=1000
-set wildmenu " autocompletion.
+set wildmenu
 set wildmode=longest,list,full
+"}}}
+
+" error {{{
+set noerrorbells
+set novisualbell
 "}}}
 
 " indent {{{
 filetype plugin indent on
-set expandtab          " convert tabs to spaces.
-set softtabstop=4      " number of spaces inserted per tab.
-set shiftwidth=4       " number of columns to shift with << and >>.
-set smartindent        " indent on braces and previous indentation level.
+set expandtab " convert tabs to spaces.
+set softtabstop=4 " number of spaces inserted per tab.
+set shiftwidth=4 " number of columns to shift with << and >>.
+set smartindent " indent on braces and previous indentation level.
+set autoindent
 " }}}
 
 " lang {{{
+let $LANG = 'en'
+set langmenu=en
 set encoding=utf-8
-set langmenu=en_US
-let $LANG = 'en_US'
 "}}}
 
 " text-width {{{
 set nowrap
 set textwidth=90
-set formatoptions+=t   " wrap text using &textwidth.
-set colorcolumn=+0     " display a color-column using &textwidth.
+set formatoptions+=t " wrap text using &textwidth.
+set colorcolumn=+0 " display a colorcolumn using &textwidth.
 "}}}
 
 " scroll-off {{{
@@ -191,10 +198,10 @@ set smartcase
 "}}}
 
 " status-line {{{
-set ruler              " show the line and column number of cursor.
-set showcmd            " show last typed command.
-set noshowmode         " do not display mode in status line.
-set laststatus=2       " always display a status line.
+set ruler " show line and column number of cursor.
+set showcmd " show last typed command.
+set noshowmode " do not display mode in status line.
+set laststatus=2 " always display status line.
 "}}}
 
 " undo {{{
@@ -206,14 +213,19 @@ if !isdirectory(&undodir) | call mkdir(&undodir, 'p', 0700) | endif
 " misc {{{
 set mouse=a
 set cursorline
-set noswapfile
 set foldmethod=marker
 set number relativenumber
 set splitbelow splitright
 set clipboard+=unnamedplus " use system clipboard.
 set list listchars=tab:>-,trail:-
-set hidden " hide buffers when they are abandoned.
+set autoread
+set autowrite
+set lazyredraw " don't redraw while executing macros.
 "}}}
+
+"}}}
+
+" commands {{{
 
 "}}}
 
@@ -241,11 +253,6 @@ nmap <silent> [g :ALENext<CR>
 nmap <silent> K  :ALEHover<CR>
 "}}}
 
-" buffers {{{
-nnoremap <silent> <tab>   :bnext<CR>
-nnoremap <silent> <S-tab> :bprev<CR>
-"}}}
-
 " functions {{{
 nnoremap <silent> <leader>cc :call ColorColumnToggle()<CR>
 nnoremap <silent> <leader>ch :ColorHighlight<CR>
@@ -253,26 +260,22 @@ nnoremap <silent> <leader>ck :call CursorColumnToggle()<CR>
 nnoremap <silent> <leader>cl :call CursorLineToggle()<CR>
 "}}}
 
-" tagbar {{{
+" plugins {{{
 nnoremap <silent> <leader>t :TagbarToggle<CR>
 "}}}
 
-" shift {{{
-vnoremap < <gv
-vnoremap > >gv
-"}}}
-
-" vim {{{
-nnoremap <silent> <leader>ev :split  $MYVIMRC<CR>
-nnoremap <silent> <leader>sv :source $MYVIMRC<CR>
-"}}}
-
 " misc {{{
-nnoremap <silent> <C-l> :nohlsearch<CR>
-nnoremap <silent> <C-s> :write<CR>
-nnoremap S :%s//g<Left><Left>
+nnoremap <silent> <C-l> :nohl<CR>
+nnoremap <silent> <C-s> :w<CR>
+nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <silent> <leader>ve :sp $MYVIMRC<CR>
+nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
+nnoremap <silent> <tab>   :bn<CR>
+nnoremap <silent> <S-tab> :bp<CR>
 nnoremap Y y$
 tnoremap <Esc> <C-\><C-n>
+vnoremap < <gv
+vnoremap > >gv
 "}}}
 
 "}}}
@@ -282,7 +285,7 @@ tnoremap <Esc> <C-\><C-n>
 " gui {{{
 augroup vimrc_gui
   autocmd!
-  autocmd GUIEnter * set vb t_vb=
+  autocmd GUIEnter * set vb t_vb= " disable error sounds.
 augroup END
 "}}}
 
