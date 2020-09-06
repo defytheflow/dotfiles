@@ -116,6 +116,7 @@ Plug 'tpope/vim-fugitive'
 
 " misc {{{
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'unblevable/quick-scope'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'sheerun/vim-polyglot'
@@ -262,6 +263,8 @@ nnoremap <silent> <leader>cl :call CursorLineToggle()<CR>
 
 " plugins {{{
 nnoremap <silent> <leader>t :TagbarToggle<CR>
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 "}}}
 
 " misc {{{

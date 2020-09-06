@@ -18,62 +18,57 @@ set $ws7 7
 set $ws8 8
 set $ws9 9
 
-set $browser      firefox
-set $menu         rofi -show run
-set $terminal     alacritty
-
+set $browser    firefox
+set $menu       rofi -show run
+set $terminal   alacritty
+set $remote     anydesk
 set $in_monitor eDP1
 set $ex_monitor HDMI-1
-
 set $inner_gaps 10
 set $outer_gaps 5
-
-set $resize 5
+set $resize     5
 #}}}
 
 # startup {{{
 exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
-exec --no-startup-id i3-msg "workspace $ws2; exec $browser"
-exec --no-startup-id xcompmgr -cfn  # enable terminal transparency.
-# }}}
-
-# colors {{{
-# class                 border    backgr.   text      indicator  child_border
-client.focused          #006666   #1b2323   #ffffff   #2e9ef4    #006666
-client.focused_inactive #333333   #5f676a   #ffffff   #484e50    #5f676a
-client.unfocused        #333333   #222222   #888888   #292d2e    #222222
-client.urgent           #2f343a   #900000   #ffffff   #900000    #900000
-client.placeholder      #000000   #0c0c0c   #ffffff   #000000    #0c0c0c
-client.background       #ffffff
+exec --no-startup-id xcompmgr -cfn # enable terminal transparency.
 #}}}
 
-# windows {{{
-title_align center
-font pango:DejaVu Sans Mono 11
+# appearance {{{
+font pango:DejaVu Sans Mono 9
+
+title_align         center
+default_border      pixel 1
 default_orientation horizontal
+
 workspace_auto_back_and_forth yes
+
+smart_borders on
+smart_borders no_gaps
+
+smart_gaps on
+smart_gaps inverse_outer
+
 gaps inner $inner_gaps
 gaps outer $outer_gaps
-#}}}
 
-# status bar {{{
 bar {
-    position bottom
-    status_command ~/.local/bin/bumblebee-status \
-        -m nic memory disk weather amixer battery-upower date time \
-        -p date.format="%a %x" \
-        -t gruvbox-powerline
+  height   25
+  position bottom
+  status_command ~/.local/bin/bumblebee-status \
+    -m cpu memory disk nic xrandr weather amixer indicator battery-upower date time \
+    -p cpu.critical=90 memory.warning=90 date.format='%a %x'\
+    -t greyish-powerline
 }
 #}}}
 
 # binds {{{
 
 # apps {{{
-bindsym $mod+w        exec --no-startup-id $browser
-bindsym $mod+d        exec --no-startup-id $menu
-bindsym $mod+Return   exec --no-startup-id $terminal
-bindsym $mod+Shift+t  exec --no-startup-id teamviewer
-bindsym $mod+Shift+a  exec --no-startup-id anydesk
+bindsym $mod+w      exec --no-startup-id $browser
+bindsym $mod+d      exec --no-startup-id $menu
+bindsym $mod+a      exec --no-startup-id $remote
+bindsym $mod+Return exec --no-startup-id $terminal
 #}}}
 
 # gaps {{{
@@ -83,17 +78,17 @@ bindsym $mod+plus     gaps outer current plus 5
 bindsym $mod+minus    gaps outer current minus 5
 #}}}
 
-# miscellaneous {{{
+# misc {{{
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # }}}
 
 # layout {{{
-bindsym $mod+f            fullscreen toggle
-bindsym $mod+t            split toggle
-bindsym $mod+space        focus mode_toggle
-bindsym $mod+Shift+space  floating toggle
+bindsym $mod+f           fullscreen toggle
+bindsym $mod+t           split toggle
+bindsym $mod+space       focus mode_toggle
+bindsym $mod+Shift+space floating toggle
 #}}}
 
 # monitors {{{

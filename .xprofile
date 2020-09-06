@@ -4,13 +4,12 @@
 # Created:  28.03.2020
 # Author:   Artyom Danilov
 
-
 # Set background image.
 command -v nitrogen >/dev/null && nitrogen --head=xinerama --set-auto "${WALLPAPER_HOME}"
 
 if command -v setxkbmap >/dev/null; then
-    # Swap <CapsLock> and <Escape>.
-    setxkbmap -option 'caps:swapescape'
-    # Enable russian keyboard <Shift-Alt>.
-    setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'
+  # Swap <CapsLock> and <Escape>.
+  setxkbmap -option 'caps:swapescape'
+  # Enable russian keyboard <Shift-Alt>.
+  setxkbmap -layout us,ru -option 'grp:alt_shift_toggle'
 fi
