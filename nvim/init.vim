@@ -20,13 +20,6 @@ endif
 
 call plug#begin($HOME . '/.config/nvim/plugged/')
 
-" air-line {{{
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#hunks#non_zero_only = 1
-"}}}
-
 " ale {{{
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
@@ -81,6 +74,13 @@ Plug 'Yggdroot/indentLine'
 let g:indentLine_char =  '¦'
 let g:indentLine_leadingSpaceChar='·'
 let g:indentLine_leadingSpaceEnabled='1'
+"}}}
+
+" light-line {{{
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+\  'colorscheme': 'powerline',
+\}
 "}}}
 
 " vim-ccls {{{
@@ -148,7 +148,6 @@ if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
 syntax enable
 set background=dark
 try | colo codedark | catch |colo koehler | endtry
-let g:airline_theme = 'codedark'
 highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
 highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
 highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
@@ -226,24 +225,6 @@ set lazyredraw " don't redraw while executing macros.
 
 "}}}
 
-" commands {{{
-
-"}}}
-
-" functions {{{
-fun! ColorColumnToggle()
-  if strlen(&colorcolumn) == 0 | set colorcolumn=+1 | else | set colorcolumn= | endif
-endfun
-
-fun! CursorColumnToggle()
-  if &cursorcolumn == 1 | set nocursorcolumn | else | set cursorcolumn | endif
-endfun
-
-fun! CursorLineToggle()
-  if &cursorline == 1 | set nocursorline | else | set cursorline | endif
-endfun
-"}}}
-
 " mappings {{{
 
 " ale {{{
@@ -254,27 +235,33 @@ nmap <silent> [g :ALENext<CR>
 nmap <silent> K  :ALEHover<CR>
 "}}}
 
-" functions {{{
-nnoremap <silent> <leader>cc :call ColorColumnToggle()<CR>
-nnoremap <silent> <leader>ch :ColorHighlight<CR>
-nnoremap <silent> <leader>ck :call CursorColumnToggle()<CR>
-nnoremap <silent> <leader>cl :call CursorLineToggle()<CR>
-"}}}
-
 " plugins {{{
 nnoremap <silent> <leader>t :TagbarToggle<CR>
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 "}}}
 
+" highlight {{{
+nnoremap <silent> <leader>ch :ColorHighlight<CR>
+nnoremap <silent> <leader>cc :execute 'set cc=' . (&cc == '' ? '+1' : '')<CR>
+nnoremap <silent> <leader>ck :set cuc!<CR>
+nnoremap <silent> <leader>cl :set cul!<CR>
+"}}}
+
+" buffers {{{
+nnoremap <silent> <tab>   :bn<CR>
+nnoremap <silent> <S-tab> :bp<CR>
+"}}}
+
+" vim {{{
+nnoremap <silent> <leader>ve :sp $MYVIMRC<CR>
+nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
+"}}}
+
 " misc {{{
 nnoremap <silent> <C-l> :nohl<CR>
 nnoremap <silent> <C-s> :w<CR>
 nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
-nnoremap <silent> <leader>ve :sp $MYVIMRC<CR>
-nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
-nnoremap <silent> <tab>   :bn<CR>
-nnoremap <silent> <S-tab> :bp<CR>
 nnoremap Y y$
 tnoremap <Esc> <C-\><C-n>
 vnoremap < <gv
