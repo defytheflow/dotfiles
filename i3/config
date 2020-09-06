@@ -19,6 +19,7 @@ set $ws8 8
 set $ws9 9
 
 set $browser    firefox
+set $locker     i3lock --color=000000
 set $menu       rofi -show run
 set $terminal   alacritty
 set $remote     anydesk
@@ -175,18 +176,15 @@ bindsym $mod+Shift+s scratchpad show
 #}}}
 
 # shutdown menu {{{
-set $Locker i3lock && sleep 1
+set $mode_system (L)ock, lo(G)out, (S)uspend, (H)ibernate, (R)eboot, (P)oweroff
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym l exec --no-startup-id $locker, mode "default"
+    bindsym g exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
-
-    # back to normal: Enter or Escape
+    bindsym p exec --no-startup-id systemctl poweroff -i, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
