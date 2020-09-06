@@ -225,6 +225,20 @@ set lazyredraw " don't redraw while executing macros.
 
 "}}}
 
+" functions {{{
+fun! InstallPlugins()
+  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+    PlugInstall --sync | q
+  endif
+endfun
+
+fun! JumpToLastPos()
+  if line("'\"") > 1 && line("'\"") <= line('$')
+    exe "normal! g'\""
+  endif
+endfun
+"}}}
+
 " mappings {{{
 
 " ale {{{
@@ -289,6 +303,7 @@ augroup END
 
 " white-space {{{
 augroup vimrc_whitespace
+  autocmd!
   autocmd BufWritePre * %s/\s\+$//e
   autocmd BufWritePre * %s/\n\+\%$//e
 augroup END
@@ -297,12 +312,10 @@ augroup END
 " misc {{{
 augroup vimrc_misc
   autocmd!
-  " Install pluggins.
-  autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | PlugInstall --sync | q | endif
-  " Jump to the last position when reopening a file.
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  autocmd FileType * set formatoptions-=cro
-  autocmd VimEnter * :NoMatchParen
+  autocmd VimEnter    * call InstallPlugins()
+  autocmd BufReadPost * call JumpToLastPos()
+  autocmd FileType    * set formatoptions-=cro " disable auto-commenting.
+  autocmd VimEnter    * :NoMatchParen
 augroup END
 "}}}
 
