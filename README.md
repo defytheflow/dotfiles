@@ -18,6 +18,9 @@
 ├── <b>i3</b>
 │  └── config
 │
+├── <b>ipython</b>
+│  └── ipython_config.py
+│
 ├── <b>nvim</b>
 │  ├── snippet
 │  │  └── c.snippets
