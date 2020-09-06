@@ -45,7 +45,7 @@ install_packages() {
     'clang' \
     'dmenu' \
     'i3-gaps' \
-    'i3-lock' \
+    'i3lock' \
     'gdb' \
     'mlocate' \
     'nitrogen' \
@@ -131,7 +131,7 @@ create_symlinks() {
   # ln -sf "${DOTFILES_HOME}/vscode/snippets" "{XDG_CONFIG_HOME}/Code/User/snippets"
   # ln -sf "${DOTFILES_HOME}/vscode/keybindings.json" "{XDG_CONFIG_HOME}/Code/User/keybindings.json"
 
-  for file in '.profile' '.xprofile'; do
+  for file in '.inputrc' '.profile' '.xprofile'; do
     ln -sf "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
   done
 

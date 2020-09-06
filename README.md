@@ -52,6 +52,7 @@
 │  ├── .zshprompt
 │  └── .zshrc
 │
+├── .inputrc
 ├── .profile
 ├── .xprofile
 │
