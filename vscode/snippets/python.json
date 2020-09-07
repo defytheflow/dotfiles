@@ -47,23 +47,13 @@
       "",
       "    @classmethod",
       "    def setUpTestData(cls):",
-      "        ${0}"
+      "        pass",
+      "",
+      "    def setUp(self):",
+      "        pass"
     ],
     "description": "django test case."
   },
-
-  "Django Rest TestCase": {
-    "prefix": ["djrt"],
-    "body": [
-      "class ${1}(APITestCase):",
-      "",
-      "    @classmethod",
-      "    def setUpTestData(cls):",
-      "        ${0}"
-    ],
-    "description": "django rest test case."
-  },
-
   "Print Debug": {
     "prefix": ["prd"],
     "body": [
