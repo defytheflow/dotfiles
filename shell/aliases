@@ -127,12 +127,13 @@ fi
 if command -v rmtrash >/dev/null; then
   alias rm='rmtrash'
   alias rmdir='rmdirtrash'
+  alias rd='rmdir'
 else
   alias rm='rm -vi --preserve-root'
   alias rmdir='rmdir -vi'
+  alias rd='rmdir -vi'
 fi
 
-alias rd='rmdir -v'
 alias srm='sudo rm'
 alias srd='sudo rmdir'
 

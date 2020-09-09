@@ -88,9 +88,20 @@ Plug 'm-pilia/vim-ccls'
 let g:ccls_close_on_jump = v:true
 "}}}
 
+" vim-easy-align {{{
+Plug 'junegunn/vim-easy-align'
+let g:easy_align_ignore_groups = []
+"}}}
+
 " vim-gitgutter {{{
 Plug 'airblade/vim-gitgutter'
 set foldtext=gitgutter#fold#foldtext()
+augroup git_gutter_colors " update colors when colorscheme changes.
+  autocmd!
+  autocmd ColorScheme * highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
+  autocmd ColorScheme * highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
+  autocmd ColorScheme * highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
+augroup END
 "}}}
 
 " vim-snippets {{{
@@ -100,33 +111,26 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snippet']
 "}}}
 
-" text-object {{{
+" quick-scope {{{
+Plug 'unblevable/quick-scope'
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+"}}}
+
+" misc {{{
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'michaeljsmith/vim-indent-object'
-"}}}
-
-" tpope {{{
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
-"}}}
-
-" misc {{{
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'unblevable/quick-scope'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'sheerun/vim-polyglot'
 Plug 'miyakogi/seiya.vim'
-Plug 'majutsushi/tagbar'
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 Plug 'chrisbra/Colorizer'
-"}}}
-
-" colors {{{
 Plug 'tomasiser/vim-code-dark'
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
@@ -147,10 +151,7 @@ if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
 " colors {{{
 syntax enable
 set background=dark
-try | colo codedark | catch |colo koehler | endtry
-highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
-highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
-highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
+try | colo molokai | catch |colo koehler | endtry
 "}}}
 
 " command-line {{{
@@ -221,6 +222,7 @@ set list listchars=tab:>-,trail:-
 set autoread
 set autowrite
 set lazyredraw " don't redraw while executing macros.
+set hidden
 "}}}
 
 "}}}
@@ -249,8 +251,7 @@ nmap <silent> [g :ALENext<CR>
 nmap <silent> K  :ALEHover<CR>
 "}}}
 
-" plugins {{{
-nnoremap <silent> <leader>t :TagbarToggle<CR>
+" vim-easy-align {{{
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 "}}}
