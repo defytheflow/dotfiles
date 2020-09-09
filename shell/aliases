@@ -118,23 +118,33 @@ alias ta='tree -a'
 alias td='tree -d'
 alias tl='tree -a -L 2'
 
+# cat
+if command -v bat >/dev/null; then
+  alias cat='bat'
+fi
+
+# rm.
+if command -v rmtrash >/dev/null; then
+  alias rm='rmtrash'
+  alias rmdir='rmdirtrash'
+else
+  alias rm='rm -vi --preserve-root'
+  alias rmdir='rmdir -vi'
+fi
+
+alias rd='rmdir -v'
+alias srm='sudo rm'
+alias srd='sudo rmdir'
+
 # files
 alias cp='cp -iv'
 alias du='du -h'
 alias md='mkdir -pv'
 alias mv='mv -iv'
-alias rd='rmdir -v'
-alias rm='rm -vi --preserve-root '
-alias rr='rm -rfi'
 alias smv='sudo mv'
 alias smd='sudo mkdir'
-alias srd='sudo rmdir'
-alias srm='sudo rm'
 alias tc='touch'
 alias stc='sudo touch'
-
-# rmtrash
-alias rmt='rmtrash'
 
 # ssh
 alias ssh='TERM=xterm-color ssh' # 'tput: unknown terminal bug'
@@ -142,7 +152,8 @@ alias ssh='TERM=xterm-color ssh' # 'tput: unknown terminal bug'
 # windows
 alias cls='clear'
 alias copy='cp'
-alias edit='nvim'
+alias del='rm'
+alias edit='vim'
 alias move='mv'
 alias rename='mv'
 
@@ -154,7 +165,7 @@ alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
 alias xrld='source ~/.xprofile'
 
 # dirs
-alias api='cd ~/dev/repos/properoom-api'
+alias api='cd ${CODE_HOME}/repos/properoom-api'
 
 # fun
 alias starwars='telnet towel.blinkenlights.nl'

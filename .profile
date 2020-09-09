@@ -4,18 +4,17 @@
 # Created:  28.03.2020
 # Author:   Artyom Danilov (@defytheflow)
 
-# xdg
+# xdg.
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 
 # mine.
+export CODE_HOME="${HOME}/code"
 export DOTFILES_HOME="${HOME}/.dotfiles"
 export WALLPAPER_HOME="${XDG_CONFIG_HOME}/wallpaper"
-export PATH="${PATH}:${HOME}/.scripts"
 
-# path
-export PATH="${PATH}:/snap/bin"
+# path.
 export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:${XDG_CONFIG_HOME}/cargo/bin"
 export PATH="${PATH}:${PYENV_ROOT}/bin"
@@ -28,6 +27,7 @@ export PAGER='less'
 # c.
 export CPATH=
 export CFLAGS='-g -W -Wall -Wextra'
+export LDLIBS='-lncurses'
 export LD_LIBRARY_PATH=
 
 # cargo.

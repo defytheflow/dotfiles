@@ -11,7 +11,7 @@ n() {
 
 # Reload current running shell.
 rld() {
-  [ -n "${ZSH_NAME}" ] && exec zsh || [ -n "${BASH}" ] && . ~/.bashrc
+  [ -n "${ZSH_NAME}" ] && exec zsh || [ -n "${BASH}" ] && exec bash
 }
 
 # Print each path entry on a newline.
@@ -27,11 +27,6 @@ whereis() {
 # Set terminal title.
 title() {
   printf "\033]0;%s\007" "${*}"
-}
-
-exc() {
-  [ -z "${1}" ] && echo "${0}: <pattern> argument required." >&2 && return 1
-  find . -maxdepth 1 -type f -not -name "${1}" -exec rm -v {} \;
 }
 
 # Set background image.
