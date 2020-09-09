@@ -2,7 +2,7 @@
 
 # File:     .xprofile
 # Created:  28.03.2020
-# Author:   Artyom Danilov
+# Author:   Artyom Danilov (@defytheflow)
 
 # Set background image.
 command -v nitrogen >/dev/null && nitrogen --head=xinerama --set-auto "${WALLPAPER_HOME}"
