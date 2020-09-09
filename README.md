@@ -59,8 +59,8 @@
 ├── .profile
 ├── .xprofile
 │
-├── install_arch.sh
-├── install_deb.sh
+├── arch.sh
+├── deb.sh
 │
 └── user-dirs.dirs
 </pre>

@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# File:     install_arch.sh
-# Created:  29.07.2020
-# Author:   Artyom Danilov (@defytheflow)
+# File:         arch.sh
+# Created:      29.07.2020
+# Author:       Artyom Danilov (@defytheflow)
+# Description:  Installation script for arch-based distros.
 
 . "${PWD}/.profile"
 
@@ -33,7 +34,13 @@ check_internet() {
 
 update_system() {
   printf '%s' "${0}: Update system? [y/n] " && read -r ans
-  [ "${ans}" = 'y' ] && yes | sudo pacman -Syu
+  if [ "${ans}" = 'y' ] || [ "${ans}" = 'Y' ]; then
+    if command -v yay >/dev/null; then
+      yay -Syu --noconfirm && yay -Yc --noconfirm
+    else
+      sudo pacman -Syu --noconfirm
+    fi
+  fi
 }
 
 install_packages() {
@@ -63,7 +70,13 @@ install_packages() {
     'yay' \
     'zathura' \
     'zathura-pdf-mupdf'; do
-    sudo pacman -Qi "${package}" >/dev/null || yes | sudo pacman -S "${package}"
+    sudo pacman -Qi "${package}" >/dev/null || sudo pacman -S "${package}" --noconfirm
+  done
+
+  echo "${0}: Installing AUR packages..."
+  for package in \
+    'rmtrash'; do
+    yay -Qi "${package}" >/dev/null || yay -S --noconfirm "${package}"
   done
 
   echo "${0}: Installing python packages..."
@@ -71,6 +84,7 @@ install_packages() {
     'bumblebee-status' \
     'flake8' \
     'flake8-quotes' \
+    'ipdb' \
     'ipython' \
     'isort' \
     'mypy' \
@@ -80,7 +94,7 @@ install_packages() {
     'python-language-server' \
     'vim-vint' \
     'yapf'; do
-    pip3 show "${package}" >/dev/null || yes | pip3 install "${package}"
+    pip3 list | grep "${package}" >/dev/null || yes | pip3 install "${package}"
   done
 
   echo "${0}: Installing npm packages..."

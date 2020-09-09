@@ -1,8 +1,9 @@
 #!/bin/sh
 
-# File:     install_deb.sh
-# Created:  26.03.2020
-# Author:   Artyom Danilov (@defytheflow)
+# File:         deb.sh
+# Created:      26.03.2020
+# Author:       Artyom Danilov (@defytheflow)
+# Description:  Installation script for debian-based distros.
 
 . "${PWD}/.profile"
 
