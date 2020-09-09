@@ -163,6 +163,10 @@ set wildmode=longest,list,full
 " error {{{
 set noerrorbells
 set novisualbell
+augroup vimrc_error_sound
+  autocmd!
+  autocmd GUIEnter * set vb t_vb= " disable error sounds.
+augroup END
 "}}}
 
 " indent {{{
@@ -172,6 +176,11 @@ set softtabstop=4 " number of spaces inserted per tab.
 set shiftwidth=4 " number of columns to shift with << and >>.
 set smartindent " indent on braces and previous indentation level.
 set autoindent
+augroup vimrc_indent
+  autocmd!
+  autocmd FileType sh,vim setlocal shiftwidth=2 softtabstop=2
+  autocmd FileType css,html,json setlocal shiftwidth=2 softtabstop=2
+augroup END
 " }}}
 
 " lang {{{
@@ -211,6 +220,14 @@ set undodir=${HOME}/.local/share/nvim/undo
 if !isdirectory(&undodir) | call mkdir(&undodir, 'p', 0700) | endif
 "}}}
 
+" whitespace {{{
+augroup vimrc_whitespace
+  autocmd!
+  autocmd BufWritePre * %s/\s\+$//e
+  autocmd BufWritePre * %s/\n\+\%$//e
+augroup END
+"}}}
+
 " misc {{{
 set mouse=a
 set cursorline
@@ -223,8 +240,19 @@ set autoread
 set autowrite
 set lazyredraw " don't redraw while executing macros.
 set hidden
+augroup vimrc_misc
+  autocmd!
+  autocmd VimEnter    * call InstallPlugins()
+  autocmd BufReadPost * call JumpToLastPos()
+  autocmd FileType    * set formatoptions-=cro " disable auto-commenting.
+  autocmd VimEnter    * :NoMatchParen
+augroup END
 "}}}
 
+"}}}
+
+" commands {{{
+command! Rld source $MYVIMRC
 "}}}
 
 " functions {{{
@@ -268,55 +296,21 @@ nnoremap <silent> <tab>   :bn<CR>
 nnoremap <silent> <S-tab> :bp<CR>
 "}}}
 
-" vim {{{
-nnoremap <silent> <leader>ve :sp $MYVIMRC<CR>
-nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
+" shift {{{
+vnoremap < <gv
+vnoremap > >gv
 "}}}
 
 " misc {{{
 nnoremap <silent> <C-l> :nohl<CR>
 nnoremap <silent> <C-s> :w<CR>
 nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <silent> <leader>ve :sp $MYVIMRC<CR>
 nnoremap Y y$
 tnoremap <Esc> <C-\><C-n>
-vnoremap < <gv
-vnoremap > >gv
-"}}}
-
-"}}}
-
-" autocmds {{{
-
-" gui {{{
-augroup vimrc_gui
+augroup vimrc_mappings
   autocmd!
-  autocmd GUIEnter * set vb t_vb= " disable error sounds.
-augroup END
-"}}}
-
-" indent {{{
-augroup vimrc_indent
-  autocmd!
-  autocmd FileType sh,vim setlocal shiftwidth=2 softtabstop=2
-  autocmd FileType css,html,json setlocal shiftwidth=2 softtabstop=2
-augroup END
-"}}}
-
-" white-space {{{
-augroup vimrc_whitespace
-  autocmd!
-  autocmd BufWritePre * %s/\s\+$//e
-  autocmd BufWritePre * %s/\n\+\%$//e
-augroup END
-"}}}
-
-" misc {{{
-augroup vimrc_misc
-  autocmd!
-  autocmd VimEnter    * call InstallPlugins()
-  autocmd BufReadPost * call JumpToLastPos()
-  autocmd FileType    * set formatoptions-=cro " disable auto-commenting.
-  autocmd VimEnter    * :NoMatchParen
+  autocmd FileType c nnoremap <leader>m :Man<CR>
 augroup END
 "}}}
 

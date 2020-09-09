@@ -52,7 +52,7 @@ export CC='gcc'
 export CXX='g++'
 export CFLAGS='-g -W -Wall -Wextra -Wpedantic'
 export CXXFLAGS='-g -W -Wall -Wextra -Wpedantic'
-export LDLIBS='-lm -lncurses -lsqlite3'
+export LDLIBS='-lm -lncurses -lsqlite3 -lcurl'
 
 # node.
 export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"
