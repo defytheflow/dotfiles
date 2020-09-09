@@ -62,6 +62,7 @@ install_packages() {
     'rofi' \
     'shellcheck' \
     'shfmt' \
+    'time' \
     'tmux' \
     'tree' \
     'valgrind' \

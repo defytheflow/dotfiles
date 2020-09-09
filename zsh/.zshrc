@@ -4,7 +4,6 @@
 # Created:  22.03.2020
 # Author:   Artyom Danilov (@defytheflow)
 
-
 ZSH_CACHE="${XDG_CACHE_HOME}/zsh"
 
 # don't type cd.
@@ -98,17 +97,14 @@ for file in "${DOTFILES_HOME}"/shell/*; do . "${file}"; done
 
 # plugins {{{
 [ -d "${ZPLUG_HOME}" ] || git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
-. "${ZPLUG_HOME}"/init.zsh && zplug update >/dev/null
+source "${ZPLUG_HOME}/init.zsh"
 
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "djui/alias-tips"
-zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug 'zsh-users/zsh-autosuggestions'
+zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+zplug 'plugins/command-not-found', from:oh-my-zsh
+zplug 'denysdovhan/spaceship-prompt', use:spaceship.zsh, from:github, as:theme
 
 zplug check || zplug install
 zplug load
 #}}}
-
-# should be last.
-command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)"
