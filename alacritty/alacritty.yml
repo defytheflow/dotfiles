@@ -73,7 +73,7 @@ scrolling:
   history: 10000
 
   # Scrolling distance multiplier.
-  multiplier: 3
+  multiplier: 10
 
 # Font configuration
 font:
@@ -93,7 +93,7 @@ font:
     family: monospace
     style: Bold Italic
 
-  size: 12.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -330,8 +330,8 @@ mouse:
 # And optionally:
 #
 # - `mods` (see key bindings)
-#mouse_bindings:
-#  - { mouse: Middle, action: PasteSelection }
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
 
 # Key bindings
 #
