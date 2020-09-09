@@ -24,12 +24,6 @@ export EDITOR='vim'
 export BROWSER='firefox'
 export PAGER='less'
 
-# c.
-export CPATH=
-export CFLAGS='-g -W -Wall -Wextra'
-export LDLIBS='-lncurses'
-export LD_LIBRARY_PATH=
-
 # cargo.
 export CARGO_HOME="${XDG_CONFIG_HOME}/cargo"
 
@@ -52,6 +46,13 @@ export LESS_TERMCAP_se=$'\e[0m'
 export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+# make.
+export CC='gcc'
+export CXX='g++'
+export CFLAGS='-g -W -Wall -Wextra -Wpedantic'
+export CXXFLAGS='-g -W -Wall -Wextra -Wpedantic'
+export LDLIBS='-lm -lncurses -lsqlite3'
 
 # node.
 export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"
