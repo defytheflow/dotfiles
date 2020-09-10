@@ -161,7 +161,7 @@ set wildmenu
 set wildmode=longest,list,full
 "}}}
 
-" error {{{
+" errors {{{
 set noerrorbells
 set novisualbell
 augroup vimrc_error_sound
@@ -195,9 +195,6 @@ set nowrap
 set textwidth=90
 set formatoptions+=t " wrap text using &textwidth.
 set colorcolumn=+0 " display a colorcolumn using &textwidth.
-"}}}
-
-" scroll-off {{{
 set scrolloff=10
 set sidescrolloff=10
 "}}}
@@ -222,6 +219,7 @@ if !isdirectory(&undodir) | call mkdir(&undodir, 'p', 0700) | endif
 "}}}
 
 " whitespace {{{
+set list listchars=tab:>-,trail:-
 augroup vimrc_whitespace
   autocmd!
   autocmd BufWritePre * %s/\s\+$//e
@@ -230,17 +228,18 @@ augroup END
 "}}}
 
 " misc {{{
+set iskeyword+=- " treat dash separated words as a word text object.
 set mouse=a
 set cursorline
 set foldmethod=marker
 set number relativenumber
 set splitbelow splitright
 set clipboard+=unnamedplus " use system clipboard.
-set list listchars=tab:>-,trail:-
 set autoread
 set autowrite
 set lazyredraw " don't redraw while executing macros.
 set hidden
+set timeoutlen=500
 augroup vimrc_misc
   autocmd!
   autocmd VimEnter    * call InstallPlugins()
@@ -250,10 +249,6 @@ augroup vimrc_misc
 augroup END
 "}}}
 
-"}}}
-
-" commands {{{
-command! Rld source $MYVIMRC
 "}}}
 
 " functions {{{
@@ -303,10 +298,12 @@ vnoremap > >gv
 "}}}
 
 " misc {{{
+nnoremap <silent> <C-c> <Esc>
 nnoremap <silent> <C-l> :nohl<CR>
 nnoremap <silent> <C-s> :w<CR>
 nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <silent> <leader>ve :sp $MYVIMRC<CR>
+nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
 nnoremap Y y$
 tnoremap <Esc> <C-\><C-n>
 "}}}
