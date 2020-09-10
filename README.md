@@ -22,7 +22,11 @@
 │  └── ipython_config.py
 │
 ├── <b>nvim</b>
+│  ├── after
+│  │  └── ftplugin
+│  │     └── c.vim
 │  ├── snippet
+│  │  └── all.snippets
 │  │  └── c.snippets
 │  │  └── python.snippets
 │  └── init.vim

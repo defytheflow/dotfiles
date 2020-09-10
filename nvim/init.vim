@@ -308,10 +308,6 @@ nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <silent> <leader>ve :sp $MYVIMRC<CR>
 nnoremap Y y$
 tnoremap <Esc> <C-\><C-n>
-augroup vimrc_mappings
-  autocmd!
-  autocmd FileType c nnoremap <leader>m :Man<CR>
-augroup END
 "}}}
 
 "}}}
