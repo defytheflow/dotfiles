@@ -53,6 +53,7 @@ install_packages() {
     'dmenu' \
     'i3-gaps' \
     'i3lock' \
+    'jq' \
     'gdb' \
     'mlocate' \
     'nitrogen' \
@@ -63,6 +64,7 @@ install_packages() {
     'shellcheck' \
     'shfmt' \
     'time' \
+    'tk' \
     'tmux' \
     'tree' \
     'valgrind' \

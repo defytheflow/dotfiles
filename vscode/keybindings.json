@@ -1,12 +1,27 @@
 [
   {
-    "key": "ctrl+k",
-    "command": "workbench.action.focusActiveEditorGroup",
-    "when": "terminalFocus"
+    "key": "shift+;",
+    "command": "vim.showQuickpickCmdLine",
+    "when": "editorTextFocus && vim.mode != 'Insert'"
   },
   {
-    "key": "ctrl+j",
-    "command": "workbench.action.terminal.focus",
-    "when": "!terminalFocus"
+    "key": "[ g",
+    "command": "editor.action.marker.next",
+    "when": "editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+    "key": "] g",
+    "command": "editor.action.marker.prev",
+    "when": "editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+    "key": "[ c",
+    "command": "workbench.action.editor.nextChange",
+    "when": "editorTextFocus && vim.mode != 'Insert'"
+  },
+  {
+    "key": "] c",
+    "command": "workbench.action.editor.previousChange",
+    "when": "editorTextFocus && vim.mode != 'Insert'"
   }
 ]

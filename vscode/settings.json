@@ -4,7 +4,7 @@
   "window.zoomLevel": -1,
 
   "editor.detectIndentation": true,
-  "editor.fontSize": 15,
+  "editor.fontSize": 14,
   "editor.folding": true,
   "editor.insertSpaces": true,
   "editor.lineNumbers": "relative",
@@ -12,11 +12,12 @@
   "editor.rulers": [90],
   "editor.tabCompletion": "on",
 
-  "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
-  "workbench.colorTheme": "Monokai Pro (Filter Octagon)",
+  "workbench.activityBar.visible": true,
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333"
   },
+
+  "terminal.integrated.fontSize": 14,
 
   "[json]": {
     "editor.tabSize": 2
@@ -24,7 +25,8 @@
 
   "files.exclude": {
     "**/.git": true,
-    "**/.venv/**": true
+    "**/.venv/**": false,
+    "**/__pycache__/**": true
   },
 
   "python.linting.enabled": true,
@@ -32,7 +34,6 @@
   "python.linting.pydocstyleEnabled": false,
   "python.linting.pylintEnabled": false,
   "python.linting.ignorePatterns": [
-      "**/test*.py",
       "**/site-packages/**/*.py"
   ],
   "python.formatting.provider": "yapf",
@@ -53,11 +54,18 @@
   },
 
   "vim.leader": "\\",
+  "vim.textwidth": 90,
+
   "vim.camelCaseMotion.enable": true,
   "vim.replaceWithRegister": true,
+  "vim.sneak": true,
+  "vim.surround": true,
+
   "vim.incsearch": true,
   "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
+  "vim.visualstar": true,
+
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": [">"], "commands": ["editor.action.indentLines"]
@@ -66,6 +74,7 @@
       "before": ["<"], "commands": ["editor.action.outdentLines"]
     }
   ],
+
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["Y"], "after": ["y", "$"]
@@ -74,22 +83,16 @@
       "before": ["<C-l>"], "commands": [":nohl"]
     },
     {
-      "before": ["Z", "Z"], "commands": [":wq"]
-    },
-    {
-      "before": ["<Space>"], "after": ["z", "a"]
-    },
-    {
       "before": ["<tab>"], "after": ["g", "t"]
     },
     {
       "before": ["<leader>", "<tab>"], "after": ["g", "T"]
     },
     {
-      "before": ["leader", "r"], "commands": ["workbench.action.reloadWindow"]
+      "before": ["K"], "after": ["g", "h"]
     },
     {
-      "before": ["leader", "p"], "commands": ["workbench.action.showCommands"]
+      "before": ["<leader>", "r"], "commands": ["workbench.action.reloadWindow"]
     }
   ]
 }
