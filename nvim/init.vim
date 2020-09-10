@@ -32,6 +32,7 @@ let g:ale_fixers = {
 \ 'c': ['clang-format'],
 \ 'html': ['prettier'],
 \ 'javascript': ['prettier'],
+\ 'json': ['prettier'],
 \ 'python': ['isort', 'yapf'],
 \ 'sh': ['shfmt'],
 \}

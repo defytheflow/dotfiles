@@ -50,7 +50,7 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 # make.
 export CC='gcc'
 export CXX='g++'
-export CFLAGS='-g -W -Wall -Wextra -Wpedantic'
+export CFLAGS='-g -W -Wall -Wextra -Wpedantic -std=c11'
 export CXXFLAGS='-g -W -Wall -Wextra -Wpedantic'
 export LDLIBS='-lm -lncurses -lsqlite3 -lcurl'
 

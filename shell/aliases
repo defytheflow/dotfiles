@@ -6,63 +6,81 @@
 
 alias sudo='sudo ' # Run 'sudo {alias}'
 
-alias e='exa'
 alias f='file'
-alias g='git'
 alias h='history'
 alias j='java'
-alias p='pacman'
-alias t='tree'
 
-alias cl='clear'
-alias fr='free -h'
 alias jc='javac'
-alias me='curl https://ipinfo.io/ip'
-alias sc='shellcheck'
 alias so='source'
+alias vi='vim'
 
-alias sch='shellcheck'
-alias stl='systemctl'
+alias ssh='TERM=xterm-color ssh' # 'tput: unknown terminal bug'
+alias diff='diff --side-by-side --suppress-common-lines --color=auto'
+alias grep='grep --color=auto'
 alias open='xdg-open'
-alias sqlite='sqlite3'
+alias xrld='source ~/.xprofile'
 
-# cd
+# cd.
 alias ..='cd ..'
 alias ...='cd ../../'
 alias ....=' cd ../../../'
 alias .....='cd ../../../../'
 alias -- -='cd -' # Type '-' to go to previous dir.
 
-# pip
-alias pip='pip3'
+# ls.
+alias ls='ls -vh --color=auto --group-directories-first'
+alias la='ls -A'
+alias ll='ls -l'
 
-# python
+# files.
+alias cp='cp -iv'
+alias du='du -h'
+alias md='mkdir -pv'
+alias mv='mv -iv'
+alias tc='touch'
+alias rd='rmdir'
+alias rm='rm -vi --preserve-root'
+alias rmdir='rmdir -vi'
+
+# python.
 alias py='python3'
+alias pip='pip3'
 alias python='python3'
-alias ipy='ipython3'
-alias ipython='ipython3'
 
-# django
+# windows.
+alias cls='clear'
+alias copy='cp'
+alias del='rm'
+alias edit='vim'
+alias move='mv'
+alias rename='mv'
+
+# config.
+alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
+alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
+
+# dirs.
+alias api='cd ${CODE_HOME}/repos/properoom-api'
+
+# django.
 alias dj='django-admin'
-alias djch='django-admin check'
-alias djdb='django-admin dbshell'
-alias djm='django-admin migrate'
-alias djmm='django-admin makemigrations'
-alias djr='django-admin runserver'
-alias djsa='django-admin startapp'
-alias djsh='django-admin shell'
-alias djsm='django-admin showmigrations'
-alias djsp='django-admin startproject'
-alias djsql='django-admin sqlmigrate'
-alias djsu='django-admin createsuperuser'
-alias djt='django-admin test'
+alias djch='dj check'
+alias djdb='dj dbshell'
+alias djdm='dj dumpdata'
+alias djld='dj loaddata'
+alias djm='dj migrate'
+alias djmm='dj makemigrations'
+alias djr='dj runserver'
+alias djsa='dj startapp'
+alias djsh='dj shell'
+alias djsm='dj showmigrations'
+alias djsp='dj startproject'
+alias djsql='dj sqlmigrate'
+alias djsu='dj createsuperuser'
+alias djt='dj test'
+#}}}
 
-# vim
-alias nv='nvim'
-alias vi='nvim'
-alias vim='nvim'
-
-# git
+# git.
 alias ga='git add'
 alias gaa='git add --all'
 alias gb='git branch'
@@ -90,93 +108,60 @@ alias gsh='git show'
 alias gst='git stash'
 alias gstd='git stash drop'
 
-# ls
-alias ls='ls -vh --color=auto --group-directories-first'
-alias la='ls -A'
-alias lal='ls -Al'
-alias lh='ls -d .*'
-alias ll='ls -l'
-alias lr='ls -r'
-
-# exa
-alias exa='exa --icons --group-directories-first -I "__pycache__|node_modules|.git"'
-alias ea='exa -a'
-alias el='exa -l'
-alias et='exa -T'
-alias eta='exa -Ta'
-
-# grep
-alias grep='grep --color=auto'
-alias igrep='grep -i'
-
-# diff
-alias diff='diff --side-by-side --suppress-common-lines --color=auto'
-
-# tree
-alias tree='tree -C -I .git'
-alias ta='tree -a'
-alias td='tree -d'
-alias tl='tree -a -L 2'
-
-# cat
+# bat.
 if command -v bat >/dev/null; then
   alias cat='bat'
 fi
 
-# rm.
-if command -v rmtrash >/dev/null; then
-  alias rm='rmtrash'
-  alias rmdir='rmdirtrash'
-  alias rd='rmdir'
-else
-  alias rm='rm -vi --preserve-root'
-  alias rmdir='rmdir -vi'
-  alias rd='rmdir -vi'
+# exa.
+if command -v exa >/dev/null; then
+  alias exa='exa --icons --group-directories-first -I "__pycache__|node_modules|.git"'
+  alias ea='exa -a'
+  alias el='exa -l'
+  alias et='exa -T'
+  alias eta='exa -Ta'
 fi
 
-alias srm='sudo rm'
-alias srd='sudo rmdir'
-
-# files
-alias cp='cp -iv'
-alias du='du -h'
-alias md='mkdir -pv'
-alias mv='mv -iv'
-alias smv='sudo mv'
-alias smd='sudo mkdir'
-alias tc='touch'
-alias stc='sudo touch'
-
-# ssh
-alias ssh='TERM=xterm-color ssh' # 'tput: unknown terminal bug'
-
-# httpie
+# httpie.
 if command -v http >/dev/null; then
   alias http='http --style=auto --unsorted'
 fi
 
-# windows
-alias cls='clear'
-alias copy='cp'
-alias del='rm'
-alias edit='vim'
-alias move='mv'
-alias rename='mv'
+# ipython3.
+if command -v ipython3 >/dev/null; then
+  alias py='ipython3'
+  alias python='ipython3'
+fi
 
-# config
-alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
-alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
+# nvim.
+if command -v nvim >/dev/null; then
+  alias vi='nvim'
+  alias vim='nvim'
+fi
 
-# commands
-alias xrld='source ~/.xprofile'
+# rmtrash.
+if command -v rmtrash >/dev/null; then
+  alias rm='rmtrash'
+  alias rmdir='rmdirtrash'
+fi
 
-# dirs
-alias api='cd ${CODE_HOME}/repos/properoom-api'
+# shellcheck.
+if command -v shellcheck >/dev/null; then
+  alias sch='shellcheck'
+fi
 
-# fun
-alias starwars='telnet towel.blinkenlights.nl'
+# sqlite3.
+if command -v sqlite3 >/dev/null; then
+  alias sqlite='sqlite3'
+fi
 
-# wsl
+# tree.
+if command -v tree >/dev/null; then
+  alias t='tree'
+  alias tree='tree -C -I .git'
+fi
+
+# wsl.
 if [ -n "${WSL_DISTRO_NAME}" ]; then
   alias ls='ls --color=never -F' # on windows terminals 'ls' colors are awful.
 fi
