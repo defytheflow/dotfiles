@@ -78,7 +78,7 @@ export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
 export GEM_HOME="${XDG_CONFIG_HOME}/gem"
 
 # shellcheck.
-export SHELLCHECK_OPTS='--exclude=SC1072,SC1073,SC1090'
+export SHELLCHECK_OPTS='--exclude=SC1072,SC1073,SC1090,SC1091'
 
 # zsh.
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"

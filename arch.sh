@@ -87,6 +87,7 @@ install_packages() {
     'bumblebee-status' \
     'flake8' \
     'flake8-quotes' \
+    'httpie' \
     'ipdb' \
     'ipython' \
     'isort' \

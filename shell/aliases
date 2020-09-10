@@ -150,6 +150,11 @@ alias stc='sudo touch'
 # ssh
 alias ssh='TERM=xterm-color ssh' # 'tput: unknown terminal bug'
 
+# httpie
+if command -v http >/dev/null; then
+  alias http='http --style=auto --unsorted'
+fi
+
 # windows
 alias cls='clear'
 alias copy='cp'
