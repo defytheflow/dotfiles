@@ -135,6 +135,7 @@ Plug 'chrisbra/Colorizer'
 Plug 'tomasiser/vim-code-dark'
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
+Plug 'jremmen/vim-ripgrep'
 "}}}
 
 call plug#end()

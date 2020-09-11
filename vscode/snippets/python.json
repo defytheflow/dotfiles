@@ -1,28 +1,19 @@
 {
   "Django Model": {
     "prefix": ["djm"],
-    "body": [
-      "class ${1}(models.Model):",
-      "    ${0}"
-    ],
+    "body": ["class ${1}(models.Model):", "    ${0}"],
     "description": "django model definition."
   },
 
   "Django Rest Serializer": {
     "prefix": ["djrs"],
-    "body": [
-      "class ${1}Serializer(serializers.Serializer):",
-      "    ${0}"
-    ],
+    "body": ["class ${1}Serializer(serializers.Serializer):", "    ${0}"],
     "description": "django rest serializer."
   },
 
   "Django Rest ModelSerializer": {
     "prefix": ["djrms"],
-    "body": [
-      "class ${1}Serializer(serializers.ModelSerializer):",
-      "    ${0}"
-    ],
+    "body": ["class ${1}Serializer(serializers.ModelSerializer):", "    ${0}"],
     "description": "django rest model serializer."
   },
 
@@ -54,11 +45,14 @@
     ],
     "description": "django test case."
   },
-  "Print Debug": {
+
+  "IPython debugger": {
+    "prefix": ["ipdb"],
+    "body": ["__import__('ipdb').set_trace()"]
+  },
+
+  "Print debug": {
     "prefix": ["prd"],
-    "body": [
-      "print(f'${1} is {${1}}')"
-    ],
-    "description": "print debug"
+    "body": ["print(f'${1} is {${1}}')"]
   }
 }
