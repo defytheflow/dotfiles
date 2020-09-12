@@ -112,6 +112,13 @@ if command -v bat >/dev/null; then
   alias cat='bat'
 fi
 
+# coverage.
+if command -v coverage >/dev/null; then
+  alias cvrn='coverage run'
+  alias cvrp='coverage report | less'
+  alias cvht='coverage html'
+fi
+
 # httpie.
 if command -v http >/dev/null; then
   alias http='http --style=auto --unsorted'

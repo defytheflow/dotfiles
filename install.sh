@@ -22,14 +22,17 @@ check_distro() {
   printf '%s' "${0}: Checking distribution. "
   distro=$(lsb_release -d | awk '{ print $2 }')
   case "${distro}" in
-    'Manjaro')
-      . "$(dirname "${0}")/arch.sh" ;;
-    'Ubuntu')
-      . "$(dirname "${0}")/debian.sh" ;;
-    *)
-      echo '[ FAIL ]'
-      echo "${0}: Linux distribution '${distro}' is not supported."
-      return 1;
+  'Manjaro')
+    . "$(dirname "${0}")/arch.sh"
+    ;;
+  'Ubuntu')
+    . "$(dirname "${0}")/debian.sh"
+    ;;
+  *)
+    echo '[ FAIL ]'
+    echo "${0}: Linux distribution '${distro}' is not supported."
+    return 1
+    ;;
   esac
   echo "[ ${distro} ]"
 }
@@ -113,7 +116,12 @@ create_symlinks() {
     ln -sf "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
   done
 
-  for dir in 'alacritty' 'i3' 'git' 'nvim' 'python' 'tmux' 'zsh'; do
+  # do not override other people git config.
+  if [ "${USER}" = 'defytheflow' ]; then
+    symlink_dir "${DOTFILES_HOME}/git" "${XDG_CONFIG_HOME}/git"
+  fi
+
+  for dir in 'alacritty' 'i3' 'nvim' 'python' 'tmux' 'zsh'; do
     symlink_dir "${DOTFILES_HOME}/${dir}" "${XDG_CONFIG_HOME}/${dir}"
   done
 
