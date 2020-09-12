@@ -39,13 +39,6 @@ export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
 
 # less.
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # make.
 export CC='gcc'
@@ -53,6 +46,11 @@ export CXX='g++'
 export CFLAGS='-g -W -Wall -Wextra -Wpedantic -std=c11'
 export CXXFLAGS='-g -W -Wall -Wextra -Wpedantic'
 export LDLIBS='-lm -lncurses -lsqlite3 -lcurl'
+
+# man.
+if command -v bat >/dev/null; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
 
 # node.
 export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"

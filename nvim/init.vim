@@ -130,7 +130,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'sheerun/vim-polyglot'
 Plug 'miyakogi/seiya.vim'
-Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+" Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 Plug 'chrisbra/Colorizer'
 Plug 'tomasiser/vim-code-dark'
 Plug 'morhetz/gruvbox'

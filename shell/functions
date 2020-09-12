@@ -29,6 +29,15 @@ title() {
   printf "\033]0;%s\007" "${*}"
 }
 
+# Git show.
+gsh() {
+  if command -v bat > /dev/null; then
+    git show "${@}" | bat -l rs
+  else
+    git show "${@}"
+  fi
+}
+
 # Set background image.
 setbg() {
   if [ -f "${1}" ] && command -v nitrogen >/dev/null; then

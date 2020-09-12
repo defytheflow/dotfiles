@@ -104,22 +104,12 @@ alias grs='git reset'
 alias grsu="git reset 'HEAD@{1}'"
 alias grv='git revert'
 alias gs='git status'
-alias gsh='git show'
 alias gst='git stash'
 alias gstd='git stash drop'
 
 # bat.
 if command -v bat >/dev/null; then
   alias cat='bat'
-fi
-
-# exa.
-if command -v exa >/dev/null; then
-  alias exa='exa --icons --group-directories-first -I "__pycache__|node_modules|.git"'
-  alias ea='exa -a'
-  alias el='exa -l'
-  alias et='exa -T'
-  alias eta='exa -Ta'
 fi
 
 # httpie.

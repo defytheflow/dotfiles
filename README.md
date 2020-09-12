@@ -54,7 +54,6 @@
 │  └── settings.json
 │
 ├── <b>zsh</b>
-│  ├── .zprofile
 │  ├── .zshenv
 │  ├── .zshprompt
 │  └── .zshrc
@@ -62,9 +61,11 @@
 ├── .inputrc
 ├── .profile
 ├── .xprofile
+├── .zprofile
 │
 ├── arch.sh
-├── deb.sh
+├── debian.sh
+├── install.sh
 │
 └── user-dirs.dirs
 </pre>
