@@ -5,7 +5,7 @@
 # Author:   Artyom Danilov (@defytheflow)
 
 # Do not run on WSL.
-if [ -n ${WSL_DISTRO_NAME} ]; then
+if [ -n "${WSL_DISTRO_NAME}" ]; then
   return;
 fi
 

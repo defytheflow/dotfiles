@@ -6,18 +6,49 @@
 # Description:  Installation functions for arch-based distros.
 
 update_system() {
-  log -e 'Update system? [y/n] ' && read -r ans
-  if [ "${ans}" = 'y' ] || [ "${ans}" = 'Y' ]; then
-    if command -v yay >/dev/null; then
-      yay -Syu --noconfirm && yay -Yc --noconfirm
-    else
-      sudo pacman -Syu --noconfirm
-    fi
+  if command -v yay >/dev/null; then
+    yay -Syu --noconfirm && yay -Yc --noconfirm
+  else
+    sudo pacman -Syu --noconfirm
   fi
 }
 
 install_packages() {
-  log 'Installing pacman packges.'
+  log 'Installing arch packages.'
+
+  install_pacman_package() {
+    log "Checking that $(color "${1}") exists."
+    if ! sudo pacman -Qi "${1}" >/dev/null; then
+      sudo pacman -S "${1}"
+    fi
+  }
+
+  install_aur_package() {
+    log "Checking that $(color "${1}") exists."
+    if ! yay -Qi "${1}" >/dev/null; then
+      yay -S --noconfirm "${1}"
+    fi
+  }
+
+  install_neovim() {
+    log "Checking that $(color 'neovim') exists."
+    if ! command -v nvim >/dev/null; then
+      sudo pacman -S neovim python-neovim
+      sudo ln -sf "$(command -v nvim)" "$(command -v vim)"
+    fi
+  }
+
+  install_zsh() {
+    log "Checking that $(color 'zsh') exists."
+    if ! command -v zsh >/dev/null; then
+      sudo pacman -S zsh fonts-powerline
+      sudo chsh -s "$(command -v zsh)"
+    fi
+  }
+
+  install_neovim
+  install_zsh
+
   for package in \
     'alacritty' \
     'bat' \
@@ -46,27 +77,12 @@ install_packages() {
     'yay' \
     'zathura' \
     'zathura-pdf-mupdf'; do
-    sudo pacman -Qi "${package}" >/dev/null || sudo pacman -S "${package}" --noconfirm
+    install_pacman_package "${package}"
   done
 
-  log 'Installing AUR packages.'
-  for package in "rmtrash"; do
-    yay -Qi "${package}" >/dev/null || yay -S --noconfirm "${package}"
+  for package in \
+    'code' \
+    'rmtrash'; do
+    install_aur_package "${package}"
   done
-
-  command -v code >/dev/null || yay code
-  command -v nvim >/dev/null || install_neovim
-  command -v zsh >/dev/null || install_zsh
-}
-
-install_neovim() {
-  log 'Installing neovim.'
-  sudo pacman -S neovim python-neovim
-  sudo ln -sf "$(command -v nvim)" "$(command -v vim)"
-}
-
-install_zsh() {
-  log 'Installing zsh.'
-  sudo pacman -S zsh fonts-powerline
-  sudo chsh -s "$(command -v zsh)"
 }

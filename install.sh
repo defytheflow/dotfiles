@@ -7,17 +7,7 @@
 . "$(dirname "${0}")/.profile"
 
 log() {
-  format='%s\n'
-  while getopts 'e' opt; do
-    case $opt in
-      e)
-        format='%b' ;;
-      *)
-        return 1
-    esac
-  done
-  shift $((OPTIND - 1))
-  printf "${format}" "install: ${*}"
+  echo "install: ${*}"
 }
 
 color() {
@@ -28,12 +18,14 @@ main() {
   check_distro
   check_environ
   check_internet
-  update_system
+  printf 'install: %s' 'Update system? [y/n] ' && read -r ans
+  [ "${ans}" = 'y' ] && update_system
   install_packages
   install_python_packages
   install_npm_packages
   create_dirs
-  create_symlinks
+  symlink_dirs
+  symlink_files
 }
 
 check_distro() {
@@ -72,6 +64,14 @@ check_internet() {
 
 install_python_packages() {
   log 'Installing python packages.'
+
+  install_python_package() {
+    log "Checking that $(color "${1}") exists."
+    if ! python3 -m pip list | grep "${1}" >/dev/null; then
+      yes | python3 -m pip install "${1}"
+    fi
+  }
+
   for package in \
     'bumblebee-status' \
     'flake8' \
@@ -85,60 +85,51 @@ install_python_packages() {
     'python-language-server' \
     'vim-vint' \
     'yapf'; do
-    install_python_package_if_not_exists "${package}"
+    install_python_package "${package}"
   done
 }
 
 install_npm_packages() {
   log 'Installing npm packages.'
+
+  install_npm_package() {
+    log "Checking that $(color "${1}") exists."
+    if ! npm list -g "${1}" >/dev/null; then
+      yes | sudo npm install -g "${1}"
+    fi
+  }
+
   for package in \
     'prettier' \
     'neovim'; do
-    install_npm_package_if_not_exists "${package}"
+    install_npm_package "${package}"
   done
-}
-
-install_python_package_if_not_exists() {
-  log "Checking that $(color "${1}") exists."
-  if ! python3 -m pip list | grep "${1}" >/dev/null; then
-    yes | python3 -m pip install "${1}"
-  fi
-}
-
-install_npm_package_if_not_exists() {
-  log "Checking that $(color "${1}") exists."
-  if ! npm list -g "${1}" >/dev/null; then
-    yes | sudo npm install -g "${1}"
-  fi
 }
 
 create_dirs() {
   log 'Creating directories.'
-  create_dir_if_not_exists "${HOME}/.local/bin"
-  create_dir_if_not_exists "${XDG_CONFIG_HOME}/yapf"
+
+  create_dir() {
+    log "Creating $(color "${1}") directory."
+    [ -d "${1}" ] || mkdir -p "${1}"
+  }
+
+  create_dir "${HOME}/.local/bin"
+  create_dir "${XDG_CONFIG_HOME}/yapf"
+
   for prog in 'bash' 'less' 'postgres' 'python' 'zsh'; do
-    create_dir_if_not_exists "${XDG_CACHE_HOME}/${prog}"
+    create_dir "${XDG_CACHE_HOME}/${prog}"
   done
 }
 
-create_symlinks() {
-  log 'Creating symlinks.'
+symlink_dirs() {
+  log 'Symlinking directories.'
 
-  symlink_file "${DOTFILES_HOME}/bash/.bashrc" "${HOME}/.bashrc"
-  symlink_file "${DOTFILES_HOME}/clang/.clang-format" "${HOME}/.clang-format"
-  symlink_file "${DOTFILES_HOME}/python/flake8" "${XDG_CONFIG_HOME}/flake8"
-  symlink_file "${DOTFILES_HOME}/python/pycodestyle" "${XDG_CONFIG_HOME}/pycodestyle"
-  symlink_file "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
-  symlink_file "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
-  symlink_file "${DOTFILES_HOME}/ipython/ipython_config.py" "${IPYTHONDIR}/profile_default/ipython_config.py"
-
-  # symlink_file "${DOTFILES_HOME}/vscode/settings.json" "${XDG_CONFIG_HOME}/Code/User/settings.json"
-  # symlink_file "${DOTFILES_HOME}/vscode/snippets" "{XDG_CONFIG_HOME}/Code/User/snippets"
-  # symlink_file "${DOTFILES_HOME}/vscode/keybindings.json" "{XDG_CONFIG_HOME}/Code/User/keybindings.json"
-
-  for file in '.inputrc' '.profile' '.xprofile' '.zprofile'; do
-    symlink_file "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
-  done
+  symlink_dir() {
+    log "Symlinking $(color "${2}") directory."
+    [ -d "${2}" ] && rm -r "${2}"
+    ln -sf "${1}" "${2}"
+  }
 
   # to not override other people git config.
   if [ "${USER}" = 'defytheflow' ]; then
@@ -150,20 +141,41 @@ create_symlinks() {
   done
 }
 
-symlink_file() {
-  log "Symlinking $(color "${2}") file."
-  ln -sf "${1}" "${2}"
-}
+symlink_files() {
+  log 'Symlinking files.'
 
-symlink_dir() {
-  log "Symlinking $(color "${2}") directory."
-  [ -d "${2}" ] && rm -r "${2}"
-  ln -sf "${1}" "${2}"
-}
+  symlink_file() {
+    log "Symlinking $(color "${2}") file."
+    ln -sf "${1}" "${2}"
+  }
 
-create_dir_if_not_exists() {
-  log "Creating $(color "${1}") directory."
-  [ -d "${1}" ] || mkdir -p "${1}"
+  symlink_file "${DOTFILES_HOME}/bash/.bashrc" "${HOME}/.bashrc"
+  symlink_file "${DOTFILES_HOME}/clang/.clang-format" "${HOME}/.clang-format"
+  symlink_file "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
+  symlink_file "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
+  symlink_file "${DOTFILES_HOME}/ipython/ipython_config.py" "${IPYTHONDIR}/profile_default/ipython_config.py"
+
+  if command -v code >/dev/null; then
+    if command -v code-oss >/dev/null; then
+      dest="Code - OSS/User"
+    else
+      dest="Code/User"
+    fi
+
+    for file in 'settings.json' 'keybindings.json'; do
+      symlink_file "${DOTFILES_HOME}/vscode/${file}" "${XDG_CONFIG_HOME}/${dest}/${file}"
+    done
+
+    symlink_dir "${DOTFILES_HOME}/vscode/snippets" "${XDG_CONFIG_HOME}/${dest}/snippets"
+  fi
+
+  for file in 'flake8' 'pycodestyle'; do
+    symlink_file "${DOTFILES_HOME}/python/${file}" "${XDG_CONFIG_HOME}/${file}"
+  done
+
+  for file in '.inputrc' '.profile' '.xprofile' '.zprofile'; do
+    symlink_file "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
+  done
 }
 
 main
