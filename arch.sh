@@ -6,7 +6,7 @@
 # Description:  Installation functions for arch-based distros.
 
 update_system() {
-  printf '%s' "${0}: Update system? [y/n] " && read -r ans
+  log -e 'Update system? [y/n] ' && read -r ans
   if [ "${ans}" = 'y' ] || [ "${ans}" = 'Y' ]; then
     if command -v yay >/dev/null; then
       yay -Syu --noconfirm && yay -Yc --noconfirm
@@ -17,7 +17,7 @@ update_system() {
 }
 
 install_packages() {
-  echo "${0}: Installing pacman packges."
+  log 'Installing pacman packges.'
   for package in \
     'alacritty' \
     'bat' \
@@ -49,9 +49,8 @@ install_packages() {
     sudo pacman -Qi "${package}" >/dev/null || sudo pacman -S "${package}" --noconfirm
   done
 
-  echo "${0}: Installing AUR packages."
-  for package in \
-    'rmtrash'; do
+  log 'Installing AUR packages.'
+  for package in "rmtrash"; do
     yay -Qi "${package}" >/dev/null || yay -S --noconfirm "${package}"
   done
 
@@ -61,13 +60,13 @@ install_packages() {
 }
 
 install_neovim() {
-  echo "${0}: Installing neovim..."
-  sudo pacman -S neovim python-neovim &&
-    sudo ln -sf "$(which nvim)" "$(which vim)"
+  log 'Installing neovim.'
+  sudo pacman -S neovim python-neovim
+  sudo ln -sf "$(command -v nvim)" "$(command -v vim)"
 }
 
 install_zsh() {
-  echo "${0}: Installing zsh..."
-  sudo pacman -S zsh fonts-powerline &&
-    sudo chsh -s "$(which zsh)"
+  log 'Installing zsh.'
+  sudo pacman -S zsh fonts-powerline
+  sudo chsh -s "$(command -v zsh)"
 }

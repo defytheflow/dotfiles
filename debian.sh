@@ -6,7 +6,7 @@
 # Description:  Installation functions for debian-based distros.
 
 update_system() {
-  printf '%s' "${0}: Update system? [y/n] " && read -r ans
+  log -e 'Update system? [y/n] ' && read -r ans
   if [ "${ans}" = 'y' ] || [ "${ans}" = 'Y' ]; then
     sudo apt-get update -y
     sudo apt-get upgrade -y
@@ -15,9 +15,8 @@ update_system() {
 }
 
 install_packages() {
-  echo "${0}: Installing apt-get packages."
+  log 'Installing apt-get packages.'
   for package in \
-    'cargo' \
     'clang' \
     'gdb' \
     'jq' \
@@ -30,9 +29,8 @@ install_packages() {
     'tree' \
     'valgrind' \
     'xclip'; do
-    sudo dpkg -S "${package}" >/dev/null 2>&1 || sudo apt-get install -y "${package}"
+    install_package_if_not_exists "${package}"
   done
-
   command -v alacritty >/dev/null || install_alacritty
   command -v bat >/dev/null || install_bat
   command -v nvim >/dev/null || install_neovim
@@ -40,10 +38,10 @@ install_packages() {
 }
 
 install_alacritty() {
-  echo "${0}: Installing alacritty."
+  log 'Installing alacritty.'
 
   if [ -n "${WSL_DISTRO_NAME}" ]; then
-    echo "${0}: Alacritty installation is not supported for WSL."
+    log 'Alacritty installation is not supported on WSL.'
     return 1
   fi
 
@@ -56,16 +54,14 @@ install_alacritty() {
 }
 
 install_bat() {
-  echo "${0}: Installing bat."
-
+  log 'Installing bat.'
   link='https://github.com/sharkdp/bat/releases/download/v0.15.4'
   deb='bat_0.15.4_amd64.deb'
-
   wget "${link}/${deb}" && sudo dpkg -i "${deb}" && rm "${deb}"
 }
 
 install_neovim() {
-  echo "${0}: Installing neovim."
+  log 'Installing neovim.'
   sudo add-apt-repository -y ppa:neovim-ppa/stable
   sudo apt-get update
   sudo apt-get install -y neovim python3-neovim
@@ -73,7 +69,17 @@ install_neovim() {
 }
 
 install_zsh() {
-  echo "${0}: Installing zsh..."
-  sudo apt-get install -y zsh fonts-powerline &&
-    sudo chsh -s "$(which zsh)"
+  log 'Installing zsh.'
+  sudo apt-get install -y zsh fonts-powerline
+  sudo chsh -s "$(command -v zsh)"
+  compaudit | xargs chown -R "$(whoami)" # insecure directories bug.
+  compaudit | xargs chmod go-w
+}
+
+install_package_if_not_exists() {
+  log "Checking that $(color "${1}") exists."
+  if ! sudo dpkg -l "${1}" >/dev/null 2>&1 &&
+       sudo dpkg -S "${1}" >/dev/null 2>&1; then
+    sudo apt-get install -y "${1}"
+  fi
 }

@@ -90,6 +90,7 @@ export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"
 
 # wsl.
 if [ -n "${WSL_DISTRO_NAME}" ]; then
+  export LS_COLORS="ow=01;94:di=01;94" # fix dirs colors.
   export WIN_USER="$(powershell.exe '$env:UserName' | sed -e 's/\r//g')"
   export WIN_HOME="$(wslpath "$(cmd.exe /C 'echo | set /p _=%USERPROFILE%' 2>/dev/null)")"
   export WIN_DESK="${WIN_HOME}"/Desktop

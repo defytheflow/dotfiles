@@ -78,7 +78,6 @@ alias djsp='dj startproject'
 alias djsql='dj sqlmigrate'
 alias djsu='dj createsuperuser'
 alias djt='dj test'
-#}}}
 
 # git.
 alias ga='git add'
@@ -104,6 +103,7 @@ alias grs='git reset'
 alias grsu="git reset 'HEAD@{1}'"
 alias grv='git revert'
 alias gs='git status'
+alias gsh='git show'
 alias gst='git stash'
 alias gstd='git stash drop'
 
@@ -126,8 +126,8 @@ fi
 
 # ipython3.
 if command -v ipython3 >/dev/null; then
-  alias py='ipython3'
-  alias python='ipython3'
+  alias ipy='ipython3'
+  alias ipython='ipython3'
 fi
 
 # nvim.
@@ -156,9 +156,4 @@ fi
 if command -v tree >/dev/null; then
   alias t='tree'
   alias tree='tree -C -I .git'
-fi
-
-# wsl.
-if [ -n "${WSL_DISTRO_NAME}" ]; then
-  alias ls='ls --color=never -F' # on windows terminals 'ls' colors are awful.
 fi
