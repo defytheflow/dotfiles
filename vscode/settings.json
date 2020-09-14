@@ -26,7 +26,7 @@
 
   "files.exclude": {
     "**/.git": true,
-    "**/.venv/**": false,
+    "**/.venv/**": true,
     "**/__pycache__/**": true,
     "**/htmlcov/**": true,
     "**/.coverage/**": true

@@ -16,6 +16,7 @@ install_packages() {
 
   install_debian_package() {
     log "Checking that $(color "${1}") exists."
+
     if ! sudo dpkg -l "${1}" >/dev/null 2>&1 &&
       sudo dpkg -S "${1}" >/dev/null 2>&1; then
       sudo apt-get install -y "${1}"
@@ -24,6 +25,7 @@ install_packages() {
 
   install_alacritty() {
     log "Checking that $(color 'alacritty') exists."
+
     if ! command -v alacritty >/dev/null; then
       link='https://github.com/alacritty/alacritty/releases/download/v0.4.3'
       deb='Alacritty-v0.4.3-ubuntu_18_04_amd64.deb'
@@ -35,6 +37,7 @@ install_packages() {
 
   install_bat() {
     log "Checking that $(color 'bat') exists."
+
     if ! command -v bat >/dev/null; then
       log 'Installing bat.'
       link='https://github.com/sharkdp/bat/releases/download/v0.15.4'
@@ -45,6 +48,7 @@ install_packages() {
 
   install_neovim() {
     log "Checking that $(color 'neovim') exists."
+
     if ! command -v nvim >/dev/null; then
       sudo add-apt-repository -y ppa:neovim-ppa/stable
       sudo apt-get update
@@ -55,6 +59,7 @@ install_packages() {
 
   install_zsh() {
     log "Checking that $(color 'zsh') exists."
+
     if ! command -v zsh >/dev/null; then
       sudo apt-get install -y zsh fonts-powerline
       sudo chsh -s "$(command -v zsh)"

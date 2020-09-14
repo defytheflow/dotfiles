@@ -25,7 +25,7 @@ Plug 'dense-analysis/ale'
 let g:ale_linters = {
 \  'c': ['ccls', 'clang'],
 \  'python': ['pyls', 'flake8'],
-\  'sh': ['shellcheck'],
+\  'sh': ['language_server', 'shellcheck'],
 \  'vim': ['vint'],
 \}
 let g:ale_fixers = {
@@ -37,6 +37,7 @@ let g:ale_fixers = {
 \ 'sh': ['shfmt'],
 \}
 let g:ale_fix_on_save = 1
+let g:ale_sh_shfmt_options = '-p -ci -i 2'
 "}}}
 
 " camel-case-motion {{{

@@ -1,4 +1,5 @@
 nvim/autoload/plug.vim
 nvim/plugged/
 nvim/.netrwhist
+vscode/*Storage
 zsh/.zcompdump

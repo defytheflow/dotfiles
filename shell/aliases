@@ -77,7 +77,7 @@ alias djsm='dj showmigrations'
 alias djsp='dj startproject'
 alias djsql='dj sqlmigrate'
 alias djsu='dj createsuperuser'
-alias djt='dj test'
+alias djt='dj test --keepdb --pdb --failfast --noinput -v2'
 
 # git.
 alias ga='git add'

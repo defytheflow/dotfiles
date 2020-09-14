@@ -21,7 +21,7 @@ main() {
   printf 'install: %s' 'Update system? [y/n] ' && read -r ans
   [ "${ans}" = 'y' ] && update_system
   install_packages
-  install_python_packages
+  install_pip_packages
   install_npm_packages
   create_dirs
   symlink_dirs
@@ -30,24 +30,28 @@ main() {
 
 check_distro() {
   log 'Checking distribution.'
+
   distro=$(lsb_release -d | awk '{ print $2 }')
+
   case "${distro}" in
-  'Manjaro')
-    . "$(dirname "${0}")/arch.sh"
-    ;;
-  'Ubuntu')
-    . "$(dirname "${0}")/debian.sh"
-    ;;
-  *)
-    echo "${0}: Linux distribution '${distro}' is not supported."
-    return 1
-    ;;
+    'Manjaro')
+      . "$(dirname "${0}")/arch.sh"
+      ;;
+    'Ubuntu')
+      . "$(dirname "${0}")/debian.sh"
+      ;;
+    *)
+      log "Distribution '${distro}' is not supported."
+      return 1
+      ;;
   esac
+
   log "Distribution: $(color "${distro}")"
 }
 
 check_environ() {
   log 'Checking evironment variables.'
+
   if [ -z "${DOTFILES_HOME}" ]; then
     log 'DOTFILES_HOME environment variable has not been set.'
     return 1
@@ -56,17 +60,19 @@ check_environ() {
 
 check_internet() {
   log 'Checking internet connection.'
+
   if ! wget -q --spider https://google.com; then
     log 'no internet connection.'
     return 1
   fi
 }
 
-install_python_packages() {
-  log 'Installing python packages.'
+install_pip_packages() {
+  log 'Installing pip packages.'
 
-  install_python_package() {
+  install_pip_package() {
     log "Checking that $(color "${1}") exists."
+
     if ! python3 -m pip list | grep "${1}" >/dev/null; then
       yes | python3 -m pip install "${1}"
     fi
@@ -85,7 +91,7 @@ install_python_packages() {
     'python-language-server' \
     'vim-vint' \
     'yapf'; do
-    install_python_package "${package}"
+    install_pip_package "${package}"
   done
 }
 
@@ -94,12 +100,14 @@ install_npm_packages() {
 
   install_npm_package() {
     log "Checking that $(color "${1}") exists."
+
     if ! npm list -g "${1}" >/dev/null; then
       yes | sudo npm install -g "${1}"
     fi
   }
 
   for package in \
+    'bash-language-server' \
     'prettier' \
     'neovim'; do
     install_npm_package "${package}"
@@ -131,6 +139,11 @@ symlink_dirs() {
     ln -sf "${1}" "${2}"
   }
 
+  if command -v code >/dev/null; then
+    command -v code-oss >/dev/null && dest='Code - OSS/User' || dest='Code/User'
+    symlink_dir "${DOTFILES_HOME}/vscode" "${XDG_CONFIG_HOME}/${dest}"
+  fi
+
   # to not override other people git config.
   if [ "${USER}" = 'defytheflow' ]; then
     symlink_dir "${DOTFILES_HOME}/git" "${XDG_CONFIG_HOME}/git"
@@ -149,29 +162,21 @@ symlink_files() {
     ln -sf "${1}" "${2}"
   }
 
-  symlink_file "${DOTFILES_HOME}/bash/.bashrc" "${HOME}/.bashrc"
-  symlink_file "${DOTFILES_HOME}/clang/.clang-format" "${HOME}/.clang-format"
+  if command -v ipython >/dev/null; then
+    dest="${DOTFILES_HOME}/ipython/ipython_config.py"
+    src="${IPYTHONDIR}/profile_default/ipython_config.py"
+    symlink_file "${dest}" "${src}"
+  fi
+
   symlink_file "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
   symlink_file "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
-  symlink_file "${DOTFILES_HOME}/ipython/ipython_config.py" "${IPYTHONDIR}/profile_default/ipython_config.py"
-
-  if command -v code >/dev/null; then
-    if command -v code-oss >/dev/null; then
-      dest="Code - OSS/User"
-    else
-      dest="Code/User"
-    fi
-
-    for file in 'settings.json' 'keybindings.json'; do
-      symlink_file "${DOTFILES_HOME}/vscode/${file}" "${XDG_CONFIG_HOME}/${dest}/${file}"
-    done
-
-    symlink_dir "${DOTFILES_HOME}/vscode/snippets" "${XDG_CONFIG_HOME}/${dest}/snippets"
-  fi
 
   for file in 'flake8' 'pycodestyle'; do
     symlink_file "${DOTFILES_HOME}/python/${file}" "${XDG_CONFIG_HOME}/${file}"
   done
+
+  symlink_file "${DOTFILES_HOME}/bash/.bashrc" "${HOME}/.bashrc"
+  symlink_file "${DOTFILES_HOME}/clang/.clang-format" "${HOME}/.clang-format"
 
   for file in '.inputrc' '.profile' '.xprofile' '.zprofile'; do
     symlink_file "${DOTFILES_HOME}/${file}" "${HOME}/${file}"

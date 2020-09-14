@@ -18,6 +18,7 @@ install_packages() {
 
   install_pacman_package() {
     log "Checking that $(color "${1}") exists."
+
     if ! sudo pacman -Qi "${1}" >/dev/null; then
       sudo pacman -S "${1}"
     fi
@@ -25,6 +26,7 @@ install_packages() {
 
   install_aur_package() {
     log "Checking that $(color "${1}") exists."
+
     if ! yay -Qi "${1}" >/dev/null; then
       yay -S --noconfirm "${1}"
     fi
@@ -32,6 +34,7 @@ install_packages() {
 
   install_neovim() {
     log "Checking that $(color 'neovim') exists."
+
     if ! command -v nvim >/dev/null; then
       sudo pacman -S neovim python-neovim
       sudo ln -sf "$(command -v nvim)" "$(command -v vim)"
@@ -40,6 +43,7 @@ install_packages() {
 
   install_zsh() {
     log "Checking that $(color 'zsh') exists."
+
     if ! command -v zsh >/dev/null; then
       sudo pacman -S zsh fonts-powerline
       sudo chsh -s "$(command -v zsh)"
