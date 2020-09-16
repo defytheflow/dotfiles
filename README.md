@@ -51,6 +51,7 @@
 ├── <b>vscode</b>
 │  ├── snippets
 │  │  └── python.json
+│  │── keybindings.json
 │  └── settings.json
 │
 ├── <b>zsh</b>

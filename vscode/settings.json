@@ -20,10 +20,7 @@
 
   "terminal.integrated.fontSize": 14,
 
-  "[json]": {
-    "editor.tabSize": 2
-  },
-
+  "files.trimTrailingWhitespace": true,
   "files.exclude": {
     "**/.git": true,
     "**/.venv/**": true,
@@ -56,6 +53,10 @@
     "editor.formatOnSave": true
   },
 
+  "[json]": {
+    "editor.tabSize": 2
+  },
+
   "vim.leader": "\\",
   "vim.textwidth": 90,
 
@@ -80,6 +81,9 @@
 
   "vim.normalModeKeyBindingsNonRecursive": [
     {
+      "before": ["K"], "after": ["g", "h"]
+    },
+    {
       "before": ["Y"], "after": ["y", "$"]
     },
     {
@@ -92,10 +96,10 @@
       "before": ["<leader>", "<tab>"], "after": ["g", "T"]
     },
     {
-      "before": ["K"], "after": ["g", "h"]
+      "before": ["<leader>", "r"], "commands": ["workbench.action.reloadWindow"]
     },
     {
-      "before": ["<leader>", "r"], "commands": ["workbench.action.reloadWindow"]
+      "before": ["<leader>", "t"], "commands": ["workbench.action.toggleSidebarVisibility"]
     }
   ]
 }

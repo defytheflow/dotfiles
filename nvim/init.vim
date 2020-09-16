@@ -11,10 +11,10 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 " plugins {{{
 
-" vim-plug {{{
+" plug {{{
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  let link = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  execute 'silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs ' . link
 endif
 "}}}
 
@@ -23,18 +23,18 @@ call plug#begin($HOME . '/.config/nvim/plugged/')
 " ale {{{
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
-\  'c': ['ccls', 'clang'],
+\  'c':      ['ccls', 'clang'],
 \  'python': ['pyls', 'flake8'],
-\  'sh': ['language_server', 'shellcheck'],
-\  'vim': ['vint'],
+\  'sh':     ['language_server', 'shellcheck'],
+\  'vim':    ['vimls', 'vint'],
 \}
 let g:ale_fixers = {
-\ 'c': ['clang-format'],
-\ 'html': ['prettier'],
+\ 'c':          ['clang-format'],
+\ 'html':       ['prettier'],
 \ 'javascript': ['prettier'],
-\ 'json': ['prettier'],
-\ 'python': ['isort', 'yapf'],
-\ 'sh': ['shfmt'],
+\ 'json':       ['prettier'],
+\ 'python':     ['isort', 'yapf'],
+\ 'sh':         ['shfmt'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_sh_shfmt_options = '-p -ci -i 2'
@@ -43,6 +43,11 @@ let g:ale_sh_shfmt_options = '-p -ci -i 2'
 " camel-case-motion {{{
 Plug 'bkad/CamelCaseMotion'
 let g:camelcasemotion_key = '<leader>'
+"}}}
+
+" ccls {{{
+Plug 'm-pilia/vim-ccls'
+let g:ccls_close_on_jump = v:true
 "}}}
 
 " close-tag {{{
@@ -71,11 +76,27 @@ Plug 'Raimondi/delimitMate'
 let delimitMate_matchpairs = '(:),[:],{:}'
 "}}}
 
+" easy-align {{{
+Plug 'junegunn/vim-easy-align'
+let g:easy_align_ignore_groups = []
+"}}}
+
+" gitgutter {{{
+Plug 'airblade/vim-gitgutter'
+set foldtext=gitgutter#fold#foldtext()
+augroup git_gutter_colors
+  autocmd!
+  autocmd ColorScheme * highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
+  autocmd ColorScheme * highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
+  autocmd ColorScheme * highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
+augroup END
+"}}}
+
 " indent-line {{{
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char =  '¦'
-let g:indentLine_leadingSpaceChar='·'
-let g:indentLine_leadingSpaceEnabled='1'
+let g:indentLine_leadingSpaceChar = '·'
+let g:indentLine_leadingSpaceEnabled = '1'
 "}}}
 
 " light-line {{{
@@ -85,32 +106,11 @@ let g:lightline = {
 \}
 "}}}
 
-" vim-ccls {{{
-Plug 'm-pilia/vim-ccls'
-let g:ccls_close_on_jump = v:true
-"}}}
-
-" vim-easy-align {{{
-Plug 'junegunn/vim-easy-align'
-let g:easy_align_ignore_groups = []
-"}}}
-
-" vim-gitgutter {{{
-Plug 'airblade/vim-gitgutter'
-set foldtext=gitgutter#fold#foldtext()
-augroup git_gutter_colors " update colors when colorscheme changes.
-  autocmd!
-  autocmd ColorScheme * highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
-  autocmd ColorScheme * highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
-  autocmd ColorScheme * highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
-augroup END
-"}}}
-
-" vim-snippets {{{
+" snippets {{{
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsSnippetDirectories=['UltiSnips', 'snippet']
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippet']
 "}}}
 
 " quick-scope {{{
@@ -131,7 +131,6 @@ Plug 'junegunn/goyo.vim'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'sheerun/vim-polyglot'
 Plug 'miyakogi/seiya.vim'
-" Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 Plug 'chrisbra/Colorizer'
 Plug 'tomasiser/vim-code-dark'
 Plug 'morhetz/gruvbox'
@@ -174,10 +173,10 @@ augroup END
 
 " indent {{{
 filetype plugin indent on
-set expandtab " convert tabs to spaces.
-set softtabstop=4 " number of spaces inserted per tab.
-set shiftwidth=4 " number of columns to shift with << and >>.
-set smartindent " indent on braces and previous indentation level.
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set smartindent
 set autoindent
 augroup vimrc_indent
   autocmd!
@@ -208,9 +207,9 @@ set smartcase
 "}}}
 
 " status-line {{{
-set ruler " show line and column number of cursor.
-set showcmd " show last typed command.
-set noshowmode " do not display mode in status line.
+set ruler
+set showcmd
+set noshowmode
 set laststatus=2 " always display status line.
 "}}}
 
@@ -271,22 +270,15 @@ endfun
 
 " ale {{{
 nmap <silent> gd :ALEGoToDefinition<CR>
-nmap <silent> gf :ALEFindReferences<CR>
+nmap <silent> gs :ALEFindReferences<CR>
 nmap <silent> ]g :ALEPrevious<CR>
 nmap <silent> [g :ALENext<CR>
 nmap <silent> K  :ALEHover<CR>
 "}}}
 
-" vim-easy-align {{{
+" easy-align {{{
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-"}}}
-
-" highlight {{{
-nnoremap <silent> <leader>ch :ColorHighlight<CR>
-nnoremap <silent> <leader>cc :execute 'set cc=' . (&cc == '' ? '+1' : '')<CR>
-nnoremap <silent> <leader>ck :set cuc!<CR>
-nnoremap <silent> <leader>cl :set cul!<CR>
 "}}}
 
 " buffers {{{
@@ -294,19 +286,29 @@ nnoremap <silent> <tab>   :bn<CR>
 nnoremap <silent> <S-tab> :bp<CR>
 "}}}
 
-" shift {{{
-vnoremap < <gv
-vnoremap > >gv
-"}}}
-
-" misc {{{
+" ctrl {{{
 nnoremap <silent> <C-c> <Esc>
 nnoremap <silent> <C-l> :nohl<CR>
 nnoremap <silent> <C-s> :w<CR>
-nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
+"}}}
+
+" highlight {{{
+nnoremap <silent> <leader>cc :execute 'set cc=' . (&cc == '' ? '+1' : '')<CR>
+nnoremap <silent> <leader>ch :ColorHighlight<CR>
+nnoremap <silent> <leader>ck :set cuc!<CR>
+nnoremap <silent> <leader>cl :set cul!<CR>
+"}}}
+
+" vim {{{
 nnoremap <silent> <leader>ve :sp $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
+"}}}
+
+" misc {{{
 nnoremap Y y$
+vnoremap < <gv
+vnoremap > >gv
+nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 tnoremap <Esc> <C-\><C-n>
 "}}}
 

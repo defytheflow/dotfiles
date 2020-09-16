@@ -109,7 +109,8 @@ install_npm_packages() {
   for package in \
     'bash-language-server' \
     'prettier' \
-    'neovim'; do
+    'neovim' \
+    'vim-language-server'; do
     install_npm_package "${package}"
   done
 }
