@@ -136,6 +136,7 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 Plug 'jremmen/vim-ripgrep'
+Plug 'justinmk/vim-sneak'
 "}}}
 
 call plug#end()

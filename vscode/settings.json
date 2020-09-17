@@ -33,9 +33,7 @@
   "python.linting.flake8Enabled": true,
   "python.linting.pydocstyleEnabled": false,
   "python.linting.pylintEnabled": false,
-  "python.linting.ignorePatterns": [
-      "**/site-packages/**/*.py"
-  ],
+  "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
   "python.formatting.provider": "yapf",
 
   "[python]": {
@@ -72,34 +70,71 @@
 
   "vim.visualModeKeyBindingsNonRecursive": [
     {
-      "before": [">"], "commands": ["editor.action.indentLines"]
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
     },
     {
-      "before": ["<"], "commands": ["editor.action.outdentLines"]
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
     }
   ],
 
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["K"], "after": ["g", "h"]
+      "before": ["K"],
+      "after": ["g", "h"]
     },
     {
-      "before": ["Y"], "after": ["y", "$"]
+      "before": ["Y"],
+      "after": ["y", "$"]
     },
     {
-      "before": ["<C-l>"], "commands": [":nohl"]
+      "before": ["<C-l>"],
+      "commands": [":nohl"]
     },
     {
-      "before": ["<tab>"], "after": ["g", "t"]
+      "before": ["<tab>"],
+      "after": ["g", "t"]
     },
     {
-      "before": ["<leader>", "<tab>"], "after": ["g", "T"]
+      "before": ["<leader>", "<tab>"],
+      "after": ["g", "T"]
     },
     {
-      "before": ["<leader>", "r"], "commands": ["workbench.action.reloadWindow"]
+      "before": ["<leader>", "r"],
+      "commands": ["workbench.action.reloadWindow"]
     },
     {
-      "before": ["<leader>", "t"], "commands": ["workbench.action.toggleSidebarVisibility"]
+      "before": ["<leader>", "t"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["g", "s"],
+      "commands": ["references-view.find"]
+    },
+    {
+      "before": ["]", "<space>"],
+      "commands": ["editor.action.insertLineAfter"]
+    },
+    {
+      "before": ["[", "<space>"],
+      "commands": ["editor.action.insertLineBefore"]
+    },
+    {
+      "before": ["[", "g"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["]", "g"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    {
+      "before": ["[", "c"],
+      "commands": ["workbench.action.editor.nextChange"]
+    },
+    {
+      "before": ["]", "c"],
+      "commands": ["workbench.action.editor.previousChange"]
     }
   ]
 }

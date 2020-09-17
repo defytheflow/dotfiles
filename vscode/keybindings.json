@@ -3,40 +3,5 @@
     "key": "shift+;",
     "command": "vim.showQuickpickCmdLine",
     "when": "editorTextFocus && vim.mode != 'Insert'"
-  },
-  {
-    "key": "[ g",
-    "command": "editor.action.marker.next",
-    "when": "editorTextFocus && vim.mode != 'Insert'"
-  },
-  {
-    "key": "] g",
-    "command": "editor.action.marker.prev",
-    "when": "editorTextFocus && vim.mode != 'Insert'"
-  },
-  {
-    "key": "[ c",
-    "command": "workbench.action.editor.nextChange",
-    "when": "editorTextFocus && vim.mode != 'Insert'"
-  },
-  {
-    "key": "] c",
-    "command": "workbench.action.editor.previousChange",
-    "when": "editorTextFocus && vim.mode != 'Insert'"
-  },
-  {
-    "key": "] space",
-    "command": "editor.action.insertLineAfter",
-    "when": "editorTextFocus && vim.mode != 'Insert'"
-  },
-  {
-    "key": "[ space",
-    "command": "editor.action.insertLineBefore",
-    "when": "editorTextFocus && vim.mode != 'Insert'"
-  },
-  {
-    "key": "g s",
-    "command": "references-view.find",
-    "when": "editorHasReferenceProvider"
   }
 ]
