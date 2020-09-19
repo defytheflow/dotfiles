@@ -4,21 +4,20 @@
 " Author:   Artyom Danilov (@defytheflow)
 
 
-" vars {{{
 let g:mapleader = '\'
 let g:python3_host_prog = '/usr/bin/python3'
-"}}}
 
 " plugins {{{
 
-" plug {{{
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  let link = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  execute 'silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs ' . link
+" vim-plug {{{
+let vimplug = expand('~/.config/nvim/autoload/plug.vim')
+if !filereadable(vimplug)
+  let url = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  silent exec '!curl -fLo ' . vimplug . ' --create-dirs ' . url
 endif
 "}}}
 
-call plug#begin($HOME . '/.config/nvim/plugged/')
+call plug#begin(expand('~/.config/nvim/plugged'))
 
 " ale {{{
 Plug 'dense-analysis/ale'
@@ -178,28 +177,19 @@ try | colo molokai | catch |colo koehler | endtry
 set history=1000
 set wildmenu
 set wildmode=longest,list,full
-"}}}
-
-" errors {{{
-set noerrorbells
-set novisualbell
-augroup vimrc_error_sound
-  autocmd!
-  autocmd GUIEnter * set vb t_vb= " disable error sounds.
-augroup END
+set wildignorecase
 "}}}
 
 " indent {{{
 filetype plugin indent on
-set expandtab
+set expandtab " convert <tab> key-presses to spaces.
 set softtabstop=4
 set shiftwidth=4
-set smartindent
 set autoindent
+set smartindent
 augroup vimrc_indent
   autocmd!
-  autocmd FileType sh,vim setlocal shiftwidth=2 softtabstop=2
-  autocmd FileType css,html,json setlocal shiftwidth=2 softtabstop=2
+  autocmd FileType sh,vim,css,html,json setlocal shiftwidth=2 softtabstop=2
 augroup END
 " }}}
 
@@ -247,18 +237,17 @@ augroup END
 "}}}
 
 " misc {{{
-set iskeyword+=- " treat dash separated words as a word text object.
 set mouse=a
+set hidden
+set iskeyword+=- " treat dash separated words as a word text object.
 set cursorline
 set foldmethod=marker
-set number relativenumber
+set relativenumber
 set splitbelow splitright
 set clipboard+=unnamedplus " use system clipboard.
-set autoread
-set autowrite
 set lazyredraw " don't redraw while executing macros.
-set hidden
 set timeoutlen=500
+set noerrorbells visualbell t_vb=
 augroup vimrc_misc
   autocmd!
   autocmd VimEnter    * call InstallPlugins()
@@ -286,49 +275,47 @@ endfun
 
 " mappings {{{
 
-" ale {{{
+" ale
 nmap <silent> gd :ALEGoToDefinition<CR>
 nmap <silent> gs :ALEFindReferences<CR>
 nmap <silent> ]g :ALEPrevious<CR>
 nmap <silent> [g :ALENext<CR>
 nmap <silent> K  :ALEHover<CR>
-"}}}
 
-" easy-align {{{
+" easy-align
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-"}}}
 
-" buffers {{{
-nnoremap <silent> <tab>   :bn<CR>
-nnoremap <silent> <S-tab> :bp<CR>
-"}}}
+" buffers
+nnoremap gb :ls<CR>:b<space>
+nnoremap <leader>l :ls<CR>:b<space>
+nnoremap <silent> <tab> :bn<CR>
 
-" ctrl {{{
+" ctrl
 nnoremap <silent> <C-c> <Esc>
 nnoremap <silent> <C-l> :nohl<CR>
 nnoremap <silent> <C-s> :w<CR>
-"}}}
 
-" highlight {{{
+" highlight
 nnoremap <silent> <leader>cc :execute 'set cc=' . (&cc == '' ? '+1' : '')<CR>
 nnoremap <silent> <leader>ch :ColorHighlight<CR>
 nnoremap <silent> <leader>ck :set cuc!<CR>
 nnoremap <silent> <leader>cl :set cul!<CR>
-"}}}
 
-" vim {{{
+" vim
 nnoremap <silent> <leader>ve :sp $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
-"}}}
 
-" misc {{{
-nnoremap Y y$
+" visual
 vnoremap < <gv
 vnoremap > >gv
-nnoremap <leader>t :NERDTreeToggle<CR>
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" misc
+nnoremap Y y$
+nnoremap <silent> <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 tnoremap <Esc> <C-\><C-n>
-"}}}
 
 "}}}
