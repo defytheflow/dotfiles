@@ -23,7 +23,7 @@
   "files.trimTrailingWhitespace": true,
   "files.exclude": {
     "**/.git": true,
-    "**/.venv/**": true,
+    "**/.venv/**": false,
     "**/__pycache__/**": true,
     "**/htmlcov/**": true,
     "**/.coverage/**": true
@@ -52,6 +52,10 @@
   },
 
   "[json]": {
+    "editor.tabSize": 2
+  },
+
+  "[css]": {
     "editor.tabSize": 2
   },
 

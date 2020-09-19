@@ -92,6 +92,11 @@ augroup git_gutter_colors
 augroup END
 "}}}
 
+" highlighted-yank {{{
+Plug 'machakann/vim-highlightedyank'
+let g:highlightedyank_highlight_duration = 200
+"}}}
+
 " indent-line {{{
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char =  '¦'
@@ -104,6 +109,18 @@ Plug 'itchyny/lightline.vim'
 let g:lightline = {
 \  'colorscheme': 'powerline',
 \}
+"}}}
+
+" nerdtree {{{
+Plug 'preservim/nerdtree'
+let NERDTreeShowHidden = 1
+let NERDTreeMinimalUI  = 1  " Disable '?' help at the top
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeIgnore=['__pycache__', '.git', '.mypy_cache', '.idea']
+let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "}}}
 
 " snippets {{{
@@ -309,6 +326,7 @@ nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
 nnoremap Y y$
 vnoremap < <gv
 vnoremap > >gv
+nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 tnoremap <Esc> <C-\><C-n>
 "}}}
