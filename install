@@ -178,10 +178,8 @@ symlink_files() {
     symlink_file "${dest}" "${src}"
   fi
 
-  for file in 'starship.toml' 'user-dirs.dirs'; do
-    symlink_file "${DOTFILES_HOME}/${file}" "${XDG_CONFIG_HOME}/${file}"
-  done
-
+  symlink_file "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
+  symlink_file "${DOTFILES_HOME}/prompts/starship.toml" "${XDG_CONFIG_HOME}/starship.toml"
   symlink_file "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
 
   for file in 'flake8' 'pycodestyle'; do
