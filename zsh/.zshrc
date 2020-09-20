@@ -92,7 +92,6 @@ bindkey -M menuselect 'l' vi-forward-char
 
 # configs {{{
 for file in "${DOTFILES_HOME}"/shell/*; do . "${file}"; done
-[ -f "${ZDOTDIR}"/.zshprompt ] && . "${ZDOTDIR}"/.zshprompt
 #}}}
 
 # plugins {{{
@@ -103,8 +102,9 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'plugins/command-not-found', from:oh-my-zsh
-zplug 'denysdovhan/spaceship-prompt', use:spaceship.zsh, from:github, as:theme
 
 zplug check || zplug install
 zplug load
 #}}}
+
+eval "$(starship init zsh)"

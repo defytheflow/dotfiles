@@ -18,11 +18,15 @@ main() {
   check_distro
   check_environ
   check_internet
+
   printf 'install: %s' 'Update system? [y/n] ' && read -r ans
   [ "${ans}" = 'y' ] && update_system
+
+  install_prompt
   install_packages
   install_pip_packages
   install_npm_packages
+
   create_dirs
   symlink_dirs
   symlink_files
@@ -35,10 +39,10 @@ check_distro() {
 
   case "${distro}" in
     'Manjaro')
-      . "$(dirname "${0}")/arch.sh"
+      . "$(dirname "${0}")/arch"
       ;;
     'Ubuntu')
-      . "$(dirname "${0}")/debian.sh"
+      . "$(dirname "${0}")/debian"
       ;;
     *)
       log "Distribution '${distro}' is not supported."
@@ -65,6 +69,11 @@ check_internet() {
     log 'no internet connection.'
     return 1
   fi
+}
+
+install_prompt() {
+  log "Checking that $(color 'starship') exists."
+  command -v starship >/dev/null || curl -fsSL https://starship.rs/install.sh | bash
 }
 
 install_pip_packages() {
@@ -169,7 +178,10 @@ symlink_files() {
     symlink_file "${dest}" "${src}"
   fi
 
-  symlink_file "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
+  for file in 'starship.toml' 'user-dirs.dirs'; do
+    symlink_file "${DOTFILES_HOME}/${file}" "${XDG_CONFIG_HOME}/${file}"
+  done
+
   symlink_file "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
 
   for file in 'flake8' 'pycodestyle'; do

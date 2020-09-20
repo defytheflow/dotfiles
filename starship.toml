@@ -1,0 +1,82 @@
+add_newline = false
+
+[character]
+symbol = '$'
+vicmd_symbol = '$'
+
+[cmd_duration]
+style = 'bold fg:202' # orange
+
+[directory]
+truncation_length = 8
+style = 'bold fg:135' # purple
+
+[git_branch]
+style = 'bold fg:45' # cyan
+
+[git_status]
+prefix = '('
+suffix = ') '
+style = 'bold fg:220' # yellow
+
+[line_break]
+disabled = true
+
+# Unused.
+
+[aws]
+disabled = true
+
+[battery]
+disabled = true
+
+[conda]
+disabled = true
+
+[crystal]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[erlang]
+disabled = true
+
+[golang]
+disabled = true
+
+[julia]
+disabled = true
+
+[nim]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[php]
+disabled = true
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
+
+[singularity]
+disabled = true
+
+[terraform]
+disabled = true
+
+[zig]
+disabled = true

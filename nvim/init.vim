@@ -240,9 +240,10 @@ augroup END
 set mouse=a
 set hidden
 set iskeyword+=- " treat dash separated words as a word text object.
+set iskeyword-=_
 set cursorline
 set foldmethod=marker
-set relativenumber
+set number relativenumber
 set splitbelow splitright
 set clipboard+=unnamedplus " use system clipboard.
 set lazyredraw " don't redraw while executing macros.
