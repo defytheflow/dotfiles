@@ -153,6 +153,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 Plug 'jremmen/vim-ripgrep'
 Plug 'justinmk/vim-sneak'
+Plug 'vim-test/vim-test'
 "}}}
 
 call plug#end()
@@ -168,7 +169,6 @@ if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
 "}}}
 
 " colors {{{
-syntax enable
 set background=dark
 try | colo molokai | catch |colo koehler | endtry
 "}}}
@@ -236,11 +236,18 @@ augroup vimrc_whitespace
 augroup END
 "}}}
 
+" syntax {{{
+syntax enable
+set iskeyword+=- " treat dash separated words as a word text object.
+augroup vimrc_syntax
+  autocmd!
+  autocmd BufRead setup.cfg setlocal filetype=toml
+augroup END
+"}}}
+
 " misc {{{
 set mouse=a
 set hidden
-set iskeyword+=- " treat dash separated words as a word text object.
-set iskeyword-=_
 set cursorline
 set foldmethod=marker
 set number relativenumber
@@ -276,46 +283,53 @@ endfun
 
 " mappings {{{
 
-" ale
+" ale.
 nmap <silent> gd :ALEGoToDefinition<CR>
 nmap <silent> gs :ALEFindReferences<CR>
 nmap <silent> ]g :ALEPrevious<CR>
 nmap <silent> [g :ALENext<CR>
 nmap <silent> K  :ALEHover<CR>
 
-" easy-align
+" test.
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
+
+" easy-align.
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" buffers
+" buffers.
 nnoremap gb :ls<CR>:b<space>
 nnoremap <leader>l :ls<CR>:b<space>
 nnoremap <silent> <tab> :bn<CR>
 
-" ctrl
+" ctrl.
 nnoremap <silent> <C-c> <Esc>
 nnoremap <silent> <C-l> :nohl<CR>
 nnoremap <silent> <C-s> :w<CR>
 
-" highlight
+" highlight.
 nnoremap <silent> <leader>cc :execute 'set cc=' . (&cc == '' ? '+1' : '')<CR>
 nnoremap <silent> <leader>ch :ColorHighlight<CR>
 nnoremap <silent> <leader>ck :set cuc!<CR>
 nnoremap <silent> <leader>cl :set cul!<CR>
 
-" vim
+" vim.
 nnoremap <silent> <leader>ve :sp $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
 
-" visual
+" visual.
 vnoremap < <gv
 vnoremap > >gv
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" misc
+" misc.
 nnoremap Y y$
-nnoremap <silent> <leader>t :NERDTreeToggle<CR>
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 tnoremap <Esc> <C-\><C-n>
 

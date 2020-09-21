@@ -3,27 +3,31 @@ add_newline = false
 [character]
 symbol = '$'
 vicmd_symbol = '$'
+style_failure = 'fg:196' # red.
 
 [cmd_duration]
-style = 'bold fg:202' # orange
+style = 'bold fg:202' # orange.
 
 [directory]
 truncation_length = 8
-style = 'bold fg:135' # purple
+style = 'bold fg:135' # purple.
 
 [git_branch]
-style = 'bold fg:45' # cyan
+style = 'bold fg:45' # cyan.
 
 [git_status]
 prefix = '('
 suffix = ') '
-style = 'bold fg:220' # yellow
+style = 'bold fg:220' # yellow.
 
 [line_break]
-disabled = true
+disabled = false
 
-# Unused.
+[python]
+symbol = ''
+style = 'bold fg:205' # pink.
 
+# Unused. {{{
 [aws]
 disabled = true
 
@@ -80,3 +84,4 @@ disabled = true
 
 [zig]
 disabled = true
+#}}}
