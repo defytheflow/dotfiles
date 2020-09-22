@@ -173,7 +173,7 @@ symlink_files() {
   }
 
   if command -v ipython >/dev/null; then
-    dest="${DOTFILES_HOME}/ipython/ipython_config.py"
+    dest="${DOTFILES_HOME}/python/ipython_config.py"
     src="${IPYTHONDIR}/profile_default/ipython_config.py"
     symlink_file "${dest}" "${src}"
   fi
