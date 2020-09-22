@@ -6,7 +6,8 @@
 
 # Print number of entries in a directory.
 n() {
-  [ -n "${1}" ] && ls -A "${1}" | wc -l || ls -A | wc -l
+  [ -n "${1}" ] && dir=${1} || dir=.
+  \ls -A "${dir}" | wc -l
 }
 
 # Reload current running shell.

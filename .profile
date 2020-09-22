@@ -10,7 +10,6 @@ export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_DATA_HOME="${HOME}/.local/share"
 
 # mine.
-export CODE_HOME="${HOME}/code"
 export DOTFILES_HOME="${HOME}/.dotfiles"
 export WALLPAPER_HOME="${XDG_CONFIG_HOME}/wallpaper"
 
@@ -84,6 +83,9 @@ export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 # zplug.
 export ZPLUG_HOME="${XDG_CONFIG_HOME}/zplug"
 export ZPLUG_CACHE_DIR="${XDG_CACHE_HOME}/zplug"
+
+# z.
+export ZSHZ_DATA="${XDG_CACHE_HOME}/z"
 
 # ?.
 export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"

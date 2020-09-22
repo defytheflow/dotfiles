@@ -15,6 +15,7 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'plugins/command-not-found', from:oh-my-zsh
+zplug 'agkozak/zsh-z'
 
 zplug check || zplug install
 zplug load
@@ -35,10 +36,12 @@ setopt menu_complete # auto-insert first possible completion.
 setopt share_history # share history across shells.
 
 # ls directory after cd.
-chpwd() {
-  emulate -L zsh
-  ls -vh --color=auto --group-directories-first
-}
+autoload -U add-zsh-hook
+if command -v exa >/dev/null; then
+    add-zsh-hook -Uz chpwd (){ exa --icons --group-directories-first; }
+else
+    add-zsh-hook -Uz chpwd (){ ls -vh --group-directories-first; }
+fi
 #}}}
 
 # Completion {{{
@@ -63,8 +66,8 @@ zstyle ':completion:*:descriptions' format %F{default}%B%--- %d ---%b%f
 
 # Cursor {{{
 # ------------------------------------------------------------------------------
-# Change cursor shape in different modes.
 zle-keymap-select() {
+ # Change cursor shape in different modes.
   if [ $KEYMAP = vicmd ] || [ $1 = 'block' ]; then
     echo -ne '\e[1 q'
   elif [ $KEYMAP = main ] || [ $KEYMAP = viins ] || [ $KEYMAP = '' ] || [ $1 = 'beam' ]; then
@@ -82,8 +85,7 @@ zle -N zle-line-init
 
 # Binds {{{
 # ------------------------------------------------------------------------------
-# vi mode.
-bindkey -v
+bindkey -v # vi mode.
 bindkey -v '^?' backward-delete-char # use backspace after vi-mode.
 export KEYTIMEOUT=1 # faster enter normal mode.
 

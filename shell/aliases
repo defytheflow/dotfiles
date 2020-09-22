@@ -29,7 +29,7 @@ alias -- -='cd -' # Type '-' to go to previous dir.
 
 # ls.
 alias l='ls -1'
-alias ls='ls -vh --color=auto --group-directories-first'
+alias ls='ls -vh --group-directories-first'
 alias la='ls -A'
 alias ll='ls -l'
 
@@ -59,9 +59,6 @@ alias rename='mv'
 # config.
 alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
 alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
-
-# dirs.
-alias api='cd ${CODE_HOME}/repos/properoom-api'
 
 # django.
 alias dj='django-admin'

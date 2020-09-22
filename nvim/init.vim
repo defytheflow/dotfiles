@@ -145,7 +145,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/goyo.vim'
 Plug 'inkarkat/vim-ReplaceWithRegister'
-Plug 'sheerun/vim-polyglot'
 Plug 'miyakogi/seiya.vim'
 Plug 'chrisbra/Colorizer'
 Plug 'tomasiser/vim-code-dark'
@@ -211,6 +210,7 @@ set sidescrolloff=10
 " search {{{
 set hlsearch
 set incsearch
+set ignorecase
 set smartcase
 "}}}
 
