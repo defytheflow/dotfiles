@@ -170,7 +170,7 @@ if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
 
 " colors {{{
 set background=dark
-try | colo molokai | catch |colo koehler | endtry
+try | colo codedark | catch |colo koehler | endtry
 "}}}
 
 " command-line {{{

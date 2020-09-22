@@ -28,6 +28,7 @@ alias .....='cd ../../../../'
 alias -- -='cd -' # Type '-' to go to previous dir.
 
 # ls.
+alias l='ls -1'
 alias ls='ls -vh --color=auto --group-directories-first'
 alias la='ls -A'
 alias ll='ls -l'
@@ -119,6 +120,14 @@ if command -v coverage >/dev/null; then
   alias cvht='coverage html'
 fi
 
+# exa.
+if command -v exa >/dev/null; then
+  alias l='ls --oneline'
+  alias ls='exa --icons --group-directories-first'
+  alias ll='ls --long --git'
+  alias la='ls --all'
+fi
+
 # httpie.
 if command -v http >/dev/null; then
   alias http='http --style=auto --unsorted'
@@ -140,11 +149,6 @@ fi
 if command -v rmtrash >/dev/null; then
   alias rm='rmtrash'
   alias rmdir='rmdirtrash'
-fi
-
-# shellcheck.
-if command -v shellcheck >/dev/null; then
-  alias sch='shellcheck'
 fi
 
 # sqlite3.

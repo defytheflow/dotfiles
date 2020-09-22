@@ -1,9 +1,8 @@
 #!/bin/sh
 
-# File:         debian.sh
+# File:         debian
 # Created:      26.03.2020
 # Author:       Artyom Danilov (@defytheflow)
-# Description:  Installation functions for debian-based distros.
 
 update_system() {
   sudo apt-get update -y

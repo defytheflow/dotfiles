@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# File:         install.sh
+# File:         install
 # Created:      12.09.2020
 # Author:       Artyom Danilov (@defytheflow)
 
@@ -22,10 +22,10 @@ main() {
   printf 'install: %s' 'Update system? [y/n] ' && read -r ans
   [ "${ans}" = 'y' ] && update_system
 
-  install_prompt
   install_packages
   install_pip_packages
   install_npm_packages
+  install_cargo_packages
 
   create_dirs
   symlink_dirs
@@ -71,56 +71,43 @@ check_internet() {
   fi
 }
 
-install_prompt() {
-  log "Checking that $(color 'starship') exists."
-  command -v starship >/dev/null || curl -fsSL https://starship.rs/install.sh | bash
-}
-
 install_pip_packages() {
   log 'Installing pip packages.'
 
-  install_pip_package() {
-    log "Checking that $(color "${1}") exists."
+  set -- \
+    bumblebee-status \
+    flake8 flake8-quotes \
+    httpie \
+    ipdb ipython isort \
+    pipenv pynvim python-language-server \
+    vim-vint \
+    yapf
 
-    if ! python3 -m pip list | grep "${1}" >/dev/null; then
-      yes | python3 -m pip install "${1}"
-    fi
-  }
-
-  for package in \
-    'bumblebee-status' \
-    'flake8' \
-    'flake8-quotes' \
-    'httpie' \
-    'ipdb' \
-    'ipython' \
-    'isort' \
-    'pipenv' \
-    'pynvim' \
-    'python-language-server' \
-    'vim-vint' \
-    'yapf'; do
-    install_pip_package "${package}"
+  for package; do
+    log "Checking that $(color "${package}") exists."
+    python3 -m pip list | grep "${package}" >/dev/null || python3 -m pip install "${package}"
   done
 }
 
 install_npm_packages() {
   log 'Installing npm packages.'
 
-  install_npm_package() {
-    log "Checking that $(color "${1}") exists."
+  set -- bash-language-server prettier neovim vim-language-server
 
-    if ! npm list -g "${1}" >/dev/null; then
-      yes | sudo npm install -g "${1}"
-    fi
-  }
+  for package; do
+    log "Checking that $(color "${package}") exists."
+    npm list -g "${package}" >/dev/null || yes | sudo npm install -g "${package}"
+  done
+}
 
-  for package in \
-    'bash-language-server' \
-    'prettier' \
-    'neovim' \
-    'vim-language-server'; do
-    install_npm_package "${package}"
+install_cargo_packages() {
+  log 'Installing cargo packages.'
+
+  set -- exa starship
+
+  for package; do
+    log "Checking that $(color "${package}") exists."
+    command -v "${package}" >/dev/null || cargo install "${package}"
   done
 }
 
@@ -154,7 +141,6 @@ symlink_dirs() {
     symlink_dir "${DOTFILES_HOME}/vscode" "${XDG_CONFIG_HOME}/${dest}"
   fi
 
-  # to not override other people git config.
   if [ "${USER}" = 'defytheflow' ]; then
     symlink_dir "${DOTFILES_HOME}/git" "${XDG_CONFIG_HOME}/git"
   fi
@@ -178,9 +164,11 @@ symlink_files() {
     symlink_file "${dest}" "${src}"
   fi
 
-  symlink_file "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
-  symlink_file "${DOTFILES_HOME}/starship.toml" "${XDG_CONFIG_HOME}/starship.toml"
   symlink_file "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
+
+  for file in 'starship.toml' 'user-dirs.dirs'; do
+    symlink_file "${DOTFILES_HOME}/${file}" "${XDG_CONFIG_HOME}/${file}"
+  done
 
   for file in 'flake8' 'pycodestyle'; do
     symlink_file "${DOTFILES_HOME}/python/${file}" "${XDG_CONFIG_HOME}/${file}"
