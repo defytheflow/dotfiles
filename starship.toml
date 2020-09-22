@@ -6,6 +6,7 @@ vicmd_symbol = '$'
 style_failure = 'fg:196' # red.
 
 [cmd_duration]
+disabled = true
 style = 'bold fg:202' # orange.
 
 [directory]
