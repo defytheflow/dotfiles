@@ -26,8 +26,8 @@ install_packages() {
     neovim nitrogen npm \
     powerline-fonts python-neovim python-pip \
     ripgrep rofi \
-    shellcheck shfmt \
-    tk tmux tree \
+    screenkey shellcheck shfmt \
+    tk tmux tree ttf-fira-code \
     valgrind \
     xclip xcompmgr \
     yay \

@@ -14,6 +14,7 @@ export DOTFILES_HOME="${HOME}/.dotfiles"
 export WALLPAPER_HOME="${XDG_CONFIG_HOME}/wallpaper"
 
 # path.
+export PATH="${JAVA_HOME}/bin:${PATH}"
 export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:${XDG_CONFIG_HOME}/cargo/bin"
 export PATH="${PATH}:${PYENV_ROOT}/bin"
@@ -33,8 +34,8 @@ export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
 export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
 
 # java.
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre
+export JAVA_HOME=/usr/lib/jvm/java-14-openjdk
+export JRE_HOME=/usr/lib/jvm/java-14-openjdk-amd64/jre
 
 # less.
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"

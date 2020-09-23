@@ -3,6 +3,8 @@
 
   "window.zoomLevel": -1,
 
+  "breadcrumbs.enabled": true,
+
   "editor.detectIndentation": true,
   "editor.fontSize": 14,
   "editor.folding": true,
@@ -12,6 +14,8 @@
   "editor.rulers": [90],
   "editor.tabCompletion": "on",
   "editor.minimap.enabled": false,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
 
   "workbench.activityBar.visible": true,
   "workbench.colorCustomizations": {
@@ -24,9 +28,10 @@
   "files.exclude": {
     "**/.git": true,
     "**/.venv/**": false,
-    "**/__pycache__/**": true,
+    "**/.pytest_cache/**": true,
+    "**/.coverage/**": true,
     "**/htmlcov/**": true,
-    "**/.coverage/**": true
+    "**/__pycache__/**": true
   },
 
   "python.linting.enabled": true,
@@ -111,6 +116,10 @@
     {
       "before": ["<leader>", "t"],
       "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "z"],
+      "commands": ["workbench.action.toggleCenteredLayout"]
     },
     {
       "before": ["g", "s"],

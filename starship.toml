@@ -1,9 +1,9 @@
 add_newline = false
 
 [character]
-symbol = '$'
+symbol = 'ಠ_ಠ'
 vicmd_symbol = '$'
-style_failure = 'fg:196' # red.
+style_failure = 'bold fg:196' # red.
 
 [cmd_duration]
 disabled = true
@@ -21,12 +21,14 @@ prefix = '('
 suffix = ') '
 style = 'bold fg:220' # yellow.
 
+[java]
+symbol = ' '
+
 [line_break]
 disabled = false
 
 [python]
-symbol = ''
-style = 'bold fg:205' # pink.
+symbol = ' '
 
 # Unused. {{{
 [aws]

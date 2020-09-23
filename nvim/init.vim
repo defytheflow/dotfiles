@@ -37,6 +37,7 @@ let g:ale_fixers = {
 \}
 let g:ale_fix_on_save = 1
 let g:ale_sh_shfmt_options = '-p -ci -i 2'
+let g:ale_set_highlights = 0
 "}}}
 
 " camel-case-motion {{{
@@ -122,6 +123,16 @@ Plug 'ryanoasis/vim-devicons'
 let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "}}}
 
+" python-syntax {{{
+Plug 'vim-python/python-syntax'
+let g:python_highlight_all = 1
+"}}}
+
+" sneak {{{
+Plug 'justinmk/vim-sneak'
+let g:sneak#label = 1
+"}}}
+
 " snippets {{{
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -151,7 +162,6 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 Plug 'jremmen/vim-ripgrep'
-Plug 'justinmk/vim-sneak'
 Plug 'vim-test/vim-test'
 "}}}
 
@@ -169,7 +179,7 @@ if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
 
 " colors {{{
 set background=dark
-try | colo codedark | catch |colo koehler | endtry
+try | colo molokai | catch |colo koehler | endtry
 "}}}
 
 " command-line {{{
@@ -212,6 +222,10 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+augroup vimrc_search
+    autocmd!
+    autocmd ColorScheme * highlight Search ctermbg=DarkGray
+augroup END
 "}}}
 
 " status-line {{{
@@ -250,7 +264,8 @@ set mouse=a
 set hidden
 set cursorline
 set foldmethod=marker
-set number relativenumber
+set number
+set relativenumber
 set splitbelow splitright
 set clipboard+=unnamedplus " use system clipboard.
 set lazyredraw " don't redraw while executing macros.
@@ -303,8 +318,8 @@ nmap ga <Plug>(EasyAlign)
 
 " buffers.
 nnoremap gb :ls<CR>:b<space>
-nnoremap <leader>l :ls<CR>:b<space>
-nnoremap <silent> <tab> :bn<CR>
+nnoremap <silent> <tab>   :bn<CR>
+nnoremap <silent> <S-tab> :bp<CR>
 
 " ctrl.
 nnoremap <silent> <C-c> <Esc>
