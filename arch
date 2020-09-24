@@ -19,6 +19,7 @@ install_packages() {
     alacritty \
     bat \
     cargo clang \
+    dash \
     i3-gaps i3lock \
     jq \
     gdb \

@@ -105,6 +105,8 @@ alias gsh='git show'
 alias gst='git stash'
 alias gstd='git stash drop'
 
+alias lg='lazygit'
+
 # bat.
 if command -v bat >/dev/null; then
   alias cat='bat'

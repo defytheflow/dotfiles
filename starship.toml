@@ -1,34 +1,32 @@
 add_newline = false
 
 [character]
-symbol = 'ಠ_ಠ'
-vicmd_symbol = '$'
-style_failure = 'bold fg:196' # red.
+symbol = '$'
+vicmd_symbol = '#'
 
 [cmd_duration]
 disabled = true
-style = 'bold fg:202' # orange.
 
 [directory]
-truncation_length = 8
-style = 'bold fg:135' # purple.
+style = 'fg:4'
 
 [git_branch]
-style = 'bold fg:45' # cyan.
+style = 'fg:3'
 
 [git_status]
 prefix = '('
 suffix = ') '
-style = 'bold fg:220' # yellow.
+style = 'white'
 
 [java]
-symbol = ' '
+symbol = '🍵 '
+style = 'red'
 
 [line_break]
-disabled = false
+disabled = true
 
 [python]
-symbol = ' '
+disabled = true
 
 # Unused. {{{
 [aws]

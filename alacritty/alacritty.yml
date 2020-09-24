@@ -75,10 +75,10 @@ scrolling:
   # Scrolling distance multiplier.
   multiplier: 10
 
-# Font configuration
+# Font configuration.
 font:
   normal:
-    family: Cascadia Mono
+    family: Fira Code
     style: Medium
 
   bold:
@@ -93,7 +93,7 @@ font:
     family: monospace
     style: Bold Italic
 
-  size: 10.0
+  size: 11.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
