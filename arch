@@ -29,7 +29,7 @@ install_packages() {
     ripgrep rofi \
     screenkey shellcheck shfmt \
     tk tmux tree ttf-fira-code \
-    valgrind \
+    valgrind vim \
     xclip xcompmgr \
     yay \
     zathura zathura-pdf-mupdf zsh

@@ -20,7 +20,7 @@ export PATH="${PATH}:${XDG_CONFIG_HOME}/cargo/bin"
 export PATH="${PATH}:${PYENV_ROOT}/bin"
 
 # default.
-export EDITOR='vim'
+export EDITOR='nvim'
 export BROWSER='firefox'
 export PAGER='less'
 
@@ -80,13 +80,6 @@ export SHELLCHECK_OPTS='--exclude=SC1072,SC1073,SC1090,SC1091'
 
 # zsh.
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
-
-# zplug.
-export ZPLUG_HOME="${XDG_CONFIG_HOME}/zplug"
-export ZPLUG_CACHE_DIR="${XDG_CACHE_HOME}/zplug"
-
-# z.
-export ZSHZ_DATA="${XDG_CACHE_HOME}/z"
 
 # ?.
 export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"

@@ -4,7 +4,11 @@
 # Created:  22.03.2020
 # Author:   Artyom Danilov (@defytheflow)
 
-ZSH_CACHE="${XDG_CACHE_HOME}/zsh"
+ZSH_CACHE="${HOME}/.cache/zsh"
+
+export ZPLUG_HOME="${HOME}/.config/zplug"
+export ZPLUG_CACHE_DIR="${HOME}/.cache/zplug"
+export ZSHZ_DATA="${HOME}/.cache/z"
 
 # Plugins {{{
 # ------------------------------------------------------------------------------
@@ -135,6 +139,7 @@ bindkey '^Z' fg-bg
 
 # Other {{{
 # ------------------------------------------------------------------------------
-for file in "${DOTFILES_HOME}"/shell/*; do . "${file}"; done
-eval "$(starship init zsh)"
+if [ -n "${DOTFILES_HOME}" ]; then
+  for file in "${DOTFILES_HOME}"/shell/*; do . "${file}"; done
+fi
 #}}}
