@@ -1,8 +1,0 @@
-*~
-.*.swp
-.zcompdump
-__pycache__
-*.o
-.mypy_cache
-.ccls-cache
-.idea

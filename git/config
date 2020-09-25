@@ -1,16 +1,43 @@
 # vim: filetype=gitconfig
 
 [user]
-        name  = Artyom Danilov
-        email = defytheflow@gmail.com
-        username = defytheflow
+  name  = Artyom Danilov
+  email = defytheflow@gmail.com
+  username = defytheflow
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = yellow bold
+  local = green bold
+  remote = cyan bold
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+
+[color "status"]
+  added = green
+  changed = yellow
+  untracked = red
 
 [core]
-        editor = vim
-        pager  = less
-        excludesfile = /home/defytheflow/.dotfiles/git/ignore
+  editor = nvim
+  pager = less
+  excludesfile = ~/.config/git/ignore_global
 
-[pack]
-        windowMemory  = 100m
-        packSizeLimit = 100m
-        threads = 1
+[diff]
+  tool = vimdiff
+
+[interactive]
+  diffFilter = delta --color-only
+
+[log]
+  abbrevCommit = true
+
+[status]
+  showUntrackedFiles = all

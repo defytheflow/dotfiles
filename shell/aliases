@@ -8,10 +8,10 @@ alias sudo='sudo ' # Run 'sudo {alias}'
 
 alias f='file'
 alias h='history'
-alias j='java'
+alias p='pwd'
 
-alias jc='javac'
 alias so='source'
+alias lg='lazygit'
 alias vi='vim'
 
 alias ssh='TERM=xterm-color ssh' # 'tput: unknown terminal bug'
@@ -42,6 +42,10 @@ alias tc='touch'
 alias rd='rmdir'
 alias rm='rm -vi --preserve-root'
 alias rmdir='rmdir -vi'
+
+# java.
+alias j='java'
+alias jc='javac'
 
 # python.
 alias py='python3'
@@ -76,36 +80,6 @@ alias djsp='dj startproject'
 alias djsql='dj sqlmigrate'
 alias djsu='dj createsuperuser'
 alias djt='dj test --keepdb --pdb --failfast --noinput -v2'
-
-# git.
-alias ga='git add'
-alias gaa='git add --all'
-alias gb='git branch'
-alias gc='git commit'
-alias gca='git commit --amend'
-alias gcl='git clone'
-alias gch='git checkout'
-alias gd='git diff'
-alias gds='git diff --staged'
-alias gl='git log'
-alias glg='git log --grep'
-alias gm='git merge'
-alias gmv='git mv'
-alias gp='git push'
-alias gpf='git push --force'
-alias gpl='git pull'
-alias grb='git rebase -i'
-alias grm='git rm'
-alias grl='git rev-list --count HEAD'
-alias grs='git reset'
-alias grsu="git reset 'HEAD@{1}'"
-alias grv='git revert'
-alias gs='git status'
-alias gsh='git show'
-alias gst='git stash'
-alias gstd='git stash drop'
-
-alias lg='lazygit'
 
 # bat.
 if command -v bat >/dev/null; then

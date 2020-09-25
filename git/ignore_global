@@ -1,0 +1,11 @@
+*~
+*.swp
+*.o
+*.so
+*.exe
+.zcompdump
+.idea/
+.mypy_cache/
+.ccls-cache/
+.pytest_cache/
+__pycache__

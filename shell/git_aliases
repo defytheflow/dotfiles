@@ -1,0 +1,55 @@
+#!/bin/sh
+
+# File:     git_aliases
+# Created:  25.09.2020
+# Author:   Artyom Danilov (@defytheflow)
+
+# add.
+alias ga='git add'
+alias gaa='git add --all'
+
+# branch.
+alias gb='git branch'
+alias gbs='git show-branch'
+
+# commit.
+alias gc='git commit'
+alias gca='git commit --amend'
+
+# diff.
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gdt='git difftool'
+
+# log.
+alias gl='git log'
+alias glg='git log --grep'
+alias glp='git log -p'
+
+# mv/rm.
+alias gmv='git mv'
+alias grm='git rm'
+
+alias gcl='git clone'
+alias gco='git checkout'
+
+alias gm='git merge'
+alias grb='git rebase -i'
+alias grl='git rev-list --count HEAD'
+alias grv='git revert'
+
+# push/pull.
+alias gp='git push'
+alias gpf='git push --force'
+alias gpl='git pull'
+
+# reset.
+alias grs='git reset'
+alias grsu="git reset 'HEAD@{1}'"
+
+# status/show/stash.
+alias gs='git status'
+alias gsh='git show'
+alias gst='git stash'
+alias gsp='git stash pop'
+alias gsd='git stash drop'
