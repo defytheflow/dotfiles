@@ -33,9 +33,6 @@
 [diff]
   tool = vimdiff
 
-[interactive]
-  diffFilter = delta --color-only
-
 [log]
   abbrevCommit = true
 

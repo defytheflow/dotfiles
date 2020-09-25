@@ -102,6 +102,10 @@ Plug 'Yggdroot/indentLine'
 let g:indentLine_char =  '¦'
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_leadingSpaceEnabled = '1'
+augroup vimrc_indent_line
+  autocmd!
+  autocmd Filetype text let g:indentLine_leadingSpaceEnabled = 0
+augroup END
 "}}}
 
 " light-line {{{
@@ -137,7 +141,7 @@ let g:sneak#label = 1
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snippet']
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snips']
 "}}}
 
 " quick-scope {{{
@@ -198,7 +202,7 @@ set autoindent
 set smartindent
 augroup vimrc_indent
   autocmd!
-  autocmd FileType sh,vim,css,html,json setlocal shiftwidth=2 softtabstop=2
+  autocmd FileType sh,vim,css,html,json,gitconfig setlocal shiftwidth=2 softtabstop=2
 augroup END
 " }}}
 
@@ -223,8 +227,8 @@ set incsearch
 set ignorecase
 set smartcase
 augroup vimrc_search
-    autocmd!
-    autocmd ColorScheme * highlight Search ctermbg=DarkGray
+  autocmd!
+  autocmd ColorScheme * highlight Search ctermfg=LightGreen ctermbg=DarkGray
 augroup END
 "}}}
 
@@ -235,18 +239,10 @@ set noshowmode
 set laststatus=2 " always display status line.
 "}}}
 
-" undo {{{
-set undofile
-set undodir=${HOME}/.local/share/nvim/undo
-if !isdirectory(&undodir) | call mkdir(&undodir, 'p', 0700) | endif
-"}}}
-
-" whitespace {{{
-set list listchars=tab:>-,trail:-
-augroup vimrc_whitespace
+" spell {{{
+augroup vimrc_spell
   autocmd!
-  autocmd BufWritePre * %s/\s\+$//e
-  autocmd BufWritePre * %s/\n\+\%$//e
+  autocmd Filetype text setlocal spell
 augroup END
 "}}}
 
@@ -256,6 +252,22 @@ set iskeyword+=- " treat dash separated words as a word text object.
 augroup vimrc_syntax
   autocmd!
   autocmd BufRead setup.cfg setlocal filetype=toml
+augroup END
+"}}}
+
+" undo {{{
+set undofile
+set undodir=${HOME}/.local/share/nvim/undo
+if !isdirectory(&undodir) | call mkdir(&undodir, 'p', 0700) | endif
+"}}}
+
+" whitespace {{{
+set list
+set listchars=tab:>-,trail:·
+augroup vimrc_whitespace
+  autocmd!
+  autocmd BufWritePre * %s/\s\+$//e
+  autocmd BufWritePre * %s/\n\+\%$//e
 augroup END
 "}}}
 
