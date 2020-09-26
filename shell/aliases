@@ -132,5 +132,5 @@ fi
 # tree.
 if command -v tree >/dev/null; then
   alias t='tree'
-  alias tree='tree -C -I .git'
+  alias tree="tree -C -I '.git|__pycache__'"
 fi

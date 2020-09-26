@@ -6,12 +6,11 @@
 
 ZSH_CACHE="${HOME}/.cache/zsh"
 
-export ZPLUG_HOME="${HOME}/.config/zplug"
-export ZPLUG_CACHE_DIR="${HOME}/.cache/zplug"
-export ZSHZ_DATA="${HOME}/.cache/z"
-
 # Plugins {{{
 # ------------------------------------------------------------------------------
+export ZPLUG_HOME="${HOME}/.config/zplug"
+export ZPLUG_CACHE_DIR="${HOME}/.cache/zplug"
+
 [ -d "${ZPLUG_HOME}" ] || git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
 source "${ZPLUG_HOME}/init.zsh"
 
@@ -19,7 +18,13 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'plugins/command-not-found', from:oh-my-zsh
+zplug 'kutsan/zsh-system-clipboard'
+
 zplug 'agkozak/zsh-z'
+export ZSHZ_DATA="${HOME}/.cache/z"
+
+zplug 'softmoth/zsh-vim-mode'
+VIM_MODE_TRACK_KEYMAP='no'
 
 zplug check || zplug install
 zplug load
@@ -69,7 +74,6 @@ zstyle ':completion:*:descriptions' format %F{default}%B%--- %d ---%b%f
 #}}}
 
 # Cursor {{{
-# ------------------------------------------------------------------------------
 zle-keymap-select() {
  # Change cursor shape in different modes.
   if [ $KEYMAP = vicmd ] || [ $1 = 'block' ]; then
@@ -91,7 +95,6 @@ zle -N zle-line-init
 # ------------------------------------------------------------------------------
 bindkey -v # vi mode.
 bindkey -v '^?' backward-delete-char # use backspace after vi-mode.
-export KEYTIMEOUT=1 # faster enter normal mode.
 
 # Menu completion navigaton with hjkl.
 zmodload zsh/complist
@@ -100,41 +103,12 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-# ci", ci', ci`, di", etc.
-autoload -U select-quoted
-zle -N select-quoted
-for m in visual viopp; do
-  for c in {a,i}{\',\",\`}; do
-    bindkey -M $m $c select-quoted
-  done
-done
-
-# ci{, ci(, ci<, di{, etc.
-autoload -U select-bracketed
-zle -N select-bracketed
-for m in visual viopp; do
-  for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
-    bindkey -M $m $c select-bracketed
-  done
-done
-
 # History editing with <Ctrl-r>.
 bindkey '^R' history-incremental-pattern-search-backward
 
 # Line editing in vim with <Ctrl-v>.
 autoload edit-command-line && zle -N edit-command-line && bindkey '^v' edit-command-line
 autoload -U edit-command-line && zle -N edit-command-line && bindkey -M vicmd "^v" edit-command-line
-
-# Background things and unbackground them with <Ctrl-z>.
-function fg-bg() {
-  if [[ $#BUFFER -eq 0 ]]; then
-    fg
-  else
-    zle push-input
-  fi
-}
-zle -N fg-bg
-bindkey '^Z' fg-bg
 #}}}
 
 # Other {{{
@@ -143,3 +117,5 @@ if [ -n "${DOTFILES_HOME}" ]; then
   for file in "${DOTFILES_HOME}"/shell/*; do . "${file}"; done
 fi
 #}}}
+
+export PROMPT='%B%F{240}%1~%f%b $ '

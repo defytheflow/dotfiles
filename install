@@ -103,7 +103,7 @@ install_npm_packages() {
 install_cargo_packages() {
   log 'Installing cargo packages.'
 
-  set -- exa starship
+  set -- exa
 
   for package; do
     log "Checking that $(color "${package}") exists."
@@ -166,7 +166,7 @@ symlink_files() {
 
   symlink_file "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
 
-  for file in 'starship.toml' 'user-dirs.dirs'; do
+  for file in 'user-dirs.dirs'; do
     symlink_file "${DOTFILES_HOME}/${file}" "${XDG_CONFIG_HOME}/${file}"
   done
 

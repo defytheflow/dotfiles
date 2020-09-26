@@ -202,7 +202,7 @@ set autoindent
 set smartindent
 augroup vimrc_indent
   autocmd!
-  autocmd FileType sh,vim,css,html,json,gitconfig setlocal shiftwidth=2 softtabstop=2
+  autocmd FileType sh,zsh,vim,css,html,json,gitconfig setlocal shiftwidth=2 softtabstop=2
 augroup END
 " }}}
 
