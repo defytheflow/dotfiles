@@ -38,11 +38,7 @@ let g:closetag_filetypes = 'html,xhtml,phtml,jsx,tsx'
 " ctrlp {{{
 Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = {
-\ 'dir':  '\v[\/]\.(git|hg|svn|venv)$',
-\ 'file': '\v\.(exe|so|dll)$',
-\ 'link': 'some_bad_symbolic_links',
-\ }
+let g:ctrlp_custom_ignore = 'venv\|git\|__pycache'
 "}}}
 
 " deoplete {{{
@@ -328,7 +324,6 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " misc.
 nnoremap Y y$
-nnoremap <silent> <leader>z :Goyo<CR>
 nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 tnoremap <Esc> <C-\><C-n>
 
