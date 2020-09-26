@@ -19,27 +19,6 @@ endif
 
 call plug#begin(expand('~/.config/nvim/plugged'))
 
-" ale {{{
-Plug 'dense-analysis/ale'
-let g:ale_linters = {
-\  'c':      ['ccls', 'clang'],
-\  'python': ['pyls', 'flake8'],
-\  'sh':     ['language_server', 'shellcheck'],
-\  'vim':    ['vimls', 'vint'],
-\}
-let g:ale_fixers = {
-\ 'c':          ['clang-format'],
-\ 'html':       ['prettier'],
-\ 'javascript': ['prettier'],
-\ 'json':       ['prettier'],
-\ 'python':     ['isort', 'yapf'],
-\ 'sh':         ['shfmt'],
-\}
-let g:ale_fix_on_save = 1
-let g:ale_sh_shfmt_options = '-p -ci -i 2'
-let g:ale_set_highlights = 0
-"}}}
-
 " camel-case-motion {{{
 Plug 'bkad/CamelCaseMotion'
 let g:camelcasemotion_key = '<leader>'
@@ -84,7 +63,7 @@ let g:easy_align_ignore_groups = []
 " gitgutter {{{
 Plug 'airblade/vim-gitgutter'
 set foldtext=gitgutter#fold#foldtext()
-augroup git_gutter_colors
+augroup vimrc_gitgutter
   autocmd!
   autocmd ColorScheme * highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
   autocmd ColorScheme * highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
@@ -102,7 +81,7 @@ Plug 'Yggdroot/indentLine'
 let g:indentLine_char =  '¦'
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_leadingSpaceEnabled = '1'
-augroup vimrc_indent_line
+augroup vimrc_indentline
   autocmd!
   autocmd Filetype text let g:indentLine_leadingSpaceEnabled = 0
 augroup END
@@ -113,18 +92,6 @@ Plug 'itchyny/lightline.vim'
 let g:lightline = {
 \  'colorscheme': 'powerline',
 \}
-"}}}
-
-" nerdtree {{{
-Plug 'preservim/nerdtree'
-let NERDTreeShowHidden = 1
-let NERDTreeMinimalUI  = 1  " Disable '?' help at the top
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeIgnore=['__pycache__', '.git', '.mypy_cache', '.idea']
-let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
-let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 "}}}
 
 " python-syntax {{{
@@ -141,7 +108,7 @@ let g:sneak#label = 1
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'snips']
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
 "}}}
 
 " quick-scope {{{
@@ -150,6 +117,10 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 "}}}
 
 " misc {{{
+Plug 'dense-analysis/ale'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'michaeljsmith/vim-indent-object'
@@ -167,6 +138,14 @@ Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 Plug 'jremmen/vim-ripgrep'
 Plug 'vim-test/vim-test'
+"}}}
+
+" devicons {{{
+Plug 'ryanoasis/vim-devicons'
+augroup vimrc_devicons
+  autocmd!
+  autocmd SourcePost $MYVIMRC if exists('g:loaded_webdevicons') | call webdevicons#refresh() | endif
+augroup END
 "}}}
 
 call plug#end()
@@ -285,7 +264,7 @@ set timeoutlen=500
 set noerrorbells visualbell t_vb=
 augroup vimrc_misc
   autocmd!
-  autocmd VimEnter    * call InstallPlugins()
+  autocmd SourcePost $MYVIMRC call InstallPlugins()
   autocmd BufReadPost * call JumpToLastPos()
   autocmd FileType    * set formatoptions-=cro " disable auto-commenting.
   autocmd VimEnter    * :NoMatchParen
@@ -309,13 +288,6 @@ endfun
 "}}}
 
 " mappings {{{
-
-" ale.
-nmap <silent> gd :ALEGoToDefinition<CR>
-nmap <silent> gs :ALEFindReferences<CR>
-nmap <silent> ]g :ALEPrevious<CR>
-nmap <silent> [g :ALENext<CR>
-nmap <silent> K  :ALEHover<CR>
 
 " test.
 nmap <silent> <leader>tn :TestNearest<CR>
@@ -356,7 +328,7 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " misc.
 nnoremap Y y$
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>z :Goyo<CR>
 nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 tnoremap <Esc> <C-\><C-n>
 
