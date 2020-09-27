@@ -1,11 +1,15 @@
+scriptencoding utf-8
 
 " File:     init.vim
 " Created:  30.12.2019
 " Author:   Artyom Danilov (@defytheflow)
 
-
 let g:mapleader = '\'
-let g:python3_host_prog = '/usr/bin/python3'
+let g:maplocalleader = '\'
+
+if filereadable('/usr/bin/python3')
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
 
 " plugins {{{
 
@@ -22,18 +26,22 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 " ale {{{
 Plug 'dense-analysis/ale'
 let g:ale_linters = {
-\  'c':      ['ccls', 'clang'],
-\  'python': ['pyls', 'flake8'],
-\  'sh':     ['language_server', 'shellcheck'],
-\  'vim':    ['vimls', 'vint'],
+\  'c':          ['ccls', 'clang'],
+\  'javascript': ['eslint'],
+\  'python':     ['pyls', 'flake8'],
+\  'sh':         ['language_server', 'shellcheck'],
+\  'typescript': ['tsserver', 'tslint'],
+\  'vim':        ['vimls', 'vint'],
 \}
 let g:ale_fixers = {
-\ 'c':          ['clang-format'],
-\ 'html':       ['prettier'],
-\ 'javascript': ['prettier'],
-\ 'json':       ['prettier'],
-\ 'python':     ['isort', 'yapf'],
-\ 'sh':         ['shfmt'],
+\ 'c':              ['clang-format'],
+\ 'html':           ['prettier'],
+\ 'javascript':     ['prettier'],
+\ 'json':           ['prettier'],
+\ 'python':         ['isort', 'yapf'],
+\ 'sh':             ['shfmt'],
+\ 'typescript':     ['prettier'],
+\ 'typescript.tsx': ['prettier'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_sh_shfmt_options = '-p -ci -i 2'
@@ -76,7 +84,7 @@ let g:closetag_filetypes = 'html,xhtml,phtml,jsx,tsx'
 " ctrlp {{{
 Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = 'venv\|git\|__pycache__\|.pytest_cache\|plugged'
+let g:ctrlp_custom_ignore = 'venv\|git\|__pycache__\|.pytest_cache\|plugged\|node_modules'
 "}}}
 
 " deoplete {{{
@@ -155,7 +163,7 @@ Plug 'justinmk/vim-sneak'
 let g:sneak#label = 1
 "}}}
 
-" snippets {{{
+" ultisnips {{{
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger = '<tab>'
@@ -195,6 +203,8 @@ Plug 'tomasr/molokai'
 Plug 'jremmen/vim-ripgrep'
 Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
 "}}}
 
 call plug#end()
@@ -203,15 +213,22 @@ call plug#end()
 " settings {{{
 
 " backup {{{
-set noswapfile
 set backup
-set backupdir=${HOME}/.local/share/nvim/backup
-if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
+set noswapfile
+set backupdir=${HOME}/.config/nvim/backup
+if !isdirectory(&backupdir)
+  call mkdir(&backupdir, 'p', 0700)
+endif
 "}}}
 
-" colors {{{
+" colorscheme {{{
+set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
-try | colo molokai | catch |colo koehler | endtry
+try
+  colorscheme codedark
+catch
+  colorscheme koehler
+endtry
 "}}}
 
 " command-line {{{
@@ -230,24 +247,9 @@ set autoindent
 set smartindent
 augroup vimrc_indent
   autocmd!
-  autocmd FileType sh,zsh,vim,css,html,json,gitconfig setlocal shiftwidth=2 softtabstop=2
+  autocmd FileType sh,zsh,vim,css,html,json,gitconfig,typescript.tsx setlocal shiftwidth=2 softtabstop=2
 augroup END
 " }}}
-
-" lang {{{
-let $LANG = 'en'
-set langmenu=en
-set encoding=utf-8
-"}}}
-
-" text-width {{{
-set nowrap
-set textwidth=90
-set formatoptions+=t " wrap text using &textwidth.
-set colorcolumn=+0 " display a colorcolumn using &textwidth.
-set scrolloff=10
-set sidescrolloff=10
-"}}}
 
 " search {{{
 set hlsearch
@@ -260,18 +262,24 @@ augroup vimrc_search
 augroup END
 "}}}
 
-" status-line {{{
-set ruler
-set showcmd
-set noshowmode
-set laststatus=2 " always display status line.
-"}}}
-
 " spell {{{
 augroup vimrc_spell
   autocmd!
   autocmd Filetype text setlocal spell
 augroup END
+"}}}
+
+" splits {{{
+set fillchars+=vert:┃
+set splitbelow
+set splitright
+" }}}
+
+" status-line {{{
+set ruler
+set showcmd
+set noshowmode
+set laststatus=2 " always display status line.
 "}}}
 
 " syntax {{{
@@ -283,15 +291,30 @@ augroup vimrc_syntax
 augroup END
 "}}}
 
+" textwidth {{{
+set nowrap
+set textwidth=90
+set formatoptions+=t " wrap text using &textwidth.
+set colorcolumn=+0 " display a colorcolumn using &textwidth.
+set scrolloff=10
+set sidescrolloff=10
+"}}}
+
 " undo {{{
 set undofile
-set undodir=${HOME}/.local/share/nvim/undo
-if !isdirectory(&undodir) | call mkdir(&undodir, 'p', 0700) | endif
+set undodir=${HOME}/.config/nvim/undo
+if !isdirectory(&undodir)
+  call mkdir(&undodir, 'p', 0700)
+endif
 "}}}
 
 " whitespace {{{
-set list
-set listchars=tab:>-,trail:·
+set list " show whitespace.
+set listchars=tab:ᐅ-
+set listchars+=trail:•
+set listchars+=nbsp:⦸
+set listchars+=extends:»
+set listchars+=precedes:«
 augroup vimrc_whitespace
   autocmd!
   autocmd BufWritePre * %s/\s\+$//e
@@ -302,11 +325,11 @@ augroup END
 " misc {{{
 set mouse=a
 set hidden
-set cursorline
-set foldmethod=marker
 set number
 set relativenumber
-set splitbelow splitright
+set cursorline
+set virtualedit=block " allow cursor to move where there is no text in visual block mode.
+set foldmethod=marker
 set clipboard+=unnamedplus " use system clipboard.
 set lazyredraw " don't redraw while executing macros.
 set timeoutlen=500
@@ -365,7 +388,10 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " misc.
+nnoremap <leader><leader> <C-^>
+nnoremap <leader>q :quit<CR>
 nnoremap Y y$
+nnoremap Q <nop>
 nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 tnoremap <Esc> <C-\><C-n>
 
