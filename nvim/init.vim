@@ -66,11 +66,21 @@ let g:ccls_close_on_jump = v:true
 " chadtree {{{
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 let g:chadtree_settings = {
-\  'width': 27,
+\  'width': 35,
 \  'show_hidden': 'true',
 \}
 let g:chadtree_ignores = {
-\ 'name': ['htmlcov', '.git', '.idea','__pycache__', '.mypy_cache', '.pytest_cache']
+\  'name': ['htmlcov', '.git', '.idea','__pycache__', '.mypy_cache', '.pytest_cache']
+\}
+let g:chadtree_view = {
+\  'window_options': [
+\    'number',
+\    'relativenumber',
+\    'nowrap',
+\    'signcolumn=no',
+\    'cursorline',
+\    'winfixwidth'
+\  ]
 \}
 nnoremap <leader>f <cmd>CHADopen<cr>
 "}}}
@@ -172,6 +182,8 @@ let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
 
 " test {{{
 Plug 'vim-test/vim-test'
+let g:test#strategy = 'neovim'
+let g:test#neovim#term_position = 'vert'
 nmap <silent> <leader>tn :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ts :TestSuite<CR>
@@ -225,7 +237,7 @@ endif
 set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
 try
-  colorscheme codedark
+  colorscheme molokai
 catch
   colorscheme koehler
 endtry
