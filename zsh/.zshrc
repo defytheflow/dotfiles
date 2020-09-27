@@ -118,4 +118,4 @@ if [ -n "${DOTFILES_HOME}" ]; then
 fi
 #}}}
 
-export PROMPT='[%B%F{213}%~%f%b]$ '
+export PROMPT='%B%F{213}%~%f%b $ '

@@ -4,14 +4,13 @@
 # Author:   Artyom Danilov (@defytheflow)
 
 
-# vars {{{
 set $mod Mod4
 floating_modifier $mod
 
 set $ws1 "1 tty"
 set $ws2 "2 web"
-set $ws3 "3 code"
-set $ws4 "4 remote"
+set $ws3 "3 dev"
+set $ws4 "4 ssh"
 set $ws5 5
 set $ws6 6
 set $ws7 7
@@ -19,27 +18,35 @@ set $ws8 8
 set $ws9 9
 
 set $browser    firefox
-set $locker     i3lock --color=000000
+set $locker     betterlockscreen
 set $menu       rofi -show run
 set $terminal   alacritty
 set $remote     anydesk
+
 set $in_monitor eDP1
-set $ex_monitor HDMI-1
-set $inner_gaps 10
-set $outer_gaps 5
+set $ex_monitor HDMI1
+
 set $resize     5
-#}}}
+set $outer_gaps 5
+set $inner_gaps 10
 
-# startup {{{
+# Run these applications on startup.
 exec --no-startup-id i3-msg "workspace $ws1; exec $terminal"
-exec --no-startup-id xcompmgr -cfn # enable terminal transparency.
-#}}}
+exec --no-startup-id xcompmgr -cfn
 
-# appearance {{{
+# Always open these applications on specific workspaces.
+assign [class="firefox" instance="Navigator"] $ws2
+assign [class="Anydesk" instance="anydesk"] $ws4
+
+# Make pop up windows floating.
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+# Appearance {{{
 font pango:DejaVu Sans Mono 9
 
 title_align         center
-default_border      pixel 1
+default_border      pixel 2
 default_orientation horizontal
 
 workspace_auto_back_and_forth yes
@@ -63,43 +70,44 @@ bar {
 }
 #}}}
 
-# binds {{{
+# Binds {{{
 
-# apps {{{
+# Apps.
 bindsym $mod+w      exec --no-startup-id $browser
 bindsym $mod+d      exec --no-startup-id $menu
 bindsym $mod+a      exec --no-startup-id $remote
 bindsym $mod+Return exec --no-startup-id $terminal
-#}}}
 
-# gaps {{{
+# Gaps.
 bindsym $mod+0        gaps inner current set $inner_gaps; gaps outer current set $outer_gaps
 bindsym $mod+Shift+0  gaps inner current set 0; gaps outer current set 0
 bindsym $mod+plus     gaps outer current plus 5
 bindsym $mod+minus    gaps outer current minus 5
-#}}}
 
-# misc {{{
+# Misc.
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-# }}}
 
-# layout {{{
+# Layout.
 bindsym $mod+f           fullscreen toggle
 bindsym $mod+v           split toggle
-bindsym $mod+space       focus mode_toggle
-bindsym $mod+Shift+space floating toggle
-#}}}
+bindsym $mod+space       floating toggle
 
-# monitors {{{
-bindsym $mod+bracketleft        exec --no-startup-id "xrandr --output $in_monitor --auto"
-bindsym $mod+Shift+bracketleft  exec --no-startup-id "xrandr --output $in_monitor --off"
-bindsym $mod+bracketright       exec --no-startup-id "xrandr --output $ex_monitor --auto"
-bindsym $mod+Shift+bracketright exec --no-startup-id "xrandr --output $ex_monitor --off"
-#}}}
+# Monitors.
+bindsym $mod+bracketleft        exec --no-startup-id xrandr --output $ex_monitor --auto
+bindsym $mod+bracketright       exec --no-startup-id xrandr --output $in_monitor --auto
+bindsym $mod+Shift+bracketleft  exec --no-startup-id xrandr --output $ex_monitor --off
+bindsym $mod+Shift+bracketright exec --no-startup-id xrandr --output $in_monitor --off
 
-# movement {{{
+# Sound.
+bindsym F1  exec "amixer -D pulse set Master 1+ toggle"
+bindsym F2  exec "amixer -q set Master 5%-"
+bindsym F3  exec "amixer -q set Master 5%+"
+
+# Scratchpad.
+bindsym $mod+s move scratchpad
+bindsym $mod+Shift+s scratchpad show
 
 # Change window.
 bindsym $mod+h  focus left
@@ -114,12 +122,12 @@ bindsym $mod+Shift+k  move up
 bindsym $mod+Shift+l  move right
 
 # Resize window.
-bindsym $mod+y  resize shrink width $resize px or $resize ppt
-bindsym $mod+u  resize grow   height $resize px or $resize ppt
-bindsym $mod+i  resize shrink height $resize px or $resize ppt
-bindsym $mod+o  resize grow   width $resize px or $resize ppt
+bindsym $mod+Ctrl+h resize shrink width  $resize px or $resize ppt
+bindsym $mod+Ctrl+j resize grow   height $resize px or $resize ppt
+bindsym $mod+Ctrl+k resize shrink height $resize px or $resize ppt
+bindsym $mod+Ctrl+l resize grow   width  $resize px or $resize ppt
 
-# Switch workspace (number keys).
+# Switch workspace.
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
@@ -130,18 +138,7 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 
-# Switch workspace (numpad keys).
-bindsym $mod+KP_End   workspace $ws1
-bindsym $mod+KP_Down  workspace $ws2
-bindsym $mod+KP_Next  workspace $ws3
-bindsym $mod+KP_Left  workspace $ws4
-bindsym $mod+KP_Begin workspace $ws5
-bindsym $mod+KP_Right workspace $ws6
-bindsym $mod+KP_Home  workspace $ws7
-bindsym $mod+KP_Up    workspace $ws8
-bindsym $mod+KP_Prior workspace $ws9
-
-# Move window to workspace (number keys).
+# Move window to workspace.
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -152,44 +149,17 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 
-# Move window to workspace (numpad keys).
-bindsym $mod+Shift+KP_End   move container to workspace $ws1
-bindsym $mod+Shift+KP_Down  move container to workspace $ws2
-bindsym $mod+Shift+KP_Next  move container to workspace $ws3
-bindsym $mod+Shift+KP_Left  move container to workspace $ws4
-bindsym $mod+Shift+KP_Begin move container to workspace $ws5
-bindsym $mod+Shift+KP_Right move container to workspace $ws6
-bindsym $mod+Shift+KP_Home  move container to workspace $ws7
-bindsym $mod+Shift+KP_Up    move container to workspace $ws8
-bindsym $mod+Shift+KP_Prior move container to workspace $ws9
-#}}}
-
-# sound {{{
-bindsym F1  exec "amixer -D pulse set Master 1+ toggle"
-bindsym F2  exec "amixer -q set Master 5%-"
-bindsym F3  exec "amixer -q set Master 5%+"
-#}}}
-
-# scratchpad {{{
-bindsym $mod+s move scratchpad
-bindsym $mod+Shift+s scratchpad show
-#}}}
-
-# shutdown menu {{{
-set $mode_system (L)ock, lo(G)out, (S)uspend, (H)ibernate, (R)eboot, (P)oweroff
-
+# Shutdown.
+set $mode_system (L)ock, lo(G)out, (S)uspend, (R)eboot, (P)oweroff
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $locker, mode "default"
+    bindsym l exec --no-startup-id $locker -l, mode "default"
     bindsym g exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $locker && systemctl hibernate, mode "default"
+    bindsym s exec --no-startup-id $locker -s && systemctl suspend, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym p exec --no-startup-id systemctl poweroff -i, mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
 bindsym $mod+Escape mode "$mode_system"
-# }}}
 
 #}}}

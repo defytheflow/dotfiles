@@ -217,6 +217,7 @@ Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
+Plug 'mboughaba/i3config.vim'
 "}}}
 
 call plug#end()
@@ -299,7 +300,8 @@ syntax enable
 set iskeyword+=- " treat dash separated words as a word text object.
 augroup vimrc_syntax
   autocmd!
-  autocmd BufRead setup.cfg setlocal filetype=toml
+  autocmd BufNewFile,BufRead setup.cfg setlocal filetype=toml
+  autocmd BufNewFile,BufRead ~/.config/i3/config setlocal filetype=i3config
 augroup END
 "}}}
 

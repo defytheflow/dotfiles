@@ -39,7 +39,7 @@ install_packages() {
     sudo pacman -Qi "${package}" >/dev/null || sudo pacman -S "${package}"
   done
 
-  set -- code rmtrash
+  set -- code rmtrash betterlockscreen
 
   for package; do
     log "Checking that $(color "${package}") exists."
