@@ -19,6 +19,32 @@ endif
 
 call plug#begin(expand('~/.config/nvim/plugged'))
 
+" ale {{{
+Plug 'dense-analysis/ale'
+let g:ale_linters = {
+\  'c':      ['ccls', 'clang'],
+\  'python': ['pyls', 'flake8'],
+\  'sh':     ['language_server', 'shellcheck'],
+\  'vim':    ['vimls', 'vint'],
+\}
+let g:ale_fixers = {
+\ 'c':          ['clang-format'],
+\ 'html':       ['prettier'],
+\ 'javascript': ['prettier'],
+\ 'json':       ['prettier'],
+\ 'python':     ['isort', 'yapf'],
+\ 'sh':         ['shfmt'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_sh_shfmt_options = '-p -ci -i 2'
+let g:ale_set_highlights = 0
+nmap <silent> gd :ALEGoToDefinition<CR>
+nmap <silent> gs :ALEFindReferences<CR>
+nmap <silent> ]g :ALEPrevious<CR>
+nmap <silent> [g :ALENext<CR>
+nmap <silent> K  :ALEHover<CR>
+"}}}
+
 " camel-case-motion {{{
 Plug 'bkad/CamelCaseMotion'
 let g:camelcasemotion_key = '<leader>'
@@ -27,6 +53,18 @@ let g:camelcasemotion_key = '<leader>'
 " ccls {{{
 Plug 'm-pilia/vim-ccls'
 let g:ccls_close_on_jump = v:true
+"}}}
+
+" chadtree {{{
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
+let g:chadtree_settings = {
+\  'width': 27,
+\  'show_hidden': 'true',
+\}
+let g:chadtree_ignores = {
+\ 'name': ['htmlcov', '.git', '.idea','__pycache__', '.mypy_cache', '.pytest_cache']
+\}
+nnoremap <leader>f <cmd>CHADopen<cr>
 "}}}
 
 " close-tag {{{
@@ -38,7 +76,7 @@ let g:closetag_filetypes = 'html,xhtml,phtml,jsx,tsx'
 " ctrlp {{{
 Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = 'venv\|git\|__pycache'
+let g:ctrlp_custom_ignore = 'venv\|git\|__pycache__\|.pytest_cache\|plugged'
 "}}}
 
 " deoplete {{{
@@ -54,6 +92,8 @@ let delimitMate_matchpairs = '(:),[:],{:}'
 " easy-align {{{
 Plug 'junegunn/vim-easy-align'
 let g:easy_align_ignore_groups = []
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 "}}}
 
 " gitgutter {{{
@@ -65,6 +105,21 @@ augroup vimrc_gitgutter
   autocmd ColorScheme * highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
   autocmd ColorScheme * highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
 augroup END
+"}}}
+
+" goyo {{{
+Plug 'junegunn/goyo.vim'
+let g:goyo_width = '90%'
+function! s:goyo_enter()
+  set number
+  set relativenumber
+  set colorcolumn=+0
+endfunction
+augroup vimrc_goyo
+  autocmd!
+  autocmd! User GoyoEnter nested call <SID>goyo_enter()
+augroup END
+nnoremap <silent> <leader>z :Goyo<CR>
 "}}}
 
 " highlighted-yank {{{
@@ -83,7 +138,7 @@ augroup vimrc_indentline
 augroup END
 "}}}
 
-" light-line {{{
+" lightline {{{
 Plug 'itchyny/lightline.vim'
 let g:lightline = {
 \  'colorscheme': 'powerline',
@@ -107,25 +162,30 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
 "}}}
 
+" test {{{
+Plug 'vim-test/vim-test'
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
+"}}}
+
 " quick-scope {{{
 Plug 'unblevable/quick-scope'
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 "}}}
 
 " misc {{{
-Plug 'dense-analysis/ale'
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'jeetsukumaran/vim-pythonsense'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
-Plug 'junegunn/goyo.vim'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'miyakogi/seiya.vim'
 Plug 'chrisbra/Colorizer'
@@ -133,15 +193,8 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'morhetz/gruvbox'
 Plug 'tomasr/molokai'
 Plug 'jremmen/vim-ripgrep'
-Plug 'vim-test/vim-test'
-"}}}
-
-" devicons {{{
+Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
-augroup vimrc_devicons
-  autocmd!
-  autocmd SourcePost $MYVIMRC if exists('g:loaded_webdevicons') | call webdevicons#refresh() | endif
-augroup END
 "}}}
 
 call plug#end()
@@ -284,17 +337,6 @@ endfun
 "}}}
 
 " mappings {{{
-
-" test.
-nmap <silent> <leader>tn :TestNearest<CR>
-nmap <silent> <leader>tf :TestFile<CR>
-nmap <silent> <leader>ts :TestSuite<CR>
-nmap <silent> <leader>tl :TestLast<CR>
-nmap <silent> <leader>tv :TestVisit<CR>
-
-" easy-align.
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
 
 " buffers.
 nnoremap gb :ls<CR>:b<space>

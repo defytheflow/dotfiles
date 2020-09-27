@@ -29,7 +29,7 @@ alias -- -='cd -' # Type '-' to go to previous dir.
 
 # ls.
 alias l='ls -1'
-alias ls='ls -vh --group-directories-first'
+alias ls='ls -vh --group-directories-first --color=auto'
 alias la='ls -A'
 alias ll='ls -l'
 
