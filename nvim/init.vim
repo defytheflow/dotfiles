@@ -28,10 +28,13 @@ Plug 'dense-analysis/ale'
 let g:ale_linters = {
 \  'c':          ['ccls', 'clang'],
 \  'javascript': ['eslint'],
-\  'python':     ['pyls', 'flake8'],
+\  'python':     ['pyls', 'flake8', 'mypy'],
 \  'sh':         ['language_server', 'shellcheck'],
 \  'typescript': ['tsserver', 'tslint'],
 \  'vim':        ['vimls', 'vint'],
+\}
+let g:ale_linter_aliases = {
+\   'zsh': 'sh',
 \}
 let g:ale_fixers = {
 \ 'c':              ['clang-format'],
@@ -43,9 +46,39 @@ let g:ale_fixers = {
 \ 'typescript':     ['prettier'],
 \ 'typescript.tsx': ['prettier'],
 \}
-let g:ale_fix_on_save = 1
 let g:ale_sh_shfmt_options = '-p -ci -i 2'
-let g:ale_set_highlights = 0
+let g:ale_fix_on_save = 1
+let g:ale_change_sign_column_color = 0
+let g:ale_virtualtext_cursor = 1
+let g:ale_virtualtext_delay = 5
+let g:ale_completion_symbols = {
+\ 'text': '',
+\ 'method': '',
+\ 'function': '',
+\ 'constructor': '',
+\ 'field': '',
+\ 'variable': '',
+\ 'class': '',
+\ 'interface': '',
+\ 'module': '',
+\ 'property': '',
+\ 'unit': 'v',
+\ 'value': 'v',
+\ 'enum': 't',
+\ 'keyword': 'v',
+\ 'snippet': 'v',
+\ 'color': 'v',
+\ 'file': 'v',
+\ 'reference': 'v',
+\ 'folder': 'v',
+\ 'enum_member': 'm',
+\ 'constant': 'm',
+\ 'struct': 't',
+\ 'event': 'v',
+\ 'operator': 'f',
+\ 'type_parameter': 'p',
+\ '<default>': 'v'
+\ }
 nmap <silent> gd :ALEGoToDefinition<CR>
 nmap <silent> gs :ALEFindReferences<CR>
 nmap <silent> ]g :ALEPrevious<CR>
@@ -63,29 +96,7 @@ Plug 'm-pilia/vim-ccls'
 let g:ccls_close_on_jump = v:true
 "}}}
 
-" chadtree {{{
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
-let g:chadtree_settings = {
-\  'width': 35,
-\  'show_hidden': 'true',
-\}
-let g:chadtree_ignores = {
-\  'name': ['htmlcov', '.git', '.idea','__pycache__', '.mypy_cache', '.pytest_cache']
-\}
-let g:chadtree_view = {
-\  'window_options': [
-\    'number',
-\    'relativenumber',
-\    'nowrap',
-\    'signcolumn=no',
-\    'cursorline',
-\    'winfixwidth'
-\  ]
-\}
-nnoremap <leader>f <cmd>CHADopen<cr>
-"}}}
-
-" close-tag {{{
+" closetag {{{
 Plug 'alvan/vim-closetag'
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.tsx,*js'
 let g:closetag_filetypes = 'html,xhtml,phtml,jsx,tsx'
@@ -94,7 +105,8 @@ let g:closetag_filetypes = 'html,xhtml,phtml,jsx,tsx'
 " ctrlp {{{
 Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = 'venv\|git\|__pycache__\|.pytest_cache\|plugged\|node_modules'
+let g:ctrlp_custom_ignore = '.git\|.venv\|node_modules\|htmlcov\|plugged'
+nnoremap <silent> gb :CtrlPBuffer<CR>
 "}}}
 
 " deoplete {{{
@@ -102,12 +114,12 @@ Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 "}}}
 
-" delimit-mate {{{
+" delimitmate {{{
 Plug 'Raimondi/delimitMate'
 let delimitMate_matchpairs = '(:),[:],{:}'
 "}}}
 
-" easy-align {{{
+" easyalign {{{
 Plug 'junegunn/vim-easy-align'
 let g:easy_align_ignore_groups = []
 xmap ga <Plug>(EasyAlign)
@@ -145,7 +157,7 @@ Plug 'machakann/vim-highlightedyank'
 let g:highlightedyank_highlight_duration = 200
 "}}}
 
-" indent-line {{{
+" indentline {{{
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char =  '¦'
 let g:indentLine_leadingSpaceChar = '·'
@@ -163,9 +175,25 @@ let g:lightline = {
 \}
 "}}}
 
-" python-syntax {{{
-Plug 'vim-python/python-syntax'
-let g:python_highlight_all = 1
+" nerdtree {{{
+Plug 'preservim/nerdtree'
+let g:NERDTreeWinSize = 30
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI  = 1  " Disable '?' help at the top
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+let g:NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
+let g:NERDTreeIgnore = [
+\  'htmlcov',
+\  '.git', '.idea',
+\  '__pycache__', '.mypy_cache', '.pytest_cache'
+\]
+augroup vimrc_nerdtree
+  autocmd!
+  autocmd BufEnter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()) | q | endif
+augroup END
+nnoremap <silent> <leader>f :NERDTreeToggle<CR>
 "}}}
 
 " sneak {{{
@@ -191,9 +219,23 @@ nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 "}}}
 
-" quick-scope {{{
+" quickscope {{{
 Plug 'unblevable/quick-scope'
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+"}}}
+
+" colorschemes {{{
+Plug 'tomasiser/vim-code-dark'
+Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
+"}}}
+
+" syntax {{{
+Plug 'vim-python/python-syntax'
+let g:python_highlight_all = 1
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
+Plug 'mboughaba/i3config.vim'
 "}}}
 
 " misc {{{
@@ -209,15 +251,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'miyakogi/seiya.vim'
 Plug 'chrisbra/Colorizer'
-Plug 'tomasiser/vim-code-dark'
-Plug 'morhetz/gruvbox'
-Plug 'tomasr/molokai'
 Plug 'jremmen/vim-ripgrep'
-Plug 'mhinz/vim-startify'
-Plug 'ryanoasis/vim-devicons'
-Plug 'leafgarland/typescript-vim'
-Plug 'ianks/vim-tsx'
-Plug 'mboughaba/i3config.vim'
 "}}}
 
 call plug#end()
@@ -228,7 +262,7 @@ call plug#end()
 " backup {{{
 set backup
 set noswapfile
-set backupdir=${HOME}/.config/nvim/backup
+set backupdir=${HOME}/.local/share/nvim/backup
 if !isdirectory(&backupdir)
   call mkdir(&backupdir, 'p', 0700)
 endif
@@ -248,7 +282,12 @@ endtry
 set history=1000
 set wildmenu
 set wildmode=longest,list,full
+set wildignore+=__pycache__,.mypy_cache,.pytest_cache
 set wildignorecase
+"}}}
+
+" gui {{{
+set guifont=FiraCode:h11
 "}}}
 
 " indent {{{
@@ -297,7 +336,6 @@ set laststatus=2 " always display status line.
 
 " syntax {{{
 syntax enable
-set iskeyword+=- " treat dash separated words as a word text object.
 augroup vimrc_syntax
   autocmd!
   autocmd BufNewFile,BufRead setup.cfg setlocal filetype=toml
@@ -316,7 +354,7 @@ set sidescrolloff=10
 
 " undo {{{
 set undofile
-set undodir=${HOME}/.config/nvim/undo
+set undodir=${HOME}/.local/share/nvim/undo
 if !isdirectory(&undodir)
   call mkdir(&undodir, 'p', 0700)
 endif
@@ -376,24 +414,16 @@ endfun
 " mappings {{{
 
 " buffers.
-nnoremap gb :ls<CR>:b<space>
 nnoremap <silent> <tab>   :bn<CR>
 nnoremap <silent> <S-tab> :bp<CR>
 
-" ctrl.
-nnoremap <silent> <C-c> <Esc>
-nnoremap <silent> <C-l> :nohl<CR>
-nnoremap <silent> <C-s> :w<CR>
-
-" highlight.
-nnoremap <silent> <leader>cc :execute 'set cc=' . (&cc == '' ? '+1' : '')<CR>
-nnoremap <silent> <leader>ch :ColorHighlight<CR>
-nnoremap <silent> <leader>ck :set cuc!<CR>
-nnoremap <silent> <leader>cl :set cul!<CR>
-
 " vim.
-nnoremap <silent> <leader>ve :sp $MYVIMRC<CR>
+nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
+
+" search.
+nnoremap / /\v
+vnoremap / /\v
 
 " visual.
 vnoremap < <gv
@@ -403,10 +433,12 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " misc.
 nnoremap <leader><leader> <C-^>
+nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <leader>q :quit<CR>
+nnoremap <silent> <C-l> :nohl<CR>
+nnoremap <silent> <C-s> :w<CR>
 nnoremap Y y$
 nnoremap Q <nop>
-nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 tnoremap <Esc> <C-\><C-n>
 
 "}}}
