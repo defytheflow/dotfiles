@@ -25,12 +25,12 @@ main() {
   install_packages
   install_pip_packages
   install_npm_packages
-  [ -z "${WSL_DISTRO_NAME}" ] &&  install_cargo_packages
+  [ -z "${WSL_DISTRO_NAME}" ] && install_cargo_packages
 
   create_dirs
   symlink_dirs
   symlink_files
-  symlink_vscode
+  [ -n "${WSL_DISTRO_NAME}" ] && copy_wsl_files
 }
 
 check_distro() {
@@ -137,11 +137,16 @@ symlink_dirs() {
     ln -sf "${1}" "${2}"
   }
 
+  if command -v code >/dev/null; then
+    command -v code-oss >/dev/null && dest='Code - OSS/User' || dest='Code/User'
+    symlink_dir "${DOTFILES_HOME}/vscode" "${XDG_CONFIG_HOME}/${dest}"
+  fi
+
   if [ "${USER}" = 'defytheflow' ]; then
     symlink_dir "${DOTFILES_HOME}/git" "${XDG_CONFIG_HOME}/git"
   fi
 
-  for dir in 'alacritty' 'i3' 'nvim' 'python' 'tmux' 'zsh'; do
+  for dir in 'i3' 'nvim' 'python' 'tmux' 'zsh'; do
     symlink_dir "${DOTFILES_HOME}/${dir}" "${XDG_CONFIG_HOME}/${dir}"
   done
 }
@@ -175,17 +180,9 @@ symlink_files() {
   done
 }
 
-symlink_vscode() {
-  log 'Symlinking vscode.'
-
-  if command -v code >/dev/null; then
-    if [ -n "${WSL_DISTRO_NAME}" ]; then
-      cp -v "${DOTFILES_HOME}/vscode/settings.json" "${WIN_HOME}/AppData/Roaming/Code/User"
-    else
-      command -v code-oss >/dev/null && dest='Code - OSS/User' || dest='Code/User'
-      symlink_dir "${DOTFILES_HOME}/vscode" "${XDG_CONFIG_HOME}/${dest}"
-    fi
-  fi
+copy_wsl_files() {
+  cp -v "${DOTFILES_HOME}/vscode/settings.json" "${APPDATA}/Code/User"
+  cp -rv "${DOTFILES_HOME}/term/alacritty" "${APPDATA}"
 }
 
 main

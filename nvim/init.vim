@@ -11,17 +11,22 @@ if filereadable('/usr/bin/python3')
   let g:python3_host_prog = '/usr/bin/python3'
 endif
 
-" plugins {{{
+if has('nvim')
+  let config_dir = stdpath('config')
+  let cache_dir = stdpath('cache')
+else
+  let config_dir = glob('~/.vim')
+  let cache_dir = glob('~/.vim')
+endif
 
-" vim-plug {{{
-let vimplug = expand('~/.config/nvim/autoload/plug.vim')
+let vimplug = config_dir . '/autoload/plug.vim'
 if !filereadable(vimplug)
   let url = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   silent exec '!curl -fLo ' . vimplug . ' --create-dirs ' . url
 endif
-"}}}
 
-call plug#begin(expand('~/.config/nvim/plugged'))
+" plugins {{{
+call plug#begin(config_dir . '/plugged')
 
 " ale {{{
 Plug 'dense-analysis/ale'
@@ -32,9 +37,6 @@ let g:ale_linters = {
 \  'sh':         ['language_server', 'shellcheck'],
 \  'typescript': ['tsserver', 'tslint'],
 \  'vim':        ['vimls', 'vint'],
-\}
-let g:ale_linter_aliases = {
-\   'zsh': 'sh',
 \}
 let g:ale_fixers = {
 \ 'c':              ['clang-format'],
@@ -110,7 +112,13 @@ nnoremap <silent> gb :CtrlPBuffer<CR>
 "}}}
 
 " deoplete {{{
-Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 let g:deoplete#enable_at_startup = 1
 "}}}
 
@@ -183,7 +191,7 @@ let g:NERDTreeMinimalUI  = 1  " Disable '?' help at the top
 let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
-let g:NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
+let g:NERDTreeBookmarksFile = cache_dir . '/NERDTreeBookmarks'
 let g:NERDTreeIgnore = [
 \  'htmlcov',
 \  '.git', '.idea',

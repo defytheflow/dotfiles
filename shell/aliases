@@ -41,7 +41,7 @@ alias mv='mv -iv'
 alias tc='touch'
 alias rd='rmdir'
 alias rm='rm -vi --preserve-root'
-alias rmdir='rmdir -vi'
+alias rmdir='rmdir -v'
 
 # java.
 alias j='java'

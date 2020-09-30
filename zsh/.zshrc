@@ -15,16 +15,25 @@ export ZPLUG_CACHE_DIR="${HOME}/.cache/zplug"
 source "${ZPLUG_HOME}/init.zsh"
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'plugins/command-not-found', from:oh-my-zsh
 zplug 'kutsan/zsh-system-clipboard'
 
+# autosuggestions {{{
+zplug 'zsh-users/zsh-autosuggestions'
+bindkey '^F' autosuggest-accept
+#}}}
+
+# vim-mode {{{
+zplug 'softmoth/zsh-vim-mode', defer:2
+VIM_MODE_NO_DEFAULT_BINDINGS=true
+MODE_INDICATOR=
+#}}}
+
+# z {{{
 zplug 'agkozak/zsh-z'
 export ZSHZ_DATA="${HOME}/.cache/z"
-
-zplug 'softmoth/zsh-vim-mode'
-VIM_MODE_TRACK_KEYMAP='no'
+#}}}
 
 zplug check || zplug install
 zplug load
@@ -83,10 +92,10 @@ zle-keymap-select() {
   fi
 }
 zle -N zle-keymap-select
-
 zle-line-init() {
   zle -K viins
-  echo -ne '\e[5 q'
+  # echo -ne '\e[5 q'
+  echo -ne "\033]12;#00ff00\007"
 }
 zle -N zle-line-init
 #}}}
@@ -103,12 +112,12 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-# History editing with <Ctrl-r>.
-bindkey '^R' history-incremental-pattern-search-backward
+# Edit line in vim with <ctrl-e>.
+autoload edit-command-line && zle -N edit-command-line
+bindkey '^e' edit-command-line
 
-# Line editing in vim with <Ctrl-v>.
-autoload edit-command-line && zle -N edit-command-line && bindkey '^v' edit-command-line
-autoload -U edit-command-line && zle -N edit-command-line && bindkey -M vicmd "^v" edit-command-line
+# Edit history with <ctrl-r>.
+bindkey '^R' history-incremental-pattern-search-backward
 #}}}
 
 # Other {{{

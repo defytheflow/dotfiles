@@ -77,7 +77,7 @@ scrolling:
 
 # Font configuration.
 font:
-  normal:
+  normal: # [NOTE] comment out this section on windows.
     family: Cascadia Code
     style: Medium
 
@@ -255,13 +255,13 @@ live_config_reload: true
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
 # shell:
-#  program: /usr/bin/zsh
+#  program: /usr/bin/zsh  # [NOTE] on windows use 'wsl zsh'
 #  args:
 #    - --login
 
 # Directory the shell is started in. If this is unset, or `None`, the working
 # directory of the parent process will be used.
-working_directory: None
+working_directory: None  # [NOTE] on windows use 'C:\Users\{username}'
 
 # WinPTY backend (Windows only)
 #

@@ -91,6 +91,7 @@ if [ -n "${WSL_DISTRO_NAME}" ]; then
   export WIN_USER="$(powershell.exe '$env:UserName' | sed -e 's/\r//g')"
   export WIN_HOME="$(wslpath "$(cmd.exe /C 'echo | set /p _=%USERPROFILE%' 2>/dev/null)")"
   export WIN_DESK="${WIN_HOME}"/Desktop
+  export APPDATA="${WIN_HOME}/AppData/Roaming"
 fi
 
 export LINES COLUMNS # For use by external scripts and programs. (!)
