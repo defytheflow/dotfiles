@@ -6,8 +6,7 @@
 
 ZSH_CACHE="${HOME}/.cache/zsh"
 
-# Plugins {{{
-# ------------------------------------------------------------------------------
+# plugins {{{
 export ZPLUG_HOME="${HOME}/.config/zplug"
 export ZPLUG_CACHE_DIR="${HOME}/.cache/zplug"
 
@@ -26,7 +25,7 @@ bindkey '^F' autosuggest-accept
 
 # vim-mode {{{
 zplug 'softmoth/zsh-vim-mode', defer:2
-VIM_MODE_NO_DEFAULT_BINDINGS=true
+VIM_MODE_TRACK_KEYMAP=no
 MODE_INDICATOR=
 #}}}
 
@@ -39,19 +38,10 @@ zplug check || zplug install
 zplug load
 #}}}
 
-# History {{{
-# ------------------------------------------------------------------------------
-export HISTFILE="${ZSH_CACHE}/history"
-export HISTSIZE=10000
-export SAVEHIST=10000
-#}}}
-
-# Options {{{
-# ------------------------------------------------------------------------------
+# options {{{
 setopt autocd autopushd # don't type cd.
 setopt interactive_comments # allow comments in interactive shells.
 setopt menu_complete # auto-insert first possible completion.
-setopt share_history # share history across shells.
 
 # ls directory after cd.
 autoload -U add-zsh-hook
@@ -62,8 +52,21 @@ else
 fi
 #}}}
 
-# Completion {{{
-# ------------------------------------------------------------------------------
+# history {{{
+export HISTFILE="${ZSH_CACHE}/history"
+export HISTSIZE=10000
+export SAVEHIST=10000
+
+setopt share_history # share history across shells.
+setopt inc_append_history # commands added to history immediately.
+setopt extended_history # record the timestamp of each command.
+setopt hist_ignore_all_dups # do not write duplicate commands.
+
+# Search history with <ctrl-r>.
+bindkey '^R' history-incremental-pattern-search-backward
+#}}}
+
+# completion {{{
 autoload -U compinit
 compinit -d "${ZSH_CACHE}/zcompdump-${ZSH_VERSION}"
 
@@ -82,7 +85,7 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format %F{default}%B%--- %d ---%b%f
 #}}}
 
-# Cursor {{{
+# cursor {{{
 zle-keymap-select() {
  # Change cursor shape in different modes.
   if [ $KEYMAP = vicmd ] || [ $1 = 'block' ]; then
@@ -100,9 +103,8 @@ zle-line-init() {
 zle -N zle-line-init
 #}}}
 
-# Binds {{{
-# ------------------------------------------------------------------------------
-bindkey -v # vi mode.
+# binds {{{
+bindkey -v # vi-mode.
 bindkey -v '^?' backward-delete-char # use backspace after vi-mode.
 
 # Menu completion navigaton with hjkl.
@@ -115,13 +117,9 @@ bindkey -M menuselect 'l' vi-forward-char
 # Edit line in vim with <ctrl-e>.
 autoload edit-command-line && zle -N edit-command-line
 bindkey '^e' edit-command-line
-
-# Edit history with <ctrl-r>.
-bindkey '^R' history-incremental-pattern-search-backward
 #}}}
 
-# Other {{{
-# ------------------------------------------------------------------------------
+# other {{{
 if [ -n "${DOTFILES_HOME}" ]; then
   for file in "${DOTFILES_HOME}"/shell/*; do . "${file}"; done
 fi

@@ -7,7 +7,6 @@
 alias sudo='sudo ' # Run 'sudo {alias}'
 
 alias f='file'
-alias h='history'
 alias p='pwd'
 
 alias so='source'
@@ -19,6 +18,10 @@ alias diff='diff --side-by-side --suppress-common-lines --color=auto'
 alias grep='grep --color=auto'
 alias open='xdg-open'
 alias xrld='source ~/.xprofile'
+
+# history.
+alias h='history'
+alias history='history -E'
 
 # cd.
 alias ..='cd ..'
