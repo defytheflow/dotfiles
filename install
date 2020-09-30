@@ -12,7 +12,7 @@ main() {
   check_environ
   check_internet
 
-  printf 'install: %s' 'Update system? [y/n] ' && read -r ans
+  printf 'install: Update system? [y/n] ' && read -r ans
   [ "${ans}" = 'y' ] && update_system
 
   install_packages
@@ -23,19 +23,18 @@ main() {
   create_dirs
   symlink_dirs
   symlink_files
-  [ -n "${WSL_DISTRO_NAME}" ] && copy_wsl_files
 }
 
 check_distro() {
   log 'Checking distribution.'
 
-  distro=$(lsb_release -d | awk '{ print $2 }')
+  distro=$(lsb_release -d)
 
   case "${distro}" in
-    Manjaro)
+    *Manjaro*)
       . "$(dirname "${0}")/mods/arch"
       ;;
-    Ubuntu)
+    *Ubuntu*)
       . "$(dirname "${0}")/mods/debian"
       ;;
     *)
@@ -43,8 +42,6 @@ check_distro() {
       return 1
       ;;
   esac
-
-  log "Distribution: $(color "${distro}")"
 }
 
 check_environ() {
@@ -138,6 +135,7 @@ symlink_dirs() {
   done
 
   dsymlink "${DOTFILES_HOME}/shell/zsh" "${ZDOTDIR}"
+  dsymlink "${DOTFILES_HOME}/term/alacritty" "${XDG_CONFIG_HOME}/alacritty"
 }
 
 symlink_files() {
@@ -162,11 +160,6 @@ symlink_files() {
   for file in '.inputrc' '.profile' '.xprofile' '.zprofile'; do
     fsymlink "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
   done
-}
-
-copy_wsl_files() {
-  cp -iv "${DOTFILES_HOME}/vscode/settings.json" "${APPDATA}/Code/User"
-  [ -d "${APPDATA}/alacritty" ] || cp -rv "${DOTFILES_HOME}/term/alacritty" "${APPDATA}"
 }
 
 main
