@@ -5,14 +5,7 @@
 # Author:       Artyom Danilov (@defytheflow)
 
 . "$(dirname "${0}")/.profile"
-
-log() {
-  echo "install: ${*}"
-}
-
-color() {
-  echo "$(tput setaf 26)${1}$(tput setaf 15)"
-}
+. "$(dirname "${0}")/mods/utils"
 
 main() {
   check_distro
@@ -40,10 +33,10 @@ check_distro() {
 
   case "${distro}" in
     Manjaro)
-      . "$(dirname "${0}")/arch"
+      . "$(dirname "${0}")/mods/arch"
       ;;
     Ubuntu)
-      . "$(dirname "${0}")/debian"
+      . "$(dirname "${0}")/mods/debian"
       ;;
     *)
       log "Distribution '${distro}' is not supported."
@@ -131,58 +124,49 @@ create_dirs() {
 symlink_dirs() {
   log 'Symlinking directories.'
 
-  symlink_dir() {
-    log "Symlinking $(color "${2}") directory."
-    [ -d "${2}" ] && rm -r "${2}"
-    ln -sf "${1}" "${2}"
-  }
-
   if command -v code >/dev/null; then
     command -v code-oss >/dev/null && dest='Code - OSS/User' || dest='Code/User'
-    symlink_dir "${DOTFILES_HOME}/vscode" "${XDG_CONFIG_HOME}/${dest}"
+    dsymlink "${DOTFILES_HOME}/vscode" "${XDG_CONFIG_HOME}/${dest}"
   fi
 
   if [ "${USER}" = 'defytheflow' ]; then
-    symlink_dir "${DOTFILES_HOME}/git" "${XDG_CONFIG_HOME}/git"
+    dsymlink "${DOTFILES_HOME}/git" "${XDG_CONFIG_HOME}/git"
   fi
 
-  for dir in 'i3' 'nvim' 'python' 'tmux' 'zsh'; do
-    symlink_dir "${DOTFILES_HOME}/${dir}" "${XDG_CONFIG_HOME}/${dir}"
+  for dir in 'i3' 'nvim' 'python' 'tmux'; do
+    dsymlink "${DOTFILES_HOME}/${dir}" "${XDG_CONFIG_HOME}/${dir}"
   done
+
+  dsymlink "${DOTFILES_HOME}/shell/zsh" "${ZDOTDIR}"
 }
 
 symlink_files() {
   log 'Symlinking files.'
 
-  symlink_file() {
-    log "Symlinking $(color "${2}") file."
-    ln -sf "${1}" "${2}"
-  }
-
   if command -v ipython >/dev/null; then
     dest="${DOTFILES_HOME}/python/ipython_config.py"
     src="${IPYTHONDIR}/profile_default/ipython_config.py"
-    symlink_file "${dest}" "${src}"
+    fsymlink "${dest}" "${src}"
   fi
 
-  symlink_file "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
-  symlink_file "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
+  fsymlink "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
+  fsymlink "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
 
   for file in 'flake8' 'pycodestyle'; do
-    symlink_file "${DOTFILES_HOME}/python/${file}" "${XDG_CONFIG_HOME}/${file}"
+    fsymlink "${DOTFILES_HOME}/python/${file}" "${XDG_CONFIG_HOME}/${file}"
   done
 
-  symlink_file "${DOTFILES_HOME}/bash/.bashrc" "${HOME}/.bashrc"
-  symlink_file "${DOTFILES_HOME}/clang/.clang-format" "${HOME}/.clang-format"
+  fsymlink "${DOTFILES_HOME}/shell/bash/.bashrc" "${HOME}/.bashrc"
+  fsymlink "${DOTFILES_HOME}/clang/.clang-format" "${HOME}/.clang-format"
 
   for file in '.inputrc' '.profile' '.xprofile' '.zprofile'; do
-    symlink_file "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
+    fsymlink "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
   done
 }
 
 copy_wsl_files() {
-  cp -v "${DOTFILES_HOME}/vscode/settings.json" "${APPDATA}/Code/User"
-  cp -rv "${DOTFILES_HOME}/term/alacritty" "${APPDATA}"
+  cp -iv "${DOTFILES_HOME}/vscode/settings.json" "${APPDATA}/Code/User"
+  [ -d "${APPDATA}/alacritty" ] || cp -rv "${DOTFILES_HOME}/term/alacritty" "${APPDATA}"
 }
 
 main

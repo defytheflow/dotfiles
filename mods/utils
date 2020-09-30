@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# File:     utils
+# Created:  12.09.2020
+# Author:   Artyom Danilov (@defytheflow)
+
+log() {
+  echo "install: ${*}"
+}
+
+color() {
+  echo "$(tput setaf 26)${1}$(tput setaf 15)"
+}
+
+fsymlink() {
+  log "Symlinking $(color "${2}") file -> $(color "${1}")."
+  ln -sf "${1}" "${2}"
+}
+
+dsymlink() {
+  log "Symlinking $(color "${2}") directory -> $(color "${1}")."
+  [ -d "${2}" ] && rm -r "${2}"
+  ln -sf "${1}" "${2}"
+}
