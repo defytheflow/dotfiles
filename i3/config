@@ -42,7 +42,7 @@ assign [class="Anydesk" instance="anydesk"] $ws4
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
-# Appearance {{{
+# Appearance.
 font pango:DejaVu Sans Mono 9
 
 title_align         center
@@ -61,14 +61,11 @@ gaps inner $inner_gaps
 gaps outer $outer_gaps
 
 bar {
-  height   25
+  status_command i3status
   position bottom
-  status_command ~/.local/bin/bumblebee-status \
-    -m cpu memory disk nic xrandr weather amixer indicator battery-upower date time \
-    -p cpu.critical=90 memory.warning=90 date.format='%a %x'\
-    -t greyish-powerline
+  mode hide
+  modifier $mod
 }
-#}}}
 
 # Binds {{{
 

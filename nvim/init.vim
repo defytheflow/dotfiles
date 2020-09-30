@@ -5,19 +5,13 @@ scriptencoding utf-8
 " Author:   Artyom Danilov (@defytheflow)
 
 let g:mapleader = '\'
-let g:maplocalleader = '\'
 
 if filereadable('/usr/bin/python3')
   let g:python3_host_prog = '/usr/bin/python3'
 endif
 
-if has('nvim')
-  let config_dir = stdpath('config')
-  let cache_dir = stdpath('cache')
-else
-  let config_dir = glob('~/.vim')
-  let cache_dir = glob('~/.vim')
-endif
+let config_dir = has('nvim') ? stdpath('config') : glob('~/.vim')
+let cache_dir = has('nvim') ? stdpath('cache') : glob('~/.vim')
 
 let vimplug = config_dir . '/autoload/plug.vim'
 if !filereadable(vimplug)
@@ -181,6 +175,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 Plug 'tomasiser/vim-code-dark'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
 "}}}
 
 " syntax {{{
@@ -225,7 +220,7 @@ endif
 set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
 try
-  colorscheme molokai
+  colorscheme base16-gruvbox-dark-hard
 catch
   colorscheme koehler
 endtry
@@ -237,6 +232,14 @@ set wildmenu
 set wildmode=longest,list,full
 set wildignore+=__pycache__,.mypy_cache,.pytest_cache
 set wildignorecase
+"}}}
+
+" fold {{{
+set foldmethod=marker
+augroup vimrc_fold
+  autocmd!
+  autocmd FileType python setlocal foldmethod=indent
+augroup END
 "}}}
 
 " gui {{{
@@ -334,7 +337,6 @@ set number
 set relativenumber
 set cursorline
 set virtualedit=block " allow cursor to move where there is no text in visual block mode.
-set foldmethod=marker
 set clipboard+=unnamedplus " use system clipboard.
 set lazyredraw " don't redraw while executing macros.
 set timeoutlen=500
@@ -366,25 +368,29 @@ endfun
 
 " mappings {{{
 
-" buffers.
+" buffers. {{{
 nnoremap <silent> <tab>   :bn<CR>
 nnoremap <silent> <S-tab> :bp<CR>
+"}}}
 
-" vim.
+" vim. {{{
 nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
+"}}}
 
-" search.
+" search. {{{
 nnoremap / /\v
 vnoremap / /\v
+"}}}
 
-" visual.
+" visual. {{{
 vnoremap < <gv
 vnoremap > >gv
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+"}}}
 
-" misc.
+" misc. {{{
 nnoremap <leader><leader> <C-^>
 nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <leader>q :quit<CR>
@@ -393,5 +399,6 @@ nnoremap <silent> <C-s> :w<CR>
 nnoremap Y y$
 nnoremap Q <nop>
 tnoremap <Esc> <C-\><C-n>
+"}}}
 
 "}}}

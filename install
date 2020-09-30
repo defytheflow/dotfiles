@@ -66,7 +66,6 @@ install_pip_packages() {
   log 'Installing pip packages.'
 
   set -- \
-    bumblebee-status \
     flake8 flake8-quotes \
     httpie \
     ipdb ipython isort \
