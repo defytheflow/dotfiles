@@ -81,6 +81,13 @@ let g:ale_completion_symbols = {
 \ 'type_parameter': 'p',
 \ '<default>': 'v'
 \ }
+augroup vimrc_ale
+  autocmd!
+  autocmd ColorScheme * highlight ALEVirtualTextError guifg=#ff0000 ctermfg=Red
+  autocmd ColorScheme * highlight ALEVirtualTextStyleError guifg=#ff0000 ctermfg=Red
+  autocmd ColorScheme * highlight ALEVirtualTextWarning guifg=#ffff00 ctermfg=Yellow
+  autocmd ColorScheme * highlight ALEVirtualTextStyleWarning guifg=#ffff00 ctermfg=Yellow
+augroup END
 nmap <silent> gd :ALEGoToDefinition<CR>
 nmap <silent> gs :ALEFindReferences<CR>
 nmap <silent> ]g :ALEPrevious<CR>
