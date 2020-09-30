@@ -94,5 +94,4 @@ if [ -n "${WSL_DISTRO_NAME}" ]; then
 fi
 
 export LINES COLUMNS # For use by external scripts and programs. (!)
-
 export PYTHONPATH=${HOME}/dev/repos/properoom-api/src

@@ -49,7 +49,7 @@ autoload -U add-zsh-hook
 if command -v exa >/dev/null; then
     add-zsh-hook -Uz chpwd (){ exa --icons --group-directories-first; }
 else
-    add-zsh-hook -Uz chpwd (){ ls -vh --group-directories-first; }
+    add-zsh-hook -Uz chpwd (){ ls --color=auto -vh --group-directories-first; }
 fi
 #}}}
 

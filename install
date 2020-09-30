@@ -25,11 +25,12 @@ main() {
   install_packages
   install_pip_packages
   install_npm_packages
-  install_cargo_packages
+  [ -z "${WSL_DISTRO_NAME}" ] &&  install_cargo_packages
 
   create_dirs
   symlink_dirs
   symlink_files
+  symlink_vscode
 }
 
 check_distro() {
@@ -38,10 +39,10 @@ check_distro() {
   distro=$(lsb_release -d | awk '{ print $2 }')
 
   case "${distro}" in
-    'Manjaro')
+    Manjaro)
       . "$(dirname "${0}")/arch"
       ;;
-    'Ubuntu')
+    Ubuntu)
       . "$(dirname "${0}")/debian"
       ;;
     *)
@@ -79,7 +80,8 @@ install_pip_packages() {
     flake8 flake8-quotes \
     httpie \
     ipdb ipython isort \
-    pipenv pynvim python-language-server \
+    mypy \
+    pipenv pynvim python-language-server pytest \
     vim-vint \
     yapf
 
@@ -104,7 +106,6 @@ install_cargo_packages() {
   log 'Installing cargo packages.'
 
   set -- exa
-
   for package; do
     log "Checking that $(color "${package}") exists."
     command -v "${package}" >/dev/null || cargo install "${package}"
@@ -136,11 +137,6 @@ symlink_dirs() {
     ln -sf "${1}" "${2}"
   }
 
-  if command -v code >/dev/null; then
-    command -v code-oss >/dev/null && dest='Code - OSS/User' || dest='Code/User'
-    symlink_dir "${DOTFILES_HOME}/vscode" "${XDG_CONFIG_HOME}/${dest}"
-  fi
-
   if [ "${USER}" = 'defytheflow' ]; then
     symlink_dir "${DOTFILES_HOME}/git" "${XDG_CONFIG_HOME}/git"
   fi
@@ -165,10 +161,7 @@ symlink_files() {
   fi
 
   symlink_file "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
-
-  for file in 'user-dirs.dirs'; do
-    symlink_file "${DOTFILES_HOME}/${file}" "${XDG_CONFIG_HOME}/${file}"
-  done
+  symlink_file "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
 
   for file in 'flake8' 'pycodestyle'; do
     symlink_file "${DOTFILES_HOME}/python/${file}" "${XDG_CONFIG_HOME}/${file}"
@@ -180,6 +173,19 @@ symlink_files() {
   for file in '.inputrc' '.profile' '.xprofile' '.zprofile'; do
     symlink_file "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
   done
+}
+
+symlink_vscode() {
+  log 'Symlinking vscode.'
+
+  if command -v code >/dev/null; then
+    if [ -n "${WSL_DISTRO_NAME}" ]; then
+      cp -v "${DOTFILES_HOME}/vscode/settings.json" "${WIN_HOME}/AppData/Roaming/Code/User"
+    else
+      command -v code-oss >/dev/null && dest='Code - OSS/User' || dest='Code/User'
+      symlink_dir "${DOTFILES_HOME}/vscode" "${XDG_CONFIG_HOME}/${dest}"
+    fi
+  fi
 }
 
 main

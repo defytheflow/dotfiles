@@ -5,6 +5,8 @@
 # Author:       Artyom Danilov (@defytheflow)
 
 update_system() {
+  log 'Updating arch system.'
+
   if command -v yay >/dev/null; then
     yay -Syu --noconfirm && yay -Yc --noconfirm
   else
@@ -34,15 +36,15 @@ install_packages() {
     yay \
     zathura zathura-pdf-mupdf zsh
 
-  for package; do
-    log "Checking that $(color "${package}") exists."
-    sudo pacman -Qi "${package}" >/dev/null || sudo pacman -S "${package}"
+  for pack; do
+    log "Checking that $(color "${pack}") exists."
+    sudo pacman -Qi "${pack}" >/dev/null || sudo pacman -S "${pack}"
   done
 
   set -- code rmtrash betterlockscreen
 
-  for package; do
-    log "Checking that $(color "${package}") exists."
-    yay -Qi "${package}" >/dev/null || yay -S --noconfirm "${package}"
+  for pack; do
+    log "Checking that $(color "${pack}") AUR package exists."
+    yay -Qi "${pack}" >/dev/null || yay -S --noconfirm "${pack}"
   done
 }
