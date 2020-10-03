@@ -10,14 +10,16 @@ if filereadable('/usr/bin/python3')
   let g:python3_host_prog = '/usr/bin/python3'
 endif
 
-let config_dir = has('nvim') ? stdpath('config') : glob('~/.vim')
-let cache_dir = has('nvim') ? stdpath('cache') : glob('~/.vim')
+let g:config_dir = has('nvim') ? stdpath('config') : glob('~/.vim')
+let g:cache_dir  = has('nvim') ? stdpath('cache')  : glob('~/.vim')
 
-let vimplug = config_dir . '/autoload/plug.vim'
-if !filereadable(vimplug)
+let plug = config_dir . '/autoload/plug.vim'
+if !filereadable(plug)
   let url = 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  silent exec '!curl -fLo ' . vimplug . ' --create-dirs ' . url
+  silent exec '!curl -fLo ' . plug . ' --create-dirs ' . url
 endif
+
+set runtimepath+=~/.config/nvim/config
 
 " plugins {{{
 call plug#begin(config_dir . '/plugged')
@@ -58,12 +60,7 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-let g:deoplete#enable_at_startup = 1
-"}}}
-
-" delimitmate {{{
-Plug 'Raimondi/delimitMate'
-let delimitMate_matchpairs = '(:),[:],{:}'
+runtime deoplete.vim
 "}}}
 
 " easyalign {{{
@@ -75,28 +72,12 @@ nmap ga <Plug>(EasyAlign)
 
 " gitgutter {{{
 Plug 'airblade/vim-gitgutter'
-set foldtext=gitgutter#fold#foldtext()
-augroup vimrc_gitgutter
-  autocmd!
-  autocmd ColorScheme * highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
-  autocmd ColorScheme * highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
-  autocmd ColorScheme * highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
-augroup END
+runtime gitgutter.vim
 "}}}
 
 " goyo {{{
 Plug 'junegunn/goyo.vim'
-let g:goyo_width = '90%'
-function! s:goyo_enter()
-  set number
-  set relativenumber
-  set colorcolumn=+0
-endfunction
-augroup vimrc_goyo
-  autocmd!
-  autocmd! User GoyoEnter nested call <SID>goyo_enter()
-augroup END
-nnoremap <silent> <leader>z :Goyo<CR>
+runtime goyo.vim
 "}}}
 
 " highlighted-yank {{{
@@ -117,42 +98,26 @@ augroup END
 
 " lightline {{{
 Plug 'itchyny/lightline.vim'
-let g:lightline = {
-\  'colorscheme': 'powerline',
-\}
 "}}}
 
 " nerdtree {{{
 Plug 'preservim/nerdtree'
-let g:NERDTreeWinSize = 30
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeMinimalUI  = 1  " Disable '?' help at the top
-let g:NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-let g:NERDTreeBookmarksFile = cache_dir . '/NERDTreeBookmarks'
-let g:NERDTreeIgnore = [
-\  'htmlcov',
-\  '.git', '.idea',
-\  '__pycache__', '.mypy_cache', '.pytest_cache'
-\]
-augroup vimrc_nerdtree
-  autocmd!
-  autocmd BufEnter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()) | q | endif
-augroup END
-nnoremap <silent> <leader>f :NERDTreeToggle<CR>
+runtime nerdtree.vim
 "}}}
 
-" sneak {{{
-Plug 'justinmk/vim-sneak'
-let g:sneak#label = 1
+" rainbow {{{
+Plug 'frazrepo/vim-rainbow'
+let g:rainbow_active = 1
 "}}}
 
-" ultisnips {{{
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
+" python-syntax {{{
+Plug 'vim-python/python-syntax'
+let g:python_highlight_all = 1
+"}}}
+
+" quickscope {{{
+Plug 'unblevable/quick-scope'
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 "}}}
 
 " test {{{
@@ -166,24 +131,15 @@ nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 "}}}
 
-" quickscope {{{
-Plug 'unblevable/quick-scope'
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+" ultisnips {{{
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
 "}}}
 
-" colorschemes {{{
-Plug 'tomasiser/vim-code-dark'
-Plug 'tomasr/molokai'
-Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
-"}}}
-
-" syntax {{{
-Plug 'vim-python/python-syntax'
-let g:python_highlight_all = 1
-Plug 'leafgarland/typescript-vim'
-Plug 'ianks/vim-tsx'
-Plug 'mboughaba/i3config.vim'
+" yats {{{
+Plug 'HerringtonDarkholme/yats.vim'
 "}}}
 
 " misc {{{
@@ -196,10 +152,20 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-fugitive'
+Plug 'justinmk/vim-sneak'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'miyakogi/seiya.vim'
 Plug 'chrisbra/Colorizer'
 Plug 'jremmen/vim-ripgrep'
+Plug 'cohama/lexima.vim'
+Plug 'mboughaba/i3config.vim'
+"}}}
+
+" colorschemes {{{
+Plug 'tomasiser/vim-code-dark'
+Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
 "}}}
 
 call plug#end()
@@ -220,7 +186,7 @@ endif
 set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
 try
-  colorscheme base16-gruvbox-dark-hard
+  colorscheme base16-classic-dark
 catch
   colorscheme koehler
 endtry
@@ -236,10 +202,6 @@ set wildignorecase
 
 " fold {{{
 set foldmethod=marker
-augroup vimrc_fold
-  autocmd!
-  autocmd FileType python setlocal foldmethod=indent
-augroup END
 "}}}
 
 " gui {{{
@@ -255,7 +217,7 @@ set autoindent
 set smartindent
 augroup vimrc_indent
   autocmd!
-  autocmd FileType sh,zsh,vim,css,html,json,gitconfig,typescript.tsx setlocal shiftwidth=2 softtabstop=2
+  autocmd FileType sh,zsh,vim,css,html,json,gitconfig setlocal shiftwidth=2 softtabstop=2
 augroup END
 " }}}
 
@@ -368,29 +330,29 @@ endfun
 
 " mappings {{{
 
-" buffers. {{{
+" buffers {{{
 nnoremap <silent> <tab>   :bn<CR>
 nnoremap <silent> <S-tab> :bp<CR>
 "}}}
 
-" vim. {{{
+" vim {{{
 nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
 "}}}
 
-" search. {{{
+" search {{{
 nnoremap / /\v
 vnoremap / /\v
 "}}}
 
-" visual. {{{
+" visual {{{
 vnoremap < <gv
 vnoremap > >gv
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 "}}}
 
-" misc. {{{
+" misc {{{
 nnoremap <leader><leader> <C-^>
 nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
 nnoremap <leader>q :quit<CR>

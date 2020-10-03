@@ -32,6 +32,7 @@
     "**/.git": true,
     "**/.venv/**": false,
     "**/.pytest_cache/**": true,
+    "**/.mypy_cache/**": true,
     "**/.coverage/**": true,
     "**/htmlcov/**": true,
     "**/__pycache__/**": true

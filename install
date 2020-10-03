@@ -83,7 +83,7 @@ install_pip_packages() {
 install_npm_packages() {
   log 'Installing npm packages.'
 
-  set -- bash-language-server prettier neovim vim-language-server
+  set -- bash-language-server prettier neovim vim-language-server typescript
 
   for package; do
     log "Checking that $(color "${package}") exists."

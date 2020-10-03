@@ -7,7 +7,7 @@ scriptencoding utf-8
 let g:ale_linters = {
 \  'c':          ['ccls', 'clang'],
 \  'javascript': ['eslint'],
-\  'python':     ['pyls', 'flake8', 'mypy'],
+\  'python':     ['pyls', 'mypy', 'flake8'],
 \  'sh':         ['language_server', 'shellcheck'],
 \  'typescript': ['tsserver', 'tslint'],
 \  'vim':        ['vimls', 'vint'],
@@ -54,21 +54,18 @@ let g:ale_completion_symbols = {
 \ }
 
 let g:ale_sh_shfmt_options = '-p -ci -i 2'
+let g:ale_python_mypy_options = '--disallow-untyped-defs --disallow-untyped-calls'
+
 let g:ale_fix_on_save = 1
-let g:ale_echo_cursor = 0
-let g:ale_hover_cursor = 0
+
 let g:ale_virtualtext_cursor = 1
 let g:ale_virtualtext_delay = 5
 
 augroup vimrc_ale
   autocmd!
-  autocmd ColorScheme * highlight ALEError guifg=#ff0000 ctermfg=Red
-  autocmd ColorScheme * highlight link ALEErrorSign ALEError
-  autocmd ColorScheme * highlight link ALEErrorLine ALEError
-
-  autocmd ColorScheme * highlight ALEWarning guifg=#ffff00 ctermfg=Yellow
-  autocmd ColorScheme * highlight link ALEWarningLine ALEWarning
-  autocmd ColorScheme * highlight link ALEWarningSign ALEWarning
+  autocmd ColorScheme * highlight ALEVirtualTextError guifg=#ff0000 ctermfg=Red
+  autocmd ColorScheme * highlight ALEErrorSign guifg=#ff0000 ctermfg=Red
+  autocmd ColorScheme * highlight ALEErrorLine guifg=#ff0000 ctermfg=Red
 augroup END
 
 nmap <silent> gd :ALEGoToDefinition<CR>
