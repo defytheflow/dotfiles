@@ -1,7 +1,5 @@
+.git/*
 nvim/autoload/plug.vim
-nvim/plugged/
-nvim/backup/
-nvim/undo/
+nvim/plugged/*
 nvim/.netrwhist
-
 vscode/*Storage
