@@ -14,14 +14,14 @@ let g:ale_linters = {
 \}
 
 let g:ale_fixers = {
-\ 'c':              ['clang-format'],
-\ 'html':           ['prettier'],
-\ 'javascript':     ['prettier'],
-\ 'json':           ['prettier'],
-\ 'python':         ['isort', 'yapf'],
-\ 'sh':             ['shfmt'],
-\ 'typescript':     ['prettier'],
-\ 'typescript.tsx': ['prettier'],
+\ 'c':               ['clang-format'],
+\ 'html':            ['prettier'],
+\ 'javascript':      ['prettier'],
+\ 'json':            ['prettier'],
+\ 'python':          ['isort', 'yapf'],
+\ 'sh':              ['shfmt'],
+\ 'typescript':      ['prettier'],
+\ 'typescriptreact': ['prettier'],
 \}
 
 let g:ale_completion_symbols = {

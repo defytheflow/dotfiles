@@ -7,8 +7,8 @@ scriptencoding utf-8
 let g:deoplete#enable_at_startup = 1
 
 fun! DeopleteSetup()
-  " Disable autocompletion inside comments and string literals.
-  call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
+  " Disable autocompletion inside comments.
+  call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment'])
 endfun
 
 augroup vimrc_deoplete

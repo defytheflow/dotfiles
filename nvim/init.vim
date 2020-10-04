@@ -90,10 +90,7 @@ Plug 'Yggdroot/indentLine'
 let g:indentLine_char =  '¦'
 let g:indentLine_leadingSpaceChar = '·'
 let g:indentLine_leadingSpaceEnabled = '1'
-augroup vimrc_indentline
-  autocmd!
-  autocmd Filetype text let g:indentLine_leadingSpaceEnabled = 0
-augroup END
+let g:indentLine_fileTypeExclude = ['text']
 "}}}
 
 " lightline {{{
@@ -138,8 +135,9 @@ let g:UltiSnipsExpandTrigger = '<tab>'
 let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
 "}}}
 
-" yats {{{
+" typescript-syntax {{{
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
 "}}}
 
 " misc {{{
@@ -232,13 +230,6 @@ augroup vimrc_search
 augroup END
 "}}}
 
-" spell {{{
-augroup vimrc_spell
-  autocmd!
-  autocmd Filetype text setlocal spell
-augroup END
-"}}}
-
 " splits {{{
 set fillchars+=vert:┃
 set splitbelow
@@ -303,64 +294,6 @@ set clipboard+=unnamedplus " use system clipboard.
 set lazyredraw " don't redraw while executing macros.
 set timeoutlen=500
 set noerrorbells visualbell t_vb=
-augroup vimrc_misc
-  autocmd!
-  autocmd SourcePost $MYVIMRC call InstallPlugins()
-  autocmd BufReadPost * call JumpToLastPos()
-  autocmd FileType    * set formatoptions-=cro " disable auto-commenting.
-  autocmd VimEnter    * :NoMatchParen
-augroup END
-"}}}
-
-"}}}
-
-" functions {{{
-fun! InstallPlugins()
-  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    PlugInstall --sync | q
-  endif
-endfun
-
-fun! JumpToLastPos()
-  if line("'\"") > 1 && line("'\"") <= line('$')
-    exe "normal! g'\""
-  endif
-endfun
-"}}}
-
-" mappings {{{
-
-" buffers {{{
-nnoremap <silent> <tab>   :bn<CR>
-nnoremap <silent> <S-tab> :bp<CR>
-"}}}
-
-" vim {{{
-nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
-nnoremap <silent> <leader>vs :so $MYVIMRC<CR>
-"}}}
-
-" search {{{
-nnoremap / /\v
-vnoremap / /\v
-"}}}
-
-" visual {{{
-vnoremap < <gv
-vnoremap > >gv
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-"}}}
-
-" misc {{{
-nnoremap <leader><leader> <C-^>
-nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
-nnoremap <leader>q :quit<CR>
-nnoremap <silent> <C-l> :nohl<CR>
-nnoremap <silent> <C-s> :w<CR>
-nnoremap Y y$
-nnoremap Q <nop>
-tnoremap <Esc> <C-\><C-n>
 "}}}
 
 "}}}
