@@ -83,7 +83,12 @@ install_pip_packages() {
 install_npm_packages() {
   log 'Installing npm packages.'
 
-  set -- bash-language-server prettier neovim vim-language-server typescript
+  set -- \
+    bash-language-server \
+    create-react-app \
+    prettier neovim \
+    typescript \
+    vim-language-server
 
   for package; do
     log "Checking that $(color "${package}") exists."
@@ -153,6 +158,7 @@ symlink_files() {
     fsymlink "${DOTFILES_HOME}/python/${file}" "${XDG_CONFIG_HOME}/${file}"
   done
 
+  fsymlink "${DOTFILES_HOME}/typescript/.prettierrc" "${HOME}/.prettierrc"
   fsymlink "${DOTFILES_HOME}/shell/bash/.bashrc" "${HOME}/.bashrc"
   fsymlink "${DOTFILES_HOME}/clang/.clang-format" "${HOME}/.clang-format"
 

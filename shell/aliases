@@ -97,7 +97,7 @@ fi
 
 # exa.
 if command -v exa >/dev/null; then
-  alias t='exa -T --icons --git-ignore'
+  alias t='exa -T --icons --git-ignore -I ".git|__pycache__|node_modules|plugged"'
   alias ta='t --all'
   alias l='ls --oneline'
   alias ls='exa --icons --group-directories-first'
