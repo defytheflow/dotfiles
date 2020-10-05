@@ -132,7 +132,7 @@
       "commands": ["workbench.action.reloadWindow"]
     },
     {
-      "before": ["<leader>", "t"],
+      "before": ["<leader>", "f"],
       "commands": ["workbench.action.toggleSidebarVisibility"]
     },
     {

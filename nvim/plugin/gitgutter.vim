@@ -10,8 +10,8 @@ let g:gitgutter_sign_added = '✚'
 let g:gitgutter_sign_modified = '✹'
 
 augroup vimrc_gitgutter
-  autocmd!
-  autocmd ColorScheme * highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
-  autocmd ColorScheme * highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
-  autocmd ColorScheme * highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
+  au!
+  au ColorScheme * highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
+  au ColorScheme * highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
+  au ColorScheme * highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
 augroup END
