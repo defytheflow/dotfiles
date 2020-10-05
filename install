@@ -130,26 +130,25 @@ create_symlinks() {
 
   symlink 'i3' "${XDG_CONFIG_HOME}/i3"
   symlink 'nvim' "${XDG_CONFIG_HOME}/nvim"
-  symlink 'python' "${XDG_CONFIG_HOME}/python"
   symlink 'tmux' "${XDG_CONFIG_HOME}/tmux"
+
+  if command -v ipython >/dev/null; then
+    symlink "lang/python/ipython_config.py" "${IPYTHONDIR}/profile_default/ipython_config.py"
+  fi
+
+  symlink 'lang/python' "${XDG_CONFIG_HOME}/python"
+  symlink 'lang/python/flake8' "${XDG_CONFIG_HOME}/flake8"
+  symlink 'lang/python/pycodestyle' "${XDG_CONFIG_HOME}/pycodestyle"
+  symlink 'lang/python/style.yapf' "${XDG_CONFIG_HOME}/yapf/style"
+  symlink 'lang/typescript/.prettierrc' "${HOME}/.prettierrc"
+  symlink 'lang/c/.clang-format' "${HOME}/.clang-format"
 
   symlink 'shell/zsh' "${ZDOTDIR}"
   symlink 'shell/zsh/.zprofile' "${HOME}/.zprofile"
+  symlink 'shell/bash/.bashrc' "${HOME}/.bashrc"
 
   symlink 'term/alacritty' "${XDG_CONFIG_HOME}/alacritty"
-
-  if command -v ipython >/dev/null; then
-    symlink "python/ipython_config.py" "${IPYTHONDIR}/profile_default/ipython_config.py"
-  fi
-
-  symlink 'python/flake8' "${XDG_CONFIG_HOME}/flake8"
-  symlink 'python/pycodestyle' "${XDG_CONFIG_HOME}/pycodestyle"
-  symlink 'python/style.yapf' "${XDG_CONFIG_HOME}/yapf/style"
   symlink 'user-dirs.dirs' "${XDG_CONFIG_HOME}/user-dirs.dirs"
-
-  symlink 'typescript/.prettierrc' "${HOME}/.prettierrc"
-  symlink 'shell/bash/.bashrc' "${HOME}/.bashrc"
-  symlink 'clang/.clang-format' "${HOME}/.clang-format"
 
   symlink '.inputrc' "${HOME}/.inputrc"
   symlink '.profile' "${HOME}/.profile"
