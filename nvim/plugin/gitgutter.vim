@@ -9,9 +9,15 @@ set foldtext=gitgutter#fold#foldtext()
 let g:gitgutter_sign_added = '✚'
 let g:gitgutter_sign_modified = '✹'
 
+fun! GitGutterColorsInit()
+  hi GitGutterAdd    guifg=#00ff00 ctermfg=Green
+  hi GitGutterChange guifg=#ffff00 ctermfg=Yellow
+  hi GitGutterDelete guifg=#ff0000 ctermfg=Red
+endfun
+
 augroup vimrc_gitgutter
   au!
-  au ColorScheme * highlight GitGutterAdd    guifg=#00ff00 ctermfg=Green
-  au ColorScheme * highlight GitGutterChange guifg=#ffff00 ctermfg=Yellow
-  au ColorScheme * highlight GitGutterDelete guifg=#ff0000 ctermfg=Red
+  au ColorScheme * call GitGutterColorsInit()
 augroup END
+
+call GitGutterColorsInit()

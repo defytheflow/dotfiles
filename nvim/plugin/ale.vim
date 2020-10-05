@@ -53,6 +53,9 @@ let g:ale_completion_symbols = {
 \ '<default>': 'v'
 \ }
 
+let g:ale_sign_error = '🗙 '
+let g:ale_sign_warning = '🗙 '
+
 let g:ale_sh_shfmt_options = '-p -ci -i 2'
 let g:ale_python_mypy_options = '--disallow-untyped-defs --disallow-untyped-calls'
 
@@ -61,12 +64,22 @@ let g:ale_fix_on_save = 1
 let g:ale_virtualtext_cursor = 1
 let g:ale_virtualtext_delay = 5
 
+fun! AleColorsInit()
+  hi ALEVirtualTextError guifg=#ff0000 ctermfg=Red
+  hi ALEVirtualTextWarning guifg=#ffff00 ctermfg=Yellow
+
+  hi ALEErrorSign guifg=#ff0000 ctermfg=Red
+  hi AleWarningSign guifg=#ffff00 ctermfg=Yellow
+
+  hi ALEErrorLine guifg=#ff0000 ctermfg=Red
+endfun
+
 augroup vimrc_ale
-  autocmd!
-  autocmd ColorScheme * highlight ALEVirtualTextError guifg=#ff0000 ctermfg=Red
-  autocmd ColorScheme * highlight ALEErrorSign guifg=#ff0000 ctermfg=Red
-  autocmd ColorScheme * highlight ALEErrorLine guifg=#ff0000 ctermfg=Red
+  au!
+  au ColorScheme * call AleColorsInit()
 augroup END
+
+call AleColorsInit()
 
 nmap <silent> gd :ALEGoToDefinition<CR>
 nmap <silent> gs :ALEFindReferences<CR>
