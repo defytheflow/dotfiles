@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# File:         debian
-# Created:      26.03.2020
-# Author:       Artyom Danilov (@defytheflow)
+# File:     debian.sh
+# Created:  26.03.2020
+# Author:   Artyom Danilov (@defytheflow)
 
 update_system() {
   log 'Updating debian system.'

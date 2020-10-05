@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# File:         arch
-# Created:      29.07.2020
-# Author:       Artyom Danilov (@defytheflow)
+# File:     arch.sh
+# Created:  29.07.2020
+# Author:   Artyom Danilov (@defytheflow)
 
 update_system() {
   log 'Updating arch system.'
@@ -31,14 +31,14 @@ install_packages() {
     ripgrep rofi \
     screenkey shellcheck shfmt \
     tk tmux tree ttf-fira-code \
-    valgrind vim \
+    valgrind vim vi \
     xclip xcompmgr \
     yay \
     zathura zathura-pdf-mupdf zsh
 
   for pack; do
     log "Checking that $(color "${pack}") exists."
-    sudo pacman -Qi "${pack}" >/dev/null || sudo pacman -S "${pack}"
+    sudo pacman -Qi "${pack}" >/dev/null || sudo pacman -S --noconfirm "${pack}"
   done
 
   set -- code rmtrash betterlockscreen

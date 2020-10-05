@@ -157,6 +157,7 @@ Plug 'chrisbra/Colorizer'
 Plug 'jremmen/vim-ripgrep'
 Plug 'cohama/lexima.vim'
 Plug 'mboughaba/i3config.vim'
+" Plug 'hail2u/vim-css3-syntax'
 "}}}
 
 " colorschemes {{{
@@ -224,10 +225,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-augroup vimrc_search
-  autocmd!
-  autocmd ColorScheme * highlight Search ctermfg=LightGreen ctermbg=DarkGray
-augroup END
 "}}}
 
 " splits {{{
@@ -241,15 +238,6 @@ set ruler
 set showcmd
 set noshowmode
 set laststatus=2 " always display status line.
-"}}}
-
-" syntax {{{
-syntax enable
-augroup vimrc_syntax
-  autocmd!
-  autocmd BufNewFile,BufRead setup.cfg setlocal filetype=toml
-  autocmd BufNewFile,BufRead ~/.config/i3/config setlocal filetype=i3config
-augroup END
 "}}}
 
 " textwidth {{{
@@ -284,6 +272,7 @@ augroup END
 "}}}
 
 " misc {{{
+syntax enable
 set mouse=a
 set hidden
 set number

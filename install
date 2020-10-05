@@ -5,7 +5,7 @@
 # Author:       Artyom Danilov (@defytheflow)
 
 . "$(dirname "${0}")/.profile"
-. "$(dirname "${0}")/mods/utils"
+. "$(dirname "${0}")/init/utils.sh"
 
 main() {
   check_distro
@@ -21,8 +21,7 @@ main() {
   [ -z "${WSL_DISTRO_NAME}" ] && install_cargo_packages
 
   create_dirs
-  symlink_dirs
-  symlink_files
+  create_symlinks
 }
 
 check_distro() {
@@ -32,10 +31,10 @@ check_distro() {
 
   case "${distro}" in
     *Manjaro*)
-      . "$(dirname "${0}")/mods/arch"
+      . "$(dirname "${0}")/init/arch.sh"
       ;;
     *Ubuntu*)
-      . "$(dirname "${0}")/mods/debian"
+      . "$(dirname "${0}")/init/debian.sh"
       ;;
     *)
       log "Distribution '${distro}' is not supported."
@@ -74,9 +73,8 @@ install_pip_packages() {
     vim-vint \
     yapf
 
-  for package; do
-    log "Checking that $(color "${package}") exists."
-    python3 -m pip list | grep "${package}" >/dev/null || python3 -m pip install "${package}"
+  for pack; do
+    python3 -m pip list | grep "${pack}" || python3 -m pip install "${pack}"
   done
 }
 
@@ -90,9 +88,8 @@ install_npm_packages() {
     typescript \
     vim-language-server
 
-  for package; do
-    log "Checking that $(color "${package}") exists."
-    npm list -g "${package}" >/dev/null || yes | sudo npm install -g "${package}"
+  for pack; do
+    npm list -g "${pack}" || sudo npm install -g "${pack}"
   done
 }
 
@@ -100,71 +97,62 @@ install_cargo_packages() {
   log 'Installing cargo packages.'
 
   set -- exa
-  for package; do
-    log "Checking that $(color "${package}") exists."
-    command -v "${package}" >/dev/null || cargo install "${package}"
+
+  for pack; do
+    command -v "${pack}" || cargo install "${pack}"
   done
 }
 
 create_dirs() {
   log 'Creating directories.'
 
-  create_dir() {
-    log "Creating $(color "${1}") directory."
-    [ -d "${1}" ] || mkdir -p "${1}"
-  }
+  makedir "${HOME}/.local/bin"
+  makedir "${XDG_CONFIG_HOME}/yapf"
 
-  create_dir "${HOME}/.local/bin"
-  create_dir "${XDG_CONFIG_HOME}/yapf"
-
-  for prog in 'bash' 'less' 'postgres' 'python' 'zsh'; do
-    create_dir "${XDG_CACHE_HOME}/${prog}"
-  done
+  makedir "${XDG_CACHE_HOME}/bash"
+  makedir "${XDG_CACHE_HOME}/less"
+  makedir "${XDG_CACHE_HOME}/posgres"
+  makedir "${XDG_CACHE_HOME}/python"
+  makedir "${XDG_CACHE_HOME}/zsh"
 }
 
-symlink_dirs() {
-  log 'Symlinking directories.'
+create_symlinks() {
+  log 'Creating symlinks.'
 
   if command -v code >/dev/null; then
     command -v code-oss >/dev/null && dest='Code - OSS/User' || dest='Code/User'
-    dsymlink "${DOTFILES_HOME}/vscode" "${XDG_CONFIG_HOME}/${dest}"
+    symlink 'vscode' "${XDG_CONFIG_HOME}/${dest}"
   fi
 
   if [ "${USER}" = 'defytheflow' ]; then
-    dsymlink "${DOTFILES_HOME}/git" "${XDG_CONFIG_HOME}/git"
+    symlink 'git' "${XDG_CONFIG_HOME}/git"
   fi
 
-  for dir in 'i3' 'nvim' 'python' 'tmux'; do
-    dsymlink "${DOTFILES_HOME}/${dir}" "${XDG_CONFIG_HOME}/${dir}"
-  done
+  symlink 'i3' "${XDG_CONFIG_HOME}/i3"
+  symlink 'nvim' "${XDG_CONFIG_HOME}/nvim"
+  symlink 'python' "${XDG_CONFIG_HOME}/python"
+  symlink 'tmux' "${XDG_CONFIG_HOME}/tmux"
 
-  dsymlink "${DOTFILES_HOME}/shell/zsh" "${ZDOTDIR}"
-  dsymlink "${DOTFILES_HOME}/term/alacritty" "${XDG_CONFIG_HOME}/alacritty"
-}
-
-symlink_files() {
-  log 'Symlinking files.'
+  symlink 'shell/zsh' "${ZDOTDIR}"
+  symlink 'term/alacritty' "${XDG_CONFIG_HOME}/alacritty"
 
   if command -v ipython >/dev/null; then
-    dest="${DOTFILES_HOME}/python/ipython_config.py"
-    src="${IPYTHONDIR}/profile_default/ipython_config.py"
-    fsymlink "${dest}" "${src}"
+    symlink "python/ipython_config.py" "${IPYTHONDIR}/profile_default/ipython_config.py"
   fi
 
-  fsymlink "${DOTFILES_HOME}/python/style.yapf" "${XDG_CONFIG_HOME}/yapf/style"
-  fsymlink "${DOTFILES_HOME}/user-dirs.dirs" "${XDG_CONFIG_HOME}/user-dirs.dirs"
+  symlink 'python/flake8' "${XDG_CONFIG_HOME}/flake8"
+  symlink 'python/pycodestyle' "${XDG_CONFIG_HOME}/pycodestyle"
+  symlink 'python/style.yapf' "${XDG_CONFIG_HOME}/yapf/style"
+  symlink 'user-dirs.dirs' "${XDG_CONFIG_HOME}/user-dirs.dirs"
 
-  for file in 'flake8' 'pycodestyle'; do
-    fsymlink "${DOTFILES_HOME}/python/${file}" "${XDG_CONFIG_HOME}/${file}"
-  done
+  symlink 'typescript/.prettierrc' "${HOME}/.prettierrc"
+  symlink 'shell/bash/.bashrc' "${HOME}/.bashrc"
+  symlink 'clang/.clang-format' "${HOME}/.clang-format"
 
-  fsymlink "${DOTFILES_HOME}/typescript/.prettierrc" "${HOME}/.prettierrc"
-  fsymlink "${DOTFILES_HOME}/shell/bash/.bashrc" "${HOME}/.bashrc"
-  fsymlink "${DOTFILES_HOME}/clang/.clang-format" "${HOME}/.clang-format"
-
-  for file in '.inputrc' '.profile' '.xprofile' '.zprofile'; do
-    fsymlink "${DOTFILES_HOME}/${file}" "${HOME}/${file}"
-  done
+  symlink '.inputrc' "${HOME}/.inputrc"
+  symlink '.profile' "${HOME}/.profile"
+  symlink '.xprofile' "${HOME}/.xprofile"
+  symlink '.zprofile' "${HOME}/.zprofile"
 }
 
 main

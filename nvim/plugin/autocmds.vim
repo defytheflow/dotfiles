@@ -4,6 +4,13 @@ scriptencoding utf-8
 " Created:  04.10.2020
 " Author:   Artyom Danilov (@defytheflow)
 
+augroup vimrc_syntax
+  au!
+  au BufNewFile,BufRead setup.cfg           setlocal ft=toml
+  au BufNewFile,BufRead .prettierrc         setlocal ft=json
+  au BufNewFile,BufRead ~/.config/i3/config setlocal ft=i3config
+augroup END
+
 fun! InstallPlugins()
   if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
     PlugInstall --sync | q
@@ -17,10 +24,10 @@ fun! JumpToLastPos()
 endfun
 
 augroup vimrc_misc
-  autocmd!
-  autocmd BufReadPost * call JumpToLastPos()
-  autocmd FileType    * set formatoptions-=cro " disable auto-commenting.
-  autocmd VimEnter    * :NoMatchParen
-  autocmd SourcePost   $MYVIMRC call InstallPlugins()
-  autocmd BufWritePost $MYVIMRC source $MYVIMRC " auto reload init.vim on save.
+  au!
+  au BufReadPost * call JumpToLastPos()
+  au FileType    * set formatoptions-=cro " disable auto-commenting.
+  au VimEnter    * :NoMatchParen
+  au SourcePost   $MYVIMRC call InstallPlugins()
+  au BufWritePost $MYVIMRC source $MYVIMRC " auto reload init.vim on save.
 augroup END
