@@ -134,6 +134,8 @@ create_symlinks() {
   symlink 'tmux' "${XDG_CONFIG_HOME}/tmux"
 
   symlink 'shell/zsh' "${ZDOTDIR}"
+  symlink 'shell/zsh/.zprofile' "${HOME}/.zprofile"
+
   symlink 'term/alacritty' "${XDG_CONFIG_HOME}/alacritty"
 
   if command -v ipython >/dev/null; then
@@ -152,7 +154,6 @@ create_symlinks() {
   symlink '.inputrc' "${HOME}/.inputrc"
   symlink '.profile' "${HOME}/.profile"
   symlink '.xprofile' "${HOME}/.xprofile"
-  symlink '.zprofile' "${HOME}/.zprofile"
 }
 
 main
