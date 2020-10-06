@@ -6,12 +6,6 @@ scriptencoding utf-8
 
 let g:deoplete#enable_at_startup = 1
 
-fun! DeopleteSetup()
-  " Disable autocompletion inside comments.
-  call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment'])
-endfun
+call deoplete#custom#option({'smart_case': v:true})
 
-augroup vimrc_deoplete
-  autocmd!
-  autocmd VimEnter * call DeopleteSetup()
-augroup END
+call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment'])

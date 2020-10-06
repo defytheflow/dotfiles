@@ -25,7 +25,7 @@ install_packages() {
     i3-gaps i3lock i3status \
     jq \
     gdb \
-    mlocate \
+    maven mlocate \
     neovim nitrogen npm \
     powerline-fonts python-neovim python-pip \
     ripgrep rofi \
@@ -41,7 +41,7 @@ install_packages() {
     sudo pacman -Qi "${pack}" >/dev/null || sudo pacman -S --noconfirm "${pack}"
   done
 
-  set -- code rmtrash betterlockscreen
+  set -- code rmtrash betterlockscreen java-language-server
 
   for pack; do
     log "Checking that $(color "${pack}") AUR package exists."

@@ -68,12 +68,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 runtime nerdtree.vim
 
-Plug 'frazrepo/vim-rainbow'
-augroup vimrc_rainbow
-  au!
-  au FileType c,cpp,typescript,typescriptreact call rainbow#load()
-augroup END
-
 Plug 'vim-python/python-syntax'
 let g:python_highlight_all = 1
 
@@ -85,8 +79,7 @@ runtime test.vim
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsSnippetDirectories = ['UltiSnips', 'ultisnips']
+runtime ultisnips.vim
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
@@ -110,13 +103,20 @@ Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'frazrepo/vim-rainbow'
 
 call plug#end()
 "}}}
 
 " settings {{{
+
+" essential
 filetype plugin indent on
 syntax enable
+
+" path.
+set path+=${HOME}/.config/nvim/plugin
+set path+=${HOME}/.config/nvim/ftplugin
 
 " backup.
 set backup
