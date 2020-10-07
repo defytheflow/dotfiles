@@ -6,6 +6,7 @@ scriptencoding utf-8
 
 let g:ale_linters = {
 \  'c':          ['ccls', 'clang'],
+\  'cpp':        ['ccls', 'clang', 'clang-tidy'],
 \  'java':       ['javalsp', 'javac'],
 \  'javascript': ['eslint'],
 \  'python':     ['pyls', 'mypy', 'flake8'],
@@ -16,6 +17,7 @@ let g:ale_linters = {
 
 let g:ale_fixers = {
 \ 'c':               ['clang-format'],
+\ 'cpp':             ['clang-format'],
 \ 'html':            ['prettier'],
 \ 'java':            ['uncrustify'],
 \ 'javascript':      ['prettier'],
@@ -55,6 +57,9 @@ let g:ale_completion_symbols = {
 \ '<default>': 'v'
 \ }
 
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+
 let g:ale_sign_error = '🗙 '
 let g:ale_sign_warning = '🗙 '
 
@@ -73,8 +78,6 @@ fun! AleColorsInit()
 
   hi ALEErrorSign guifg=#ff0000 ctermfg=Red
   hi AleWarningSign guifg=#ffff00 ctermfg=Yellow
-
-  hi ALEErrorLine guifg=#ff0000 ctermfg=Red
 endfun
 
 augroup vimrc_ale

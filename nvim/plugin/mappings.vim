@@ -27,6 +27,7 @@ nnoremap Y y$
 nnoremap Q <nop>
 tnoremap <Esc> <C-\><C-n>
 
+inoremap <silent> <C-c> <Esc>
 nnoremap <silent> <C-s> :w<CR>
 nnoremap <silent> <C-l> :nohl<CR>
 

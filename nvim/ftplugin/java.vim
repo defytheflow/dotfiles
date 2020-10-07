@@ -8,3 +8,8 @@ setlocal shiftwidth=4
 setlocal softtabstop=4
 
 setlocal makeprg=javac\ %
+
+let java_highlight_functions = 1
+let java_highlight_all = 1
+
+highlight link JavaIdentifier NONE

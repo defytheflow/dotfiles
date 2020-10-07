@@ -7,4 +7,4 @@ scriptencoding utf-8
 setlocal shiftwidth=4
 setlocal softtabstop=4
 
-nnoremap <leader>r :execute '!python ' . expand('%:t')<CR>
+setlocal makeprg=python\ %

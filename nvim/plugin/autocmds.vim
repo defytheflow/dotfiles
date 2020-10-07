@@ -4,11 +4,6 @@ scriptencoding utf-8
 " Created:  04.10.2020
 " Author:   Artyom Danilov (@defytheflow)
 
-augroup vimrc_rainbow
-  au!
-  au FileType c,cpp,java,typescript :RainbowLoad
-augroup END
-
 augroup vimrc_syntax
   au!
   au BufNewFile,BufRead setup.cfg           setlocal ft=toml

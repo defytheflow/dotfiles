@@ -45,7 +45,7 @@ export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
 export CC='gcc'
 export CXX='g++'
 export CFLAGS='-g -W -Wall -Wextra -Wpedantic -std=c11'
-export CXXFLAGS='-g -W -Wall -Wextra -Wpedantic'
+export CXXFLAGS='-g -W -Wall -Wextra -Wpedantic -std=c++20'
 export LDLIBS='-lm -lncurses -lsqlite3 -lcurl'
 
 # man.

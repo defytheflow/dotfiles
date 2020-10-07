@@ -7,4 +7,4 @@ scriptencoding utf-8
 setlocal shiftwidth=2
 setlocal softtabstop=2
 
-nnoremap <leader>r :execute '!tsc ' . expand('%:t') '&& node' expand('%:r') . '.js'<CR>
+setlocal makeprg=tsc\ %

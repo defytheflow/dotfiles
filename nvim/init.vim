@@ -33,9 +33,7 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.tsx,*js'
 let g:closetag_filetypes = 'html,xhtml,phtml,jsx,tsx'
 
 Plug 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_custom_ignore = '.git\|.venv\|node_modules\|htmlcov\|plugged'
-nnoremap <silent> gb :CtrlPBuffer<CR>
+runtime ctrlp.vim
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -61,14 +59,14 @@ Plug 'machakann/vim-highlightedyank'
 let g:highlightedyank_highlight_duration = 200
 
 Plug 'Yggdroot/indentLine'
-runtime lightline.vim
+runtime indentline.vim
 
 Plug 'itchyny/lightline.vim'
 
-Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 runtime nerdtree.vim
 
-Plug 'vim-python/python-syntax'
+Plug 'vim-python/python-syntax', { 'for': 'python' }
 let g:python_highlight_all = 1
 
 Plug 'unblevable/quick-scope'
@@ -77,14 +75,13 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 Plug 'vim-test/vim-test'
 runtime test.vim
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 runtime ultisnips.vim
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'jeetsukumaran/vim-pythonsense'
+Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -103,7 +100,8 @@ Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'frazrepo/vim-rainbow'
+Plug 'uiiaoo/java-syntax.vim', { 'for': 'java' }
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 
 call plug#end()
 "}}}
@@ -115,8 +113,7 @@ filetype plugin indent on
 syntax enable
 
 " path.
-set path+=${HOME}/.config/nvim/plugin
-set path+=${HOME}/.config/nvim/ftplugin
+set path=.,${HOME}/.config/nvim/*plugin/
 
 " backup.
 set backup
@@ -139,7 +136,7 @@ endtry
 set history=1000
 set wildmenu
 set wildmode=longest,list,full
-set wildignore+=__pycache__,.mypy_cache,.pytest_cache
+set wildignore+=*/.git/*,*/.venv/*,*/node_modules/*,*cache*
 set wildignorecase
 
 " fold.
