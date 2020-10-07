@@ -6,12 +6,15 @@
 
 # Do not run on WSL.
 if [ -n "${WSL_DISTRO_NAME}" ]; then
-  return;
+  return
 fi
 
 # Set background image.
-command -v nitrogen >/dev/null && nitrogen --head=xinerama --set-auto "${WALLPAPER_HOME}"
+if command -v nitrogen >/dev/null; then
+  nitrogen --head=xinerama --set-auto "${WALLPAPER_HOME}"
+fi
 
+# Change keyboard settings.
 if command -v setxkbmap >/dev/null; then
   # Swap <CapsLock> and <Escape>.
   setxkbmap -option 'caps:swapescape'

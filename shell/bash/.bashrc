@@ -4,6 +4,8 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
+[[ -f "${HOME}/.profile" ]] && source "${HOME}/.profile"
+
 # If not running interactively, don't do anything.
 case $- in
 *i*) ;;
@@ -38,10 +40,8 @@ if [ -n "${force_color_prompt}" ]; then
   fi
 fi
 
-# Options.
-# ------------------------------------------------------------------------------
-# Enable vi mode.
-set -o vi
+# options.
+set -o vi # Enable vi mode.
 
 # Append to the history file, don't overwrite it.
 shopt -s histappend
@@ -70,8 +70,7 @@ shopt -s nocaseglob
 # For ctrl mappings in vim.
 stty -ixon
 
-# Prompt.
-# ------------------------------------------------------------------------------
+# prompt.
 if [ "${color_prompt}" = 'yes' ]; then
   PROMPT_COMMAND=my_prompt
 else
@@ -105,7 +104,9 @@ function my_prompt() {
   PS1+="${exit_status}${reset}\n\$ "
 }
 
-# Other.
-# ------------------------------------------------------------------------------
-# Source shell-independent files (aliases, functions).
-for file in "${DOTFILES_HOME}"/shell/*; do . "${file}"; done
+# other.
+if [[ -n "${DOTFILES_HOME}" ]]; then
+  for entry in "${DOTFILES_HOME}"/shell/*;do
+    [[ -f ${entry} ]] && source "${entry}"
+  done
+fi

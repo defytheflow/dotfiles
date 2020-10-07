@@ -4,13 +4,15 @@
 # Created:  22.03.2020
 # Author:   Artyom Danilov (@defytheflow)
 
+[[ -f "${HOME}/.zprofile" ]] && source "${HOME}/.zprofile"
+
 ZSH_CACHE="${HOME}/.cache/zsh"
 
 # plugins {{{
 export ZPLUG_HOME="${HOME}/.config/zplug"
 export ZPLUG_CACHE_DIR="${HOME}/.cache/zplug"
 
-[ -d "${ZPLUG_HOME}" ] || git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
+[[ -d "${ZPLUG_HOME}" ]] || git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
 source "${ZPLUG_HOME}/init.zsh"
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
@@ -18,21 +20,18 @@ zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'plugins/command-not-found', from:oh-my-zsh
 zplug 'kutsan/zsh-system-clipboard'
 
-# autosuggestions {{{
+# autosuggestions.
 zplug 'zsh-users/zsh-autosuggestions'
 bindkey '^F' autosuggest-accept
-#}}}
 
-# vim-mode {{{
+# vim-mode.
 zplug 'softmoth/zsh-vim-mode', defer:2
 VIM_MODE_TRACK_KEYMAP=no
 MODE_INDICATOR=
-#}}}
 
-# z {{{
+# z.
 zplug 'agkozak/zsh-z'
 export ZSHZ_DATA="${HOME}/.cache/z"
-#}}}
 
 zplug check || zplug install
 zplug load
@@ -46,9 +45,9 @@ setopt menu_complete # auto-insert first possible completion.
 # ls directory after cd.
 autoload -U add-zsh-hook
 if command -v exa >/dev/null; then
-    add-zsh-hook -Uz chpwd (){ exa --icons --group-directories-first; }
+  add-zsh-hook -Uz chpwd (){ exa --icons --group-directories-first; }
 else
-    add-zsh-hook -Uz chpwd (){ ls --color=auto -vh --group-directories-first; }
+  add-zsh-hook -Uz chpwd (){ ls --color=auto -vh --group-directories-first; }
 fi
 #}}}
 
@@ -86,7 +85,7 @@ zstyle ':completion:*:descriptions' format %F{default}%B%--- %d ---%b%f
 #}}}
 
 # cursor {{{
-zle-keymap-select() {
+function zle-keymap-select() {
  # Change cursor shape in different modes.
   if [ $KEYMAP = vicmd ] || [ $1 = 'block' ]; then
     echo -ne '\e[1 q'
@@ -95,7 +94,7 @@ zle-keymap-select() {
   fi
 }
 zle -N zle-keymap-select
-zle-line-init() {
+function zle-line-init() {
   zle -K viins
   # echo -ne '\e[5 q'
   echo -ne "\033]12;#00ff00\007"
@@ -120,8 +119,10 @@ bindkey '^e' edit-command-line
 #}}}
 
 # other {{{
-if [ -n "${DOTFILES_HOME}" ]; then
-  for file in "${DOTFILES_HOME}"/shell/*; do . "${file}"; done
+if [[ -n "${DOTFILES_HOME}" ]]; then
+  for entry in "${DOTFILES_HOME}"/shell/*;do
+    [[ -f ${entry} ]] && source "${entry}"
+  done
 fi
 #}}}
 

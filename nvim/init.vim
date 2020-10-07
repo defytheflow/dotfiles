@@ -44,6 +44,12 @@ else
 endif
 runtime deoplete.vim
 
+Plug 'junegunn/vim-after-object'
+augroup vimrc_after_object
+  au!
+  au VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+augroup END
+
 Plug 'junegunn/vim-easy-align'
 let g:easy_align_ignore_groups = []
 xmap ga <Plug>(EasyAlign)
