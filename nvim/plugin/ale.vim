@@ -11,7 +11,7 @@ let g:ale_linters = {
 \  'javascript': ['eslint'],
 \  'python':     ['pyls', 'mypy', 'flake8'],
 \  'sh':         ['language_server', 'shellcheck'],
-\  'typescript': ['tsserver', 'tslint'],
+\  'typescript': ['tsserver', 'eslint'],
 \  'vim':        ['vimls', 'vint'],
 \}
 

@@ -6,9 +6,9 @@ scriptencoding utf-8
 
 augroup vimrc_syntax
   au!
-  au BufNewFile,BufRead setup.cfg           setlocal ft=toml
-  au BufNewFile,BufRead .prettierrc         setlocal ft=json
-  au BufNewFile,BufRead ~/.config/i3/config setlocal ft=i3config
+  au BufNewFile,BufRead setup.cfg             setlocal ft=toml
+  au BufNewFile,BufRead .prettierrc,.eslintrc setlocal ft=json
+  au BufNewFile,BufRead ~/.config/i3/config   setlocal ft=i3config
 augroup END
 
 augroup vimrc_whitespace

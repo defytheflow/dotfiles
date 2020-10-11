@@ -82,6 +82,7 @@ install_npm_packages() {
   log 'Installing npm packages.'
 
   set -- \
+    eslint \
     bash-language-server \
     create-react-app \
     prettier neovim \

@@ -7,11 +7,19 @@ scriptencoding utf-8
 setlocal shiftwidth=2
 setlocal softtabstop=2
 
-setlocal spell spelllang=en_us
+setlocal wrap
+setlocal linebreak " break line at words.
 
-augroup vimrc_spell
+setlocal spell spelllang=en_us
+setlocal thesaurus+=~/.config/nvim/thesaurus/mthesaur.txt
+setlocal complete+=s " search thesaurus for autocomplete.
+
+nnoremap j gj
+nnoremap k gk
+
+augroup vimrc_text
   au!
-  au ColorScheme * hi SpellBad guifg=#ff0000 ctermfg=Red
+  au ColorScheme * highlight SpellBad guifg=#ff0000 ctermfg=Red
 augroup END
 
-hi SpellBad guifg=#ff0000 ctermfg=Red
+highlight SpellBad guifg=#ff0000 ctermfg=Red

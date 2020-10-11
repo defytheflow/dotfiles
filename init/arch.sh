@@ -41,7 +41,7 @@ install_packages() {
     sudo pacman -Qi "${pack}" >/dev/null || sudo pacman -S --noconfirm "${pack}"
   done
 
-  set -- code rmtrash betterlockscreen java-language-server
+  set -- code rmtrash betterlockscreen java-language-server ccrypt
 
   for pack; do
     log "Checking that $(color "${pack}") AUR package exists."

@@ -29,8 +29,8 @@ Plug 'bkad/CamelCaseMotion'
 let g:camelcasemotion_key = '<leader>'
 
 Plug 'alvan/vim-closetag'
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.tsx,*js'
-let g:closetag_filetypes = 'html,xhtml,phtml,jsx,tsx'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*js'
+let g:closetag_filetypes = 'html,xhtml,phtml,jsx'
 
 Plug 'ctrlpvim/ctrlp.vim'
 runtime ctrlp.vim
@@ -108,6 +108,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'uiiaoo/java-syntax.vim', { 'for': 'java' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 call plug#end()
 "}}}
