@@ -18,6 +18,9 @@ alias grep='grep --color=auto'
 alias open='xdg-open'
 alias xrld='source ~/.xprofile'
 
+# amixer.
+alias amixer_toggle='amixer -D pulse set Master 1+ toggle'
+
 # history.
 alias h='history'
 alias history='history -E'

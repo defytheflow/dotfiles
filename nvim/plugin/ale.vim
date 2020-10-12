@@ -9,6 +9,7 @@ let g:ale_linters = {
 \  'cpp':        ['ccls', 'clang', 'clang-tidy'],
 \  'java':       ['javalsp', 'javac'],
 \  'javascript': ['eslint'],
+\  'json':       ['jsonlint'],
 \  'python':     ['pyls', 'mypy', 'flake8'],
 \  'sh':         ['language_server', 'shellcheck'],
 \  'typescript': ['tsserver', 'eslint'],

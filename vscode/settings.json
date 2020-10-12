@@ -1,9 +1,8 @@
 {
   "keyboard.dispatch": "keyCode",
-
   "window.zoomLevel": -1,
-
   "breadcrumbs.enabled": true,
+  "terminal.integrated.fontSize": 14,
 
   "editor.detectIndentation": true,
   "editor.fontSize": 14,
@@ -25,8 +24,6 @@
     "statusBar.debuggingBackground": "#268bd2"
   },
 
-  "terminal.integrated.fontSize": 14,
-
   "files.trimTrailingWhitespace": true,
   "files.exclude": {
     "**/.git": true,
@@ -36,6 +33,23 @@
     "**/.coverage/**": true,
     "**/htmlcov/**": true,
     "**/__pycache__/**": true
+  },
+
+  "[c]": {
+    "editor.formatOnSave": true
+  },
+
+  "[css]": {
+    "editor.tabSize": 2
+  },
+
+  "[cpp]": {
+    "editor.formatOnSave": true
+  },
+
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true
   },
 
   "python.linting.enabled": true,
@@ -52,20 +66,17 @@
     }
   },
 
-  "[c]": {
-    "editor.formatOnSave": true
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-  "[cpp]": {
-    "editor.formatOnSave": true
-  },
-
-  "[json]": {
-    "editor.tabSize": 2
-  },
-
-  "[css]": {
-    "editor.tabSize": 2
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
   },
 
   "vim.leader": "\\",
