@@ -4,10 +4,6 @@ scriptencoding utf-8
 " Created:  04.10.2020
 " Author:   Artyom Danilov (@defytheflow)
 
-" Buffers.
-nnoremap <silent> <tab>   :bn<CR>
-nnoremap <silent> <S-tab> :bp<CR>
-
 " Vim.
 nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :source $MYVIMRC<CR>

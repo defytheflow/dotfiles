@@ -65,8 +65,21 @@ let g:ale_sign_error = '🗙 '
 let g:ale_sign_warning = '🗙 '
 
 let g:ale_java_javalsp_executable = 'java-language-server'
-let g:ale_python_mypy_options = '--disallow-untyped-defs --disallow-untyped-calls'
 let g:ale_sh_shfmt_options = '-p -ci -i 2'
+
+" let g:ale_python_mypy_options = '--strict'
+let g:ale_python_pyls_config = {
+\  'pyls': {
+\    'plugins': {
+\      'pycodestyle': {
+\        'enabled': v:false,
+\      },
+\      'pyflakes': {
+\        'enabled': v:false,
+\      },
+\  }
+\  }
+\}
 
 let g:ale_fix_on_save = 1
 

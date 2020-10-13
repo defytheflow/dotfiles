@@ -78,7 +78,7 @@ scrolling:
 # Font configuration.
 font:
   normal:
-    family: Fira Code
+    family: Cascadia Code
     style: Medium
 
   bold:
