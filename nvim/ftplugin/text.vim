@@ -14,9 +14,6 @@ setlocal spell spelllang=en_us
 setlocal thesaurus+=~/.config/nvim/thesaurus/mthesaur.txt
 setlocal complete+=s " search thesaurus for autocomplete.
 
-nnoremap j gj
-nnoremap k gk
-
 augroup vimrc_text
   au!
   au ColorScheme * highlight SpellBad guifg=#ff0000 ctermfg=Red

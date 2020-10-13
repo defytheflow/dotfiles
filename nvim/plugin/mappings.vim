@@ -16,6 +16,10 @@ nnoremap <silent> <leader>vs :source $MYVIMRC<CR>
 nnoremap / /\v
 vnoremap / /\v
 
+" Movement.
+nnoremap j gj
+nnoremap k gk
+
 " Visual.
 vnoremap < <gv
 vnoremap > >gv

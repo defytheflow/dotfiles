@@ -85,7 +85,7 @@ install_npm_packages() {
     eslint \
     bash-language-server \
     create-react-app \
-    jsonlint \
+    jest jsonlint \
     prettier neovim \
     typescript ts-node \
     vim-language-server

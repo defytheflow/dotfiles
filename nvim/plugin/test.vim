@@ -5,7 +5,9 @@ scriptencoding utf-8
 " Author:   Artyom Danilov (@defytheflow)
 
 let g:test#strategy = 'neovim'
-let g:test#neovim#term_position = 'vert'
+let g:test#neovim#term_position = 'below' " [vert, below]
+let g:test#javascript#runner = 'jest'
+let g:test#javascript#jest#executable = 'npm run test'
 
 nmap <silent> <leader>tn :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
