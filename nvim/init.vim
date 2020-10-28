@@ -70,6 +70,7 @@ runtime indentline.vim
 Plug 'itchyny/lightline.vim'
 
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 runtime nerdtree.vim
 
 Plug 'vim-python/python-syntax', { 'for': 'python' }
@@ -83,6 +84,9 @@ runtime test.vim
 
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 runtime ultisnips.vim
+
+Plug 'tpope/vim-dispatch'
+let g:dispatch_quickfix_height = 20
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
@@ -143,7 +147,7 @@ endtry
 set history=1000
 set wildmenu
 set wildmode=longest,list,full
-set wildignore+=*/.git/*,*/.venv/*,*/node_modules/*,*cache*
+set wildignore+=*/.git/*,*/.venv/*,*/node_modules/*,*cache*,*coverage*
 set wildignorecase
 
 " fold.

@@ -50,6 +50,3 @@ alias grsu="git reset 'HEAD@{1}'"
 # status/show/stash.
 alias gs='git status'
 alias gsh='git show'
-alias gst='git stash'
-alias gsp='git stash pop'
-alias gsd='git stash drop'

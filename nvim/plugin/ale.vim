@@ -7,6 +7,7 @@ scriptencoding utf-8
 let g:ale_linters = {
 \  'c':          ['ccls', 'clang'],
 \  'cpp':        ['ccls', 'clang', 'clang-tidy'],
+\  'css':        ['stylelint'],
 \  'java':       ['javalsp', 'javac'],
 \  'javascript': ['eslint'],
 \  'json':       ['jsonlint'],
@@ -19,6 +20,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \ 'c':               ['clang-format'],
 \ 'cpp':             ['clang-format'],
+\ 'css':             ['stylelint'],
 \ 'html':            ['prettier'],
 \ 'java':            ['uncrustify'],
 \ 'javascript':      ['prettier'],
@@ -66,6 +68,8 @@ let g:ale_sign_warning = '🗙 '
 
 let g:ale_java_javalsp_executable = 'java-language-server'
 let g:ale_sh_shfmt_options = '-p -ci -i 2'
+
+let g:ale_completion_autoimport = 1
 
 " let g:ale_python_mypy_options = '--strict'
 let g:ale_python_pyls_config = {

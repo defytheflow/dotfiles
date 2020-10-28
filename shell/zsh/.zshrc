@@ -28,6 +28,7 @@ bindkey '^F' autosuggest-accept
 zplug 'softmoth/zsh-vim-mode', defer:2
 VIM_MODE_TRACK_KEYMAP=no
 MODE_INDICATOR=
+export KEYTIMEOUT=1
 
 # z.
 zplug 'agkozak/zsh-z'
@@ -85,18 +86,18 @@ zstyle ':completion:*:descriptions' format %F{default}%B%--- %d ---%b%f
 #}}}
 
 # cursor {{{
-function zle-keymap-select() {
- # Change cursor shape in different modes.
-  if [ $KEYMAP = vicmd ] || [ $1 = 'block' ]; then
-    echo -ne '\e[1 q'
+function _set_block_cursor() { echo -ne '\e[1 q' }
+function _set_beam_cursor() { echo -ne '\e[5 q' }
+function zle-keymap-select {
+  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+    _set_block_cursor
   elif [ $KEYMAP = main ] || [ $KEYMAP = viins ] || [ $KEYMAP = '' ] || [ $1 = 'beam' ]; then
-    echo -ne '\e[5 q'
+    _set_beam_cursor
   fi
 }
 zle -N zle-keymap-select
 function zle-line-init() {
   zle -K viins
-  # echo -ne '\e[5 q'
   echo -ne "\033]12;#00ff00\007"
 }
 zle -N zle-line-init
