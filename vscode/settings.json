@@ -15,13 +15,12 @@
   "editor.minimap.enabled": false,
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
 
   "workbench.activityBar.visible": true,
   "workbench.colorCustomizations": {
-    "editor.lineHighlightBackground": "#333",
-    "statusBar.background": "#268bd2",
-    "statusBar.noFolderBackground": "#268bd2",
-    "statusBar.debuggingBackground": "#268bd2"
+    "editor.lineHighlightBackground": "#333"
   },
 
   "files.trimTrailingWhitespace": true,
@@ -35,21 +34,12 @@
     "**/__pycache__/**": true
   },
 
-  "[c]": {
-    "editor.formatOnSave": true
-  },
-
   "[css]": {
     "editor.tabSize": 2
   },
 
-  "[cpp]": {
-    "editor.formatOnSave": true
-  },
-
   "[json]": {
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true
+    "editor.tabSize": 2
   },
 
   "python.linting.enabled": true,
@@ -60,22 +50,17 @@
   "python.formatting.provider": "yapf",
 
   "[python]": {
-    "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     }
   },
 
   "[typescript]": {
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true
+    "editor.tabSize": 2
   },
 
   "[typescriptreact]": {
-    "editor.tabSize": 2,
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true
+    "editor.tabSize": 2
   },
 
   "vim.leader": "\\",
@@ -90,16 +75,6 @@
   "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
   "vim.visualstar": true,
-
-  "vim.statusBarColorControl": true,
-  "vim.statusBarColors": {
-    "normal": "#268bd2",
-    "insert": "#d33682",
-    "visual": "#268bd2",
-    "visualline": "#2aa198",
-    "visualblock": "#859900",
-    "replace": "#b58900"
-  },
 
   "vim.visualModeKeyBindingsNonRecursive": [
     {
@@ -122,14 +97,6 @@
       "after": ["y", "$"]
     },
     {
-      "before": ["<C-l>"],
-      "commands": [":nohl"]
-    },
-    {
-      "before": ["C-c"],
-      "after": ["<Esc>"]
-    },
-    {
       "before": ["<tab>"],
       "after": ["g", "t"]
     },
@@ -138,12 +105,28 @@
       "after": ["g", "T"]
     },
     {
+      "before": ["C-c"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": [":nohl"]
+    },
+    {
       "before": ["<leader>", "r"],
       "commands": ["workbench.action.reloadWindow"]
     },
     {
+      "before": ["<leader>", "a"],
+      "commands": ["workbench.action.toggleActivityBarVisibility"]
+    },
+    {
       "before": ["<leader>", "f"],
       "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "s"],
+      "commands": ["editor.action.changeAll"]
     },
     {
       "before": ["<leader>", "z"],
@@ -177,5 +160,6 @@
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.previousChange"]
     }
-  ]
+  ],
+  "typescript.updateImportsOnFileMove.enabled": "always"
 }
