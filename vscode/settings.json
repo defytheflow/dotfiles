@@ -1,36 +1,36 @@
 {
   "keyboard.dispatch": "keyCode",
-  "window.zoomLevel": -1,
-  "breadcrumbs.enabled": true,
   "terminal.integrated.fontSize": 14,
 
   "editor.detectIndentation": true,
   "editor.fontSize": 14,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
   "editor.folding": true,
+  "editor.formatOnSave": true,
   "editor.insertSpaces": true,
   "editor.lineNumbers": "relative",
+  "editor.minimap.enabled": false,
   "editor.renderWhitespace": "all",
   "editor.rulers": [90],
   "editor.tabCompletion": "on",
-  "editor.minimap.enabled": false,
-  "editor.fontFamily": "Fira Code",
-  "editor.fontLigatures": true,
-  "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
 
-  "workbench.activityBar.visible": true,
+  "window.zoomLevel": -1,
+  "window.menuBarVisibility": "toggle",
+
+  "workbench.activityBar.visible": false,
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333"
   },
 
   "files.trimTrailingWhitespace": true,
   "files.exclude": {
-    "**/.git": true,
+    "**/.git/**": true,
     "**/.venv/**": false,
     "**/.pytest_cache/**": true,
     "**/.mypy_cache/**": true,
     "**/.coverage/**": true,
-    "**/htmlcov/**": true,
+    "**/coverage/**": true,
     "**/__pycache__/**": true
   },
 
@@ -41,13 +41,6 @@
   "[json]": {
     "editor.tabSize": 2
   },
-
-  "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
-  "python.linting.pydocstyleEnabled": false,
-  "python.linting.pylintEnabled": false,
-  "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
-  "python.formatting.provider": "yapf",
 
   "[python]": {
     "editor.codeActionsOnSave": {
@@ -62,6 +55,15 @@
   "[typescriptreact]": {
     "editor.tabSize": 2
   },
+
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.pydocstyleEnabled": false,
+  "python.linting.pylintEnabled": false,
+  "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
+  "python.formatting.provider": "yapf",
+
+  "typescript.updateImportsOnFileMove.enabled": "always",
 
   "vim.leader": "\\",
   "vim.textwidth": 90,
@@ -160,6 +162,5 @@
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.previousChange"]
     }
-  ],
-  "typescript.updateImportsOnFileMove.enabled": "always"
+  ]
 }

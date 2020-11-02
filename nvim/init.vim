@@ -138,7 +138,7 @@ endif
 set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
 try
-  colorscheme base16-classic-dark
+  colorscheme codedark
 catch
   colorscheme koehler
 endtry
