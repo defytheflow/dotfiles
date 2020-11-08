@@ -10,10 +10,10 @@ let g:ale_linters = {
 \  'css':        ['stylelint'],
 \  'java':       ['javalsp', 'javac'],
 \  'javascript': ['eslint'],
-\  'json':       ['jsonlint'],
+\  'json':       [''],
 \  'python':     ['pyls', 'mypy', 'flake8'],
 \  'sh':         ['language_server', 'shellcheck'],
-\  'typescript': ['tsserver', 'eslint'],
+\  'typescript': ['tsserver', 'eslint', ],
 \  'vim':        ['vimls', 'vint'],
 \}
 
@@ -25,6 +25,7 @@ let g:ale_fixers = {
 \ 'java':            ['uncrustify'],
 \ 'javascript':      ['prettier'],
 \ 'json':            ['prettier'],
+\ 'jsonc':           ['prettier'],
 \ 'python':          ['isort', 'yapf'],
 \ 'sh':              ['shfmt'],
 \ 'typescript':      ['prettier'],
@@ -69,6 +70,7 @@ let g:ale_sign_warning = '🗙 '
 let g:ale_java_javalsp_executable = 'java-language-server'
 let g:ale_sh_shfmt_options = '-p -ci -i 2'
 
+" let g:ale_linters_explicit = 1
 let g:ale_completion_autoimport = 1
 
 " let g:ale_python_mypy_options = '--strict'
@@ -106,7 +108,11 @@ augroup END
 call AleColorsInit()
 
 nmap <silent> gd :ALEGoToDefinition<CR>
+nmap <silent> gi :ALEDetail<CR>
+nmap <silent> gn :ALERename<CR>
 nmap <silent> gs :ALEFindReferences<CR>
 nmap <silent> ]g :ALEPrevious<CR>
 nmap <silent> [g :ALENext<CR>
 nmap <silent> K  :ALEHover<CR>
+
+imap <C-n> <Plug>(ale_complete)

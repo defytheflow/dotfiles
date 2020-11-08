@@ -67,8 +67,6 @@ let g:highlightedyank_highlight_duration = 200
 Plug 'Yggdroot/indentLine'
 runtime indentline.vim
 
-Plug 'itchyny/lightline.vim'
-
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 runtime nerdtree.vim
@@ -88,6 +86,14 @@ runtime ultisnips.vim
 Plug 'tpope/vim-dispatch'
 let g:dispatch_quickfix_height = 20
 
+Plug 'szw/vim-maximizer'
+nnoremap <silent> <leader>m :MaximizerToggle<CR>
+
+Plug 'chrisbra/Colorizer'
+let g:colorizer_auto_filetype='css,html'
+let g:colorizer_use_virtual_text = 1
+
+Plug 'itchyny/lightline.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'michaeljsmith/vim-indent-object'
@@ -100,7 +106,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'miyakogi/seiya.vim'
-Plug 'chrisbra/Colorizer'
 Plug 'jremmen/vim-ripgrep'
 Plug 'cohama/lexima.vim'
 Plug 'mboughaba/i3config.vim'
@@ -113,6 +118,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'uiiaoo/java-syntax.vim', { 'for': 'java' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'kevinoid/vim-jsonc'
 
 call plug#end()
 "}}}
@@ -124,7 +130,7 @@ filetype plugin indent on
 syntax enable
 
 " path.
-set path=.,${HOME}/.config/nvim/*plugin/
+set path=${HOME}/.config/nvim/*plugin/
 
 " backup.
 set backup
@@ -138,7 +144,7 @@ endif
 set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
 try
-  colorscheme codedark
+  colorscheme base16-gruvbox-dark-hard
 catch
   colorscheme koehler
 endtry

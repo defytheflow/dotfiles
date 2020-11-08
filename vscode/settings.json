@@ -27,11 +27,8 @@
   "files.exclude": {
     "**/.git/**": true,
     "**/.venv/**": false,
-    "**/.pytest_cache/**": true,
-    "**/.mypy_cache/**": true,
-    "**/.coverage/**": true,
-    "**/coverage/**": true,
-    "**/__pycache__/**": true
+    "**/*cache*/**": true,
+    "**/*coverage*/**": true,
   },
 
   "[css]": {
@@ -39,7 +36,8 @@
   },
 
   "[json]": {
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
   "[python]": {
@@ -162,5 +160,8 @@
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.previousChange"]
     }
-  ]
+  ],
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

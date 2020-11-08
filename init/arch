@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# File:     arch.sh
+# File:     arch
 # Created:  29.07.2020
 # Author:   Artyom Danilov (@defytheflow)
 
@@ -28,7 +28,7 @@ install_packages() {
     maven mlocate \
     neovim nitrogen npm \
     powerline-fonts python-neovim python-pip \
-    ripgrep rofi \
+    ranger ripgrep rofi \
     screenkey shellcheck shfmt \
     tk tmux tree ttf-fira-code \
     valgrind vim vi \
