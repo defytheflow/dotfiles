@@ -11,6 +11,7 @@ alias p='pwd'
 
 alias so='source'
 alias vi='vim'
+alias rn='ranger'
 
 alias ssh='TERM=xterm-color ssh' # 'tput: unknown terminal bug'
 alias diff='diff --side-by-side --suppress-common-lines --color=auto'

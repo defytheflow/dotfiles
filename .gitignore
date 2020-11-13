@@ -3,4 +3,5 @@ nvim/autoload/plug.vim
 nvim/plugged/*
 nvim/.netrwhist
 nvim/thesaurus/*
+ranger/plugins/*
 vscode/*Storage

@@ -90,7 +90,7 @@ Plug 'szw/vim-maximizer'
 nnoremap <silent> <leader>m :MaximizerToggle<CR>
 
 Plug 'chrisbra/Colorizer'
-let g:colorizer_auto_filetype='css,html'
+let g:colorizer_auto_filetype='css,html,vim'
 let g:colorizer_use_virtual_text = 1
 
 Plug 'itchyny/lightline.vim'
@@ -144,7 +144,10 @@ endif
 set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
 try
-  colorscheme base16-gruvbox-dark-hard
+  colorscheme base16-classic-dark
+  " Good ones:
+  " base16-classic-dark
+  " base16-gruvbox-dark-hard
 catch
   colorscheme koehler
 endtry
