@@ -90,7 +90,7 @@ Plug 'szw/vim-maximizer'
 nnoremap <silent> <leader>m :MaximizerToggle<CR>
 
 Plug 'chrisbra/Colorizer'
-let g:colorizer_auto_filetype='css,html,vim'
+let g:colorizer_auto_filetype='css,html'
 let g:colorizer_use_virtual_text = 1
 
 Plug 'itchyny/lightline.vim'

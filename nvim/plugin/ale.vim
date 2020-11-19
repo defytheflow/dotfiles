@@ -9,7 +9,7 @@ let g:ale_linters = {
 \  'cpp':        ['ccls', 'clang', 'clang-tidy'],
 \  'css':        ['stylelint'],
 \  'java':       ['javalsp', 'javac'],
-\  'javascript': ['eslint'],
+\  'javascript': ['eslint', 'tsserver'],
 \  'json':       [''],
 \  'python':     ['pyls', 'mypy', 'flake8'],
 \  'sh':         ['language_server', 'shellcheck'],
@@ -114,5 +114,4 @@ nmap <silent> gs :ALEFindReferences<CR>
 nmap <silent> ]g :ALEPrevious<CR>
 nmap <silent> [g :ALENext<CR>
 nmap <silent> K  :ALEHover<CR>
-
-imap <C-n> <Plug>(ale_complete)
+imap <C-Space> <Plug>(ale_complete)

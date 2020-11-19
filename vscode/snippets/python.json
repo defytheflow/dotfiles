@@ -1,58 +1,21 @@
 {
-  "Django Model": {
-    "prefix": ["djm"],
-    "body": ["class ${1}(models.Model):", "    ${0}"],
-    "description": "django model definition."
-  },
-
-  "Django Rest Serializer": {
-    "prefix": ["djrs"],
-    "body": ["class ${1}Serializer(serializers.Serializer):", "    ${0}"],
-    "description": "django rest serializer."
-  },
-
-  "Django Rest ModelSerializer": {
-    "prefix": ["djrms"],
-    "body": ["class ${1}Serializer(serializers.ModelSerializer):", "    ${0}"],
-    "description": "django rest model serializer."
-  },
-
-  "Django Rest Permission": {
-    "prefix": ["djrp"],
-    "body": [
-      "class ${1}(permissions.BasePermission):",
-      "",
-      "    def has_permission(self, request, view):",
-      "        return ${0}",
-      "",
-      "    def has_object_permission(self, request, view, obj):",
-      "        return ${0}"
-    ],
-    "description": "django rest permission."
-  },
-
-  "Django TestCase": {
-    "prefix": ["djt"],
-    "body": [
-      "class ${1}(TestCase):",
-      "",
-      "    @classmethod",
-      "    def setUpTestData(cls):",
-      "        pass",
-      "",
-      "    def setUp(self):",
-      "        pass"
-    ],
-    "description": "django test case."
-  },
-
-  "IPython debugger": {
+  "ipython debugger": {
     "prefix": ["ipdb"],
     "body": ["__import__('ipdb').set_trace()"]
   },
 
-  "Print debug": {
-    "prefix": ["prd"],
+  "logging info": {
+    "prefix": ["info"],
+    "body": ["__import__('logging').info($1)"]
+  },
+
+  "logging warning": {
+    "prefix": ["warn"],
+    "body": ["__import__('logging').warning($1)"]
+  },
+
+  "print debug": {
+    "prefix": ["pd"],
     "body": ["print(f'${1} is {${1}}')"]
   }
 }

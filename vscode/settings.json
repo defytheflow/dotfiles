@@ -18,7 +18,7 @@
   "window.zoomLevel": -1,
   "window.menuBarVisibility": "toggle",
 
-  "workbench.activityBar.visible": false,
+  "workbench.activityBar.visible": true,
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333"
   },

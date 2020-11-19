@@ -6,6 +6,18 @@ snippet sd
 screen.debug();
 endsnippet
 
-snippet sgr
+snippet role
 screen.getByRole('');
+endsnippet
+
+snippet act
+await act(async () => {
+  $1
+});
+endsnippet
+
+snippet wait
+await waitFor(() => {
+  $1
+})
 endsnippet
