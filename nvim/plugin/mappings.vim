@@ -7,6 +7,7 @@ scriptencoding utf-8
 " Buffers.
 nnoremap <silent> <tab>         :bn<CR>
 nnoremap <silent> <leader><tab> :bp<CR>
+nnoremap <silent> <leader>d     :bd!<CR>
 
 " Vim.
 nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>

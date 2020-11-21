@@ -144,9 +144,12 @@ create_symlinks() {
   symlink 'lang/python/flake8' "${XDG_CONFIG_HOME}/flake8"
   symlink 'lang/python/pycodestyle' "${XDG_CONFIG_HOME}/pycodestyle"
   symlink 'lang/python/style.yapf' "${XDG_CONFIG_HOME}/yapf/style"
-  symlink 'lang/typescript/.prettierrc.json' "${HOME}/.prettierrc.json"
-  symlink 'lang/javascript/.eslintrc.json' "${HOME}/.eslintrc.json"
+
+  symlink 'lang/ts/.prettierrc.json' "${HOME}/.prettierrc.json"
+  symlink 'lang/js/.eslintrc.json' "${HOME}/.eslintrc.json"
+
   symlink 'lang/c/.clang-format' "${HOME}/.clang-format"
+  symlink 'lang/c/.gdbinit' "${HOME}/.gdbinit"
 
   symlink 'shell/zsh' "${ZDOTDIR}"
   symlink 'shell/zsh/.zprofile' "${HOME}/.zprofile"

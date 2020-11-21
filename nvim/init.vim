@@ -29,7 +29,7 @@ Plug 'bkad/CamelCaseMotion'
 let g:camelcasemotion_key = '<leader>'
 
 Plug 'alvan/vim-closetag'
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*js'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.tsx'
 let g:closetag_filetypes = 'html,xhtml,phtml,jsx'
 
 Plug 'ctrlpvim/ctrlp.vim'

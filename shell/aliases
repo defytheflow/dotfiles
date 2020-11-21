@@ -26,6 +26,9 @@ alias amixer_toggle='amixer -D pulse set Master 1+ toggle'
 alias h='history'
 alias history='history -E'
 
+# gdb.
+alias gdb='gdb --quiet'
+
 # cd.
 alias ..='cd ..'
 alias ...='cd ../../'

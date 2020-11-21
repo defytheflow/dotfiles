@@ -6,3 +6,23 @@
 snippet ipdb
 __import__('ipdb').set_trace()
 endsnippet
+
+snippet pd
+print(f'${1} is {${2}}')
+endsnippet
+
+snippet pp
+__import__('pprint').pprint($1)
+endsnippet
+
+snippet db
+__import__('logging').debug($1)
+endsnippet
+
+snippet info
+__import__('logging').info($1)
+endsnippet
+
+snippet warn
+__import__('logging').warning($1)
+endsnippet
