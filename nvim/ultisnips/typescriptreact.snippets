@@ -6,8 +6,26 @@ snippet sd
 screen.debug();
 endsnippet
 
-snippet role
+snippet sr
 screen.getByRole('');
+endsnippet
+
+snippet des
+describe('$1.', () => {
+  $2
+})
+endsnippet
+
+snippet bef
+beforeEach(() => {
+  $1
+})
+endsnippet
+
+snippet it
+it('$1.', () => {
+  $2
+})
 endsnippet
 
 snippet act
@@ -16,8 +34,13 @@ await act(async () => {
 });
 endsnippet
 
-snippet wait
-await waitFor(() => {
-  $1
-})
+# React Functional Component.
+snippet fc
+const $1: React.FC = () => {
+  return (
+    <>
+    $2
+    </>
+  );
+};
 endsnippet

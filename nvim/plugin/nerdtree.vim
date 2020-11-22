@@ -13,6 +13,7 @@ let g:NERDTreeMinimalUI  = 1
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeShowLineNumbers = 1
 let g:NERDTreeWinSize = 30
+let g:NERDTreeHijackNetrw = 0
 
 let g:NERDTreeGitStatusIndicatorMapCustom = {
 \ 'Modified'  :'✹ ',

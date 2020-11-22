@@ -93,6 +93,13 @@ Plug 'chrisbra/Colorizer'
 let g:colorizer_auto_filetype='css,html'
 let g:colorizer_use_virtual_text = 1
 
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
+runtime ranger.vim
+
+Plug 'tpope/vim-fugitive'
+runtime fugitive.vim
+
 Plug 'itchyny/lightline.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
@@ -102,7 +109,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'miyakogi/seiya.vim'

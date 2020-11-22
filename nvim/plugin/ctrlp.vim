@@ -7,4 +7,4 @@ scriptencoding utf-8
 let g:ctrlp_show_hidden = 1
 
 nnoremap <silent> gb :CtrlPBuffer<CR>
-nnoremap <silent><leader>r :CtrlPClearCache<CR>
+nnoremap <silent><leader>c :CtrlPClearCache<CR>
