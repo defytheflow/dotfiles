@@ -32,9 +32,6 @@ Plug 'alvan/vim-closetag'
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.tsx'
 let g:closetag_filetypes = 'html,xhtml,phtml,jsx'
 
-Plug 'ctrlpvim/ctrlp.vim'
-runtime ctrlp.vim
-
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -55,11 +52,20 @@ let g:easy_align_ignore_groups = []
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-Plug 'airblade/vim-gitgutter'
-runtime gitgutter.vim
+Plug 'junegunn/fzf.vim'
+runtime fzf.vim
 
 Plug 'junegunn/goyo.vim'
 runtime goyo.vim
+
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
+let g:ranger_map_keys = 0
+let g:ranger_replace_netrw = 1
+nnoremap <silent><leader>r :Ranger<CR>
+
+Plug 'airblade/vim-gitgutter'
+runtime gitgutter.vim
 
 Plug 'machakann/vim-highlightedyank'
 let g:highlightedyank_highlight_duration = 200
@@ -93,13 +99,6 @@ Plug 'chrisbra/Colorizer'
 let g:colorizer_auto_filetype='css,html'
 let g:colorizer_use_virtual_text = 1
 
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
-runtime ranger.vim
-
-Plug 'tpope/vim-fugitive'
-runtime fugitive.vim
-
 Plug 'itchyny/lightline.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
@@ -109,10 +108,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'miyakogi/seiya.vim'
-Plug 'jremmen/vim-ripgrep'
 Plug 'cohama/lexima.vim'
 Plug 'mboughaba/i3config.vim'
 Plug 'tomasiser/vim-code-dark'
@@ -124,7 +123,6 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'uiiaoo/java-syntax.vim', { 'for': 'java' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
-Plug 'kevinoid/vim-jsonc'
 
 call plug#end()
 "}}}

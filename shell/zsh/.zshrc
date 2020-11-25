@@ -18,6 +18,7 @@ source "${ZPLUG_HOME}/init.zsh"
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'plugins/command-not-found', from:oh-my-zsh
+zplug 'plugins/fzf', from:oh-my-zsh
 zplug 'kutsan/zsh-system-clipboard'
 
 # autosuggestions.
@@ -61,9 +62,6 @@ setopt share_history # share history across shells.
 setopt inc_append_history # commands added to history immediately.
 setopt extended_history # record the timestamp of each command.
 setopt hist_ignore_all_dups # do not write duplicate commands.
-
-# Search history with <ctrl-r>.
-bindkey '^R' history-incremental-pattern-search-backward
 #}}}
 
 # completion {{{
