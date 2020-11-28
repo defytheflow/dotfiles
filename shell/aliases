@@ -60,6 +60,7 @@ alias jc='javac'
 alias py='python3'
 alias pip='pip3'
 alias python='python3'
+alias pnv='pipenv'
 
 # windows.
 alias cls='clear'

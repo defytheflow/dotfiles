@@ -5,7 +5,7 @@
 # Author:       Artyom Danilov (@defytheflow)
 
 . "$(dirname "${0}")/.profile"
-. "$(dirname "${0}")/init/utils"
+. "$(dirname "${0}")/utils"
 
 main() {
   check_distro
@@ -31,10 +31,10 @@ check_distro() {
 
   case "${distro}" in
     *Manjaro*)
-      . "$(dirname "${0}")/init/arch"
+      . "$(dirname "${0}")/arch"
       ;;
     *Ubuntu*)
-      . "$(dirname "${0}")/init/debian"
+      . "$(dirname "${0}")/debian"
       ;;
     *)
       log "Distribution '${distro}' is not supported."

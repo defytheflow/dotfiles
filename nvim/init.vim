@@ -29,8 +29,8 @@ Plug 'bkad/CamelCaseMotion'
 let g:camelcasemotion_key = '<leader>'
 
 Plug 'alvan/vim-closetag'
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.jsx,*.tsx'
-let g:closetag_filetypes = 'html,xhtml,phtml,jsx'
+let g:closetag_filenames = '*.html,*.xhtml,*.jsx,*.tsx'
+let g:closetag_filetypes = 'html,xhtml,jsx'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -58,11 +58,19 @@ runtime fzf.vim
 Plug 'junegunn/goyo.vim'
 runtime goyo.vim
 
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
-let g:ranger_map_keys = 0
-let g:ranger_replace_netrw = 1
-nnoremap <silent><leader>r :Ranger<CR>
+Plug 'junegunn/gv.vim'
+
+Plug 'kevinhwang91/rnvimr'
+nnoremap <silent><leader>r :RnvimrToggle<CR>
+let g:rnvimr_enable_ex = 1
+let g:rnvimr_enable_picker = 1
+let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
+
+" Plug 'francoiscabrol/ranger.vim'
+" Plug 'rbgrouleff/bclose.vim'
+" let g:ranger_map_keys = 0
+" let g:ranger_replace_netrw = 1
+" nnoremap <silent><leader>r :Ranger<CR>
 
 Plug 'airblade/vim-gitgutter'
 runtime gitgutter.vim
@@ -89,15 +97,15 @@ runtime test.vim
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 runtime ultisnips.vim
 
-Plug 'tpope/vim-dispatch'
-let g:dispatch_quickfix_height = 20
-
-Plug 'szw/vim-maximizer'
-nnoremap <silent> <leader>m :MaximizerToggle<CR>
-
 Plug 'chrisbra/Colorizer'
 let g:colorizer_auto_filetype='css,html'
 let g:colorizer_use_virtual_text = 1
+
+Plug 'szw/vim-maximizer'
+nnoremap <silent> <C-m> :MaximizerToggle<CR>
+
+Plug 'liuchengxu/vim-which-key'
+nnoremap <silent><leader> :WhichKey '\'<CR>
 
 Plug 'itchyny/lightline.vim'
 Plug 'kana/vim-textobj-user'
@@ -118,8 +126,8 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 Plug 'uiiaoo/java-syntax.vim', { 'for': 'java' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
