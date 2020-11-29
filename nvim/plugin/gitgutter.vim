@@ -6,6 +6,7 @@ scriptencoding utf-8
 
 set foldtext=gitgutter#fold#foldtext()
 
+let g:gitgutter_map_keys = 0
 let g:gitgutter_sign_added = '✚'
 let g:gitgutter_sign_modified = '✹'
 
@@ -21,3 +22,6 @@ augroup vimrc_gitgutter
 augroup END
 
 call GitGutterColorsInit()
+
+nmap ]c <Plug>(GitGutterNextHunk)
+nmap [c <Plug>(GitGutterPrevHunk)

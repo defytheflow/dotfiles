@@ -26,7 +26,7 @@ Plug 'dense-analysis/ale'
 runtime ale.vim
 
 Plug 'bkad/CamelCaseMotion'
-let g:camelcasemotion_key = '<leader>'
+runtime camelcase.vim
 
 Plug 'alvan/vim-closetag'
 let g:closetag_filenames = '*.html,*.xhtml,*.jsx,*.tsx'
@@ -59,18 +59,14 @@ Plug 'junegunn/goyo.vim'
 runtime goyo.vim
 
 Plug 'junegunn/gv.vim'
+Plug 'tpope/vim-fugitive'
+runtime fugitive.vim
 
-Plug 'kevinhwang91/rnvimr'
-nnoremap <silent><leader>r :RnvimrToggle<CR>
-let g:rnvimr_enable_ex = 1
-let g:rnvimr_enable_picker = 1
-let g:rnvimr_ranger_cmd = 'ranger --cmd="set draw_borders both"'
-
-" Plug 'francoiscabrol/ranger.vim'
-" Plug 'rbgrouleff/bclose.vim'
-" let g:ranger_map_keys = 0
-" let g:ranger_replace_netrw = 1
-" nnoremap <silent><leader>r :Ranger<CR>
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim'
+let g:ranger_map_keys = 0
+let g:ranger_replace_netrw = 1
+nnoremap <silent><leader>r :Ranger<CR>
 
 Plug 'airblade/vim-gitgutter'
 runtime gitgutter.vim
@@ -98,7 +94,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 runtime ultisnips.vim
 
 Plug 'chrisbra/Colorizer'
-let g:colorizer_auto_filetype='css,html'
+let g:colorizer_auto_filetype='css,html,js'
 let g:colorizer_use_virtual_text = 1
 
 Plug 'szw/vim-maximizer'
@@ -116,16 +112,19 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-fugitive'
 Plug 'justinmk/vim-sneak'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'miyakogi/seiya.vim'
 Plug 'cohama/lexima.vim'
-Plug 'mboughaba/i3config.vim'
+
+" colorschemes.
 Plug 'tomasiser/vim-code-dark'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
+
+" syntaxes.
+Plug 'mboughaba/i3config.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 Plug 'uiiaoo/java-syntax.vim', { 'for': 'java' }
