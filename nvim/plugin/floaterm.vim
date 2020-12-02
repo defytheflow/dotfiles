@@ -1,0 +1,24 @@
+scriptencoding utf-8
+
+" File:     floaterm.vim
+" Created:  02.12.2020
+" Author:   Artyom Danilov (@defytheflow)
+
+let g:floaterm_width = 0.7
+let g:floaterm_height = 0.7
+
+let g:floaterm_autoinsert = v:true
+let g:floaterm_winblend = 0
+
+com! Ranger FloatermNew ranger
+com! Python FloatermNew python
+com! Node   FloatermNew node
+
+nnoremap <silent> <C-t>     :FloatermToggle<CR>
+nnoremap <silent> <leader>r :Ranger<CR>
+
+augroup vimrc_floaterm
+  au!
+  tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle<CR>
+  tnoremap <silent> <C-q> <C-\><C-n>:FloatermKill<CR>
+augroup END

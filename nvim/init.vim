@@ -62,12 +62,6 @@ Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-fugitive'
 runtime fugitive.vim
 
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim'
-let g:ranger_map_keys = 0
-let g:ranger_replace_netrw = 1
-nnoremap <silent><leader>r :Ranger<CR>
-
 Plug 'airblade/vim-gitgutter'
 runtime gitgutter.vim
 
@@ -101,7 +95,10 @@ Plug 'szw/vim-maximizer'
 nnoremap <silent> <C-m> :MaximizerToggle<CR>
 
 Plug 'liuchengxu/vim-which-key'
-nnoremap <silent><leader> :WhichKey '\'<CR>
+nnoremap <silent> <leader> :WhichKey '\'<CR>
+
+Plug 'voldikss/vim-floaterm'
+runtime floaterm.vim
 
 Plug 'itchyny/lightline.vim'
 Plug 'kana/vim-textobj-user'

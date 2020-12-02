@@ -5,9 +5,13 @@ scriptencoding utf-8
 " Author:   Artyom Danilov (@defytheflow)
 
 " Buffers.
-nnoremap <silent> <tab>         :bn<CR>
-nnoremap <silent> <leader><tab> :bp<CR>
-nnoremap <silent> <leader>d     :bd!<CR>
+com! BuffNext :bn
+com! BuffPrev :bp
+com! BuffDel  :bd!
+
+nnoremap <silent> <tab>         :BuffNext<CR>
+nnoremap <silent> <leader><tab> :BuffPrev<CR>
+nnoremap <silent> <leader>d     :BuffDel<CR>
 
 " Vim.
 nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>
@@ -37,5 +41,4 @@ nnoremap <silent> <C-s> :w<CR>
 nnoremap <silent> <C-l> :nohl<CR>
 
 nnoremap <leader><leader> <C-^>
-nnoremap <leader>s  :%s/\<<C-r><C-w>\>//g<Left><Left>
-nnoremap <leader>q :quit<CR>
+nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
