@@ -131,7 +131,9 @@ create_symlinks() {
     symlink 'git' "${XDG_CONFIG_HOME}/git"
   fi
 
-  symlink 'i3' "${XDG_CONFIG_HOME}/i3"
+  symlink 'wm/i3' "${XDG_CONFIG_HOME}/i3"
+  symlink 'wm/awesome' "${XDG_CONFIG_HOME}/awesome"
+
   symlink 'nvim' "${XDG_CONFIG_HOME}/nvim"
   symlink 'tmux' "${XDG_CONFIG_HOME}/tmux"
   symlink 'ranger' "${XDG_CONFIG_HOME}/ranger"

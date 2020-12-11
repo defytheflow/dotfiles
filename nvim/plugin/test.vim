@@ -4,7 +4,7 @@ scriptencoding utf-8
 " Created:  05.10.2020
 " Author:   Artyom Danilov (@defytheflow)
 
-let g:test#strategy = 'neovim'
+let g:test#strategy = 'floaterm' " neovim
 let g:test#neovim#term_position = 'below 40' " [vert, below]
 let g:test#javascript#runner = 'jest'
 let g:test#javascript#jest#executable = 'npm run test'

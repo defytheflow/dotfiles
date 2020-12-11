@@ -14,11 +14,9 @@ com! Ranger FloatermNew ranger
 com! Python FloatermNew python
 com! Node   FloatermNew node
 
-nnoremap <silent> <C-t>     :FloatermToggle<CR>
 nnoremap <silent> <leader>r :Ranger<CR>
+nnoremap <silent> <C-t>     :FloatermToggle<CR>
+" nnoremap <silent> <C-q>     :FloatermKill<CR>
 
-augroup vimrc_floaterm
-  au!
-  tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle<CR>
-  tnoremap <silent> <C-q> <C-\><C-n>:FloatermKill<CR>
-augroup END
+tnoremap <silent> <C-t> <C-\><C-n>:FloatermToggle<CR>
+tnoremap <silent> <C-q> <C-\><C-n>:FloatermKill<CR>

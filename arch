@@ -18,7 +18,7 @@ install_packages() {
   log 'Installing arch packages.'
 
   set -- \
-    alacritty \
+    alacritty awesome \
     bat \
     cargo clang \
     dash \
@@ -26,6 +26,7 @@ install_packages() {
     i3-gaps i3lock i3status \
     jq \
     gdb \
+    luarocks \
     maven mlocate \
     neovim nitrogen npm \
     powerline-fonts python-neovim python-pip \
