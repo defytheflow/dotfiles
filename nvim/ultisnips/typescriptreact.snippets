@@ -1,13 +1,25 @@
 snippet sd
-screen.debug();
+screen.debug()
+endsnippet
+
+snippet sl
+screen.getByLabelText('$1')
 endsnippet
 
 snippet sr
-screen.getByRole('');
+screen.getByRole('$1')
+endsnippet
+
+snippet st
+screen.getByText('$1')
+endsnippet
+
+snippet sq
+screen.queryByRole('$1')
 endsnippet
 
 snippet des
-describe('$1.', () => {
+describe('$1', () => {
   $2
 })
 endsnippet
@@ -19,13 +31,13 @@ beforeEach(() => {
 endsnippet
 
 snippet it
-it('$1.', () => {
+it('$1', () => {
   $2
 })
 endsnippet
 
-snippet test
-test('$1.', () => {
+snippet ts
+test('$1', () => {
   $2
 })
 endsnippet
@@ -40,14 +52,4 @@ snippet aact
 await act(async () => {
   $1
 });
-endsnippet
-
-snippet fc
-const $1: React.FC = () => {
-  return (
-    <>
-    $2
-    </>
-  );
-};
 endsnippet

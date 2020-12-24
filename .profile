@@ -32,10 +32,10 @@ export CARGO_HOME="${XDG_CONFIG_HOME}/cargo"
 export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
 
 # fzf.
-# if command -v rg >/dev/null; then
-#   export FZF_DEFAULT_COMMAND='rg --files --hidden'
-#   export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
-# fi
+if command -v rg >/dev/null; then
+  # export FZF_DEFAULT_COMMAND='rg --files --hidden'
+  export FZF_CTRL_T_COMMAND="rg --files --hidden"
+fi
 
 # ipython.
 export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"

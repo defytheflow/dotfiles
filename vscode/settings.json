@@ -28,10 +28,14 @@
     "**/.git/**": true,
     "**/.venv/**": false,
     "**/*cache*/**": true,
-    "**/*coverage*/**": true,
+    "**/*coverage*/**": true
   },
 
   "[css]": {
+    "editor.tabSize": 2
+  },
+
+  "[html]": {
     "editor.tabSize": 2
   },
 
@@ -113,6 +117,10 @@
       "commands": [":nohl"]
     },
     {
+      "before": ["<C-n>"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
       "before": ["<leader>", "r"],
       "commands": ["workbench.action.reloadWindow"]
     },
@@ -121,16 +129,16 @@
       "commands": ["workbench.action.toggleActivityBarVisibility"]
     },
     {
-      "before": ["<leader>", "f"],
-      "commands": ["workbench.action.toggleSidebarVisibility"]
-    },
-    {
       "before": ["<leader>", "s"],
       "commands": ["editor.action.changeAll"]
     },
     {
       "before": ["<leader>", "z"],
       "commands": ["workbench.action.toggleCenteredLayout"]
+    },
+    {
+      "before": ["g", "n"],
+      "commands": ["editor.action.rename"]
     },
     {
       "before": ["g", "s"],

@@ -1,0 +1,56 @@
+{
+  "screen debug": {
+    "prefix": ["sd"],
+    "body": ["screen.debug($1)"]
+  },
+
+  "screen getByRole": {
+    "prefix": ["sr"],
+    "body": ["screen.getByRole('$1')"]
+  },
+
+  "screen getByText": {
+    "prefix": ["st"],
+    "body": ["screen.getByText('$1')"]
+  },
+
+  "screen getByLabelText": {
+    "prefix": ["sl"],
+    "body": ["screen.getByLabelText('$1')"]
+  },
+
+  "beforeEach": {
+    "prefix": ["bef"],
+    "body": ["beforeEach(() => {", "  $1", "});"]
+  },
+
+  "act": {
+    "prefix": ["act"],
+    "body": ["act(() => {", "  $1", "});"]
+  },
+
+  "await act": {
+    "prefix": ["aact"],
+    "body": ["await act(async () => {", "  $1", "});"]
+  },
+
+  "describe": {
+    "prefix": ["des"],
+    "body": ["describe('$1', () => {", " ", "})"]
+  },
+
+  "test": {
+    "prefix": ["ts"],
+    "body": ["test('$1', () => {", "", "})"]
+  },
+
+  "async test": {
+    "prefix": ["ats"],
+    "body": ["test('$1', async () => {", "", "})"]
+  },
+
+  "console.log": {
+    "prefix": ["cl"],
+    "body": ["console.log($1)"]
+  }
+}

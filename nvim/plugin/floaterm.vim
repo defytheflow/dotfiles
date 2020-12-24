@@ -4,13 +4,13 @@ scriptencoding utf-8
 " Created:  02.12.2020
 " Author:   Artyom Danilov (@defytheflow)
 
-let g:floaterm_width = 0.7
-let g:floaterm_height = 0.7
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8
 
 let g:floaterm_autoinsert = v:true
 let g:floaterm_winblend = 0
 
-com! Ranger FloatermNew ranger
+com! Ranger FloatermNew --height=0.8 --width=0.8 ranger
 com! Python FloatermNew python
 com! Node   FloatermNew node
 

@@ -101,10 +101,7 @@ Plug 'voldikss/vim-floaterm'
 runtime floaterm.vim
 
 Plug 'itchyny/lightline.vim'
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-entire'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' }
+
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -113,6 +110,13 @@ Plug 'justinmk/vim-sneak'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'miyakogi/seiya.vim'
 Plug 'cohama/lexima.vim'
+
+" text objects.
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-function'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' }
 
 " colorschemes.
 Plug 'tomasiser/vim-code-dark'

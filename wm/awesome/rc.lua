@@ -185,7 +185,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    local names = { "term", "web", "dev", "ssh", "5", "6", "7", "8", "9" }
+    local names = { "1", "2", "3", "4", "5", "6", "7", "8", "9" }
     local layouts = {
       awful.layout.suit.tile,
       awful.layout.suit.tile,
@@ -286,7 +286,7 @@ globalkeys = gears.table.join(
 
   awful.key(
     { modkey }, "Escape",
-    function () awful.util.spawn(locker .. " -l") end,
+    function () awful.util.spawn(locker .. " -s && systemctl suspend") end,
     { description = "go back", group = "tag" }
   ),
 
@@ -394,13 +394,13 @@ globalkeys = gears.table.join(
 
   awful.key(
     { modkey }, "l",
-    function () awful.tag.incmwfact( 0.05) end,
+    function () awful.tag.incmwfact( 0.01) end,
     { description = "increase master width factor", group = "layout" }
   ),
 
   awful.key(
     { modkey }, "h",
-    function () awful.tag.incmwfact(-0.05) end,
+    function () awful.tag.incmwfact(-0.01) end,
     { description = "decrease master width factor", group = "layout" }
   ),
 
