@@ -29,8 +29,7 @@ Plug 'bkad/CamelCaseMotion'
 runtime camelcase.vim
 
 Plug 'alvan/vim-closetag'
-let g:closetag_filenames = '*.html,*.xhtml,*.jsx,*.tsx'
-let g:closetag_filetypes = 'html,xhtml,jsx'
+runtime closetag.vim
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -100,8 +99,8 @@ nnoremap <silent> <leader> :WhichKey '\'<CR>
 Plug 'voldikss/vim-floaterm'
 runtime floaterm.vim
 
+Plug 'mattn/emmet-vim'
 Plug 'itchyny/lightline.vim'
-
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'

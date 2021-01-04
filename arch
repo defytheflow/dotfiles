@@ -20,7 +20,7 @@ install_packages() {
   set -- \
     alacritty awesome \
     bat \
-    cargo clang \
+    cargo chromium clang \
     dash \
     fzf \
     i3-gaps i3lock i3status \
