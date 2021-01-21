@@ -83,6 +83,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 Plug 'vim-test/vim-test'
 runtime test.vim
 
+Plug 'mattn/emmet-vim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 runtime ultisnips.vim
 
@@ -99,7 +100,6 @@ nnoremap <silent> <leader> :WhichKey '\'<CR>
 Plug 'voldikss/vim-floaterm'
 runtime floaterm.vim
 
-Plug 'mattn/emmet-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -162,6 +162,7 @@ try
 catch
   colorscheme koehler
 endtry
+hi Normal guibg=none
 
 " command-line.
 set history=1000
@@ -223,6 +224,7 @@ set listchars+=extends:»
 set listchars+=precedes:«
 
 " miscellaneous.
+set exrc
 set mouse=a
 set hidden
 set number relativenumber

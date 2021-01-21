@@ -4,12 +4,17 @@
 # Created:  29.01.2020
 # Author:   Artyom Danilov (@defytheflow)
 
+from pprint import pp
+
 
 def configure_history():
     ''' Change history default location and enable <Tab> completion. '''
-    import atexit, os, readline
+    import atexit
+    import os
+    import readline
 
-    history_path = os.path.expanduser(os.path.join(os.getenv('XDG_CACHE_HOME'), 'python', 'history'))
+    history_path = os.path.expanduser(
+        os.path.join(os.getenv('XDG_CACHE_HOME'), 'python', 'history'))
 
     if os.path.exists(history_path):
         readline.read_history_file(history_path)

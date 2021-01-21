@@ -21,6 +21,7 @@ let g:ale_fixers = {
 \ 'c':               ['clang-format'],
 \ 'cpp':             ['clang-format'],
 \ 'css':             ['stylelint'],
+\ 'scss':            ['stylelint'],
 \ 'html':            ['prettier'],
 \ 'java':            ['uncrustify'],
 \ 'javascript':      ['prettier'],
@@ -113,5 +114,6 @@ nmap <silent> gn :ALERename<CR>
 nmap <silent> gs :ALEFindReferences<CR>
 nmap <silent> ]g :ALEPrevious<CR>
 nmap <silent> [g :ALENext<CR>
-nmap <silent> K  :ALEHover<CR>
+nmap <silent> gh :ALEHover<CR>
+" nmap <silent> K  :ALEHover<CR>
 imap <C-Space> <Plug>(ale_complete)

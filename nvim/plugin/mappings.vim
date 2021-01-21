@@ -18,11 +18,20 @@ nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :source $MYVIMRC<CR>
 
 " Search.
+" Use normal regular expression.
 nnoremap / /\v
 vnoremap / /\v
 
+" Move to the next search result and center the screen.
 nnoremap n nzz
 nnoremap N Nzz
+
+" Search for word under cursor without jumping to next occurence.
+nnoremap # #N
+nnoremap * *N
+
+" Remove highlight.
+nnoremap <CR> :nohlsearch<CR><CR>
 
 " Movement.
 nnoremap j gj
@@ -40,7 +49,7 @@ nnoremap Y y$
 nnoremap Q <nop>
 tnoremap <Esc> <C-\><C-n>
 
-inoremap <silent> <C-c> <Esc>
+" inoremap <silent> <C-c> <Esc>
 nnoremap <silent> <C-s> :w<CR>
 nnoremap <silent> <C-l> :nohl<CR>
 
