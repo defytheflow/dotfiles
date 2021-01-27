@@ -30,7 +30,7 @@ install_packages() {
     maven mlocate \
     neovim nitrogen npm \
     powerline-fonts python-neovim python-pip \
-    ranger ripgrep rofi \
+    ranger ripgrep rofi ruby \
     screenkey shellcheck shfmt \
     tk tmux tree ttf-fira-code \
     ueberzug \

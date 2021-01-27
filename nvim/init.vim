@@ -91,15 +91,17 @@ Plug 'chrisbra/Colorizer'
 let g:colorizer_auto_filetype='css,html,js,text'
 let g:colorizer_use_virtual_text = 1
 
-Plug 'szw/vim-maximizer'
-nnoremap <silent> <C-m> :MaximizerToggle<CR>
-
 Plug 'liuchengxu/vim-which-key'
 nnoremap <silent> <leader> :WhichKey '\'<CR>
 
 Plug 'voldikss/vim-floaterm'
 runtime floaterm.vim
 
+Plug 'tpope/vim-projectionist'
+runtime projectionist.vim
+
+Plug 'danro/rename.vim'
+Plug 'vimwiki/vimwiki'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
