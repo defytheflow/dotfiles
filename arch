@@ -22,7 +22,7 @@ install_packages() {
     bat \
     cargo chromium clang \
     dash \
-    fzf \
+    fd fzf \
     i3-gaps i3lock i3status \
     jq \
     gdb \
@@ -32,7 +32,7 @@ install_packages() {
     powerline-fonts python-neovim python-pip \
     ranger ripgrep rofi ruby \
     screenkey shellcheck shfmt \
-    tk tmux tree ttf-fira-code \
+    tk tmux tokei tree ttf-fira-code \
     ueberzug \
     valgrind vim vi \
     xclip xcompmgr \

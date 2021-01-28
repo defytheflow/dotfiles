@@ -70,6 +70,7 @@ install_pip_packages() {
     ipdb ipython isort \
     mypy \
     pipenv pynvim python-language-server pytest \
+    tldr \
     vim-vint \
     yapf
 
