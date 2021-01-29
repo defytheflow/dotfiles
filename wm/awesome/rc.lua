@@ -5,63 +5,38 @@ pcall(require, "luarocks.loader")
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
+
 require("awful.autofocus")
+
 -- Widget and layout library
 local wibox = require("wibox")
+
 -- Theme handling library
 local beautiful = require("beautiful")
--- Notification library
-local naughty = require("naughty")
+
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- Third party widgets library.
 local vicious = require("vicious")
 
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
-if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
-end
+-- Error handling
+require("error-handling")
 
--- Handle runtime errors after startup
-do
-    local in_error = false
-    awesome.connect_signal("debug::error", function (err)
-        -- Make sure we don't go into an endless error loop
-        if in_error then return end
-        in_error = true
+-- Variable definitions.
+vars = require("user-variables")
+modkey = vars.modkey
+editor_cmd = vars.terminal .. " -e " .. vars.editor
 
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, an error happened!",
-                         text = tostring(err) })
-        in_error = false
-    end)
-end
--- }}}
-
--- {{{ Variable definitions
+-- Startup applications.
+awful.spawn("xcompmgr -cfn")
 
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(os.getenv("XDG_CONFIG_HOME") .. "/awesome/theme.lua")
-
-modkey = "Mod4"
-
-editor = os.getenv("EDITOR")
-browser = os.getenv("BROWSER")
-launcher = "rofi -show run"
-terminal = os.getenv("TERM")
-locker = "betterlockscreen"
-
-in_monitor = "eDP1"
-ex_monitor = "HDMI1"
-
-editor_cmd = terminal .. " -e " .. editor
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -82,14 +57,14 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
--- }}}
+
 
 -- {{{ Menu
 
 -- Create a launcher widget and a main menu
 myawesomemenu = {
   { "Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-  { "Manual", terminal .. " -e man awesome" },
+  { "Manual", vars.terminal .. " -e man awesome" },
   { "Edit config", editor_cmd .. " " .. awesome.conffile },
   { "Restart", awesome.restart },
   { "Quit", function() awesome.quit() end },
@@ -98,7 +73,7 @@ myawesomemenu = {
 mymainmenu = awful.menu({
   items = {
     { "Awesome", myawesomemenu, beautiful.awesome_icon },
-    { "Open terminal", terminal }
+    { "Open terminal", vars.terminal }
   }
 })
 
@@ -108,14 +83,11 @@ mylauncher = awful.widget.launcher({
 })
 
 -- Menubar configuration
-menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+menubar.utils.terminal = vars.terminal -- Set the terminal for applications that require it
 -- }}}
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
-
--- local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
--- local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 
 memory_widget = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
@@ -128,43 +100,28 @@ mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
-                    awful.button({ modkey }, 1, function(t)
-                                              if client.focus then
-                                                  client.focus:move_to_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, function(t)
-                                              if client.focus then
-                                                  client.focus:toggle_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
+  awful.button({ }, 1, function(t) t:view_only() end),
+  awful.button({ modkey }, 1, function(t) if client.focus then client.focus:move_to_tag(t) end end),
+  awful.button({ }, 3, awful.tag.viewtoggle),
+  awful.button({ modkey }, 3, function(t) if client.focus then client.focus:toggle_tag(t) end end),
+  awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+  awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+)
 
 local tasklist_buttons = gears.table.join(
-                     awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
-                                                  c:emit_signal(
-                                                      "request::activate",
-                                                      "tasklist",
-                                                      {raise = true}
-                                                  )
-                                              end
-                                          end),
-                     awful.button({ }, 3, function()
-                                              awful.menu.client_list({ theme = { width = 250 } })
-                                          end),
-                     awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                          end),
-                     awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                          end))
+  awful.button({ }, 1,
+    function (c)
+      if c == client.focus then
+        c.minimized = true
+      else
+        c:emit_signal("request::activate", "tasklist", {raise = true})
+      end
+    end
+  ),
+  awful.button({ }, 3, function() awful.menu.client_list({ theme = { width = 250 } }) end),
+  awful.button({ }, 4, function () awful.client.focus.byidx(1) end),
+  awful.button({ }, 5, function () awful.client.focus.byidx(-1) end)
+)
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -215,6 +172,7 @@ awful.screen.connect_for_each_screen(function(s)
          awful.button({ }, 5, function () awful.layout.inc(-1) end)
       )
     )
+
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
       screen  = s,
@@ -286,7 +244,7 @@ globalkeys = gears.table.join(
 
   awful.key(
     { modkey }, "Escape",
-    function () awful.util.spawn(locker .. " -s && systemctl suspend") end,
+    function () awful.util.spawn(vars.locker .. " -s && systemctl suspend") end,
     { description = "go back", group = "tag" }
   ),
 
@@ -304,31 +262,31 @@ globalkeys = gears.table.join(
 
   awful.key(
     { modkey }, "w",
-    function () awful.spawn(browser) end,
+    function () awful.spawn(vars.browser) end,
     { description = "launch browser", group = "awesome" }
   ),
 
   awful.key(
     { modkey }, "[",
-    function() awful.spawn("xrandr --output " .. ex_monitor .. " --auto") end,
+    function() awful.spawn("xrandr --output " .. vars.ex_monitor .. " --auto") end,
     {}
   ),
 
   awful.key(
     { modkey }, "]",
-    function() awful.spawn("xrandr --output " .. in_monitor .. " --auto") end,
+    function() awful.spawn("xrandr --output " .. vars.in_monitor .. " --auto") end,
     {}
   ),
 
   awful.key(
     { modkey, "Shift" }, "[",
-    function() awful.spawn("xrandr --output " .. ex_monitor .. " --off") end,
+    function() awful.spawn("xrandr --output " .. vars.ex_monitor .. " --off") end,
     {}
   ),
 
   awful.key(
     { modkey, "Shift" }, "]",
-    function() awful.spawn("xrandr --output " .. in_monitor .. " --off") end,
+    function() awful.spawn("xrandr --output " .. vars.in_monitor .. " --off") end,
     {}
   ),
 
@@ -382,7 +340,7 @@ globalkeys = gears.table.join(
 
   awful.key(
     { modkey }, "Return",
-    function () awful.spawn(terminal) end,
+    function () awful.spawn(vars.terminal) end,
     { description = "Open a terminal", group = "launcher" }
   ),
 
@@ -455,7 +413,7 @@ globalkeys = gears.table.join(
   -- Prompt
   awful.key(
     { modkey }, "d",
-    function () awful.spawn(launcher) end,
+    function () awful.spawn(vars.launcher) end,
     { description = "run prompt", group = "launcher" }
   ),
 

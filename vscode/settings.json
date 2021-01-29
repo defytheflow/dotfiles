@@ -14,6 +14,7 @@
   "editor.renderWhitespace": "all",
   "editor.rulers": [90],
   "editor.tabCompletion": "on",
+  "editor.wordWrap": "on",
 
   "window.zoomLevel": -1,
   "window.menuBarVisibility": "toggle",
@@ -23,13 +24,14 @@
     "editor.lineHighlightBackground": "#333"
   },
 
-  "files.trimTrailingWhitespace": true,
+  "files.associations": {},
   "files.exclude": {
     "**/.git/**": true,
     "**/.venv/**": false,
     "**/*cache*/**": true,
     "**/*coverage*/**": true
   },
+  "files.trimTrailingWhitespace": true,
 
   "[css]": {
     "editor.tabSize": 2,
@@ -43,6 +45,10 @@
 
   "[json]": {
     "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
@@ -170,8 +176,5 @@
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.previousChange"]
     }
-  ],
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  ]
 }

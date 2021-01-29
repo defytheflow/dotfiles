@@ -18,7 +18,7 @@ install_packages() {
   log 'Installing arch packages.'
 
   set -- \
-    alacritty awesome \
+    alacritty apache awesome \
     bat \
     cargo chromium clang \
     dash \
@@ -29,7 +29,7 @@ install_packages() {
     luarocks \
     maven mlocate \
     neovim nitrogen npm \
-    powerline-fonts python-neovim python-pip \
+    php powerline-fonts python-neovim python-pip \
     ranger ripgrep rofi ruby \
     screenkey shellcheck shfmt \
     tk tmux tokei tree ttf-fira-code \

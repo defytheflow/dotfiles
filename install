@@ -83,13 +83,15 @@ install_npm_packages() {
   log 'Installing npm packages.'
 
   set -- \
-    eslint \
     bash-language-server \
-    create-react-app \
+    chalk create-react-app \
+    eslint \
     jest jsonlint \
+    nodemon \
     prettier neovim \
-    sass stylelint \
+    sass stylelint sqlite3 \
     typescript ts-node \
+    @types/node \
     vim-language-server
 
   for pack; do
