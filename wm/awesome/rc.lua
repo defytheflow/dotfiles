@@ -33,7 +33,7 @@ modkey = vars.modkey
 editor_cmd = vars.terminal .. " -e " .. vars.editor
 
 -- Startup applications.
-awful.spawn("xcompmgr -cfn")
+-- awful.spawn("xcompmgr -cfn")
 
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(os.getenv("XDG_CONFIG_HOME") .. "/awesome/theme.lua")

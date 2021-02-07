@@ -62,7 +62,20 @@ alias jc='javac'
 alias py='python3'
 alias pip='pip3'
 alias python='python3'
+
+# pipenv.
 alias pnv='pipenv'
+alias prt='pipenv run test'
+alias prc='pipenv run check'
+alias prs='pipenv run start'
+
+# npm.
+alias nrt='npm run test'
+alias nrtc='npm run test -- --coverage --coverageDirectory=coverage'
+alias nrtv='npm run test -- --verbose'
+alias nrtw='npm run test -- --watchAll=true'
+alias nrc='npm run check'
+alias nrs='npm run start'
 
 # windows.
 alias cls='clear'

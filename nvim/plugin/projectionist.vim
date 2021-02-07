@@ -9,18 +9,24 @@ let g:projectionist_heuristics = {
 \  {
 \     '*.tsx': {
 \        'type': 'source',
-\        'alternate': '{}.test.tsx',
-\        'related': '{}.module.scss',
+\        'alternate': ['{}.scss', '{}.module.scss', '{}.test.tsx'],
+\        'related': ['{}.test.tsx', '{}.stories.tsx'],
 \     },
 \     '*.test.tsx': {
 \        'type': 'test',
 \        'alternate': '{}.tsx',
-\        'related': '{}.module.scss',
+\     },
+\     '*.scss': {
+\       'type': 'style',
+\       'alternate': '{}.tsx',
 \     },
 \     '*.module.scss': {
 \        'type': 'style',
 \        'alternate': '{}.tsx',
-\        'related': '{}.test.tsx',
+\     },
+\     '*.stories.tsx': {
+\       'type': 'story',
+\       'alternate': '{}.tsx',
 \     },
 \  }
 \}

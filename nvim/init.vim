@@ -88,7 +88,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 runtime ultisnips.vim
 
 Plug 'chrisbra/Colorizer'
-let g:colorizer_auto_filetype='css,html,js,text'
+let g:colorizer_auto_filetype='css,html,js,text,scss'
 let g:colorizer_use_virtual_text = 1
 
 Plug 'liuchengxu/vim-which-key'
