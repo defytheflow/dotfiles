@@ -28,6 +28,9 @@ alias history='history -E'
 # gdb.
 alias gdb='gdb --quiet'
 
+# tmux.
+alias mux='tmuxinator'
+
 # cd.
 alias ..='cd ..'
 alias ...='cd ../../'
@@ -65,6 +68,7 @@ alias python='python3'
 
 # pipenv.
 alias pnv='pipenv'
+alias pri='pipenv run init'
 alias prt='pipenv run test'
 alias prc='pipenv run check'
 alias prs='pipenv run start'

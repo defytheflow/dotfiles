@@ -24,6 +24,8 @@
     "editor.lineHighlightBackground": "#333"
   },
 
+  "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
+
   "files.associations": {},
   "files.exclude": {
     "**/.git/**": true,

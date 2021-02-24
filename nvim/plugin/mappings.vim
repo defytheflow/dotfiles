@@ -10,12 +10,14 @@ com! BuffPrev :bp
 com! BuffDel  :bd!
 
 nnoremap <silent> <tab>         :BuffNext<CR>
-nnoremap <silent> <leader><tab> :BuffPrev<CR>
+" nnoremap <silent> <leader><tab> :BuffPrev<CR>
 nnoremap <silent> <leader>d     :BuffDel<CR>
 
-" Vim.
-nnoremap <silent> <leader>ve :edit $MYVIMRC<CR>
-nnoremap <silent> <leader>vs :source $MYVIMRC<CR>
+" vimrc.
+command! Rld :source $MYVIMRC
+nnoremap <silent> <leader>ve :edit   $MYVIMRC<CR>
+nnoremap <silent> <leader>vs :split  $MYVIMRC<CR>
+nnoremap <silent> <leader>vv :vsplit $MYVIMRC<CR>
 
 " Search.
 " Use normal regular expression.

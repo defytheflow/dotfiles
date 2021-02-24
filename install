@@ -18,6 +18,7 @@ main() {
   install_packages
   install_pip_packages
   install_npm_packages
+  install_gem_packages
   [ -z "${WSL_DISTRO_NAME}" ] && install_cargo_packages
 
   create_dirs
@@ -61,6 +62,18 @@ check_internet() {
   fi
 }
 
+install_gem_packages() {
+  log 'Installig gem packages.'
+
+  set -- \
+    neovim \
+    tmuxinator
+
+  for pack; do
+    gem install "${pack}"
+  done
+}
+
 install_pip_packages() {
   log 'Installing pip packages.'
 
@@ -68,6 +81,7 @@ install_pip_packages() {
     flake8 flake8-quotes \
     httpie \
     ipdb ipython isort \
+    jupyter \
     mypy \
     pipenv pynvim python-language-server pytest \
     tldr \

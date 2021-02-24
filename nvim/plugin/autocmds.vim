@@ -19,7 +19,7 @@ augroup END
 
 augroup vimrc_indent
   au!
-  au FileType lua,sh,zsh,vim,css,scss,html,gitconfig,toml setlocal shiftwidth=2 softtabstop=2
+  au FileType lua,sh,zsh,vim,css,scss,html*,gitconfig,toml setlocal shiftwidth=2 softtabstop=2
 augroup END
 
 fun! InstallPlugins()

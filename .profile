@@ -18,6 +18,7 @@ export PATH="${JAVA_HOME}/bin:${PATH}"
 export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:${XDG_CONFIG_HOME}/cargo/bin"
 export PATH="${PATH}:${PYENV_ROOT}/bin"
+export PATH="${PATH}:${HOME}/.gem/ruby/2.7.0/bin"
 
 # default.
 export EDITOR='nvim'
@@ -32,9 +33,9 @@ export CARGO_HOME="${XDG_CONFIG_HOME}/cargo"
 export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
 
 # fzf.
+export FZF_DEFAULT_OPTS='--cycle'
 if command -v rg >/dev/null; then
-  # export FZF_DEFAULT_COMMAND='rg --files --hidden'
-  export FZF_CTRL_T_COMMAND="rg --files --hidden"
+  export FZF_CTRL_T_COMMAND='rg --files --hidden'
 fi
 
 # ipython.

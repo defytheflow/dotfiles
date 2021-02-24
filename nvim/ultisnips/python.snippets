@@ -2,14 +2,14 @@ snippet ipdb
 __import__('ipdb').set_trace()
 endsnippet
 
-snippet p
-print($1)
-endsnippet
-
-snippet pd
-print('$1 is {$1}')
+snippet br
+breakpoint()
 endsnippet
 
 snippet pp
 __import__('pprint').pprint($1)
+endsnippet
+
+snippet p
+print(f'{$1=}')
 endsnippet

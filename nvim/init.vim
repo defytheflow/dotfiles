@@ -74,9 +74,6 @@ Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 runtime nerdtree.vim
 
-Plug 'vim-python/python-syntax', { 'for': 'python' }
-let g:python_highlight_all = 1
-
 Plug 'unblevable/quick-scope'
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
@@ -112,12 +109,20 @@ Plug 'inkarkat/vim-ReplaceWithRegister'
 Plug 'miyakogi/seiya.vim'
 Plug 'cohama/lexima.vim'
 
+" python.
+Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' }
+
+Plug 'vim-python/python-syntax', { 'for': 'python' }
+let g:python_highlight_all = 1
+
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+let g:python_pep8_indent_hang_closing = 0
+
 " text objects.
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-function'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' }
 
 " colorschemes.
 Plug 'tomasiser/vim-code-dark'
@@ -225,12 +230,22 @@ set listchars+=nbsp:⦸
 set listchars+=extends:»
 set listchars+=precedes:«
 
+" cursorline.
+set cursorline
+" hi CursorLine guibg=darkblue ctermbg=darkblue
+" augroup vimrc_cursorline
+"   au!
+"   " au InsertEnter * hi CursorLine guibg=darkblue ctermbg=darkblue
+"   " au InsertLeave * hi CursorLine guibg=#202020  ctermbg=18
+"   au InsertEnter * hi CursorLine guibg=#202020  ctermbg=18
+"   au InsertLeave * hi CursorLine guibg=darkblue ctermbg=darkblue
+" augroup END
+
 " miscellaneous.
 set exrc
 set mouse=a
 set hidden
 set number relativenumber
-set cursorline
 set virtualedit=block " allow cursor to move where there is no text in visual block mode.
 set clipboard+=unnamedplus " use system clipboard.
 set lazyredraw " don't redraw while executing macros.

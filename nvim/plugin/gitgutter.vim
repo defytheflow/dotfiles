@@ -7,8 +7,8 @@ scriptencoding utf-8
 set foldtext=gitgutter#fold#foldtext()
 
 let g:gitgutter_map_keys = 0
-let g:gitgutter_sign_added = '✚'
-let g:gitgutter_sign_modified = '✹'
+" let g:gitgutter_sign_added = '✚'
+" let g:gitgutter_sign_modified = '✹'
 
 fun! GitGutterColorsInit()
   hi GitGutterAdd    guifg=#00ff00 ctermfg=Green

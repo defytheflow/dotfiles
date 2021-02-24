@@ -78,7 +78,8 @@ scrolling:
 # Font configuration.
 font:
   normal:
-    family: Cascadia Code
+    # family: Cascadia Code
+    family: monospace
     style: Medium
 
   bold:
