@@ -125,4 +125,6 @@ if [[ -n "${DOTFILES_HOME}" ]]; then
 fi
 #}}}
 
+eval $(opam env)
+
 export PROMPT='%B%F{213}%~%f%b $ '

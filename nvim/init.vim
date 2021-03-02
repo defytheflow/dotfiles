@@ -118,6 +118,9 @@ let g:python_highlight_all = 1
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 let g:python_pep8_indent_hang_closing = 0
 
+" javascript.
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+
 " text objects.
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'

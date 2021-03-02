@@ -29,6 +29,7 @@ install_packages() {
     luarocks \
     maven mlocate \
     neovim nitrogen npm \
+    opam \
     php powerline-fonts python-neovim python-pip \
     ranger ripgrep rofi ruby \
     screenkey shellcheck shfmt \

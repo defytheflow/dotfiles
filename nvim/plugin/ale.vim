@@ -11,6 +11,7 @@ let g:ale_linters = {
 \  'java':       ['javalsp', 'javac'],
 \  'javascript': ['eslint', 'tsserver'],
 \  'json':       [''],
+\  'ocaml':      ['ocamllsp'],
 \  'python':     ['pyls','flake8'],
 \  'sh':         ['language_server', 'shellcheck'],
 \  'typescript': ['tsserver', 'eslint', ],
@@ -32,6 +33,8 @@ let g:ale_fixers = {
 \ 'typescript':      ['prettier'],
 \ 'typescriptreact': ['prettier'],
 \}
+
+" \ 'ocaml':           ['ocamlformat'],
 
 let g:ale_completion_symbols = {
 \ 'text': '',
@@ -69,12 +72,14 @@ let g:ale_sign_error = '🗙 '
 let g:ale_sign_warning = '🗙 '
 
 let g:ale_java_javalsp_executable = 'java-language-server'
+
 let g:ale_sh_shfmt_options = '-p -ci -i 2'
+let g:ale_ocaml_ocamlformat_options = '--enable-outside-detected-project'
+" let g:ale_python_mypy_options = '--strict'
 
 " let g:ale_linters_explicit = 1
 let g:ale_completion_autoimport = 1
 
-" let g:ale_python_mypy_options = '--strict'
 let g:ale_python_pyls_config = {
 \  'pyls': {
 \    'plugins': {
@@ -115,5 +120,4 @@ nmap <silent> gs :ALEFindReferences<CR>
 nmap <silent> ]g :ALEPrevious<CR>
 nmap <silent> [g :ALENext<CR>
 nmap <silent> gh :ALEHover<CR>
-" nmap <silent> K  :ALEHover<CR>
 imap <C-Space> <Plug>(ale_complete)

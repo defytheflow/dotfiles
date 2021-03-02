@@ -33,7 +33,8 @@ nnoremap # #N
 nnoremap * *N
 
 " Remove highlight.
-nnoremap <CR> :nohlsearch<CR><CR>
+nnoremap <silent> <CR> :nohlsearch<CR>
+nnoremap <silent> <C-l> :nohlsearch<CR>
 
 " Movement.
 nnoremap j gj
@@ -51,9 +52,8 @@ nnoremap Y y$
 nnoremap Q <nop>
 tnoremap <Esc> <C-\><C-n>
 
-" inoremap <silent> <C-c> <Esc>
+inoremap <silent> <C-c> <nop>
 nnoremap <silent> <C-s> :w<CR>
-nnoremap <silent> <C-l> :nohl<CR>
 
 nnoremap <leader><leader> <C-^>
 nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>

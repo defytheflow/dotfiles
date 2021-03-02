@@ -19,6 +19,7 @@ export PATH="${PATH}:${HOME}/.local/bin"
 export PATH="${PATH}:${XDG_CONFIG_HOME}/cargo/bin"
 export PATH="${PATH}:${PYENV_ROOT}/bin"
 export PATH="${PATH}:${HOME}/.gem/ruby/2.7.0/bin"
+export PATH="${PATH}:${HOME}/go/bin"
 
 # default.
 export EDITOR='nvim'

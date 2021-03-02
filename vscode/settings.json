@@ -4,7 +4,6 @@
 
   "editor.detectIndentation": true,
   "editor.fontSize": 14,
-  "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
   "editor.folding": true,
   "editor.formatOnSave": true,
@@ -15,8 +14,6 @@
   "editor.rulers": [90],
   "editor.tabCompletion": "on",
   "editor.wordWrap": "on",
-
-  "window.zoomLevel": -1,
   "window.menuBarVisibility": "toggle",
 
   "workbench.activityBar.visible": true,
@@ -58,6 +55,10 @@
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     }
+  },
+
+  "[javascript]": {
+    "editor.tabSize": 2
   },
 
   "[typescript]": {
@@ -178,5 +179,6 @@
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.previousChange"]
     }
-  ]
+  ],
+  "window.zoomLevel": -1
 }
