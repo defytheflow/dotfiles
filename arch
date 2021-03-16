@@ -4,6 +4,8 @@
 # Created:  29.07.2020
 # Author:   Artyom Danilov (@defytheflow)
 
+log "Running ${1} module."
+
 update_system() {
   log 'Updating arch system.'
 

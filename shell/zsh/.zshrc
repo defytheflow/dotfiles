@@ -47,7 +47,9 @@ setopt menu_complete # auto-insert first possible completion.
 # ls directory after cd.
 autoload -U add-zsh-hook
 if command -v exa >/dev/null; then
-  add-zsh-hook -Uz chpwd (){ exa --icons --group-directories-first; }
+  add-zsh-hook -Uz chpwd (){ exa --group-directories-first; }
+elif [[ "${ON_MAC}" ]]; then
+  add-zsh-hook -Uz chpwd (){ ls -vhG; }
 else
   add-zsh-hook -Uz chpwd (){ ls --color=auto -vh --group-directories-first; }
 fi
@@ -125,6 +127,5 @@ if [[ -n "${DOTFILES_HOME}" ]]; then
 fi
 #}}}
 
-eval $(opam env)
-
+# eval $(opam env)
 export PROMPT='%B%F{213}%~%f%b $ '

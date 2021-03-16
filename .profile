@@ -12,20 +12,25 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 # mine.
 export DOTFILES_HOME="${HOME}/.dotfiles"
 export WALLPAPER_HOME="${XDG_CONFIG_HOME}/wallpaper"
+(test $(uname -s) = Darwin)
+export ON_MAC="${?}"
 
 # path.
-export PATH="${JAVA_HOME}/bin:${PATH}"
+# export PATH="${JAVA_HOME}/bin:${PATH}"
+# export PATH="${PATH}:${HOME}/.gem/ruby/2.7.0/bin"
 export PATH="${PATH}:${HOME}/.local/bin"
-export PATH="${PATH}:${XDG_CONFIG_HOME}/cargo/bin"
-export PATH="${PATH}:${PYENV_ROOT}/bin"
-export PATH="${PATH}:${HOME}/.gem/ruby/2.7.0/bin"
-export PATH="${PATH}:${HOME}/go/bin"
+command -v cargo > /dev/null && export PATH="${PATH}:${XDG_CONFIG_HOME}/cargo/bin"
+command -v go > /dev/null && export PATH="${PATH}:${HOME}/go/bin"
+command -v pyenv > /dev/null && export PATH="${PATH}:${PYENV_ROOT}/bin"
 
 # default.
 export EDITOR='nvim'
 export BROWSER='firefox'
 export PAGER='less'
-export TERM='alacritty'
+command -v alacritty > /dev/null && export TERM='alacritty'
+
+# brew.
+[ "${ON_MAC}" ] &&  eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # cargo.
 export CARGO_HOME="${XDG_CONFIG_HOME}/cargo"
@@ -35,16 +40,14 @@ export GNUPGHOME="${XDG_CONFIG_HOME}/gnupg"
 
 # fzf.
 export FZF_DEFAULT_OPTS='--cycle'
-if command -v rg >/dev/null; then
-  export FZF_CTRL_T_COMMAND='rg --files --hidden'
-fi
+command -v rg >/dev/null && export FZF_CTRL_T_COMMAND='rg --files --hidden'
 
 # ipython.
 export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
 
 # java.
-export JAVA_HOME=/usr/lib/jvm/java-14-openjdk
-export JRE_HOME=/usr/lib/jvm/java-14-openjdk-amd64/jre
+# export JAVA_HOME=/usr/lib/jvm/java-14-openjdk
+# export JRE_HOME=/usr/lib/jvm/java-14-openjdk-amd64/jre
 
 # less.
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
@@ -57,9 +60,7 @@ export CXXFLAGS='-g -W -Wall -Wextra -Wpedantic -std=c++20'
 export LDLIBS='-lm -lncurses -lsqlite3 -lcurl'
 
 # man.
-if command -v bat >/dev/null; then
-  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-fi
+command -v bat >/dev/null && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # node.
 export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"
@@ -103,4 +104,3 @@ if [ -n "${WSL_DISTRO_NAME}" ]; then
 fi
 
 export LINES COLUMNS # For use by external scripts and programs. (!)
-export PYTHONPATH=${HOME}/dev/repos/properoom-api/src

@@ -5,11 +5,18 @@
 # Author:   Artyom Danilov (@defytheflow)
 
 log() {
-  echo "install: ${*}"
+  green='82'
+  echo "$(tput setaf ${green})install$(tput setaf 15): ${*}"
+}
+
+err() {
+  red='125'
+  echo "$(tput setaf ${red})error$(tput setaf 15): ${*}"
 }
 
 color() {
-  echo "$(tput setaf 26)${1}$(tput setaf 15)"
+  blue='26'
+  echo "$(tput setaf ${blue})${1}$(tput setaf 15)"
 }
 
 symlink() {

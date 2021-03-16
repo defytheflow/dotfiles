@@ -4,6 +4,8 @@
 # Created:  26.03.2020
 # Author:   Artyom Danilov (@defytheflow)
 
+log "Running ${1} module."
+
 update_system() {
   log 'Updating debian system.'
 

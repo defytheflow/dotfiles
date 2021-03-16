@@ -4,22 +4,33 @@
 # Created:      12.09.2020
 # Author:       Artyom Danilov (@defytheflow)
 
-. "$(dirname "${0}")/.profile"
-. "$(dirname "${0}")/utils"
+relative_import() {
+  . "$(dirname "${0}")/${1}"
+}
+
+relative_import '.profile'
+relative_import 'utils'
 
 main() {
-  check_distro
   check_environ
   check_internet
 
-  printf 'install: Update system? [y/n] ' && read -r ans
-  [ "${ans}" = 'y' ] && update_system
+  if [ "${ON_MAC}" ]; then
+    relative_import 'mac'
+  else
+    check_distro
+  fi
+
+  if ! [ "${ON_MAC}" ]; then
+    printf 'install: Update system? [y/n] ' && read -r ans
+    [ "${ans}" = 'y' ] && update_system
+  fi
 
   install_packages
   install_pip_packages
   install_npm_packages
   install_gem_packages
-  [ -z "${WSL_DISTRO_NAME}" ] && install_cargo_packages
+  [ -z "${WSL_DISTRO_NAME}" ] && ! [ "${ON_MAC}" ] && install_cargo_packages
 
   create_dirs
   create_symlinks
@@ -32,14 +43,14 @@ check_distro() {
 
   case "${distro}" in
     *Manjaro*)
-      . "$(dirname "${0}")/arch"
+      relative_import 'arch'
       ;;
     *Ubuntu*)
-      . "$(dirname "${0}")/debian"
+      relative_import 'debian'
       ;;
     *)
-      log "Distribution '${distro}' is not supported."
-      return 1
+      err "Distribution '${distro}' is not supported."
+      exit 1
       ;;
   esac
 }
@@ -48,17 +59,17 @@ check_environ() {
   log 'Checking evironment variables.'
 
   if [ -z "${DOTFILES_HOME}" ]; then
-    log 'DOTFILES_HOME environment variable has not been set.'
-    return 1
+    err 'DOTFILES_HOME environment variable has not been set.'
+    exit 1
   fi
 }
 
 check_internet() {
   log 'Checking internet connection.'
 
-  if ! wget -q --spider https://google.com; then
-    log 'no internet connection.'
-    return 1
+  if ! ping -c 1 -q google.com > /dev/null 2>&1; then
+    err 'no internet connection.'
+    exit 1
   fi
 }
 
@@ -83,7 +94,9 @@ install_pip_packages() {
     ipdb ipython isort \
     jupyter \
     mypy \
-    pipenv pynvim python-language-server pytest \
+    pipenv pytest \
+    # pynvim \ fails on mac m1.
+    # python-language-server \ fails on mac m1.
     tldr \
     vim-vint \
     yapf
