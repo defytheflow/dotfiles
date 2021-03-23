@@ -51,6 +51,7 @@ let g:easy_align_ignore_groups = []
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 runtime fzf.vim
 

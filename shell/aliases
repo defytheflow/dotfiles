@@ -47,6 +47,7 @@ else
 fi
 alias la='ls -A'
 alias ll='ls -l'
+alias lal='ls -al'
 
 # vim
 alias vi='vim'
@@ -58,7 +59,11 @@ alias md='mkdir -pv'
 alias mv='mv -iv'
 alias tc='touch'
 alias rd='rmdir'
-alias rm='rm -vi --preserve-root'
+if [ "${ON_MAC}" ]; then
+    alias rm='rm -vi'
+else
+    alias rm='rm -vi --preserve-root'
+fi
 alias rmdir='rmdir -v'
 
 # java.

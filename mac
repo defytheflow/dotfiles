@@ -22,11 +22,12 @@ install_packages() {
 
   set -- \
     exa \
+    fzf \
     iterm2 \
     keycastr \
     neovim node \
-    pipenv postgresql
-
+    pipenv postgresql \
+    tmux
 
   for pack; do
     log "Checking that $(color "${pack}") exists."
