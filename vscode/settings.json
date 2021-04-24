@@ -9,13 +9,14 @@
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
   "editor.lineNumbers": "relative",
-  "editor.minimap.enabled": false,
+  "editor.minimap.enabled": true,
   "editor.renderWhitespace": "all",
   "editor.rulers": [90],
   "editor.tabCompletion": "on",
   "editor.wordWrap": "on",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "window.menuBarVisibility": "toggle",
-
+  "workbench.iconTheme": "vscode-icons",
   "workbench.activityBar.visible": true,
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333"
@@ -33,31 +34,22 @@
   "files.trimTrailingWhitespace": true,
 
   "[css]": {
-    "editor.tabSize": 2,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.tabSize": 2
+  },
+
+  "[scss]": {
+    "editor.tabSize": 2
   },
 
   "[html]": {
-    "editor.tabSize": 2,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-
-  "[json]": {
-    "editor.tabSize": 2,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-
-  "[python]": {
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    }
+    "editor.tabSize": 2
   },
 
   "[javascript]": {
+    "editor.tabSize": 2
+  },
+
+  "[json]": {
     "editor.tabSize": 2
   },
 
@@ -67,6 +59,12 @@
 
   "[typescriptreact]": {
     "editor.tabSize": 2
+  },
+
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
   },
 
   "python.linting.enabled": true,
@@ -133,7 +131,7 @@
     },
     {
       "before": ["<leader>", "r"],
-      "commands": ["workbench.action.reloadWindow"]
+      "commands": ["workbench.view.search"]
     },
     {
       "before": ["<leader>", "a"],
@@ -180,5 +178,13 @@
       "commands": ["workbench.action.editor.previousChange"]
     }
   ],
-  "window.zoomLevel": -1
+
+  "window.zoomLevel": -1,
+  "tabnine.experimentalAutoImports": true,
+  "workbench.editorAssociations": [
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
+    }
+  ]
 }

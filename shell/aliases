@@ -89,6 +89,7 @@ alias nrtv='npm run test -- --verbose'
 alias nrtw='npm run test -- --watchAll=true'
 alias nrc='npm run check'
 alias nrs='npm run start'
+alias nrsl='npm run start:local'
 
 # windows.
 alias cls='clear'

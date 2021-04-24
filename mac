@@ -21,8 +21,10 @@ install_packages() {
   install_brew
 
   set -- \
+    bat \
     exa \
     fzf \
+    graphviz \
     iterm2 \
     keycastr \
     neovim node \

@@ -14,6 +14,11 @@ err() {
   echo "$(tput setaf ${red})error$(tput setaf 15): ${*}"
 }
 
+warn() {
+  orange='214'
+  echo "$(tput setaf ${orange})warning$(tput setaf 15): ${*}" >&2
+}
+
 color() {
   blue='26'
   echo "$(tput setaf ${blue})${1}$(tput setaf 15)"

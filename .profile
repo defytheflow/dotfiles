@@ -22,6 +22,7 @@ export PATH="${PATH}:${HOME}/.local/bin"
 command -v cargo > /dev/null && export PATH="${PATH}:${XDG_CONFIG_HOME}/cargo/bin"
 command -v go > /dev/null && export PATH="${PATH}:${HOME}/go/bin"
 command -v pyenv > /dev/null && export PATH="${PATH}:${PYENV_ROOT}/bin"
+command -v gem > /dev/null && export PATH="${PATH}:${XDG_CONFIG_HOME}/gem/bin"
 
 # default.
 export EDITOR='nvim'

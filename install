@@ -90,6 +90,7 @@ install_pip_packages() {
 
   set -- \
     flake8 flake8-quotes \
+    gunicorn \
     httpie \
     ipdb ipython isort \
     jupyter \
@@ -153,8 +154,14 @@ create_symlinks() {
   log 'Creating symlinks.'
 
   if command -v code >/dev/null; then
-    command -v code-oss >/dev/null && dest='Code - OSS/User' || dest='Code/User'
-    symlink 'vscode' "${XDG_CONFIG_HOME}/${dest}"
+    if [ "${ON_MAC}" ]; then
+      dest="${HOME}/Library/Application Support/Code/User"
+    elif command -v code-oss >/dev/null; then
+      dest="${XDG_CONFIG_HOME}/Code - OSS/User"
+    else
+      dest="${XDG_CONFIG_HOME}/Code/User"
+    fi
+    symlink 'vscode' "${dest}"
   fi
 
   if [ "${USER}" = 'defytheflow' ]; then
