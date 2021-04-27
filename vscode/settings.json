@@ -1,27 +1,41 @@
 {
   "keyboard.dispatch": "keyCode",
-  "terminal.integrated.fontSize": 14,
 
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": true,
+  "editor.fontLigatures": false,
   "editor.fontSize": 14,
-  "editor.fontLigatures": true,
   "editor.folding": true,
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
   "editor.lineNumbers": "relative",
   "editor.minimap.enabled": true,
-  "editor.renderWhitespace": "all",
+  "editor.renderWhitespace": "boundary",
   "editor.rulers": [90],
+  "editor.smoothScrolling": true,
+  "editor.tabSize": 2,
   "editor.tabCompletion": "on",
   "editor.wordWrap": "on",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
   "window.menuBarVisibility": "toggle",
+  "window.zoomLevel": -1,
+
+  "workbench.colorTheme": "Night Owl",
   "workbench.iconTheme": "vscode-icons",
-  "workbench.activityBar.visible": true,
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333"
   },
+  "workbench.editorAssociations": [
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
+    }
+  ],
 
+  "tabnine.experimentalAutoImports": true,
+
+  "terminal.integrated.fontSize": 14,
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
 
   "files.associations": {},
@@ -33,35 +47,8 @@
   },
   "files.trimTrailingWhitespace": true,
 
-  "[css]": {
-    "editor.tabSize": 2
-  },
-
-  "[scss]": {
-    "editor.tabSize": 2
-  },
-
-  "[html]": {
-    "editor.tabSize": 2
-  },
-
-  "[javascript]": {
-    "editor.tabSize": 2
-  },
-
-  "[json]": {
-    "editor.tabSize": 2
-  },
-
-  "[typescript]": {
-    "editor.tabSize": 2
-  },
-
-  "[typescriptreact]": {
-    "editor.tabSize": 2
-  },
-
   "[python]": {
+    "editor.tabSize": 4,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     }
@@ -102,23 +89,23 @@
 
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["K"],
-      "after": ["g", "h"]
-    },
-    {
       "before": ["Y"],
       "after": ["y", "$"]
     },
     {
-      "before": ["<tab>"],
+      "before": ["<Tab>"],
       "after": ["g", "t"]
     },
     {
-      "before": ["<leader>", "<tab>"],
-      "after": ["g", "T"]
+      "before": ["<Enter>"],
+      "commands": [":nohl"]
     },
     {
-      "before": ["C-c"],
+      "before": ["<C-a>"],
+      "commands": ["workbench.action.toggleActivityBarVisibility"]
+    },
+    {
+      "before": ["<C-c>"],
       "after": ["<Esc>"]
     },
     {
@@ -130,12 +117,12 @@
       "commands": ["workbench.action.toggleSidebarVisibility"]
     },
     {
-      "before": ["<leader>", "r"],
-      "commands": ["workbench.view.search"]
+      "before": ["<leader>", "<Tab>"],
+      "after": ["g", "T"]
     },
     {
-      "before": ["<leader>", "a"],
-      "commands": ["workbench.action.toggleActivityBarVisibility"]
+      "before": ["<leader>", "r"],
+      "commands": ["workbench.view.search"]
     },
     {
       "before": ["<leader>", "s"],
@@ -162,12 +149,12 @@
       "commands": ["editor.action.insertLineBefore"]
     },
     {
-      "before": ["[", "g"],
-      "commands": ["editor.action.marker.next"]
+      "before": ["]", "b"],
+      "after": ["g", "t"]
     },
     {
-      "before": ["]", "g"],
-      "commands": ["editor.action.marker.prev"]
+      "before": ["[", "b"],
+      "after": ["g", "T"]
     },
     {
       "before": ["[", "c"],
@@ -176,15 +163,14 @@
     {
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.previousChange"]
-    }
-  ],
-
-  "window.zoomLevel": -1,
-  "tabnine.experimentalAutoImports": true,
-  "workbench.editorAssociations": [
+    },
     {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
+      "before": ["[", "g"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["]", "g"],
+      "commands": ["editor.action.marker.prev"]
     }
   ]
 }

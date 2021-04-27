@@ -15,7 +15,9 @@ alias rn='ranger'
 alias ssh='TERM=xterm-color ssh' # 'tput: unknown terminal bug'
 alias diff='diff --side-by-side --suppress-common-lines --color=auto'
 alias grep='grep --color=auto'
-alias open='xdg-open'
+if ! [ "${ON_MAC}" ]; then
+  alias open='xdg-open'
+fi
 alias xrld='source ~/.xprofile'
 
 # amixer.

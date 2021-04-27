@@ -29,6 +29,7 @@ install_packages() {
     keycastr \
     neovim node \
     pipenv postgresql \
+    ranger ripgrep \
     tmux
 
   for pack; do
