@@ -1,6 +1,9 @@
 {
   "keyboard.dispatch": "keyCode",
 
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
   "editor.cursorSmoothCaretAnimation": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": true,

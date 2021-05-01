@@ -85,13 +85,18 @@ alias prc='pipenv run check'
 alias prs='pipenv run start'
 
 # npm.
+alias ni='npm install'
+alias nid='npm install -D'
+alias nrb='npm run build'
+alias nrc='npm run check'
+alias nrf='npm run fix'
+alias nrs='npm run start'
+alias nrsl='npm run start:local'
 alias nrt='npm run test'
 alias nrtc='npm run test -- --coverage --coverageDirectory=coverage'
 alias nrtv='npm run test -- --verbose'
 alias nrtw='npm run test -- --watchAll=true'
-alias nrc='npm run check'
-alias nrs='npm run start'
-alias nrsl='npm run start:local'
+alias nrw='npm run watch'
 
 # windows.
 alias cls='clear'

@@ -173,7 +173,7 @@ try
 catch
   colorscheme koehler
 endtry
-hi Normal guibg=none
+" hi Normal guibg=none
 
 " command-line.
 set history=1000
