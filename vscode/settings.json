@@ -7,24 +7,25 @@
   "editor.cursorSmoothCaretAnimation": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": true,
+  "editor.fontFamily": "Monaco, Menlo, 'Courier New', monospace",
   "editor.fontLigatures": false,
   "editor.fontSize": 14,
   "editor.folding": true,
+  "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
   "editor.lineNumbers": "relative",
-  "editor.minimap.enabled": true,
   "editor.renderWhitespace": "boundary",
   "editor.rulers": [90],
   "editor.smoothScrolling": true,
   "editor.tabSize": 2,
   "editor.tabCompletion": "on",
   "editor.wordWrap": "on",
-
   "window.menuBarVisibility": "toggle",
   "window.zoomLevel": -1,
 
   "workbench.colorTheme": "Night Owl",
+  "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333"
@@ -35,8 +36,6 @@
       "filenamePattern": "*.ipynb"
     }
   ],
-
-  "tabnine.experimentalAutoImports": true,
 
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
@@ -51,12 +50,12 @@
   "files.trimTrailingWhitespace": true,
 
   "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
     "editor.tabSize": 4,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     }
   },
-
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.pydocstyleEnabled": false,
@@ -68,17 +67,14 @@
 
   "vim.leader": "\\",
   "vim.textwidth": 90,
-
   "vim.camelCaseMotion.enable": true,
   "vim.replaceWithRegister": true,
   "vim.sneak": true,
   "vim.surround": true,
-
   "vim.incsearch": true,
   "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
   "vim.visualstar": true,
-
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": [">"],
@@ -89,7 +85,6 @@
       "commands": ["editor.action.outdentLines"]
     }
   ],
-
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["Y"],
@@ -116,16 +111,16 @@
       "commands": [":nohl"]
     },
     {
+      "before": ["<C-m>"],
+      "commands": ["editor.action.toggleMinimap"]
+    },
+    {
       "before": ["<C-n>"],
       "commands": ["workbench.action.toggleSidebarVisibility"]
     },
     {
       "before": ["<leader>", "<Tab>"],
       "after": ["g", "T"]
-    },
-    {
-      "before": ["<leader>", "r"],
-      "commands": ["workbench.view.search"]
     },
     {
       "before": ["<leader>", "s"],
@@ -175,5 +170,23 @@
       "before": ["]", "g"],
       "commands": ["editor.action.marker.prev"]
     }
-  ]
+  ],
+
+  "tabnine.experimentalAutoImports": true,
+
+  "todo-tree.regex.regexCaseSensitive": false,
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "background": "#00b248",
+      "foreground": "#66ffa6",
+      "icon": "checklist"
+      // "type": "text"
+    },
+    "FIXME": {
+      "background": "#c79400",
+      "foreground": "#fff64f",
+      "icon": "alert"
+      // "type": "text"
+    }
+  }
 }

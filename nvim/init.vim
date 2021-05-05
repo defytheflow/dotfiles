@@ -133,6 +133,7 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
+Plug 'haishanh/night-owl.vim'
 
 " syntaxes.
 Plug 'mboughaba/i3config.vim'
