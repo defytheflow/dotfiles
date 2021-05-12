@@ -24,6 +24,7 @@
   "window.menuBarVisibility": "toggle",
   "window.zoomLevel": -1,
 
+  "workbench.panel.defaultLocation": "right",
   "workbench.colorTheme": "Night Owl",
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.iconTheme": "vscode-icons",
@@ -83,6 +84,14 @@
     {
       "before": ["<"],
       "commands": ["editor.action.outdentLines"]
+    },
+    {
+      "before": ["J"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.moveLinesUpAction"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -121,6 +130,10 @@
     {
       "before": ["<leader>", "<Tab>"],
       "after": ["g", "T"]
+    },
+    {
+      "before": ["<leader>", "d"],
+      "commands": [":bd"]
     },
     {
       "before": ["<leader>", "s"],
@@ -179,14 +192,16 @@
     "TODO": {
       "background": "#00b248",
       "foreground": "#66ffa6",
-      "icon": "checklist"
-      // "type": "text"
+      "icon": "checklist",
+      "type": "text"
     },
     "FIXME": {
       "background": "#c79400",
       "foreground": "#fff64f",
-      "icon": "alert"
-      // "type": "text"
+      "icon": "alert",
+      "type": "text"
     }
-  }
+  },
+  "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "TODO", "XXX", "[ ]", "[x]"],
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)"
 }

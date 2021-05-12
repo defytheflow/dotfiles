@@ -78,14 +78,17 @@ alias pip='pip3'
 alias python='python3'
 
 # pipenv.
-alias pnv='pipenv'
-alias pri='pipenv run init'
+alias psh='pipenv shell'
+alias pin='pipenv install'
+alias pun='pipenv uninstall'
+alias pir='pipenv run'
+alias prs='pipenv run start'
 alias prt='pipenv run test'
 alias prc='pipenv run check'
-alias prs='pipenv run start'
 
 # npm.
 alias ni='npm install'
+alias nun='npm uninstall'
 alias nid='npm install -D'
 alias nrb='npm run build'
 alias nrc='npm run check'

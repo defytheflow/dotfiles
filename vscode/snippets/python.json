@@ -4,6 +4,16 @@
     "body": ["__import__('ipdb').set_trace()"]
   },
 
+  "print debug": {
+    "prefix": ["pd"],
+    "body": ["print(f'${1} is {${1}}')"]
+  },
+
+  "pretty print": {
+    "prefix": ["pp"],
+    "body": ["__import__('pprint').pprint($1)"]
+  },
+
   "logging info": {
     "prefix": ["info"],
     "body": ["__import__('logging').info($1)"]
@@ -13,9 +23,4 @@
     "prefix": ["warn"],
     "body": ["__import__('logging').warning($1)"]
   },
-
-  "print debug": {
-    "prefix": ["pd"],
-    "body": ["print(f'${1} is {${1}}')"]
-  }
 }

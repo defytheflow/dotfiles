@@ -89,6 +89,7 @@ install_pip_packages() {
   log 'Installing pip packages.'
 
   set -- \
+    commitizen \
     flake8 flake8-quotes \
     gunicorn \
     httpie \

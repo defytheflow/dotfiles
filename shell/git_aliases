@@ -13,11 +13,16 @@ alias gb='git branch'
 alias gbs='git show-branch'
 
 # commit.
-alias gc='git commit'
+if command -v cz > /dev/null; then
+  alias gc='cz commit'
+else
+  alias gc='git commit'
+fi
 alias gca='git commit --amend'
 
 # diff.
 alias gd='git diff'
+alias gdn='git diff --numstat'
 alias gds='git diff --staged'
 alias gdt='git difftool'
 
@@ -25,6 +30,7 @@ alias gdt='git difftool'
 alias gl='git log'
 alias glg='git log --grep'
 alias glp='git log -p'
+alias gls='git log --stat'
 
 # mv/rm.
 alias gmv='git mv'

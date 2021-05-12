@@ -22,6 +22,7 @@ install_packages() {
 
   set -- \
     bat \
+    dos2unix \
     exa \
     fzf \
     graphviz \

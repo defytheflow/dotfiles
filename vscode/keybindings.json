@@ -1,9 +1,5 @@
 [
   {
-    "key": "ctrl+p",
-    "command": "workbench.action.quickOpen"
-  },
-  {
     "key": "ctrl+shift+p",
     "command": "workbench.action.showCommands"
   },
@@ -24,5 +20,17 @@
     "key": "ctrl+]",
     "command": "explorer.newFolder",
     "when": "filesExplorerFocus && !inputFocus"
+  },
+  {
+    "describe": "Toggle terminal focus",
+    "key": "ctrl+'",
+    "command": "workbench.action.terminal.focus",
+    "when": "!terminalFocus"
+  },
+  {
+    "describe": "Toggle editor focus",
+    "key": "ctrl+'",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
   }
 ]

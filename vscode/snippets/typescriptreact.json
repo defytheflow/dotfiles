@@ -52,5 +52,10 @@
   "console.log": {
     "prefix": ["cl"],
     "body": ["console.log($1)"]
+  },
+
+  "JSON.stringify": {
+    "prefix": ["js"],
+    "body": ["console.log($1, JSON.stringify($2, null, 2))"]
   }
 }
