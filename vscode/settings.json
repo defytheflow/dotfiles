@@ -21,6 +21,7 @@
   "editor.tabSize": 2,
   "editor.tabCompletion": "on",
   "editor.wordWrap": "on",
+
   "window.menuBarVisibility": "toggle",
   "window.zoomLevel": -1,
 
@@ -98,6 +99,14 @@
     {
       "before": ["Y"],
       "after": ["y", "$"]
+    },
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
     },
     {
       "before": ["<Tab>"],
@@ -188,20 +197,35 @@
   "tabnine.experimentalAutoImports": true,
 
   "todo-tree.regex.regexCaseSensitive": false,
+  "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "TODO", "XXX", "[ ]", "[x]"],
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   "todo-tree.highlights.customHighlight": {
     "TODO": {
       "background": "#00b248",
       "foreground": "#66ffa6",
-      "icon": "checklist",
       "type": "text"
     },
     "FIXME": {
       "background": "#c79400",
       "foreground": "#fff64f",
-      "icon": "alert",
+      "type": "text"
+    },
+    "BUG": {
+      "background": "#f15156",
+      "foreground": "#f4ffb4",
+      "type": "text"
+    },
+    "HACK": {
+      "background": "#3943b7",
+      "foreground": "#78f0e0",
       "type": "text"
     }
   },
-  "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "TODO", "XXX", "[ ]", "[x]"],
-  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)"
+
+  "cSpell.ignoreRegExpList": [
+    "pytest",
+    "redux",
+    "stylelint",
+    "yapf"
+  ]
 }

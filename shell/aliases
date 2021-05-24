@@ -6,6 +6,7 @@
 
 alias sudo='sudo ' # Run 'sudo {alias}'
 
+alias c='code'
 alias f='file'
 alias p='pwd'
 
@@ -66,7 +67,9 @@ if [ "${ON_MAC}" ]; then
 else
     alias rm='rm -vi --preserve-root'
 fi
-alias rmdir='rmdir -v'
+if ! [ "${ON_MAC}" ]; then
+  alias rmdir='rmdir -v'
+fi
 
 # java.
 alias j='java'
@@ -85,6 +88,7 @@ alias pir='pipenv run'
 alias prs='pipenv run start'
 alias prt='pipenv run test'
 alias prc='pipenv run check'
+alias prsh='pipenv run shell'
 
 # npm.
 alias ni='npm install'

@@ -13,11 +13,11 @@ alias gb='git branch'
 alias gbs='git show-branch'
 
 # commit.
-if command -v cz > /dev/null; then
-  alias gc='cz commit'
-else
-  alias gc='git commit'
-fi
+# if command -v cz > /dev/null; then
+#   alias gc='cz commit'
+# else
+alias gc='git commit'
+# fi
 alias gca='git commit --amend'
 
 # diff.
