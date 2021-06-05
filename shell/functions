@@ -5,7 +5,7 @@
 # Author:   Artyom Danilov (@defytheflow)
 
 # Print number of entries in a directory.
-n() {
+num() {
   [ -n "${1}" ] && dir=${1} || dir=.
   \ls -A "${dir}" | wc -l
 }

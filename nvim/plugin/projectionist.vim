@@ -28,6 +28,17 @@ let g:projectionist_heuristics = {
 \       'type': 'story',
 \       'alternate': '{}.tsx',
 \     },
+\  },
+\  'Pipfile':
+\  {
+\     '*.py': {
+\        'type': 'source',
+\        'alternate': '{dirname}/tests/test_{basename}.py'
+\     },
+\     'src/apps/**/tests/test_*.py': {
+\        'type': 'test',
+\        'alternate': 'src/apps/{dirname}/{basename}.py'
+\     },
 \  }
 \}
 

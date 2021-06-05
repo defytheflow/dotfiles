@@ -8,7 +8,6 @@ alias sudo='sudo ' # Run 'sudo {alias}'
 
 alias c='code'
 alias f='file'
-alias p='pwd'
 
 alias so='source'
 alias rn='ranger'
@@ -76,27 +75,34 @@ alias j='java'
 alias jc='javac'
 
 # python.
-alias py='python3'
 alias pip='pip3'
 alias python='python3'
 
 # pipenv.
-alias psh='pipenv shell'
-alias pin='pipenv install'
-alias pun='pipenv uninstall'
-alias pir='pipenv run'
+if command -v ipython3 > /dev/null; then
+  alias p='ipython3'
+else
+  alias p='python3'
+fi
+alias pi='pipenv install'
+alias pu='pipenv uninstall'
+alias prc='pipenv run check'
+alias prf='pipenv run fix'
+alias prl='pipenv run lint'
 alias prs='pipenv run start'
 alias prt='pipenv run test'
-alias prc='pipenv run check'
-alias prsh='pipenv run shell'
+alias prtc='pipenv run test --cov=src --cov-report=html'
+alias prtv='pipenv run test --verbose'
+alias prtw='pipenv run ptw'
 
 # npm.
+alias n='node'
 alias ni='npm install'
-alias nun='npm uninstall'
-alias nid='npm install -D'
+alias nu='npm uninstall'
 alias nrb='npm run build'
 alias nrc='npm run check'
 alias nrf='npm run fix'
+alias nrl='npm run lint'
 alias nrs='npm run start'
 alias nrsl='npm run start:local'
 alias nrt='npm run test'

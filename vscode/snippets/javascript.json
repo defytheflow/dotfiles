@@ -24,6 +24,11 @@
     "body": ["console.log($1, JSON.stringify($2, null, 2))"]
   },
 
+  "useEffect": {
+    "prefix": ["ue"],
+    "body": ["React.useEffect(() => {", "  $1", "}, [$2]);"]
+  },
+
   "screen debug": {
     "prefix": ["sd"],
     "body": ["screen.debug($1)"]

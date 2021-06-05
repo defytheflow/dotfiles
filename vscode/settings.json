@@ -42,13 +42,18 @@
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
 
-  "files.associations": {},
+  "files.associations": {
+    ".env": "shellscript",
+    "Pipfile": "toml"
+  },
+
   "files.exclude": {
     "**/.git/**": true,
     "**/.venv/**": false,
     "**/*cache*/**": true,
     "**/*coverage*/**": true
   },
+
   "files.trimTrailingWhitespace": true,
 
   "[python]": {
@@ -97,6 +102,14 @@
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
+      "before": ["N"],
+      "after": ["N", "z", "z"]
+    },
+    {
+      "before": ["n"],
+      "after": ["n", "z", "z"]
+    },
+    {
       "before": ["Y"],
       "after": ["y", "$"]
     },
@@ -141,16 +154,16 @@
       "after": ["g", "T"]
     },
     {
-      "before": ["<leader>", "d"],
-      "commands": [":bd"]
-    },
-    {
       "before": ["<leader>", "s"],
       "commands": ["editor.action.changeAll"]
     },
     {
       "before": ["<leader>", "z"],
       "commands": ["workbench.action.toggleCenteredLayout"]
+    },
+    {
+      "before": ["<leader>", "v", "e"],
+      "commands": ["workbench.action.openSettingsJson"]
     },
     {
       "before": ["g", "n"],
@@ -185,12 +198,20 @@
       "commands": ["workbench.action.editor.previousChange"]
     },
     {
+      "before": ["[", "d"],
+      "commands": [":bd"]
+    },
+    {
+      "before": ["]", "d"],
+      "commands": [":bd"]
+    },
+    {
       "before": ["[", "g"],
-      "commands": ["editor.action.marker.next"]
+      "commands": ["editor.action.marker.next", "closeMarkersNavigation"]
     },
     {
       "before": ["]", "g"],
-      "commands": ["editor.action.marker.prev"]
+      "commands": ["editor.action.marker.prev", "closeMarkersNavigation"]
     }
   ],
 
@@ -211,8 +232,8 @@
       "type": "text"
     },
     "BUG": {
-      "background": "#f15156",
-      "foreground": "#f4ffb4",
+      "background": "#ff0033",
+      "foreground": "#f1f1f1",
       "type": "text"
     },
     "HACK": {
@@ -223,9 +244,23 @@
   },
 
   "cSpell.ignoreRegExpList": [
+    "asgi",
+    "dotenv",
+    "isort",
+    "isdigit",
+    "noqa",
+    "pipenv",
+    "psql",
     "pytest",
     "redux",
     "stylelint",
-    "yapf"
-  ]
+    "yapf",
+    "yasg",
+    "zfill",
+    "ipdb"
+  ],
+
+  "gitlens.advanced.messages": {
+    "suppressImproperWorkspaceCasingWarning": true
+  }
 }

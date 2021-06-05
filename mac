@@ -22,6 +22,7 @@ install_packages() {
 
   set -- \
     bat \
+    diceware \
     dos2unix \
     exa \
     fzf \
