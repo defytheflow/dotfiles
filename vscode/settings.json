@@ -3,6 +3,7 @@
 
   "editor.codeActionsOnSave": {
     "source.fixAll": true
+    // "source.organizeImports": true
   },
   "editor.cursorSmoothCaretAnimation": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -23,8 +24,8 @@
   "editor.wordWrap": "on",
 
   "window.menuBarVisibility": "toggle",
-  "window.zoomLevel": -1,
 
+  "workbench.editor.enablePreview": false,
   "workbench.panel.defaultLocation": "right",
   "workbench.colorTheme": "Night Owl",
   "workbench.editor.highlightModifiedTabs": true,
@@ -32,18 +33,16 @@
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333"
   },
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
 
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
 
   "files.associations": {
     ".env": "shellscript",
+    ".env.*": "shellscript",
     "Pipfile": "toml"
   },
 
@@ -58,19 +57,22 @@
 
   "[python]": {
     "editor.defaultFormatter": "ms-python.python",
-    "editor.tabSize": 4,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    }
+    "editor.tabSize": 4
   },
+
+  "python.formatting.provider": "yapf",
+  "python.formatting.yapfArgs": ["--exclude=*/migrations/*"],
+
   "python.linting.enabled": true,
+  "python.linting.mypyEnabled": true,
+  // "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
   "python.linting.flake8Enabled": true,
   "python.linting.pydocstyleEnabled": false,
   "python.linting.pylintEnabled": false,
   "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
-  "python.formatting.provider": "yapf",
 
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
 
   "vim.leader": "\\",
   "vim.textwidth": 90,
@@ -102,14 +104,6 @@
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "before": ["N"],
-      "after": ["N", "z", "z"]
-    },
-    {
-      "before": ["n"],
-      "after": ["n", "z", "z"]
-    },
-    {
       "before": ["Y"],
       "after": ["y", "$"]
     },
@@ -122,20 +116,32 @@
       "after": ["g", "k"]
     },
     {
-      "before": ["<Tab>"],
-      "after": ["g", "t"]
+      "before": ["N"],
+      "after": ["N", "z", "z"]
+    },
+    {
+      "before": ["n"],
+      "after": ["n", "z", "z"]
+    },
+    {
+      "before": ["{"],
+      "after": ["{", "z", "z"]
+    },
+    {
+      "before": ["}"],
+      "after": ["}", "z", "z"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["<C-u>", "z", "z"]
+    },
+    {
+      "before": ["<C-d>"],
+      "after": ["<C-d>", "z", "z"]
     },
     {
       "before": ["<Enter>"],
       "commands": [":nohl"]
-    },
-    {
-      "before": ["<C-a>"],
-      "commands": ["workbench.action.toggleActivityBarVisibility"]
-    },
-    {
-      "before": ["<C-c>"],
-      "after": ["<Esc>"]
     },
     {
       "before": ["<C-l>"],
@@ -146,16 +152,8 @@
       "commands": ["editor.action.toggleMinimap"]
     },
     {
-      "before": ["<C-n>"],
-      "commands": ["workbench.action.toggleSidebarVisibility"]
-    },
-    {
-      "before": ["<leader>", "<Tab>"],
-      "after": ["g", "T"]
-    },
-    {
-      "before": ["<leader>", "s"],
-      "commands": ["editor.action.changeAll"]
+      "before": ["<leader>", "<leader>"],
+      "after": ["<C-^>"]
     },
     {
       "before": ["<leader>", "z"],
@@ -196,14 +194,6 @@
     {
       "before": ["]", "c"],
       "commands": ["workbench.action.editor.previousChange"]
-    },
-    {
-      "before": ["[", "d"],
-      "commands": [":bd"]
-    },
-    {
-      "before": ["]", "d"],
-      "commands": [":bd"]
     },
     {
       "before": ["[", "g"],
@@ -260,7 +250,5 @@
     "ipdb"
   ],
 
-  "gitlens.advanced.messages": {
-    "suppressImproperWorkspaceCasingWarning": true
-  }
+  "window.zoomLevel": -1
 }
