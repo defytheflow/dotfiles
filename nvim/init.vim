@@ -6,9 +6,9 @@ scriptencoding utf-8
 
 let g:mapleader = '\'
 
-if filereadable('/usr/bin/python3')
-  let g:python3_host_prog = '/usr/bin/python3'
-endif
+" if filereadable('/usr/bin/python3')
+"   let g:python3_host_prog = '/usr/bin/python3'
+" endif
 
 let g:config_dir = has('nvim') ? stdpath('config') : glob('~/.vim')
 let g:cache_dir  = has('nvim') ? stdpath('cache')  : glob('~/.vim')
@@ -26,10 +26,12 @@ Plug 'dense-analysis/ale'
 runtime ale.vim
 
 Plug 'bkad/CamelCaseMotion'
-runtime camelcase.vim
+let g:camelcasemotion_key = '<leader>'
 
 Plug 'alvan/vim-closetag'
 runtime closetag.vim
+
+Plug 'AndrewRadev/tagalong.vim'
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }

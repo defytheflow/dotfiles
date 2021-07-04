@@ -97,8 +97,10 @@ install_pip_packages() {
     jupyter \
     mypy \
     pipenv pytest \
-    # pynvim \ fails on mac m1.
-    # python-language-server \ fails on mac m1.
+    # To install on m1 mac "CFLAGS='' pip install pynvim"
+    pynvim \
+    # To install on m1 mac "CFLAGS='' pip install python-language-server"
+    python-language-server
     tldr \
     vim-vint \
     yapf

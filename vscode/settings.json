@@ -3,9 +3,9 @@
 
   "editor.codeActionsOnSave": {
     "source.fixAll": true
-    // "source.organizeImports": true
   },
   "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSurroundingLines": 10,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": true,
   "editor.fontFamily": "Monaco, Menlo, 'Courier New', monospace",
@@ -19,23 +19,31 @@
   "editor.renderWhitespace": "boundary",
   "editor.rulers": [90],
   "editor.smoothScrolling": true,
+  "editor.suggest.insertMode": "replace",
   "editor.tabSize": 2,
   "editor.tabCompletion": "on",
   "editor.wordWrap": "on",
 
+  "explorer.openEditors.visible": 0,
+
+  "search.mode": "reuseEditor",
+  "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
+
   "window.menuBarVisibility": "toggle",
 
-  "workbench.editor.enablePreview": false,
-  "workbench.panel.defaultLocation": "right",
   "workbench.colorTheme": "Night Owl",
-  "workbench.editor.highlightModifiedTabs": true,
-  "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333"
   },
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.wrapTabs": true,
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter.notebook.ipynb"
   },
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.panel.defaultLocation": "right",
+  // "workbench.settings.editor": "json",
 
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
@@ -45,14 +53,14 @@
     ".env.*": "shellscript",
     "Pipfile": "toml"
   },
-
+  "files.defaultLanguage": "${activeEditorLanguage}",
   "files.exclude": {
     "**/.git/**": true,
     "**/.venv/**": false,
     "**/*cache*/**": true,
     "**/*coverage*/**": true
   },
-
+  "files.hotExit": "onExit",
   "files.trimTrailingWhitespace": true,
 
   "[python]": {
@@ -92,15 +100,15 @@
     {
       "before": ["<"],
       "commands": ["editor.action.outdentLines"]
-    },
-    {
-      "before": ["J"],
-      "commands": ["editor.action.moveLinesDownAction"]
-    },
-    {
-      "before": ["K"],
-      "commands": ["editor.action.moveLinesUpAction"]
     }
+    // {
+    //   "before": ["J"],
+    //   "commands": ["editor.action.moveLinesDownAction"]
+    // },
+    // {
+    //   "before": ["K"],
+    //   "commands": ["editor.action.moveLinesUpAction"]
+    // }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -250,5 +258,6 @@
     "ipdb"
   ],
 
-  "window.zoomLevel": -1
+  "window.zoomLevel": -1,
+  "redhat.telemetry.enabled": false
 }
