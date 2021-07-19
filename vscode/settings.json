@@ -8,7 +8,7 @@
   "editor.cursorSurroundingLines": 10,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": true,
-  "editor.fontFamily": "Monaco, Menlo, 'Courier New', monospace",
+  "editor.fontFamily": "MonoLisa, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
   "editor.fontSize": 14,
   "editor.folding": true,
@@ -23,27 +23,45 @@
   "editor.tabSize": 2,
   "editor.tabCompletion": "on",
   "editor.wordWrap": "on",
+  "editor.lineHeight": 24,
+  "editor.minimap.enabled": false,
 
   "explorer.openEditors.visible": 0,
 
   "search.mode": "reuseEditor",
   "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
 
-  "window.menuBarVisibility": "toggle",
-
-  "workbench.colorTheme": "Night Owl",
+  "workbench.colorTheme": "Night Owl (No Italics)",
   "workbench.colorCustomizations": {
-    "editor.lineHighlightBackground": "#333"
+    "editor.lineHighlightBackground": "#333",
+    "[Night Owl]": {
+      "activityBar.background": "#000C1D",
+      "activityBar.border": "#102a44",
+      "editorGroup.border": "#102a44",
+      "sideBar.background": "#001122",
+      "sideBar.border": "#102a44",
+      "sideBar.foreground": "#8BADC1"
+    },
+    "[Night Owl (No Italics)]": {
+      "activityBar.background": "#000C1D",
+      "activityBar.border": "#102a44",
+      "editorGroup.border": "#102a44",
+      "sideBar.background": "#001122",
+      "sideBar.border": "#102a44",
+      "sideBar.foreground": "#8BADC1"
+    }
   },
   "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.wrapTabs": true,
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
+    "*.ipynb": "jupyter-notebook"
   },
   "workbench.iconTheme": "vscode-icons",
-  "workbench.panel.defaultLocation": "right",
+  "workbench.panel.defaultLocation": "bottom",
   // "workbench.settings.editor": "json",
+  "workbench.startupEditor": "none",
+  "workbench.sideBar.location": "left",
 
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
@@ -101,14 +119,6 @@
       "before": ["<"],
       "commands": ["editor.action.outdentLines"]
     }
-    // {
-    //   "before": ["J"],
-    //   "commands": ["editor.action.moveLinesDownAction"]
-    // },
-    // {
-    //   "before": ["K"],
-    //   "commands": ["editor.action.moveLinesUpAction"]
-    // }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -131,22 +141,22 @@
       "before": ["n"],
       "after": ["n", "z", "z"]
     },
-    {
-      "before": ["{"],
-      "after": ["{", "z", "z"]
-    },
-    {
-      "before": ["}"],
-      "after": ["}", "z", "z"]
-    },
-    {
-      "before": ["<C-u>"],
-      "after": ["<C-u>", "z", "z"]
-    },
-    {
-      "before": ["<C-d>"],
-      "after": ["<C-d>", "z", "z"]
-    },
+    // {
+    //   "before": ["{"],
+    //   "after": ["{", "z", "z"]
+    // },
+    // {
+    //   "before": ["}"],
+    //   "after": ["}", "z", "z"]
+    // },
+    // {
+    //   "before": ["<C-u>"],
+    //   "after": ["<C-u>", "z", "z"]
+    // },
+    // {
+    //   "before": ["<C-d>"],
+    //   "after": ["<C-d>", "z", "z"]
+    // },
     {
       "before": ["<Enter>"],
       "commands": [":nohl"]
@@ -258,6 +268,5 @@
     "ipdb"
   ],
 
-  "window.zoomLevel": -1,
-  "redhat.telemetry.enabled": false
+  "window.zoomLevel": -1
 }

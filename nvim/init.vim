@@ -169,7 +169,7 @@ endif
 set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
 try
-  colorscheme base16-classic-dark
+  colorscheme night-owl
   " Good ones:
   " base16-classic-dark
   " base16-gruvbox-dark-hard
