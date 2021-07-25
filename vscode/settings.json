@@ -22,7 +22,6 @@
   "editor.suggest.insertMode": "replace",
   "editor.tabSize": 2,
   "editor.tabCompletion": "on",
-  "editor.wordWrap": "on",
   "editor.lineHeight": 24,
   "editor.minimap.enabled": false,
 
@@ -164,10 +163,6 @@
     {
       "before": ["<C-l>"],
       "commands": [":nohl"]
-    },
-    {
-      "before": ["<C-m>"],
-      "commands": ["editor.action.toggleMinimap"]
     },
     {
       "before": ["<leader>", "<leader>"],

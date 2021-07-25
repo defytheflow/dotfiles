@@ -1,4 +1,5 @@
 [
+  // Switching focus between editor and terminal
   {
     "describe": "Toggle terminal focus",
     "key": "ctrl+'",
@@ -11,16 +12,8 @@
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
   },
-  {
-    "describe": "Collapse all folders in explorer",
-    "key": "cmd+k cmd+e",
-    "command": "workbench.files.action.collapseExplorerFolders"
-  },
-  {
-    "describe": "Center layout",
-    "key": "cmd+k cmd+z",
-    "command": "workbench.action.toggleCenteredLayout"
-  },
+  // Cycling through autocomplete options.
+  // (Default bindings use arrow keys).
   {
     "key": "ctrl+n",
     "command": "selectNextSuggestion",
@@ -30,5 +23,54 @@
     "key": "ctrl+p",
     "command": "selectPrevSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  // Moving editors.
+  // (Default bindings use K + arrow keys).
+  {
+    "key": "cmd+k h",
+    "command": "workbench.action.moveActiveEditorGroupLeft"
+  },
+  {
+    "key": "cmd+k l",
+    "command": "workbench.action.moveActiveEditorGroupRight"
+  },
+  {
+    "key": "cmd+k j",
+    "command": "workbench.action.moveActiveEditorGroupDown"
+  },
+  {
+    "key": "cmd+k k",
+    "command": "workbench.action.moveActiveEditorGroupUp"
+  },
+  // Moving terminal panel.
+  // (No default bindings).
+  {
+    "key": "cmd+g down",
+    "command": "workbench.action.positionPanelBottom"
+  },
+  {
+    "key": "cmd+g left",
+    "command": "workbench.action.positionPanelLeft"
+  },
+  {
+    "key": "cmd+g right",
+    "command": "workbench.action.positionPanelRight"
+  },
+  // Miscellaneous
+  // (No default bindings).
+  {
+    "describe": "Collapse all folders in the explorer",
+    "key": "cmd+g e",
+    "command": "workbench.files.action.collapseExplorerFolders"
+  },
+  {
+    "describe": "Center layout",
+    "key": "cmd+g z",
+    "command": "workbench.action.toggleCenteredLayout"
+  },
+  {
+    "describe": "Toggle minimap",
+    "key": "cmd+g m",
+    "command": "editor.action.toggleMinimap"
   }
 ]
