@@ -1,0 +1,7 @@
+{
+  "Outline an element": {
+    "prefix": "out",
+    "body": ["outline: 3px solid green;"],
+    "description": "Log output to console"
+  }
+}

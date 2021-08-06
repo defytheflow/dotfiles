@@ -45,19 +45,25 @@
   // Moving terminal panel.
   // (No default bindings).
   {
-    "key": "cmd+g down",
+    "key": "cmd+g j",
     "command": "workbench.action.positionPanelBottom"
   },
   {
-    "key": "cmd+g left",
+    "key": "cmd+g h",
     "command": "workbench.action.positionPanelLeft"
   },
   {
-    "key": "cmd+g right",
+    "key": "cmd+g l",
     "command": "workbench.action.positionPanelRight"
   },
   // Miscellaneous
   // (No default bindings).
+  {
+    "describe": "Open vim command line at the top",
+    "key": "shift+;",
+    "command": "vim.showQuickpickCmdLine",
+    "when": "editorTextFocus && vim.mode != 'Insert'"
+  },
   {
     "describe": "Collapse all folders in the explorer",
     "key": "cmd+g e",

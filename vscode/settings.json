@@ -5,7 +5,7 @@
     "source.fixAll": true
   },
   "editor.cursorSmoothCaretAnimation": true,
-  "editor.cursorSurroundingLines": 10,
+  // "editor.cursorSurroundingLines": 10,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": true,
   "editor.fontFamily": "MonoLisa, Menlo, Monaco, 'Courier New', monospace",
@@ -99,6 +99,7 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
 
+  "vim.easymotion": true,
   "vim.leader": "\\",
   "vim.textwidth": 90,
   "vim.camelCaseMotion.enable": true,
@@ -109,6 +110,7 @@
   "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
   "vim.visualstar": true,
+  "vim.highlightedyank.enable": true,
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": [">"],
@@ -118,19 +120,20 @@
       "before": ["<"],
       "commands": ["editor.action.outdentLines"]
     }
+    // Visual J joins the highlighted lines, so...
+    // {
+    //   "before": ["J"],
+    //   "commands": ["editor.action.moveLinesDownAction"]
+    // },
+    // {
+    //   "before": ["K"],
+    //   "commands": ["editor.action.moveLinesUpAction"]
+    // }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["Y"],
       "after": ["y", "$"]
-    },
-    {
-      "before": ["j"],
-      "after": ["g", "j"]
-    },
-    {
-      "before": ["k"],
-      "after": ["g", "k"]
     },
     {
       "before": ["N"],
@@ -141,20 +144,12 @@
       "after": ["n", "z", "z"]
     },
     // {
-    //   "before": ["{"],
-    //   "after": ["{", "z", "z"]
+    //   "before": ["j"],
+    //   "after": ["g", "j"]
     // },
     // {
-    //   "before": ["}"],
-    //   "after": ["}", "z", "z"]
-    // },
-    // {
-    //   "before": ["<C-u>"],
-    //   "after": ["<C-u>", "z", "z"]
-    // },
-    // {
-    //   "before": ["<C-d>"],
-    //   "after": ["<C-d>", "z", "z"]
+    //   "before": ["k"],
+    //   "after": ["g", "k"]
     // },
     {
       "before": ["<Enter>"],
@@ -164,17 +159,17 @@
       "before": ["<C-l>"],
       "commands": [":nohl"]
     },
-    {
-      "before": ["<leader>", "<leader>"],
-      "after": ["<C-^>"]
-    },
-    {
-      "before": ["<leader>", "z"],
-      "commands": ["workbench.action.toggleCenteredLayout"]
-    },
+    // {
+    //   "before": ["<leader>", "<leader>"],
+    //   "after": ["<C-^>"]
+    // },
     {
       "before": ["<leader>", "v", "e"],
       "commands": ["workbench.action.openSettingsJson"]
+    },
+    {
+      "before": ["g", "D"],
+      "commands": ["editor.action.revealDefinitionAside"]
     },
     {
       "before": ["g", "n"],
