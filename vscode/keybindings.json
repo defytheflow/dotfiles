@@ -1,19 +1,22 @@
 [
-  // Switching focus between editor and terminal
+  /**
+    Switch focus between editor and terminal with Ctrl+' (no default bindings).
+   */
   {
-    "describe": "Toggle terminal focus",
+    "describe": "Focus terminal",
     "key": "ctrl+'",
     "command": "workbench.action.terminal.focus",
     "when": "!terminalFocus"
   },
   {
-    "describe": "Toggle editor focus",
+    "describe": "Focus editor",
     "key": "ctrl+'",
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
   },
-  // Cycling through autocomplete options.
-  // (Default bindings use arrow keys).
+  /**
+    Cycle through autocomplete options with Ctrl+n/Ctrl+p (default bindings use arrow keys).
+   */
   {
     "key": "ctrl+n",
     "command": "selectNextSuggestion",
@@ -24,15 +27,12 @@
     "command": "selectPrevSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
-  // Moving editors.
-  // (Default bindings use K + arrow keys).
+  /**
+    Moving editors with Cmd+k + h/j/k/l (default bindings use Cmd+k + arrow keys).
+   */
   {
     "key": "cmd+k h",
     "command": "workbench.action.moveActiveEditorGroupLeft"
-  },
-  {
-    "key": "cmd+k l",
-    "command": "workbench.action.moveActiveEditorGroupRight"
   },
   {
     "key": "cmd+k j",
@@ -42,33 +42,51 @@
     "key": "cmd+k k",
     "command": "workbench.action.moveActiveEditorGroupUp"
   },
-  // Moving terminal panel.
-  // (No default bindings).
   {
-    "key": "cmd+g j",
-    "command": "workbench.action.positionPanelBottom"
+    "key": "cmd+k l",
+    "command": "workbench.action.moveActiveEditorGroupRight"
   },
+  /**
+    Moving terminal panel with Cmd+g + h/j/l. (No default bindings).
+   */
   {
     "key": "cmd+g h",
     "command": "workbench.action.positionPanelLeft"
   },
   {
+    "key": "cmd+g j",
+    "command": "workbench.action.positionPanelBottom"
+  },
+  {
     "key": "cmd+g l",
     "command": "workbench.action.positionPanelRight"
   },
-  // Miscellaneous
-  // (No default bindings).
+  /**
+    Cycle through terminals with Ctrl+w + h/l (default bindings use Cmd+Alt + arrow keys).
+   */
   {
-    "describe": "Open vim command line at the top",
-    "key": "shift+;",
-    "command": "vim.showQuickpickCmdLine",
-    "when": "editorTextFocus && vim.mode != 'Insert'"
+    "key": "ctrl+w h",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus && terminalProcessSupported"
   },
   {
-    "describe": "Collapse all folders in the explorer",
-    "key": "cmd+g e",
-    "command": "workbench.files.action.collapseExplorerFolders"
+    "key": "ctrl+w j",
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus && terminalProcessSupported"
   },
+  {
+    "key": "ctrl+w k",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  {
+    "key": "ctrl+w l",
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus && terminalProcessSupported"
+  },
+  /**
+    Miscellaneous (no default bindings).
+   */
   {
     "describe": "Center layout",
     "key": "cmd+g z",
@@ -78,5 +96,21 @@
     "describe": "Toggle minimap",
     "key": "cmd+g m",
     "command": "editor.action.toggleMinimap"
+  },
+  {
+    "describe": "Toggle sidebar position",
+    "key": "cmd+g b",
+    "command": "workbench.action.toggleSidebarPosition"
+  },
+  {
+    "describe": "Collapse all folders in the explorer",
+    "key": "cmd+g e",
+    "command": "workbench.files.action.collapseExplorerFolders"
+  },
+  {
+    "describe": "Open vim command line at the top in zen mode",
+    "key": "shift+;",
+    "command": "vim.showQuickpickCmdLine",
+    "when": "inZenMode && vim.mode != 'Insert'"
   }
 ]

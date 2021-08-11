@@ -68,14 +68,17 @@
   "files.associations": {
     ".env": "shellscript",
     ".env.*": "shellscript",
-    "Pipfile": "toml"
+    "Pipfile": "toml",
+    "*.js": "javascriptreact"
   },
   "files.defaultLanguage": "${activeEditorLanguage}",
   "files.exclude": {
     "**/.git/**": true,
     "**/.venv/**": false,
     "**/*cache*/**": true,
-    "**/*coverage*/**": true
+    "**/*coverage*/**": true,
+    "**/react-app-env.d.ts": true,
+    "**/next-env.d.ts": true
   },
   "files.hotExit": "onExit",
   "files.trimTrailingWhitespace": true,

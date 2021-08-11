@@ -4,9 +4,19 @@
     "body": ["function $1($2) {", "  $3", "}"]
   },
 
+  "interface": {
+    "prefix": ["in"],
+    "body": ["interface $1 {", "  $2", "}"]
+  },
+
   "prettier ignore": {
     "prefix": ["ig"],
     "body": ["// prettier-ignore"]
+  },
+
+  "eslint disable any": {
+    "prefix": ["any"],
+    "body": ["// eslint-disable-next-line @typescript-eslint/no-explicit-any"]
   },
 
   "eslint disable": {
