@@ -1,38 +1,107 @@
 {
-  "keyboard.dispatch": "keyCode",
+  "window.zoomLevel": -0.75,
+  "workbench.settings.editor": "json",
+  "workbench.startupEditor": "none",
+  "editor.linkedEditing": true,
+  "editor.hover.delay": 200,
 
+  /** Tree view . */
+  "workbench.tree.renderIndentGuides": "none",
+
+  /** Editors. */
+  "explorer.openEditors.visible": 0,
+  "workbench.editor.enablePreview": false,
+  "workbench.sash.size": 10,
+
+  /** Scrolling. */
+  "editor.smoothScrolling": true,
+  "workbench.list.smoothScrolling": true,
+
+  /** Tabs. */
+  // "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.tabCloseButton": "off",
+  "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.wrapTabs": true,
+
+  /** Panel/Sidebar. */
+  "workbench.panel.defaultLocation": "bottom",
+  "workbench.sideBar.location": "left",
+
+  /** Minimap. */
+  "editor.minimap.enabled": false,
+  "editor.minimap.renderCharacters": false,
+
+  /** Autoformatting. */
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "files.trimTrailingWhitespace": true,
+
+  /** Autocomplete. */
+  "editor.suggest.insertMode": "replace",
+  "editor.tabCompletion": "on",
+  "editor.wordBasedSuggestions": false,
+  "editor.inlineSuggest.enabled": true,
+
+  /** Cursor. */
+  "editor.cursorBlinking": "solid",
   "editor.cursorSmoothCaretAnimation": true,
   // "editor.cursorSurroundingLines": 10,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.detectIndentation": true,
+
+  /** Font. */
+  "editor.codeLensFontFamily": "MonoLisa, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontFamily": "MonoLisa, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
   "editor.fontSize": 14,
-  "editor.folding": true,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "editor.insertSpaces": true,
-  "editor.lineNumbers": "relative",
-  "editor.renderWhitespace": "boundary",
-  "editor.rulers": [90],
-  "editor.smoothScrolling": true,
-  "editor.suggest.insertMode": "replace",
+
+  /** Indentation. */
+  "editor.detectIndentation": true,
   "editor.tabSize": 2,
-  "editor.tabCompletion": "on",
+
+  /** Whitespace. */
+  "editor.insertSpaces": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.renderControlCharacters": true,
+  "files.eol": "\n",
+
+  /** Lines. */
   "editor.lineHeight": 24,
-  "editor.minimap.enabled": false,
+  "editor.lineNumbers": "relative",
+  "editor.rulers": [90],
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 90,
+  "editor.renderLineHighlight": "all",
 
-  "explorer.openEditors.visible": 0,
+  /** Git. */
+  "scm.diffDecorationsGutterWidth": 5,
+  "diffEditor.renderIndicators": false,
+  "diffEditor.renderSideBySide": false,
+  "git.terminalAuthentication": false,
+  "git.untrackedChanges": "separate",
 
-  "search.mode": "reuseEditor",
+  /** Search. */
   "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
+  "search.showLineNumbers": true,
+  "search.sortOrder": "countDescending",
 
+  /** Terminal. */
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
+
+  /** Colortheme/Icontheme. */
   "workbench.colorTheme": "Night Owl (No Italics)",
+  "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333",
+    "statusBar.foreground": "#d6deeb",
+    "editorCursor.background": "#00ff00",
+    "editorCursor.foreground": "#20c20e",
     "[Night Owl]": {
       "activityBar.background": "#000C1D",
       "activityBar.border": "#102a44",
@@ -50,28 +119,16 @@
       "sideBar.foreground": "#8BADC1"
     }
   },
-  "workbench.editor.enablePreview": false,
-  "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.wrapTabs": true,
-  "workbench.editorAssociations": {
-    "*.ipynb": "jupyter-notebook"
-  },
-  "workbench.iconTheme": "vscode-icons",
-  "workbench.panel.defaultLocation": "bottom",
-  // "workbench.settings.editor": "json",
-  "workbench.startupEditor": "none",
-  "workbench.sideBar.location": "left",
 
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
-
+  /** Files. */
+  "files.defaultLanguage": "${activeEditorLanguage}",
+  "files.hotExit": "onExit",
   "files.associations": {
     ".env": "shellscript",
     ".env.*": "shellscript",
     "Pipfile": "toml",
     "*.js": "javascriptreact"
   },
-  "files.defaultLanguage": "${activeEditorLanguage}",
   "files.exclude": {
     "**/.git/**": true,
     "**/.venv/**": false,
@@ -80,17 +137,25 @@
     "**/react-app-env.d.ts": true,
     "**/next-env.d.ts": true
   },
-  "files.hotExit": "onExit",
-  "files.trimTrailingWhitespace": true,
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
 
+  /** Extensions. */
+  "extensions.closeExtensionDetailsOnViewChange": true,
+
+  /** emmet. */
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+
+  /** Python. */
   "[python]": {
     "editor.defaultFormatter": "ms-python.python",
     "editor.tabSize": 4
   },
-
   "python.formatting.provider": "yapf",
   "python.formatting.yapfArgs": ["--exclude=*/migrations/*"],
-
   "python.linting.enabled": true,
   "python.linting.mypyEnabled": true,
   // "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
@@ -99,21 +164,41 @@
   "python.linting.pylintEnabled": false,
   "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
 
+  /** Typescript. */
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
 
-  "vim.easymotion": true,
+  /** Vim. */
   "vim.leader": "\\",
   "vim.textwidth": 90,
-  "vim.camelCaseMotion.enable": true,
-  "vim.replaceWithRegister": true,
-  "vim.sneak": true,
-  "vim.surround": true,
+  "vim.foldfix": true,
+
+  // gutter.
+  "vim.smartRelativeLine": true,
+  "vim.showMarksInGutter": true,
+
+  // copying.
+  "vim.useSystemClipboard": true,
+  "vim.highlightedyank.enable": true,
+
+  // search.
   "vim.incsearch": true,
   "vim.hlsearch": true,
-  "vim.useSystemClipboard": true,
+  "vim.ignorecase": true,
   "vim.visualstar": true,
-  "vim.highlightedyank.enable": true,
+
+  // extensions.
+  "vim.easymotion": true,
+  "vim.camelCaseMotion.enable": true,
+  "vim.replaceWithRegister": true,
+  "vim.surround": true,
+
+  // sneak.
+  "vim.sneak": true,
+  // "vim.sneakReplacesF": true,
+
+  "vim.cursorStylePerMode.insert": "block",
+
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": [">"],
@@ -146,14 +231,6 @@
       "before": ["n"],
       "after": ["n", "z", "z"]
     },
-    // {
-    //   "before": ["j"],
-    //   "after": ["g", "j"]
-    // },
-    // {
-    //   "before": ["k"],
-    //   "after": ["g", "k"]
-    // },
     {
       "before": ["<Enter>"],
       "commands": [":nohl"]
@@ -166,10 +243,6 @@
     //   "before": ["<leader>", "<leader>"],
     //   "after": ["<C-^>"]
     // },
-    {
-      "before": ["<leader>", "v", "e"],
-      "commands": ["workbench.action.openSettingsJson"]
-    },
     {
       "before": ["g", "D"],
       "commands": ["editor.action.revealDefinitionAside"]
@@ -216,11 +289,20 @@
     }
   ],
 
+  /** Bracket Pair Colorizer */
+  "bracketPairColorizer.showBracketsInGutter": true,
+
+  /** Prettier. */
+  "prettier.jsxSingleQuote": true,
+  "prettier.printWidth": 90,
+  "prettier.singleQuote": true,
+
+  /** Tabnine. */
   "tabnine.experimentalAutoImports": true,
 
+  /** Todo tree. */
   "todo-tree.regex.regexCaseSensitive": false,
-  "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "TODO", "XXX", "[ ]", "[x]"],
-  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+  "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "TODO", "XXX"],
   "todo-tree.highlights.customHighlight": {
     "TODO": {
       "background": "#00b248",
@@ -244,6 +326,7 @@
     }
   },
 
+  /** Code spell. */
   "cSpell.ignoreRegExpList": [
     "asgi",
     "dotenv",
@@ -261,5 +344,9 @@
     "ipdb"
   ],
 
-  "window.zoomLevel": -1
+  /** Garbage. */
+  "redhat.telemetry.enabled": false,
+  "yaml.schemas": {
+    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  }
 }
