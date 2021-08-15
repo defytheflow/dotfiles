@@ -72,8 +72,6 @@
   "editor.lineHeight": 24,
   "editor.lineNumbers": "relative",
   "editor.rulers": [90],
-  "editor.wordWrap": "wordWrapColumn",
-  "editor.wordWrapColumn": 90,
   "editor.renderLineHighlight": "all",
 
   /** Git. */
@@ -85,7 +83,6 @@
 
   /** Search. */
   "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
-  "search.showLineNumbers": true,
   "search.sortOrder": "countDescending",
 
   /** Terminal. */
@@ -288,9 +285,6 @@
       "commands": ["editor.action.marker.prev", "closeMarkersNavigation"]
     }
   ],
-
-  /** Bracket Pair Colorizer */
-  "bracketPairColorizer.showBracketsInGutter": true,
 
   /** Prettier. */
   "prettier.jsxSingleQuote": true,

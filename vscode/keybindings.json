@@ -1,116 +1,155 @@
 [
   /**
-    Switch focus between editor and terminal with Ctrl+' (no default bindings).
+    Switch focus between editor and panel with Ctrl+' (no default bindings).
    */
+
   {
-    "describe": "Focus terminal",
+    "describe": "Focus panel",
     "key": "ctrl+'",
-    "command": "workbench.action.terminal.focus",
-    "when": "!terminalFocus"
+    "command": "workbench.action.focusPanel",
+    "when": "!panelFocus"
   },
   {
     "describe": "Focus editor",
     "key": "ctrl+'",
     "command": "workbench.action.focusActiveEditorGroup",
-    "when": "terminalFocus"
+    "when": "panelFocus"
   },
+
+  /**
+   Cycle through search results with Ctrl+n/Ctrl+p (default bindings use f4 and shift + f4).
+   */
+
+  {
+    "key": "ctrl+n",
+    "command": "search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+
+  {
+    "key": "ctrl+p",
+    "command": "search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+
   /**
     Cycle through autocomplete options with Ctrl+n/Ctrl+p (default bindings use arrow keys).
    */
+
   {
     "key": "ctrl+n",
     "command": "selectNextSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
+
   {
     "key": "ctrl+p",
     "command": "selectPrevSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
+
   /**
     Moving editors with Cmd+k + h/j/k/l (default bindings use Cmd+k + arrow keys).
    */
+
   {
     "key": "cmd+k h",
     "command": "workbench.action.moveActiveEditorGroupLeft"
   },
+
   {
     "key": "cmd+k j",
     "command": "workbench.action.moveActiveEditorGroupDown"
   },
+
   {
     "key": "cmd+k k",
     "command": "workbench.action.moveActiveEditorGroupUp"
   },
+
   {
     "key": "cmd+k l",
     "command": "workbench.action.moveActiveEditorGroupRight"
   },
-  /**
-    Moving terminal panel with Cmd+g + h/j/l. (No default bindings).
-   */
-  {
-    "key": "cmd+g h",
-    "command": "workbench.action.positionPanelLeft"
-  },
-  {
-    "key": "cmd+g j",
-    "command": "workbench.action.positionPanelBottom"
-  },
-  {
-    "key": "cmd+g l",
-    "command": "workbench.action.positionPanelRight"
-  },
+
   /**
     Cycle through terminals with Ctrl+w + h/l (default bindings use Cmd+Alt + arrow keys).
    */
+
   {
     "key": "ctrl+w h",
     "command": "workbench.action.terminal.focusPreviousPane",
     "when": "terminalFocus && terminalProcessSupported"
   },
+
   {
     "key": "ctrl+w j",
     "command": "workbench.action.terminal.focusNextPane",
     "when": "terminalFocus && terminalProcessSupported"
   },
+
   {
     "key": "ctrl+w k",
     "command": "workbench.action.terminal.focusPreviousPane",
     "when": "terminalFocus && terminalProcessSupported"
   },
+
   {
     "key": "ctrl+w l",
     "command": "workbench.action.terminal.focusNextPane",
     "when": "terminalFocus && terminalProcessSupported"
   },
+
   /**
     Miscellaneous (no default bindings).
    */
+
   {
     "describe": "Center layout",
     "key": "cmd+g z",
     "command": "workbench.action.toggleCenteredLayout"
   },
+
   {
     "describe": "Toggle minimap",
     "key": "cmd+g m",
     "command": "editor.action.toggleMinimap"
   },
+
+  {
+    "describe": "Open search editor",
+    "key": "cmd+g h",
+    "command": "search.action.openNewEditorToSide"
+  },
+
   {
     "describe": "Toggle sidebar position",
     "key": "cmd+g b",
     "command": "workbench.action.toggleSidebarPosition"
   },
+
   {
     "describe": "Collapse all folders in the explorer",
     "key": "cmd+g e",
     "command": "workbench.files.action.collapseExplorerFolders"
   },
+
   {
     "describe": "Open vim command line at the top in zen mode",
     "key": "shift+;",
     "command": "vim.showQuickpickCmdLine",
     "when": "inZenMode && vim.mode != 'Insert'"
+  },
+
+  {
+    "describe": "Reload window",
+    "key": "cmd+r",
+    "command": "workbench.action.reloadWindow"
+  },
+
+  {
+    "describe": "Toggle developer tools",
+    "key": "cmd+alt+i",
+    "command": "workbench.action.toggleDevTools"
   }
 ]
