@@ -23,13 +23,13 @@
   {
     "key": "ctrl+n",
     "command": "search.action.focusNextSearchResult",
-    "when": "hasSearchResult || inSearchEditor"
+    "when": "!suggestWidgetVisible && (hasSearchResult || inSearchEditor)"
   },
 
   {
     "key": "ctrl+p",
     "command": "search.action.focusPreviousSearchResult",
-    "when": "hasSearchResult || inSearchEditor"
+    "when": "!suggestWidgetVisible && (hasSearchResult || inSearchEditor)"
   },
 
   /**
@@ -135,10 +135,9 @@
   },
 
   {
-    "describe": "Open vim command line at the top in zen mode",
-    "key": "shift+;",
-    "command": "vim.showQuickpickCmdLine",
-    "when": "inZenMode && vim.mode != 'Insert'"
+    "describe": "Open default settings (JSON)",
+    "key": "cmd+g ,",
+    "command": "workbench.action.openRawDefaultSettings"
   },
 
   {
@@ -151,5 +150,12 @@
     "describe": "Toggle developer tools",
     "key": "cmd+alt+i",
     "command": "workbench.action.toggleDevTools"
+  },
+
+  {
+    "describe": "Open vim command line at the top in zen mode",
+    "key": "shift+;",
+    "command": "vim.showQuickpickCmdLine",
+    "when": "inZenMode && vim.mode != 'Insert'"
   }
 ]

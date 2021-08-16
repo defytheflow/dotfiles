@@ -19,13 +19,12 @@
 
   /** Tabs. */
   // "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.tabCloseButton": "off",
-  "workbench.editor.tabSizing": "shrink",
+  "workbench.editor.tabCloseButton": "right",
+  // "workbench.editor.tabSizing": "shrink",
   "workbench.editor.wrapTabs": true,
 
   /** Panel/Sidebar. */
   "workbench.panel.defaultLocation": "bottom",
-  "workbench.sideBar.location": "left",
 
   /** Minimap. */
   "editor.minimap.enabled": false,
@@ -84,6 +83,12 @@
   /** Search. */
   "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
   "search.sortOrder": "countDescending",
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/package-lock.json": true
+  },
 
   /** Terminal. */
   "terminal.integrated.cursorBlinking": true,
@@ -96,9 +101,14 @@
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333",
+    "editorCursor.foreground": "#DC8CFF",
     "statusBar.foreground": "#d6deeb",
-    "editorCursor.background": "#00ff00",
-    "editorCursor.foreground": "#20c20e",
+
+    /** Borders. */
+    "activityBar.activeBorder": "#FF50FF",
+    "tab.activeBorder": "#FF50FF",
+    "panelTitle.activeBorder": "#FF50FF",
+
     "[Night Owl]": {
       "activityBar.background": "#000C1D",
       "activityBar.border": "#102a44",
@@ -107,6 +117,7 @@
       "sideBar.border": "#102a44",
       "sideBar.foreground": "#8BADC1"
     },
+
     "[Night Owl (No Italics)]": {
       "activityBar.background": "#000C1D",
       "activityBar.border": "#102a44",
@@ -168,7 +179,7 @@
   /** Vim. */
   "vim.leader": "\\",
   "vim.textwidth": 90,
-  "vim.foldfix": true,
+  // "vim.foldfix": true, // makes jumping with <number>[jk] laggy.
 
   // gutter.
   "vim.smartRelativeLine": true,
@@ -293,6 +304,14 @@
 
   /** Tabnine. */
   "tabnine.experimentalAutoImports": true,
+
+  /** Color Highlight. */
+  "color-highlight.languages": ["*", "!css", "!scss"],
+  "color-highlight.markerType": "dot-before",
+  "color-highlight.markRuler": false,
+
+  /** Colorize. */
+  "colorize.colorized_variables": ["CSS", "SASS"],
 
   /** Todo tree. */
   "todo-tree.regex.regexCaseSensitive": false,
