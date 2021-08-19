@@ -150,12 +150,5 @@
     "describe": "Toggle developer tools",
     "key": "cmd+alt+i",
     "command": "workbench.action.toggleDevTools"
-  },
-
-  {
-    "describe": "Open vim command line at the top in zen mode",
-    "key": "shift+;",
-    "command": "vim.showQuickpickCmdLine",
-    "when": "inZenMode && vim.mode != 'Insert'"
   }
 ]

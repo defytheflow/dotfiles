@@ -5,6 +5,12 @@
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
 
+  /** Zen mode. */
+  "zenMode.fullScreen": false,
+  "zenMode.centerLayout": false,
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideStatusBar": false,
+
   /** Tree view . */
   "workbench.tree.renderIndentGuides": "none",
 
@@ -25,6 +31,7 @@
 
   /** Panel/Sidebar. */
   "workbench.panel.defaultLocation": "bottom",
+  "workbench.sideBar.location": "right",
 
   /** Minimap. */
   "editor.minimap.enabled": false,
@@ -49,6 +56,7 @@
   /** Cursor. */
   "editor.cursorBlinking": "solid",
   "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorWidth": 3,
   // "editor.cursorSurroundingLines": 10,
 
   /** Font. */
@@ -71,7 +79,7 @@
   "editor.lineHeight": 24,
   "editor.lineNumbers": "relative",
   "editor.rulers": [90],
-  "editor.renderLineHighlight": "all",
+  "editor.renderLineHighlight": "line",
 
   /** Git. */
   "scm.diffDecorationsGutterWidth": 5,
@@ -181,6 +189,9 @@
   "vim.textwidth": 90,
   // "vim.foldfix": true, // makes jumping with <number>[jk] laggy.
 
+  "vim.enableNeovim": true,
+  "vim.neovimPath": "/opt/homebrew/bin/nvim",
+
   // gutter.
   "vim.smartRelativeLine": true,
   "vim.showMarksInGutter": true,
@@ -200,12 +211,7 @@
   "vim.camelCaseMotion.enable": true,
   "vim.replaceWithRegister": true,
   "vim.surround": true,
-
-  // sneak.
   "vim.sneak": true,
-  // "vim.sneakReplacesF": true,
-
-  "vim.cursorStylePerMode.insert": "block",
 
   "vim.visualModeKeyBindingsNonRecursive": [
     {
@@ -306,12 +312,9 @@
   "tabnine.experimentalAutoImports": true,
 
   /** Color Highlight. */
-  "color-highlight.languages": ["*", "!css", "!scss"],
+  "color-highlight.languages": ["*"],
   "color-highlight.markerType": "dot-before",
   "color-highlight.markRuler": false,
-
-  /** Colorize. */
-  "colorize.colorized_variables": ["CSS", "SASS"],
 
   /** Todo tree. */
   "todo-tree.regex.regexCaseSensitive": false,

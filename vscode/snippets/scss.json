@@ -1,7 +1,11 @@
 {
-  "Outline an element": {
+  "outline": {
     "prefix": "out",
-    "body": ["outline: 3px solid green;"],
-    "description": "Log output to console"
+    "body": ["outline: 3px solid green;"]
+  },
+
+  "@include": {
+    "prefix": "in",
+    "body": ["@include mixins.$0"]
   }
 }
