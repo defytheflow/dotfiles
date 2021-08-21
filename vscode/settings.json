@@ -1,5 +1,5 @@
 {
-  "window.zoomLevel": -0.75,
+  "window.zoomLevel": -1,
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "none",
   "editor.linkedEditing": true,
@@ -10,6 +10,7 @@
   "zenMode.centerLayout": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
+  // "editor.renderIndentGuides": false,
 
   /** Tree view . */
   "workbench.tree.renderIndentGuides": "none",
@@ -34,8 +35,8 @@
   "workbench.sideBar.location": "right",
 
   /** Minimap. */
-  "editor.minimap.enabled": false,
   "editor.minimap.renderCharacters": false,
+  "editor.minimap.enabled": false
 
   /** Autoformatting. */
   "editor.codeActionsOnSave": {
@@ -109,24 +110,15 @@
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333",
-    "editorCursor.foreground": "#DC8CFF",
-    "statusBar.foreground": "#d6deeb",
-
-    /** Borders. */
-    "activityBar.activeBorder": "#FF50FF",
-    "tab.activeBorder": "#FF50FF",
-    "panelTitle.activeBorder": "#FF50FF",
-
-    "[Night Owl]": {
-      "activityBar.background": "#000C1D",
-      "activityBar.border": "#102a44",
-      "editorGroup.border": "#102a44",
-      "sideBar.background": "#001122",
-      "sideBar.border": "#102a44",
-      "sideBar.foreground": "#8BADC1"
-    },
 
     "[Night Owl (No Italics)]": {
+      "editorCursor.foreground": "#DC8CFF",
+      "statusBar.foreground": "#d6deeb",
+
+      "activityBar.activeBorder": "#FF50FF",
+      "tab.activeBorder": "#FF50FF",
+      "panelTitle.activeBorder": "#FF50FF",
+
       "activityBar.background": "#000C1D",
       "activityBar.border": "#102a44",
       "editorGroup.border": "#102a44",
@@ -136,6 +128,19 @@
     }
   },
 
+  // "editor.tokenColorCustomizations": {
+  //   "[Night Owl (No Italics)]": {
+  //     "textMateRules": [
+  //       {
+  //         // "scope": "variable.other.object.tsx",
+  //         "settings": {
+  //           "foreground": "#c5e478"
+  //         }
+  //       }
+  //     ]
+  //   }
+  // },
+
   /** Files. */
   "files.defaultLanguage": "${activeEditorLanguage}",
   "files.hotExit": "onExit",
@@ -143,7 +148,8 @@
     ".env": "shellscript",
     ".env.*": "shellscript",
     "Pipfile": "toml",
-    "*.js": "javascriptreact"
+    "*.js": "javascriptreact",
+    "*.ts": "typescriptreact"
   },
   "files.exclude": {
     "**/.git/**": true,
@@ -312,33 +318,56 @@
   "tabnine.experimentalAutoImports": true,
 
   /** Color Highlight. */
-  "color-highlight.languages": ["*"],
+  "color-highlight.languages": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "color-highlight.markerType": "dot-before",
   "color-highlight.markRuler": false,
 
   /** Todo tree. */
   "todo-tree.regex.regexCaseSensitive": false,
-  "todo-tree.general.tags": ["BUG", "HACK", "FIXME", "TODO", "XXX"],
+  "todo-tree.general.tags": ["TODO", "NOTE", "HACK", "FIXME", "BUG", "WHAT"],
   "todo-tree.highlights.customHighlight": {
     "TODO": {
-      "background": "#00b248",
       "foreground": "#66ffa6",
-      "type": "text"
+      "gutterIcon": true,
+      "icon": "flame"
     },
-    "FIXME": {
-      "background": "#c79400",
-      "foreground": "#fff64f",
-      "type": "text"
-    },
-    "BUG": {
-      "background": "#ff0033",
-      "foreground": "#f1f1f1",
-      "type": "text"
+    "NOTE": {
+      "foreground": "gold",
+      "gutterIcon": true,
+      "icon": "bookmark"
     },
     "HACK": {
-      "background": "#3943b7",
       "foreground": "#78f0e0",
-      "type": "text"
+      "gutterIcon": true,
+      "icon": "smiley"
+    },
+    "FIXME": {
+      "foreground": "peachpuff",
+      "gutterIcon": true
+    },
+    "BUG": {
+      "foreground": "#FF5874",
+      "gutterIcon": true,
+      "icon": "flame"
+    },
+    "WHAT": {
+      "foreground": "grey",
+      "gutterIcon": true,
+      "icon": "unverified"
+    }
+  },
+
+  /** Highlight matching tag. */
+  "highlight-matching-tag.highlightSelfClosing": true,
+  "highlight-matching-tag.styles": {
+    "opening": {
+      "name": { "underline": "gold" }
+      // "name": { "underline": "#DC8CFF" }
     }
   },
 

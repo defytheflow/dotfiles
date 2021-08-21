@@ -101,6 +101,22 @@
   },
 
   /**
+    Overwrite vscode `isDevelopment` mode.
+   */
+
+  {
+    "describe": "Reload window",
+    "key": "cmd+r",
+    "command": "workbench.action.reloadWindow"
+  },
+
+  {
+    "describe": "Toggle developer tools",
+    "key": "cmd+alt+i",
+    "command": "workbench.action.toggleDevTools"
+  },
+
+  /**
     Miscellaneous (no default bindings).
    */
 
@@ -141,14 +157,32 @@
   },
 
   {
-    "describe": "Reload window",
-    "key": "cmd+r",
-    "command": "workbench.action.reloadWindow"
+    "desribe": "Open keyboard shortcuts",
+    "key": "cmd+g cmd+s",
+    "command": "workbench.action.openGlobalKeybindingsFile"
   },
 
   {
-    "describe": "Toggle developer tools",
-    "key": "cmd+alt+i",
-    "command": "workbench.action.toggleDevTools"
+    "describe": "Inspect Editor Tokens and Scopes",
+    "key": "cmd+g i",
+    "command": "editor.action.inspectTMScopes"
+  },
+
+  {
+    "desctibe": "Rename current file",
+    "key": "cmd+g y",
+    "command": "fileutils.renameFile"
+  },
+
+  {
+    "describe": "Save all files in editor group",
+    "key": "cmd+g s",
+    "command": "workbench.files.action.saveAllInGroup"
+  },
+
+  {
+    "describe": "Open Source Control",
+    "key": "cmd+shift+g",
+    "command": "workbench.view.scm"
   }
 ]

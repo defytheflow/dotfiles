@@ -6,6 +6,6 @@
 
   "@include": {
     "prefix": "in",
-    "body": ["@include mixins.$0"]
+    "body": ["@include $0"]
   }
 }
