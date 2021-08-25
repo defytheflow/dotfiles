@@ -1,44 +1,46 @@
 {
+  //* General.
   "window.zoomLevel": -1,
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "none",
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
 
-  /** Zen mode. */
+  //* Zen mode.
   "zenMode.fullScreen": false,
   "zenMode.centerLayout": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
-  // "editor.renderIndentGuides": false,
+  //// "editor.renderIndentGuides": false,
 
-  /** Tree view . */
+  //* Tree view.
   "workbench.tree.renderIndentGuides": "none",
 
-  /** Editors. */
+  //* Editors.
   "explorer.openEditors.visible": 0,
   "workbench.editor.enablePreview": false,
   "workbench.sash.size": 10,
 
-  /** Scrolling. */
+  //* Scrolling.
   "editor.smoothScrolling": true,
   "workbench.list.smoothScrolling": true,
 
-  /** Tabs. */
-  // "workbench.editor.highlightModifiedTabs": true,
+  //* Tabs.
+  //// "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.tabCloseButton": "right",
-  // "workbench.editor.tabSizing": "shrink",
+  //// "workbench.editor.tabSizing": "shrink",
   "workbench.editor.wrapTabs": true,
 
-  /** Panel/Sidebar. */
+  //* Panel/Sidebar/ActivityBar.
   "workbench.panel.defaultLocation": "bottom",
   "workbench.sideBar.location": "right",
+  "workbench.activityBar.visible": false,
 
-  /** Minimap. */
+  //* Minimap.
   "editor.minimap.renderCharacters": false,
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
 
-  /** Autoformatting. */
+  //* Autoformatting.
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
@@ -48,48 +50,48 @@
   "editor.formatOnType": true,
   "files.trimTrailingWhitespace": true,
 
-  /** Autocomplete. */
+  //* Autocomplete.
   "editor.suggest.insertMode": "replace",
   "editor.tabCompletion": "on",
   "editor.wordBasedSuggestions": false,
   "editor.inlineSuggest.enabled": true,
 
-  /** Cursor. */
+  //* Cursor.
   "editor.cursorBlinking": "solid",
   "editor.cursorSmoothCaretAnimation": true,
   "editor.cursorWidth": 3,
-  // "editor.cursorSurroundingLines": 10,
+  //// "editor.cursorSurroundingLines": 10,
 
-  /** Font. */
+  //* Font.
   "editor.codeLensFontFamily": "MonoLisa, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontFamily": "MonoLisa, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
   "editor.fontSize": 14,
 
-  /** Indentation. */
+  //* Indentation.
   "editor.detectIndentation": true,
   "editor.tabSize": 2,
 
-  /** Whitespace. */
+  //* Whitespace.
   "editor.insertSpaces": true,
   "editor.renderWhitespace": "boundary",
   "editor.renderControlCharacters": true,
   "files.eol": "\n",
 
-  /** Lines. */
+  //* Lines.
   "editor.lineHeight": 24,
   "editor.lineNumbers": "relative",
   "editor.rulers": [90],
   "editor.renderLineHighlight": "line",
 
-  /** Git. */
+  //* Git.
   "scm.diffDecorationsGutterWidth": 5,
   "diffEditor.renderIndicators": false,
   "diffEditor.renderSideBySide": false,
   "git.terminalAuthentication": false,
   "git.untrackedChanges": "separate",
 
-  /** Search. */
+  //* Search.
   "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
   "search.sortOrder": "countDescending",
   "search.exclude": {
@@ -99,13 +101,13 @@
     "**/package-lock.json": true
   },
 
-  /** Terminal. */
+  //* Terminal.
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
 
-  /** Colortheme/Icontheme. */
+  //* Colortheme/Icontheme.
   "workbench.colorTheme": "Night Owl (No Italics)",
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
@@ -113,7 +115,7 @@
 
     "[Night Owl (No Italics)]": {
       "editorCursor.foreground": "#DC8CFF",
-      "statusBar.foreground": "#d6deeb",
+      "statusBar.foreground": "#D6DEEB",
 
       "activityBar.activeBorder": "#FF50FF",
       "tab.activeBorder": "#FF50FF",
@@ -128,20 +130,57 @@
     }
   },
 
-  // "editor.tokenColorCustomizations": {
-  //   "[Night Owl (No Italics)]": {
-  //     "textMateRules": [
-  //       {
-  //         // "scope": "variable.other.object.tsx",
-  //         "settings": {
-  //           "foreground": "#c5e478"
-  //         }
-  //       }
-  //     ]
-  //   }
-  // },
+  "editor.tokenColorCustomizations": {
+    "[Night Owl (No Italics)]": {
+      "textMateRules": [
+      //// Colors like in https://github.com/haishanh/night-owl.vim
+      //// {
+      ////   "scope": [
+      ////     "entity.name.type.interface.tsx", // interface name.
+      ////     "meta.class.tsx meta.definition.method.tsx entity.name.function.tsx", // class method name.
+      ////     "meta.definition.function.tsx entity.name.function.tsx", // function name.
+      ////     "entity.name.type.alias.tsx" // type name.
+      ////     // "meta.function-call.tsx variable.other.object.tsx "
+      ////   ],
+      ////   "settings": {
+      ////     "foreground": "#7FDBCA"
+      ////   }
+      //// },
+      //// {
+      ////   "scope": [
+      ////     "storage.type.interface.tsx", // `interface`.
+      ////     "storage.type.type.tsx", // '`type'.
+      ////     "meta.interface.tsx storage.modifier.tsx", // `extends`.
+      ////     "storage.type.function.tsx", // `function`.
+      ////     "storage.type.class.tsx", // `class`.
+      ////     "storage.modifier.async.tsx" //? `async`.
+      ////   ],
+      ////   "settings": {
+      ////     "foreground": "#82AAFF"
+      ////   }
+      //// },
+      //// {
+      ////   "scope": ["variable.language.this.tsx"], // `this`.
+      ////   "settings": {
+      ////     "foreground": "#C5E478"
+      ////   }
+      //// }
+      //// {
+      ////   "scope": [
+      ////     "keyword.control.import.tsx",
+      ////     "keyword.control.as.tsx",
+      ////     "keyword.control.from.tsx",
+      ////     "keyword.control.export.tsx"
+      ////   ],
+      ////   "settings": {
+      ////     "foreground": "#e99413"
+      ////   }
+      //// }
+      ]
+    }
+  },
 
-  /** Files. */
+  //* Files.
   "files.defaultLanguage": "${activeEditorLanguage}",
   "files.hotExit": "onExit",
   "files.associations": {
@@ -163,15 +202,15 @@
     "*.ipynb": "jupyter-notebook"
   },
 
-  /** Extensions. */
+  //* Extensions.
   "extensions.closeExtensionDetailsOnViewChange": true,
 
-  /** emmet. */
+  //* emmet.
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
 
-  /** Python. */
+  //* Python.
   "[python]": {
     "editor.defaultFormatter": "ms-python.python",
     "editor.tabSize": 4
@@ -180,20 +219,20 @@
   "python.formatting.yapfArgs": ["--exclude=*/migrations/*"],
   "python.linting.enabled": true,
   "python.linting.mypyEnabled": true,
-  // "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
+  //// "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
   "python.linting.flake8Enabled": true,
   "python.linting.pydocstyleEnabled": false,
   "python.linting.pylintEnabled": false,
   "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
 
-  /** Typescript. */
+  //* Typescript.
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
 
-  /** Vim. */
-  "vim.leader": "\\",
+  //* Vim.
+  "vim.leader": " ",
   "vim.textwidth": 90,
-  // "vim.foldfix": true, // makes jumping with <number>[jk] laggy.
+  //// "vim.foldfix": true, // makes jumping with <number>[jk] laggy.
 
   "vim.enableNeovim": true,
   "vim.neovimPath": "/opt/homebrew/bin/nvim",
@@ -227,16 +266,16 @@
     {
       "before": ["<"],
       "commands": ["editor.action.outdentLines"]
+    },
+    //// Visual J joins the highlighted lines, so...
+    {
+      "before": ["J"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.moveLinesUpAction"]
     }
-    // Visual J joins the highlighted lines, so...
-    // {
-    //   "before": ["J"],
-    //   "commands": ["editor.action.moveLinesDownAction"]
-    // },
-    // {
-    //   "before": ["K"],
-    //   "commands": ["editor.action.moveLinesUpAction"]
-    // }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -251,23 +290,53 @@
       "before": ["n"],
       "after": ["n", "z", "z"]
     },
+
+    //// {
+    ////   "before": ["<Enter>"],
+    ////   "commands": [":nohl"]
+    //// },
+
+    //* Ctrl.
+    //// {
+    ////   "before": ["<C-l>"],
+    ////   "commands": [":nohl"]
+    //// },
+
+    //* <leader>.
     {
-      "before": ["<Enter>"],
+      "before": ["<leader>", "a", "a"],
+      "commands": ["alternate.alternateFile"]
+    },
+    {
+      "before": ["<leader>", "a", "v"],
+      "commands": ["alternate.alternateFileInSplit"]
+    },
+    {
+      "before": ["<leader>", "/"],
       "commands": [":nohl"]
     },
     {
-      "before": ["<C-l>"],
-      "commands": [":nohl"]
+      "describe": "Open command palette",
+      "before": ["<leader>", "p"],
+      "commands": ["workbench.action.showCommands"]
     },
-    // {
-    //   "before": ["<leader>", "<leader>"],
-    //   "after": ["<C-^>"]
-    // },
+    {
+      "describe": "Go to symbol in file",
+      "before": ["<leader>", "t"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    //// {
+    ////   "before": ["<leader>", "<leader>"],
+    ////   "after": ["<C-^>"]
+    //// },
+
+    //* g.
     {
       "before": ["g", "D"],
       "commands": ["editor.action.revealDefinitionAside"]
     },
     {
+      "describe": "Rename symbol",
       "before": ["g", "n"],
       "commands": ["editor.action.rename"]
     },
@@ -275,6 +344,8 @@
       "before": ["g", "s"],
       "commands": ["references-view.find"]
     },
+
+    //* [].
     {
       "before": ["]", "<space>"],
       "commands": ["editor.action.insertLineAfter"]
@@ -309,16 +380,18 @@
     }
   ],
 
-  /** Prettier. */
+  //* Prettier.
   "prettier.jsxSingleQuote": true,
   "prettier.printWidth": 90,
   "prettier.singleQuote": true,
 
-  /** Tabnine. */
+  //* Tabnine.
   "tabnine.experimentalAutoImports": true,
 
-  /** Color Highlight. */
+  //* Color Highlight.
   "color-highlight.languages": [
+    "json",
+    "jsonc",
     "javascript",
     "javascriptreact",
     "typescript",
@@ -327,9 +400,9 @@
   "color-highlight.markerType": "dot-before",
   "color-highlight.markRuler": false,
 
-  /** Todo tree. */
-  "todo-tree.regex.regexCaseSensitive": false,
-  "todo-tree.general.tags": ["TODO", "NOTE", "HACK", "FIXME", "BUG", "WHAT"],
+  //* Todo tree.
+  "todo-tree.regex.regexCaseSensitive": true,
+  "todo-tree.general.tags": ["TODO", "NOTE", "HACK", "FIXME", "BUG"],
   "todo-tree.highlights.customHighlight": {
     "TODO": {
       "foreground": "#66ffa6",
@@ -348,30 +421,67 @@
     },
     "FIXME": {
       "foreground": "peachpuff",
-      "gutterIcon": true
+      "gutterIcon": true,
+      "icon": "flame"
     },
     "BUG": {
       "foreground": "#FF5874",
       "gutterIcon": true,
       "icon": "flame"
-    },
-    "WHAT": {
-      "foreground": "grey",
-      "gutterIcon": true,
-      "icon": "unverified"
     }
   },
 
-  /** Highlight matching tag. */
+  //* Better comments.
+  "better-comments.highlightPlainText": false,
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "//",
+      "color": "#474747",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    }
+  ],
+
+  //* Highlight matching tag.
   "highlight-matching-tag.highlightSelfClosing": true,
   "highlight-matching-tag.styles": {
     "opening": {
       "name": { "underline": "gold" }
-      // "name": { "underline": "#DC8CFF" }
+      //// "name": { "underline": "#DC8CFF" }
     }
   },
 
-  /** Code spell. */
+  //* Code spell.
   "cSpell.ignoreRegExpList": [
     "asgi",
     "dotenv",
@@ -389,7 +499,7 @@
     "ipdb"
   ],
 
-  /** Garbage. */
+  //* Garbage.
   "redhat.telemetry.enabled": false,
   "yaml.schemas": {
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
