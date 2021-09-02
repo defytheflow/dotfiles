@@ -1,17 +1,51 @@
 {
+  //* function.
   "function": {
     "prefix": ["fn"],
     "body": ["function $1($2) {", "  $3", "}"]
   },
 
+  "export function": {
+    "prefix": ["efn"],
+    "body": ["export function $1($2) {", "  $3", "}"]
+  },
+
+  //* interface.
   "interface": {
     "prefix": ["in"],
     "body": ["interface $1 {", "  $2", "}"]
   },
 
+  "export interface": {
+    "prefix": ["ein"],
+    "body": ["export interface $1 {", "  $2", "}"]
+  },
+
+  "export const": {
+    "prefix": ["ec"],
+    "body": ["export const $1"],
+  },
+
+  "export enum" : {
+    "prefix": ["ee"],
+    "body": ["export enum $1 {", "  $2", "}"]
+  },
+
+  //* prettier
   "prettier ignore": {
-    "prefix": ["ig"],
+    "prefix": ["pig"],
     "body": ["// prettier-ignore"]
+  },
+
+  //* eslint.
+  "eslint disable line": {
+    "prefix": ["edl"],
+    "body": ["// eslint-disable-line $1"]
+  },
+
+  "eslint disable next line": {
+    "prefix": ["ednl"],
+    "body": ["// eslint-disable-next-line $1"]
   },
 
   "eslint disable any": {
@@ -19,19 +53,20 @@
     "body": ["// eslint-disable-next-line @typescript-eslint/no-explicit-any"]
   },
 
-  "eslint disable": {
-    "prefix": ["dis"],
-    "body": ["// eslint-disable-next-line $1"]
+  //* react.
+  "React.useEffect": {
+    "prefix": ["ef"],
+    "body": ["React.useEffect(() => {", "  $1", "}, [$2]);"]
+  },
+
+  "React.useRef": {
+    "prefix": ["ref"],
+    "body": ["const $1Ref = React.useRef<${2:HTMLDivElement}>(null);"]
   },
 
   "JSON.stringify": {
     "prefix": ["js"],
     "body": ["console.log($1, JSON.stringify($2, null, 2))"]
-  },
-
-  "React.useEffect": {
-    "prefix": ["ue"],
-    "body": ["React.useEffect(() => {", "  $1", "}, [$2]);"]
   },
 
   "screen debug": {

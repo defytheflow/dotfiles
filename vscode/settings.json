@@ -1,6 +1,4 @@
 {
-  //* General.
-  "window.zoomLevel": -1,
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "none",
   "editor.linkedEditing": true,
@@ -33,16 +31,14 @@
 
   //* Panel/Sidebar/ActivityBar.
   "workbench.panel.defaultLocation": "bottom",
-  "workbench.sideBar.location": "right",
-  "workbench.activityBar.visible": false,
 
   //* Minimap.
   "editor.minimap.renderCharacters": false,
-  "editor.minimap.enabled": false,
 
   //* Autoformatting.
   "editor.codeActionsOnSave": {
     "source.fixAll": true
+    //// "source.organizeImports": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
@@ -112,15 +108,12 @@
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
     "editor.lineHighlightBackground": "#333",
-
     "[Night Owl (No Italics)]": {
       "editorCursor.foreground": "#DC8CFF",
       "statusBar.foreground": "#D6DEEB",
-
       "activityBar.activeBorder": "#FF50FF",
       "tab.activeBorder": "#FF50FF",
       "panelTitle.activeBorder": "#FF50FF",
-
       "activityBar.background": "#000C1D",
       "activityBar.border": "#102a44",
       "editorGroup.border": "#102a44",
@@ -133,49 +126,49 @@
   "editor.tokenColorCustomizations": {
     "[Night Owl (No Italics)]": {
       "textMateRules": [
-      //// Colors like in https://github.com/haishanh/night-owl.vim
-      //// {
-      ////   "scope": [
-      ////     "entity.name.type.interface.tsx", // interface name.
-      ////     "meta.class.tsx meta.definition.method.tsx entity.name.function.tsx", // class method name.
-      ////     "meta.definition.function.tsx entity.name.function.tsx", // function name.
-      ////     "entity.name.type.alias.tsx" // type name.
-      ////     // "meta.function-call.tsx variable.other.object.tsx "
-      ////   ],
-      ////   "settings": {
-      ////     "foreground": "#7FDBCA"
-      ////   }
-      //// },
-      //// {
-      ////   "scope": [
-      ////     "storage.type.interface.tsx", // `interface`.
-      ////     "storage.type.type.tsx", // '`type'.
-      ////     "meta.interface.tsx storage.modifier.tsx", // `extends`.
-      ////     "storage.type.function.tsx", // `function`.
-      ////     "storage.type.class.tsx", // `class`.
-      ////     "storage.modifier.async.tsx" //? `async`.
-      ////   ],
-      ////   "settings": {
-      ////     "foreground": "#82AAFF"
-      ////   }
-      //// },
-      //// {
-      ////   "scope": ["variable.language.this.tsx"], // `this`.
-      ////   "settings": {
-      ////     "foreground": "#C5E478"
-      ////   }
-      //// }
-      //// {
-      ////   "scope": [
-      ////     "keyword.control.import.tsx",
-      ////     "keyword.control.as.tsx",
-      ////     "keyword.control.from.tsx",
-      ////     "keyword.control.export.tsx"
-      ////   ],
-      ////   "settings": {
-      ////     "foreground": "#e99413"
-      ////   }
-      //// }
+        //// Colors like in https://github.com/haishanh/night-owl.vim
+        //// {
+        ////   "scope": [
+        ////     "entity.name.type.interface.tsx", // interface name.
+        ////     "meta.class.tsx meta.definition.method.tsx entity.name.function.tsx", // class method name.
+        ////     "meta.definition.function.tsx entity.name.function.tsx", // function name.
+        ////     "entity.name.type.alias.tsx" // type name.
+        ////     // "meta.function-call.tsx variable.other.object.tsx "
+        ////   ],
+        ////   "settings": {
+        ////     "foreground": "#7FDBCA"
+        ////   }
+        //// },
+        //// {
+        ////   "scope": [
+        ////     "storage.type.interface.tsx", // `interface`.
+        ////     "storage.type.type.tsx", // '`type'.
+        ////     "meta.interface.tsx storage.modifier.tsx", // `extends`.
+        ////     "storage.type.function.tsx", // `function`.
+        ////     "storage.type.class.tsx", // `class`.
+        ////     "storage.modifier.async.tsx" //? `async`.
+        ////   ],
+        ////   "settings": {
+        ////     "foreground": "#82AAFF"
+        ////   }
+        //// },
+        //// {
+        ////   "scope": ["variable.language.this.tsx"], // `this`.
+        ////   "settings": {
+        ////     "foreground": "#C5E478"
+        ////   }
+        //// }
+        //// {
+        ////   "scope": [
+        ////     "keyword.control.import.tsx",
+        ////     "keyword.control.as.tsx",
+        ////     "keyword.control.from.tsx",
+        ////     "keyword.control.export.tsx"
+        ////   ],
+        ////   "settings": {
+        ////     "foreground": "#e99413"
+        ////   }
+        //// }
       ]
     }
   },
@@ -230,10 +223,11 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
 
   //* Vim.
-  "vim.leader": " ",
+  "vim.leader": "\\",
   "vim.textwidth": 90,
   //// "vim.foldfix": true, // makes jumping with <number>[jk] laggy.
 
+  // neovim.
   "vim.enableNeovim": true,
   "vim.neovimPath": "/opt/homebrew/bin/nvim",
 
@@ -242,7 +236,7 @@
   "vim.showMarksInGutter": true,
 
   // copying.
-  "vim.useSystemClipboard": true,
+  "vim.useSystemClipboard": false,
   "vim.highlightedyank.enable": true,
 
   // search.
@@ -266,15 +260,6 @@
     {
       "before": ["<"],
       "commands": ["editor.action.outdentLines"]
-    },
-    //// Visual J joins the highlighted lines, so...
-    {
-      "before": ["J"],
-      "commands": ["editor.action.moveLinesDownAction"]
-    },
-    {
-      "before": ["K"],
-      "commands": ["editor.action.moveLinesUpAction"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -290,16 +275,70 @@
       "before": ["n"],
       "after": ["n", "z", "z"]
     },
+    {
+      "before": ["<C-l>"],
+      "commands": [":nohl"]
+    },
 
     //// {
     ////   "before": ["<Enter>"],
     ////   "commands": [":nohl"]
     //// },
 
-    //* Ctrl.
+    //* <C-w>
+    {
+      "before": ["<C-w>", "H"],
+      "commands": ["workbench.action.moveActiveEditorGroupLeft"]
+    },
+    {
+      "before": ["<C-w>", "J"],
+      "commands": ["workbench.action.moveActiveEditorGroupDown"]
+    },
+    {
+      "before": ["<C-w>", "K"],
+      "commands": ["workbench.action.moveActiveEditorGroupUp"]
+    },
+    {
+      "before": ["<C-w>", "L"],
+      "commands": ["workbench.action.moveActiveEditorGroupRight"]
+    },
+    {
+      "before": ["<C-w>", ">"],
+      "commands": ["workbench.action.increaseViewWidth"]
+    },
+    {
+      "before": ["<C-w>", "<"],
+      "commands": ["workbench.action.decreaseViewWidth"]
+    },
+    {
+      "before": ["<C-w>", "+"],
+      "commands": ["workbench.action.increaseViewHeight"]
+    },
+    {
+      "before": ["<C-w>", "-"],
+      "commands": ["workbench.action.decreaseViewHeight"]
+    },
+    {
+      "before": ["<C-w>", "_"],
+      "commands": ["workbench.action.maximizeEditor"]
+    },
+
+    //// These block `<C-w> + <`.
     //// {
-    ////   "before": ["<C-l>"],
-    ////   "commands": [":nohl"]
+    ////   "before": ["<C-w>", "<C-h>"],
+    ////   "commands": ["workbench.action.moveEditorToLeftGroup"]
+    //// },
+    //// {
+    ////   "before": ["<C-w>", "<C-j>"],
+    ////   "commands": ["workbench.action.moveEditorToBelowGroup"]
+    //// },
+    //// {
+    ////   "before": ["<C-w>", "<C-l>"],
+    ////   "commands": ["workbench.action.moveEditorToRightGroup"]
+    //// },
+    //// {
+    ////   "before": ["<C-w>", "<C-k>"],
+    ////   "commands": ["workbench.action.moveEditorToAboveGroup"]
     //// },
 
     //* <leader>.
@@ -311,20 +350,7 @@
       "before": ["<leader>", "a", "v"],
       "commands": ["alternate.alternateFileInSplit"]
     },
-    {
-      "before": ["<leader>", "/"],
-      "commands": [":nohl"]
-    },
-    {
-      "describe": "Open command palette",
-      "before": ["<leader>", "p"],
-      "commands": ["workbench.action.showCommands"]
-    },
-    {
-      "describe": "Go to symbol in file",
-      "before": ["<leader>", "t"],
-      "commands": ["workbench.action.gotoSymbol"]
-    },
+
     //// {
     ////   "before": ["<leader>", "<leader>"],
     ////   "after": ["<C-^>"]
@@ -336,16 +362,23 @@
       "commands": ["editor.action.revealDefinitionAside"]
     },
     {
-      "describe": "Rename symbol",
+      "before": ["g", "H"],
+      "commands": ["editor.action.referenceSearch.trigger"]
+    },
+    {
       "before": ["g", "n"],
       "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["g", "o"],
+      "commands": ["workbench.action.gotoSymbol"]
     },
     {
       "before": ["g", "s"],
       "commands": ["references-view.find"]
     },
 
-    //* [].
+    //* unimpaired.
     {
       "before": ["]", "<space>"],
       "commands": ["editor.action.insertLineAfter"]
@@ -356,26 +389,40 @@
     },
     {
       "before": ["]", "b"],
-      "after": ["g", "t"]
+      "commands": ["workbench.action.nextEditor"]
     },
     {
       "before": ["[", "b"],
-      "after": ["g", "T"]
-    },
-    {
-      "before": ["[", "c"],
-      "commands": ["workbench.action.editor.nextChange"]
+      "commands": ["workbench.action.previousEditor"]
     },
     {
       "before": ["]", "c"],
-      "commands": ["workbench.action.editor.previousChange"]
+      "commands": [
+        "workbench.action.compareEditor.nextChange",
+        "workbench.action.editor.nextChange"
+      ]
     },
     {
-      "before": ["[", "g"],
-      "commands": ["editor.action.marker.next", "closeMarkersNavigation"]
+      "before": ["[", "c"],
+      "commands": [
+        "workbench.action.compareEditor.previousChange",
+        "workbench.action.editor.previousChange"
+      ]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.moveLinesUpAction"]
     },
     {
       "before": ["]", "g"],
+      "commands": ["editor.action.marker.next", "closeMarkersNavigation"]
+    },
+    {
+      "before": ["[", "g"],
       "commands": ["editor.action.marker.prev", "closeMarkersNavigation"]
     }
   ],
@@ -436,39 +483,25 @@
   "better-comments.tags": [
     {
       "tag": "!",
-      "color": "#FF2D00",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
+      "color": "#FF2D00"
     },
     {
       "tag": "?",
-      "color": "#3498DB",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
+      "color": "#3498DB"
     },
     {
       "tag": "*",
-      "color": "#98C379",
-      "strikethrough": false,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
+      "color": "#98C379"
     },
     {
       "tag": "//",
       "color": "#474747",
-      "strikethrough": true,
-      "underline": false,
-      "backgroundColor": "transparent",
-      "bold": false,
-      "italic": false
+      "strikethrough": true
+    },
+    {
+      "tag": "#",
+      "color": "#474747",
+      "strikethrough": true
     }
   ],
 
@@ -477,7 +510,6 @@
   "highlight-matching-tag.styles": {
     "opening": {
       "name": { "underline": "gold" }
-      //// "name": { "underline": "#DC8CFF" }
     }
   },
 
@@ -503,5 +535,10 @@
   "redhat.telemetry.enabled": false,
   "yaml.schemas": {
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  }
+  },
+
+  //* Toggles.
+  "editor.minimap.enabled": false,
+  "window.zoomLevel": -1,
+  "workbench.sideBar.location": "right"
 }

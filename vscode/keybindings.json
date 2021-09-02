@@ -1,6 +1,6 @@
 [
   /**
-    Switch focus between editor and panel with Ctrl+' (no default bindings).
+   ** Switch focus between editor and panel with `ctrl+'` (no default bindings).
    */
 
   {
@@ -17,8 +17,8 @@
   },
 
   /**
-   Cycle through search results with Ctrl+n/Ctrl+p (default bindings use f4 and shift + f4).
-   */
+   ** Cycle through search results with `ctrl+n` and `ctrl+p` (default bindings use `f4` and `shift+f4`).
+   **/
 
   {
     "key": "ctrl+n",
@@ -33,8 +33,8 @@
   },
 
   /**
-    Cycle through autocomplete options with Ctrl+n/Ctrl+p (default bindings use arrow keys).
-   */
+   ** Cycle through autocomplete options with `ctrl+n` and `ctrl+p` (default bindings use arrow keys).
+   **/
 
   {
     "key": "ctrl+n",
@@ -49,60 +49,8 @@
   },
 
   /**
-    Moving editors with Cmd+k + h/j/k/l (default bindings use Cmd+k + arrow keys).
-   */
-
-  {
-    "key": "cmd+k h",
-    "command": "workbench.action.moveActiveEditorGroupLeft"
-  },
-
-  {
-    "key": "cmd+k j",
-    "command": "workbench.action.moveActiveEditorGroupDown"
-  },
-
-  {
-    "key": "cmd+k k",
-    "command": "workbench.action.moveActiveEditorGroupUp"
-  },
-
-  {
-    "key": "cmd+k l",
-    "command": "workbench.action.moveActiveEditorGroupRight"
-  },
-
-  /**
-    Cycle through terminals with Ctrl+w + h/l (default bindings use Cmd+Alt + arrow keys).
-   */
-
-  //// {
-  ////   "key": "ctrl+w h",
-  ////   "command": "workbench.action.terminal.focusPreviousPane",
-  ////   "when": "terminalFocus && terminalProcessSupported"
-  //// },
-
-  //// {
-  ////   "key": "ctrl+w j",
-  ////   "command": "workbench.action.terminal.focusNextPane",
-  ////   "when": "terminalFocus && terminalProcessSupported"
-  //// },
-
-  //// {
-  ////   "key": "ctrl+w k",
-  ////   "command": "workbench.action.terminal.focusPreviousPane",
-  ////   "when": "terminalFocus && terminalProcessSupported"
-  //// },
-
-  //// {
-  ////   "key": "ctrl+w l",
-  ////   "command": "workbench.action.terminal.focusNextPane",
-  ////   "when": "terminalFocus && terminalProcessSupported"
-  //// },
-
-  /**
-    Overwrite vscode `isDevelopment` mode.
-   */
+   ** Overwrite vscode `isDevelopment` mode.
+   **/
 
   {
     "describe": "Reload window",
@@ -117,25 +65,23 @@
   },
 
   /**
-    Miscellaneous (no default bindings).
-   */
+   ** Open source control view (default binding is `ctrl+shift+g`).
+   **/
 
   {
-    "describe": "Center layout",
-    "key": "cmd+g z",
-    "command": "workbench.action.toggleCenteredLayout"
+    "describe": "Open Source Control",
+    "key": "cmd+shift+g",
+    "command": "workbench.view.scm"
   },
 
-  {
-    "describe": "Toggle minimap",
-    "key": "cmd+g m",
-    "command": "editor.action.toggleMinimap"
-  },
+  /**
+   ** Miscellaneous `cmd+g` bidings (most of them have no default bindings).
+   **/
 
   {
-    "describe": "Open search editor",
-    "key": "cmd+g h",
-    "command": "search.action.openNewEditorToSide"
+    "describe": "Toggle activity bar visibility",
+    "key": "cmd+g a",
+    "command": "workbench.action.toggleActivityBarVisibility"
   },
 
   {
@@ -145,9 +91,9 @@
   },
 
   {
-    "describe": "Toggle activity bar visibility",
-    "key": "cmd+g a",
-    "command": "workbench.action.toggleActivityBarVisibility"
+    "desctibe": "Delete current file",
+    "key": "cmd+g d",
+    "command": "fileutils.removeFile"
   },
 
   {
@@ -157,21 +103,15 @@
   },
 
   {
-    "describe": "Open default settings (JSON)",
-    "key": "cmd+g ,",
-    "command": "workbench.action.openRawDefaultSettings"
+    "describe": "Toggle maximized panel",
+    "key": "cmd+g j",
+    "command": "workbench.action.toggleMaximizedPanel"
   },
 
   {
-    "desribe": "Open keyboard shortcuts",
-    "key": "cmd+g s",
-    "command": "workbench.action.openGlobalKeybindingsFile"
-  },
-
-  {
-    "describe": "Open workspace settings",
-    "key": "cmd+g w",
-    "command": "workbench.action.openWorkspaceSettingsFile"
+    "describe": "Open search editor",
+    "key": "cmd+g h",
+    "command": "search.action.openNewEditorToSide"
   },
 
   {
@@ -181,20 +121,97 @@
   },
 
   {
+    "describe": "Toggle minimap",
+    "key": "cmd+g m",
+    "command": "editor.action.toggleMinimap"
+  },
+
+  {
+    "describe": "Toggle problems",
+    "key": "cmd+g p",
+    "command": "workbench.actions.view.toggleProblems"
+  },
+
+  {
     "desctibe": "Rename current file",
     "key": "cmd+g r",
     "command": "fileutils.renameFile"
   },
 
   {
-    "desctibe": "Delete current file",
-    "key": "cmd+g d",
-    "command": "fileutils.removeFile"
+    "describe": "Create terminal in editor area",
+    "key": "cmd+g t",
+    "command": "workbench.action.createTerminalEditor"
+  },
+
+  //// {
+  ////   "desribe": "Toggle status bar",
+  ////   "key": "cmd+g s",
+  ////   "command": "workbench.action.toggleStatusbarVisibility"
+  //// },
+
+  {
+    "describe": "Open workspace settings",
+    "key": "cmd+g w",
+    "command": "workbench.action.openWorkspaceSettingsFile"
   },
 
   {
-    "describe": "Open Source Control",
-    "key": "cmd+shift+g",
-    "command": "workbench.view.scm"
+    "describe": "Center layout",
+    "key": "cmd+g z",
+    "command": "workbench.action.toggleCenteredLayout"
+  },
+
+  {
+    "describe": "Open user settings (JSON)",
+    "key": "cmd+g ,",
+    "command": "workbench.action.openRawDefaultSettings"
+  },
+
+  {
+    "describe": "Open user keyboard shortcuts (JSON)",
+    "key": "cmd+g cmd+s",
+    "command": "workbench.action.openGlobalKeybindingsFile"
   }
+
+  /**
+   ** Disable `cmd+w` to close windows. Learn vim's `:q` and `ctrl-w` + c.
+   **/
+
+  //// {
+  ////   "key": "cmd+w",
+  ////   "command": "-workbench.action.closeActiveEditor"
+  //// },
+  //// {
+  ////   "key": "cmd+w",
+  ////   "command": "-workbench.action.closeWindow",
+  ////   "when": "!editorIsOpen && !multipleEditorGroups"
+  //// },
+  //// {
+  ////   "key": "cmd+w",
+  ////   "command": "-workbench.action.closeGroup",
+  ////   "when": "activeEditorGroupEmpty && multipleEditorGroups"
+  //// },
+
+  /**
+   ** Disable `cmd+\` to split windows. Learn vim's `:vs` and `:sp` and `ctrl+w` + v/s.
+   **/
+
+  ////{
+  ////  "key": "cmd+\\",
+  ////  "command": "-workbench.action.splitEditor"
+  ////},
+  ////{
+  ////  "key": "cmd+k cmd+\\",
+  ////  "command": "-workbench.action.splitEditorOrthogonal"
+  ////}
+
+  /**
+   ** Disable `cmd+s` to save file. Learn vim's `:w`.
+   **/
+
+  //// {
+  ////   "key": "cmd+s",
+  ////   "command": "-workbench.action.files.save"
+  //// }
 ]

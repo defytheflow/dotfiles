@@ -128,4 +128,6 @@ fi
 #}}}
 
 # eval $(opam env)
-export PROMPT='%B%F{213}%~%f%b $ '
+export PROMPT='%B%F{140}%~%f%b $ '
+# 140 looks good with 'Night Owl' theme in vscode and vim.
+# previous color was 213.

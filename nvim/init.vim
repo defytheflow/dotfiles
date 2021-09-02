@@ -254,7 +254,7 @@ set mouse=a
 set hidden
 set number relativenumber
 set virtualedit=block " allow cursor to move where there is no text in visual block mode.
-set clipboard+=unnamedplus " use system clipboard.
+" set clipboard+=unnamedplus " use system clipboard.
 set lazyredraw " don't redraw while executing macros.
 set timeoutlen=500
 set noerrorbells visualbell t_vb=

@@ -1,4 +1,9 @@
 {
+  "type ignore": {
+    "prefix": ["tig"],
+    "body": ["# type: ignore"],
+  },
+
   "ipython debugger": {
     "prefix": ["ipdb"],
     "body": ["__import__('ipdb').set_trace()"]
@@ -12,15 +17,5 @@
   "pretty print": {
     "prefix": ["pp"],
     "body": ["__import__('pprint').pprint($1)"]
-  },
-
-  "logging info": {
-    "prefix": ["info"],
-    "body": ["__import__('logging').info($1)"]
-  },
-
-  "logging warning": {
-    "prefix": ["warn"],
-    "body": ["__import__('logging').warning($1)"]
   },
 }

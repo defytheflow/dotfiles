@@ -7,3 +7,4 @@ scriptencoding utf-8
 map <silent> <C-p> :execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files' <CR>
 nnoremap <silent> gb        :Buffers<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
+command B :Buffers<CR>
