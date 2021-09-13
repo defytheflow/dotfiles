@@ -4,18 +4,23 @@
     "body": ["# type: ignore"],
   },
 
+  "yapf disable": {
+    "prefix": "yd",
+    "body": ["# yapf: disable"]
+  },
+
   "ipython debugger": {
     "prefix": ["ipdb"],
     "body": ["__import__('ipdb').set_trace()"]
   },
 
-  "print debug": {
-    "prefix": ["pd"],
-    "body": ["print(f'${1} is {${1}}')"]
+  "print": {
+    "prefix": ["p"],
+    "body": ["print(f'{$1=}')"]
   },
 
   "pretty print": {
     "prefix": ["pp"],
     "body": ["__import__('pprint').pprint($1)"]
-  },
+  }
 }

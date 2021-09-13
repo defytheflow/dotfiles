@@ -3,13 +3,14 @@
   "workbench.startupEditor": "none",
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.inlayHints.enabled": true,
 
   //* Zen mode.
   "zenMode.fullScreen": false,
   "zenMode.centerLayout": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
-  //// "editor.renderIndentGuides": false,
 
   //* Tree view.
   "workbench.tree.renderIndentGuides": "none",
@@ -35,9 +36,10 @@
   //* Minimap.
   "editor.minimap.renderCharacters": false,
 
-  //* Autoformatting.
+  //* Formatting/Fixing.
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": true,
+    "source.addMissingImports": true
     //// "source.organizeImports": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -56,7 +58,6 @@
   "editor.cursorBlinking": "solid",
   "editor.cursorSmoothCaretAnimation": true,
   "editor.cursorWidth": 3,
-  //// "editor.cursorSurroundingLines": 10,
 
   //* Font.
   "editor.codeLensFontFamily": "MonoLisa, Menlo, Monaco, 'Courier New', monospace",
@@ -107,13 +108,15 @@
   "workbench.colorTheme": "Night Owl (No Italics)",
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
-    "editor.lineHighlightBackground": "#333",
     "[Night Owl (No Italics)]": {
+      // Custom.
+      "editor.lineHighlightBackground": "#333",
       "editorCursor.foreground": "#DC8CFF",
       "statusBar.foreground": "#D6DEEB",
       "activityBar.activeBorder": "#FF50FF",
       "tab.activeBorder": "#FF50FF",
       "panelTitle.activeBorder": "#FF50FF",
+      // Night Owl.
       "activityBar.background": "#000C1D",
       "activityBar.border": "#102a44",
       "editorGroup.border": "#102a44",
@@ -185,6 +188,7 @@
   },
   "files.exclude": {
     "**/.git/**": true,
+    "**/node_modules/**": true,
     "**/.venv/**": false,
     "**/*cache*/**": true,
     "**/*coverage*/**": true,
@@ -219,13 +223,25 @@
   "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
 
   //* Typescript.
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.referencesCodeLens.enabled": true,
+  "typescript.implementationsCodeLens.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "none",
+  "typescript.inlayHints.variableTypes.enabled": false,
+  "typescript.inlayHints.parameterTypes.enabled": false,
+
+  //* Shell.
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
 
   //* Vim.
-  "vim.leader": "\\",
+  "vim.leader": " ",
   "vim.textwidth": 90,
-  //// "vim.foldfix": true, // makes jumping with <number>[jk] laggy.
 
   // neovim.
   "vim.enableNeovim": true,
@@ -350,7 +366,6 @@
       "before": ["<leader>", "a", "v"],
       "commands": ["alternate.alternateFileInSplit"]
     },
-
     //// {
     ////   "before": ["<leader>", "<leader>"],
     ////   "after": ["<C-^>"]
@@ -362,7 +377,7 @@
       "commands": ["editor.action.revealDefinitionAside"]
     },
     {
-      "before": ["g", "H"],
+      "before": ["g", "R"],
       "commands": ["editor.action.referenceSearch.trigger"]
     },
     {
@@ -372,6 +387,10 @@
     {
       "before": ["g", "o"],
       "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["g", "p"],
+      "commands": ["editor.action.peekDefinition"]
     },
     {
       "before": ["g", "s"],
@@ -424,6 +443,14 @@
     {
       "before": ["[", "g"],
       "commands": ["editor.action.marker.prev", "closeMarkersNavigation"]
+    },
+    {
+      "before": ["]", "s"],
+      "after": ["a", "<space>", "<esc>"]
+    },
+    {
+      "before": ["[", "s"],
+      "after": ["i", "<space>", "<esc>"]
     }
   ],
 
@@ -513,6 +540,26 @@
     }
   },
 
+  //* Settings Cycler.
+  "settings.cycle": [
+    {
+      "id": "inlayHints",
+      "overrideWorkspaceSettings": false,
+      "values": [
+        {
+          "typescript.inlayHints.parameterNames.enabled": "literals",
+          "typescript.inlayHints.variableTypes.enabled": true,
+          "typescript.inlayHints.parameterTypes.enabled": true
+        },
+        {
+          "typescript.inlayHints.parameterNames.enabled": "none",
+          "typescript.inlayHints.variableTypes.enabled": false,
+          "typescript.inlayHints.parameterTypes.enabled": false
+        }
+      ]
+    }
+  ],
+
   //* Code spell.
   "cSpell.ignoreRegExpList": [
     "asgi",
@@ -536,9 +583,6 @@
   "yaml.schemas": {
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-
-  //* Toggles.
-  "editor.minimap.enabled": false,
   "window.zoomLevel": -1,
-  "workbench.sideBar.location": "right"
+  "editor.minimap.enabled": false
 }

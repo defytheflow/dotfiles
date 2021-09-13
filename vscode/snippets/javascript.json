@@ -31,6 +31,12 @@
     "body": ["export enum $1 {", "  $2", "}"]
   },
 
+  //* console.
+  "console.dir": {
+    "prefix": ["dir"],
+    "body": ["console.dir($1);"]
+  },
+
   //* prettier
   "prettier ignore": {
     "prefix": ["pig"],
@@ -55,12 +61,12 @@
 
   //* react.
   "React.useEffect": {
-    "prefix": ["ef"],
+    "prefix": ["ue"],
     "body": ["React.useEffect(() => {", "  $1", "}, [$2]);"]
   },
 
   "React.useRef": {
-    "prefix": ["ref"],
+    "prefix": ["ur"],
     "body": ["const $1Ref = React.useRef<${2:HTMLDivElement}>(null);"]
   },
 

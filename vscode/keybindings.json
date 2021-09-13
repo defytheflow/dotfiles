@@ -103,15 +103,21 @@
   },
 
   {
+    "describe": "Toggle full screen",
+    "key": "cmd+g f",
+    "command": "workbench.action.toggleFullScreen"
+  },
+
+  {
     "describe": "Toggle maximized panel",
     "key": "cmd+g j",
     "command": "workbench.action.toggleMaximizedPanel"
   },
 
   {
-    "describe": "Open search editor",
+    "describe": "Toggle inlay hints",
     "key": "cmd+g h",
-    "command": "search.action.openNewEditorToSide"
+    "command": "settings.cycle.inlayHints"
   },
 
   {
@@ -139,16 +145,16 @@
   },
 
   {
+    "describe": "Configure User Snippets",
+    "key": "cmd+g s",
+    "command": "workbench.action.openSnippets"
+  },
+
+  {
     "describe": "Create terminal in editor area",
     "key": "cmd+g t",
     "command": "workbench.action.createTerminalEditor"
   },
-
-  //// {
-  ////   "desribe": "Toggle status bar",
-  ////   "key": "cmd+g s",
-  ////   "command": "workbench.action.toggleStatusbarVisibility"
-  //// },
 
   {
     "describe": "Open workspace settings",

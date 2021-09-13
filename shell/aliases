@@ -297,8 +297,8 @@ gdv() {
 }
 
 # git-log.
-alias gl='git log --graph'
-alias glg='git log --grep'
+alias gl='git log'
+alias glg='git log --graph'
 alias gll='git log --graph --oneline'
 alias gln='git log HEAD@{1}..HEAD@{0}' # show commits since last pull (new commits).
 alias gls='git log --graph --stat'
@@ -314,6 +314,8 @@ alias gmv='git mv'
 alias gp='git push'
 alias gpd='git push --delete'
 alias gpf='git push --force'
+alias gpn='git push --no-verify'
+alias gpfn='git push --force --no-verify'
 alias gpu='git push --set-upstream'
 
 # git-pull.
