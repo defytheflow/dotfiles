@@ -12,26 +12,28 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 # mine.
 export DOTFILES_HOME="${HOME}/.dotfiles"
 export WALLPAPER_HOME="${XDG_CONFIG_HOME}/wallpaper"
-(test $(uname -s) = Darwin)
-export ON_MAC="${?}"
 
 # path.
 # export PATH="${JAVA_HOME}/bin:${PATH}"
 # export PATH="${PATH}:${HOME}/.gem/ruby/2.7.0/bin"
 export PATH="${PATH}:${HOME}/.local/bin"
-command -v cargo > /dev/null && export PATH="${PATH}:${XDG_CONFIG_HOME}/cargo/bin"
-command -v go > /dev/null && export PATH="${PATH}:${HOME}/go/bin"
-command -v pyenv > /dev/null && export PATH="${PATH}:${PYENV_ROOT}/bin"
-command -v gem > /dev/null && export PATH="${PATH}:${XDG_CONFIG_HOME}/gem/bin"
+command -v cargo >/dev/null && export PATH="${PATH}:${XDG_CONFIG_HOME}/cargo/bin"
+command -v go >/dev/null && export PATH="${PATH}:${HOME}/go/bin"
+command -v pyenv >/dev/null && export PATH="${PATH}:${PYENV_ROOT}/bin"
+command -v gem >/dev/null && export PATH="${PATH}:${XDG_CONFIG_HOME}/gem/bin"
 
 # default.
 export EDITOR='nvim'
 export BROWSER='firefox'
 export PAGER='less'
-command -v alacritty > /dev/null && export TERM='alacritty'
+command -v alacritty >/dev/null && export TERM='alacritty'
 
 # brew.
-[ "${ON_MAC}" ] &&  eval "$(/opt/homebrew/bin/brew shellenv)"
+case $OSTYPE in
+darwin*)
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  ;;
+esac
 
 # cargo.
 export CARGO_HOME="${XDG_CONFIG_HOME}/cargo"

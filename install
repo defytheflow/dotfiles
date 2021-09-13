@@ -4,6 +4,9 @@
 # Created:      12.09.2020
 # Author:       Artyom Danilov (@defytheflow)
 
+(test $(uname -s) = Darwin)
+ON_MAC="${?}"
+
 relative_import() {
   . "$(dirname "${0}")/${1}"
 }

@@ -6,9 +6,9 @@ scriptencoding utf-8
 
 let g:mapleader = '\'
 
-" if filereadable('/usr/bin/python3')
-"   let g:python3_host_prog = '/usr/bin/python3'
-" endif
+if filereadable('/usr/bin/python3')
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
 
 let g:config_dir = has('nvim') ? stdpath('config') : glob('~/.vim')
 let g:cache_dir  = has('nvim') ? stdpath('cache')  : glob('~/.vim')

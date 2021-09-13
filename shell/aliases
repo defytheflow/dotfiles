@@ -4,133 +4,232 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
-alias sudo='sudo ' # Run 'sudo {alias}'
+alias sudo='sudo ' # to run 'sudo {alias}'
+alias _='sudo'
 
 alias c='code'
 alias f='file'
+alias q='exit'
 
 alias so='source'
-alias rn='ranger'
-
-alias ssh='TERM=xterm-color ssh' # 'tput: unknown terminal bug'
-alias diff='diff --side-by-side --suppress-common-lines --color=auto'
+alias cls='clear'
+alias edit="$EDITOR"
 alias grep='grep --color=auto'
-if ! [ "${ON_MAC}" ]; then
-  alias open='xdg-open'
-fi
+alias ssh='TERM=xterm-color ssh' # fix 'tput: unknown terminal bug'
 alias xrld='source ~/.xprofile'
 
-# amixer.
-alias amixer_toggle='amixer -D pulse set Master 1+ toggle'
+case $OSTYPE in
+linux*)
+  alias open='xdg-open'
+  ;;
+esac
 
 # history.
 alias h='history'
 alias history='history -E'
 
-# gdb.
-alias gdb='gdb --quiet'
-
-# tmux.
-alias mux='tmuxinator'
-
 # cd.
 alias ..='cd ..'
+alias cd..='cd ..'
 alias ...='cd ../../'
 alias ....=' cd ../../../'
 alias .....='cd ../../../../'
-alias -- -='cd -' # Type '-' to go to previous dir.
+alias -- -='cd -' # type '-' to go to previous dir.
 
 # ls.
-alias l='ls -1'
-if [ "${ON_MAC}" ]; then
+case $OSTYPE in
+darwin*)
   alias ls='ls -vhG'
-else
+  ;;
+linux*)
   alias ls='ls -vh --group-directories-first --color=auto'
-fi
-alias la='ls -A'
+  ;;
+esac
+alias l='ls -1'
+alias la='ls -AF'
 alias ll='ls -l'
 alias lal='ls -al'
+alias sl='ls'
 
-# vim
-alias vi='vim'
+# tree.
+alias t='tree'
+if command -v tree >/dev/null; then
+  alias tree="tree -C -I '.git|__pycache__|node_modules|plugged'"
+else
+  alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+fi
+
+# exa.
+if command -v exa >/dev/null; then
+  # tree.
+  alias t='exa -T --icons --git-ignore -I ".git|__pycache__|node_modules|plugged"'
+  alias ta='t --all'
+  alias tree='t --all'
+  # ls.
+  alias l='ls --oneline'
+  alias ls='exa --icons --group-directories-first'
+  alias ll='ls --long --git'
+  alias la='ls --all'
+fi
 
 # files.
 alias cp='cp -iv'
+alias copy='cp'
 alias du='du -h'
 alias md='mkdir -pv'
 alias mv='mv -iv'
-alias tc='touch'
-alias rd='rmdir'
-if [ "${ON_MAC}" ]; then
-    alias rm='rm -vi'
-else
-    alias rm='rm -vi --preserve-root'
-fi
-if ! [ "${ON_MAC}" ]; then
-  alias rmdir='rmdir -v'
-fi
-
-# java.
-alias j='java'
-alias jc='javac'
-
-# python.
-alias pip='pip3'
-alias python='python3'
-
-# pipenv.
-if command -v ipython3 > /dev/null; then
-  alias p='ipython3'
-else
-  alias p='python3'
-fi
-alias pi='pipenv install'
-alias pu='pipenv uninstall'
-alias prc='pipenv run check'
-alias prf='pipenv run fix'
-alias prl='pipenv run lint'
-alias prs='pipenv run start'
-alias prt='pipenv run test'
-alias prtc='pipenv run test --cov=src --cov-report=html'
-alias prtv='pipenv run test --verbose'
-alias prtw='pipenv run ptw'
-
-# npm.
-alias n='node'
-alias na='npm audit'
-alias ni='npm install'
-alias nl='npm link'
-alias nu='npm uninstall'
-alias nrb='npm run build'
-alias nrba='npm run build:analyze'
-alias nrc='npm run check'
-alias nrf='npm run fix'
-alias nrl='npm run lint'
-alias nrm='npm run make'
-alias nrs='npm run start'
-alias nrsl='npm run start:local'
-alias nrt='npm run test'
-alias nrtc='npm run test -- --coverage --coverageDirectory=coverage'
-alias nrtv='npm run test -- --verbose'
-alias nrtw='npm run test -- --watchAll=true'
-alias nrw='npm run watch'
-alias nrr='npm run serve'
-
-# windows.
-alias cls='clear'
-alias copy='cp'
-alias del='rm'
-alias edit='vim'
 alias move='mv'
 alias rename='mv'
+alias tc='touch'
+alias rd='rmdir'
+alias del='rm'
 
-# config.
-alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
-alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
+case $OSTYPE in
+darwin*)
+  alias rm='rm -vi'
+  ;;
+linux*)
+  alias rm='rm -vi --preserve-root'
+  alias rmdir='rmdir -v'
+  ;;
+esac
+
+# rmtrash.
+if command -v rmtrash >/dev/null; then
+  alias rm='rmtrash'
+  alias rmdir='rmdirtrash'
+fi
 
 # bat.
 if command -v bat >/dev/null; then
   alias cat='bat'
+fi
+
+# sqlite3.
+if command -v sqlite3 >/dev/null; then
+  alias sql='sqlite3'
+  alias sqlite='sqlite3'
+fi
+
+# gdb.
+if command -v gdb >/dev/null; then
+  alias gdb='gdb --quiet'
+else
+  alias gdb='lldb'
+fi
+
+# java.
+if command -v java >/dev/null; then
+  alias j='java'
+  alias jc='javac'
+fi
+
+# tmux.
+alias tx='tmux'
+alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
+if command -v tmuxinator >/dev/null; then
+  alias mux='tmuxinator'
+fi
+
+# ranger.
+if command -v ranger >/dev/null; then
+  alias rn='ranger'
+fi
+
+# vim.
+alias vi='vim'
+alias svim='sudo vim'
+if command -v nvim >/dev/null; then
+  alias vi='nvim'
+  alias vim='nvim'
+fi
+
+# python.
+alias p='python3'
+alias py='python3'
+alias python='python3'
+alias pip='pip3'
+if command -v ipython3 >/dev/null; then
+  alias ipy='ipython3'
+  alias ipython='ipython3'
+fi
+
+# homebrew.
+if command -v brew >/dev/null; then
+  alias bi='brew install'
+  alias bu='brew uninstall'
+  alias bl='brew list'
+  alias bs='brew search'
+fi
+
+# pipenv.
+if command -v pipenv >/dev/null; then
+  alias pi='pipenv install'
+  alias pu='pipenv uninstall'
+  # pipenv run.
+  alias pr='pipenv run'
+  alias prc='pipenv run check'
+  alias prf='pipenv run fix'
+  alias prl='pipenv run lint'
+  alias prs='pipenv run start'
+  alias prsd='pipenv run start-debug'
+  alias prt='pipenv run test'
+  alias prtc='pipenv run test --cov=src --cov-report=html'
+  alias prtv='pipenv run test --verbose'
+  alias prtw='pipenv run ptw'
+fi
+
+# npm.
+alias n='node'
+if command -v npm >/dev/null; then
+  alias nx='npx'
+  alias ni='npm install'
+  alias nid='npm install --save-dev'
+  alias nu='npm uninstall'
+  alias nud='npm update'
+  alias na='npm audit'
+  alias nl='npm link'
+  # npm run.
+  alias nr='npm run'
+  alias nrb='npm run build'
+  alias nrba='npm run build:analyze'
+  alias nrc='npm run check'
+  alias nrf='npm run fix'
+  alias nrl='npm run lint'
+  alias nrm='npm run make'
+  # npm start.
+  alias ns='npm start'
+  alias nrs='npm run start'
+  alias nrsl='npm run start:local'
+  # npm test.
+  alias nt='npm test'
+  alias nrt='npm run test'
+  alias nrtc='npm run test -- --coverage --coverageDirectory=coverage'
+  alias nrtv='npm run test -- --verbose'
+  alias nrtw='npm run test -- --watchAll=true'
+  alias nrtt='npm run type'
+  alias nrw='npm run watch'
+  alias nrr='npm run serve'
+fi
+
+# django.
+if command -v django-admin >/dev/null; then
+  alias dj='django-admin'
+  alias djch='dj check'
+  alias djdb='dj dbshell'
+  alias djdm='dj dumpdata'
+  alias djf='dj flush'
+  alias djld='dj loaddata'
+  alias djm='dj migrate'
+  alias djmm='dj makemigrations'
+  alias djr='dj runserver'
+  alias djsa='dj startapp'
+  alias djsh='dj shell_plus --quiet-load --print-sql'
+  alias djsm='dj showmigrations'
+  alias djsp='dj startproject'
+  alias djsql='dj sqlmigrate'
+  alias djsu='dj createsuperuser'
+  alias djt='dj test --keepdb --pdb --failfast --noinput -v2'
 fi
 
 # coverage.
@@ -140,48 +239,122 @@ if command -v coverage >/dev/null; then
   alias cvht='coverage html'
 fi
 
-# exa.
-if command -v exa >/dev/null; then
-  # alias t='exa -T --icons --git-ignore -I ".git|__pycache__|node_modules|plugged"'
-  alias t='exa -T --git-ignore -I ".git|__pycache__|node_modules|plugged"'
-  alias ta='t --all'
-  alias l='ls --oneline'
-  # alias ls='exa --icons --group-directories-first'
-  alias ls='exa --group-directories-first'
-  alias ll='ls --long --git'
-  alias la='ls --all'
-fi
-
 # httpie.
 if command -v http >/dev/null; then
   alias http='http --style=auto --unsorted'
 fi
 
-# ipython3.
-if command -v ipython3 >/dev/null; then
-  alias ipy='ipython3'
-  alias ipython='ipython3'
-fi
+# systemd.
+case $OSTYPE in
+linux*)
+  alias sc='systemctl'
+  alias scdr='systemctl daemon-reload'
+  alias scr='systemctl restart'
+  alias scs='systemctl start'
+  alias sce='systemctl stop'
+  ;;
+esac
 
-# nvim.
-if command -v nvim >/dev/null; then
-  alias vi='nvim'
-  alias vim='nvim'
-fi
+#  git.
+alias g='git'
 
-# rmtrash.
-if command -v rmtrash >/dev/null; then
-  alias rm='rmtrash'
-  alias rmdir='rmdirtrash'
-fi
+# git-add.
+alias ga='git add'
+alias gaa='git add --all'
+alias gap='git add --patch'
 
-# sqlite3.
-if command -v sqlite3 >/dev/null; then
-  alias sqlite='sqlite3'
-  alias sql='sqlite3'
-fi
+# git-branch.
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gbm='git branch -m'
 
-# tree.
-if command -v tree >/dev/null; then
-  alias tree="tree -C -I '.git|__pycache__|node_modules|plugged'"
-fi
+# git-commit.
+alias gc='git commit -v'
+alias gcn='git commit -v --no-verify'
+alias gca='git commit -v --amend'
+alias gcaa='git commit -a --amend --no-edit'
+alias gcan='git commit --amend --no-edit'
+
+# git-checkout.
+alias gcb='git checkout -b'
+alias gco='git checkout'
+
+# git-clone.
+alias gcl='git clone'
+
+# git-clean.
+alias gclean='git clean -d --force'
+
+# git-diff.
+alias gd='git diff'
+alias gdn='git diff --numstat'
+alias gds='git diff --staged'
+alias gdt='git difftool'
+
+gdv() {
+  git diff --ignore-all-space "$@" | vim -R -
+}
+
+# git-log.
+alias gl='git log --graph'
+alias glg='git log --grep'
+alias gll='git log --graph --oneline'
+alias gln='git log HEAD@{1}..HEAD@{0}' # show commits since last pull (new commits).
+alias gls='git log --graph --stat'
+alias gwc='git whatchanged'
+
+# git-merge.
+alias gm='git merge'
+
+# git-mv.
+alias gmv='git mv'
+
+# git-push.
+alias gp='git push'
+alias gpd='git push --delete'
+alias gpf='git push --force'
+alias gpu='git push --set-upstream'
+
+# git-pull.
+alias gpl='git pull'
+
+# git-remote.
+alias gr='git remote -v'
+alias gra='git remote add'
+
+# git-rm.
+alias grm='git rm'
+
+# git-rebase.
+alias grb='git rebase'
+alias grbi='git rebase --interactive'
+alias grbc='git rebase --continue'
+
+# git-reset.
+alias grs='git reset'
+alias grsl='git reset HEAD~1'
+
+# git-status.
+alias gs='git status'
+alias gss='git status --short'
+
+# git-shortlog.
+alias gsl='git shortlog --summary -n'
+alias gcount='git rev-list --count HEAD' #?
+
+# git-show.
+alias gsh='git show'
+
+# git-stash.
+alias gst='git stash'
+alias gstb='bit stash branch'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+
+## amixer.
+## alias amixer_toggle='amixer -D pulse set Master 1+ toggle'
+
+## config.
+## alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
