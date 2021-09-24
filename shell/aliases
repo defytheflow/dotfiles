@@ -62,12 +62,12 @@ fi
 # exa.
 if command -v exa >/dev/null; then
   # tree.
-  alias t='exa -T --icons --git-ignore -I ".git|__pycache__|node_modules|plugged"'
+  alias t='exa -T --git-ignore -I ".git|__pycache__|node_modules|plugged"'
   alias ta='t --all'
   alias tree='t --all'
   # ls.
   alias l='ls --oneline'
-  alias ls='exa --icons --group-directories-first'
+  alias ls='exa  --group-directories-first'
   alias ll='ls --long --git'
   alias la='ls --all'
 fi
@@ -207,30 +207,28 @@ if command -v npm >/dev/null; then
   alias nrtc='npm run test -- --coverage --coverageDirectory=coverage'
   alias nrtv='npm run test -- --verbose'
   alias nrtw='npm run test -- --watchAll=true'
-  alias nrtt='npm run type'
   alias nrw='npm run watch'
   alias nrr='npm run serve'
 fi
 
 # django.
-if command -v django-admin >/dev/null; then
-  alias dj='django-admin'
-  alias djch='dj check'
-  alias djdb='dj dbshell'
-  alias djdm='dj dumpdata'
-  alias djf='dj flush'
-  alias djld='dj loaddata'
-  alias djm='dj migrate'
-  alias djmm='dj makemigrations'
-  alias djr='dj runserver'
-  alias djsa='dj startapp'
-  alias djsh='dj shell_plus --quiet-load --print-sql'
-  alias djsm='dj showmigrations'
-  alias djsp='dj startproject'
-  alias djsql='dj sqlmigrate'
-  alias djsu='dj createsuperuser'
-  alias djt='dj test --keepdb --pdb --failfast --noinput -v2'
-fi
+alias dj='django-admin'
+alias djch='dj check'
+alias djdb='dj dbshell'
+alias djdm='dj dumpdata'
+alias djf='dj flush'
+alias djld='dj loaddata'
+alias djm='dj migrate'
+alias djmm='dj makemigrations'
+alias djr='dj runserver'
+alias djsa='dj startapp'
+alias djsh='dj shell_plus --quiet-load --print-sql'
+# alias djsh='dj shell_plus --quiet-load'
+alias djsm='dj showmigrations'
+alias djsp='dj startproject'
+alias djsql='dj sqlmigrate'
+alias djsu='dj createsuperuser'
+alias djt='dj test --keepdb --pdb --failfast --noinput -v2'
 
 # coverage.
 if command -v coverage >/dev/null; then
@@ -270,11 +268,12 @@ alias gbd='git branch -d'
 alias gbm='git branch -m'
 
 # git-commit.
-alias gc='git commit -v'
-alias gcn='git commit -v --no-verify'
-alias gca='git commit -v --amend'
-alias gcaa='git commit -a --amend --no-edit'
-alias gcan='git commit --amend --no-edit'
+alias gc='git commit'
+alias gcnv='git commit --no-verify'
+alias gca='git commit --amend'
+alias gcanv='git commit --amend --no-verify'
+alias gcane='git commit --amend --no-edit'
+# alias gcaa='git commit -a --amend --no-edit'
 
 # git-checkout.
 alias gcb='git checkout -b'
@@ -314,8 +313,8 @@ alias gmv='git mv'
 alias gp='git push'
 alias gpd='git push --delete'
 alias gpf='git push --force'
-alias gpn='git push --no-verify'
-alias gpfn='git push --force --no-verify'
+alias gpnv='git push --no-verify'
+alias gpfnv='git push --force --no-verify'
 alias gpu='git push --set-upstream'
 
 # git-pull.

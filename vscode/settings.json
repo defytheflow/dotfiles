@@ -40,7 +40,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
     "source.addMissingImports": true
-    //// "source.organizeImports": true
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
@@ -223,16 +222,14 @@
   "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
 
   //* Typescript.
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.referencesCodeLens.enabled": true,
-  "typescript.implementationsCodeLens.enabled": true,
-  "typescript.inlayHints.parameterNames.enabled": "none",
   "typescript.inlayHints.variableTypes.enabled": false,
   "typescript.inlayHints.parameterTypes.enabled": false,
+  "typescript.inlayHints.enumMemberValues.enabled": false,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": false,
+  //// "typescript.inlayHints.parameterNames.enabled": "literals",
+  //// "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
 
   //* Shell.
   "[shellscript]": {
@@ -242,6 +239,7 @@
   //* Vim.
   "vim.leader": " ",
   "vim.textwidth": 90,
+  // "vim.foldfix": true,
 
   // neovim.
   "vim.enableNeovim": true,
@@ -249,7 +247,7 @@
 
   // gutter.
   "vim.smartRelativeLine": true,
-  "vim.showMarksInGutter": true,
+  // "vim.showMarksInGutter": true,
 
   // copying.
   "vim.useSystemClipboard": false,
@@ -276,6 +274,14 @@
     {
       "before": ["<"],
       "commands": ["editor.action.outdentLines"]
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.moveLinesDownAction"]
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -296,10 +302,21 @@
       "commands": [":nohl"]
     },
 
-    //// {
-    ////   "before": ["<Enter>"],
-    ////   "commands": [":nohl"]
-    //// },
+    //* g commands.
+    {
+      "before": ["g", "D"],
+      "commands": ["editor.action.revealDefinitionAside"]
+    },
+
+    //* z commands.
+    {
+      "before": ["z", "j"],
+      "commands": ["editor.gotoNextFold"]
+    },
+    {
+      "before": ["z", "k"],
+      "commands": ["editor.gotoPreviousFold"]
+    },
 
     //* <C-w>
     {
@@ -338,81 +355,98 @@
       "before": ["<C-w>", "_"],
       "commands": ["workbench.action.maximizeEditor"]
     },
-
-    //// These block `<C-w> + <`.
-    //// {
-    ////   "before": ["<C-w>", "<C-h>"],
-    ////   "commands": ["workbench.action.moveEditorToLeftGroup"]
-    //// },
-    //// {
-    ////   "before": ["<C-w>", "<C-j>"],
-    ////   "commands": ["workbench.action.moveEditorToBelowGroup"]
-    //// },
-    //// {
-    ////   "before": ["<C-w>", "<C-l>"],
-    ////   "commands": ["workbench.action.moveEditorToRightGroup"]
-    //// },
-    //// {
-    ////   "before": ["<C-w>", "<C-k>"],
-    ////   "commands": ["workbench.action.moveEditorToAboveGroup"]
-    //// },
+    {
+      "before": ["<C-w>", " ", "h"],
+      "commands": ["workbench.action.moveEditorToLeftGroup"]
+    },
+    {
+      "before": ["<C-w>", " ", "j"],
+      "commands": ["workbench.action.moveEditorToBelowGroup"]
+    },
+    {
+      "before": ["<C-w>", " ", "k"],
+      "commands": ["workbench.action.moveEditorToAboveGroup"]
+    },
+    {
+      "before": ["<C-w>", " ", "l"],
+      "commands": ["workbench.action.moveEditorToRightGroup"]
+    },
 
     //* <leader>.
     {
       "before": ["<leader>", "a", "a"],
-      "commands": ["alternate.alternateFile"]
+      "commands": ["alternate.createAlternateFile"]
     },
     {
       "before": ["<leader>", "a", "v"],
-      "commands": ["alternate.alternateFileInSplit"]
+      "commands": ["alternate.createAlternateFileInSplit"]
+    },
+    {
+      "before": ["<leader>", "g", "o"],
+      "commands": ["workbench.action.gotoSymbol"]
+    },
+    {
+      "before": ["<leader>", "g", "p"],
+      "commands": ["editor.action.peekDefinition"]
+    },
+    {
+      "before": ["<leader>", "g", "r"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["<leader>", "g", "s"],
+      "commands": ["references-view.find"]
+    },
+    {
+      "before": ["<leader>", "g", "S"],
+      "commands": ["editor.action.referenceSearch.trigger"]
     },
     //// {
     ////   "before": ["<leader>", "<leader>"],
     ////   "after": ["<C-^>"]
     //// },
 
-    //* g.
-    {
-      "before": ["g", "D"],
-      "commands": ["editor.action.revealDefinitionAside"]
-    },
-    {
-      "before": ["g", "R"],
-      "commands": ["editor.action.referenceSearch.trigger"]
-    },
-    {
-      "before": ["g", "n"],
-      "commands": ["editor.action.rename"]
-    },
-    {
-      "before": ["g", "o"],
-      "commands": ["workbench.action.gotoSymbol"]
-    },
-    {
-      "before": ["g", "p"],
-      "commands": ["editor.action.peekDefinition"]
-    },
-    {
-      "before": ["g", "s"],
-      "commands": ["references-view.find"]
-    },
-
     //* unimpaired.
     {
-      "before": ["]", "<space>"],
-      "commands": ["editor.action.insertLineAfter"]
+      "before": ["[", "b"],
+      "commands": ["workbench.action.previousEditorInGroup"]
+    },
+    {
+      "before": ["]", "b"],
+      "commands": ["workbench.action.nextEditorInGroup"]
+    },
+    {
+      "before": ["[", "B"],
+      "commands": ["workbench.action.firstEditorInGroup"]
+    },
+    {
+      "before": ["]", "B"],
+      "commands": ["workbench.action.lastEditorInGroup"]
     },
     {
       "before": ["[", "<space>"],
       "commands": ["editor.action.insertLineBefore"]
     },
     {
-      "before": ["]", "b"],
-      "commands": ["workbench.action.nextEditor"]
+      "before": ["]", "<space>"],
+      "commands": ["editor.action.insertLineAfter"]
     },
     {
-      "before": ["[", "b"],
-      "commands": ["workbench.action.previousEditor"]
+      "before": ["[", "e"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+
+    //* custom unimpaired.
+    {
+      "before": ["[", "c"],
+      "commands": [
+        "workbench.action.compareEditor.previousChange",
+        "workbench.action.editor.previousChange"
+      ]
     },
     {
       "before": ["]", "c"],
@@ -422,35 +456,12 @@
       ]
     },
     {
-      "before": ["[", "c"],
-      "commands": [
-        "workbench.action.compareEditor.previousChange",
-        "workbench.action.editor.previousChange"
-      ]
-    },
-    {
-      "before": ["]", "e"],
-      "commands": ["editor.action.moveLinesDownAction"]
-    },
-    {
-      "before": ["[", "e"],
-      "commands": ["editor.action.moveLinesUpAction"]
-    },
-    {
-      "before": ["]", "g"],
-      "commands": ["editor.action.marker.next", "closeMarkersNavigation"]
-    },
-    {
       "before": ["[", "g"],
       "commands": ["editor.action.marker.prev", "closeMarkersNavigation"]
     },
     {
-      "before": ["]", "s"],
-      "after": ["a", "<space>", "<esc>"]
-    },
-    {
-      "before": ["[", "s"],
-      "after": ["i", "<space>", "<esc>"]
+      "before": ["]", "g"],
+      "commands": ["editor.action.marker.next", "closeMarkersNavigation"]
     }
   ],
 
@@ -547,14 +558,20 @@
       "overrideWorkspaceSettings": false,
       "values": [
         {
-          "typescript.inlayHints.parameterNames.enabled": "literals",
           "typescript.inlayHints.variableTypes.enabled": true,
-          "typescript.inlayHints.parameterTypes.enabled": true
+          "typescript.inlayHints.parameterTypes.enabled": true,
+          "typescript.inlayHints.enumMemberValues.enabled": true,
+          "typescript.inlayHints.propertyDeclarationTypes.enabled": true
+          //// "typescript.inlayHints.parameterNames.enabled": "literals",
+          //// "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
         },
         {
-          "typescript.inlayHints.parameterNames.enabled": "none",
           "typescript.inlayHints.variableTypes.enabled": false,
-          "typescript.inlayHints.parameterTypes.enabled": false
+          "typescript.inlayHints.parameterTypes.enabled": false,
+          "typescript.inlayHints.enumMemberValues.enabled": false,
+          "typescript.inlayHints.propertyDeclarationTypes.enabled": false
+          //// "typescript.inlayHints.parameterNames.enabled": "none",
+          //// "typescript.inlayHints.functionLikeReturnTypes.enabled": false,
         }
       ]
     }
@@ -583,6 +600,6 @@
   "yaml.schemas": {
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "window.zoomLevel": -1,
+  "window.zoomLevel": -2,
   "editor.minimap.enabled": false
 }

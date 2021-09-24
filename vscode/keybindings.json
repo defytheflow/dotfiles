@@ -49,6 +49,22 @@
   },
 
   /**
+   ** Cycle through panel views with `cmd+[` and `cmd+]` (no default bindings).
+   **/
+
+  {
+    "describe": "Previous panel view",
+    "key": "cmd+[",
+    "command": "workbench.action.previousPanelView"
+  },
+
+  {
+    "describe": "Next panel view",
+    "key": "cmd+]",
+    "command": "workbench.action.nextPanelView"
+  },
+
+  /**
    ** Overwrite vscode `isDevelopment` mode.
    **/
 
@@ -157,9 +173,9 @@
   },
 
   {
-    "describe": "Open workspace settings",
+    "describe": "Toggle Tabs Visibility",
     "key": "cmd+g w",
-    "command": "workbench.action.openWorkspaceSettingsFile"
+    "command": "workbench.action.toggleTabsVisibility"
   },
 
   {

@@ -1,5 +1,4 @@
 {
-  //* function.
   "function": {
     "prefix": ["fn"],
     "body": ["function $1($2) {", "  $3", "}"]
@@ -10,7 +9,6 @@
     "body": ["export function $1($2) {", "  $3", "}"]
   },
 
-  //* interface.
   "interface": {
     "prefix": ["in"],
     "body": ["interface $1 {", "  $2", "}"]
@@ -23,15 +21,20 @@
 
   "export const": {
     "prefix": ["ec"],
-    "body": ["export const $1"],
+    "body": ["export const $1"]
   },
 
-  "export enum" : {
+  "export enum": {
     "prefix": ["ee"],
     "body": ["export enum $1 {", "  $2", "}"]
   },
 
   //* console.
+  "console log": {
+    "prefix": ["lg"],
+    "body": ["console.log($1);"]
+  },
+
   "console.dir": {
     "prefix": ["dir"],
     "body": ["console.dir($1);"]
@@ -54,12 +57,12 @@
     "body": ["// eslint-disable-next-line $1"]
   },
 
-  "eslint disable any": {
-    "prefix": ["any"],
-    "body": ["// eslint-disable-next-line @typescript-eslint/no-explicit-any"]
+  //* react.
+  "React.useState": {
+    "prefix": ["us"],
+    "body": ["const [$1, $2] = React.useState($3);"]
   },
 
-  //* react.
   "React.useEffect": {
     "prefix": ["ue"],
     "body": ["React.useEffect(() => {", "  $1", "}, [$2]);"]
@@ -75,6 +78,7 @@
     "body": ["console.log($1, JSON.stringify($2, null, 2))"]
   },
 
+  //* react-testing-library.
   "screen debug": {
     "prefix": ["sd"],
     "body": ["screen.debug($1)"]
@@ -95,11 +99,6 @@
     "body": ["screen.getByLabelText('$1')"]
   },
 
-  "beforeEach": {
-    "prefix": ["bef"],
-    "body": ["beforeEach(() => {", "  $1", "});"]
-  },
-
   "act": {
     "prefix": ["act"],
     "body": ["act(() => {", "  $1", "});"]
@@ -110,6 +109,7 @@
     "body": ["await act(async () => {", "  $1", "});"]
   },
 
+  //* jest.
   "describe": {
     "prefix": ["des"],
     "body": ["describe('$1', () => {", " ", "})"]
@@ -123,5 +123,10 @@
   "async test": {
     "prefix": ["ats"],
     "body": ["test('$1', async () => {", "", "})"]
+  },
+
+  "beforeEach": {
+    "prefix": ["bef"],
+    "body": ["beforeEach(() => {", "  $1", "});"]
   }
 }

@@ -4,7 +4,7 @@ scriptencoding utf-8
 " Created:  30.12.2019
 " Author:   Artyom Danilov (@defytheflow)
 
-let g:mapleader = '\'
+let g:mapleader = ' '
 
 if filereadable('/usr/bin/python3')
   let g:python3_host_prog = '/usr/bin/python3'

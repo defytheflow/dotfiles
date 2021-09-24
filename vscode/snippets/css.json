@@ -1,0 +1,21 @@
+{
+  "outline": {
+    "prefix": "out",
+    "body": ["outline: 1px solid green;"]
+  },
+
+  "border": {
+    "prefix": "bd",
+    "body": ["border: 1px solid red;"]
+  },
+
+  "@include": {
+    "prefix": "in",
+    "body": ["@include $0"]
+  },
+
+  "custom property": {
+    "prefix": "--",
+    "body": ["var(--$0)"]
+  }
+}
