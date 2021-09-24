@@ -31,7 +31,7 @@ command -v alacritty >/dev/null && export TERM='alacritty'
 # brew.
 case $OSTYPE in
 darwin*)
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval `/opt/homebrew/bin/brew shellenv`
   ;;
 esac
 
@@ -100,8 +100,8 @@ export ICEAUTHORITY="${XDG_CACHE_HOME}/ICEauthority"
 # wsl.
 if [ -n "${WSL_DISTRO_NAME}" ]; then
   export LS_COLORS="ow=01;94:di=01;94" # fix dirs colors.
-  export WINUSER="$(powershell.exe '$env:UserName' | sed -e 's/\r//g')"
-  export WINHOME="$(wslpath "$(cmd.exe /C 'echo | set /p _=%USERPROFILE%' 2>/dev/null)")"
+  export WINUSER=`powershell.exe '$env:UserName' | sed -e 's/\r//g'`
+  export WINHOME=`wslpath "`cmd.exe /C 'echo | set /p _=%USERPROFILE%' 2>/dev/null`")`
   export WINDESK="${WINHOME}"/Desktop
   export APPDATA="${WINHOME}/AppData/Roaming"
 fi

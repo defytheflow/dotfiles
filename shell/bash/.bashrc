@@ -78,13 +78,13 @@ else
 fi
 
 function my_prompt() {
-  green="$(tput setaf 82)"
-  lime_green="$(tput setaf 154)"
-  orange="$(tput setaf 202)"
-  purple="$(tput setaf 135)"
-  red="$(tput setaf 160)"
-  white="$(tput setaf 15)"
-  reset="$(tput sgr0)"
+  green=`tput setaf 82`
+  lime_green=`tput setaf 154`
+  orange=`tput setaf 202`
+  purple=`tput setaf 135`
+  red=`tput setaf 160`
+  white=`tput setaf 15`
+  reset=`tput sgr0`
 
   if [ $? -eq 0 ]; then
     exit_status=" ${green}:)"
@@ -92,7 +92,7 @@ function my_prompt() {
     exit_status=" ${red}:("
   fi
 
-  if [ "$(whoami)" = 'root' ]; then
+  if [ `whoami` = 'root' ]; then
     PS1="\n${red}\u"
     PS1+="${white} at ${red}\h"
     PS1+="${white} in ${red}\w"

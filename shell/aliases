@@ -157,6 +157,7 @@ fi
 # homebrew.
 if command -v brew >/dev/null; then
   alias bi='brew install'
+  alias bri='brew reinstall'
   alias bu='brew uninstall'
   alias bl='brew list'
   alias bs='brew search'
@@ -229,6 +230,11 @@ alias djsp='dj startproject'
 alias djsql='dj sqlmigrate'
 alias djsu='dj createsuperuser'
 alias djt='dj test --keepdb --pdb --failfast --noinput -v2'
+
+# opam.
+if command -v opam >/dev/null; then
+  alias oi='opam install'
+fi
 
 # coverage.
 if command -v coverage >/dev/null; then

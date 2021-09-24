@@ -127,7 +127,12 @@ if [[ -n "${DOTFILES_HOME}" ]]; then
 fi
 #}}}
 
-# eval $(opam env)
 export PROMPT='%B%F{140}%~%f%b $ '
 # 140 looks good with 'Night Owl' theme in vscode and vim.
 # previous color was 213.
+
+# ocaml.
+eval `opam env`
+
+# haskel.
+[ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"

@@ -206,6 +206,12 @@
     "javascript": "javascriptreact"
   },
 
+  //* Markdown.
+  "[markdown]": {
+    "editor.quickSuggestions": false,
+    "editor.acceptSuggestionOnEnter": "off"
+  },
+
   //* Python.
   "[python]": {
     "editor.defaultFormatter": "ms-python.python",
@@ -600,6 +606,6 @@
   "yaml.schemas": {
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "window.zoomLevel": -2,
+  "window.zoomLevel": -1,
   "editor.minimap.enabled": false
 }
