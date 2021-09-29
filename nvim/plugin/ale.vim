@@ -117,7 +117,7 @@ nmap <silent> gd :ALEGoToDefinition<CR>
 nmap <silent> gi :ALEDetail<CR>
 nmap <silent> gn :ALERename<CR>
 nmap <silent> gs :ALEFindReferences<CR>
-nmap <silent> ]g :ALEPrevious<CR>
-nmap <silent> [g :ALENext<CR>
+nmap <silent> [g :ALEPrevious<CR>
+nmap <silent> ]g :ALENext<CR>
 nmap <silent> gh :ALEHover<CR>
 imap <C-Space> <Plug>(ale_complete)

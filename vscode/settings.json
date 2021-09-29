@@ -234,8 +234,6 @@
   "typescript.inlayHints.parameterTypes.enabled": false,
   "typescript.inlayHints.enumMemberValues.enabled": false,
   "typescript.inlayHints.propertyDeclarationTypes.enabled": false,
-  //// "typescript.inlayHints.parameterNames.enabled": "literals",
-  //// "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
 
   //* Shell.
   "[shellscript]": {
@@ -324,7 +322,7 @@
       "commands": ["editor.gotoPreviousFold"]
     },
 
-    //* <C-w>
+    //* window commands.
     {
       "before": ["<C-w>", "H"],
       "commands": ["workbench.action.moveActiveEditorGroupLeft"]
@@ -361,24 +359,8 @@
       "before": ["<C-w>", "_"],
       "commands": ["workbench.action.maximizeEditor"]
     },
-    {
-      "before": ["<C-w>", " ", "h"],
-      "commands": ["workbench.action.moveEditorToLeftGroup"]
-    },
-    {
-      "before": ["<C-w>", " ", "j"],
-      "commands": ["workbench.action.moveEditorToBelowGroup"]
-    },
-    {
-      "before": ["<C-w>", " ", "k"],
-      "commands": ["workbench.action.moveEditorToAboveGroup"]
-    },
-    {
-      "before": ["<C-w>", " ", "l"],
-      "commands": ["workbench.action.moveEditorToRightGroup"]
-    },
 
-    //* <leader>.
+    //* <leader> commands.
     {
       "before": ["<leader>", "a", "a"],
       "commands": ["alternate.createAlternateFile"]
@@ -396,7 +378,7 @@
       "commands": ["editor.action.peekDefinition"]
     },
     {
-      "before": ["<leader>", "g", "r"],
+      "before": ["<leader>", "g", "n"],
       "commands": ["editor.action.rename"]
     },
     {
@@ -407,12 +389,8 @@
       "before": ["<leader>", "g", "S"],
       "commands": ["editor.action.referenceSearch.trigger"]
     },
-    //// {
-    ////   "before": ["<leader>", "<leader>"],
-    ////   "after": ["<C-^>"]
-    //// },
 
-    //* unimpaired.
+    //* unimpaired commands.
     {
       "before": ["[", "b"],
       "commands": ["workbench.action.previousEditorInGroup"]
@@ -430,11 +408,11 @@
       "commands": ["workbench.action.lastEditorInGroup"]
     },
     {
-      "before": ["[", "<space>"],
+      "before": ["[", " "],
       "commands": ["editor.action.insertLineBefore"]
     },
     {
-      "before": ["]", "<space>"],
+      "before": ["]", " "],
       "commands": ["editor.action.insertLineAfter"]
     },
     {
@@ -445,8 +423,25 @@
       "before": ["]", "e"],
       "commands": ["editor.action.moveLinesDownAction"]
     },
+    {
+      "before": ["[", "f"],
+      "commands": ["workbench.view.explorer", "list.focusUp", "explorer.openAndPassFocus"]
+    },
+    {
+      "before": ["]", "f"],
+      // prettier-ignore
+      "commands": ["workbench.view.explorer", "list.focusDown", "explorer.openAndPassFocus"]
+    },
+    {
+      "before": ["[", "q"],
+      "commands": ["editor.action.marker.prevInFiles", "closeMarkersNavigation"]
+    },
+    {
+      "before": ["]", "q"],
+      "commands": ["editor.action.marker.nextInFiles", "closeMarkersNavigation"]
+    },
 
-    //* custom unimpaired.
+    //* vig-gitgutter
     {
       "before": ["[", "c"],
       "commands": [
@@ -461,13 +456,23 @@
         "workbench.action.editor.nextChange"
       ]
     },
+
+    //* custom unimpaired commands.
     {
-      "before": ["[", "g"],
-      "commands": ["editor.action.marker.prev", "closeMarkersNavigation"]
+      "before": ["[", "w"],
+      "commands": ["workbench.action.focusPreviousGroup"]
     },
     {
-      "before": ["]", "g"],
-      "commands": ["editor.action.marker.next", "closeMarkersNavigation"]
+      "before": ["]", "w"],
+      "commands": ["workbench.action.focusNextGroup"]
+    },
+    {
+      "before": ["[", "m"],
+      "commands": ["workbench.action.moveEditorToLeftGroup"]
+    },
+    {
+      "before": ["]", "m"],
+      "commands": ["workbench.action.moveEditorToRightGroup"]
     }
   ],
 
@@ -568,16 +573,12 @@
           "typescript.inlayHints.parameterTypes.enabled": true,
           "typescript.inlayHints.enumMemberValues.enabled": true,
           "typescript.inlayHints.propertyDeclarationTypes.enabled": true
-          //// "typescript.inlayHints.parameterNames.enabled": "literals",
-          //// "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
         },
         {
           "typescript.inlayHints.variableTypes.enabled": false,
           "typescript.inlayHints.parameterTypes.enabled": false,
           "typescript.inlayHints.enumMemberValues.enabled": false,
           "typescript.inlayHints.propertyDeclarationTypes.enabled": false
-          //// "typescript.inlayHints.parameterNames.enabled": "none",
-          //// "typescript.inlayHints.functionLikeReturnTypes.enabled": false,
         }
       ]
     }
@@ -606,6 +607,6 @@
   "yaml.schemas": {
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "window.zoomLevel": -1,
+  "window.zoomLevel": -2,
   "editor.minimap.enabled": false
 }
