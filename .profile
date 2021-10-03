@@ -32,6 +32,8 @@ command -v alacritty >/dev/null && export TERM='alacritty'
 case $OSTYPE in
 darwin*)
   eval `/opt/homebrew/bin/brew shellenv`
+  # for haskell compiler.
+  export PATH="/opt/homebrew/opt/llvm/bin:${PATH}"
   ;;
 esac
 

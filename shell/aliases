@@ -192,6 +192,7 @@ if command -v npm >/dev/null; then
   alias nl='npm link'
   # npm run.
   alias nr='npm run'
+  alias nb='npm run build'
   alias nrb='npm run build'
   alias nrba='npm run build:analyze'
   alias nrc='npm run check'
@@ -200,6 +201,7 @@ if command -v npm >/dev/null; then
   alias nrm='npm run make'
   # npm start.
   alias ns='npm start'
+  alias nsl='npm run start:local'
   alias nrs='npm run start'
   alias nrsl='npm run start:local'
   # npm test.
@@ -279,6 +281,8 @@ alias gcnv='git commit --no-verify'
 alias gca='git commit --amend'
 alias gcanv='git commit --amend --no-verify'
 alias gcane='git commit --amend --no-edit'
+alias gcann='git commit --amend --no-edit --no-verify'
+alias gcaann='git commit -a --amend --no-edit --no-verify'
 # alias gcaa='git commit -a --amend --no-edit'
 
 # git-checkout.

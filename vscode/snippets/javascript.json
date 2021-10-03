@@ -19,22 +19,12 @@
     "body": ["export interface $1 {", "  $2", "}"]
   },
 
-  "export const": {
-    "prefix": ["ec"],
-    "body": ["export const $1"]
-  },
-
-  "export enum": {
-    "prefix": ["ee"],
-    "body": ["export enum $1 {", "  $2", "}"]
+  "export type": {
+    "prefix": ["et"],
+    "body": ["export type $1"]
   },
 
   //* console.
-  "console log": {
-    "prefix": ["lg"],
-    "body": ["console.log($1);"]
-  },
-
   "console.dir": {
     "prefix": ["dir"],
     "body": ["console.dir($1);"]
@@ -58,9 +48,9 @@
   },
 
   //* react.
-  "React.useState": {
-    "prefix": ["us"],
-    "body": ["const [$1, $2] = React.useState($3);"]
+  "React.useCallback": {
+    "prefix": "uc",
+    "body": ["const $1 = React.useCallback(($2) => {", "  $3", "}, [$4]);"]
   },
 
   "React.useEffect": {
@@ -68,14 +58,24 @@
     "body": ["React.useEffect(() => {", "  $1", "}, [$2]);"]
   },
 
+  "React.useMemo": {
+    "prefix": ["um"],
+    "body": ["const $1 = React.useMemo(() => {", "  return $2", "}, [$3]);"]
+  },
+
   "React.useRef": {
     "prefix": ["ur"],
     "body": ["const $1Ref = React.useRef<${2:HTMLDivElement}>(null);"]
   },
 
+  "React.useState": {
+    "prefix": ["us"],
+    "body": ["const [$1, $2] = React.useState($3);"]
+  },
+
   "JSON.stringify": {
     "prefix": ["js"],
-    "body": ["console.log($1, JSON.stringify($2, null, 2))"]
+    "body": ["JSON.stringify($1)"]
   },
 
   //* react-testing-library.
