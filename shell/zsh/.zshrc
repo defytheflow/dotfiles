@@ -132,7 +132,7 @@ export PROMPT='%B%F{140}%~%f%b $ '
 # previous color was 213.
 
 # ocaml.
-eval `opam env`
+eval $(opam env)
 
 # haskel.
 [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"

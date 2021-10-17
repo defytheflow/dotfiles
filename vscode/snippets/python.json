@@ -1,7 +1,7 @@
 {
   "type ignore": {
     "prefix": ["tig"],
-    "body": ["# type: ignore"],
+    "body": ["# type: ignore"]
   },
 
   "yapf disable": {
@@ -22,5 +22,17 @@
   "pretty print": {
     "prefix": ["pp"],
     "body": ["__import__('pprint').pprint($1)"]
+  },
+
+  "print sql": {
+    "prefix": ["psql"],
+    "body": [
+      "print(__import__('sqlparse').format(str($1), reindent=True, keyword_case='upper'))"
+    ]
+  },
+
+  "breakpoint": {
+    "prefix": ["br"],
+    "body": ["breakpoint()"]
   }
 }

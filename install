@@ -181,6 +181,7 @@ create_symlinks() {
   symlink 'tmux' "${XDG_CONFIG_HOME}/tmux"
   symlink 'ranger' "${XDG_CONFIG_HOME}/ranger"
   symlink 'ghc'  "${HOME}/.ghc"
+  symlink 'pgcli' "${XDG_CONFIG_HOME}/pgcli"
 
   if command -v ipython >/dev/null; then
     symlink "lang/python/ipython_config.py" "${IPYTHONDIR}/profile_default/ipython_config.py"

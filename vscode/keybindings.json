@@ -119,12 +119,6 @@
   },
 
   {
-    "describe": "Toggle full screen",
-    "key": "cmd+g f",
-    "command": "workbench.action.toggleFullScreen"
-  },
-
-  {
     "describe": "Toggle maximized panel",
     "key": "cmd+g j",
     "command": "workbench.action.toggleMaximizedPanel"
@@ -170,12 +164,6 @@
     "describe": "Create terminal in editor area",
     "key": "cmd+g t",
     "command": "workbench.action.createTerminalEditor"
-  },
-
-  {
-    "describe": "Toggle Tabs Visibility",
-    "key": "cmd+g w",
-    "command": "workbench.action.toggleTabsVisibility"
   },
 
   {

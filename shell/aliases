@@ -4,10 +4,11 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
+alias rh='runhaskell'
+
 alias sudo='sudo ' # to run 'sudo {alias}'
 alias _='sudo'
 
-alias c='code'
 alias f='file'
 alias q='exit'
 
@@ -136,6 +137,10 @@ if command -v ranger >/dev/null; then
   alias rn='ranger'
 fi
 
+# vscode.
+alias c='code'
+alias c.='code .'
+
 # vim.
 alias vi='vim'
 alias svim='sudo vim'
@@ -166,6 +171,7 @@ fi
 # pipenv.
 if command -v pipenv >/dev/null; then
   alias pi='pipenv install'
+  alias pid='pipenv install --dev'
   alias pu='pipenv uninstall'
   # pipenv run.
   alias pr='pipenv run'
@@ -282,7 +288,7 @@ alias gca='git commit --amend'
 alias gcanv='git commit --amend --no-verify'
 alias gcane='git commit --amend --no-edit'
 alias gcann='git commit --amend --no-edit --no-verify'
-alias gcaann='git commit -a --amend --no-edit --no-verify'
+# alias gcaann='git commit -a --amend --no-edit --no-verify'
 # alias gcaa='git commit -a --amend --no-edit'
 
 # git-checkout.

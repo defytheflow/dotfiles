@@ -9,3 +9,5 @@ wm/awesome/vicious
 shell/zsh/.zsh_sessions
 shell/zsh/.zsh_history
 ghc/ghci_history
+pgcli/history
+pgcli/log

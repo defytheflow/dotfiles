@@ -4,6 +4,7 @@
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
   "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
   "editor.inlayHints.enabled": true,
 
   //* Zen mode.
@@ -293,6 +294,7 @@
       "commands": ["editor.action.moveLinesDownAction"]
     }
   ],
+
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["Y"],
@@ -309,6 +311,10 @@
     {
       "before": ["<C-l>"],
       "commands": [":nohl"]
+    },
+    {
+      "before": ["\\", "\\"],
+      "after": ["C-^"]
     },
 
     //* g commands.
@@ -328,6 +334,10 @@
     },
 
     //* window commands.
+    {
+      "before": ["<C-w>", "o"],
+      "commands": ["workbench.action.closeOtherEditors"]
+    },
     {
       "before": ["<C-w>", "H"],
       "commands": ["workbench.action.moveActiveEditorGroupLeft"]
@@ -478,11 +488,11 @@
       "commands": ["workbench.action.focusNextGroup"]
     },
     {
-      "before": ["[", "m"],
+      "before": ["[", "a"],
       "commands": ["workbench.action.moveEditorToLeftGroup"]
     },
     {
-      "before": ["]", "m"],
+      "before": ["]", "a"],
       "commands": ["workbench.action.moveEditorToRightGroup"]
     },
     {
@@ -690,6 +700,7 @@
   "yaml.schemas": {
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "window.zoomLevel": -2,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "window.zoomLevel": -1,
   "editor.minimap.enabled": false
 }

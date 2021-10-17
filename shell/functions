@@ -21,7 +21,7 @@ path() {
 
 # Print all the terminal colors.
 _256() {
-  for i in `seq 0 255`; do
+  for i in $(seq 0 255); do
     printf '\e[48;5;%dm%3d ' "${i}" "${i}"
     val=$(((i + 3) % 18))
     [ ${val} -eq 0 ] && printf '\e[0m\n'
