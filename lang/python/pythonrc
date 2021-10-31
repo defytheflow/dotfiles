@@ -24,4 +24,4 @@ def configure_history():
     readline.parse_and_bind('tab: complete')
 
 
-configure_history()
+# configure_history()

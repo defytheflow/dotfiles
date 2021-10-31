@@ -22,8 +22,7 @@ install_packages() {
 
   set -- \
     bat \
-    diceware \
-    dos2unix \
+    deno diceware dos2unix \
     exa \
     fzf \
     graphviz \

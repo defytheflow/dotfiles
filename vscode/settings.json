@@ -246,6 +246,11 @@
     "editor.defaultFormatter": "haskell.haskell"
   },
 
+  //* Elm.
+  // "[elm]": {
+  //   "editor.defaultFormatter": "elmTooling.elm-ls-vscode"
+  // },
+
   //* Vim.
   "vim.leader": " ",
   "vim.textwidth": 90,
@@ -257,7 +262,7 @@
 
   // gutter.
   "vim.smartRelativeLine": true,
-  // "vim.showMarksInGutter": true,
+  "vim.showMarksInGutter": false,
 
   // copying.
   "vim.useSystemClipboard": false,
@@ -265,7 +270,7 @@
 
   // search.
   "vim.incsearch": true,
-  "vim.hlsearch": true,
+  "vim.hlsearch": false,
   "vim.ignorecase": true,
   "vim.visualstar": true,
 
@@ -274,7 +279,7 @@
   "vim.camelCaseMotion.enable": true,
   "vim.replaceWithRegister": true,
   "vim.surround": true,
-  "vim.sneak": true,
+  "vim.sneak": false,
 
   "vim.visualModeKeyBindingsNonRecursive": [
     {
@@ -385,6 +390,14 @@
       "commands": ["alternate.createAlternateFileInSplit"]
     },
     {
+      "before": ["\\", "a", "a"],
+      "commands": ["alternate.createAlternateFile"]
+    },
+    {
+      "before": ["\\", "a", "v"],
+      "commands": ["alternate.createAlternateFileInSplit"]
+    },
+    {
       "before": ["<leader>", "g", "o"],
       "commands": ["workbench.action.gotoSymbol"]
     },
@@ -409,6 +422,10 @@
     {
       "before": ["\\", "g", "d"],
       "commands": ["git.openChange"]
+    },
+    {
+      "before": ["\\", "g", "c", "l"],
+      "commands": ["git.clean"]
     },
 
     //* unimpaired commands.
@@ -455,11 +472,13 @@
     },
     {
       "before": ["[", "q"],
-      "commands": ["editor.action.marker.prevInFiles", "closeMarkersNavigation"]
+      // "commands": ["editor.action.marker.prevInFiles", "closeMarkersNavigation"]
+      "commands": ["editor.action.marker.prev", "closeMarkersNavigation"]
     },
     {
       "before": ["]", "q"],
-      "commands": ["editor.action.marker.nextInFiles", "closeMarkersNavigation"]
+      // "commands": ["editor.action.marker.nextInFiles", "closeMarkersNavigation"]
+      "commands": ["editor.action.marker.next", "closeMarkersNavigation"]
     },
 
     //* vig-gitgutter
@@ -701,6 +720,7 @@
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "elmLS.disableElmLSDiagnostics": true,
   "window.zoomLevel": -1,
   "editor.minimap.enabled": false
 }

@@ -1,17 +1,31 @@
 {
   "function": {
-    "prefix": ["fn"],
+    "prefix": ["f", "fn"],
     "body": ["function $1($2) {", "  $3", "}"]
   },
 
   "export function": {
-    "prefix": ["efn"],
+    "prefix": ["ef", "efn"],
     "body": ["export function $1($2) {", "  $3", "}"]
   },
 
+  "export async function": {
+    "prefix": ["eaf", "eafn"],
+    "body": ["export async function $1($2) {", "  $3", "}"]
+  },
+
+  "export default": {
+    "prefix": ["ed"],
+    "body": ["export default $1"]
+  },
+
   "export default function": {
-    "prefix": ["edfn"],
-    "body": ["export default function ${1: ${TM_FILENAME_BASE}}($2) {", "  $3", "}"]
+    "prefix": ["edf", "edfn"],
+    "body": [
+      "export default function ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}($2) {",
+      "  $3",
+      "}"
+    ]
   },
 
   "interface": {
