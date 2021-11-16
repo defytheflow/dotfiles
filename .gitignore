@@ -11,3 +11,4 @@ shell/zsh/.zsh_history
 ghc/ghci_history
 pgcli/history
 pgcli/log
+local_aliases

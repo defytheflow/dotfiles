@@ -259,3 +259,5 @@ set lazyredraw " don't redraw while executing macros.
 set timeoutlen=500
 set noerrorbells visualbell t_vb=
 "}}}
+
+digraph OO 129417 " owl emoji.

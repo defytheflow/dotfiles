@@ -250,10 +250,12 @@
   // "[elm]": {
   //   "editor.defaultFormatter": "elmTooling.elm-ls-vscode"
   // },
+  "elmLS.disableElmLSDiagnostics": true,
 
   //* Vim.
   "vim.leader": " ",
   "vim.textwidth": 90,
+  "vim.matchpairs": "(:),{:},[:],<:>",
   // "vim.foldfix": true,
 
   // neovim.
@@ -272,6 +274,7 @@
   "vim.incsearch": true,
   "vim.hlsearch": false,
   "vim.ignorecase": true,
+  "vim.smartcase": true,
   "vim.visualstar": true,
 
   // extensions.
@@ -280,6 +283,11 @@
   "vim.replaceWithRegister": true,
   "vim.surround": true,
   "vim.sneak": false,
+
+  "vim.digraphs": {
+    "R!": ["🚀 ", ["0xD83D", "0xDE80"]],
+    "OO": ["🦉 ", ["0xD83E", "0xDD89"]]
+  },
 
   "vim.visualModeKeyBindingsNonRecursive": [
     {
@@ -301,10 +309,10 @@
   ],
 
   "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["Y"],
-      "after": ["y", "$"]
-    },
+    // {
+    //   "before": ["Y"],
+    //   "after": ["y", "$"]
+    // },
     {
       "before": ["N"],
       "after": ["N", "z", "z"]
@@ -380,7 +388,7 @@
       "commands": ["workbench.action.maximizeEditor"]
     },
 
-    //* <leader> commands.
+    //* alternate file.
     {
       "before": ["<leader>", "a", "a"],
       "commands": ["alternate.createAlternateFile"]
@@ -397,6 +405,32 @@
       "before": ["\\", "a", "v"],
       "commands": ["alternate.createAlternateFileInSplit"]
     },
+
+    //* open-in-vim.
+    {
+      "before": ["<leader>", "v", "e"],
+      "commands": ["open-in-vim.open"]
+    },
+    {
+      "before": ["\\", "v", "e"],
+      "commands": ["open-in-vim.open"]
+    },
+
+    //* git.
+    {
+      "before": ["<leader>", "g", "d"],
+      "commands": ["git.openChange"]
+    },
+    {
+      "before": ["<leader>", "g", "c", "l"],
+      "commands": ["git.clean"]
+    },
+    {
+      "before": ["<leader>", "g", "l"],
+      "commands": ["git-graph.view"]
+    },
+
+    //* <leader> commands.
     {
       "before": ["<leader>", "g", "o"],
       "commands": ["workbench.action.gotoSymbol"]
@@ -416,16 +450,6 @@
     {
       "before": ["<leader>", "g", "S"],
       "commands": ["editor.action.referenceSearch.trigger"]
-    },
-
-    //* git commands.
-    {
-      "before": ["\\", "g", "d"],
-      "commands": ["git.openChange"]
-    },
-    {
-      "before": ["\\", "g", "c", "l"],
-      "commands": ["git.clean"]
     },
 
     //* unimpaired commands.
@@ -481,7 +505,7 @@
       "commands": ["editor.action.marker.next", "closeMarkersNavigation"]
     },
 
-    //* vig-gitgutter
+    //* vim-gitgutter
     {
       "before": ["[", "c"],
       "commands": [
@@ -592,6 +616,7 @@
   "prettier.jsxSingleQuote": true,
   "prettier.printWidth": 90,
   "prettier.singleQuote": true,
+  "prettier.arrowParens": "avoid",
 
   //* Tabnine.
   "tabnine.experimentalAutoImports": true,
@@ -699,8 +724,10 @@
   //* Code spell.
   "cSpell.ignoreRegExpList": [
     "asgi",
+    "defytheflow",
     "dotenv",
     "isort",
+    "minmax",
     "isdigit",
     "noqa",
     "pipenv",
@@ -714,13 +741,15 @@
     "ipdb"
   ],
 
+  //* Open in vim.
+  "open-in-vim.useNeovim": true,
+
   //* Garbage.
   "redhat.telemetry.enabled": false,
   "yaml.schemas": {
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "elmLS.disableElmLSDiagnostics": true,
   "window.zoomLevel": -1,
   "editor.minimap.enabled": false
 }

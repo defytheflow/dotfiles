@@ -30,7 +30,7 @@ install_packages() {
     keycastr \
     neovim node \
     pipenv pgcli postgresql \
-    ranger ripgrep \
+    ranger rename ripgrep \
     tmux \
     wget
 

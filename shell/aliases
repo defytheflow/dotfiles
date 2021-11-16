@@ -4,6 +4,7 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
+alias msh='mongosh'
 alias rh='runhaskell'
 
 alias sudo='sudo ' # to run 'sudo {alias}'
@@ -80,7 +81,6 @@ alias du='du -h'
 alias md='mkdir -pv'
 alias mv='mv -iv'
 alias move='mv'
-alias rename='mv'
 alias tc='touch'
 alias rd='rmdir'
 alias del='rm'
@@ -205,6 +205,7 @@ if command -v npm >/dev/null; then
   alias nb='npm run build'
   alias nrb='npm run build'
   alias nrba='npm run build:analyze'
+  alias nrd='npm run dev'
   alias nrc='npm run check'
   alias nrf='npm run fix'
   alias nrl='npm run lint'
