@@ -42,7 +42,7 @@
     "source.fixAll": true,
     "source.addMissingImports": true
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
@@ -180,11 +180,16 @@
   "files.defaultLanguage": "${activeEditorLanguage}",
   "files.hotExit": "onExit",
   "files.associations": {
+    // shell.
     ".env": "shellscript",
     ".env.*": "shellscript",
     "Pipfile": "toml",
+    // react.
     "*.js": "javascriptreact",
-    "*.ts": "typescriptreact"
+    "*.ts": "typescriptreact",
+    // django.
+    "**/templates/**/*.html": "django-html",
+    "**/templates/**/*": "django-txt"
   },
   "files.exclude": {
     "**/.git/**": true,
@@ -202,21 +207,13 @@
   //* Extensions.
   "extensions.closeExtensionDetailsOnViewChange": true,
 
-  //* emmet.
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
-  },
-
-  //* Markdown.
-  "[markdown]": {
-    "editor.quickSuggestions": false,
-    "editor.acceptSuggestionOnEnter": "off"
-  },
-
   //* Python.
   "[python]": {
     "editor.defaultFormatter": "ms-python.python",
-    "editor.tabSize": 4
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
   },
   "python.formatting.provider": "yapf",
   "python.formatting.yapfArgs": ["--exclude=*/migrations/*"],
@@ -228,7 +225,47 @@
   "python.linting.pylintEnabled": false,
   "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
 
+  //* HTML.
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[django-html]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+
+  //* CSS.
+  "[css]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+
+  //* SCSS.
+  "[scss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+  },
+
+  //* Markdown.
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.quickSuggestions": false,
+    "editor.acceptSuggestionOnEnter": "off"
+  },
+
+  //* Javascript.
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
   //* Typescript.
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.inlayHints.variableTypes.enabled": false,
@@ -247,16 +284,15 @@
   },
 
   //* Elm.
-  // "[elm]": {
-  //   "editor.defaultFormatter": "elmTooling.elm-ls-vscode"
-  // },
+  "[elm]": {
+    "editor.defaultFormatter": "elmTooling.elm-ls-vscode"
+  },
   "elmLS.disableElmLSDiagnostics": true,
 
   //* Vim.
   "vim.leader": " ",
   "vim.textwidth": 90,
-  "vim.matchpairs": "(:),{:},[:],<:>",
-  // "vim.foldfix": true,
+  "vim.foldfix": false,
 
   // neovim.
   "vim.enableNeovim": true,
@@ -288,6 +324,13 @@
     "R!": ["🚀 ", ["0xD83D", "0xDE80"]],
     "OO": ["🦉 ", ["0xD83E", "0xDD89"]]
   },
+
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": ["C-y", ","],
+      "commands": ["editor.emmet.action.expandAbbreviation"]
+    }
+  ],
 
   "vim.visualModeKeyBindingsNonRecursive": [
     {
@@ -321,22 +364,22 @@
       "before": ["n"],
       "after": ["n", "z", "z"]
     },
-    {
-      "before": ["<C-l>"],
-      "commands": [":nohl"]
-    },
+    // {
+    //   "before": ["<C-l>"],
+    //   "commands": [":nohl"]
+    // },
     {
       "before": ["\\", "\\"],
       "after": ["C-^"]
     },
 
-    //* g commands.
+    // g commands.
     {
       "before": ["g", "D"],
       "commands": ["editor.action.revealDefinitionAside"]
     },
 
-    //* z commands.
+    // z commands.
     {
       "before": ["z", "j"],
       "commands": ["editor.gotoNextFold"]
@@ -346,11 +389,11 @@
       "commands": ["editor.gotoPreviousFold"]
     },
 
-    //* window commands.
-    {
-      "before": ["<C-w>", "o"],
-      "commands": ["workbench.action.closeOtherEditors"]
-    },
+    // window commands.
+    // {
+    //   "before": ["<C-w>", "o"],
+    //   "commands": ["workbench.action.closeOtherEditors"]
+    // },
     {
       "before": ["<C-w>", "H"],
       "commands": ["workbench.action.moveActiveEditorGroupLeft"]
@@ -388,35 +431,61 @@
       "commands": ["workbench.action.maximizeEditor"]
     },
 
-    //* alternate file.
+    // alternate file.
     {
       "before": ["<leader>", "a", "a"],
-      "commands": ["alternate.createAlternateFile"]
+      "commands": ["alternate.alternateFile"]
     },
     {
       "before": ["<leader>", "a", "v"],
-      "commands": ["alternate.createAlternateFileInSplit"]
+      "commands": ["alternate.alternateFileInSplit"]
     },
     {
-      "before": ["\\", "a", "a"],
+      "before": ["<leader>", "a", "c", "a"],
       "commands": ["alternate.createAlternateFile"]
     },
     {
-      "before": ["\\", "a", "v"],
+      "before": ["<leader>", "a", "c", "v"],
       "commands": ["alternate.createAlternateFileInSplit"]
     },
+    // {
+    //   "before": ["\\", "a", "a"],
+    //   "commands": ["alternate.createAlternateFile"]
+    // },
+    // {
+    //   "before": ["\\", "a", "v"],
+    //   "commands": ["alternate.createAlternateFileInSplit"]
+    // },
 
-    //* open-in-vim.
+    // tests.
+    {
+      "before": ["<leader>", "t", "n"],
+      "commands": ["test-explorer.run-test-at-cursor"]
+    },
+    {
+      "before": ["<leader>", "d", "n"],
+      "commands": ["test-explorer.debug-test-at-cursor"]
+    },
+    {
+      "before": ["<leader>", "t", "f"],
+      "commands": ["test-explorer.run-this-file"]
+    },
+    {
+      "before": ["<leader>", "t", "s"],
+      "commands": ["test-explorer.run-all"]
+    },
+
+    // open-in-vim.
     {
       "before": ["<leader>", "v", "e"],
       "commands": ["open-in-vim.open"]
     },
-    {
-      "before": ["\\", "v", "e"],
-      "commands": ["open-in-vim.open"]
-    },
+    // {
+    //   "before": ["\\", "v", "e"],
+    //   "commands": ["open-in-vim.open"]
+    // },
 
-    //* git.
+    // git.
     {
       "before": ["<leader>", "g", "d"],
       "commands": ["git.openChange"]
@@ -430,29 +499,29 @@
       "commands": ["git-graph.view"]
     },
 
-    //* <leader> commands.
-    {
-      "before": ["<leader>", "g", "o"],
-      "commands": ["workbench.action.gotoSymbol"]
-    },
-    {
-      "before": ["<leader>", "g", "p"],
-      "commands": ["editor.action.peekDefinition"]
-    },
-    {
-      "before": ["<leader>", "g", "n"],
-      "commands": ["editor.action.rename"]
-    },
-    {
-      "before": ["<leader>", "g", "s"],
-      "commands": ["references-view.find"]
-    },
-    {
-      "before": ["<leader>", "g", "S"],
-      "commands": ["editor.action.referenceSearch.trigger"]
-    },
+    // <leader> commands.
+    // {
+    //   "before": ["<leader>", "g", "o"],
+    //   "commands": ["workbench.action.gotoSymbol"]
+    // },
+    // {
+    //   "before": ["<leader>", "g", "p"],
+    //   "commands": ["editor.action.peekDefinition"]
+    // },
+    // {
+    //   "before": ["<leader>", "g", "n"],
+    //   "commands": ["editor.action.rename"]
+    // },
+    // {
+    //   "before": ["<leader>", "g", "s"],
+    //   "commands": ["references-view.find"]
+    // },
+    // {
+    //   "before": ["<leader>", "g", "S"],
+    //   "commands": ["editor.action.referenceSearch.trigger"]
+    // },
 
-    //* unimpaired commands.
+    // unimpaired commands.
     {
       "before": ["[", "b"],
       "commands": ["workbench.action.previousEditorInGroup"]
@@ -505,7 +574,7 @@
       "commands": ["editor.action.marker.next", "closeMarkersNavigation"]
     },
 
-    //* vim-gitgutter
+    // vim-gitgutter
     {
       "before": ["[", "c"],
       "commands": [
@@ -521,7 +590,7 @@
       ]
     },
 
-    //* custom unimpaired commands.
+    // custom unimpaired commands.
     {
       "before": ["[", "w"],
       "commands": ["workbench.action.focusPreviousGroup"]
@@ -612,11 +681,25 @@
     }
   ],
 
+  //* emmet.
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "django-html": "html"
+  },
+
   //* Prettier.
   "prettier.jsxSingleQuote": true,
   "prettier.printWidth": 90,
   "prettier.singleQuote": true,
   "prettier.arrowParens": "avoid",
+
+  //* Beautify.
+  "beautify.language": {
+    "html": ["htm", "html", "django-html"]
+  },
+
+  //* Stylelint.
+  "stylelint.validate": ["css", "scss"],
 
   //* Tabnine.
   "tabnine.experimentalAutoImports": true,
@@ -669,7 +752,7 @@
   "better-comments.tags": [
     {
       "tag": "!",
-      "color": "#FF2D00"
+      "color": "#ea8c55"
     },
     {
       "tag": "?",
@@ -741,15 +824,17 @@
     "ipdb"
   ],
 
+  "cSpell.userWords": ["nestjs", "nextjs"],
+
   //* Open in vim.
   "open-in-vim.useNeovim": true,
 
   //* Garbage.
   "redhat.telemetry.enabled": false,
   "yaml.schemas": {
-    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.0/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "javascript.updateImportsOnFileMove.enabled": "always",
   "window.zoomLevel": -1,
-  "editor.minimap.enabled": false
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }

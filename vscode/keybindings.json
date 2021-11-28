@@ -68,11 +68,11 @@
    ** Overwrite vscode `isDevelopment` mode.
    **/
 
-  {
-    "describe": "Reload window",
-    "key": "cmd+r",
-    "command": "workbench.action.reloadWindow"
-  },
+  // {
+  //   "describe": "Reload window",
+  //   "key": "cmd+r",
+  //   "command": "workbench.action.reloadWindow"
+  // },
 
   {
     "describe": "Toggle developer tools",

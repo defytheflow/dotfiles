@@ -1,4 +1,9 @@
 {
+  "querySelector": {
+    "prefix": ["qs"],
+    "body": ["document.querySelector('$1')"]
+  },
+
   "function": {
     "prefix": ["f", "fn"],
     "body": ["function $1($2) {", "  $3", "}"]
@@ -49,11 +54,6 @@
   },
 
   //* console.
-  "console.dir": {
-    "prefix": ["dir"],
-    "body": ["console.dir($1);"]
-  },
-
   "log stringify": {
     "prefix": ["cljs"],
     "body": ["console.log(JSON.stringify($1, null, 2));"]

@@ -177,6 +177,7 @@ if command -v pipenv >/dev/null; then
   alias pid='pipenv install --dev'
   alias pu='pipenv uninstall'
   alias psh='pipenv shell'
+  alias pt='pytest'
   # pipenv run.
   alias pr='pipenv run'
   alias prc='pipenv run check'
@@ -196,6 +197,7 @@ if command -v npm >/dev/null; then
   alias nx='npx'
   alias ni='npm install'
   alias nid='npm install --save-dev'
+  alias nig='npm install --global'
   alias nu='npm uninstall'
   alias nud='npm update'
   alias na='npm audit'

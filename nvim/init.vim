@@ -199,7 +199,7 @@ set autoindent
 set smartindent
 
 " search.
-set hlsearch
+set nohlsearch
 set incsearch
 set ignorecase
 set smartcase
@@ -219,7 +219,7 @@ set nowrap
 set textwidth=90
 set formatoptions+=t " wrap text using &textwidth.
 set colorcolumn=+0 " display a colorcolumn using &textwidth.
-set scrolloff=10
+" set scrolloff=10
 set sidescrolloff=10
 
 " undo.

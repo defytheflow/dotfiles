@@ -48,7 +48,7 @@ vnoremap > >gv
 " vnoremap K :m '<-2<CR>gv=gv
 
 " Misc.
-nnoremap Y y$
+" nnoremap Y y$
 nnoremap Q <nop>
 tnoremap <Esc> <C-\><C-n>
 

@@ -121,6 +121,7 @@ install_npm_packages() {
     chalk create-react-app \
     eslint \
     jest jsonlint \
+    live-server \
     nodemon \
     prettier neovim \
     sass stylelint sqlite3 \
