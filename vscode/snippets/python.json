@@ -1,22 +1,41 @@
 {
+  //* mypy.
   "type ignore": {
     "prefix": ["tig"],
     "body": ["# type: ignore"]
   },
 
+  //* yapf.
   "yapf disable": {
     "prefix": "yd",
     "body": ["# yapf: disable"]
   },
 
+  //* debugger.
+  "breakpoint": {
+    "prefix": ["br"],
+    "body": ["breakpoint()"]
+  },
+
   "ipython debugger": {
-    "prefix": ["ipdb"],
+    "prefix": ["pdb"],
     "body": ["__import__('ipdb').set_trace()"]
   },
 
+  //* print.
   "print": {
     "prefix": ["p"],
-    "body": ["print(f'{$1=}')"]
+    "body": ["print($1)"]
+  },
+
+  "print equals": {
+    "prefix": ["p="],
+    "body": ["print(f\"{$1=}\")"]
+  },
+
+  "print object": {
+    "prefix": ["po"],
+    "body": ["print(\"${1:object} :>> \", ${1:object})"]
   },
 
   "pretty print": {
@@ -31,8 +50,4 @@
     ]
   },
 
-  "breakpoint": {
-    "prefix": ["br"],
-    "body": ["breakpoint()"]
-  }
 }

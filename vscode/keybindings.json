@@ -182,7 +182,7 @@
     "describe": "Open user keyboard shortcuts (JSON)",
     "key": "cmd+g cmd+s",
     "command": "workbench.action.openGlobalKeybindingsFile"
-  }
+  },
 
   /**
    ** Disable `cmd+w` to close windows. Learn vim's `:q` and `ctrl-w` + c.

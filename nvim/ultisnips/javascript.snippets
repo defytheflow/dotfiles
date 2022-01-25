@@ -1,7 +1,119 @@
+snippet fn
+function $1($2) {
+  $3
+}
+endsnippet
+
+snippet efn
+export function $1($2) {
+  $3
+}
+endsnippet
+
+# console log.
 snippet log
 console.log($1);
 endsnippet
 
-snippet js
+# console log object.
+snippet clo
+console.log('$1 :>> ', $1);
+endsnippet
+
+# console log json stringify.
+snippet cljs
 console.log(JSON.stringify($1, null, 2))
+endsnippet
+
+# prettier.
+snippet pig
+// pretier-ignore
+endsnippet
+
+# react.
+
+snippet uc
+const $1 = React.useCallback(($2) => {
+  $3
+}, [$4]);
+endsnippet
+
+snippet ue
+React.useEffect(() => {
+  $1
+}, [$2]);
+endsnippet
+
+snippet um
+const $1 = React.useMemo(() => {
+  $2
+}, [$3]);
+endsnippet
+
+snippet ur
+const $1Ref = React.useRef($2);
+endsnippet
+
+snippet us
+const [$1, $2] = React.useState($3);
+endsnippet
+
+# react-testing-library.
+
+snippet sd
+screen.debug($1)
+endsnippet
+
+snippet sl
+screen.getByLabelText('$1')
+endsnippet
+
+snippet sr
+screen.getByRole('$1')
+endsnippet
+
+snippet st
+screen.getByText('$1')
+endsnippet
+
+snippet sq
+screen.queryByRole('$1')
+endsnippet
+
+# jest.
+
+snippet des
+describe('$1', () => {
+  $2
+})
+endsnippet
+
+snippet bef
+beforeEach(() => {
+  $1
+})
+endsnippet
+
+snippet it
+it('$1', () => {
+  $2
+})
+endsnippet
+
+snippet ts
+test('$1', () => {
+  $2
+})
+endsnippet
+
+snippet act
+act(() => {
+  $1
+});
+endsnippet
+
+snippet aact
+await act(async () => {
+  $1
+});
 endsnippet

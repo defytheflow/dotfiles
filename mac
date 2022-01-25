@@ -25,7 +25,7 @@ install_packages() {
     deno diceware dos2unix \
     exa \
     fzf \
-    graphviz \
+    gh graphviz \
     iterm2 \
     keycastr \
     neovim node \

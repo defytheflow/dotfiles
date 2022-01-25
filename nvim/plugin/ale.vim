@@ -12,11 +12,12 @@ let g:ale_linters = {
 \  'javascript': ['eslint', 'tsserver'],
 \  'json':       [''],
 \  'ocaml':      ['ocamllsp'],
+\  'typescript': ['tsserver', 'eslint', ],
 \  'python':     ['pyls','flake8'],
 \  'sh':         ['language_server', 'shellcheck'],
-\  'typescript': ['tsserver', 'eslint', ],
 \  'vim':        ['vimls', 'vint'],
 \}
+
 
 let g:ale_fixers = {
 \ 'c':               ['clang-format'],
@@ -68,8 +69,8 @@ let g:ale_completion_symbols = {
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 
-let g:ale_sign_error = '🗙 '
-let g:ale_sign_warning = '🗙 '
+" let g:ale_sign_error = '🗙 '
+" let g:ale_sign_warning = '🗙 '
 
 let g:ale_java_javalsp_executable = 'java-language-server'
 
@@ -77,7 +78,7 @@ let g:ale_sh_shfmt_options = '-p -ci -i 2'
 let g:ale_ocaml_ocamlformat_options = '--enable-outside-detected-project'
 " let g:ale_python_mypy_options = '--strict'
 
-" let g:ale_linters_explicit = 1
+let g:ale_linters_explicit = 1
 let g:ale_completion_autoimport = 1
 
 let g:ale_python_pyls_config = {
@@ -113,11 +114,11 @@ augroup END
 
 call AleColorsInit()
 
-nmap <silent> gd :ALEGoToDefinition<CR>
-nmap <silent> gi :ALEDetail<CR>
-nmap <silent> gn :ALERename<CR>
-nmap <silent> gs :ALEFindReferences<CR>
-nmap <silent> [g :ALEPrevious<CR>
-nmap <silent> ]g :ALENext<CR>
-nmap <silent> gh :ALEHover<CR>
-imap <C-Space> <Plug>(ale_complete)
+" nmap <silent> gd :ALEGoToDefinition<CR>
+" nmap <silent> gi :ALEDetail<CR>
+" nmap <silent> gn :ALERename<CR>
+" nmap <silent> gs :ALEFindReferences<CR>
+" nmap <silent> [g :ALEPrevious<CR>
+" nmap <silent> ]g :ALENext<CR>
+" nmap <silent> gh :ALEHover<CR>
+" imap <C-Space> <Plug>(ale_complete)

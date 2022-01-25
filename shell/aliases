@@ -165,10 +165,10 @@ fi
 # homebrew.
 if command -v brew >/dev/null; then
   alias bi='brew install'
-  alias bri='brew reinstall'
   alias bu='brew uninstall'
-  alias bl='brew list'
-  alias bs='brew search'
+  alias bs='brew services'
+  # alias bri='brew reinstall'
+  # alias bl='brew list'
 fi
 
 # pipenv.

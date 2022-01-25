@@ -188,17 +188,17 @@
     "*.js": "javascriptreact",
     "*.ts": "typescriptreact",
     // django.
-    "**/templates/**/*.html": "django-html",
-    "**/templates/**/*": "django-txt"
+    // "**/templates/**/*.html": "django-html",
+    // "**/templates/**/*": "django-txt"
   },
   "files.exclude": {
     "**/.git/**": true,
     "**/node_modules/**": true,
-    "**/.venv/**": false,
-    "**/*cache*/**": true,
+    // "**/.venv/**": true,
+    // "**/*cache*/**": true,
     "**/*coverage*/**": true,
-    "**/react-app-env.d.ts": true,
-    "**/next-env.d.ts": true
+    // "**/react-app-env.d.ts": true,
+    // "**/next-env.d.ts": true
   },
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
@@ -216,7 +216,7 @@
     }
   },
   "python.formatting.provider": "yapf",
-  "python.formatting.yapfArgs": ["--exclude=*/migrations/*"],
+  "python.formatting.yapfArgs": ["--exclude=*/migrations/*", "--exclude=*/site_packages/*"],
   "python.linting.enabled": true,
   "python.linting.mypyEnabled": true,
   //// "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
@@ -320,9 +320,12 @@
   "vim.surround": true,
   "vim.sneak": false,
 
+
   "vim.digraphs": {
     "R!": ["🚀 ", ["0xD83D", "0xDE80"]],
-    "OO": ["🦉 ", ["0xD83E", "0xDD89"]]
+    "S!": ["🤷‍♀️ ", ["0XD83E", "0XDD37", "0X200D", "0X2640", "0XFE0F"]],
+    "T!": ["🥲 ", ["0xD83E", "0XDD72"]],
+    "OO": ["🦉 ", ["0xD83E", "0xDD89"]],
   },
 
   "vim.insertModeKeyBindingsNonRecursive": [
@@ -368,10 +371,15 @@
     //   "before": ["<C-l>"],
     //   "commands": [":nohl"]
     // },
-    {
-      "before": ["\\", "\\"],
-      "after": ["C-^"]
-    },
+    // {
+    //   "before": ["\\", "\\"],
+    //   "after": ["C-^"]
+    // },
+
+    // {
+    //   "before": ["<leader>", "r", "n"],
+    //   "commands": ["editor.action.rename"]
+    // },
 
     // g commands.
     {
@@ -474,6 +482,10 @@
       "before": ["<leader>", "t", "s"],
       "commands": ["test-explorer.run-all"]
     },
+    {
+      "before": ["<leader>", "t", "l"],
+      "commands": ["test-explorer.rerun"]
+    },
 
     // open-in-vim.
     {
@@ -564,12 +576,12 @@
       "commands": ["workbench.view.explorer", "list.focusDown", "explorer.openAndPassFocus"]
     },
     {
-      "before": ["[", "q"],
+      "before": ["[", "g"],
       // "commands": ["editor.action.marker.prevInFiles", "closeMarkersNavigation"]
       "commands": ["editor.action.marker.prev", "closeMarkersNavigation"]
     },
     {
-      "before": ["]", "q"],
+      "before": ["]", "g"],
       // "commands": ["editor.action.marker.nextInFiles", "closeMarkersNavigation"]
       "commands": ["editor.action.marker.next", "closeMarkersNavigation"]
     },
@@ -684,7 +696,7 @@
   //* emmet.
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
-    "django-html": "html"
+    // "django-html": "html"
   },
 
   //* Prettier.
@@ -824,7 +836,16 @@
     "ipdb"
   ],
 
-  "cSpell.userWords": ["nestjs", "nextjs"],
+  "cSpell.userWords": [
+    "esbuild",
+    "luxon",
+    "nestjs",
+    "nextjs",
+    "Pressable",
+    "semibold",
+    "signup",
+    "tailwindcss"
+  ],
 
   //* Open in vim.
   "open-in-vim.useNeovim": true,
@@ -832,9 +853,14 @@
   //* Garbage.
   "redhat.telemetry.enabled": false,
   "yaml.schemas": {
-    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.0/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "09c69f05-3465-46c7-ba23-2757e0811800",
+    "projectKey": "API"
   },
   "window.zoomLevel": -1,
-  "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+  "editor.minimap.enabled": false
 }

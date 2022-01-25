@@ -136,6 +136,7 @@ Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 Plug 'haishanh/night-owl.vim'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
 " syntaxes.
 Plug 'mboughaba/i3config.vim'
@@ -144,6 +145,9 @@ Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 Plug 'uiiaoo/java-syntax.vim', { 'for': 'java' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'pantharshit00/vim-prisma'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 "}}}
@@ -260,4 +264,6 @@ set timeoutlen=500
 set noerrorbells visualbell t_vb=
 "}}}
 
+digraph R! 128640 " rocket emoji.
+digraph T! 129394 " smilint face with tear emoji.
 digraph OO 129417 " owl emoji.

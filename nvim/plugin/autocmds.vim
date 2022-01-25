@@ -19,7 +19,7 @@ augroup END
 
 augroup vimrc_indent
   au!
-  au FileType ocaml,lua,*sh,vim,*css,html*,git*,toml,sql setlocal shiftwidth=2 softtabstop=2
+  au FileType ocaml,lua,*sh,vim,*css,html*,git*,toml,sql,prisma setlocal shiftwidth=2 softtabstop=2
   au FileType vimwiki runtime ftplugin/text.vim
 augroup END
 

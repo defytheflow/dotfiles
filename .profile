@@ -26,7 +26,7 @@ command -v gem >/dev/null && export PATH="${PATH}:${XDG_CONFIG_HOME}/gem/bin"
 export EDITOR='nvim'
 export BROWSER='firefox'
 export PAGER='less'
-command -v alacritty >/dev/null && export TERM='alacritty'
+# command -v alacritty >/dev/null && export TERM='alacritty'
 
 # brew.
 case $OSTYPE in
