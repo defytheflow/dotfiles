@@ -7,6 +7,10 @@
   "editor.guides.bracketPairs": true,
   "editor.inlayHints.enabled": true,
 
+  //* Unicode.
+  "editor.unicodeHighlight.includeStrings": false,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+
   //* Zen mode.
   "zenMode.fullScreen": false,
   "zenMode.centerLayout": false,
@@ -883,7 +887,6 @@
     "siteId": "09c69f05-3465-46c7-ba23-2757e0811800",
     "projectKey": "API"
   },
-  "editor.unicodeHighlight.ambiguousCharacters": false,
   "editor.minimap.enabled": false,
-  "window.zoomLevel": -1
+  "window.zoomLevel": -1,
 }

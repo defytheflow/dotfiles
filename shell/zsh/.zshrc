@@ -133,25 +133,30 @@ fi
 autoload -Uz vcs_info
 
 # Taken from night-owl.vim
-night_owl_green=149
+NIGHT_OWL_GREEN=149
 
 # This color looks good with 'Night Owl' theme in vscode and vim.
 # The previous purple color was 213.
-night_owl_purple=140
+NIGHT_OWL_PURPLE=140
 
 zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:*' formats ' (*%F{$night_owl_green}%b%f)'
+zstyle ':vcs_info:*' formats ' (*%F{$NIGHT_OWL_GREEN}%b%f)'
 #                             ^
 #                             %s can be added to display 'git' or 'svn'
 
-precmd() {
-  vcs_info
-}
+precmd() { vcs_info }
 
 # Enable prompt substitution.
 setopt prompt_subst
 
-export PROMPT='%B%F{$night_owl_purple}%~%f%b${vcs_info_msg_0_} $ '
+function random_element {
+  declare -a array=("$@")
+  r=$((RANDOM % ${#array[@]}))
+  printf "%s\n" "${array[$r]}"
+}
+
+EMOJI="$(random_element 😅 👽 🔥 🚀 👻 ⛄ 👾 😄 🐑 😎 🏎 🤖 😇 😼 💪 🦄 🎉 💯 🐠 🐳 🐿 🥳 🤩 🤯 🤠 👨‍💻 🦸‍ 🧝‍ 🧞 🧙‍ 👨‍🚀 👨‍🔬 🕺 🦁 🐶)"
+export PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} $ '
 #}}}
 
 # ocaml.
