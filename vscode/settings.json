@@ -40,7 +40,8 @@
   //* Formatting/Fixing.
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
-    "source.addMissingImports": true
+    "source.addMissingImports": true,
+    // "source.organizeImports": true,
   },
   // "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
@@ -105,10 +106,26 @@
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
 
   //* Colortheme/Icontheme.
-  "workbench.colorTheme": "Night Owl (No Italics)",
+  "workbench.colorTheme": "Night Owl",
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
     "[Night Owl (No Italics)]": {
+      // Custom.
+      "editor.lineHighlightBackground": "#333",
+      "editorCursor.foreground": "#DC8CFF",
+      "statusBar.foreground": "#D6DEEB",
+      "activityBar.activeBorder": "#FF50FF",
+      "tab.activeBorder": "#FF50FF",
+      "panelTitle.activeBorder": "#FF50FF",
+      // Night Owl.
+      "activityBar.background": "#000C1D",
+      "activityBar.border": "#102a44",
+      "editorGroup.border": "#102a44",
+      "sideBar.background": "#001122",
+      "sideBar.border": "#102a44",
+      "sideBar.foreground": "#8BADC1"
+    },
+    "[Night Owl]": {
       // Custom.
       "editor.lineHighlightBackground": "#333",
       "editorCursor.foreground": "#DC8CFF",
@@ -837,14 +854,19 @@
   ],
 
   "cSpell.userWords": [
+    "camelcase",
+    "clsx",
     "esbuild",
     "luxon",
     "nestjs",
     "nextjs",
+    "prefetch",
     "Pressable",
+    "Properoom",
     "semibold",
     "signup",
-    "tailwindcss"
+    "tailwindcss",
+    "upsert"
   ],
 
   //* Open in vim.
@@ -853,7 +875,7 @@
   //* Garbage.
   "redhat.telemetry.enabled": false,
   "yaml.schemas": {
-    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
@@ -861,6 +883,7 @@
     "siteId": "09c69f05-3465-46c7-ba23-2757e0811800",
     "projectKey": "API"
   },
-  "window.zoomLevel": -1,
-  "editor.minimap.enabled": false
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "editor.minimap.enabled": false,
+  "window.zoomLevel": -1
 }

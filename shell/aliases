@@ -4,6 +4,10 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
+alias push='npx prisma db push'
+alias seed='npx prisma db seed'
+alias studio='npx prisma studio'
+
 alias msh='mongosh'
 alias rh='runhaskell'
 
@@ -204,6 +208,7 @@ if command -v npm >/dev/null; then
   alias nl='npm link'
   # npm run.
   alias nr='npm run'
+  alias nri='npm run ios'
   alias nb='npm run build'
   alias nrb='npm run build'
   alias nrba='npm run build:analyze'

@@ -127,9 +127,32 @@ if [[ -n "${DOTFILES_HOME}" ]]; then
 fi
 #}}}
 
-export PROMPT='%B%F{140}%~%f%b $ '
-# 140 looks good with 'Night Owl' theme in vscode and vim.
-# previous color was 213.
+# prompt {{{
+
+# Enable version control information.
+autoload -Uz vcs_info
+
+# Taken from night-owl.vim
+night_owl_green=149
+
+# This color looks good with 'Night Owl' theme in vscode and vim.
+# The previous purple color was 213.
+night_owl_purple=140
+
+zstyle ':vcs_info:*' enable git svn
+zstyle ':vcs_info:*' formats ' (*%F{$night_owl_green}%b%f)'
+#                             ^
+#                             %s can be added to display 'git' or 'svn'
+
+precmd() {
+  vcs_info
+}
+
+# Enable prompt substitution.
+setopt prompt_subst
+
+export PROMPT='%B%F{$night_owl_purple}%~%f%b${vcs_info_msg_0_} $ '
+#}}}
 
 # ocaml.
 eval $(opam env)
