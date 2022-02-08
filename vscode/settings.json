@@ -45,7 +45,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
     "source.addMissingImports": true,
-    // "source.organizeImports": true,
+    "source.organizeImports": true,
   },
   // "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
@@ -888,5 +888,4 @@
     "projectKey": "API"
   },
   "editor.minimap.enabled": false,
-  "window.zoomLevel": -1,
 }

@@ -140,7 +140,7 @@ NIGHT_OWL_GREEN=149
 NIGHT_OWL_PURPLE=140
 
 zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:*' formats ' (*%F{$NIGHT_OWL_GREEN}%b%f)'
+zstyle ':vcs_info:*' formats ' %s(%F{$NIGHT_OWL_GREEN}%b%f)'
 #                             ^
 #                             %s can be added to display 'git' or 'svn'
 
@@ -155,7 +155,7 @@ function random_element {
   printf "%s\n" "${array[$r]}"
 }
 
-EMOJI="$(random_element 😅 👽 🔥 🚀 👻 ⛄ 👾 😄 🐑 😎 🏎 🤖 😇 😼 💪 🦄 🎉 💯 🐠 🐳 🐿 🥳 🤩 🤯 🤠 👨‍💻 🦸‍ 🧝‍ 🧞 🧙‍ 👨‍🚀 👨‍🔬 🕺 🦁 🐶)"
+EMOJI="$(random_element 😅 👽 🔥 🚀 👻 ⛄ 👾 😄 🍰 🐑 😎 🏎 🤖 😇 😼 💪 🦄 🎉 💯 🐠 🐳 🐿 🥳 🤩 🤯 🤠 👨‍💻 🦸‍ 🧝‍ 🧞‍ 🧙‍ 👨‍🚀 👨‍🔬 🕺 🦁 🐶 🐵 🐻 🦊 🐙 🦎 🦖 🦕 🦍 🦈 🐊 🦂 🐍 🐢 🐘 🐉 🦚 ✨ ☄️ ⚡️ 💥 💫 🧬 🔮 ⚗️ 🎊 🔭 ⚪️ 🔱)"
 export PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} $ '
 #}}}
 
