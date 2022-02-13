@@ -53,13 +53,7 @@
     "body": ["export type $1"]
   },
 
-  //* console.
-  "log stringify": {
-    "prefix": ["cljs"],
-    "body": ["console.log(JSON.stringify($1, null, 2));"]
-  },
-
-  //* prettier
+   //* prettier
   "prettier ignore": {
     "prefix": ["pig"],
     "body": ["// prettier-ignore"]
@@ -104,7 +98,7 @@
 
   "JSON.stringify": {
     "prefix": ["js"],
-    "body": ["JSON.stringify($1)"]
+    "body": ["JSON.stringify($1, null, 2)"]
   },
 
   //* react-testing-library.
@@ -172,7 +166,7 @@
   "remix loader": {
     "prefix": "rload",
     "body": [
-      "export const loader: LoaderFunction = async ({ request }) => {",
+      "export const loader: LoaderFunction = async ({ request, params }) => {",
       "  $1",
       "}"
     ],

@@ -155,7 +155,7 @@ function random_element {
   printf "%s\n" "${array[$r]}"
 }
 
-EMOJI="$(random_element 😅 👽 🔥 🚀 👻 ⛄ 👾 😄 🍰 🐑 😎 🏎 🤖 😇 😼 💪 🦄 🎉 💯 🐠 🐳 🐿 🥳 🤩 🤯 🤠 👨‍💻 🦸‍ 🧝‍ 🧞‍ 🧙‍ 👨‍🚀 👨‍🔬 🕺 🦁 🐶 🐵 🐻 🦊 🐙 🦎 🦖 🦕 🦍 🦈 🐊 🦂 🐍 🐢 🐘 🐉 🦚 ✨ ☄️ ⚡️ 💥 💫 🧬 🔮 ⚗️ 🎊 🔭 ⚪️ 🔱)"
+EMOJI="$(random_element 😅 👽 🔥 🚀 👻 ⛄ 👾 😄 🍰 🐑 😎 🏎 🤖 😇 😼 💪 🦄 🎉 💯 🐠 🐳 🐿 🥳 🤩 🤯 🤠 👨‍💻 🦸‍ 🧝‍ 🧞‍ 🧙‍ 👨‍🚀 👨‍🔬 🕺 🦁 🐶 🐵 🐻 🦊 🐙 🦎 🦖 🦕 🦍 🦈 🐊 🦂 🐍 🐢 🐘 🐉 🦚 ✨ 💥 💫 🧬 🔮 🎊 🔭 ⚪️ 🔱)"
 export PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} $ '
 #}}}
 

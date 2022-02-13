@@ -45,7 +45,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
     "source.addMissingImports": true,
-    "source.organizeImports": true,
+    // "source.organizeImports": true,
   },
   // "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
@@ -340,7 +340,6 @@
   "vim.replaceWithRegister": true,
   "vim.surround": true,
   "vim.sneak": false,
-
 
   "vim.digraphs": {
     "R!": ["🚀 ", ["0xD83D", "0xDE80"]],
@@ -884,8 +883,9 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "09c69f05-3465-46c7-ba23-2757e0811800",
+    "siteId": "",
     "projectKey": "API"
   },
   "editor.minimap.enabled": false,
+  "window.zoomLevel": -1,
 }
