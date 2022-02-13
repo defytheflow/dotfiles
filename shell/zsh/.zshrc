@@ -48,10 +48,15 @@ setopt menu_complete # auto-insert first possible completion.
 autoload -U add-zsh-hook
 if command -v exa >/dev/null; then
   add-zsh-hook -Uz chpwd (){ exa --group-directories-first; }
-elif [[ "${ON_MAC}" ]]; then
-  add-zsh-hook -Uz chpwd (){ ls -vhG; }
 else
-  add-zsh-hook -Uz chpwd (){ ls --color=auto -vh --group-directories-first; }
+  case $OSTYPE in
+  darwin*)
+    add-zsh-hook -Uz chpwd (){ ls -vhG; }
+    ;;
+  linux*)
+    add-zsh-hook -Uz chpwd (){ ls --color=auto -vh --group-directories-first; }
+    ;;
+  esac
 fi
 #}}}
 
@@ -160,7 +165,9 @@ export PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} $ '
 #}}}
 
 # ocaml.
-eval $(opam env)
+if command -v opam >/dev/null; then
+  eval $(opam env)
+fi
 
-# haskel.
+# haskell.
 [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
