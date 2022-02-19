@@ -12,3 +12,4 @@ ghc/ghci_history
 pgcli/history
 pgcli/log
 local_aliases
+.DS_Store

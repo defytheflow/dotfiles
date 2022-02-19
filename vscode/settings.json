@@ -44,7 +44,7 @@
   //* Formatting/Fixing.
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
-    "source.addMissingImports": true,
+    "source.addMissingImports": true
     // "source.organizeImports": true,
   },
   // "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -207,7 +207,7 @@
     "Pipfile": "toml",
     // react.
     "*.js": "javascriptreact",
-    "*.ts": "typescriptreact",
+    "*.ts": "typescriptreact"
     // django.
     // "**/templates/**/*.html": "django-html",
     // "**/templates/**/*": "django-txt"
@@ -217,7 +217,7 @@
     "**/node_modules/**": true,
     // "**/.venv/**": true,
     // "**/*cache*/**": true,
-    "**/*coverage*/**": true,
+    "**/*coverage*/**": true
     // "**/react-app-env.d.ts": true,
     // "**/next-env.d.ts": true
   },
@@ -237,7 +237,10 @@
     }
   },
   "python.formatting.provider": "yapf",
-  "python.formatting.yapfArgs": ["--exclude=*/migrations/*", "--exclude=*/site_packages/*"],
+  "python.formatting.yapfArgs": [
+    "--exclude=*/migrations/*",
+    "--exclude=*/site_packages/*"
+  ],
   "python.linting.enabled": true,
   "python.linting.mypyEnabled": true,
   //// "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
@@ -345,7 +348,7 @@
     "R!": ["🚀 ", ["0xD83D", "0xDE80"]],
     "S!": ["🤷‍♀️ ", ["0XD83E", "0XDD37", "0X200D", "0X2640", "0XFE0F"]],
     "T!": ["🥲 ", ["0xD83E", "0XDD72"]],
-    "OO": ["🦉 ", ["0xD83E", "0xDD89"]],
+    "OO": ["🦉 ", ["0xD83E", "0xDD89"]]
   },
 
   "vim.insertModeKeyBindingsNonRecursive": [
@@ -715,7 +718,7 @@
 
   //* emmet.
   "emmet.includeLanguages": {
-    "javascript": "javascriptreact",
+    "javascript": "javascriptreact"
     // "django-html": "html"
   },
 
@@ -724,6 +727,7 @@
   "prettier.printWidth": 90,
   "prettier.singleQuote": true,
   "prettier.arrowParens": "avoid",
+  "prettier.semi": false,
 
   //* Beautify.
   "beautify.language": {
@@ -878,7 +882,7 @@
   //* Garbage.
   "redhat.telemetry.enabled": false,
   "yaml.schemas": {
-    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.9/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
@@ -887,5 +891,5 @@
     "projectKey": "API"
   },
   "editor.minimap.enabled": false,
-  "window.zoomLevel": -1,
+  "window.zoomLevel": -1
 }
