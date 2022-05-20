@@ -5,7 +5,7 @@
   "editor.hover.delay": 200,
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
-  "editor.inlayHints.enabled": true,
+  "editor.inlayHints.enabled": "on",
 
   //* Unicode.
   "editor.unicodeHighlight.includeStrings": false,
@@ -882,7 +882,7 @@
   //* Garbage.
   "redhat.telemetry.enabled": false,
   "yaml.schemas": {
-    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.9/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",

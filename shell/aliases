@@ -4,6 +4,7 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
+# prisma
 alias push='npx prisma db push'
 alias seed='npx prisma db seed'
 alias studio='npx prisma studio'
@@ -386,6 +387,18 @@ alias gstb='bit stash branch'
 alias gstd='git stash drop'
 alias gstl='git stash list'
 alias gstp='git stash pop'
+
+# gh (github command line client).
+if command -v gh >/dev/null; then
+  alias ghb='gh browse'
+  alias ghrl='gh repo list --limit 100'
+  alias ghrlf='gh repo list --limit 100 --fork'
+  alias ghrlp='gh repo list --limit 100 --private'
+fi
+
+if command -v gh >/dev/null; then
+  alias ghst='ghcal -u defytheflow -e $(date "+%Y.%m.%d")'
+fi
 
 ## amixer.
 ## alias amixer_toggle='amixer -D pulse set Master 1+ toggle'
