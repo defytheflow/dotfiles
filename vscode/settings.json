@@ -274,6 +274,14 @@
     "editor.acceptSuggestionOnEnter": "off"
   },
 
+  //* JSON.
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
   //* Javascript.
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -356,6 +364,23 @@
       "before": ["C-y", ","],
       "commands": ["editor.emmet.action.expandAbbreviation"]
     }
+    // disable arrow keys
+    // {
+    //   "before": ["left"],
+    //   "after": [""]
+    // },
+    // {
+    //   "before": ["right"],
+    //   "after": []
+    // },
+    // {
+    //   "before": ["down"],
+    //   "after": []
+    // },
+    // {
+    //   "before": ["up"],
+    //   "after": []
+    // },
   ],
 
   "vim.visualModeKeyBindingsNonRecursive": [
@@ -403,6 +428,11 @@
     //   "before": ["<leader>", "r", "n"],
     //   "commands": ["editor.action.rename"]
     // },
+
+    {
+      "before": ["<leader>", "g", "o"],
+      "commands": ["editor.action.openLink"]
+    },
 
     // g commands.
     {
@@ -557,22 +587,22 @@
     // },
 
     // unimpaired commands.
-    {
-      "before": ["[", "b"],
-      "commands": ["workbench.action.previousEditorInGroup"]
-    },
-    {
-      "before": ["]", "b"],
-      "commands": ["workbench.action.nextEditorInGroup"]
-    },
-    {
-      "before": ["[", "B"],
-      "commands": ["workbench.action.firstEditorInGroup"]
-    },
-    {
-      "before": ["]", "B"],
-      "commands": ["workbench.action.lastEditorInGroup"]
-    },
+    // {
+    //   "before": ["[", "b"],
+    //   "commands": ["workbench.action.previousEditorInGroup"]
+    // },
+    // {
+    //   "before": ["]", "b"],
+    //   "commands": ["workbench.action.nextEditorInGroup"]
+    // },
+    // {
+    //   "before": ["[", "B"],
+    //   "commands": ["workbench.action.firstEditorInGroup"]
+    // },
+    // {
+    //   "before": ["]", "B"],
+    //   "commands": ["workbench.action.lastEditorInGroup"]
+    // },
     {
       "before": ["[", " "],
       "commands": ["editor.action.insertLineBefore"]
@@ -581,14 +611,14 @@
       "before": ["]", " "],
       "commands": ["editor.action.insertLineAfter"]
     },
-    {
-      "before": ["[", "e"],
-      "commands": ["editor.action.moveLinesUpAction"]
-    },
-    {
-      "before": ["]", "e"],
-      "commands": ["editor.action.moveLinesDownAction"]
-    },
+    // {
+    //   "before": ["[", "e"],
+    //   "commands": ["editor.action.moveLinesUpAction"]
+    // },
+    // {
+    //   "before": ["]", "e"],
+    //   "commands": ["editor.action.moveLinesDownAction"]
+    // },
     {
       "before": ["[", "f"],
       "commands": ["workbench.view.explorer", "list.focusUp", "explorer.openAndPassFocus"]
@@ -723,11 +753,12 @@
   },
 
   //* Prettier.
+  "prettier.arrowParens": "avoid",
   "prettier.jsxSingleQuote": true,
   "prettier.printWidth": 90,
-  "prettier.singleQuote": true,
-  "prettier.arrowParens": "avoid",
+  "prettier.quoteProps": "consistent",
   "prettier.semi": false,
+  "prettier.singleQuote": true,
 
   //* Beautify.
   "beautify.language": {

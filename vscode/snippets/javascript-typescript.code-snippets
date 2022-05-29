@@ -1,0 +1,261 @@
+{
+  "querySelector": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["qs"],
+    "body": ["document.querySelector('$1')"]
+  },
+
+  //* javascript functions
+  "function": {
+    "scope": "javascript,javascriptreact",
+    "prefix": ["fn"],
+    "body": ["function ${1:name}(${2:params}) {", "\t${TM_SELECTED_TEXT:${3}}", "}"]
+  },
+
+  "async function": {
+    "scope": "javascript,javascriptreact",
+    "prefix": ["afn"],
+    "body": ["async function ${1:name}(${2:params}) {", "\t${TM_SELECTED_TEXT:${3}}", "}"]
+  },
+
+  "export function": {
+    "scope": "javascript,javascriptreact",
+    "prefix": ["efn"],
+    "body": [
+      "export function ${1:name}(${2:params}) {",
+      "\t${TM_SELECTED_TEXT:${3}}",
+      "}"
+    ]
+  },
+
+  "export async function": {
+    "scope": "javascript,javascriptreact",
+    "prefix": ["eafn"],
+    "body": [
+      "export async function ${1:name}(${2:params}) {",
+      "\t${TM_SELECTED_TEXT:${3}}",
+      "}"
+    ]
+  },
+
+  //* typescript functions
+  "typescript function": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["fn"],
+    "body": [
+      "function ${1:name}(${2:params}: ${3:type}) {",
+      "\t${TM_SELECTED_TEXT:${4}}",
+      "}"
+    ]
+  },
+
+  "typescript async function": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["afn", "asfn"],
+    "body": [
+      "async function ${1:name}(${2:params}: ${3:type}) {",
+      "\t${TM_SELECTED_TEXT:${4}}",
+      "}"
+    ]
+  },
+
+  "typescript export function": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["efn"],
+    "body": [
+      "export function ${1:name}(${2:params}: ${3:type}) {",
+      "\t${TM_SELECTED_TEXT:${4}}",
+      "}"
+    ]
+  },
+
+  "typescript export async function": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["eafn", "easfn"],
+    "body": [
+      "export async function ${1:name}(${2:params}: ${3:type}) {",
+      "\t${TM_SELECTED_TEXT:${4}}",
+      "}"
+    ]
+  },
+
+  "export default": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["ed"],
+    "body": ["export default ${TM_SELECTED_TEXT:${1}}"]
+  },
+
+  // "export default function": {
+  //   "scope": "javascript,typescript,javascriptreact,typescriptreact",
+  //   "prefix": ["edf", "edfn"],
+  //   "body": [
+  //     "export default function ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}($2) {",
+  //     "  $3",
+  //     "}"
+  //   ]
+  // },
+
+  "interface": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["in"],
+    "body": ["interface $1 {", "\t$2", "}"]
+  },
+
+  "export interface": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["ein"],
+    "body": ["export interface $1 {", "\t$2", "}"]
+  },
+
+  "export type": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["et"],
+    "body": ["export type $1"]
+  },
+
+  //* prettier
+  "prettier ignore": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,jsonc",
+    "prefix": ["pig"],
+    "body": ["$LINE_COMMENT prettier-ignore"]
+  },
+
+  //* eslint.
+  "eslint disable line": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["edl"],
+    "body": ["$LINE_COMMENT eslint-disable-line $1"]
+  },
+
+  "eslint disable next line": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["ednl"],
+    "body": ["$LINE_COMMENT eslint-disable-next-line $1"]
+  },
+
+  //* react.
+  "React.useCallback": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "uc",
+    "body": ["const $1 = React.useCallback(($2) => {", "\t$3", "}, [$4])"]
+  },
+
+  "React.useEffect": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["ue"],
+    "body": ["React.useEffect(() => {", "\t$1", "}, [$2])"]
+  },
+
+  "React.useMemo": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["um"],
+    "body": ["const $1 = React.useMemo(() => {", "\treturn $2", "}, [$3])"]
+  },
+
+  "typescript React.useRef": {
+    "scope": "typescript,typescriptreact",
+    "prefix": ["ur"],
+    "body": ["const $1Ref = React.useRef<${2:HTMLDivElement}>(${3:null})"]
+  },
+
+  "React.useState": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["us"],
+    "body": ["const [$1, set${1/(.*)/${1:/capitalize}/}] = React.useState($2)"]
+  },
+
+  "JSON.stringify": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["js"],
+    "body": ["JSON.stringify($1, null, 2)"]
+  },
+
+  //* react-testing-library.
+  "screen debug": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["sd"],
+    "body": ["screen.debug($1)"]
+  },
+
+  "screen getByRole": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["sr"],
+    "body": ["screen.getByRole('$1')"]
+  },
+
+  "screen getByText": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["st"],
+    "body": ["screen.getByText('$1')"]
+  },
+
+  "screen getByLabelText": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["sl"],
+    "body": ["screen.getByLabelText('$1')"]
+  },
+
+  "act": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["act"],
+    "body": ["act(() => {", "\t${TM_SELECTED_TEXT:${1}}", "})"]
+  },
+
+  "await act": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["aact"],
+    "body": ["await act(async () => {", "\t${TM_SELECTED_TEXT:${1}}", "})"]
+  },
+
+  //* jest.
+  // "describe": {
+  // . "scope": "javascript,typescript,javascriptreact,typescriptreact",
+  //   "prefix": ["des"],
+  //   "body": ["describe('$1', () => {", " ", "})"]
+  // },
+
+  // "test": {
+  // . "scope": "javascript,typescript,javascriptreact,typescriptreact",
+  //   "prefix": ["ts"],
+  //   "body": ["test('$1', () => {", "", "})"]
+  // },
+
+  "async test": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["ats"],
+    "body": ["test('$1', async () => {", "\t${TM_SELECTED_TEXT:${2}}", "})"]
+  },
+
+  "beforeEach": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["bef"],
+    "body": ["beforeEach(() => {", "\t${TM_SELECTED_TEXT:${1}}", "})"]
+  },
+
+  //* remix.
+  "remix meta": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "rmeta",
+    "body": ["export const meta: MetaFunction = () => {", "\treturn { title: $1 }", "}"]
+  },
+
+  "remix loader": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "rload",
+    "body": [
+      "export const loader: LoaderFunction = async ({ request, params }) => {",
+      "\t$1",
+      "}"
+    ]
+  },
+
+  "remix action": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "ract",
+    "body": [
+      "export const action: ActionFunction = async ({ request }) => {",
+      "\t$1",
+      "}"
+    ]
+  }
+}

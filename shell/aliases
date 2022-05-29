@@ -83,11 +83,11 @@ fi
 alias cp='cp -iv'
 alias copy='cp'
 alias du='du -h'
-alias md='mkdir -pv'
+# alias md='mkdir -pv'
 alias mv='mv -iv'
 alias move='mv'
 alias tc='touch'
-alias rd='rmdir'
+# alias rd='rmdir'
 alias del='rm'
 
 case $OSTYPE in
