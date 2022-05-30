@@ -326,6 +326,15 @@
   "vim.textwidth": 90,
   "vim.foldfix": false,
 
+  "vim.handleKeys": {
+    // vscode: go to line/column
+    // vim: print the current file name, the cursor position and the file status
+    "<C-g>": false,
+    // vscode windows: toggle panel visibility
+    // vim: move [count] lines down
+    "<C-j>": false
+  },
+
   // neovim.
   "vim.enableNeovim": true,
   "vim.neovimPath": "/opt/homebrew/bin/nvim",
