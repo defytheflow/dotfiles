@@ -330,12 +330,17 @@ alias gi='git init'
 
 # git-log.
 alias gl='git log'
-alias glg='git log --grep'
-# alias glg='git log --graph'
-alias gll='git log --oneline'
-alias gln='git log HEAD@{1}..HEAD@{0}' # show commits since last pull (new commits).
+alias glr='git log --reverse'
 alias gls='git log --stat'
+alias glg='git log --grep'
+alias glo='git log --pretty="%C(yellow)%cd %C(cyan)%h%C(auto)%d %Creset%s (%Cblue%aN%Creset)" --graph --date=short --date-order'
+# the same as glo, but logs author's email instead of name.
+alias gloe='git log --pretty="%C(yellow)%cd %C(cyan)%h%C(auto)%d %Creset%s (%Cblue%aE%Creset)" --graph --date=short --date-order'
+# the same as glo, but logs author's name and email.
+alias gloa='git log --pretty="%C(yellow)%cd %C(cyan)%h%C(auto)%d %Creset%s (%Cblue%aN %Creset- %Cblue%aE%Creset)" --graph --date=short --date-order'
 alias gwc='git whatchanged'
+alias gln='git log HEAD@{1}..HEAD@{0}' # show commits since last pull (new commits).
+# alias glg='git log --graph'
 
 # git-merge.
 alias gm='git merge'
