@@ -380,7 +380,7 @@ alias gs='git status'
 alias gss='git status --short'
 
 # git-shortlog.
-alias gsl='git shortlog --summary -n'
+alias gsl='git shortlog --summary --email'
 alias gcount='git rev-list --count HEAD' #?
 
 # git-show.

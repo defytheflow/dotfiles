@@ -6,9 +6,15 @@ scriptencoding utf-8
 
 augroup vimrc_syntax
   au!
-  au BufNewFile,BufRead setup.cfg             setlocal ft=toml
-  au BufNewFile,BufRead .prettierrc,.eslintrc setlocal ft=json
-  au BufNewFile,BufRead ~/.config/i3/config   setlocal ft=i3config
+  au BufNewFile,BufRead setup.cfg             setlocal filetype=toml
+  au BufNewFile,BufRead .prettierrc,.eslintrc setlocal filetype=json
+  au BufNewFile,BufRead ~/.config/i3/config   setlocal filetype=i3config
+  au BufNewFile,BufRead coc-settings.json     setlocal filetype=jsonc
+  au BufNewFile,BufRead tsconfig.json         setlocal filetype=jsonc
+  " vscode configuration files.
+  au BufNewFile,BufRead settings.json         setlocal filetype=jsonc
+  au BufNewFile,BufRead keybindings.json      setlocal filetype=jsonc
+  au BufNewFile,BufRead *code-snippets        setlocal filetype=jsonc
 augroup END
 
 augroup vimrc_whitespace
@@ -48,7 +54,7 @@ augroup vimrc_binary
   au BufReadPre  *.bin let &bin = 1
 
   au BufReadPost *.bin if &bin | %!xxd
-  au BufReadPost *.bin set ft=xxd | endif
+  au BufReadPost *.bin set filetype=xxd | endif
 
   au BufWritePre *.bin if &bin | %!xxd -r
   au BufWritePre *.bin endif

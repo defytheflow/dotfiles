@@ -27,6 +27,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-tsserver'
 Plug 'neoclide/coc-highlight'
 Plug 'neoclide/coc-snippets'
+Plug 'neoclide/coc-json'
 Plug 'honza/vim-snippets'
 runtime coc.vim
 

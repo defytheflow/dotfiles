@@ -24,7 +24,8 @@ command -v gem >/dev/null && export PATH="${PATH}:${XDG_CONFIG_HOME}/gem/bin"
 
 # default.
 export EDITOR='nvim'
-export BROWSER='firefox'
+# gh browse command doesn't work with this declaration
+# export BROWSER='firefox'
 export PAGER='less'
 # command -v alacritty >/dev/null && export TERM='alacritty'
 
