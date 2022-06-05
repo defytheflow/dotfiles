@@ -5,12 +5,6 @@ scriptencoding utf-8
 " Author:   Artyom Danilov (@defytheflow)
 
 " Buffers.
-" com! BuffNext :bn
-" com! BuffPrev :bp
-" com! BuffDel  :bd!
-
-" nnoremap <silent> <tab>         :bn<CR>
-" nnoremap <silent> <leader><tab> :bp<CR>
 nnoremap <silent> <leader>d     :bd!<CR>
 
 " vimrc.
@@ -36,10 +30,6 @@ nnoremap N Nzz
 " nnoremap <silent> <CR> :nohlsearch<CR>
 " nnoremap <silent> <C-l> :nohlsearch<CR>
 
-" Movement.
-" nnoremap j gj
-" nnoremap k gk
-
 " Visual.
 vnoremap < <gv
 vnoremap > >gv
@@ -48,12 +38,6 @@ vnoremap > >gv
 " vnoremap K :m '<-2<CR>gv=gv
 
 " Misc.
-" nnoremap Y y$
 " nnoremap Q <nop>
 tnoremap <Esc> <C-\><C-n>
-
-" inoremap <silent> <C-c> <nop>
-" nnoremap <silent> <C-s> :w<CR>
-
-" nnoremap <leader><leader> <C-^>
 nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>

@@ -40,14 +40,14 @@ Plug 'bkad/CamelCaseMotion'
 let g:camelcasemotion_key = '<leader>'
 
 " Automatically inserts the closing tag.
-Plug 'alvan/vim-closetag'
-let g:closetag_filenames = '*.html,*.xhtml,*.jsx,*.tsx'
-let g:closetag_filetypes = 'html,xhtml,jsx'
-" let g:closetag_close_shortcut = '<leader>>'
-let g:closetag_regions =  {
-\ 'typescript.tsx': 'jsxRegion,tsxRegion',
-\ 'javascript.jsx': 'jsxRegion',
-\ }
+" Plug 'alvan/vim-closetag'
+" let g:closetag_filenames = '*.html,*.xhtml,*.jsx,*.tsx'
+" let g:closetag_filetypes = 'html,xhtml,jsx'
+" " let g:closetag_close_shortcut = '<leader>>'
+" let g:closetag_regions =  {
+" \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+" \ 'javascript.jsx': 'jsxRegion',
+" \ }
 
 " Automatically renames closing/opening tags.
 Plug 'AndrewRadev/tagalong.vim'
@@ -250,6 +250,7 @@ endtry
 " hi Normal guibg=none
 
 " command-line.
+set cmdheight=2
 set history=1000
 set wildmenu
 set wildmode=longest,list,full
@@ -325,10 +326,21 @@ set mouse=a
 set hidden
 set number relativenumber
 set virtualedit=block " allow cursor to move where there is no text in visual block mode.
-" set clipboard+=unnamedplus " use system clipboard.
 set lazyredraw " don't redraw while executing macros.
 set timeoutlen=500
 set noerrorbells visualbell t_vb=
+
+" netrw.
+" Keep the current directory and the browsing directory synced.
+" This helps avoid the move files error.
+let g:netrw_keepdir = 0
+
+" Change the size to 30% when netrw creates a split.
+let g:netrw_winsize = 30
+
+" Highlight marked files in the same way search matches are.
+hi link netrwMarkFile Search
+
 "}}}
 
 digraph R! 128640 " rocket emoji.

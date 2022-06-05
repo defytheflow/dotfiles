@@ -193,8 +193,8 @@ create_symlinks() {
   symlink 'lang/python/pycodestyle' "${XDG_CONFIG_HOME}/pycodestyle"
   symlink 'lang/python/style.yapf' "${XDG_CONFIG_HOME}/yapf/style"
 
-  symlink 'lang/ts/.prettierrc.json' "${HOME}/.prettierrc.json"
-  symlink 'lang/js/.eslintrc.json' "${HOME}/.eslintrc.json"
+  symlink 'lang/javascript/prettier.config.js' "${HOME}/prettier.config.js"
+  symlink 'lang/javascript/.eslintrc.json' "${HOME}/.eslintrc.json"
 
   symlink 'lang/c/.clang-format' "${HOME}/.clang-format"
   symlink 'lang/c/.gdbinit' "${HOME}/.gdbinit"
