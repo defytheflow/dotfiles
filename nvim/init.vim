@@ -39,6 +39,14 @@ runtime ale.vim
 Plug 'bkad/CamelCaseMotion'
 let g:camelcasemotion_key = '<leader>'
 
+" Enables emoji abbreviations, digraphs and completion.
+Plug 'https://gitlab.com/gi1242/vim-emoji-ab.git'
+" It has a runtime command at the bottom of the file.
+
+" Plug 'junegunn/vim-emoji'
+" Make sure to declare it after vim-plug plugins block.
+" set completefunc=emoji#complete
+
 " Automatically inserts the closing tag.
 " Plug 'alvan/vim-closetag'
 " let g:closetag_filenames = '*.html,*.xhtml,*.jsx,*.tsx'
@@ -347,3 +355,14 @@ digraph R! 128640 " rocket emoji 🚀
 digraph T! 129394 " smiling face with tear emoji 🥲
 digraph OO 129417 " owl emoji 🦉
 digraph P! 129383 " pie emoji 🥧
+
+" Enables emoji abbreviations and completion (vim-emoji-ab plugin)
+" Can't be declared inside vim-plug plugins block, gets overwritten by other plugins or something.
+" This enables the plugin inside files that don't have a filetype, like unsaved files.
+runtime macros/emoji-ab.vim
+augroup vimrc_emoji_ab
+    au!
+    " This enables the plugin inside files that have a filetype.
+    au FileType * runtime macros/emoji-ab.vim
+    " au FileType html,markdown,text,gitcommit runtime macros/emoji-ab.vim
+augroup END
