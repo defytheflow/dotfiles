@@ -164,6 +164,28 @@ EMOJI="$(random_element 😅 👽 🔥 🚀 👻 ⛄ 👾 😄 🍰 🐑 😎 �
 export PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} $ '
 #}}}
 
+# default mac os zsh prompt with git branch information {{{
+# This code is not supposed to run. I don't comment it out, so that syntax highlighting works.
+if [ 0 != 0 ]; then
+  # Enable version control information.
+  autoload -Uz vcs_info
+
+  # Taken from night-owl.vim
+  NIGHT_OWL_GREEN=149
+
+  zstyle ':vcs_info:*' enable git svn
+  zstyle ':vcs_info:*' formats '%s(%F{$NIGHT_OWL_GREEN}%b%f) ' # with color.
+  # zstyle ':vcs_info:*' formats '%s(%b) ' # without color.
+
+  precmd() { vcs_info }
+
+  # Enable prompt substitution.
+  setopt prompt_subst
+
+  export PROMPT='%n@%m %1~ ${vcs_info_msg_0_}%# '
+fi
+#}}}
+
 # ocaml.
 if command -v opam >/dev/null; then
   eval $(opam env)

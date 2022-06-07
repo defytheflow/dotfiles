@@ -1,6 +1,6 @@
 {
   "workbench.settings.editor": "json",
-  "workbench.startupEditor": "none",
+  // "workbench.startupEditor": "none",
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
   "editor.bracketPairColorization.enabled": true,
@@ -214,7 +214,7 @@
   },
   "files.exclude": {
     "**/.git/**": true,
-    "**/node_modules/**": true,
+    "**/node_modules/**": false,
     // "**/.venv/**": true,
     // "**/*cache*/**": true,
     "**/*coverage*/**": true
@@ -290,6 +290,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "js/ts.implicitProjectConfig.checkJs": true,
 
   //* Typescript.
   "[typescript]": {
@@ -918,6 +919,29 @@
 
   //* Open in vim.
   "open-in-vim.useNeovim": true,
+
+  //* JavaScript Lesson Settings.
+  "[javascript-lesson]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.codeActionsOnSave": {
+      "source.addMissingImports": true
+    },
+    "editor.tabSize": 2,
+    "editor.rulers": [90],
+    "editor.bracketPairColorization.enabled": true,
+    "explorer.openEditors.visible": 0,
+    "files.associations": {
+      "*.js": "javascriptreact",
+      ".env": "shellscript",
+      ".env.*": "shellscript"
+    },
+    "prettier.semi": false,
+    "prettier.arrowParens": "avoid",
+    "js/ts.implicitProjectConfig.checkJs": true
+  },
 
   //* Garbage.
   "redhat.telemetry.enabled": false,

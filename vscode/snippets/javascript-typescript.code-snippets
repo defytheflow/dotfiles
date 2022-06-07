@@ -1,4 +1,19 @@
 {
+  //* console
+  // This snippet is the same as built in one, but without a semicolon.
+  "Log to the console": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["log"],
+    "body": ["console.log($1)"]
+  },
+
+  // This snippet is the same as in `JavaScript (ES6) code snippets` but without a semicolon.
+  "consoleLogObject": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["clo"],
+    "body": ["console.log('${1:object} :>> ', ${1:object})"]
+  },
+
   "querySelector": {
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["qs"],

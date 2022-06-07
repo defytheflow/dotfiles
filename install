@@ -193,7 +193,9 @@ create_symlinks() {
   symlink 'lang/python/pycodestyle' "${XDG_CONFIG_HOME}/pycodestyle"
   symlink 'lang/python/style.yapf' "${XDG_CONFIG_HOME}/yapf/style"
 
-  symlink 'lang/javascript/prettier.config.js' "${HOME}/prettier.config.js"
+  # Renaming to .prettierrc.js, so that the global configuration file is hidden, and
+  # doesn't clutter ls output inside the home directory.
+  symlink 'lang/javascript/prettier.config.js' "${HOME}/.prettierrc.js"
   symlink 'lang/javascript/.eslintrc.json' "${HOME}/.eslintrc.json"
 
   symlink 'lang/c/.clang-format' "${HOME}/.clang-format"

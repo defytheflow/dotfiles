@@ -343,6 +343,7 @@ hi link netrwMarkFile Search
 
 "}}}
 
-digraph R! 128640 " rocket emoji.
-digraph T! 129394 " smilint face with tear emoji.
-digraph OO 129417 " owl emoji.
+digraph R! 128640 " rocket emoji 🚀
+digraph T! 129394 " smiling face with tear emoji 🥲
+digraph OO 129417 " owl emoji 🦉
+digraph P! 129383 " pie emoji 🥧

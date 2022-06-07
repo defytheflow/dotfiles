@@ -149,9 +149,12 @@ alias c.='code .'
 # vim.
 alias vi='vim'
 alias svim='sudo vim'
+alias via='vim ${DOTFILES_HOME}/shell/aliases' # edit aliases.
+alias vis='vim ${ZDOTDIR}/.zshrc' # edit zsh config.
 if command -v nvim >/dev/null; then
   alias vi='nvim'
   alias vim='nvim'
+  alias vie='vim ${XDG_CONFIG_HOME}/nvim/init.vim' # edit nvim config file.
 fi
 
 # python.
