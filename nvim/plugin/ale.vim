@@ -29,6 +29,7 @@ let g:ale_fixers = {
 \ 'javascript':      ['prettier'],
 \ 'json':            ['prettier'],
 \ 'jsonc':           ['prettier'],
+\ 'markdown':        ['prettier'],
 \ 'python':          ['isort', 'yapf'],
 \ 'sh':              ['shfmt'],
 \ 'typescript':      ['prettier'],
