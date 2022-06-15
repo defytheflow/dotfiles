@@ -399,6 +399,7 @@ alias gstp='git stash pop'
 # gh (github command line client).
 if command -v gh >/dev/null; then
   alias ghb='gh browse'
+  alias ghrc='gh repo create'
   alias ghrl='gh repo list --limit 100'
   alias ghrlf='gh repo list --limit 100 --fork'
   alias ghrlp='gh repo list --limit 100 --private'

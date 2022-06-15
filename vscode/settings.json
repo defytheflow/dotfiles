@@ -30,9 +30,9 @@
   "workbench.list.smoothScrolling": true,
 
   //* Tabs.
-  //// "workbench.editor.highlightModifiedTabs": true,
+  // "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.tabCloseButton": "right",
-  //// "workbench.editor.tabSizing": "shrink",
+  // "workbench.editor.tabSizing": "shrink",
   "workbench.editor.wrapTabs": true,
 
   //* Panel/Sidebar/ActivityBar.
@@ -47,7 +47,6 @@
     "source.addMissingImports": true
     // "source.organizeImports": true,
   },
-  // "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
@@ -58,6 +57,9 @@
   "editor.tabCompletion": "on",
   "editor.wordBasedSuggestions": false,
   "editor.inlineSuggest.enabled": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
 
   //* Cursor.
   "editor.cursorBlinking": "solid",
@@ -150,49 +152,49 @@
   "editor.tokenColorCustomizations": {
     "[Night Owl (No Italics)]": {
       "textMateRules": [
-        //// Colors like in https://github.com/haishanh/night-owl.vim
-        //// {
-        ////   "scope": [
-        ////     "entity.name.type.interface.tsx", // interface name.
-        ////     "meta.class.tsx meta.definition.method.tsx entity.name.function.tsx", // class method name.
-        ////     "meta.definition.function.tsx entity.name.function.tsx", // function name.
-        ////     "entity.name.type.alias.tsx" // type name.
-        ////     // "meta.function-call.tsx variable.other.object.tsx "
-        ////   ],
-        ////   "settings": {
-        ////     "foreground": "#7FDBCA"
-        ////   }
-        //// },
-        //// {
-        ////   "scope": [
-        ////     "storage.type.interface.tsx", // `interface`.
-        ////     "storage.type.type.tsx", // '`type'.
-        ////     "meta.interface.tsx storage.modifier.tsx", // `extends`.
-        ////     "storage.type.function.tsx", // `function`.
-        ////     "storage.type.class.tsx", // `class`.
-        ////     "storage.modifier.async.tsx" //? `async`.
-        ////   ],
-        ////   "settings": {
-        ////     "foreground": "#82AAFF"
-        ////   }
-        //// },
-        //// {
-        ////   "scope": ["variable.language.this.tsx"], // `this`.
-        ////   "settings": {
-        ////     "foreground": "#C5E478"
-        ////   }
-        //// }
-        //// {
-        ////   "scope": [
-        ////     "keyword.control.import.tsx",
-        ////     "keyword.control.as.tsx",
-        ////     "keyword.control.from.tsx",
-        ////     "keyword.control.export.tsx"
-        ////   ],
-        ////   "settings": {
-        ////     "foreground": "#e99413"
-        ////   }
-        //// }
+        // Colors like in https://github.com/haishanh/night-owl.vim
+        // {
+        //   "scope": [
+        //     "entity.name.type.interface.tsx", // interface name.
+        //     "meta.class.tsx meta.definition.method.tsx entity.name.function.tsx", // class method name.
+        //     "meta.definition.function.tsx entity.name.function.tsx", // function name.
+        //     "entity.name.type.alias.tsx" // type name.
+        //     // "meta.function-call.tsx variable.other.object.tsx "
+        //   ],
+        //   "settings": {
+        //     "foreground": "#7FDBCA"
+        //   }
+        // },
+        // {
+        //   "scope": [
+        //     "storage.type.interface.tsx", // `interface`.
+        //     "storage.type.type.tsx", // '`type'.
+        //     "meta.interface.tsx storage.modifier.tsx", // `extends`.
+        //     "storage.type.function.tsx", // `function`.
+        //     "storage.type.class.tsx", // `class`.
+        //     "storage.modifier.async.tsx" //? `async`.
+        //   ],
+        //   "settings": {
+        //     "foreground": "#82AAFF"
+        //   }
+        // },
+        // {
+        //   "scope": ["variable.language.this.tsx"], // `this`.
+        //   "settings": {
+        //     "foreground": "#C5E478"
+        //   }
+        // }
+        // {
+        //   "scope": [
+        //     "keyword.control.import.tsx",
+        //     "keyword.control.as.tsx",
+        //     "keyword.control.from.tsx",
+        //     "keyword.control.export.tsx"
+        //   ],
+        //   "settings": {
+        //     "foreground": "#e99413"
+        //   }
+        // }
       ]
     }
   },
@@ -207,14 +209,15 @@
     "Pipfile": "toml",
     // react.
     "*.js": "javascriptreact",
-    "*.ts": "typescriptreact"
+    "*.ts": "typescriptreact",
+    "*.css": "tailwindcss"
     // django.
     // "**/templates/**/*.html": "django-html",
     // "**/templates/**/*": "django-txt"
   },
   "files.exclude": {
     "**/.git/**": true,
-    "**/node_modules/**": false,
+    // "**/node_modules/**": true,
     // "**/.venv/**": true,
     // "**/*cache*/**": true,
     "**/*coverage*/**": true
@@ -243,7 +246,7 @@
   ],
   "python.linting.enabled": true,
   "python.linting.mypyEnabled": true,
-  //// "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
+  // "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
   "python.linting.flake8Enabled": true,
   "python.linting.pydocstyleEnabled": false,
   "python.linting.pylintEnabled": false,
@@ -259,7 +262,8 @@
 
   //* CSS.
   "[css]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    // "editor.defaultFormatter": "stylelint.vscode-stylelint"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
   //* SCSS.
@@ -270,7 +274,11 @@
   //* Markdown.
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.quickSuggestions": false,
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
     "editor.acceptSuggestionOnEnter": "off"
   },
 
@@ -324,6 +332,7 @@
 
   //* Vim.
   "vim.leader": " ",
+  "vim.vimrc.enable": true,
   "vim.textwidth": 90,
   "vim.foldfix": false,
 
@@ -338,7 +347,7 @@
 
   // neovim.
   "vim.enableNeovim": true,
-  "vim.neovimPath": "/opt/homebrew/bin/nvim",
+  // "vim.neovimPath": "/opt/homebrew/bin/nvim",
 
   // gutter.
   "vim.smartRelativeLine": true,
@@ -413,10 +422,6 @@
   ],
 
   "vim.normalModeKeyBindingsNonRecursive": [
-    // {
-    //   "before": ["Y"],
-    //   "after": ["y", "$"]
-    // },
     {
       "before": ["N"],
       "after": ["N", "z", "z"]
@@ -424,6 +429,10 @@
     {
       "before": ["n"],
       "after": ["n", "z", "z"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
     },
     // {
     //   "before": ["<C-l>"],
@@ -918,7 +927,24 @@
   ],
 
   //* Open in vim.
+  "open-in-vim.restoreCursorAfterVim": true,
   "open-in-vim.useNeovim": true,
+
+  //* Tailwind.
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    // When I create custom components, I often configure their styles through `classNames` property.
+    "classNames"
+  ],
+
+  //* VSCode Icons
+  "vsicons.dontShowNewVersionMessage": true,
+  "vsicons.associations.files": [
+    // Associating css files to tailwindcss files removed the css icon, this fixes it.
+    { "icon": "css", "extensions": ["css"], "format": "svg" }
+  ],
 
   //* JavaScript Lesson Settings.
   "[javascript-lesson]": {
@@ -932,6 +958,8 @@
     "editor.tabSize": 2,
     "editor.rulers": [90],
     "editor.bracketPairColorization.enabled": true,
+    "editor.renderWhitespace": "boundary",
+    "editor.minimap.enabled": false,
     "explorer.openEditors.visible": 0,
     "files.associations": {
       "*.js": "javascriptreact",
@@ -948,12 +976,12 @@
   "yaml.schemas": {
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "atlascode.jira.lastCreateSiteAndProject": {
     "siteId": "",
     "projectKey": "API"
   },
-  "editor.minimap.enabled": false,
-  "window.zoomLevel": -1
+
+  //* Always Changing.
+  "window.zoomLevel": -1,
+  "editor.minimap.enabled": false
 }

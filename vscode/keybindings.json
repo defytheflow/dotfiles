@@ -84,14 +84,29 @@
    ** Open source control view (default binding is `ctrl+shift+g`).
    **/
 
+  // {
+  //   "describe": "Open Source Control",
+  //   "key": "cmd+shift+g",
+  //   "command": "workbench.view.scm"
+  // },
+
+  /**
+   ** Toggle panel position between bottom and right with `cmd+shift+d` like in web browsers.
+   **/
   {
-    "describe": "Open Source Control",
-    "key": "cmd+shift+g",
-    "command": "workbench.view.scm"
+    "key": "shift+cmd+d",
+    "command": "workbench.action.positionPanelBottom",
+    "when": "panelPosition == 'right'"
+  },
+
+  {
+    "key": "shift+cmd+d",
+    "command": "workbench.action.positionPanelRight",
+    "when": "panelPosition == 'bottom'"
   },
 
   /**
-   ** Miscellaneous `cmd+g` bidings (most of them have no default bindings).
+   ** Miscellaneous `cmd+g` bindings (most of them have no default bindings).
    **/
 
   {
@@ -107,7 +122,7 @@
   },
 
   {
-    "desctibe": "Delete current file",
+    "describe": "Delete current file",
     "key": "cmd+g d",
     "command": "fileutils.removeFile"
   },
@@ -149,7 +164,7 @@
   },
 
   {
-    "desctibe": "Rename current file",
+    "describe": "Rename current file",
     "key": "cmd+g r",
     "command": "fileutils.renameFile"
   },
@@ -173,9 +188,9 @@
   },
 
   {
-    "describe": "Open user settings (JSON)",
+    "describe": "Open WorkSpace Settings (JSON)",
     "key": "cmd+g ,",
-    "command": "workbench.action.openRawDefaultSettings"
+    "command": "workbench.action.openWorkspaceSettingsFile"
   },
 
   {
@@ -188,40 +203,40 @@
    ** Disable `cmd+w` to close windows. Learn vim's `:q` and `ctrl-w` + c.
    **/
 
-  //// {
-  ////   "key": "cmd+w",
-  ////   "command": "-workbench.action.closeActiveEditor"
-  //// },
-  //// {
-  ////   "key": "cmd+w",
-  ////   "command": "-workbench.action.closeWindow",
-  ////   "when": "!editorIsOpen && !multipleEditorGroups"
-  //// },
-  //// {
-  ////   "key": "cmd+w",
-  ////   "command": "-workbench.action.closeGroup",
-  ////   "when": "activeEditorGroupEmpty && multipleEditorGroups"
-  //// },
+  // {
+  //   "key": "cmd+w",
+  //   "command": "-workbench.action.closeActiveEditor"
+  // },
+  // {
+  //   "key": "cmd+w",
+  //   "command": "-workbench.action.closeWindow",
+  //   "when": "!editorIsOpen && !multipleEditorGroups"
+  // },
+  // {
+  //   "key": "cmd+w",
+  //   "command": "-workbench.action.closeGroup",
+  //   "when": "activeEditorGroupEmpty && multipleEditorGroups"
+  // },
 
   /**
    ** Disable `cmd+\` to split windows. Learn vim's `:vs` and `:sp` and `ctrl+w` + v/s.
    **/
 
-  ////{
-  ////  "key": "cmd+\\",
-  ////  "command": "-workbench.action.splitEditor"
-  ////},
-  ////{
-  ////  "key": "cmd+k cmd+\\",
-  ////  "command": "-workbench.action.splitEditorOrthogonal"
-  ////}
+  //{
+  //  "key": "cmd+\\",
+  //  "command": "-workbench.action.splitEditor"
+  //},
+  //{
+  //  "key": "cmd+k cmd+\\",
+  //  "command": "-workbench.action.splitEditorOrthogonal"
+  //}
 
   /**
    ** Disable `cmd+s` to save file. Learn vim's `:w`.
    **/
 
-  //// {
-  ////   "key": "cmd+s",
-  ////   "command": "-workbench.action.files.save"
-  //// }
+  // {
+  //   "key": "cmd+s",
+  //   "command": "-workbench.action.files.save"
+  // }
 ]

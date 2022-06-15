@@ -185,7 +185,7 @@
     "body": ["JSON.stringify($1, null, 2)"]
   },
 
-  //* react-testing-library.
+  //* @testing-library/react
   "screen debug": {
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["sd"],
@@ -194,19 +194,25 @@
 
   "screen getByRole": {
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
-    "prefix": ["sr"],
+    "prefix": ["sbr"],
     "body": ["screen.getByRole('$1')"]
+  },
+
+  "screen getAllByRole": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["sabr"],
+    "body": ["screen.getAllByRole('$1')"]
   },
 
   "screen getByText": {
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
-    "prefix": ["st"],
+    "prefix": ["sbt"],
     "body": ["screen.getByText('$1')"]
   },
 
   "screen getByLabelText": {
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
-    "prefix": ["sl"],
+    "prefix": ["sblt"],
     "body": ["screen.getByLabelText('$1')"]
   },
 
@@ -252,6 +258,16 @@
     "scope": "typescript,typescriptreact",
     "prefix": "rmeta",
     "body": ["export const meta: MetaFunction = () => {", "\treturn { title: $1 }", "}"]
+  },
+
+  "remix links": {
+    "scope": "typescript,typescriptreact",
+    "prefix": "rlink",
+    "body": [
+      "export const links: LinksFunction = () => {",
+      "\treturn [{ rel: 'stylesheet', href: $1 }]",
+      "}"
+    ]
   },
 
   "remix loader": {
