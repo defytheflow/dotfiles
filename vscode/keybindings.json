@@ -55,13 +55,15 @@
   {
     "describe": "Previous panel view",
     "key": "cmd+[",
-    "command": "workbench.action.previousPanelView"
+    "command": "workbench.action.previousPanelView",
+    "when": "!editorFocus"
   },
 
   {
     "describe": "Next panel view",
     "key": "cmd+]",
-    "command": "workbench.action.nextPanelView"
+    "command": "workbench.action.nextPanelView",
+    "when": "!editorFocus"
   },
 
   /**
@@ -96,13 +98,13 @@
   {
     "key": "shift+cmd+d",
     "command": "workbench.action.positionPanelBottom",
-    "when": "panelPosition == 'right'"
+    "when": "panelVisible && panelPosition == 'right'"
   },
 
   {
     "key": "shift+cmd+d",
     "command": "workbench.action.positionPanelRight",
-    "when": "panelPosition == 'bottom'"
+    "when": "panelVisible && panelPosition == 'bottom'"
   },
 
   /**

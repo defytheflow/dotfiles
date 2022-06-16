@@ -1,29 +1,40 @@
 {
   "workbench.settings.editor": "json",
-  // "workbench.startupEditor": "none",
+  "workbench.startupEditor": "newUntitledFile",
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": true,
   "editor.inlayHints.enabled": "on",
 
   //* Unicode.
   "editor.unicodeHighlight.includeStrings": false,
   "editor.unicodeHighlight.ambiguousCharacters": false,
 
-  //* Zen mode.
+  //* Zen Mode.
   "zenMode.fullScreen": false,
   "zenMode.centerLayout": false,
   "zenMode.hideLineNumbers": false,
   "zenMode.hideStatusBar": false,
 
-  //* Tree view.
+  //* Tree View.
   "workbench.tree.renderIndentGuides": "none",
+  "workbench.tree.indent": 10,
 
   //* Editors.
-  "explorer.openEditors.visible": 0,
   "workbench.editor.enablePreview": false,
   "workbench.sash.size": 10,
+
+  //* Brackets.
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+
+  //* Window.
+  "window.dialogStyle": "custom",
+  // "window.nativeTabs": true,
+
+  //* Explorer.
+  "explorer.openEditors.visible": 0,
+  // "explorer.confirmDelete": false,
+  // "explorer.confirmDragAndDrop": false,
 
   //* Scrolling.
   "editor.smoothScrolling": true,
@@ -41,7 +52,7 @@
   //* Minimap.
   "editor.minimap.renderCharacters": false,
 
-  //* Formatting/Fixing.
+  //* Formatting & Fixing.
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
     "source.addMissingImports": true
@@ -51,8 +62,9 @@
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
 
-  //* Autocomplete.
+  //* Completion.
   "editor.suggest.insertMode": "replace",
   "editor.tabCompletion": "on",
   "editor.wordBasedSuggestions": false,
@@ -69,7 +81,7 @@
   //* Font.
   "editor.codeLensFontFamily": "MonoLisa, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontFamily": "MonoLisa, Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontLigatures": false,
+  "editor.fontLigatures": true,
   "editor.fontSize": 14,
 
   //* Indentation.
@@ -110,8 +122,9 @@
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
+  "terminal.integrated.persistentSessionReviveProcess": "never",
 
-  //* Colortheme/Icontheme.
+  //* Color Theme & Icon Theme.
   "workbench.colorTheme": "Night Owl",
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
@@ -172,7 +185,7 @@
         //     "meta.interface.tsx storage.modifier.tsx", // `extends`.
         //     "storage.type.function.tsx", // `function`.
         //     "storage.type.class.tsx", // `class`.
-        //     "storage.modifier.async.tsx" //? `async`.
+        //     "storage.modifier.async.tsx" // `async`.
         //   ],
         //   "settings": {
         //     "foreground": "#82AAFF"
@@ -200,6 +213,7 @@
   },
 
   //* Files.
+  // "files.simpleDialog.enable": true,
   "files.defaultLanguage": "${activeEditorLanguage}",
   "files.hotExit": "onExit",
   "files.associations": {
@@ -230,6 +244,7 @@
 
   //* Extensions.
   "extensions.closeExtensionDetailsOnViewChange": true,
+  "extensions.ignoreRecommendations": true,
 
   //* Python.
   "[python]": {
@@ -272,6 +287,7 @@
   },
 
   //* Markdown.
+  "markdown.preview.fontSize": 18,
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.quickSuggestions": {
@@ -290,7 +306,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-  //* Javascript.
+  //* JavaScript.
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -300,7 +316,7 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "js/ts.implicitProjectConfig.checkJs": true,
 
-  //* Typescript.
+  //* TypeScript.
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -434,24 +450,6 @@
       "before": ["K"],
       "commands": ["editor.action.showHover"]
     },
-    // {
-    //   "before": ["<C-l>"],
-    //   "commands": [":nohl"]
-    // },
-    // {
-    //   "before": ["\\", "\\"],
-    //   "after": ["C-^"]
-    // },
-
-    // {
-    //   "before": ["<leader>", "r", "n"],
-    //   "commands": ["editor.action.rename"]
-    // },
-
-    {
-      "before": ["<leader>", "g", "o"],
-      "commands": ["editor.action.openLink"]
-    },
 
     // g commands.
     {
@@ -528,14 +526,6 @@
       "before": ["<leader>", "a", "c", "v"],
       "commands": ["alternate.createAlternateFileInSplit"]
     },
-    // {
-    //   "before": ["\\", "a", "a"],
-    //   "commands": ["alternate.createAlternateFile"]
-    // },
-    // {
-    //   "before": ["\\", "a", "v"],
-    //   "commands": ["alternate.createAlternateFileInSplit"]
-    // },
 
     // tests.
     {
@@ -564,10 +554,6 @@
       "before": ["<leader>", "v", "e"],
       "commands": ["open-in-vim.open"]
     },
-    // {
-    //   "before": ["\\", "v", "e"],
-    //   "commands": ["open-in-vim.open"]
-    // },
 
     // git.
     {
@@ -583,27 +569,11 @@
       "commands": ["git-graph.view"]
     },
 
-    // <leader> commands.
-    // {
-    //   "before": ["<leader>", "g", "o"],
-    //   "commands": ["workbench.action.gotoSymbol"]
-    // },
-    // {
-    //   "before": ["<leader>", "g", "p"],
-    //   "commands": ["editor.action.peekDefinition"]
-    // },
-    // {
-    //   "before": ["<leader>", "g", "n"],
-    //   "commands": ["editor.action.rename"]
-    // },
-    // {
-    //   "before": ["<leader>", "g", "s"],
-    //   "commands": ["references-view.find"]
-    // },
-    // {
-    //   "before": ["<leader>", "g", "S"],
-    //   "commands": ["editor.action.referenceSearch.trigger"]
-    // },
+    // custom leader commands.
+    {
+      "before": ["<leader>", "g", "o"],
+      "commands": ["editor.action.openLink"]
+    },
 
     // unimpaired commands.
     // {
@@ -622,14 +592,14 @@
     //   "before": ["]", "B"],
     //   "commands": ["workbench.action.lastEditorInGroup"]
     // },
-    {
-      "before": ["[", " "],
-      "commands": ["editor.action.insertLineBefore"]
-    },
-    {
-      "before": ["]", " "],
-      "commands": ["editor.action.insertLineAfter"]
-    },
+    // {
+    //   "before": ["[", " "],
+    //   "commands": ["editor.action.insertLineBefore"]
+    // },
+    // {
+    //   "before": ["]", " "],
+    //   "commands": ["editor.action.insertLineAfter"]
+    // },
     // {
     //   "before": ["[", "e"],
     //   "commands": ["editor.action.moveLinesUpAction"]
@@ -765,7 +735,7 @@
     }
   ],
 
-  //* emmet.
+  //* Emmet.
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
     // "django-html": "html"
@@ -785,7 +755,7 @@
   },
 
   //* Stylelint.
-  "stylelint.validate": ["css", "scss"],
+  "stylelint.validate": ["css", "scss", "tailwindcss"],
 
   //* Tabnine.
   "tabnine.experimentalAutoImports": true,
@@ -802,7 +772,7 @@
   "color-highlight.markerType": "dot-before",
   "color-highlight.markRuler": false,
 
-  //* Todo tree.
+  //* Todo Tree.
   "todo-tree.regex.regexCaseSensitive": true,
   "todo-tree.general.tags": ["TODO", "NOTE", "HACK", "FIXME", "BUG"],
   "todo-tree.highlights.customHighlight": {
@@ -812,7 +782,7 @@
       "icon": "flame"
     },
     "NOTE": {
-      "foreground": "gold",
+      "foreground": "#ffd700", // gold
       "gutterIcon": true,
       "icon": "bookmark"
     },
@@ -822,7 +792,7 @@
       "icon": "smiley"
     },
     "FIXME": {
-      "foreground": "peachpuff",
+      "foreground": "#ffdab9", // peachpuff
       "gutterIcon": true,
       "icon": "flame"
     },
@@ -833,7 +803,7 @@
     }
   },
 
-  //* Better comments.
+  //* Better Comments.
   "better-comments.highlightPlainText": false,
   "better-comments.tags": [
     {
@@ -860,7 +830,7 @@
     }
   ],
 
-  //* Highlight matching tag.
+  //* Highlight Matching Tag.
   "highlight-matching-tag.highlightSelfClosing": true,
   "highlight-matching-tag.styles": {
     "opening": {
@@ -890,43 +860,27 @@
     }
   ],
 
-  //* Code spell.
+  //* Code Spell Checker.
+  "cSpell.allowCompoundWords": true,
+  "cSpell.language": "en,en-GB",
   "cSpell.ignoreRegExpList": [
     "asgi",
-    "defytheflow",
-    "dotenv",
     "isort",
-    "minmax",
     "isdigit",
     "noqa",
     "pipenv",
     "psql",
     "pytest",
-    "redux",
-    "stylelint",
     "yapf",
     "yasg",
     "zfill",
-    "ipdb"
+    "ipdb",
+    "ipynb",
+    "venv"
   ],
+  "cSpell.userWords": ["clsx", "esbuild", "nestjs", "nextjs", "properoom", "signup"],
 
-  "cSpell.userWords": [
-    "camelcase",
-    "clsx",
-    "esbuild",
-    "luxon",
-    "nestjs",
-    "nextjs",
-    "prefetch",
-    "Pressable",
-    "Properoom",
-    "semibold",
-    "signup",
-    "tailwindcss",
-    "upsert"
-  ],
-
-  //* Open in vim.
+  //* Open In Vim.
   "open-in-vim.restoreCursorAfterVim": true,
   "open-in-vim.useNeovim": true,
 
@@ -971,17 +925,13 @@
     "js/ts.implicitProjectConfig.checkJs": true
   },
 
-  //* Garbage.
+  //* Atlassian YAML Garbage That Is Generated Automatically.
   "redhat.telemetry.enabled": false,
   "yaml.schemas": {
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "",
-    "projectKey": "API"
-  },
 
-  //* Always Changing.
+  //* Ever-changing.
   "window.zoomLevel": -1,
   "editor.minimap.enabled": false
 }
