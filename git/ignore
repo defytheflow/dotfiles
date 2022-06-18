@@ -1,0 +1,33 @@
+*~
+.idea/
+.mypy_cache/
+.ccls-cache/
+.pytest_cache/
+
+# python
+*.py[co]
+__pycache__/
+
+# vim
+*.swp
+
+# zsh
+.zcompdump
+
+# npm/yarn
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# executables
+*.o
+*.so
+*.dll
+*.exe
+
+# secrets
+.env.*local
+
+# mac
+.DS_Store
