@@ -1,6 +1,6 @@
 {
   "workbench.settings.editor": "json",
-  "workbench.startupEditor": "newUntitledFile",
+  "workbench.startupEditor": "readme",
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
   "editor.inlayHints.enabled": "on",
@@ -23,16 +23,22 @@
   "workbench.editor.enablePreview": false,
   "workbench.sash.size": 10,
 
+  //* Debug.
+  "debug.console.fontSize": 14,
+
   //* Brackets.
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
 
   //* Window.
   "window.dialogStyle": "custom",
+  "window.confirmBeforeClose": "keyboardOnly",
   // "window.nativeTabs": true,
 
   //* Explorer.
   "explorer.openEditors.visible": 0,
+  "explorer.fileNesting.enabled": true,
   // "explorer.confirmDelete": false,
   // "explorer.confirmDragAndDrop": false,
 
@@ -41,7 +47,7 @@
   "workbench.list.smoothScrolling": true,
 
   //* Tabs.
-  // "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.tabCloseButton": "right",
   // "workbench.editor.tabSizing": "shrink",
   "workbench.editor.wrapTabs": true,
@@ -55,8 +61,8 @@
   //* Formatting & Fixing.
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
-    "source.addMissingImports": true
-    // "source.organizeImports": true,
+    "source.addMissingImports": true,
+    "source.organizeImports": true
   },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -71,6 +77,7 @@
   "editor.inlineSuggest.enabled": true,
   "editor.quickSuggestions": {
     "strings": true
+    // "other": "inline"
   },
 
   //* Cursor.
@@ -106,6 +113,7 @@
   "diffEditor.renderSideBySide": false,
   "git.terminalAuthentication": false,
   "git.untrackedChanges": "separate",
+  "git.closeDiffOnOperation": true,
 
   //* Search.
   "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
@@ -122,7 +130,9 @@
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
-  "terminal.integrated.persistentSessionReviveProcess": "never",
+  "terminal.integrated.autoReplies": {
+    "Terminate batch job (Y/N)?": "Y\r"
+  },
 
   //* Color Theme & Icon Theme.
   "workbench.colorTheme": "Night Owl",
@@ -274,15 +284,10 @@
     "editor.defaultFormatter": "HookyQR.beautify"
   },
 
-  //* CSS.
-  "[css]": {
+  //* CSS/SCSS.
+  "[css][scss][tailwindcss]": {
     // "editor.defaultFormatter": "stylelint.vscode-stylelint"
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-
-  //* SCSS.
-  "[scss]": {
-    "editor.defaultFormatter": "stylelint.vscode-stylelint"
   },
 
   //* Markdown.
@@ -298,32 +303,24 @@
   },
 
   //* JSON.
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
+  "[json][jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
   //* JavaScript.
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascriptreact]": {
+  "[javascript][javascriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "js/ts.implicitProjectConfig.checkJs": true,
 
   //* TypeScript.
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
+  "[typescript][typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.suggest.completeFunctionCalls": true,
   "typescript.inlayHints.variableTypes.enabled": false,
   "typescript.inlayHints.parameterTypes.enabled": false,
   "typescript.inlayHints.enumMemberValues.enabled": false,
@@ -879,6 +876,9 @@
   ],
   "cSpell.userWords": ["clsx", "esbuild", "nestjs", "nextjs", "properoom", "signup"],
 
+  //* Gitlens.
+  "gitlens.plusFeatures.enabled": false,
+
   //* Open In Vim.
   "open-in-vim.restoreCursorAfterVim": true,
   "open-in-vim.useNeovim": true,
@@ -931,6 +931,6 @@
   },
 
   //* Ever-changing.
-  "window.zoomLevel": -1,
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "window.zoomLevel": -1
 }
