@@ -9,6 +9,7 @@
     "command": "workbench.action.focusPanel",
     "when": "!panelFocus"
   },
+
   {
     "describe": "Focus editor",
     "key": "ctrl+'",
@@ -83,18 +84,9 @@
   },
 
   /**
-   ** Open source control view (default binding is `ctrl+shift+g`).
-   **/
-
-  // {
-  //   "describe": "Open Source Control",
-  //   "key": "cmd+shift+g",
-  //   "command": "workbench.view.scm"
-  // },
-
-  /**
    ** Toggle panel position between bottom and right with `cmd+shift+d` like in web browsers.
    **/
+
   {
     "key": "shift+cmd+d",
     "command": "workbench.action.positionPanelBottom",
@@ -160,12 +152,6 @@
   },
 
   {
-    "describe": "Toggle problems",
-    "key": "cmd+g p",
-    "command": "workbench.actions.view.toggleProblems"
-  },
-
-  {
     "describe": "Rename current file",
     "key": "cmd+g r",
     "command": "fileutils.renameFile"
@@ -209,11 +195,13 @@
   //   "key": "cmd+w",
   //   "command": "-workbench.action.closeActiveEditor"
   // },
+
   // {
   //   "key": "cmd+w",
   //   "command": "-workbench.action.closeWindow",
   //   "when": "!editorIsOpen && !multipleEditorGroups"
   // },
+
   // {
   //   "key": "cmd+w",
   //   "command": "-workbench.action.closeGroup",
@@ -228,6 +216,7 @@
   //  "key": "cmd+\\",
   //  "command": "-workbench.action.splitEditor"
   //},
+
   //{
   //  "key": "cmd+k cmd+\\",
   //  "command": "-workbench.action.splitEditorOrthogonal"

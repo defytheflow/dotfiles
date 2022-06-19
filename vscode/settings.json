@@ -47,7 +47,7 @@
   "workbench.list.smoothScrolling": true,
 
   //* Tabs.
-  "workbench.editor.highlightModifiedTabs": true,
+  // "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.tabCloseButton": "right",
   // "workbench.editor.tabSizing": "shrink",
   "workbench.editor.wrapTabs": true,
@@ -321,10 +321,13 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.suggest.completeFunctionCalls": true,
-  "typescript.inlayHints.variableTypes.enabled": false,
-  "typescript.inlayHints.parameterTypes.enabled": false,
-  "typescript.inlayHints.enumMemberValues.enabled": false,
-  "typescript.inlayHints.propertyDeclarationTypes.enabled": false,
+  // inlay hints
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
 
   //* Shell.
   "[shellscript]": {
@@ -892,7 +895,7 @@
     "classNames"
   ],
 
-  //* VSCode Icons
+  //* VSCode Icons.
   "vsicons.dontShowNewVersionMessage": true,
   "vsicons.associations.files": [
     // Associating css files to tailwindcss files removed the css icon, this fixes it.
