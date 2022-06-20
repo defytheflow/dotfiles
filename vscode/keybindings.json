@@ -19,7 +19,7 @@
 
   /**
    ** Cycle through search results with `ctrl+n` and `ctrl+p` (default bindings use `f4` and `shift+f4`).
-   **/
+   */
 
   {
     "key": "ctrl+n",
@@ -35,7 +35,7 @@
 
   /**
    ** Cycle through autocomplete options with `ctrl+n` and `ctrl+p` (default bindings use arrow keys).
-   **/
+   */
 
   {
     "key": "ctrl+n",
@@ -51,7 +51,7 @@
 
   /**
    ** Cycle through panel views with `cmd+[` and `cmd+]` (no default bindings).
-   **/
+   */
 
   {
     "describe": "Previous panel view",
@@ -69,7 +69,7 @@
 
   /**
    ** Overwrite vscode `isDevelopment` mode.
-   **/
+   */
 
   // {
   //   "describe": "Reload window",
@@ -85,7 +85,7 @@
 
   /**
    ** Toggle panel position between bottom and right with `cmd+shift+d` like in web browsers.
-   **/
+   */
 
   {
     "key": "shift+cmd+d",
@@ -101,7 +101,7 @@
 
   /**
    ** Miscellaneous `cmd+g` bindings (most of them have no default bindings).
-   **/
+   */
 
   {
     "describe": "Toggle activity bar visibility",
@@ -189,7 +189,7 @@
 
   /**
    ** Disable `cmd+w` to close windows. Learn vim's `:q` and `ctrl-w` + c.
-   **/
+   */
 
   // {
   //   "key": "cmd+w",
@@ -210,7 +210,7 @@
 
   /**
    ** Disable `cmd+\` to split windows. Learn vim's `:vs` and `:sp` and `ctrl+w` + v/s.
-   **/
+   */
 
   //{
   //  "key": "cmd+\\",
@@ -224,7 +224,7 @@
 
   /**
    ** Disable `cmd+s` to save file. Learn vim's `:w`.
-   **/
+   */
 
   // {
   //   "key": "cmd+s",

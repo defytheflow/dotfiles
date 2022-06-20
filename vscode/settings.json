@@ -323,11 +323,11 @@
   "typescript.suggest.completeFunctionCalls": true,
   // inlay hints
   "typescript.inlayHints.parameterNames.enabled": "literals",
-  "typescript.inlayHints.variableTypes.enabled": true,
-  "typescript.inlayHints.parameterTypes.enabled": true,
-  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "typescript.inlayHints.enumMemberValues.enabled": true,
+  // "typescript.inlayHints.variableTypes.enabled": true,
+  // "typescript.inlayHints.parameterTypes.enabled": true,
+  // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  // "typescript.inlayHints.enumMemberValues.enabled": true,
 
   //* Shell.
   "[shellscript]": {
@@ -426,13 +426,52 @@
       "before": ["<"],
       "commands": ["editor.action.outdentLines"]
     },
+
+    // {
+    //   "before": ["[", "e"],
+    //   "commands": ["editor.action.moveLinesUpAction"]
+    // },
+    // {
+    //   "before": ["]", "e"],
+    //   "commands": ["editor.action.moveLinesDownAction"]
+    // }
+
+    // code actions.
     {
-      "before": ["[", "e"],
-      "commands": ["editor.action.moveLinesUpAction"]
+      "before": ["<leader>", "r", "e", "c"],
+      "commands": [
+        {
+          "command": "editor.action.codeAction",
+          "args": { "kind": "refactor.extract.constant" }
+        }
+      ]
     },
     {
-      "before": ["]", "e"],
-      "commands": ["editor.action.moveLinesDownAction"]
+      "before": ["<leader>", "r", "e", "f"],
+      "commands": [
+        {
+          "command": "editor.action.codeAction",
+          "args": { "kind": "refactor.extract.function" }
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "r", "e", "t"],
+      "commands": [
+        {
+          "command": "editor.action.codeAction",
+          "args": { "kind": "refactor.extract.type" }
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "r", "a", "b"],
+      "commands": [
+        {
+          "command": "editor.action.codeAction",
+          "args": { "kind": "refactor.rewrite.arrow.braces" }
+        }
+      ]
     }
   ],
 
@@ -566,6 +605,44 @@
     {
       "before": ["<leader>", "g", "l"],
       "commands": ["git-graph.view"]
+    },
+
+    // code actions.
+    {
+      "before": ["<leader>", "r", "e", "c"],
+      "commands": [
+        {
+          "command": "editor.action.codeAction",
+          "args": { "kind": "refactor.extract.constant" }
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "r", "e", "f"],
+      "commands": [
+        {
+          "command": "editor.action.codeAction",
+          "args": { "kind": "refactor.extract.function" }
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "r", "e", "t"],
+      "commands": [
+        {
+          "command": "editor.action.codeAction",
+          "args": { "kind": "refactor.extract.type" }
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "r", "a", "b"],
+      "commands": [
+        {
+          "command": "editor.action.codeAction",
+          "args": { "kind": "refactor.rewrite.arrow.braces" }
+        }
+      ]
     },
 
     // custom leader commands.
