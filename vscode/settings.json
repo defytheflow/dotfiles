@@ -133,7 +133,10 @@
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
+  "terminal.integrated.showExitAlert": false,
+  "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.scrollback": 5000,
+  "terminal.integrated.confirmOnExit": "hasChildProcesses",
   "terminal.integrated.autoReplies": {
     "Terminate batch job (Y/N)?": "Y\r"
   },

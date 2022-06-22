@@ -100,6 +100,22 @@
   },
 
   /**
+   ** Kill the active terminal with `cmd+w` and all terminals with `cmd+k cmd+w` (no default bindings).
+   */
+
+  {
+    "key": "cmd+w",
+    "command": "workbench.action.terminal.kill",
+    "when": "terminalFocus"
+  },
+
+  {
+    "key": "cmd+k cmd+w",
+    "command": "workbench.action.terminal.killAll",
+    "when": "terminalFocus"
+  },
+
+  /**
    ** Miscellaneous `cmd+g` bindings (most of them have no default bindings).
    */
 

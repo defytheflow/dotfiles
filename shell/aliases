@@ -15,8 +15,7 @@ alias rh='runhaskell'
 alias sudo='sudo ' # to run 'sudo {alias}'
 alias _='sudo'
 
-alias f='file'
-alias q='exit'
+alias q='exit 0' # without 0, it exits with status code 1, and makes vscode show an error alert.
 
 alias so='source'
 alias cls='clear'
