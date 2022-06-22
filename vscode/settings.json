@@ -3,7 +3,10 @@
   "workbench.startupEditor": "readme",
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
+
+  //* Inlay Hints.
   "editor.inlayHints.enabled": "on",
+  "editor.inlayHints.padding": true,
 
   //* Unicode.
   "editor.unicodeHighlight.includeStrings": false,
@@ -40,7 +43,7 @@
   "explorer.openEditors.visible": 0,
   "explorer.fileNesting.enabled": true,
   // "explorer.confirmDelete": false,
-  // "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDragAndDrop": false,
 
   //* Scrolling.
   "editor.smoothScrolling": true,
@@ -130,6 +133,7 @@
   "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.commandsToSkipShell": ["-workbench.action.terminal.focusFind"],
+  "terminal.integrated.scrollback": 5000,
   "terminal.integrated.autoReplies": {
     "Terminate batch job (Y/N)?": "Y\r"
   },
@@ -313,6 +317,8 @@
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
   "js/ts.implicitProjectConfig.checkJs": true,
+  "javascript.inlayHints.parameterNames.enabled": "literals",
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
 
   //* TypeScript.
   "[typescript][typescriptreact]": {
@@ -321,7 +327,6 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.suggest.completeFunctionCalls": true,
-  // inlay hints
   "typescript.inlayHints.parameterNames.enabled": "literals",
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
   // "typescript.inlayHints.variableTypes.enabled": true,
@@ -915,26 +920,26 @@
   },
 
   //* Settings Cycler.
-  "settings.cycle": [
-    {
-      "id": "inlayHints",
-      "overrideWorkspaceSettings": false,
-      "values": [
-        {
-          "typescript.inlayHints.variableTypes.enabled": true,
-          "typescript.inlayHints.parameterTypes.enabled": true,
-          "typescript.inlayHints.enumMemberValues.enabled": true,
-          "typescript.inlayHints.propertyDeclarationTypes.enabled": true
-        },
-        {
-          "typescript.inlayHints.variableTypes.enabled": false,
-          "typescript.inlayHints.parameterTypes.enabled": false,
-          "typescript.inlayHints.enumMemberValues.enabled": false,
-          "typescript.inlayHints.propertyDeclarationTypes.enabled": false
-        }
-      ]
-    }
-  ],
+  // "settings.cycle": [
+  //   {
+  //     "id": "inlayHints",
+  //     "overrideWorkspaceSettings": false,
+  //     "values": [
+  //       {
+  //         "typescript.inlayHints.variableTypes.enabled": true,
+  //         "typescript.inlayHints.parameterTypes.enabled": true,
+  //         "typescript.inlayHints.enumMemberValues.enabled": true,
+  //         "typescript.inlayHints.propertyDeclarationTypes.enabled": true
+  //       },
+  //       {
+  //         "typescript.inlayHints.variableTypes.enabled": false,
+  //         "typescript.inlayHints.parameterTypes.enabled": false,
+  //         "typescript.inlayHints.enumMemberValues.enabled": false,
+  //         "typescript.inlayHints.propertyDeclarationTypes.enabled": false
+  //       }
+  //     ]
+  //   }
+  // ],
 
   //* Code Spell Checker.
   "cSpell.allowCompoundWords": true,
@@ -979,6 +984,28 @@
     { "icon": "css", "extensions": ["css"], "format": "svg" }
   ],
 
+  //* Emoji Sense.
+  "emojisense.languages": {
+    "json": true,
+    "jsonc": true,
+
+    "javascript": true,
+    "javascriptreact": true,
+
+    "typescript": true,
+    "typescriptreact": true,
+
+    "python": true,
+    "shellscript": true,
+
+    "html": true,
+    "django-html": true,
+
+    "css": true,
+    "scss": true,
+    "tailwindcss": true
+  },
+
   //* JavaScript Lesson Settings.
   "[javascript-lesson]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -1011,6 +1038,6 @@
   },
 
   //* Ever-changing.
-  "editor.minimap.enabled": false,
-  "window.zoomLevel": -1
+  "window.zoomLevel": -1,
+  "editor.minimap.enabled": false
 }

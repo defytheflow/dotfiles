@@ -104,40 +104,40 @@
    */
 
   {
-    "describe": "Toggle activity bar visibility",
+    "describe": "Toggle Activity Bar Visibility",
     "key": "cmd+g a",
     "command": "workbench.action.toggleActivityBarVisibility"
   },
 
   {
-    "describe": "Toggle sidebar position",
+    "describe": "Toggle Primary Side Bar Position",
     "key": "cmd+g b",
     "command": "workbench.action.toggleSidebarPosition"
   },
 
   {
-    "describe": "Delete current file",
+    "describe": "Delete Current File",
     "key": "cmd+g d",
     "command": "fileutils.removeFile"
   },
 
   {
-    "describe": "Collapse all folders in the explorer",
+    "describe": "Collapse Folders in Explorer",
     "key": "cmd+g e",
     "command": "workbench.files.action.collapseExplorerFolders"
   },
 
   {
-    "describe": "Toggle maximized panel",
+    "describe": "Toggle Maximized Panel",
     "key": "cmd+g j",
     "command": "workbench.action.toggleMaximizedPanel"
   },
 
-  {
-    "describe": "Toggle inlay hints",
-    "key": "cmd+g h",
-    "command": "settings.cycle.inlayHints"
-  },
+  // {
+  //   "describe": "Toggle Inlay Hints",
+  //   "key": "cmd+g h",
+  //   "command": "settings.cycle.inlayHints"
+  // },
 
   {
     "describe": "Inspect Editor Tokens and Scopes",
@@ -146,13 +146,13 @@
   },
 
   {
-    "describe": "Toggle minimap",
+    "describe": "Toggle Minimap",
     "key": "cmd+g m",
     "command": "editor.action.toggleMinimap"
   },
 
   {
-    "describe": "Rename current file",
+    "describe": "Rename Current File",
     "key": "cmd+g r",
     "command": "fileutils.renameFile"
   },
@@ -164,28 +164,66 @@
   },
 
   {
-    "describe": "Create terminal in editor area",
+    "describe": "Create New Terminal in Editor Area",
     "key": "cmd+g t",
     "command": "workbench.action.createTerminalEditor"
   },
 
   {
-    "describe": "Center layout",
+    "describe": "Toggle Centered Layout",
     "key": "cmd+g z",
     "command": "workbench.action.toggleCenteredLayout"
   },
 
   {
-    "describe": "Open WorkSpace Settings (JSON)",
+    "describe": "Open Default Settings (JSON)",
     "key": "cmd+g ,",
+    "command": "workbench.action.openRawDefaultSettings"
+  },
+
+  {
+    "describe": "Open Workspace Settings (JSON)",
+    "key": "cmd+g cmd+,",
     "command": "workbench.action.openWorkspaceSettingsFile"
   },
 
   {
-    "describe": "Open user keyboard shortcuts (JSON)",
+    "describe": "Open Keyboard Shortcuts (JSON)",
     "key": "cmd+g cmd+s",
     "command": "workbench.action.openGlobalKeybindingsFile"
+  },
+
+  /**
+   ** Disable Emoji Sense Extension `cmd+i` keybinding. Use `ctrl+cmd+i` instead.
+   */
+
+  {
+    "key": "cmd+i",
+    "command": "-emojisense.quickEmoji",
+    "when": "editorTextFocus"
+  },
+
+  {
+    "key": "cmd+i",
+    "command": "-emojisense.quickEmojiTerminal",
+    "when": "terminalFocus"
+  },
+
+  {
+    "key": "ctrl+cmd+i",
+    "command": "emojisense.quickEmoji",
+    "when": "editorTextFocus"
+  },
+
+  {
+    "key": "ctrl+cmd+i",
+    "command": "emojisense.quickEmojiTerminal",
+    "when": "terminalFocus"
   }
+
+  /**
+   ** Bindings that force you to use vim commands and bindings.
+   */
 
   /**
    ** Disable `cmd+w` to close windows. Learn vim's `:q` and `ctrl-w` + c.

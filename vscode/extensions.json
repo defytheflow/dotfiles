@@ -6,7 +6,7 @@
     // JavaScript and TypeScript playground.
     "WallabyJs.quokka-vscode",
 
-    //* Linting/Fixing/Formatting/Intellisense.
+    //* Linting/Fixing/Formatting/Intellisense/Autocomplete/Suggestions.
     // Lint and Fix javascript/typescript files.
     "dbaeumer.vscode-eslint",
     // Lint, Fix and Format css/scss files.
@@ -25,6 +25,8 @@
     "streetsidesoftware.code-spell-checker",
     // Format django templates
     "HookyQR.beautify",
+    // Suggestions and Autocomplete for emoji.
+    "bierner.emojisense",
 
     //* C/C++.
     "ms-vscode.cpptools",
