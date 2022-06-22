@@ -1,39 +1,75 @@
 {
-  //* console
+  /*
+    🦉 NOTES:
+   "description" and "prefix" values are used to select/find a snippet inside
+   'Insert Snippet' and 'Surround with Snippet' commands.
+  */
+
+  /**
+   ** Miscellaneous.
+   */
+
+  "Document Query Selector": {
+    "description": "Document Query Selector",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["qs"],
+    "body": ["document.querySelector('$1')"]
+  },
+
+  "JSON Stringify": {
+    "description": "JSON Stringify",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["js"],
+    "body": ["JSON.stringify($1, null, 2)"]
+  },
+
+  "Export Default": {
+    "description": "Export Default",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["ed"],
+    "body": ["export default ${TM_SELECTED_TEXT:${1}}"]
+  },
+
+  /**
+   ** Console.
+   */
+
   // This snippet is the same as built in one, but without a semicolon.
-  "Log to the console": {
+  "Console Log": {
+    "description": "Console Log",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["log"],
     "body": ["console.log($1)"]
   },
 
   // This snippet is the same as in `JavaScript (ES6) code snippets` but without a semicolon.
-  "consoleLogObject": {
+  "Console Log Object": {
+    "description": "Console Log Object",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["clo"],
     "body": ["console.log('${1:object} :>> ', ${1:object})"]
   },
 
-  "querySelector": {
-    "scope": "javascript,typescript,javascriptreact,typescriptreact",
-    "prefix": ["qs"],
-    "body": ["document.querySelector('$1')"]
-  },
+  /**
+   ** JavaScript Functions.
+   */
 
-  //* javascript functions
-  "function": {
+  "Function": {
+    "description": "Function",
     "scope": "javascript,javascriptreact",
     "prefix": ["fn"],
     "body": ["function ${1:name}(${2:params}) {", "\t${TM_SELECTED_TEXT:${3}}", "}"]
   },
 
-  "async function": {
+  "Async Function": {
+    "description": "Async Function",
     "scope": "javascript,javascriptreact",
     "prefix": ["afn"],
     "body": ["async function ${1:name}(${2:params}) {", "\t${TM_SELECTED_TEXT:${3}}", "}"]
   },
 
-  "export function": {
+  "Export Function": {
+    "description": "Export Function",
     "scope": "javascript,javascriptreact",
     "prefix": ["efn"],
     "body": [
@@ -43,7 +79,8 @@
     ]
   },
 
-  "export async function": {
+  "Export Async Function": {
+    "description": "Export Async Function",
     "scope": "javascript,javascriptreact",
     "prefix": ["eafn"],
     "body": [
@@ -53,18 +90,19 @@
     ]
   },
 
-  //* typescript functions
-  "typescript function": {
+  /**
+   ** TypeScript Functions.
+   */
+
+  "TypeScript Function": {
+    "description": "TypeScript Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["fn"],
-    "body": [
-      "function ${1:name}(${2:params}: ${3:type}) {",
-      "\t${TM_SELECTED_TEXT:${4}}",
-      "}"
-    ]
+    "body": ["function ${1:name}(${2:params})${3} {", "\t${TM_SELECTED_TEXT:${4}}", "}"]
   },
 
-  "typescript async function": {
+  "TypeScript Async Function": {
+    "description": "TypeScript Async Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["afn", "asfn"],
     "body": [
@@ -74,7 +112,8 @@
     ]
   },
 
-  "typescript export function": {
+  "TypeScript Export Function": {
+    "description": "TypeScript Export Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["efn"],
     "body": [
@@ -84,7 +123,8 @@
     ]
   },
 
-  "typescript export async function": {
+  "TypeScript Export Async Function": {
+    "description": "TypeScript Export Async Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["eafn", "easfn"],
     "body": [
@@ -94,123 +134,133 @@
     ]
   },
 
-  "export default": {
-    "scope": "javascript,typescript,javascriptreact,typescriptreact",
-    "prefix": ["ed"],
-    "body": ["export default ${TM_SELECTED_TEXT:${1}}"]
-  },
+  /**
+   ** TypeScript.
+   */
 
-  // "export default function": {
-  //   "scope": "javascript,typescript,javascriptreact,typescriptreact",
-  //   "prefix": ["edf", "edfn"],
-  //   "body": [
-  //     "export default function ${1:${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}}($2) {",
-  //     "  $3",
-  //     "}"
-  //   ]
-  // },
-
-  "interface": {
+  "Interface": {
+    "description": "Interface",
     "scope": "typescript,typescriptreact",
     "prefix": ["in"],
     "body": ["interface $1 {", "\t$2", "}"]
   },
 
-  "export interface": {
+  "Export Interface": {
+    "description": "Export Interface",
     "scope": "typescript,typescriptreact",
     "prefix": ["ein"],
     "body": ["export interface $1 {", "\t$2", "}"]
   },
 
-  "export type": {
+  "Export Type": {
+    "description": "Export Type",
     "scope": "typescript,typescriptreact",
     "prefix": ["et"],
     "body": ["export type $1"]
   },
 
-  //* prettier
-  "prettier ignore": {
-    "scope": "javascript,typescript,javascriptreact,typescriptreact,jsonc",
+  /**
+   ** Prettier.
+   */
+
+  "Prettier Ignore": {
+    "description": "Prettier Ignore",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact,jsonc,markdown",
     "prefix": ["pig"],
     "body": ["$LINE_COMMENT prettier-ignore"]
   },
 
-  //* eslint.
-  "eslint disable line": {
+  /**
+   ** Eslint.
+   */
+
+  "Eslint Disable Line": {
+    "description": "Eslint Disable Line",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["edl"],
     "body": ["$LINE_COMMENT eslint-disable-line $1"]
   },
 
-  "eslint disable next line": {
+  "Eslint Disable Next Line": {
+    "description": "Eslint Disable Next Line",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["ednl"],
     "body": ["$LINE_COMMENT eslint-disable-next-line $1"]
   },
 
-  //* react.
-  "React.useCallback": {
+  /**
+   ** React Hooks.
+   */
+
+  "React useCallback": {
+    "description": "React useCallback",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": "uc",
     "body": ["const $1 = React.useCallback(($2) => {", "\t$3", "}, [$4])"]
   },
 
-  "React.useEffect": {
+  "React useEffect": {
+    "description": "React useEffect",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["ue"],
     "body": ["React.useEffect(() => {", "\t$1", "}, [$2])"]
   },
 
-  "React.useMemo": {
+  "React useMemo": {
+    "description": "React useMemo",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["um"],
     "body": ["const $1 = React.useMemo(() => {", "\treturn $2", "}, [$3])"]
   },
 
-  "typescript React.useRef": {
+  "TypeScript React useRef": {
+    "description": "React useRef",
     "scope": "typescript,typescriptreact",
     "prefix": ["ur"],
     "body": ["const $1Ref = React.useRef<${2:HTMLDivElement}>(${3:null})"]
   },
 
-  "React.useState": {
+  "React useState": {
+    "description": "React useState",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["us"],
     "body": ["const [$1, set${1/(.*)/${1:/capitalize}/}] = React.useState($2)"]
   },
 
-  "JSON.stringify": {
-    "scope": "javascript,typescript,javascriptreact,typescriptreact",
-    "prefix": ["js"],
-    "body": ["JSON.stringify($1, null, 2)"]
-  },
+  /**
+   ** React Testing Library.
+   */
 
-  //* @testing-library/react
-  "screen debug": {
+  "Screen Debug": {
+    "description": "Screen Debug",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["sd"],
     "body": ["screen.debug($1)"]
   },
 
-  "screen getByRole": {
+  "Screen Get By Role": {
+    "description": "Screen Get By Role",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["sbr"],
     "body": ["screen.getByRole('$1')"]
   },
 
-  "screen getAllByRole": {
+  "Screen Get All By Role": {
+    "description": "Screen Get All By Role",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["sabr"],
     "body": ["screen.getAllByRole('$1')"]
   },
 
-  "screen getByText": {
+  "Screen Get By Text": {
+    "description": "Screen Get By Text",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["sbt"],
     "body": ["screen.getByText('$1')"]
   },
 
-  "screen getByLabelText": {
+  "Screen Get By Label Text": {
+    "description": "Screen Get By Label Text",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["sblt"],
     "body": ["screen.getByLabelText('$1')"]
@@ -228,41 +278,32 @@
     "body": ["await act(async () => {", "\t${TM_SELECTED_TEXT:${1}}", "})"]
   },
 
-  //* jest.
-  // "describe": {
-  // . "scope": "javascript,typescript,javascriptreact,typescriptreact",
-  //   "prefix": ["des"],
-  //   "body": ["describe('$1', () => {", " ", "})"]
-  // },
+  /**
+   ** Jest.
+   */
 
-  // "test": {
-  // . "scope": "javascript,typescript,javascriptreact,typescriptreact",
-  //   "prefix": ["ts"],
-  //   "body": ["test('$1', () => {", "", "})"]
-  // },
-
-  "async test": {
-    "scope": "javascript,typescript,javascriptreact,typescriptreact",
-    "prefix": ["ats"],
-    "body": ["test('$1', async () => {", "\t${TM_SELECTED_TEXT:${2}}", "})"]
-  },
-
-  "beforeEach": {
+  "Jest Before Each": {
+    "description": "Jest Before Each",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["bef"],
     "body": ["beforeEach(() => {", "\t${TM_SELECTED_TEXT:${1}}", "})"]
   },
 
-  //* remix.
-  "remix meta": {
+  /**
+   ** Remix.
+   */
+
+  "Remix Meta": {
+    "description": "Remix Meta Function",
     "scope": "typescript,typescriptreact",
-    "prefix": "rmeta",
+    "prefix": ["rmeta"],
     "body": ["export const meta: MetaFunction = () => {", "\treturn { title: $1 }", "}"]
   },
 
-  "remix links": {
+  "Remix Links": {
+    "description": "Remix Links Function",
     "scope": "typescript,typescriptreact",
-    "prefix": "rlink",
+    "prefix": ["rlink"],
     "body": [
       "export const links: LinksFunction = () => {",
       "\treturn [{ rel: 'stylesheet', href: $1 }]",
@@ -270,22 +311,24 @@
     ]
   },
 
-  "remix loader": {
+  "Remix Loader": {
+    "description": "Remix Loader Function",
     "scope": "typescript,typescriptreact",
-    "prefix": "rload",
+    "prefix": ["rload"],
     "body": [
       "export const loader: LoaderFunction = async ({ request, params }) => {",
-      "\t$1",
+      "\t${TM_SELECTED_TEXT:${1}}",
       "}"
     ]
   },
 
-  "remix action": {
+  "Remix Action": {
+    "description": "Remix Action Function",
     "scope": "typescript,typescriptreact",
-    "prefix": "ract",
+    "prefix": ["ract"],
     "body": [
       "export const action: ActionFunction = async ({ request }) => {",
-      "\t$1",
+      "\t${TM_SELECTED_TEXT:${1}}",
       "}"
     ]
   }
