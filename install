@@ -211,6 +211,8 @@ create_symlinks() {
   symlink '.inputrc' "${HOME}/.inputrc"
   symlink '.profile' "${HOME}/.profile"
   symlink '.xprofile' "${HOME}/.xprofile"
+
+  symlink '.sqliterc' "${HOME}/.sqliterc"
 }
 
 main
