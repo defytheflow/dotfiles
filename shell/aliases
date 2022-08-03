@@ -216,6 +216,7 @@ if command -v npm >/dev/null; then
   alias nrb='npm run build'
   alias nrba='npm run build:analyze'
   alias nrd='npm run dev'
+  alias nrdl='npm run dev:local'
   alias nrc='npm run check'
   alias nrf='npm run fix'
   alias nrl='npm run lint'

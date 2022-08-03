@@ -1,20 +1,20 @@
 [
   /**
-   ** Switch focus between editor and panel with `ctrl+'` (no default bindings).
+   ** Switch focus between editor and terminal with `ctrl+'` (no default bindings).
    */
 
   {
-    "describe": "Focus panel",
+    "describe": "Focus terminal",
     "key": "ctrl+'",
-    "command": "workbench.action.focusPanel",
-    "when": "!panelFocus"
+    "command": "workbench.action.terminal.focus",
+    "when": "!terminalFocus"
   },
 
   {
     "describe": "Focus editor",
     "key": "ctrl+'",
     "command": "workbench.action.focusActiveEditorGroup",
-    "when": "panelFocus"
+    "when": "terminalFocus"
   },
 
   /**
@@ -149,11 +149,11 @@
     "command": "workbench.action.toggleMaximizedPanel"
   },
 
-  // {
-  //   "describe": "Toggle Inlay Hints",
-  //   "key": "cmd+g h",
-  //   "command": "settings.cycle.inlayHints"
-  // },
+  {
+    "describe": "Toggle Inlay Hints",
+    "key": "cmd+g h",
+    "command": "settings.cycle.inlayHints"
+  },
 
   {
     "describe": "Inspect Editor Tokens and Scopes",

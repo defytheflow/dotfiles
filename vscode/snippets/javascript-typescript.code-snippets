@@ -50,6 +50,12 @@
     "body": ["console.log('${1:object} :>> ', ${1:object})"]
   },
 
+  "?": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["l?"],
+    "body": ["console.log('${1}?', ${1})"]
+  },
+
   /**
    ** JavaScript Functions.
    */

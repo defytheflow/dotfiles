@@ -3,6 +3,7 @@
   "workbench.startupEditor": "readme",
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
+  "editor.mouseWheelZoom": true,
 
   //* Inlay Hints.
   "editor.inlayHints.enabled": "on",
@@ -37,6 +38,7 @@
   //* Window.
   "window.dialogStyle": "custom",
   "window.confirmBeforeClose": "keyboardOnly",
+  // "window.commandCenter": true,
   // "window.nativeTabs": true,
 
   //* Explorer.
@@ -60,12 +62,15 @@
 
   //* Minimap.
   "editor.minimap.renderCharacters": false,
+  "editor.minimap.size": "fill",
+  "editor.minimap.showSlider": "always",
 
   //* Formatting & Fixing.
   "editor.codeActionsOnSave": {
     "source.fixAll": true,
-    "source.addMissingImports": true,
-    "source.organizeImports": true
+    "source.addMissingImports": true
+    // "source.sortImports": true
+    // "source.organizeImports": true
   },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -117,6 +122,7 @@
   "git.terminalAuthentication": false,
   "git.untrackedChanges": "separate",
   "git.closeDiffOnOperation": true,
+  // "git.terminalGitEditor": true,
 
   //* Search.
   "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
@@ -136,7 +142,7 @@
   "terminal.integrated.showExitAlert": false,
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.scrollback": 5000,
-  "terminal.integrated.confirmOnExit": "hasChildProcesses",
+  // "terminal.integrated.confirmOnExit": "hasChildProcesses",
   "terminal.integrated.autoReplies": {
     "Terminate batch job (Y/N)?": "Y\r"
   },
@@ -287,9 +293,9 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[django-html]": {
-    "editor.defaultFormatter": "HookyQR.beautify"
-  },
+  // "[django-html]": {
+  //   "editor.defaultFormatter": "HookyQR.beautify"
+  // },
 
   //* CSS/SCSS.
   "[css][scss][tailwindcss]": {
@@ -322,6 +328,8 @@
   "js/ts.implicitProjectConfig.checkJs": true,
   "javascript.inlayHints.parameterNames.enabled": "literals",
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": true,
+  // "javascript.inlayHints.parameterTypes.enabled": true,
 
   //* TypeScript.
   "[typescript][typescriptreact]": {
@@ -332,7 +340,7 @@
   "typescript.suggest.completeFunctionCalls": true,
   "typescript.inlayHints.parameterNames.enabled": "literals",
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-  // "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
   // "typescript.inlayHints.parameterTypes.enabled": true,
   // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
   // "typescript.inlayHints.enumMemberValues.enabled": true,
@@ -676,22 +684,22 @@
     //   "before": ["]", "B"],
     //   "commands": ["workbench.action.lastEditorInGroup"]
     // },
-    // {
-    //   "before": ["[", " "],
-    //   "commands": ["editor.action.insertLineBefore"]
-    // },
-    // {
-    //   "before": ["]", " "],
-    //   "commands": ["editor.action.insertLineAfter"]
-    // },
-    // {
-    //   "before": ["[", "e"],
-    //   "commands": ["editor.action.moveLinesUpAction"]
-    // },
-    // {
-    //   "before": ["]", "e"],
-    //   "commands": ["editor.action.moveLinesDownAction"]
-    // },
+    {
+      "before": ["[", " "],
+      "commands": ["editor.action.insertLineBefore"]
+    },
+    {
+      "before": ["]", " "],
+      "commands": ["editor.action.insertLineAfter"]
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
     {
       "before": ["[", "f"],
       "commands": ["workbench.view.explorer", "list.focusUp", "explorer.openAndPassFocus"]
@@ -824,6 +832,7 @@
     "javascript": "javascriptreact"
     // "django-html": "html"
   },
+  // "emmet.useInlineCompletions": true,
 
   //* Prettier.
   "prettier.arrowParens": "avoid",
@@ -923,26 +932,28 @@
   },
 
   //* Settings Cycler.
-  // "settings.cycle": [
-  //   {
-  //     "id": "inlayHints",
-  //     "overrideWorkspaceSettings": false,
-  //     "values": [
-  //       {
-  //         "typescript.inlayHints.variableTypes.enabled": true,
-  //         "typescript.inlayHints.parameterTypes.enabled": true,
-  //         "typescript.inlayHints.enumMemberValues.enabled": true,
-  //         "typescript.inlayHints.propertyDeclarationTypes.enabled": true
-  //       },
-  //       {
-  //         "typescript.inlayHints.variableTypes.enabled": false,
-  //         "typescript.inlayHints.parameterTypes.enabled": false,
-  //         "typescript.inlayHints.enumMemberValues.enabled": false,
-  //         "typescript.inlayHints.propertyDeclarationTypes.enabled": false
-  //       }
-  //     ]
-  //   }
-  // ],
+  "settings.cycle": [
+    {
+      "id": "inlayHints",
+      "overrideWorkspaceSettings": false,
+      "values": [
+        {
+          "editor.inlayHints.enabled": "on"
+          // "typescript.inlayHints.variableTypes.enabled": true,
+          // "typescript.inlayHints.parameterTypes.enabled": true,
+          // "typescript.inlayHints.enumMemberValues.enabled": true,
+          // "typescript.inlayHints.propertyDeclarationTypes.enabled": true
+        },
+        {
+          "editor.inlayHints.enabled": "off"
+          // "typescript.inlayHints.variableTypes.enabled": false,
+          // "typescript.inlayHints.parameterTypes.enabled": false,
+          // "typescript.inlayHints.enumMemberValues.enabled": false,
+          // "typescript.inlayHints.propertyDeclarationTypes.enabled": false
+        }
+      ]
+    }
+  ],
 
   //* Code Spell Checker.
   "cSpell.allowCompoundWords": true,
@@ -962,7 +973,16 @@
     "ipynb",
     "venv"
   ],
-  "cSpell.userWords": ["clsx", "esbuild", "nestjs", "nextjs", "properoom", "signup"],
+  "cSpell.userWords": [
+    "arrowup",
+    "clsx",
+    "Danilov",
+    "esbuild",
+    "nestjs",
+    "nextjs",
+    "properoom",
+    "signup"
+  ],
 
   //* Gitlens.
   "gitlens.plusFeatures.enabled": false,
@@ -1031,7 +1051,11 @@
     },
     "prettier.semi": false,
     "prettier.arrowParens": "avoid",
-    "js/ts.implicitProjectConfig.checkJs": true
+    "js/ts.implicitProjectConfig.checkJs": true,
+    "editor.inlayHints.enabled": "on",
+    "editor.inlayHints.padding": true,
+    "javascript.inlayHints.parameterNames.enabled": "literals",
+    "javascript.inlayHints.variableTypes.enabled": true
   },
 
   //* Atlassian YAML Garbage That Is Generated Automatically.
@@ -1042,5 +1066,9 @@
 
   //* Ever-changing.
   "window.zoomLevel": -1,
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "09c69f05-3465-46c7-ba23-2757e0811800",
+    "projectKey": "API"
+  },
   "editor.minimap.enabled": false
 }

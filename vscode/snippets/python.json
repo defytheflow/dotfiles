@@ -1,18 +1,27 @@
 {
-  //* mypy.
-  "type ignore": {
+  /**
+   ** Mypy.
+   */
+
+  "Type Ignore": {
     "prefix": ["tig"],
     "body": ["# type: ignore"]
   },
 
-  //* yapf.
-  "yapf disable": {
+  /**
+   ** Yapf.
+   */
+
+  "Yapf Disable": {
     "prefix": "yd",
     "body": ["# yapf: disable"]
   },
 
-  //* debugger.
-  "breakpoint": {
+  /**
+   ** Debugger.
+   */
+
+  "Breakpoint": {
     "prefix": ["br"],
     "body": ["breakpoint()"]
   },
@@ -22,32 +31,42 @@
     "body": ["__import__('ipdb').set_trace()"]
   },
 
-  //* print.
-  "print": {
+  /**
+   ** Print.
+   */
+
+  "Print": {
     "prefix": ["p"],
     "body": ["print($1)"]
   },
 
-  "print equals": {
+  "Print Equals": {
     "prefix": ["p="],
-    "body": ["print(f\"{$1=}\")"]
+    // 91m - red
+    // 92m - green
+    // 93m - yellow
+    // 94m - blue
+    // 95m - purple
+    // 96m - cyan
+    // 97m - white
+    // "body": ["print(f\"{$1=}\")"]
+    "body": ["print(f\"\\033[97m{$1=}\\033[00m\")"]
   },
 
-  "print object": {
+  "Print Object": {
     "prefix": ["po"],
     "body": ["print(\"${1:object} :>> \", ${1:object})"]
   },
 
-  "pretty print": {
+  "Pretty Print": {
     "prefix": ["pp"],
     "body": ["__import__('pprint').pprint($1)"]
   },
 
-  "print sql": {
+  "Print SQL": {
     "prefix": ["psql"],
     "body": [
       "print(__import__('sqlparse').format(str($1), reindent=True, keyword_case='upper'))"
     ]
-  },
-
+  }
 }
