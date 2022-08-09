@@ -139,15 +139,50 @@ autoload -Uz vcs_info
 
 # Taken from night-owl.vim
 NIGHT_OWL_GREEN=149
+NIGHT_OWL_CYAN=116
 
 # This color looks good with 'Night Owl' theme in vscode and vim.
 # The previous purple color was 213.
 NIGHT_OWL_PURPLE=140
 
 zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:*' formats ' %s(%F{$NIGHT_OWL_GREEN}%b%f)'
-#                             ^
-#                             %s can be added to display 'git' or 'svn'
+zstyle ':vcs_info:*' formats ' %s(%F{$NIGHT_OWL_GREEN}%b%f)%m'
+
+# %b - displays branch.
+# %s - displays 'git' or 'svn'
+# %m - displays [↓N/↑N] when your local branch is behind or ahead-of remote HEAD (git).
+
+# From: https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+zstyle ':vcs_info:git*+set-message:*' hooks git-st
+
+function +vi-git-st() {
+  local ahead behind
+  local -a gitstatus
+
+  # Exit early in case the worktree is on a detached HEAD
+  git rev-parse ${hook_com[branch]}@{upstream} >/dev/null 2>&1 || return 0
+
+  local -a ahead_and_behind=(
+    $(git rev-list --left-right --count HEAD...${hook_com[branch]}@{upstream} 2>/dev/null)
+  )
+
+  ahead=${ahead_and_behind[1]}
+  behind=${ahead_and_behind[2]}
+
+  ((( $ahead )) || (( $behind ))) && gitstatus+=( "[" )
+  (( $behind )) && gitstatus+=( "%B%F{$NIGHT_OWL_CYAN}↓${behind}%f%b" )
+  (( $ahead )) && (( $behind )) && gitstatus+=( "/" )
+  (( $ahead )) && gitstatus+=( "%B%F{$NIGHT_OWL_CYAN}↑${ahead}%f%b" )
+  ((( $ahead )) || (( $behind ))) && gitstatus+=( "]" )
+
+  # %F{N} - enables N color.
+  # %f - resets color.
+  # %B - enables bold.
+  # %b - disables bold.
+
+  # (j::) - removes whitespaces between parts.
+  hook_com[misc]+=${(j::)gitstatus}
+}
 
 precmd() { vcs_info }
 
