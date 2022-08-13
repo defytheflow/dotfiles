@@ -5,6 +5,9 @@
   "editor.hover.delay": 200,
   "editor.mouseWheelZoom": true,
 
+  //* Experimental.
+  "editor.experimental.stickyScroll.enabled": true,
+
   //* Inlay Hints.
   "editor.inlayHints.enabled": "on",
   "editor.inlayHints.padding": true,
@@ -122,9 +125,11 @@
   "git.terminalAuthentication": false,
   "git.untrackedChanges": "separate",
   "git.closeDiffOnOperation": true,
+  "git.autofetch": true,
   // "git.terminalGitEditor": true,
 
   //* Search.
+  "search.quickOpen.history.filterSortOrder": "recency",
   "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
   "search.sortOrder": "countDescending",
   "search.exclude": {
@@ -142,32 +147,15 @@
   "terminal.integrated.showExitAlert": false,
   "terminal.external.osxExec": "iTerm.app",
   "terminal.integrated.scrollback": 5000,
-  // "terminal.integrated.confirmOnExit": "hasChildProcesses",
-  "terminal.integrated.autoReplies": {
-    "Terminate batch job (Y/N)?": "Y\r"
-  },
+  "terminal.integrated.shellIntegration.enabled": false,
+  "terminal.integrated.tabs.hideCondition": "singleGroup",
+  "terminal.integrated.autoReplies": { "Terminate batch job (Y/N)?": "Y\r" },
 
   //* Color Theme & Icon Theme.
   "workbench.colorTheme": "Night Owl",
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
-    "[Night Owl (No Italics)]": {
-      // Custom.
-      "editor.lineHighlightBackground": "#333",
-      "editorCursor.foreground": "#DC8CFF",
-      "statusBar.foreground": "#D6DEEB",
-      "activityBar.activeBorder": "#FF50FF",
-      "tab.activeBorder": "#FF50FF",
-      "panelTitle.activeBorder": "#FF50FF",
-      // Night Owl.
-      "activityBar.background": "#000C1D",
-      "activityBar.border": "#102a44",
-      "editorGroup.border": "#102a44",
-      "sideBar.background": "#001122",
-      "sideBar.border": "#102a44",
-      "sideBar.foreground": "#8BADC1"
-    },
-    "[Night Owl]": {
+    "[Night Owl][Night Owl (No Italics)]": {
       // Custom.
       "editor.lineHighlightBackground": "#333",
       "editorCursor.foreground": "#DC8CFF",
@@ -186,8 +174,21 @@
   },
 
   "editor.tokenColorCustomizations": {
-    "[Night Owl (No Italics)]": {
+    "[Night Owl][Night Owl (No Italics)]": {
       "textMateRules": [
+        {
+          "scope": [
+            "meta.object.member.ts meta.var.expr.ts storage.type.ts",
+            "meta.object.member.tsx meta.var.expr.tsx storage.type.tsx",
+            "meta.object.member.js.jsx meta.var.expr.js.jsx storage.type.js.jsx",
+            "meta.objectliteral.ts meta.var.expr.ts storage.type.ts",
+            "meta.objectliteral.tsx meta.var.expr.tsx storage.type.tsx",
+            "meta.objectliteral.js.jsx meta.var.expr.js.jsx storage.type.js.jsx"
+          ],
+          "settings": {
+            "foreground": "#C792EA"
+          }
+        }
         // Colors like in https://github.com/haishanh/night-owl.vim
         // {
         //   "scope": [
@@ -288,6 +289,8 @@
   "python.linting.pydocstyleEnabled": false,
   "python.linting.pylintEnabled": false,
   "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
+  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.inlayHints.functionReturnTypes": true,
 
   //* HTML.
   "[html]": {
@@ -378,7 +381,7 @@
 
   // neovim.
   "vim.enableNeovim": true,
-  // "vim.neovimPath": "/opt/homebrew/bin/nvim",
+  "vim.neovimPath": "/opt/homebrew/bin/nvim",
 
   // gutter.
   "vim.smartRelativeLine": true,
@@ -442,15 +445,14 @@
       "before": ["<"],
       "commands": ["editor.action.outdentLines"]
     },
-
-    // {
-    //   "before": ["[", "e"],
-    //   "commands": ["editor.action.moveLinesUpAction"]
-    // },
-    // {
-    //   "before": ["]", "e"],
-    //   "commands": ["editor.action.moveLinesDownAction"]
-    // }
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
 
     // code actions.
     {
@@ -828,11 +830,11 @@
   ],
 
   //* Emmet.
+  // "emmet.useInlineCompletions": true,
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
     // "django-html": "html"
   },
-  // "emmet.useInlineCompletions": true,
 
   //* Prettier.
   "prettier.arrowParens": "avoid",
@@ -849,9 +851,6 @@
 
   //* Stylelint.
   "stylelint.validate": ["css", "scss", "tailwindcss"],
-
-  //* Tabnine.
-  "tabnine.experimentalAutoImports": true,
 
   //* Color Highlight.
   "color-highlight.languages": [
@@ -917,7 +916,7 @@
       "strikethrough": true
     },
     {
-      "tag": "#",
+      "tag": "##",
       "color": "#474747",
       "strikethrough": true
     }
@@ -939,17 +938,9 @@
       "values": [
         {
           "editor.inlayHints.enabled": "on"
-          // "typescript.inlayHints.variableTypes.enabled": true,
-          // "typescript.inlayHints.parameterTypes.enabled": true,
-          // "typescript.inlayHints.enumMemberValues.enabled": true,
-          // "typescript.inlayHints.propertyDeclarationTypes.enabled": true
         },
         {
           "editor.inlayHints.enabled": "off"
-          // "typescript.inlayHints.variableTypes.enabled": false,
-          // "typescript.inlayHints.parameterTypes.enabled": false,
-          // "typescript.inlayHints.enumMemberValues.enabled": false,
-          // "typescript.inlayHints.propertyDeclarationTypes.enabled": false
         }
       ]
     }
@@ -999,6 +990,10 @@
     // When I create custom components, I often configure their styles through `classNames` property.
     "classNames"
   ],
+  "tailwindCSS.experimental.classRegex": [
+    // Provide intellisense in variables and object properties.
+    "[cC]lassName ?[:=] ?[\"']([^']*)[\"']"
+  ],
 
   //* VSCode Icons.
   "vsicons.dontShowNewVersionMessage": true,
@@ -1029,6 +1024,13 @@
     "tailwindcss": true
   },
 
+  //* Error Lens.
+  "errorLens.enabled": false,
+  "errorLens.enabledDiagnosticLevels": ["error", "warning"],
+  "errorLens.followCursor": "closestProblem",
+  "errorLens.fontStyleItalic": true,
+  "errorLens.messageTemplate": "$message ($source)",
+
   //* JavaScript Lesson Settings.
   "[javascript-lesson]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -1055,7 +1057,8 @@
     "editor.inlayHints.enabled": "on",
     "editor.inlayHints.padding": true,
     "javascript.inlayHints.parameterNames.enabled": "literals",
-    "javascript.inlayHints.variableTypes.enabled": true
+    "javascript.inlayHints.variableTypes.enabled": true,
+    "editor.mouseWheelZoom": true
   },
 
   //* Atlassian YAML Garbage That Is Generated Automatically.
@@ -1063,12 +1066,10 @@
   "yaml.schemas": {
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-
-  //* Ever-changing.
-  "window.zoomLevel": -1,
   "atlascode.jira.lastCreateSiteAndProject": {
     "siteId": "09c69f05-3465-46c7-ba23-2757e0811800",
     "projectKey": "API"
   },
+  "window.zoomLevel": -1,
   "editor.minimap.enabled": false
 }
