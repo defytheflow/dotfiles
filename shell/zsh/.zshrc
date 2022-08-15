@@ -140,6 +140,7 @@ autoload -Uz vcs_info
 # Taken from night-owl.vim
 NIGHT_OWL_GREEN=149
 NIGHT_OWL_CYAN=116
+NIGHT_OWL_GOLD=221
 
 # This color looks good with 'Night Owl' theme in vscode and vim.
 # The previous purple color was 213.
@@ -157,22 +158,34 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-st
 
 function +vi-git-st() {
   local ahead behind
-  local -a gitstatus
+  local -a gitstatus ahead_and_behind
 
-  # Exit early in case the worktree is on a detached HEAD
-  git rev-parse ${hook_com[branch]}@{upstream} >/dev/null 2>&1 || return 0
-
-  local -a ahead_and_behind=(
-    $(git rev-list --left-right --count HEAD...${hook_com[branch]}@{upstream} 2>/dev/null)
-  )
+  # if upstream exists
+  if git rev-parse ${hook_com[branch]}@{upstream} >/dev/null 2>&1; then
+    arrow_color=${NIGHT_OWL_CYAN}
+    ahead_and_behind=(
+      $(git rev-list --left-right --count HEAD...${hook_com[branch]}@{upstream} 2>/dev/null)
+    )
+  else
+    arrow_color=${NIGHT_OWL_GOLD}
+    for base_branch in develop main master; do
+      # if branch exists
+      if git rev-parse --quiet --verify $base_branch >/dev/null; then
+        ahead_and_behind=(
+          $(git rev-list --left-right --count HEAD...${base_branch} 2>/dev/null)
+        )
+        break
+      fi
+    done
+  fi
 
   ahead=${ahead_and_behind[1]}
   behind=${ahead_and_behind[2]}
 
   ((( $ahead )) || (( $behind ))) && gitstatus+=( "[" )
-  (( $behind )) && gitstatus+=( "%B%F{$NIGHT_OWL_CYAN}↓${behind}%f%b" )
+  (( $behind )) && gitstatus+=( "%B%F{$arrow_color}↓${behind}%f%b" )
   (( $ahead )) && (( $behind )) && gitstatus+=( "/" )
-  (( $ahead )) && gitstatus+=( "%B%F{$NIGHT_OWL_CYAN}↑${ahead}%f%b" )
+  (( $ahead )) && gitstatus+=( "%B%F{$arrow_color}↑${ahead}%f%b" )
   ((( $ahead )) || (( $behind ))) && gitstatus+=( "]" )
 
   # %F{N} - enables N color.

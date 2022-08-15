@@ -216,16 +216,16 @@ if command -v npm >/dev/null; then
   alias nrb='npm run build'
   alias nrba='npm run build:analyze'
   alias nrd='npm run dev'
-  alias nrdl='npm run dev:local'
+  # alias nrdl='npm run dev:local'
   alias nrc='npm run check'
   alias nrf='npm run fix'
   alias nrl='npm run lint'
   alias nrm='npm run make'
   # npm start.
   alias ns='npm start'
-  alias nsl='npm run start:local'
+  # alias nsl='npm run start:local'
   alias nrs='npm run start'
-  alias nrsl='npm run start:local'
+  # alias nrsl='npm run start:local'
   # npm test.
   alias nt='npm test'
   alias nrt='npm run test'
@@ -354,9 +354,9 @@ alias gmv='git mv'
 # git-push.
 alias gp='git push'
 alias gpd='git push --delete'
-alias gpf='git push --force'
+alias gpf='git push --force-with-lease'
 alias gpnv='git push --no-verify'
-alias gpfnv='git push --force --no-verify'
+alias gpfnv='git push --force-with-lease --no-verify'
 alias gpu='git push --set-upstream'
 
 # git-pull.
