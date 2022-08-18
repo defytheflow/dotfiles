@@ -340,13 +340,14 @@
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.suggest.completeFunctionCalls": true,
+  // This setting messes up react components completion.
+  // "typescript.suggest.completeFunctionCalls": true,
   "typescript.inlayHints.parameterNames.enabled": "literals",
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
   "typescript.inlayHints.variableTypes.enabled": true,
-  // "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
   // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
-  // "typescript.inlayHints.enumMemberValues.enabled": true,
 
   //* Shell.
   "[shellscript]": {
@@ -456,7 +457,7 @@
 
     // code actions.
     {
-      "before": ["<leader>", "r", "e", "c"],
+      "before": ["<leader>", "e", "c"],
       "commands": [
         {
           "command": "editor.action.codeAction",
@@ -465,7 +466,7 @@
       ]
     },
     {
-      "before": ["<leader>", "r", "e", "f"],
+      "before": ["<leader>", "e", "f"],
       "commands": [
         {
           "command": "editor.action.codeAction",
@@ -474,7 +475,7 @@
       ]
     },
     {
-      "before": ["<leader>", "r", "e", "t"],
+      "before": ["<leader>", "e", "t"],
       "commands": [
         {
           "command": "editor.action.codeAction",
@@ -483,7 +484,7 @@
       ]
     },
     {
-      "before": ["<leader>", "r", "a", "b"],
+      "before": ["<leader>", "a", "b"],
       "commands": [
         {
           "command": "editor.action.codeAction",
@@ -627,7 +628,7 @@
 
     // code actions.
     {
-      "before": ["<leader>", "r", "e", "c"],
+      "before": ["<leader>", "e", "c"],
       "commands": [
         {
           "command": "editor.action.codeAction",
@@ -636,7 +637,7 @@
       ]
     },
     {
-      "before": ["<leader>", "r", "e", "f"],
+      "before": ["<leader>", "e", "f"],
       "commands": [
         {
           "command": "editor.action.codeAction",
@@ -645,7 +646,7 @@
       ]
     },
     {
-      "before": ["<leader>", "r", "e", "t"],
+      "before": ["<leader>", "e", "t"],
       "commands": [
         {
           "command": "editor.action.codeAction",
@@ -654,7 +655,7 @@
       ]
     },
     {
-      "before": ["<leader>", "r", "a", "b"],
+      "before": ["<leader>", "a", "b"],
       "commands": [
         {
           "command": "editor.action.codeAction",
@@ -990,9 +991,11 @@
     // When I create custom components, I often configure their styles through `classNames` property.
     "classNames"
   ],
+  // NOTE: If you are debugging this, don't forget to comment out your workspace tailwind
+  // settings.
   "tailwindCSS.experimental.classRegex": [
-    // Provide intellisense in variables and object properties.
-    "[cC]lassName ?[:=] ?[\"']([^']*)[\"']"
+    // Provide intellisense in variables, object properties and jsx props.
+    "[cC]lassName\\s*[:=]\\s*{?[\"']([^']*)[\"']}?"
   ],
 
   //* VSCode Icons.
@@ -1048,6 +1051,7 @@
     "explorer.openEditors.visible": 0,
     "files.associations": {
       "*.js": "javascriptreact",
+      "*.ts": "typescriptreact",
       ".env": "shellscript",
       ".env.*": "shellscript"
     },
@@ -1058,6 +1062,9 @@
     "editor.inlayHints.padding": true,
     "javascript.inlayHints.parameterNames.enabled": "literals",
     "javascript.inlayHints.variableTypes.enabled": true,
+    "typescript.inlayHints.parameterNames.enabled": "literals",
+    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+    "typescript.inlayHints.variableTypes.enabled": true,
     "editor.mouseWheelZoom": true
   },
 
