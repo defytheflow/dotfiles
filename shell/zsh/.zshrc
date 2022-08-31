@@ -133,9 +133,7 @@ fi
 #}}}
 
 # prompt {{{
-
-# Enable version control information.
-autoload -Uz vcs_info
+autoload -Uz vcs_info # enable version control information.
 
 # Taken from night-owl.vim
 NIGHT_OWL_GREEN=149
@@ -145,19 +143,33 @@ NIGHT_OWL_GOLD=221
 # This color looks good with 'Night Owl' theme in vscode and vim.
 # The previous purple color was 213.
 NIGHT_OWL_PURPLE=140
+GREEN=2
+ORANGE=214
+RED=202
 
-zstyle ':vcs_info:*' enable git svn
-zstyle ':vcs_info:*' formats ' %s(%F{$NIGHT_OWL_GREEN}%b%f)%m'
-
+# %s - displays the current version control system, like 'git' or 'svn'.
 # %b - displays branch.
-# %s - displays 'git' or 'svn'
-# %m - displays [↓N/↑N] when your local branch is behind or ahead-of remote HEAD (git).
+# %c - displays S if repository has staged changes.
+# %u - displays U if repository ahs unstaged changes.
+# %a - displays current action, like 'rebase' or 'merge'.
+# %m - displays information about stashes in case of git.
 
-# From: https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
-zstyle ':vcs_info:git*+set-message:*' hooks git-st
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats " %s(%F{$NIGHT_OWL_GREEN}%b%c%u%f)%m"
+zstyle ':vcs_info:git:*' actionformats " %s(%F{$NIGHT_OWL_GREEN}%b|%a%c%u%f)%m"
+zstyle ':vcs_info:git:*' check-for-changes true # enable to use %c and %u sequences.
+zstyle ':vcs_info:git:*' stagedstr "%F{$GREEN}*"
+zstyle ':vcs_info:git:*' unstagedstr "%F{$ORANGE}*"
+zstyle ':vcs_info:*+*:*' debug false
+zstyle ':vcs_info:git*+set-message:*' hooks git-status git-untracked
 
-function +vi-git-st() {
-  local ahead behind
+function +vi-git-commit-count() {
+  count=$(git rev-list --count ${hook_com[branch]})
+  hook_com[misc]+="(${count})"
+}
+
+# from: https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+function +vi-git-status() {
   local -a gitstatus ahead_and_behind
 
   # if upstream exists
@@ -197,6 +209,14 @@ function +vi-git-st() {
   hook_com[misc]+=${(j::)gitstatus}
 }
 
+# from: https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+function +vi-git-untracked(){
+  if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+    git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
+    hook_com[unstaged]+="%F{$RED}*"
+  fi
+}
+
 precmd() { vcs_info }
 
 # Enable prompt substitution.
@@ -208,8 +228,35 @@ function random_element {
   printf "%s\n" "${array[$r]}"
 }
 
-EMOJI="$(random_element 😅 👽 🔥 🚀 👻 ⛄ 👾 😄 🍰 🐑 😎 🏎 🤖 😇 😼 💪 🦄 🎉 💯 🐠 🐳 🐿 🥳 🤩 🤯 🤠 👨‍💻 🦸‍ 🧝‍ 🧞‍ 🧙‍ 👨‍🚀 👨‍🔬 🕺 🦁 🐶 🐵 🐻 🦊 🐙 🦎 🦖 🦕 🦍 🦈 🐊 🦂 🐍 🐢 🐘 🐉 🦚 ✨ 💥 💫 🧬 🔮 🎊 🔭 ⚪️ 🔱)"
-export PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} $ '
+
+emojis=(
+  # Smileys & People.
+  😅 😄 😎 😇 🥳 🤩 🤯 🤠 😼 🙂 🤔 🤨 😑 🤢 🥵 😵 🥺 😱 😣 😈 👻 🤖 👽 👾
+  💪 🤘 👀
+  🦸‍ 🧞‍ 🧙‍ 👨‍ 🏄‍♂️ 🔬
+
+  # Food.
+  🍰
+
+  # Activity.
+  🎧 🧸
+
+  # Travel.
+  🚀 🏎  🗿
+
+  # Animals & Nature.
+  🦁 🐯 🐶 🐵 🐻 🦊 🐱 🐭 🐰 🐻 🐻‍❄️  🐨 🐼 🐙 🐺 🦄 🦉
+  🦢 🦤  🦜 🐩 🦎 🦖 🦕 🦍 🦧 🐊 🦂 🐍 🐢 🐘 🐉 🐿  🐑 🐪 🦈 🐠 🐳 🐬 🐡 🐝 🦀 🦑
+  🌹 🌻 🌷 🦚 🌲 🌴 🌵 ✨ 💥 💫 ⭐  ⚡ ❄️ 🔥 ⛄ 🌊 🌧️
+
+  # Objects.
+  🎉 🧬 🔮 🎊 🔭 🎁 💎 💿
+
+  # Symbols.
+  💯 ⚛️  🔱 ⚪️
+)
+EMOJI=$(random_element $emojis)
+PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} $ '
 #}}}
 
 # default mac os zsh prompt with git branch information {{{
