@@ -228,32 +228,28 @@ function random_element {
   printf "%s\n" "${array[$r]}"
 }
 
-
+# Some emojis have two spaces between them. This is intentional, otherwise they will be
+# displayed too close in terminal neovim.
 emojis=(
   # Smileys & People.
-  😅 😄 😎 😇 🥳 🤩 🤯 🤠 😼 🙂 🤔 🤨 😑 🤢 🥵 😵 🥺 😱 😣 😈 👻 🤖 👽 👾
-  💪 🤘 👀
-  🦸‍ 🧞‍ 🧙‍ 👨‍ 🏄‍♂️ 🔬
-
-  # Food.
-  🍰
-
-  # Activity.
-  🎧 🧸
-
-  # Travel.
-  🚀 🏎  🗿
-
+  😅 😄 😎 😇 🥳 🤩 😵‍💫 🤯 🤠 🥸 😂 😊 😍 🙂 🤔 🤨 😑 🤢 🥵 🥶 😵 😌 🥺 😱 😣 🥲
+  😋 😶‍🌫️  🙄 😴 😕 😭 😰
+  🤬 😈 💀 👻 🤖 👽 👾 😸 😼 😻 👋 👌 🤌  👍 🤘 💪 👀
+  🤷‍♀️ 🧑‍💻 🧑‍🎤 🦸‍ 🦹 🧙‍ 🧝‍♀️ 🧞‍ 🧟 ☂️ 🎃 👘 👑
   # Animals & Nature.
-  🦁 🐯 🐶 🐵 🐻 🦊 🐱 🐭 🐰 🐻 🐻‍❄️  🐨 🐼 🐙 🐺 🦄 🦉
-  🦢 🦤  🦜 🐩 🦎 🦖 🦕 🦍 🦧 🐊 🦂 🐍 🐢 🐘 🐉 🐿  🐑 🐪 🦈 🐠 🐳 🐬 🐡 🐝 🦀 🦑
-  🌹 🌻 🌷 🦚 🌲 🌴 🌵 ✨ 💥 💫 ⭐  ⚡ ❄️ 🔥 ⛄ 🌊 🌧️
-
+  🦁 🐯 🐶 🐵 🐻 🦊 🐱 🐭 🐰 🐻 🐻‍❄️ 🐨 🐼 🐙 🐺 🦄 🦉
+  🦘 🦫 🦔 🐅 🦌 🦆 🦢 🦤 🦜 🐩 🦎 🦖 🦕 🦍 🦧 🐊 🦂 🐍 🐢 🐘 🐉 🐿  🐑 🐪 🦈 🐠 🐳 🐬 🦭 🐡 🐝 🦀 🦑
+  🌸 🌼 🌹 🌻 🌷 🦚 🌲 🌴 🌵 🍁 🌍 ✨ 💥 💫 ⭐ ⚡ ❄️ 🔥 🎄 ⛄ 🌊 🌧️
+  # Food & Drink.
+  🍇 🍉 🍊 🍋 🍌 🍎 🍍 🍑 🍒 🍓 🥝 🥥 🥑 🥐 🍔 🍕 🥚 🍿 🍩 🍪 🎂 🍰 🥧 🍬 🍭 🍷 🍹 🥤 🧊
+  # Activity.
+  🏄‍♂️ 🏂 🏆 🏀 🥊 🎣 🧩 🎲 🎨 🎭 🎧 🎸 🎻 🎹 🥁 🎬
+  # Travel & Places.
+  🌋 🗻 🏕️  🏝️  🛖  🏠 🌃 🌆 🎡 🚂 🚃 🏎  🚧 ⛵ ✈️ 🚁 🚀 🛸 🪐 ⛱️  🎇 🗿
   # Objects.
-  🎉 🧬 🔮 🎊 🔭 🎁 💎 💿
-
+  💌 💣 🧭 🎈 🎉 🎊 🎏 🧧 🎀 🎁 🔮 🪄  💎 💻 💿 🔍 🕯️ 💡 📚 💰 ✏️ 🖍️  🔒 🔑 🪓 🔫 🧲 🧬 🔭 🧸
   # Symbols.
-  💯 ⚛️  🔱 ⚪️
+  💯 💤 ♥️ 🃏 ☣️ ⚛️ ♻️ 🔱 ⚪️
 )
 EMOJI=$(random_element $emojis)
 PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} $ '
