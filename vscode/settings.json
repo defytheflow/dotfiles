@@ -4,9 +4,7 @@
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
   "editor.mouseWheelZoom": true,
-
-  //* Experimental.
-  "editor.experimental.stickyScroll.enabled": true,
+  "editor.stickyScroll.enabled": true,
 
   //* Inlay Hints.
   "editor.inlayHints.enabled": "on",
@@ -149,6 +147,7 @@
   "terminal.integrated.scrollback": 5000,
   "terminal.integrated.shellIntegration.enabled": false,
   "terminal.integrated.tabs.hideCondition": "singleGroup",
+  "terminal.integrated.smoothScrolling": true,
   "terminal.integrated.autoReplies": { "Terminate batch job (Y/N)?": "Y\r" },
 
   //* Color Theme & Icon Theme.
@@ -404,6 +403,7 @@
   "vim.camelCaseMotion.enable": true,
   "vim.replaceWithRegister": true,
   "vim.surround": true,
+  "vim.targets.enable": true,
   "vim.sneak": false,
 
   "vim.digraphs": {
@@ -1048,6 +1048,10 @@
     "editor.bracketPairColorization.enabled": true,
     "editor.renderWhitespace": "boundary",
     "editor.minimap.enabled": false,
+    "editor.inlayHints.enabled": "on",
+    "editor.inlayHints.padding": true,
+    "editor.mouseWheelZoom": true,
+    "editor.stickyScroll.enabled": true,
     "explorer.openEditors.visible": 0,
     "files.associations": {
       "*.js": "javascriptreact",
@@ -1058,14 +1062,11 @@
     "prettier.semi": false,
     "prettier.arrowParens": "avoid",
     "js/ts.implicitProjectConfig.checkJs": true,
-    "editor.inlayHints.enabled": "on",
-    "editor.inlayHints.padding": true,
     "javascript.inlayHints.parameterNames.enabled": "literals",
     "javascript.inlayHints.variableTypes.enabled": true,
     "typescript.inlayHints.parameterNames.enabled": "literals",
     "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-    "typescript.inlayHints.variableTypes.enabled": true,
-    "editor.mouseWheelZoom": true
+    "typescript.inlayHints.variableTypes.enabled": true
   },
 
   //* Atlassian YAML Garbage That Is Generated Automatically.
@@ -1077,6 +1078,6 @@
     "siteId": "09c69f05-3465-46c7-ba23-2757e0811800",
     "projectKey": "API"
   },
-  "window.zoomLevel": -1,
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "window.zoomLevel": -1
 }

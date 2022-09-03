@@ -21,20 +21,21 @@
    ** Cycle through search results with `ctrl+n` and `ctrl+p` (default bindings use `f4` and `shift+f4`).
    */
 
-  {
-    "key": "ctrl+n",
-    "command": "search.action.focusNextSearchResult",
-    "when": "!suggestWidgetVisible && (hasSearchResult || inSearchEditor)"
-  },
+  // {
+  //   "key": "ctrl+n",
+  //   "command": "search.action.focusNextSearchResult",
+  //   "when": "!suggestWidgetVisible && (hasSearchResult || inSearchEditor)"
+  // },
 
-  {
-    "key": "ctrl+p",
-    "command": "search.action.focusPreviousSearchResult",
-    "when": "!suggestWidgetVisible && (hasSearchResult || inSearchEditor)"
-  },
+  // {
+  //   "key": "ctrl+p",
+  //   "command": "search.action.focusPreviousSearchResult",
+  //   "when": "!suggestWidgetVisible && (hasSearchResult || inSearchEditor)"
+  // },
 
   /**
-   ** Cycle through autocomplete options with `ctrl+n` and `ctrl+p` (default bindings use arrow keys).
+   ** Cycle through autocomplete options in python with `ctrl+n` and `ctrl+p` (default bindings use
+   ** arrow keys).
    */
 
   {
@@ -50,21 +51,54 @@
   },
 
   /**
-   ** Cycle through panel views with `cmd+[` and `cmd+]` (no default bindings).
+   ** Cycle through search history (`cmd+shift+f` and` cmd+shift+h`) with `ctrl+n` and
+   ** `ctrl+p` (default bindings use arrow keys).
    */
 
   {
-    "describe": "Previous panel view",
-    "key": "cmd+[",
-    "command": "workbench.action.previousPanelView",
-    "when": "!editorFocus"
+    "key": "ctrl+p",
+    "command": "history.showPrevious",
+    "when": "historyNavigationBackwardsEnabled && historyNavigationWidgetFocus && !suggestWidgetVisible"
   },
 
   {
-    "describe": "Next panel view",
+    "key": "ctrl+n",
+    "command": "history.showNext",
+    "when": "historyNavigationForwardsEnabled && historyNavigationWidgetFocus && !suggestWidgetVisible"
+  },
+
+  /**
+   ** Cycle through code actions menu with `ctrl+n` and `ctrl+p`
+   ** (default bindings use arrow keys).
+   */
+
+  {
+    "key": "ctrl+p",
+    "command": "selectPrevCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+
+  {
+    "key": "ctrl+n",
+    "command": "selectNextCodeAction",
+    "when": "codeActionMenuVisible"
+  },
+
+  /**
+   ** Switch between terminal panes with `cmd+[` and `cmd+]`
+   ** (default bindings use cmd+option+arrow keys)
+   */
+
+  {
+    "key": "cmd+[",
+    "command": "workbench.action.terminal.focusPreviousPane",
+    "when": "terminalFocus"
+  },
+
+  {
     "key": "cmd+]",
-    "command": "workbench.action.nextPanelView",
-    "when": "!editorFocus"
+    "command": "workbench.action.terminal.focusNextPane",
+    "when": "terminalFocus"
   },
 
   /**
@@ -84,19 +118,20 @@
   },
 
   /**
-   ** Toggle panel position between bottom and right with `cmd+shift+d` like in web browsers.
+   ** Toggle panel position between bottom and right with `cmd+shift+d` like in web browsers
+   ** (no default bindings).
    */
-
-  {
-    "key": "shift+cmd+d",
-    "command": "workbench.action.positionPanelBottom",
-    "when": "panelVisible && panelPosition == 'right'"
-  },
 
   {
     "key": "shift+cmd+d",
     "command": "workbench.action.positionPanelRight",
     "when": "panelVisible && panelPosition == 'bottom'"
+  },
+
+  {
+    "key": "shift+cmd+d",
+    "command": "workbench.action.positionPanelBottom",
+    "when": "panelVisible && panelPosition == 'right'"
   },
 
   /**
@@ -119,15 +154,21 @@
    ** Miscellaneous `cmd+g` bindings (most of them have no default bindings).
    */
 
+  // {
+  //   "describe": "Toggle Activity Bar Visibility",
+  //   "key": "cmd+g a",
+  //   "command": "workbench.action.toggleActivityBarVisibility"
+  // },
+
   {
-    "describe": "Toggle Activity Bar Visibility",
-    "key": "cmd+g a",
-    "command": "workbench.action.toggleActivityBarVisibility"
+    "describe": "Toggle Secondary Side Bar Visibility",
+    "key": "cmd+g b",
+    "command": "workbench.action.toggleAuxiliaryBar"
   },
 
   {
     "describe": "Toggle Primary Side Bar Position",
-    "key": "cmd+g b",
+    "key": "cmd+g cmd+b",
     "command": "workbench.action.toggleSidebarPosition"
   },
 
@@ -162,6 +203,12 @@
   },
 
   {
+    "describe": "Toggle Error Lens",
+    "key": "cmd+g l",
+    "command": "errorLens.toggle"
+  },
+
+  {
     "describe": "Toggle Minimap",
     "key": "cmd+g m",
     "command": "editor.action.toggleMinimap"
@@ -179,11 +226,11 @@
     "command": "workbench.action.openSnippets"
   },
 
-  {
-    "describe": "Create New Terminal in Editor Area",
-    "key": "cmd+g t",
-    "command": "workbench.action.createTerminalEditor"
-  },
+  // {
+  //   "describe": "Create New Terminal in Editor Area",
+  //   "key": "cmd+g t",
+  //   "command": "workbench.action.createTerminalEditor"
+  // },
 
   {
     "describe": "Toggle Centered Layout",
