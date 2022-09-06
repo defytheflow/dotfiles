@@ -2,6 +2,19 @@
   /**
    ** Mypy.
    */
+  "Pytest Mark Skip": {
+    "prefix": ["sk"],
+    "body": ["@pytest.mark.skip"]
+  },
+
+  "Pytest Mark Db": {
+    "prefix": ["db"],
+    "body": ["@pytest.mark.django_db"]
+  },
+
+  /**
+   ** Mypy.
+   */
 
   "Type Ignore": {
     "prefix": ["tig"],

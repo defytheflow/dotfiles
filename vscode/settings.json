@@ -504,8 +504,22 @@
       "after": ["n", "z", "z"]
     },
     {
+      "before": ["<C-d>"],
+      "after": ["<C-d>", "z", "z"]
+    },
+    {
+      "before": ["<C-u>"],
+      "after": ["<C-u>", "z", "z"]
+    },
+    {
       "before": ["K"],
       "commands": ["editor.action.showHover"]
+    },
+
+    // Temporary to learn ctrl+]
+    {
+      "before": ["g", "d"],
+      "commands": [":WHAT_THE_FUCK"]
     },
 
     // g commands.
@@ -995,7 +1009,9 @@
   // settings.
   "tailwindCSS.experimental.classRegex": [
     // Provide intellisense in variables, object properties and jsx props.
-    "[cC]lassName\\s*[:=]\\s*{?[\"']([^']*)[\"']}?"
+    "[cC]lassName\\s*[:=]\\s*{?[\"']([^']*)[\"']}?",
+    // Provide intellisense in cn() function calls.
+    ["cn\\(([^)]*)\\)", "'([^']*)'"]
   ],
 
   //* VSCode Icons.
