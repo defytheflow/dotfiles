@@ -7,7 +7,7 @@
   "editor.stickyScroll.enabled": true,
 
   //* Inlay Hints.
-  "editor.inlayHints.enabled": "on",
+  "editor.inlayHints.enabled": "off",
   "editor.inlayHints.padding": true,
 
   //* Unicode.
@@ -632,6 +632,10 @@
       "commands": ["git.openChange"]
     },
     {
+      "before": ["<leader>", "g", "a"],
+      "commands": ["git.stage"]
+    },
+    {
       "before": ["<leader>", "g", "c", "l"],
       "commands": ["git.clean"]
     },
@@ -769,78 +773,6 @@
     {
       "before": ["]", "a"],
       "commands": ["workbench.action.moveEditorToRightGroup"]
-    },
-    {
-      "before": ["[", "1"],
-      "commands": ["workbench.action.openEditorAtIndex1"]
-    },
-    {
-      "before": ["[", "2"],
-      "commands": ["workbench.action.openEditorAtIndex2"]
-    },
-    {
-      "before": ["[", "3"],
-      "commands": ["workbench.action.openEditorAtIndex3"]
-    },
-    {
-      "before": ["[", "4"],
-      "commands": ["workbench.action.openEditorAtIndex4"]
-    },
-    {
-      "before": ["[", "5"],
-      "commands": ["workbench.action.openEditorAtIndex5"]
-    },
-    {
-      "before": ["[", "6"],
-      "commands": ["workbench.action.openEditorAtIndex6"]
-    },
-    {
-      "before": ["[", "7"],
-      "commands": ["workbench.action.openEditorAtIndex7"]
-    },
-    {
-      "before": ["[", "8"],
-      "commands": ["workbench.action.openEditorAtIndex8"]
-    },
-    {
-      "before": ["[", "9"],
-      "commands": ["workbench.action.openEditorAtIndex9"]
-    },
-    {
-      "before": ["]", "1"],
-      "commands": ["workbench.action.openEditorAtIndex1"]
-    },
-    {
-      "before": ["]", "2"],
-      "commands": ["workbench.action.openEditorAtIndex2"]
-    },
-    {
-      "before": ["]", "3"],
-      "commands": ["workbench.action.openEditorAtIndex3"]
-    },
-    {
-      "before": ["]", "4"],
-      "commands": ["workbench.action.openEditorAtIndex4"]
-    },
-    {
-      "before": ["]", "5"],
-      "commands": ["workbench.action.openEditorAtIndex5"]
-    },
-    {
-      "before": ["]", "6"],
-      "commands": ["workbench.action.openEditorAtIndex6"]
-    },
-    {
-      "before": ["]", "7"],
-      "commands": ["workbench.action.openEditorAtIndex7"]
-    },
-    {
-      "before": ["]", "8"],
-      "commands": ["workbench.action.openEditorAtIndex8"]
-    },
-    {
-      "before": ["]", "9"],
-      "commands": ["workbench.action.openEditorAtIndex9"]
     }
   ],
 
@@ -915,7 +847,7 @@
   "better-comments.tags": [
     {
       "tag": "!",
-      "color": "#ea8c55"
+      "color": "#FF5874"
     },
     {
       "tag": "?",
@@ -951,12 +883,8 @@
       "id": "inlayHints",
       "overrideWorkspaceSettings": false,
       "values": [
-        {
-          "editor.inlayHints.enabled": "on"
-        },
-        {
-          "editor.inlayHints.enabled": "off"
-        }
+        { "editor.inlayHints.enabled": "on" },
+        { "editor.inlayHints.enabled": "off" }
       ]
     }
   ],
@@ -1025,19 +953,14 @@
   "emojisense.languages": {
     "json": true,
     "jsonc": true,
-
     "javascript": true,
     "javascriptreact": true,
-
     "typescript": true,
     "typescriptreact": true,
-
     "python": true,
     "shellscript": true,
-
     "html": true,
     "django-html": true,
-
     "css": true,
     "scss": true,
     "tailwindcss": true

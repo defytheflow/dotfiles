@@ -245,11 +245,11 @@ emojis=(
   # Activity.
   🏄‍♂️ 🏂 🏆 🏀 🥊 🎣 🧩 🎲 🎨 🎭 🎧 🎸 🎻 🎹 🥁 🎬
   # Travel & Places.
-  🌋 🗻 🏕️  🛖  🏠 🌃 🌆 🎡 🚂 🚃 ⛵ ✈️ 🚁 🚀 🛸 🪐 ⛱️  🎇 🗿
+  🌋 🗻 🏕️ 🏠 🌃 🌆 🎡 🚂 🚃 ⛵ ✈️ 🚁 🚀 🛸 🪐 ⛱️  🎇 🗿
   # Objects.
   💌 💣 🧭 🎈 🎉 🎊 🎏 🧧 🎀 🎁 🔮 🪄  💎 💻 💿 🔍 🕯️ 💡 📚 💰 🔒 🔑 🪓 🔫 🧲 🧬 🔭 🧸
   # Symbols.
-  💯 💤 ♥️ 🃏 ☣️ ⚛️ ♻️ 🔱 ⚪️
+  💯 💤 🃏 ☣️ ⚛️ ♻️ 🔱 ⚪️
 )
 EMOJI=$(random_element $emojis)
 PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} $ '

@@ -154,6 +154,11 @@
    ** Miscellaneous `cmd+g` bindings (most of them have no default bindings).
    */
 
+  {
+    "key": "cmd+g 0",
+    "command": "editor.action.fontZoomReset"
+  },
+
   // {
   //   "describe": "Toggle Activity Bar Visibility",
   //   "key": "cmd+g a",
@@ -166,11 +171,11 @@
     "command": "workbench.action.toggleAuxiliaryBar"
   },
 
-  {
-    "describe": "Toggle Primary Side Bar Position",
-    "key": "cmd+g cmd+b",
-    "command": "workbench.action.toggleSidebarPosition"
-  },
+  // {
+  //   "describe": "Toggle Primary Side Bar Position",
+  //   "key": "cmd+g cmd+b",
+  //   "command": "workbench.action.toggleSidebarPosition"
+  // },
 
   {
     "describe": "Delete Current File",

@@ -190,7 +190,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'inkarkat/vim-ReplaceWithRegister'
 
 " Jump to any location specified by two characters.
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
 
 " Plug 'danro/rename.vim'
 " Plug 'miyakogi/seiya.vim'
@@ -213,6 +213,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-function'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'wellle/targets.vim' " adds i/ finally!
 
 " colorschemes.
 Plug 'tomasiser/vim-code-dark'
@@ -374,9 +375,11 @@ nnoremap <silent> <leader>vv :vsplit $MYVIMRC<CR>
 " nnoremap / /\v
 " vnoremap / /\v
 
-" move to the next search result and center the screen.
+" move to the next/previous search result and center the screen.
 nnoremap n nzz
 nnoremap N Nzz
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
 
 " search for word under cursor without jumping to next occurence.
 " nnoremap # #N

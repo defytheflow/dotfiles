@@ -173,7 +173,8 @@
     "description": "Prettier Ignore",
     "scope": "javascript,typescript,javascriptreact,typescriptreact,jsonc,markdown",
     "prefix": ["pig"],
-    "body": ["$LINE_COMMENT prettier-ignore"]
+    // $LINE_COMMENT doesn't work inside jsx.
+    "body": ["$BLOCK_COMMENT_START prettier-ignore $BLOCK_COMMENT_END"]
   },
 
   /**

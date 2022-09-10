@@ -17,7 +17,7 @@
    */
 
   "Type Ignore": {
-    "prefix": ["tig"],
+    "prefix": ["ti"],
     "body": ["# type: ignore"]
   },
 
@@ -63,7 +63,8 @@
     // 96m - cyan
     // 97m - white
     // "body": ["print(f\"{$1=}\")"]
-    "body": ["print(f\"\\033[97m{$1=}\\033[00m\")"]
+    //"body": ["print(f\"\\033[97m{$1=}\\033[00m\")"]
+    "body": ["print(f\"{$1=}\")"]
   },
 
   "Print Object": {
