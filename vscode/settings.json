@@ -7,7 +7,7 @@
   "editor.stickyScroll.enabled": true,
 
   //* Inlay Hints.
-  "editor.inlayHints.enabled": "off",
+  "editor.inlayHints.enabled": "on",
   "editor.inlayHints.padding": true,
 
   //* Unicode.
@@ -288,8 +288,8 @@
   "python.linting.pydocstyleEnabled": false,
   "python.linting.pylintEnabled": false,
   "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
-  "python.analysis.inlayHints.variableTypes": true,
-  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.inlayHints.variableTypes": false,
+  "python.analysis.inlayHints.functionReturnTypes": false,
 
   //* HTML.
   "[html]": {
@@ -341,11 +341,11 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   // This setting messes up react components completion.
   // "typescript.suggest.completeFunctionCalls": true,
-  "typescript.inlayHints.parameterNames.enabled": "literals",
-  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "typescript.inlayHints.variableTypes.enabled": true,
-  "typescript.inlayHints.parameterTypes.enabled": true,
-  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "none",
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": false,
+  "typescript.inlayHints.variableTypes.enabled": false,
+  "typescript.inlayHints.parameterTypes.enabled": false,
+  "typescript.inlayHints.enumMemberValues.enabled": false,
   // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
 
   //* Shell.
@@ -880,11 +880,30 @@
   //* Settings Cycler.
   "settings.cycle": [
     {
+      // Do not put "editor.inlayHints.enabled": "on/off" here.
+      // We want ^? typescript comment inlay hint to work even when other inlay hints
+      // are disabled.
       "id": "inlayHints",
       "overrideWorkspaceSettings": false,
       "values": [
-        { "editor.inlayHints.enabled": "on" },
-        { "editor.inlayHints.enabled": "off" }
+        {
+          "typescript.inlayHints.parameterNames.enabled": "literals",
+          "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+          "typescript.inlayHints.variableTypes.enabled": true,
+          "typescript.inlayHints.parameterTypes.enabled": true,
+          "typescript.inlayHints.enumMemberValues.enabled": true,
+          "python.analysis.inlayHints.variableTypes": true,
+          "python.analysis.inlayHints.functionReturnTypes": true
+        },
+        {
+          "typescript.inlayHints.parameterNames.enabled": "none",
+          "typescript.inlayHints.functionLikeReturnTypes.enabled": false,
+          "typescript.inlayHints.variableTypes.enabled": false,
+          "typescript.inlayHints.parameterTypes.enabled": false,
+          "typescript.inlayHints.enumMemberValues.enabled": false,
+          "python.analysis.inlayHints.variableTypes": false,
+          "python.analysis.inlayHints.functionReturnTypes": false
+        }
       ]
     }
   ],
@@ -1014,8 +1033,8 @@
     "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "09c69f05-3465-46c7-ba23-2757e0811800",
-    "projectKey": "API"
+    "siteId": "",
+    "projectKey": ""
   },
   "editor.minimap.enabled": false,
   "window.zoomLevel": -1
