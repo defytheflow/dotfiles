@@ -1,10 +1,13 @@
 {
-  "workbench.settings.editor": "json",
   "workbench.startupEditor": "readme",
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
   "editor.mouseWheelZoom": true,
   "editor.stickyScroll.enabled": true,
+
+  //* Settings.
+  "workbench.settings.editor": "json",
+  // "workbench.settings.useSplitJSON": true,
 
   //* Inlay Hints.
   "editor.inlayHints.enabled": "on",
@@ -118,6 +121,7 @@
 
   //* Git.
   "scm.diffDecorationsGutterWidth": 5,
+  "scm.defaultViewSortKey": "name",
   "diffEditor.renderIndicators": false,
   "diffEditor.renderSideBySide": false,
   "git.terminalAuthentication": false,
@@ -127,6 +131,7 @@
   // "git.terminalGitEditor": true,
 
   //* Search.
+  "search.showLineNumbers": true,
   "search.quickOpen.history.filterSortOrder": "recency",
   "search.searchEditor.doubleClickBehaviour": "openLocationToSide",
   "search.sortOrder": "countDescending",
@@ -148,7 +153,9 @@
   "terminal.integrated.shellIntegration.enabled": false,
   "terminal.integrated.tabs.hideCondition": "singleGroup",
   "terminal.integrated.smoothScrolling": true,
-  "terminal.integrated.autoReplies": { "Terminate batch job (Y/N)?": "Y\r" },
+  "terminal.integrated.autoReplies": {
+    "Terminate batch job (Y/N)?": "Y\r"
+  },
 
   //* Color Theme & Icon Theme.
   "workbench.colorTheme": "Night Owl",
@@ -392,18 +399,18 @@
   "vim.highlightedyank.enable": true,
 
   // search.
-  "vim.incsearch": true,
   "vim.hlsearch": false,
   "vim.ignorecase": true,
   "vim.smartcase": true,
+  "vim.incsearch": true,
   "vim.visualstar": true,
 
   // extensions.
-  "vim.easymotion": true,
   "vim.camelCaseMotion.enable": true,
-  "vim.replaceWithRegister": true,
   "vim.surround": true,
-  "vim.targets.enable": true,
+  "vim.easymotion": false,
+  "vim.replaceWithRegister": false,
+  "vim.targets.enable": false,
   "vim.sneak": false,
 
   "vim.digraphs": {
@@ -512,14 +519,20 @@
       "after": ["<C-u>", "z", "z"]
     },
     {
-      "before": ["K"],
-      "commands": ["editor.action.showHover"]
+      "before": ["<C-f>"],
+      "after": ["<C-f>", "z", "z"]
     },
-
-    // Temporary to learn ctrl+]
+    {
+      "before": ["<C-b>"],
+      "after": ["<C-b>", "z", "z"]
+    },
     {
       "before": ["g", "d"],
-      "commands": [":WHAT_THE_FUCK"]
+      "after": ["g", "d", "z", "z"]
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
     },
 
     // g commands.

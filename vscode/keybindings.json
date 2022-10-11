@@ -287,6 +287,17 @@
     "key": "ctrl+cmd+i",
     "command": "emojisense.quickEmojiTerminal",
     "when": "terminalFocus"
+  },
+
+  /**
+   ** I have my search on the secondary sidebar.
+   ** I want to open it and close with the built-in search key bind.
+   */
+
+  {
+    "key": "cmd+shift+h",
+    "command": "workbench.action.toggleAuxiliaryBar",
+    "when": "searchViewletFocus"
   }
 
   /**

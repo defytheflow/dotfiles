@@ -224,7 +224,7 @@
     "description": "React useRef",
     "scope": "typescript,typescriptreact",
     "prefix": ["ur"],
-    "body": ["const $1Ref = React.useRef(${3:null})"]
+    "body": ["const $1Ref = React.useRef${3}(${4:null})"]
   },
 
   "React useState": {
