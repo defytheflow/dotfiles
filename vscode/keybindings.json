@@ -1,24 +1,24 @@
 [
   /**
-   ** Switch focus between editor and terminal with `ctrl+'` (no default bindings).
+   ** Switch focus between the editor and the terminal with `ctrl+'`
+   ** (no default bindings).
    */
 
   {
-    "describe": "Focus terminal",
     "key": "ctrl+'",
     "command": "workbench.action.terminal.focus",
     "when": "!terminalFocus"
   },
 
   {
-    "describe": "Focus editor",
     "key": "ctrl+'",
     "command": "workbench.action.focusActiveEditorGroup",
     "when": "terminalFocus"
   },
 
   /**
-   ** Cycle through search results with `ctrl+n` and `ctrl+p` (default bindings use `f4` and `shift+f4`).
+   ** Cycle through search results with `ctrl+n` and `ctrl+p`
+   ** (default bindings use `f4` and `shift+f4`).
    */
 
   // {
@@ -34,8 +34,8 @@
   // },
 
   /**
-   ** Cycle through autocomplete options in python with `ctrl+n` and `ctrl+p` (default bindings use
-   ** arrow keys).
+   ** Cycle through autocomplete options in python with `ctrl+n` and `ctrl+p`
+   ** (default bindings use arrow keys).
    */
 
   {
@@ -51,7 +51,7 @@
   },
 
   /**
-   ** Cycle through search history (`cmd+shift+f` and` cmd+shift+h`) with `ctrl+n` and
+   ** Cycle through search history (`shift+cmd+f` and` shift+cmd+h`) with `ctrl+n` and
    ** `ctrl+p` (default bindings use arrow keys).
    */
 
@@ -102,24 +102,8 @@
   },
 
   /**
-   ** Overwrite vscode `isDevelopment` mode.
-   */
-
-  // {
-  //   "describe": "Reload window",
-  //   "key": "cmd+r",
-  //   "command": "workbench.action.reloadWindow"
-  // },
-
-  {
-    "describe": "Toggle developer tools",
-    "key": "cmd+alt+i",
-    "command": "workbench.action.toggleDevTools"
-  },
-
-  /**
-   ** Toggle panel position between bottom and right with `cmd+shift+d` like in web browsers
-   ** (no default bindings).
+   ** Toggle panel position between bottom and right with `shift+cmd+d` like in
+   ** web browsers (no default bindings).
    */
 
   {
@@ -135,20 +119,54 @@
   },
 
   /**
-   ** Kill the active terminal with `cmd+w` and all terminals with `cmd+k cmd+w` (no default bindings).
+   ** When search is visible, close panel or secondary bar based on the search location
+   ** with `shift+cmd+h`.
    */
 
   {
-    "key": "cmd+w",
-    "command": "workbench.action.terminal.kill",
-    "when": "terminalFocus"
+    "key": "shift+cmd+h",
+    "command": "workbench.action.togglePanel",
+    "when": "searchViewletFocus && panelFocus"
   },
 
   {
-    "key": "cmd+k cmd+w",
-    "command": "workbench.action.terminal.killAll",
-    "when": "terminalFocus"
+    "key": "shift+cmd+h",
+    "command": "workbench.action.toggleAuxiliaryBar",
+    "when": "searchViewletFocus && auxiliaryBarFocus"
   },
+
+  /**
+   ** Kill the active terminal with `cmd+w` and all terminals with `cmd+k cmd+w`
+   ** (no default bindings).
+   */
+
+  // {
+  //   "key": "cmd+w",
+  //   "command": "workbench.action.terminal.kill",
+  //   "when": "terminalFocus"
+  // },
+
+  // {
+  //   "key": "cmd+k cmd+w",
+  //   "command": "workbench.action.terminal.killAll",
+  //   "when": "terminalFocus"
+  // },
+
+  /**
+   ** Overwrite vscode `isDevelopment` mode.
+   */
+
+  // {
+  //   "describe": "Reload window",
+  //   "key": "cmd+r",
+  //   "command": "workbench.action.reloadWindow"
+  // },
+
+  // {
+  //   "describe": "Toggle developer tools",
+  //   "key": "cmd+alt+i",
+  //   "command": "workbench.action.toggleDevTools"
+  // },
 
   /**
    ** Miscellaneous `cmd+g` bindings (most of them have no default bindings).
@@ -287,17 +305,6 @@
     "key": "ctrl+cmd+i",
     "command": "emojisense.quickEmojiTerminal",
     "when": "terminalFocus"
-  },
-
-  /**
-   ** I have my search on the secondary sidebar.
-   ** I want to open it and close with the built-in search key bind.
-   */
-
-  {
-    "key": "cmd+shift+h",
-    "command": "workbench.action.toggleAuxiliaryBar",
-    "when": "searchViewletFocus"
   }
 
   /**

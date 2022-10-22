@@ -120,6 +120,7 @@
   "editor.renderLineHighlight": "line",
 
   //* Git.
+  // "scm.defaultViewMode": "tree",
   "scm.diffDecorationsGutterWidth": 5,
   "scm.defaultViewSortKey": "name",
   "diffEditor.renderIndicators": false,
@@ -153,12 +154,10 @@
   "terminal.integrated.shellIntegration.enabled": false,
   "terminal.integrated.tabs.hideCondition": "singleGroup",
   "terminal.integrated.smoothScrolling": true,
-  "terminal.integrated.autoReplies": {
-    "Terminate batch job (Y/N)?": "Y\r"
-  },
+  "terminal.integrated.autoReplies": { "Terminate batch job (Y/N)?": "Y\r" },
 
   //* Color Theme & Icon Theme.
-  "workbench.colorTheme": "Night Owl",
+  "workbench.colorTheme": "Night Owl (No Italics)",
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
     "[Night Owl][Night Owl (No Italics)]": {
@@ -284,10 +283,7 @@
     }
   },
   "python.formatting.provider": "yapf",
-  "python.formatting.yapfArgs": [
-    "--exclude=*/migrations/*",
-    "--exclude=*/site_packages/*"
-  ],
+  "python.formatting.yapfArgs": ["--exclude=*/migrations/*", "--exclude=*/site_packages/*"],
   "python.linting.enabled": true,
   "python.linting.mypyEnabled": true,
   // "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
@@ -316,11 +312,7 @@
   "markdown.preview.fontSize": 18,
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.quickSuggestions": {
-      "comments": "off",
-      "strings": "off",
-      "other": "off"
-    },
+    "editor.quickSuggestions": { "comments": "off", "strings": "off", "other": "off" },
     "editor.acceptSuggestionOnEnter": "off"
   },
 
@@ -336,8 +328,8 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "js/ts.implicitProjectConfig.checkJs": true,
   "javascript.inlayHints.parameterNames.enabled": "literals",
-  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "javascript.inlayHints.variableTypes.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": false,
+  "javascript.inlayHints.variableTypes.enabled": false,
   // "javascript.inlayHints.parameterTypes.enabled": true,
 
   //* TypeScript.
@@ -348,7 +340,7 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   // This setting messes up react components completion.
   // "typescript.suggest.completeFunctionCalls": true,
-  "typescript.inlayHints.parameterNames.enabled": "none",
+  "typescript.inlayHints.parameterNames.enabled": "literals",
   "typescript.inlayHints.functionLikeReturnTypes.enabled": false,
   "typescript.inlayHints.variableTypes.enabled": false,
   "typescript.inlayHints.parameterTypes.enabled": false,
@@ -421,46 +413,19 @@
   },
 
   "vim.insertModeKeyBindingsNonRecursive": [
-    {
-      "before": ["C-y", ","],
-      "commands": ["editor.emmet.action.expandAbbreviation"]
-    }
-    // disable arrow keys
-    // {
-    //   "before": ["left"],
-    //   "after": [""]
-    // },
-    // {
-    //   "before": ["right"],
-    //   "after": []
-    // },
-    // {
-    //   "before": ["down"],
-    //   "after": []
-    // },
-    // {
-    //   "before": ["up"],
-    //   "after": []
-    // },
+    { "before": ["C-y", ","], "commands": ["editor.emmet.action.expandAbbreviation"] }
+    // disable arrow keys.
+    // { "before": ["left"], "after": [""] },
+    // { "before": ["right"], "after": [""] },
+    // { "before": ["down"], "after": [""] },
+    // { "before": ["up"], "after": [""] }
   ],
 
   "vim.visualModeKeyBindingsNonRecursive": [
-    {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
-    },
-    {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
-    },
-    {
-      "before": ["[", "e"],
-      "commands": ["editor.action.moveLinesUpAction"]
-    },
-    {
-      "before": ["]", "e"],
-      "commands": ["editor.action.moveLinesDownAction"]
-    },
+    { "before": [">"], "commands": ["editor.action.indentLines"] },
+    { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+    { "before": ["[", "e"], "commands": ["editor.action.moveLinesUpAction"] },
+    { "before": ["]", "e"], "commands": ["editor.action.moveLinesDownAction"] },
 
     // code actions.
     {
@@ -496,175 +461,79 @@
         {
           "command": "editor.action.codeAction",
           "args": { "kind": "refactor.rewrite.arrow.braces" }
+        }
+      ]
+    },
+    {
+      "before": ["<leader>", "m", "f"],
+      "commands": [
+        {
+          "command": "editor.action.codeAction",
+          "args": { "kind": "refactor.move.newFile" }
         }
       ]
     }
   ],
 
   "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["N"],
-      "after": ["N", "z", "z"]
-    },
-    {
-      "before": ["n"],
-      "after": ["n", "z", "z"]
-    },
-    {
-      "before": ["<C-d>"],
-      "after": ["<C-d>", "z", "z"]
-    },
-    {
-      "before": ["<C-u>"],
-      "after": ["<C-u>", "z", "z"]
-    },
-    {
-      "before": ["<C-f>"],
-      "after": ["<C-f>", "z", "z"]
-    },
-    {
-      "before": ["<C-b>"],
-      "after": ["<C-b>", "z", "z"]
-    },
-    {
-      "before": ["g", "d"],
-      "after": ["g", "d", "z", "z"]
-    },
-    {
-      "before": ["K"],
-      "commands": ["editor.action.showHover"]
-    },
+    // vertical movement commands.
+    { "before": ["N"], "after": ["N", "z", "z"] },
+    { "before": ["n"], "after": ["n", "z", "z"] },
+    { "before": ["<C-d>"], "after": ["<C-d>", "z", "z"] },
+    { "before": ["<C-u>"], "after": ["<C-u>", "z", "z"] },
+    { "before": ["<C-f>"], "after": ["<C-f>", "z", "z"] },
+    { "before": ["<C-b>"], "after": ["<C-b>", "z", "z"] },
+    { "before": ["{"], "after": ["{", "z", "z"] },
+    { "before": ["}"], "after": ["}", "z", "z"] },
+    { "before": ["g", "d"], "after": ["g", "d", "z", "z"] },
 
     // g commands.
-    {
-      "before": ["g", "D"],
-      "commands": ["editor.action.revealDefinitionAside"]
-    },
+    { "before": ["K"], "commands": ["editor.action.showHover"] },
+    { "before": ["g", "D"], "commands": ["editor.action.revealDefinitionAside"] },
 
     // z commands.
-    {
-      "before": ["z", "j"],
-      "commands": ["editor.gotoNextFold"]
-    },
-    {
-      "before": ["z", "k"],
-      "commands": ["editor.gotoPreviousFold"]
-    },
+    { "before": ["z", "j"], "commands": ["editor.gotoNextFold"] },
+    { "before": ["z", "k"], "commands": ["editor.gotoPreviousFold"] },
 
     // window commands.
-    // {
-    //   "before": ["<C-w>", "o"],
-    //   "commands": ["workbench.action.closeOtherEditors"]
-    // },
-    {
-      "before": ["<C-w>", "H"],
-      "commands": ["workbench.action.moveActiveEditorGroupLeft"]
-    },
-    {
-      "before": ["<C-w>", "J"],
-      "commands": ["workbench.action.moveActiveEditorGroupDown"]
-    },
-    {
-      "before": ["<C-w>", "K"],
-      "commands": ["workbench.action.moveActiveEditorGroupUp"]
-    },
-    {
-      "before": ["<C-w>", "L"],
-      "commands": ["workbench.action.moveActiveEditorGroupRight"]
-    },
-    {
-      "before": ["<C-w>", ">"],
-      "commands": ["workbench.action.increaseViewWidth"]
-    },
-    {
-      "before": ["<C-w>", "<"],
-      "commands": ["workbench.action.decreaseViewWidth"]
-    },
-    {
-      "before": ["<C-w>", "+"],
-      "commands": ["workbench.action.increaseViewHeight"]
-    },
-    {
-      "before": ["<C-w>", "-"],
-      "commands": ["workbench.action.decreaseViewHeight"]
-    },
-    {
-      "before": ["<C-w>", "_"],
-      "commands": ["workbench.action.maximizeEditor"]
-    },
+    { "before": ["<C-w>", "o"], "commands": ["workbench.action.closeOtherEditors"] },
+    { "before": ["<C-w>", "H"], "commands": ["workbench.action.moveActiveEditorGroupLeft"] },
+    { "before": ["<C-w>", "J"], "commands": ["workbench.action.moveActiveEditorGroupDown"] },
+    { "before": ["<C-w>", "K"], "commands": ["workbench.action.moveActiveEditorGroupUp"] },
+    { "before": ["<C-w>", "L"], "commands": ["workbench.action.moveActiveEditorGroupRight"] },
+    { "before": ["<C-w>", ">"], "commands": ["workbench.action.increaseViewWidth"] },
+    { "before": ["<C-w>", "<"], "commands": ["workbench.action.decreaseViewWidth"] },
+    { "before": ["<C-w>", "+"], "commands": ["workbench.action.increaseViewHeight"] },
+    { "before": ["<C-w>", "-"], "commands": ["workbench.action.decreaseViewHeight"] },
+    { "before": ["<C-w>", "_"], "commands": ["workbench.action.maximizeEditor"] },
 
     // alternate file.
-    {
-      "before": ["<leader>", "a", "a"],
-      "commands": ["alternate.alternateFile"]
-    },
-    {
-      "before": ["<leader>", "a", "v"],
-      "commands": ["alternate.alternateFileInSplit"]
-    },
-    {
-      "before": ["<leader>", "a", "c", "a"],
-      "commands": ["alternate.createAlternateFile"]
-    },
-    {
-      "before": ["<leader>", "a", "c", "v"],
-      "commands": ["alternate.createAlternateFileInSplit"]
-    },
+    { "before": ["<leader>", "a", "a"], "commands": ["alternate.alternateFile"] },
+    { "before": ["<leader>", "a", "v"], "commands": ["alternate.alternateFileInSplit"] },
+    { "before": ["<leader>", "a", "c", "a"], "commands": ["alternate.createAlternateFile"] },
+    { "before": ["<leader>", "a", "c", "v"], "commands": ["alternate.createAlternateFileInSplit"] },
 
     // tests.
-    {
-      "before": ["<leader>", "t", "n"],
-      "commands": ["test-explorer.run-test-at-cursor"]
-    },
-    {
-      "before": ["<leader>", "d", "n"],
-      "commands": ["test-explorer.debug-test-at-cursor"]
-    },
-    {
-      "before": ["<leader>", "t", "f"],
-      "commands": ["test-explorer.run-this-file"]
-    },
-    {
-      "before": ["<leader>", "t", "s"],
-      "commands": ["test-explorer.run-all"]
-    },
-    {
-      "before": ["<leader>", "t", "l"],
-      "commands": ["test-explorer.rerun"]
-    },
+    { "before": ["<leader>", "t", "n"], "commands": ["test-explorer.run-test-at-cursor"] },
+    { "before": ["<leader>", "d", "n"], "commands": ["test-explorer.debug-test-at-cursor"] },
+    { "before": ["<leader>", "t", "f"], "commands": ["test-explorer.run-this-file"] },
+    { "before": ["<leader>", "t", "s"], "commands": ["test-explorer.run-all"] },
+    { "before": ["<leader>", "t", "l"], "commands": ["test-explorer.rerun"] },
 
     // open-in-vim.
-    {
-      "before": ["<leader>", "v", "e"],
-      "commands": ["open-in-vim.open"]
-    },
+    { "before": ["<leader>", "v", "e"], "commands": ["open-in-vim.open"] },
 
     // git.
-    {
-      "before": ["<leader>", "g", "d"],
-      "commands": ["git.openChange"]
-    },
-    {
-      "before": ["<leader>", "g", "a"],
-      "commands": ["git.stage"]
-    },
-    {
-      "before": ["<leader>", "g", "c", "l"],
-      "commands": ["git.clean"]
-    },
-    {
-      "before": ["<leader>", "g", "l"],
-      "commands": ["git-graph.view"]
-    },
+    { "before": ["<leader>", "g", "d"], "commands": ["git.openChange"] },
+    { "before": ["<leader>", "g", "a"], "commands": ["git.stage"] },
+    { "before": ["<leader>", "g", "c", "l"], "commands": ["git.clean"] },
+    { "before": ["<leader>", "g", "l"], "commands": ["git-graph.view"] },
 
     // code actions.
     {
       "before": ["<leader>", "e", "c"],
       "commands": [
-        {
-          "command": "editor.action.codeAction",
-          "args": { "kind": "refactor.extract.constant" }
-        }
+        { "command": "editor.action.codeAction", "args": { "kind": "refactor.extract.constant" } }
       ]
     },
     {
@@ -694,53 +563,34 @@
         }
       ]
     },
+    {
+      "before": ["<leader>", "m", "f"],
+      "commands": [
+        {
+          "command": "editor.action.codeAction",
+          "args": { "kind": "refactor.move.newFile" }
+        }
+      ]
+    },
 
     // custom leader commands.
-    {
-      "before": ["<leader>", "g", "o"],
-      "commands": ["editor.action.openLink"]
-    },
+    { "before": ["<leader>", "g", "o"], "commands": ["editor.action.openLink"] },
 
     // unimpaired commands.
-    // {
-    //   "before": ["[", "b"],
-    //   "commands": ["workbench.action.previousEditorInGroup"]
-    // },
-    // {
-    //   "before": ["]", "b"],
-    //   "commands": ["workbench.action.nextEditorInGroup"]
-    // },
-    // {
-    //   "before": ["[", "B"],
-    //   "commands": ["workbench.action.firstEditorInGroup"]
-    // },
-    // {
-    //   "before": ["]", "B"],
-    //   "commands": ["workbench.action.lastEditorInGroup"]
-    // },
-    {
-      "before": ["[", " "],
-      "commands": ["editor.action.insertLineBefore"]
-    },
-    {
-      "before": ["]", " "],
-      "commands": ["editor.action.insertLineAfter"]
-    },
-    {
-      "before": ["[", "e"],
-      "commands": ["editor.action.moveLinesUpAction"]
-    },
-    {
-      "before": ["]", "e"],
-      "commands": ["editor.action.moveLinesDownAction"]
-    },
+    // { "before": ["[", "b"], "commands": ["workbench.action.previousEditorInGroup"] },
+    // { "before": ["]", "b"], "commands": ["workbench.action.nextEditorInGroup"] },
+    // { "before": ["[", "B"], "commands": ["workbench.action.firstEditorInGroup"] },
+    // { "before": ["]", "B"], "commands": ["workbench.action.lastEditorInGroup"] },
+    { "before": ["[", " "], "commands": ["editor.action.insertLineBefore"] },
+    { "before": ["]", " "], "commands": ["editor.action.insertLineAfter"] },
+    { "before": ["[", "e"], "commands": ["editor.action.moveLinesUpAction"] },
+    { "before": ["]", "e"], "commands": ["editor.action.moveLinesDownAction"] },
     {
       "before": ["[", "f"],
       "commands": ["workbench.view.explorer", "list.focusUp", "explorer.openAndPassFocus"]
     },
     {
       "before": ["]", "f"],
-      // prettier-ignore
       "commands": ["workbench.view.explorer", "list.focusDown", "explorer.openAndPassFocus"]
     },
     {
@@ -771,22 +621,10 @@
     },
 
     // custom unimpaired commands.
-    {
-      "before": ["[", "w"],
-      "commands": ["workbench.action.focusPreviousGroup"]
-    },
-    {
-      "before": ["]", "w"],
-      "commands": ["workbench.action.focusNextGroup"]
-    },
-    {
-      "before": ["[", "a"],
-      "commands": ["workbench.action.moveEditorToLeftGroup"]
-    },
-    {
-      "before": ["]", "a"],
-      "commands": ["workbench.action.moveEditorToRightGroup"]
-    }
+    { "before": ["[", "w"], "commands": ["workbench.action.focusPreviousGroup"] },
+    { "before": ["]", "w"], "commands": ["workbench.action.focusNextGroup"] },
+    { "before": ["[", "a"], "commands": ["workbench.action.moveEditorToLeftGroup"] },
+    { "before": ["]", "a"], "commands": ["workbench.action.moveEditorToRightGroup"] }
   ],
 
   //* Emmet.
@@ -828,67 +666,26 @@
   "todo-tree.regex.regexCaseSensitive": true,
   "todo-tree.general.tags": ["TODO", "NOTE", "HACK", "FIXME", "BUG"],
   "todo-tree.highlights.customHighlight": {
-    "TODO": {
-      "foreground": "#66ffa6",
-      "gutterIcon": true,
-      "icon": "flame"
-    },
-    "NOTE": {
-      "foreground": "#ffd700", // gold
-      "gutterIcon": true,
-      "icon": "bookmark"
-    },
-    "HACK": {
-      "foreground": "#78f0e0",
-      "gutterIcon": true,
-      "icon": "smiley"
-    },
-    "FIXME": {
-      "foreground": "#ffdab9", // peachpuff
-      "gutterIcon": true,
-      "icon": "flame"
-    },
-    "BUG": {
-      "foreground": "#FF5874",
-      "gutterIcon": true,
-      "icon": "flame"
-    }
+    "TODO": { "foreground": "#66ffa6", "gutterIcon": true, "icon": "flame" },
+    "NOTE": { "foreground": "#ffd700", "gutterIcon": true, "icon": "bookmark" },
+    "HACK": { "foreground": "#78f0e0", "gutterIcon": true, "icon": "smiley" },
+    "FIXME": { "foreground": "#ffdab9", "gutterIcon": true, "icon": "flame" },
+    "BUG": { "foreground": "#FF5874", "gutterIcon": true, "icon": "flame" }
   },
 
   //* Better Comments.
   "better-comments.highlightPlainText": false,
   "better-comments.tags": [
-    {
-      "tag": "!",
-      "color": "#FF5874"
-    },
-    {
-      "tag": "?",
-      "color": "#3498DB"
-    },
-    {
-      "tag": "*",
-      "color": "#98C379"
-    },
-    {
-      "tag": "//",
-      "color": "#474747",
-      "strikethrough": true
-    },
-    {
-      "tag": "##",
-      "color": "#474747",
-      "strikethrough": true
-    }
+    { "tag": "!", "color": "#FF5874" },
+    { "tag": "?", "color": "#3498DB" },
+    { "tag": "*", "color": "#98C379" },
+    { "tag": "//", "color": "#474747", "strikethrough": true },
+    { "tag": "##", "color": "#474747", "strikethrough": true }
   ],
 
   //* Highlight Matching Tag.
   "highlight-matching-tag.highlightSelfClosing": true,
-  "highlight-matching-tag.styles": {
-    "opening": {
-      "name": { "underline": "gold" }
-    }
-  },
+  "highlight-matching-tag.styles": { "opening": { "name": { "underline": "gold" } } },
 
   //* Settings Cycler.
   "settings.cycle": [
@@ -900,20 +697,30 @@
       "overrideWorkspaceSettings": false,
       "values": [
         {
-          "typescript.inlayHints.parameterNames.enabled": "literals",
+          // "typescript.inlayHints.parameterNames.enabled": "literals",
           "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
           "typescript.inlayHints.variableTypes.enabled": true,
           "typescript.inlayHints.parameterTypes.enabled": true,
           "typescript.inlayHints.enumMemberValues.enabled": true,
+
+          // "javascript.inlayHints.parameterNames.enabled": "literals",
+          "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+          "javascript.inlayHints.variableTypes.enabled": true,
+
           "python.analysis.inlayHints.variableTypes": true,
           "python.analysis.inlayHints.functionReturnTypes": true
         },
         {
-          "typescript.inlayHints.parameterNames.enabled": "none",
+          // "typescript.inlayHints.parameterNames.enabled": "none",
           "typescript.inlayHints.functionLikeReturnTypes.enabled": false,
           "typescript.inlayHints.variableTypes.enabled": false,
           "typescript.inlayHints.parameterTypes.enabled": false,
           "typescript.inlayHints.enumMemberValues.enabled": false,
+
+          // "javascript.inlayHints.parameterNames.enabled": "none",
+          "javascript.inlayHints.functionLikeReturnTypes.enabled": false,
+          "javascript.inlayHints.variableTypes.enabled": false,
+
           "python.analysis.inlayHints.variableTypes": false,
           "python.analysis.inlayHints.functionReturnTypes": false
         }
@@ -999,7 +806,7 @@
   },
 
   //* Error Lens.
-  "errorLens.enabled": false,
+  "errorLens.enabled": true,
   "errorLens.enabledDiagnosticLevels": ["error", "warning"],
   "errorLens.followCursor": "closestProblem",
   "errorLens.fontStyleItalic": true,
@@ -1039,16 +846,6 @@
     "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
     "typescript.inlayHints.variableTypes.enabled": true
   },
-
-  //* Atlassian YAML Garbage That Is Generated Automatically.
-  "redhat.telemetry.enabled": false,
-  "yaml.schemas": {
-    "file:///Users/defytheflow/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
-  "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "",
-    "projectKey": ""
-  },
-  "editor.minimap.enabled": false,
-  "window.zoomLevel": -1
+  "window.zoomLevel": -1,
+  "editor.minimap.enabled": false
 }

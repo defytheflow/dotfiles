@@ -9,6 +9,13 @@
    ** Miscellaneous.
    */
 
+  "Event Prevent Default": {
+    "description": "Event Prevent Default",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["pd"],
+    "body": ["event.preventDefault();"]
+  },
+
   "Document Query Selector": {
     "description": "Document Query Selector",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",

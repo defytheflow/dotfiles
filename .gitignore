@@ -6,6 +6,7 @@ nvim/thesaurus/*
 ranger/plugins/*
 vscode/*Storage
 vscode/*History
+vscode/sync
 wm/awesome/vicious
 shell/zsh/.zsh_sessions
 shell/zsh/.zsh_history

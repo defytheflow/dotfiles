@@ -11,4 +11,12 @@ module.exports = {
   semi: false,
   // Use single quotes instead of double quotes.
   singleQuote: true,
+  overrides: [
+    {
+      files: 'settings.json',
+      options: {
+        printWidth: 100,
+      },
+    },
+  ],
 }
