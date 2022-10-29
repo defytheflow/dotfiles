@@ -12,7 +12,7 @@
   "Event Prevent Default": {
     "description": "Event Prevent Default",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
-    "prefix": ["pd"],
+    "prefix": ["epd"],
     "body": ["event.preventDefault();"]
   },
 
@@ -60,7 +60,13 @@
   "?": {
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["lg"], // just ? doesn't work.
-    "body": ["console.log('${1}?', ${1})"]
+    "body": ["console.log(\"${1}?\", ${1})"]
+  },
+
+  "??": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["lgo"],
+    "body": ["console.log({ \"${1}?\": ${1} })"]
   },
 
   /**
@@ -200,6 +206,23 @@
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["ednl"],
     "body": ["$LINE_COMMENT eslint-disable-next-line $1"]
+  },
+
+  /**
+   ** React.
+   */
+
+  "React Forward Ref": {
+    "description": "React Forward Ref",
+    "scope": "typescript,typescriptreact",
+    "prefix": ["rfr"],
+    "body": [
+      "const ${1} = React.forwardRef<${2:HTMLDivElement}>((props, forwardedRef) => {",
+      "\treturn <${3:div} {...props} ref={forwardedRef} />",
+      "})",
+      "",
+      "${1}.displayName = '${1}'"
+    ]
   },
 
   /**

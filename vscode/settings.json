@@ -38,6 +38,7 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  // "editor.guides.indentation": false,
 
   //* Window.
   "window.dialogStyle": "custom",
@@ -109,7 +110,7 @@
 
   //* Whitespace.
   "editor.insertSpaces": true,
-  "editor.renderWhitespace": "boundary",
+  // "editor.renderWhitespace": "boundary",
   "editor.renderControlCharacters": true,
   "files.eol": "\n",
 
@@ -340,7 +341,7 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   // This setting messes up react components completion.
   // "typescript.suggest.completeFunctionCalls": true,
-  "typescript.inlayHints.parameterNames.enabled": "literals",
+  // "typescript.inlayHints.parameterNames.enabled": "literals",
   "typescript.inlayHints.functionLikeReturnTypes.enabled": false,
   "typescript.inlayHints.variableTypes.enabled": false,
   "typescript.inlayHints.parameterTypes.enabled": false,
@@ -427,6 +428,13 @@
     { "before": ["[", "e"], "commands": ["editor.action.moveLinesUpAction"] },
     { "before": ["]", "e"], "commands": ["editor.action.moveLinesDownAction"] },
 
+    // emmet.
+    // { "before": ["<leader>", "e", "w"], "commands": ["editor.emmet.action.wrapWithAbbreviation"] },
+
+    // git.
+    { "before": ["<leader>", "g", "a"], "commands": ["git.stageSelectedRanges"] },
+    { "before": ["<leader>", "g", "u"], "commands": ["git.unstageSelectedRanges"] },
+
     // code actions.
     {
       "before": ["<leader>", "e", "c"],
@@ -483,8 +491,8 @@
     { "before": ["<C-u>"], "after": ["<C-u>", "z", "z"] },
     { "before": ["<C-f>"], "after": ["<C-f>", "z", "z"] },
     { "before": ["<C-b>"], "after": ["<C-b>", "z", "z"] },
-    { "before": ["{"], "after": ["{", "z", "z"] },
-    { "before": ["}"], "after": ["}", "z", "z"] },
+    // { "before": ["{"], "after": ["{", "z", "z"] },
+    // { "before": ["}"], "after": ["}", "z", "z"] },
     { "before": ["g", "d"], "after": ["g", "d", "z", "z"] },
 
     // g commands.
@@ -523,11 +531,16 @@
     // open-in-vim.
     { "before": ["<leader>", "v", "e"], "commands": ["open-in-vim.open"] },
 
+    // emmet.
+    { "before": ["<leader>", "e", "w"], "commands": ["editor.emmet.action.wrapWithAbbreviation"] },
+
     // git.
     { "before": ["<leader>", "g", "d"], "commands": ["git.openChange"] },
     { "before": ["<leader>", "g", "a"], "commands": ["git.stage"] },
+    { "before": ["<leader>", "g", "u"], "commands": ["git.unstage"] },
     { "before": ["<leader>", "g", "c", "l"], "commands": ["git.clean"] },
     { "before": ["<leader>", "g", "l"], "commands": ["git-graph.view"] },
+    { "before": ["<leader>", "g", "f"], "commands": ["git.openFile"] },
 
     // code actions.
     {
@@ -778,7 +791,7 @@
     // Provide intellisense in variables, object properties and jsx props.
     "[cC]lassName\\s*[:=]\\s*{?[\"']([^']*)[\"']}?",
     // Provide intellisense in cn() function calls.
-    ["cn\\(([^)]*)\\)", "'([^']*)'"]
+    ["clsx\\(([^)]*)\\)", "'([^']*)'"]
   ],
 
   //* VSCode Icons.
@@ -809,7 +822,7 @@
   "errorLens.enabled": true,
   "errorLens.enabledDiagnosticLevels": ["error", "warning"],
   "errorLens.followCursor": "closestProblem",
-  "errorLens.fontStyleItalic": true,
+  // "errorLens.fontStyleItalic": true,
   "errorLens.messageTemplate": "$message ($source)",
 
   //* JavaScript Lesson Settings.
