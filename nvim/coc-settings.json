@@ -1,5 +1,5 @@
 {
-  "snippets.textmateSnippetsRoots": [
-    "/Users/defytheflow/.dotfiles/vscode/snippets"
-  ]
+  "snippets.textmateSnippetsRoots": ["/Users/defytheflow/.dotfiles/vscode/snippets"],
+  // for coc-import-cost
+  "codeLens.enable": true
 }

@@ -22,6 +22,16 @@ endif
 " plugins {{{
 call plug#begin(config_dir . '/plugged')
 
+Plug 'wix/import-cost', { 'do': 'npm install', 'rtp': 'packages/coc-import-cost' }
+
+" Fuzzy finder.
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 " Lsp, completion, diagnostics, refactoring, snippets.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-tsserver'
@@ -187,7 +197,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
 " Replace text witht he contents of a register.
-Plug 'inkarkat/vim-ReplaceWithRegister'
+" Plug 'inkarkat/vim-ReplaceWithRegister'
 
 " Jump to any location specified by two characters.
 " Plug 'justinmk/vim-sneak'
@@ -282,8 +292,8 @@ set guifont=FiraCode:h11
 
 " indent.
 set expandtab " convert <tab> key-presses to spaces.
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
 set autoindent
 set smartindent
 

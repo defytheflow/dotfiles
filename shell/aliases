@@ -236,7 +236,6 @@ if command -v npm >/dev/null; then
   alias nrtv='npm run test -- --verbose'
   alias nrtw='npm run test -- --watchAll=true'
   alias nrw='npm run watch'
-  alias nrr='npm run serve'
 fi
 
 # django.
