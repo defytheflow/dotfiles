@@ -9,6 +9,11 @@ help() {
   [ "$#" -ne 0 ] && eval "$*" --help
 }
 
+# Execute command's --version option.
+v() {
+  [ "$#" -ne 0 ] && eval "$*" --version
+}
+
 # Reload current running shell.
 rld() {
   [ -n "${ZSH_NAME}" ] && exec zsh || [ -n "${BASH}" ] && exec bash

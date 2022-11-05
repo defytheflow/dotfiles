@@ -10,7 +10,7 @@
   // "workbench.settings.useSplitJSON": true,
 
   //* Inlay Hints.
-  "editor.inlayHints.enabled": "on",
+  "editor.inlayHints.enabled": "offUnlessPressed",
   "editor.inlayHints.padding": true,
 
   //* Unicode.
@@ -43,7 +43,7 @@
   //* Window.
   "window.dialogStyle": "custom",
   "window.confirmBeforeClose": "keyboardOnly",
-  // "window.commandCenter": true,
+  "window.commandCenter": true,
   // "window.nativeTabs": true,
 
   //* Explorer.
@@ -292,8 +292,12 @@
   "python.linting.pydocstyleEnabled": false,
   "python.linting.pylintEnabled": false,
   "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
-  "python.analysis.inlayHints.variableTypes": false,
-  "python.analysis.inlayHints.functionReturnTypes": false,
+  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.inlayHints.functionReturnTypes": true,
+
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
 
   //* HTML.
   "[html]": {
@@ -329,8 +333,8 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "js/ts.implicitProjectConfig.checkJs": true,
   "javascript.inlayHints.parameterNames.enabled": "literals",
-  "javascript.inlayHints.functionLikeReturnTypes.enabled": false,
-  "javascript.inlayHints.variableTypes.enabled": false,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": true,
   // "javascript.inlayHints.parameterTypes.enabled": true,
 
   //* TypeScript.
@@ -341,11 +345,11 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   // This setting messes up react components completion.
   // "typescript.suggest.completeFunctionCalls": true,
-  // "typescript.inlayHints.parameterNames.enabled": "literals",
-  "typescript.inlayHints.functionLikeReturnTypes.enabled": false,
-  "typescript.inlayHints.variableTypes.enabled": false,
-  "typescript.inlayHints.parameterTypes.enabled": false,
-  "typescript.inlayHints.enumMemberValues.enabled": false,
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
   // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
 
   //* Shell.
@@ -484,7 +488,6 @@
   ],
 
   "vim.normalModeKeyBindingsNonRecursive": [
-    // vertical movement commands.
     { "before": ["N"], "after": ["N", "z", "z"] },
     { "before": ["n"], "after": ["n", "z", "z"] },
     { "before": ["<C-d>"], "after": ["<C-d>", "z", "z"] },
@@ -515,6 +518,10 @@
     { "before": ["<C-w>", "-"], "commands": ["workbench.action.decreaseViewHeight"] },
     { "before": ["<C-w>", "_"], "commands": ["workbench.action.maximizeEditor"] },
 
+    // restart eslint/typescript.
+    { "before": ["<leader>", "e", "r"], "commands": ["eslint.restart"] },
+    { "before": ["<leader>", "t", "r"], "commands": ["typescript.restartTsServer"] },
+
     // alternate file.
     { "before": ["<leader>", "a", "a"], "commands": ["alternate.alternateFile"] },
     { "before": ["<leader>", "a", "v"], "commands": ["alternate.alternateFileInSplit"] },
@@ -536,7 +543,7 @@
 
     // git.
     { "before": ["<leader>", "g", "d"], "commands": ["git.openChange"] },
-    { "before": ["<leader>", "g", "a"], "commands": ["git.stage"] },
+    { "before": ["<leader>", "g", "a"], "commands": ["git.stage", "giteasy.doAddCurrentFile"] },
     { "before": ["<leader>", "g", "u"], "commands": ["git.unstage"] },
     { "before": ["<leader>", "g", "c", "l"], "commands": ["git.clean"] },
     { "before": ["<leader>", "g", "l"], "commands": ["git-graph.view"] },
@@ -631,13 +638,13 @@
         "workbench.action.compareEditor.nextChange",
         "workbench.action.editor.nextChange"
       ]
-    },
+    }
 
     // custom unimpaired commands.
-    { "before": ["[", "w"], "commands": ["workbench.action.focusPreviousGroup"] },
-    { "before": ["]", "w"], "commands": ["workbench.action.focusNextGroup"] },
-    { "before": ["[", "a"], "commands": ["workbench.action.moveEditorToLeftGroup"] },
-    { "before": ["]", "a"], "commands": ["workbench.action.moveEditorToRightGroup"] }
+    // { "before": ["[", "w"], "commands": ["workbench.action.focusPreviousGroup"] },
+    // { "before": ["]", "w"], "commands": ["workbench.action.focusNextGroup"] }
+    // { "before": ["[", "a"], "commands": ["workbench.action.moveEditorToLeftGroup"] },
+    // { "before": ["]", "a"], "commands": ["workbench.action.moveEditorToRightGroup"] }
   ],
 
   //* Emmet.
@@ -646,6 +653,9 @@
     "javascript": "javascriptreact"
     // "django-html": "html"
   },
+
+  //* Eslint.
+  "eslint.alwaysShowStatus": true,
 
   //* Prettier.
   "prettier.arrowParens": "avoid",
@@ -825,6 +835,11 @@
   // "errorLens.fontStyleItalic": true,
   "errorLens.messageTemplate": "$message ($source)",
 
+  //* Git Project Manager.
+  "gitProjectManager.baseProjectsFolders": ["/users/defytheflow/dev/repos"],
+  "gitProjectManager.ignoredFolders": ["node_modules"],
+  "gitProjectManager.storeRepositoriesBetweenSessions": true,
+
   //* JavaScript Lesson Settings.
   "[javascript-lesson]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -860,5 +875,6 @@
     "typescript.inlayHints.variableTypes.enabled": true
   },
   "window.zoomLevel": -1,
+  "redhat.telemetry.enabled": false,
   "editor.minimap.enabled": false
 }

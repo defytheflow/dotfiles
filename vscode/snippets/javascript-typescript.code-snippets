@@ -179,6 +179,16 @@
   },
 
   /**
+   ** ts prune.
+   */
+  "Ts Prune Ignore Next" : {
+    "description": "Ts Prune Ignore Next",
+    "prefix": ["tpin"],
+    "scope": "typescript,typescriptreact",
+    "body": ["// ts-prune-ignore-next"]
+  },
+
+  /**
    ** Prettier.
    */
 

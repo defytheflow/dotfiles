@@ -9,7 +9,6 @@
     "command": "workbench.action.terminal.focus",
     "when": "!terminalFocus"
   },
-
   {
     "key": "ctrl+'",
     "command": "workbench.action.focusActiveEditorGroup",
@@ -26,7 +25,6 @@
   //   "command": "search.action.focusNextSearchResult",
   //   "when": "!suggestWidgetVisible && (hasSearchResult || inSearchEditor)"
   // },
-
   // {
   //   "key": "ctrl+p",
   //   "command": "search.action.focusPreviousSearchResult",
@@ -43,7 +41,6 @@
     "command": "selectNextSuggestion",
     "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
   },
-
   {
     "key": "ctrl+p",
     "command": "selectPrevSuggestion",
@@ -60,7 +57,6 @@
     "command": "history.showPrevious",
     "when": "historyNavigationBackwardsEnabled && historyNavigationWidgetFocus && !suggestWidgetVisible"
   },
-
   {
     "key": "ctrl+n",
     "command": "history.showNext",
@@ -77,7 +73,6 @@
     "command": "selectPrevCodeAction",
     "when": "codeActionMenuVisible"
   },
-
   {
     "key": "ctrl+n",
     "command": "selectNextCodeAction",
@@ -86,7 +81,7 @@
 
   /**
    ** Switch between terminal panes with `cmd+[` and `cmd+]`
-   ** (default bindings use cmd+option+arrow keys)
+   ** (default bindings use `cmd+option+arrow keys`)
    */
 
   {
@@ -94,11 +89,40 @@
     "command": "workbench.action.terminal.focusPreviousPane",
     "when": "terminalFocus"
   },
-
   {
     "key": "cmd+]",
     "command": "workbench.action.terminal.focusNextPane",
     "when": "terminalFocus"
+  },
+
+  /**
+   ** Move active editor tab with `ctrl+shift+[` and `ctrl+shift+]`
+   ** (no default bindings).
+   */
+
+  {
+    "key": "ctrl+shift+[",
+    "command": "moveActiveEditor",
+    "args": { "to": "left" }
+  },
+  {
+    "key": "ctrl+shift+]",
+    "command": "moveActiveEditor",
+    "args": { "to": "right" }
+  },
+
+  /**
+   ** Move editor between groups with `shift+alt+[` and `shift+alt+]`
+   ** (default bindings use `ctrl+alt+arrow keys`).
+   */
+
+  {
+    "key": "shift+alt+[",
+    "command": "workbench.action.moveEditorToLeftGroup"
+  },
+  {
+    "key": "shift+alt+]",
+    "command": "workbench.action.moveEditorToRightGroup"
   },
 
   /**
@@ -111,7 +135,6 @@
     "command": "workbench.action.positionPanelRight",
     "when": "panelVisible && panelPosition == 'bottom'"
   },
-
   {
     "key": "shift+cmd+d",
     "command": "workbench.action.positionPanelBottom",
@@ -128,7 +151,6 @@
     "command": "workbench.action.togglePanel",
     "when": "searchViewletFocus && panelFocus"
   },
-
   {
     "key": "shift+cmd+h",
     "command": "workbench.action.toggleAuxiliaryBar",
@@ -145,7 +167,6 @@
   //   "command": "workbench.action.terminal.kill",
   //   "when": "terminalFocus"
   // },
-
   // {
   //   "key": "cmd+k cmd+w",
   //   "command": "workbench.action.terminal.killAll",
@@ -288,23 +309,38 @@
     "command": "-emojisense.quickEmoji",
     "when": "editorTextFocus"
   },
-
   {
     "key": "cmd+i",
     "command": "-emojisense.quickEmojiTerminal",
     "when": "terminalFocus"
   },
-
   {
     "key": "ctrl+cmd+i",
     "command": "emojisense.quickEmoji",
     "when": "editorTextFocus"
   },
-
   {
     "key": "ctrl+cmd+i",
     "command": "emojisense.quickEmojiTerminal",
     "when": "terminalFocus"
+  },
+
+  /**
+   ** Disable 'Open in Github' Extension `ctrl+l` keybinding. It conflicts with terminal's
+   ** `ctrl+l` to clear screen.
+   */
+
+  {
+    "key": "ctrl+l c",
+    "command": "-extension.copyGitHubLinkToClipboard"
+  },
+  {
+    "key": "ctrl+l g",
+    "command": "-extension.openInGitHub"
+  },
+  {
+    "key": "ctrl+l p",
+    "command": "-extension.openPrGitProvider"
   }
 
   /**
@@ -319,13 +355,11 @@
   //   "key": "cmd+w",
   //   "command": "-workbench.action.closeActiveEditor"
   // },
-
   // {
   //   "key": "cmd+w",
   //   "command": "-workbench.action.closeWindow",
   //   "when": "!editorIsOpen && !multipleEditorGroups"
   // },
-
   // {
   //   "key": "cmd+w",
   //   "command": "-workbench.action.closeGroup",
@@ -340,7 +374,6 @@
   //  "key": "cmd+\\",
   //  "command": "-workbench.action.splitEditor"
   //},
-
   //{
   //  "key": "cmd+k cmd+\\",
   //  "command": "-workbench.action.splitEditorOrthogonal"
