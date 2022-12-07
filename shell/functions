@@ -9,9 +9,9 @@ help() {
   [ "$#" -ne 0 ] && eval "$*" --help
 }
 
-# Execute command's --version option.
-v() {
-  [ "$#" -ne 0 ] && eval "$*" --version
+# Execute `npx <command> --version`
+vx() {
+  [ "$#" -ne 0 ] && eval npx "$*" --version
 }
 
 # Reload current running shell.

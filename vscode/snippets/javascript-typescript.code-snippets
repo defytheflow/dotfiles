@@ -9,6 +9,13 @@
    ** Miscellaneous.
    */
 
+  "Class Name": {
+    "description": "Class Name",
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": ["cn"],
+    "body": ["className=\"${0}\""]
+  },
+
   "Event Prevent Default": {
     "description": "Event Prevent Default",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
@@ -181,7 +188,7 @@
   /**
    ** ts prune.
    */
-  "Ts Prune Ignore Next" : {
+  "Ts Prune Ignore Next": {
     "description": "Ts Prune Ignore Next",
     "prefix": ["tpin"],
     "scope": "typescript,typescriptreact",
@@ -340,14 +347,14 @@
    ** Remix.
    */
 
-  "Remix Meta": {
+  "Remix Meta Function": {
     "description": "Remix Meta Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["rmeta"],
     "body": ["export const meta: MetaFunction = () => {", "\treturn { title: $1 }", "}"]
   },
 
-  "Remix Links": {
+  "Remix Links Function": {
     "description": "Remix Links Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["rlink"],
@@ -358,23 +365,46 @@
     ]
   },
 
-  "Remix Loader": {
+  "Remix Loader Function": {
     "description": "Remix Loader Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["rload"],
     "body": [
-      "export const loader: LoaderFunction = async ({ request, params }) => {",
+      "export const loader: LoaderFunction = async ({ request }) => {",
       "\t${TM_SELECTED_TEXT:${1}}",
       "}"
     ]
   },
 
-  "Remix Action": {
+  "Remix Action Function": {
     "description": "Remix Action Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["ract"],
     "body": [
       "export const action: ActionFunction = async ({ request }) => {",
+      "\t${TM_SELECTED_TEXT:${1}}",
+      "}"
+    ]
+  },
+
+  "Remix Catch Boundary": {
+    "description": "Remix Catch Boundary",
+    "scope": "typescript,typescriptreact",
+    "prefix": ["rcatch"],
+    "body": [
+      "export function CatchBoundary() {",
+      "\tconst caught = useCatch()",
+      "\t${TM_SELECTED_TEXT:${1}}",
+      "}"
+    ]
+  },
+
+  "Remix Error Boundary": {
+    "description": "Remix Error Boundary",
+    "scope": "typescript,typescriptreact",
+    "prefix": ["rerr"],
+    "body": [
+      "export function ErrorBoundary({ error }: { error: unknown }) {",
       "\t${TM_SELECTED_TEXT:${1}}",
       "}"
     ]

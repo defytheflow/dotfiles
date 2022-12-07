@@ -10,7 +10,9 @@
   // "workbench.settings.useSplitJSON": true,
 
   //* Inlay Hints.
-  "editor.inlayHints.enabled": "offUnlessPressed",
+  // bind is the same as switch languages on mac os
+  // "editor.inlayHints.enabled": "offUnlessPressed",
+  "editor.inlayHints.enabled": "off",
   "editor.inlayHints.padding": true,
 
   //* Unicode.
@@ -110,7 +112,7 @@
 
   //* Whitespace.
   "editor.insertSpaces": true,
-  // "editor.renderWhitespace": "boundary",
+  "editor.renderWhitespace": "boundary",
   "editor.renderControlCharacters": true,
   "files.eol": "\n",
 
@@ -283,8 +285,9 @@
       "source.organizeImports": true
     }
   },
-  "python.formatting.provider": "yapf",
-  "python.formatting.yapfArgs": ["--exclude=*/migrations/*", "--exclude=*/site_packages/*"],
+  "python.formatting.provider": "black",
+  // "python.formatting.provider": "yapf",
+  // "python.formatting.yapfArgs": ["--exclude=*/migrations/*", "--exclude=*/site_packages/*"],
   "python.linting.enabled": true,
   "python.linting.mypyEnabled": true,
   // "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
@@ -368,11 +371,20 @@
   },
   "elmLS.disableElmLSDiagnostics": true,
 
+  //* Docker.
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[dockercompose]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+
   //* Vim.
   "vim.leader": " ",
   "vim.vimrc.enable": true,
   "vim.textwidth": 90,
   "vim.foldfix": false,
+  // "vim.cursorStylePerMode.insert": "block",
 
   "vim.handleKeys": {
     // vscode: go to line/column
@@ -689,8 +701,8 @@
   "todo-tree.regex.regexCaseSensitive": true,
   "todo-tree.general.tags": ["TODO", "NOTE", "HACK", "FIXME", "BUG"],
   "todo-tree.highlights.customHighlight": {
-    "TODO": { "foreground": "#66ffa6", "gutterIcon": true, "icon": "flame" },
-    "NOTE": { "foreground": "#ffd700", "gutterIcon": true, "icon": "bookmark" },
+    "TODO": { "foreground": "#66ffa6", "gutterIcon": false, "icon": "flame" },
+    "NOTE": { "foreground": "#ffd700", "gutterIcon": false, "icon": "bookmark" },
     "HACK": { "foreground": "#78f0e0", "gutterIcon": true, "icon": "smiley" },
     "FIXME": { "foreground": "#ffdab9", "gutterIcon": true, "icon": "flame" },
     "BUG": { "foreground": "#FF5874", "gutterIcon": true, "icon": "flame" }
@@ -753,7 +765,7 @@
 
   //* Code Spell Checker.
   "cSpell.allowCompoundWords": true,
-  "cSpell.language": "en,en-GB",
+  "cSpell.language": "en,en-GB,ru",
   "cSpell.ignoreRegExpList": [
     "asgi",
     "isort",
@@ -799,10 +811,12 @@
   // settings.
   "tailwindCSS.experimental.classRegex": [
     // Provide intellisense in variables, object properties and jsx props.
+    // This causes "cssConflict" warnings inside create-t3-app and remix
     "[cC]lassName\\s*[:=]\\s*{?[\"']([^']*)[\"']}?",
-    // Provide intellisense in cn() function calls.
+    // Provide intellisense in clsx() function calls.
     ["clsx\\(([^)]*)\\)", "'([^']*)'"]
   ],
+  "tailwindCSS.lint.cssConflict": "ignore",
 
   //* VSCode Icons.
   "vsicons.dontShowNewVersionMessage": true,
@@ -829,7 +843,7 @@
   },
 
   //* Error Lens.
-  "errorLens.enabled": true,
+  "errorLens.enabled": false,
   "errorLens.enabledDiagnosticLevels": ["error", "warning"],
   "errorLens.followCursor": "closestProblem",
   // "errorLens.fontStyleItalic": true,
@@ -838,7 +852,7 @@
   //* Git Project Manager.
   "gitProjectManager.baseProjectsFolders": ["/users/defytheflow/dev/repos"],
   "gitProjectManager.ignoredFolders": ["node_modules"],
-  "gitProjectManager.storeRepositoriesBetweenSessions": true,
+  // "gitProjectManager.storeRepositoriesBetweenSessions": true,
 
   //* JavaScript Lesson Settings.
   "[javascript-lesson]": {
@@ -874,7 +888,7 @@
     "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
     "typescript.inlayHints.variableTypes.enabled": true
   },
-  "window.zoomLevel": -1,
   "redhat.telemetry.enabled": false,
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "window.zoomLevel": -1
 }

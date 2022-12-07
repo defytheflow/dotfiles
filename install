@@ -122,7 +122,7 @@ install_npm_packages() {
     eslint \
     jest jsonlint \
     live-server \
-    nodemon \
+    nodemon npm-check-updates \
     prettier neovim \
     sass stylelint sqlite3 \
     typescript ts-node \

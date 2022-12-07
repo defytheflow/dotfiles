@@ -24,8 +24,8 @@ install_packages() {
     bat \
     deno diceware dos2unix \
     exa \
-    fzf \
-    gh graphviz \
+    fd fzf \
+    gh git-delta graphviz \
     iterm2 \
     keycastr \
     neovim node \

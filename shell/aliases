@@ -4,6 +4,9 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
+alias d='docker'
+alias dc='docker-compose'
+
 alias ts='npx tsc'
 alias mp='mypy'
 
@@ -151,8 +154,9 @@ alias c.='code .'
 # vim.
 alias vi='vim'
 alias svim='sudo vim'
-alias via='vim ${DOTFILES_HOME}/shell/aliases' # edit aliases.
-alias vis='vim ${ZDOTDIR}/.zshrc' # edit zsh config.
+alias via='vim ${DOTFILES_HOME}/shell/aliases'
+alias vif='vim ${DOTFILES_HOME}/shell/functions'
+alias vis='vim ${ZDOTDIR}/.zshrc'
 if command -v nvim >/dev/null; then
   alias vi='nvim'
   alias vim='nvim'
@@ -221,7 +225,7 @@ if command -v npm >/dev/null; then
   alias nrd='npm run dev'
   # alias nrdl='npm run dev:local'
   alias nrc='npm run check'
-  alias nrf='npm run fix'
+  alias nrf='npm run format'
   alias nrl='npm run lint'
   alias nrm='npm run make'
   # npm start.
