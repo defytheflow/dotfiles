@@ -207,6 +207,12 @@ Plug 'tpope/vim-unimpaired'
 
 " Python.
 
+" Python folding.
+" Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+" let g:SimpylFold_docstring_preview = 1
+" let g:SimpylFold_fold_docstring = 0
+" let g:SimpylFold_fold_import = 0
+
 " Python text objects and motions.
 Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' }
 
@@ -242,6 +248,7 @@ Plug 'uiiaoo/java-syntax.vim', { 'for': 'java' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'pantharshit00/vim-prisma'
+Plug 'ocaml/vim-ocaml'
 
 call plug#end()
 "}}}
@@ -267,10 +274,12 @@ endif
 set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
 try
-  colorscheme night-owl
+  " colorscheme night-owl
   " Good ones:
-  " base16-classic-dark
-  " base16-gruvbox-dark-hard
+  " colorscheme base16-classic-dark
+  colorscheme base16-gruvbox-dark-hard
+  " colorscheme gruvbox
+  " colorscheme base16-ocean
 catch
   colorscheme koehler
 endtry

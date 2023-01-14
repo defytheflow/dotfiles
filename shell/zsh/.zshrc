@@ -288,5 +288,8 @@ if command -v opam >/dev/null; then
   eval $(opam env)
 fi
 
+# opam configuration (ocaml).
+[[ ! -r ${HOME}/.opam/opam-init/init.zsh ]] || source ${HOME}/.opam/opam-init/init.zsh  >/dev/null 2> /dev/null
+
 # haskell.
 [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"

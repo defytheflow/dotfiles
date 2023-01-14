@@ -87,6 +87,7 @@ export PYLINTHOME="${XDG_DATA_HOME}/pylint"
 # python.
 export PYTHONPATH=
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
+export PYTHONBREAKPOINT="ipdb.set_trace"
 
 # ruby.
 export GEM_HOME="${XDG_CONFIG_HOME}/gem"

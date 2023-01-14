@@ -125,12 +125,12 @@ install_npm_packages() {
     nodemon npm-check-updates \
     prettier neovim \
     sass stylelint sqlite3 \
-    typescript ts-node \
+    typescript trash-cli ts-node \
     @types/node \
     vim-language-server
 
   for pack; do
-    npm list -g "${pack}" || sudo npm install -g "${pack}"
+    npm list --global "${pack}" || sudo npm install --global "${pack}"
   done
 }
 
@@ -200,6 +200,9 @@ create_symlinks() {
 
   symlink 'lang/c/.clang-format' "${HOME}/.clang-format"
   symlink 'lang/c/.gdbinit' "${HOME}/.gdbinit"
+
+  symlink 'lang/ocaml/.utoprc' "${HOME}/.utoprc"
+  symlink 'lang/ocaml/.ocamlinit' "${HOME}/.ocamlinit"
 
   symlink 'shell/zsh' "${ZDOTDIR}"
   symlink 'shell/zsh/.zprofile' "${HOME}/.zprofile"

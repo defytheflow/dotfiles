@@ -4,6 +4,8 @@
 # Created:  29.01.2020
 # Author:   Artyom Danilov (@defytheflow)
 
+from __future__ import annotations
+
 from pprint import pp
 
 
@@ -24,4 +26,5 @@ def configure_history():
     readline.parse_and_bind('tab: complete')
 
 
+print('here')
 # configure_history()

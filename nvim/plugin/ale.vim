@@ -30,13 +30,12 @@ let g:ale_fixers = {
 \ 'json':            ['prettier'],
 \ 'jsonc':           ['prettier'],
 \ 'markdown':        ['prettier'],
+\ 'ocaml':           ['ocamlformat'],
 \ 'python':          ['isort', 'yapf'],
 \ 'sh':              ['shfmt'],
 \ 'typescript':      ['prettier'],
 \ 'typescriptreact': ['prettier'],
 \}
-
-" \ 'ocaml':           ['ocamlformat'],
 
 let g:ale_completion_symbols = {
 \ 'text': '',

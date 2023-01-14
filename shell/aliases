@@ -172,6 +172,9 @@ if command -v ipython3 >/dev/null; then
   alias ipy='ipython3'
   alias ipython='ipython3'
 fi
+if command -v bpython >/dev/null; then
+  alias bpy='bpython'
+fi
 if command -v ptpython >/dev/null; then
   alias ppy='ptpython'
 fi
