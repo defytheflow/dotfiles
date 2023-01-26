@@ -14,6 +14,12 @@ vx() {
   [ "$#" -ne 0 ] && eval npx "$*" --version
 }
 
+# Combined mkdir and cd.
+mkcdir() {
+  # -P - resolve symbolic links
+  mkdir -p -- "$1" && cd -P -- "$1"
+}
+
 # Reload current running shell.
 rld() {
   [ -n "${ZSH_NAME}" ] && exec zsh || [ -n "${BASH}" ] && exec bash

@@ -6,7 +6,8 @@
 
 from __future__ import annotations
 
-from pprint import pp
+from dataclasses import dataclass  # noqa
+from pprint import pp  # noqa
 
 
 def configure_history():
@@ -26,5 +27,4 @@ def configure_history():
     readline.parse_and_bind('tab: complete')
 
 
-print('here')
 # configure_history()

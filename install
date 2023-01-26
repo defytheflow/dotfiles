@@ -117,13 +117,14 @@ install_npm_packages() {
   log 'Installing npm packages.'
 
   set -- \
+    @antfu/ni \
     bash-language-server \
     chalk create-react-app \
     eslint \
     jest jsonlint \
     live-server \
     nodemon npm-check-updates \
-    prettier neovim \
+    pnpm prettier neovim \
     sass stylelint sqlite3 \
     typescript trash-cli ts-node \
     @types/node \

@@ -1,5 +1,6 @@
 #require "base";;
-(* open Base;; *)
-(* #require "core.top";; *)
-(* #require "ppx_jane";; *)
-(* open Base;; *)
+#require "stdio";;
+#require "re";;
+#warnings "+9";; (* Missing fields in a record pattern *)
+(* #require "core.top";; *) (* Unable to install, num package doesn't compile *)
+(* #require "ppx_jane";; *) (* Unable to install, num package doesn't compile *)

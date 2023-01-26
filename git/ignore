@@ -31,3 +31,6 @@ yarn-error.log*
 
 # mac
 .DS_Store
+
+# custom (this may bite in the future 😄)
+todo.txt

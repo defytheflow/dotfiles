@@ -4,6 +4,8 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
+alias yrm='yes | rm'
+
 alias d='docker'
 alias dc='docker-compose'
 
@@ -88,11 +90,9 @@ fi
 alias cp='cp -iv'
 alias copy='cp'
 alias du='du -h'
-# alias md='mkdir -pv'
 alias mv='mv -iv'
 alias move='mv'
 alias tc='touch'
-# alias rd='rmdir'
 alias del='rm'
 
 case $OSTYPE in
@@ -167,7 +167,7 @@ fi
 alias p='python3'
 alias py='python3'
 alias python='python3'
-alias pip='pip3'
+
 if command -v ipython3 >/dev/null; then
   alias ipy='ipython3'
   alias ipython='ipython3'
@@ -197,52 +197,29 @@ if command -v pipenv >/dev/null; then
   alias pt='pytest'
   # pipenv run.
   alias pr='pipenv run'
-  alias prc='pipenv run check'
-  alias prf='pipenv run fix'
+  alias prd='pipenv run dev'
+  alias prf='pipenv run format'
   alias prl='pipenv run lint'
   alias prs='pipenv run start'
-  alias prsd='pipenv run start-debug'
   alias prt='pipenv run test'
   alias prtc='pipenv run test --cov=src --cov-report=html'
   alias prtv='pipenv run test --verbose'
   alias prtw='pipenv run ptw'
 fi
 
-# npm.
-alias n='node'
-if command -v npm >/dev/null; then
-  alias nx='npx'
-  alias ni='npm install'
-  alias nid='npm install --save-dev'
-  alias nig='npm install --global'
-  alias nu='npm uninstall'
-  alias nud='npm update'
-  alias na='npm audit'
-  alias nl='npm link'
-  # npm run.
-  alias nr='npm run'
-  alias nri='npm run ios'
-  alias nb='npm run build'
-  alias nrb='npm run build'
-  alias nrba='npm run build:analyze'
-  alias nrd='npm run dev'
-  # alias nrdl='npm run dev:local'
-  alias nrc='npm run check'
-  alias nrf='npm run format'
-  alias nrl='npm run lint'
-  alias nrm='npm run make'
-  # npm start.
-  alias ns='npm start'
-  # alias nsl='npm run start:local'
-  alias nrs='npm run start'
-  # alias nrsl='npm run start:local'
-  # npm test.
-  alias nt='npm test'
-  alias nrt='npm run test'
-  alias nrtc='npm run test -- --coverage --coverageDirectory=coverage'
-  alias nrtv='npm run test -- --verbose'
-  alias nrtw='npm run test -- --watchAll=true'
-  alias nrw='npm run watch'
+# npm/yarn/pnpm/bun.
+if command -v ni >/dev/null; then
+  alias nid='ni -D'
+  alias nrd='nr dev'
+  alias nrf='nr format'
+  alias nrl='nr lint'
+  alias nrb='nr build'
+  alias nrs='nr start'
+  alias nrm='nr make'
+  alias nrt='nr test'
+  # alias nrtc='nr test -- --coverage --coverageDirectory=coverage'
+  # alias nrtv='nr test -- --verbose'
+  # alias nrtw='nr test -- --watchAll=true'
 fi
 
 # django.

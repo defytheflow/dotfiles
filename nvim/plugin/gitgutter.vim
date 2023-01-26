@@ -5,7 +5,11 @@ scriptencoding utf-8
 " Author:   Artyom Danilov (@defytheflow)
 
 set foldtext=gitgutter#fold#foldtext()
-set signcolumn=yes " makes both git status and line numbers to be visible.
+set signcolumn=yes " makes both git status and line number visible
+
+" if system("git rev-parse --is-inside-work-tree") == "true\n"
+"   set signcolumn=yes " makes both git status and line number visible
+" endif
 
 let g:gitgutter_map_keys = 0
 " let g:gitgutter_sign_added = '✚'

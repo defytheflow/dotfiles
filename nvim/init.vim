@@ -226,7 +226,7 @@ let g:python_pep8_indent_hang_closing = 0
 
 " text objects.
 Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-entire'
+" Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-function'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim' " adds i/ finally!
@@ -248,7 +248,7 @@ Plug 'uiiaoo/java-syntax.vim', { 'for': 'java' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'pantharshit00/vim-prisma'
-Plug 'ocaml/vim-ocaml'
+" Plug 'ocaml/vim-ocaml'
 
 call plug#end()
 "}}}
