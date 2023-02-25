@@ -194,11 +194,21 @@ function +vi-git-status() {
   ahead=${ahead_and_behind[1]}
   behind=${ahead_and_behind[2]}
 
-  ((( $ahead )) || (( $behind ))) && gitstatus+=( "[" )
-  (( $behind )) && gitstatus+=( "%B%F{$arrow_color}↓${behind}%f%b" )
-  (( $ahead )) && (( $behind )) && gitstatus+=( "/" )
-  (( $ahead )) && gitstatus+=( "%B%F{$arrow_color}↑${ahead}%f%b" )
-  ((( $ahead )) || (( $behind ))) && gitstatus+=( "]" )
+  if (( $ahead )) || (( $behind )); then
+    gitstatus+=( "[" )
+  fi
+  if (( $behind )); then
+    gitstatus+=( "%B%F{$arrow_color}↓${behind}%f%b" )
+  fi
+  if (( $ahead )) && (( $behind )); then
+    gitstatus+=( "/" )
+  fi
+  if (( $ahead )); then
+    gitstatus+=( "%B%F{$arrow_color}↑${ahead}%f%b" )
+  fi
+  if (( $ahead )) || (( $behind )); then
+    gitstatus+=( "]" )
+  fi
 
   # %F{N} - enables N color.
   # %f - resets color.
@@ -243,7 +253,7 @@ emojis=(
   # Animals & Nature.
   🦁 🐯 🐶 🐵 🐻 🦊 🐱 🐭 🐰 🐻 🐻‍❄️ 🐨 🐼 🐙 🐺 🦄 🦉
   🦘 🦔 🐅 🦌 🦆 🦢 🦜 🐩 🦎 🦖 🦕 🦍 🦧 🐊 🦂 🐍 🐢 🐘 🐉 '🐿 '  🐑 🐪 🦈 🐠 🐳 🐬 🐡 🐝 🦀 🦑
-  🌸 🌼 🌹 🌻 🌷 🦚 🌲 🌴 🌵 🍁 🌍 ✨ 💥 💫 ⭐ ⚡ '❄️ ' 🔥 🎄 ⛄ 🌊 '🌧 '
+  🌸 🌼 🌹 🌻 🌷 🦚 🌲 🌴 🌵 🍁 🌍 ✨ 💥 💫 ⭐ '❄️ ' 🔥 🎄 ⛄ 🌊 '🌧 '
   # Food & Drink.
   🍇 🍉 🍊 🍋 🍌 🍎 🍍 🍑 🍒 🍓 🥝 🥥 🥑 🥐 🍔 🍕 🥚 🍿 🍩 🍪 🎂 🍰 🥧 🍬 🍭 🍷 🍹 🥤 🧊
   # Activity.
@@ -289,14 +299,18 @@ if command -v opam >/dev/null; then
 fi
 
 # opam configuration (ocaml).
-[[ ! -r ${HOME}/.opam/opam-init/init.zsh ]] || source ${HOME}/.opam/opam-init/init.zsh  >/dev/null 2> /dev/null
+[[ ! -r "${HOME}/.opam/opam-init/init.zsh" ]] || source "${HOME}/.opam/opam-init/init.zsh" >/dev/null 2>&1
 
 # haskell.
 [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
 
 # bun completions
-[ -s "/Users/defytheflow/.bun/_bun" ] && source "/Users/defytheflow/.bun/_bun"
+[ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+if command -v fortune >/dev/null; then
+  fortune
+fi

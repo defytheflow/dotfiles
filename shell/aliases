@@ -58,7 +58,7 @@ alias sl='ls'
 
 # exa.
 if command -v exa >/dev/null; then
-  alias exa='exa --icons'
+  alias exa='EXA_ICON_SPACING=2 exa --icons'
   alias tree='exa -T --git-ignore -I ".git|__pycache__|node_modules"'
   alias t='tree'
   alias ta='tree -a'
