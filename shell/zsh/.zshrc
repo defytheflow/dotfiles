@@ -266,7 +266,8 @@ emojis=(
   💯 💤 🃏 '⚛️ ' 🔱 ⚪️
 )
 EMOJI=$(random_element $emojis)
-PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} $ '
+EXIT_CODE="%(?.%F{$NIGHT_OWL_GREEN}:)%f.%F{$RED}:(%f)"
+PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} ${EXIT_CODE} $ '
 # Uncomment to debug emojis display with '$' sign.
 # for emoji in $emojis; do echo "${emoji} $ "; done
 #}}}
