@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # File:     .zshenv
 # Created:  30.03.2020

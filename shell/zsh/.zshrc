@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # File:     .zshrc
 # Created:  22.03.2020
@@ -294,9 +294,7 @@ fi
 #}}}
 
 # ocaml.
-if command -v opam >/dev/null; then
-  eval $(opam env)
-fi
+command -v opam >/dev/null && eval $(opam env)
 
 # opam configuration (ocaml).
 [[ ! -r "${HOME}/.opam/opam-init/init.zsh" ]] || source "${HOME}/.opam/opam-init/init.zsh" >/dev/null 2>&1
@@ -311,6 +309,4 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-if command -v fortune >/dev/null; then
-  fortune
-fi
+command -v fortune >/dev/null && fortune

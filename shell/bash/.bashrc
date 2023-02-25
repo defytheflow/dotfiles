@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # File:     .bashrc
 # Created:  30.12.2019
@@ -106,7 +106,7 @@ function my_prompt() {
 
 # other.
 if [[ -n "${DOTFILES_HOME}" ]]; then
-  for entry in "${DOTFILES_HOME}"/shell/*;do
+  for entry in "${DOTFILES_HOME}"/shell/*; do
     [[ -f ${entry} ]] && source "${entry}"
   done
 fi

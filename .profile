@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # File:     .profile
 # Created:  28.03.2020
@@ -70,6 +70,7 @@ command -v bat >/dev/null && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # node.
 export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"
+export NODE_REPL_EXTERNAL_MODULE="$(which node-prototype-repl)"
 
 # pipenv.
 export PIPENV_VENV_IN_PROJECT=1
@@ -87,7 +88,7 @@ export PYLINTHOME="${XDG_DATA_HOME}/pylint"
 # python.
 export PYTHONPATH=
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
-export PYTHONBREAKPOINT="ipdb.set_trace"
+export PYTHONBREAKPOINT='ipdb.set_trace'
 
 # ruby.
 export GEM_HOME="${XDG_CONFIG_HOME}/gem"

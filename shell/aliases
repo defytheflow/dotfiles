@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # File:     aliases
 # Created:  30.12.2019
@@ -18,7 +18,7 @@ alias msh='mongosh'
 alias rh='runhaskell'
 
 alias sudo='sudo ' # to run 'sudo {alias}'
-alias q='exit 0' # without 0, it exits with status code 1, and makes vscode show an error alert.
+alias q='exit 0'   # without 0, it exits with status code 1, and makes vscode show an error alert.
 
 alias so='source'
 alias edit="$EDITOR"
@@ -246,7 +246,7 @@ linux*)
   ;;
 esac
 
-#  git.
+# git.
 alias g='git'
 
 # git-add.
@@ -367,7 +367,7 @@ if command -v gh >/dev/null; then
   alias ghrlp='gh repo list --limit 100 --private'
 fi
 
-if command -v gh >/dev/null; then
+if command -v ghcal >/dev/null; then
   alias ghst='ghcal -u defytheflow -e $(date "+%Y.%m.%d")'
 fi
 

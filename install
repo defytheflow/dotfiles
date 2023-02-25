@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # File:         install
 # Created:      12.09.2020
@@ -70,7 +70,7 @@ check_environ() {
 check_internet() {
   log 'Checking internet connection.'
 
-  if ! ping -c 1 -q google.com > /dev/null 2>&1; then
+  if ! ping -c 1 -q google.com >/dev/null 2>&1; then
     err 'no internet connection.'
     exit 1
   fi
@@ -123,7 +123,7 @@ install_npm_packages() {
     eslint \
     jest jsonlint \
     live-server \
-    nodemon npm-check-updates npkill \
+    nodejs/repl nodemon npm-check-updates npkill \
     pnpm prettier neovim \
     sass stylelint sqlite3 \
     typescript trash-cli ts-node \
@@ -182,7 +182,7 @@ create_symlinks() {
   symlink 'nvim' "${XDG_CONFIG_HOME}/nvim"
   symlink 'tmux' "${XDG_CONFIG_HOME}/tmux"
   symlink 'ranger' "${XDG_CONFIG_HOME}/ranger"
-  symlink 'ghc'  "${HOME}/.ghc"
+  symlink 'ghc' "${HOME}/.ghc"
   symlink 'pgcli' "${XDG_CONFIG_HOME}/pgcli"
 
   if command -v ipython >/dev/null; then
