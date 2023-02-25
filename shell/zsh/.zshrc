@@ -47,14 +47,14 @@ setopt menu_complete # auto-insert first possible completion.
 # ls directory after cd.
 autoload -U add-zsh-hook
 if command -v exa >/dev/null; then
-  add-zsh-hook -Uz chpwd (){ exa --group-directories-first; }
+  add-zsh-hook -Uz chpwd (){ exa --icons; }
 else
   case $OSTYPE in
   darwin*)
-    add-zsh-hook -Uz chpwd (){ ls -vhG; }
+    add-zsh-hook -Uz chpwd (){ ls -hG; }
     ;;
   linux*)
-    add-zsh-hook -Uz chpwd (){ ls --color=auto -vh --group-directories-first; }
+    add-zsh-hook -Uz chpwd (){ ls -vh --color=auto; }
     ;;
   esac
 fi
@@ -293,3 +293,10 @@ fi
 
 # haskell.
 [ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
+
+# bun completions
+[ -s "/Users/defytheflow/.bun/_bun" ] && source "/Users/defytheflow/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

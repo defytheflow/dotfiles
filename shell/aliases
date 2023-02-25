@@ -6,9 +6,6 @@
 
 alias yrm='yes | rm'
 
-alias d='docker'
-alias dc='docker-compose'
-
 alias ts='npx tsc'
 alias mp='mypy'
 
@@ -21,16 +18,12 @@ alias msh='mongosh'
 alias rh='runhaskell'
 
 alias sudo='sudo ' # to run 'sudo {alias}'
-alias _='sudo'
-
 alias q='exit 0' # without 0, it exits with status code 1, and makes vscode show an error alert.
 
 alias so='source'
-alias cls='clear'
 alias edit="$EDITOR"
 alias grep='grep --color=auto'
 alias ssh='TERM=xterm-color ssh' # fix 'tput: unknown terminal bug'
-alias xrld='source ~/.xprofile'
 
 case $OSTYPE in
 linux*)
@@ -40,7 +33,6 @@ esac
 
 # history.
 alias h='history'
-alias history='history -E'
 
 # cd.
 alias ..='cd ..'
@@ -53,47 +45,31 @@ alias -- -='cd -' # type '-' to go to previous dir.
 # ls.
 case $OSTYPE in
 darwin*)
-  alias ls='ls -vhG'
+  alias ls='ls -hG'
   ;;
 linux*)
-  alias ls='ls -vh --group-directories-first --color=auto'
+  alias ls='ls -vh --color=auto'
   ;;
 esac
-alias l='ls -1'
-alias la='ls -AF'
-alias ll='ls -l'
-alias lal='ls -al'
 alias sl='ls'
-
-# tree.
-alias t='tree'
-if command -v tree >/dev/null; then
-  alias tree="tree -C -I '.git|__pycache__|node_modules|plugged'"
-else
-  alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
-fi
+# alias l='ls -1'
+# alias la='ls -a'
+# alias ll='ls -l'
 
 # exa.
 if command -v exa >/dev/null; then
-  # tree.
-  alias t='exa -T --git-ignore -I ".git|__pycache__|node_modules|plugged"'
-  alias ta='t --all'
-  alias tree='t --all'
-  # ls.
-  alias l='ls --oneline'
-  alias ls='exa  --group-directories-first'
-  alias ll='ls --long --git'
-  alias la='ls --all'
+  alias exa='exa --icons'
+  alias tree='exa -T --git-ignore -I ".git|__pycache__|node_modules"'
+  alias t='tree'
+  alias ta='tree -a'
+  alias ls='exa --git'
 fi
 
 # files.
 alias cp='cp -iv'
-alias copy='cp'
 alias du='du -h'
 alias mv='mv -iv'
-alias move='mv'
 alias tc='touch'
-alias del='rm'
 
 case $OSTYPE in
 darwin*)
@@ -109,11 +85,6 @@ esac
 if command -v rmtrash >/dev/null; then
   alias rm='rmtrash'
   alias rmdir='rmdirtrash'
-fi
-
-# bat.
-if command -v bat >/dev/null; then
-  alias cat='bat'
 fi
 
 # sqlite3.
@@ -147,9 +118,17 @@ if command -v ranger >/dev/null; then
   alias rn='ranger'
 fi
 
+# docker.
+if command -v docker >/dev/null; then
+  alias d='docker'
+  alias dc='docker-compose'
+fi
+
 # vscode.
-alias c='code'
-alias c.='code .'
+if command -v code >/dev/null; then
+  alias c='code'
+  alias c.='code .'
+fi
 
 # vim.
 alias vi='vim'
@@ -172,9 +151,11 @@ if command -v ipython3 >/dev/null; then
   alias ipy='ipython3'
   alias ipython='ipython3'
 fi
+
 if command -v bpython >/dev/null; then
   alias bpy='bpython'
 fi
+
 if command -v ptpython >/dev/null; then
   alias ppy='ptpython'
 fi
@@ -182,10 +163,6 @@ fi
 # homebrew.
 if command -v brew >/dev/null; then
   alias bi='brew install'
-  alias bu='brew uninstall'
-  alias bs='brew services'
-  # alias bri='brew reinstall'
-  # alias bl='brew list'
 fi
 
 # pipenv.
@@ -195,7 +172,6 @@ if command -v pipenv >/dev/null; then
   alias pu='pipenv uninstall'
   alias psh='pipenv shell'
   alias pt='pytest'
-  # pipenv run.
   alias pr='pipenv run'
   alias prd='pipenv run dev'
   alias prf='pipenv run format'
@@ -395,8 +371,10 @@ if command -v gh >/dev/null; then
   alias ghst='ghcal -u defytheflow -e $(date "+%Y.%m.%d")'
 fi
 
-## amixer.
-## alias amixer_toggle='amixer -D pulse set Master 1+ toggle'
+# amixer.
+# alias amixer_toggle='amixer -D pulse set Master 1+ toggle'
 
-## config.
-## alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
+# config.
+# alias wget='wget --hsts-file=${XDG_CACHE_HOME}/wget-hsts'
+
+# alias xrld='source ~/.xprofile'
