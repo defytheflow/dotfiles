@@ -102,9 +102,9 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " Fuzzy finder.
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-map <silent> <C-p> :Files<CR>
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+" map <silent> <C-p> :Files<CR>
 " map <silent> <C-p> :execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files' <CR>
 " nnoremap <silent> gb        :Buffers<CR>
 " nnoremap <silent> <leader>b :Buffers<CR>
@@ -274,10 +274,10 @@ endif
 set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
 try
-  " colorscheme night-owl
+  colorscheme night-owl
   " Good ones:
   " colorscheme base16-classic-dark
-  colorscheme base16-gruvbox-dark-hard
+  " colorscheme base16-gruvbox-dark-hard
   " colorscheme gruvbox
   " colorscheme base16-ocean
 catch
@@ -445,6 +445,12 @@ augroup vimrc_indent
   au!
   au FileType ocaml,lua,*sh,vim,*css,html*,git*,toml,sql,prisma setlocal shiftwidth=2 softtabstop=2
   au FileType vimwiki runtime ftplugin/text.vim
+augroup END
+
+augroup vimrc_folds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
 augroup END
 
 fun! InstallPlugins()

@@ -21,7 +21,6 @@ alias sudo='sudo ' # to run 'sudo {alias}'
 alias q='exit 0'   # without 0, it exits with status code 1, and makes vscode show an error alert.
 
 alias so='source'
-alias edit="$EDITOR"
 alias grep='grep --color=auto'
 alias ssh='TERM=xterm-color ssh' # fix 'tput: unknown terminal bug'
 
@@ -66,14 +65,14 @@ if command -v exa >/dev/null; then
 fi
 
 # files.
-alias cp='cp -iv'
-alias du='du -h'
-alias mv='mv -iv'
-alias tc='touch'
+# alias cp='cp -i'
+# alias du='du -h'
+# alias mv='mv -i'
+# alias tc='touch'
 
 case $OSTYPE in
 darwin*)
-  alias rm='rm -vi'
+  # alias rm='rm -vi'
   ;;
 linux*)
   alias rm='rm -vi --preserve-root'
@@ -82,16 +81,16 @@ linux*)
 esac
 
 # rmtrash.
-if command -v rmtrash >/dev/null; then
-  alias rm='rmtrash'
-  alias rmdir='rmdirtrash'
-fi
+# if command -v rmtrash >/dev/null; then
+#   alias rm='rmtrash'
+#   alias rmdir='rmdirtrash'
+# fi
 
 # sqlite3.
-if command -v sqlite3 >/dev/null; then
-  alias sql='sqlite3'
-  alias sqlite='sqlite3'
-fi
+# if command -v sqlite3 >/dev/null; then
+#   alias sql='sqlite3'
+#   alias sqlite='sqlite3'
+# fi
 
 # gdb.
 if command -v gdb >/dev/null; then
@@ -132,14 +131,14 @@ fi
 
 # vim.
 alias vi='vim'
-alias svim='sudo vim'
 alias via='vim ${DOTFILES_HOME}/shell/aliases'
 alias vif='vim ${DOTFILES_HOME}/shell/functions'
 alias vis='vim ${ZDOTDIR}/.zshrc'
+
 if command -v nvim >/dev/null; then
   alias vi='nvim'
   alias vim='nvim'
-  alias vie='vim ${XDG_CONFIG_HOME}/nvim/init.vim' # edit nvim config file.
+  alias vie='nvim ${XDG_CONFIG_HOME}/nvim/init.vim' # edit nvim config file.
 fi
 
 # python.

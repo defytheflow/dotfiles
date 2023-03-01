@@ -21,6 +21,12 @@ zplug 'plugins/command-not-found', from:oh-my-zsh
 zplug 'plugins/fzf', from:oh-my-zsh
 zplug 'kutsan/zsh-system-clipboard'
 
+zplug "zsh-users/zsh-history-substring-search"
+bindkey '^[[A' history-substring-search-up # up arrow
+bindkey '^[[B' history-substring-search-down # down arrow
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
 # autosuggestions.
 zplug 'zsh-users/zsh-autosuggestions'
 bindkey '^F' autosuggest-accept
@@ -36,7 +42,7 @@ zplug 'agkozak/zsh-z'
 export ZSHZ_DATA="${HOME}/.cache/z"
 
 zplug check || zplug install
-zplug load
+zplug load # --verbose
 #}}}
 
 # options {{{
@@ -47,7 +53,7 @@ setopt menu_complete # auto-insert first possible completion.
 # ls directory after cd.
 autoload -U add-zsh-hook
 if command -v exa >/dev/null; then
-  add-zsh-hook -Uz chpwd (){ exa --icons; }
+  add-zsh-hook -Uz chpwd (){ EXA_ICON_SPACING=2 exa --icons; }
 else
   case $OSTYPE in
   darwin*)
@@ -145,7 +151,8 @@ NIGHT_OWL_GOLD=221
 NIGHT_OWL_PURPLE=140
 GREEN=2
 ORANGE=214
-RED=202
+# This red looks/feels like zsh syntax plugin's red.
+RED=203
 
 # %s - displays the current version control system, like 'git' or 'svn'.
 # %b - displays branch.
@@ -266,8 +273,9 @@ emojis=(
   💯 💤 🃏 '⚛️ ' 🔱 ⚪️
 )
 EMOJI=$(random_element $emojis)
-EXIT_CODE="%(?.%F{$NIGHT_OWL_GREEN}:)%f.%F{$RED}:(%f)"
-PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} ${EXIT_CODE} $ '
+EXIT_CODE="%(?..%F{$RED}[%?]%f)"
+# EXIT_CODE="%(?.%F{$NIGHT_OWL_GREEN}:)%f.%F{$RED}:(%f)"
+PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} ${EXIT_CODE}> '
 # Uncomment to debug emojis display with '$' sign.
 # for emoji in $emojis; do echo "${emoji} $ "; done
 #}}}
@@ -311,3 +319,13 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 command -v fortune >/dev/null && fortune
+
+# pnpm
+export PNPM_HOME="/Users/defytheflow/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# command not found
+HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+if [ -f "$HB_CNF_HANDLER" ]; then
+  source "$HB_CNF_HANDLER";
+fi

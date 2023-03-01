@@ -5,14 +5,14 @@
 # Author:   Artyom Danilov (@defytheflow)
 
 # Execute command's --help option.
-help() {
-  [ "$#" -ne 0 ] && eval "$*" --help
-}
+# help() {
+#   [ "$#" -ne 0 ] && eval "$*" --help
+# }
 
 # Execute `npx <command> --version`
-vx() {
-  [ "$#" -ne 0 ] && eval npx "$*" --version
-}
+# vx() {
+#   [ "$#" -ne 0 ] && eval npx "$*" --version
+# }
 
 # Combined mkdir and cd.
 mkcdir() {
@@ -22,7 +22,13 @@ mkcdir() {
 
 # Reload current running shell.
 rld() {
-  [ -n "${ZSH_NAME}" ] && exec zsh || [ -n "${BASH}" ] && exec bash
+  if [ -n "$ZSH_NAME" ]; then
+    exec zsh
+  elif [ -n "$BASH" ]; then
+    exec bash
+  else
+    echo "Unhandled shell type" >&2
+  fi
 }
 
 # Print each path entry on a newline.
@@ -40,15 +46,15 @@ _256() {
 }
 
 # Print number of entries in a directory.
-num() {
-  [ -n "${1}" ] && dir=${1} || dir=.
-  \ls -A "${dir}" | wc -l
-}
+# num() {
+#   [ -n "${1}" ] && dir=${1} || dir=.
+#   \ls -A "${dir}" | wc -l
+# }
 
 # Print each whereis entry on a newline.
-whereis() {
-  command whereis "$@" | sed -e 's/ /\n/g'
-}
+# whereis() {
+#   command whereis "$@" | sed -e 's/ /\n/g'
+# }
 
 # Set terminal title.
 title() {
@@ -56,10 +62,10 @@ title() {
 }
 
 # Set background image.
-setbg() {
-  if [ -f "${1}" ] && command -v nitrogen >/dev/null; then
-    nitrogen --head=xinerama --set-auto "${1}" && cp "${1}" "${WALLPAPER_HOME}"
-  else
-    return 1
-  fi
-}
+# setbg() {
+#   if [ -f "${1}" ] && command -v nitrogen >/dev/null; then
+#     nitrogen --head=xinerama --set-auto "${1}" && cp "${1}" "${WALLPAPER_HOME}"
+#   else
+#     return 1
+#   fi
+# }

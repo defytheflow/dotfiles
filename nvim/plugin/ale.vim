@@ -18,7 +18,6 @@ let g:ale_linters = {
 \  'vim':        ['vimls', 'vint'],
 \}
 
-
 let g:ale_fixers = {
 \ 'c':               ['clang-format'],
 \ 'cpp':             ['clang-format'],
