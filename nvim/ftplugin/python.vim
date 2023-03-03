@@ -8,7 +8,9 @@ setlocal shiftwidth=4
 setlocal softtabstop=4
 
 setlocal textwidth=90
-setlocal makeprg=python3\ %
 
 setlocal foldmethod=indent
 setlocal foldnestmax=2
+setlocal nofoldenable
+
+setlocal makeprg=python3\ %

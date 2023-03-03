@@ -8,6 +8,7 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 
 setlocal foldmethod=syntax
+setlocal foldnestmax=2
 setlocal nofoldenable
 
 setlocal makeprg=node\ %

@@ -53,7 +53,7 @@ setopt menu_complete # auto-insert first possible completion.
 # ls directory after cd.
 autoload -U add-zsh-hook
 if command -v exa >/dev/null; then
-  add-zsh-hook -Uz chpwd (){ EXA_ICON_SPACING=2 exa --icons; }
+  add-zsh-hook -Uz chpwd (){ exa; }
 else
   case $OSTYPE in
   darwin*)
@@ -273,9 +273,9 @@ emojis=(
   💯 💤 🃏 '⚛️ ' 🔱 ⚪️
 )
 EMOJI=$(random_element $emojis)
-EXIT_CODE="%(?..%F{$RED}[%?]%f)"
+# EXIT_CODE="%(?..%F{$RED}[%?]%f)"
 # EXIT_CODE="%(?.%F{$NIGHT_OWL_GREEN}:)%f.%F{$RED}:(%f)"
-PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} ${EXIT_CODE}> '
+PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} > '
 # Uncomment to debug emojis display with '$' sign.
 # for emoji in $emojis; do echo "${emoji} $ "; done
 #}}}

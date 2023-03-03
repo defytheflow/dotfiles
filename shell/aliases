@@ -4,6 +4,7 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
+alias ip='curl http://ipecho.net/plain; echo'
 alias yrm='yes | rm'
 
 alias ts='npx tsc'
@@ -57,7 +58,7 @@ alias sl='ls'
 
 # exa.
 if command -v exa >/dev/null; then
-  alias exa='EXA_ICON_SPACING=2 exa --icons'
+  # don't use --icons, because exa's folder icons are too close to the folder name,
   alias tree='exa -T --git-ignore -I ".git|__pycache__|node_modules"'
   alias t='tree'
   alias ta='tree -a'

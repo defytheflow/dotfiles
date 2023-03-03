@@ -172,14 +172,15 @@ nnoremap <silent><nowait> <leader>cp  :<C-u>CocListResume<cr>
 " Restart.
 nnoremap <silent><nowait> <leader>cr  :<C-u>CocRestart<CR>
 
-" Make <tab> used for trigger completion, completion confirm, snippet expand and jump liek VSCode.
+" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+      \ CheckBackSpace() ? "\<TAB>" :
       \ coc#refresh()
 
-function! s:check_back_space() abort
+" `s:check_back_space()` name doesn't work, gives 'function not found' error
+function! CheckBackSpace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction

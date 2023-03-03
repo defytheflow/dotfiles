@@ -33,4 +33,6 @@ augroup vimrc_nerdtree
   au BufEnter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()) | q | endif
 augroup END
 
-nnoremap <silent> <C-n> :NERDTreeToggle<CR>
+if exists(':NERDTreeToggle')
+  nnoremap <silent> <C-n> :NERDTreeToggle<CR>
+endif

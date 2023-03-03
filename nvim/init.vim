@@ -22,7 +22,8 @@ endif
 " plugins {{{
 call plug#begin(config_dir . '/plugged')
 
-Plug 'wix/import-cost', { 'do': 'npm install', 'rtp': 'packages/coc-import-cost' }
+" syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 
 " Fuzzy finder.
 Plug 'nvim-lua/plenary.nvim'
@@ -39,11 +40,11 @@ Plug 'neoclide/coc-highlight'
 Plug 'neoclide/coc-snippets'
 Plug 'neoclide/coc-json'
 Plug 'honza/vim-snippets'
-runtime coc.vim
+" runtime coc.vim
 
 " Linting and formatting.
 Plug 'dense-analysis/ale'
-runtime ale.vim
+" runtime ale.vim
 
 " Defines camelCase and snake_keys motions (w, b, e).
 Plug 'bkad/CamelCaseMotion'
@@ -111,7 +112,7 @@ nmap ga <Plug>(EasyAlign)
 
 " Zen mode.
 Plug 'junegunn/goyo.vim'
-runtime goyo.vim
+" runtime goyo.vim
 
 " Git plugin.
 Plug 'tpope/vim-fugitive'
@@ -125,7 +126,7 @@ nnoremap <leader>gl :GV<CR>
 
 " Shows git diff in the sign column.
 Plug 'airblade/vim-gitgutter'
-runtime gitgutter.vim
+" runtime gitgutter.vim
 
 " Highlights yank operations.
 Plug 'machakann/vim-highlightedyank'
@@ -141,7 +142,7 @@ let g:indentLine_fileTypeExclude = ['text', 'vimwiki']
 " File system explorer.
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
-runtime nerdtree.vim
+" runtime nerdtree.vim
 
 " Highlights unique characters in every word to easier use f, F, t and T.
 Plug 'unblevable/quick-scope'
@@ -149,7 +150,7 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Runs tests.
 Plug 'vim-test/vim-test'
-runtime test.vim
+" runtime test.vim
 
 " Emmet support.
 Plug 'mattn/emmet-vim'
@@ -169,11 +170,11 @@ nnoremap <silent> <leader> :WhichKey '\'<CR>
 
 " Displays a floating temrinal.
 Plug 'voldikss/vim-floaterm'
-runtime floaterm.vim
+" runtime floaterm.vim
 
 " Switch between alternative files.
 Plug 'tpope/vim-projectionist'
-runtime projectionist.vim
+" runtime projectionist.vim
 
 " Personal wiki.
 Plug 'vimwiki/vimwiki'
@@ -217,8 +218,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' }
 
 " Python syntax highlighting.
-Plug 'vim-python/python-syntax', { 'for': 'python' }
-let g:python_highlight_all = 1
+" Plug 'vim-python/python-syntax', { 'for': 'python' }
+" let g:python_highlight_all = 1
 
 " Python indentation that complies with pep8.
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -240,15 +241,14 @@ Plug 'haishanh/night-owl.vim'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
 " syntaxes.
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mboughaba/i3config.vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
+" Plug 'MaxMEllon/vim-jsx-pretty'
+" Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 Plug 'uiiaoo/java-syntax.vim', { 'for': 'java' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'pantharshit00/vim-prisma'
-" Plug 'ocaml/vim-ocaml'
 
 call plug#end()
 "}}}
@@ -447,11 +447,11 @@ augroup vimrc_indent
   au FileType vimwiki runtime ftplugin/text.vim
 augroup END
 
-augroup vimrc_folds
-  autocmd!
-  autocmd BufWinLeave * mkview
-  autocmd BufWinEnter * silent! loadview
-augroup END
+" augroup vimrc_folds
+"   autocmd!
+"   autocmd BufWinLeave * mkview
+"   autocmd BufWinEnter * silent! loadview
+" augroup END
 
 fun! InstallPlugins()
   if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
