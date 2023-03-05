@@ -41,7 +41,13 @@ export KEYTIMEOUT=1
 zplug 'agkozak/zsh-z'
 export ZSHZ_DATA="${HOME}/.cache/z"
 
-zplug check || zplug install
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+
 zplug load # --verbose
 #}}}
 
@@ -67,9 +73,9 @@ fi
 #}}}
 
 # history {{{
-export HISTFILE="${ZSH_CACHE}/history"
-export HISTSIZE=10000
-export SAVEHIST=10000
+HISTFILE="${ZSH_CACHE}/history"
+HISTSIZE=1000
+SAVEHIST=1000
 
 setopt share_history # share history across shells.
 setopt inc_append_history # commands added to history immediately.
@@ -100,7 +106,7 @@ zstyle ':completion:*:descriptions' format %F{default}%B%--- %d ---%b%f
 function _set_block_cursor() { echo -ne '\e[1 q' }
 function _set_beam_cursor() { echo -ne '\e[5 q' }
 function zle-keymap-select {
-  if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+  if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
     _set_block_cursor
   elif [ $KEYMAP = main ] || [ $KEYMAP = viins ] || [ $KEYMAP = '' ] || [ $1 = 'beam' ]; then
     _set_beam_cursor
@@ -236,7 +242,7 @@ function +vi-git-untracked(){
 
 precmd() { vcs_info }
 
-# Enable prompt substitution.
+# Allows to include commands and variables in the shell prompt.
 setopt prompt_subst
 
 function random_element {
@@ -272,10 +278,13 @@ emojis=(
   # Symbols.
   💯 💤 🃏 '⚛️ ' 🔱 ⚪️
 )
-EMOJI=$(random_element $emojis)
+time_='[%D{%H:%M}]'
+pwd_="%F{$NIGHT_OWL_PURPLE}%~%f"
+emoji_=$(random_element $emojis)
+jobs_='%(1j.[%j] .)'
+PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}> '
 # EXIT_CODE="%(?..%F{$RED}[%?]%f)"
 # EXIT_CODE="%(?.%F{$NIGHT_OWL_GREEN}:)%f.%F{$RED}:(%f)"
-PROMPT='%B%F{$NIGHT_OWL_PURPLE}%~%f%b${vcs_info_msg_0_} ${EMOJI} > '
 # Uncomment to debug emojis display with '$' sign.
 # for emoji in $emojis; do echo "${emoji} $ "; done
 #}}}
@@ -306,26 +315,25 @@ fi
 command -v opam >/dev/null && eval $(opam env)
 
 # opam configuration (ocaml).
-[[ ! -r "${HOME}/.opam/opam-init/init.zsh" ]] || source "${HOME}/.opam/opam-init/init.zsh" >/dev/null 2>&1
+[[ ! -r "${HOME}/.opam/opam-init/init.zsh" ]] || source "${HOME}/.opam/opam-init/init.zsh"
 
 # haskell.
-[ -f "${HOME}/.ghcup/env" ] && source "${HOME}/.ghcup/env"
+[[ -f "${HOME}/.ghcup/env" ]] && source "${HOME}/.ghcup/env"
 
 # bun completions
-[ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
+[[ -s "${HOME}/.bun/_bun" ]] && source "${HOME}/.bun/_bun"
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-command -v fortune >/dev/null && fortune
+export BUN_INSTALL="${HOME}/.bun"
+export PATH="${BUN_INSTALL}/bin:${PATH}"
 
 # pnpm
-export PNPM_HOME="/Users/defytheflow/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PNPM_HOME="${HOME}/.local/share/pnpm"
+export PATH="${PNPM_HOME}:${PATH}"
 
 # command not found
 HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
-if [ -f "$HB_CNF_HANDLER" ]; then
-  source "$HB_CNF_HANDLER";
-fi
+[[ -f "$HB_CNF_HANDLER" ]] && source "$HB_CNF_HANDLER";
+
+command -v fortune >/dev/null && fortune
+command -v title >/dev/null && title "Rest at the end, not in the middle."

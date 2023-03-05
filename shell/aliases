@@ -19,7 +19,9 @@ alias msh='mongosh'
 alias rh='runhaskell'
 
 alias sudo='sudo ' # to run 'sudo {alias}'
-alias q='exit 0'   # without 0, it exits with status code 1, and makes vscode show an error alert.
+# this alias creates a bad muscle memory, which is non-portable to other shells or environments
+# that don't have this alias
+# alias q='exit 0'   # without 0, it exits with status code 1, and makes vscode show an error alert.
 
 alias so='source'
 alias grep='grep --color=auto'
