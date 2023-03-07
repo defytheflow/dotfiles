@@ -1,7 +1,18 @@
 {
-  "snippets.textmateSnippetsRoots": ["/Users/defytheflow/.dotfiles/vscode/snippets"],
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+
+  "snippets.textmateSnippetsRoots": [
+    "/Users/defytheflow/.dotfiles/vscode/snippets"
+  ],
+
+  "[javascript][typescript][html]": {
+    "coc.preferences.formatOnSave": true
+  },
+
   // for coc-import-cost
   // "codeLens.enable": true,
+
   "languageserver": {
     "ocaml-lsp": {
       "command": "opam",

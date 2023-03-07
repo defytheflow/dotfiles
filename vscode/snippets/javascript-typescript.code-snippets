@@ -1,13 +1,23 @@
 {
   /*
     🦉 NOTES:
-   "description" and "prefix" values are used to select/find a snippet inside
-   'Insert Snippet' and 'Surround with Snippet' commands.
+
+   • "description" and "prefix" values are used to select/find a snippet inside 'Insert
+   Snippet' and 'Surround with Snippet' commands.
+
+   • "${TM_SELECTED_TEXT:${1}}" doesn't work with coc.nvim snippets, it just skips this
+   tab stop, so don't use it if not necessary.
   */
 
   /**
    ** Miscellaneous.
    */
+  "Wait": {
+    "description": "Wait",
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": ["wait"],
+    "body": ["await new Promise(res => setTimeout(res, ${1:1000}))"]
+  },
 
   "Class Name": {
     "description": "Class Name",
@@ -41,7 +51,7 @@
     "description": "Export Default",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["ed"],
-    "body": ["export default ${TM_SELECTED_TEXT:${1}}"]
+    "body": ["export default $1}"]
   },
 
   /**
@@ -84,14 +94,14 @@
     "description": "Function",
     "scope": "javascript,javascriptreact",
     "prefix": ["fn"],
-    "body": ["function ${1:name}(${2:params}) {", "\t${TM_SELECTED_TEXT:${3}}", "}"]
+    "body": ["function ${1:name}(${2:params}) {", "\t$3", "}"]
   },
 
   "Async Function": {
     "description": "Async Function",
     "scope": "javascript,javascriptreact",
     "prefix": ["afn"],
-    "body": ["async function ${1:name}(${2:params}) {", "\t${TM_SELECTED_TEXT:${3}}", "}"]
+    "body": ["async function ${1:name}(${2:params}) {", "\t$3", "}"]
   },
 
   "Export Function": {
@@ -100,7 +110,7 @@
     "prefix": ["efn"],
     "body": [
       "export function ${1:name}(${2:params}) {",
-      "\t${TM_SELECTED_TEXT:${3}}",
+      "\t$3",
       "}"
     ]
   },
@@ -111,7 +121,7 @@
     "prefix": ["eafn"],
     "body": [
       "export async function ${1:name}(${2:params}) {",
-      "\t${TM_SELECTED_TEXT:${3}}",
+      "\t$3",
       "}"
     ]
   },
@@ -124,7 +134,7 @@
     "description": "TypeScript Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["fn"],
-    "body": ["function ${1:name}(${2:params})${3} {", "\t${TM_SELECTED_TEXT:${4}}", "}"]
+    "body": ["function ${1:name}(${2:params})${3} {", "\t$4", "}"]
   },
 
   "TypeScript Async Function": {
@@ -133,7 +143,7 @@
     "prefix": ["afn", "asfn"],
     "body": [
       "async function ${1:name}(${2:params}: ${3:type}) {",
-      "\t${TM_SELECTED_TEXT:${4}}",
+      "\t$4",
       "}"
     ]
   },
@@ -144,7 +154,7 @@
     "prefix": ["efn"],
     "body": [
       "export function ${1:name}(${2:params}: ${3:type}) {",
-      "\t${TM_SELECTED_TEXT:${4}}",
+      "\t$4",
       "}"
     ]
   },
@@ -155,7 +165,7 @@
     "prefix": ["eafn", "easfn"],
     "body": [
       "export async function ${1:name}(${2:params}: ${3:type}) {",
-      "\t${TM_SELECTED_TEXT:${4}}",
+      "\t$4",
       "}"
     ]
   },
@@ -344,20 +354,27 @@
   },
 
   /**
+   ** Next.js
+   */
+  "Get Server Side Props": {
+    "description": "Get Server Side Props",
+    "scope": "typescript,typescriptreact",
+    "prefix": ["gssp"],
+    "body": [
+      "export function getServerSideProps({ req, res }: GetServerSidePropsContext) {",
+      "\t$1",
+      "}"
+    ]
+  },
+
+  /**
    ** Remix.
    */
 
-  "Remix Meta Function": {
-    "description": "Remix Meta Function",
+  "Remix Links": {
+    "description": "Remix Links",
     "scope": "typescript,typescriptreact",
-    "prefix": ["rmeta"],
-    "body": ["export const meta: MetaFunction = () => {", "\treturn { title: $1 }", "}"]
-  },
-
-  "Remix Links Function": {
-    "description": "Remix Links Function",
-    "scope": "typescript,typescriptreact",
-    "prefix": ["rlink"],
+    "prefix": ["rmxlink"],
     "body": [
       "export const links: LinksFunction = () => {",
       "\treturn [{ rel: 'stylesheet', href: $1 }]",
@@ -365,47 +382,54 @@
     ]
   },
 
-  "Remix Loader Function": {
-    "description": "Remix Loader Function",
+  "Remix Loader": {
+    "description": "Remix Loader",
     "scope": "typescript,typescriptreact",
-    "prefix": ["rload"],
+    "prefix": ["rmxload"],
     "body": [
-      "export async function loader({ request, params }: LoaderArgs) {",
-      "\t${TM_SELECTED_TEXT:${1}}",
+      "export async function loader({ request }: LoaderArgs) {",
+      "\treturn json({$1})",
       "}"
     ]
   },
 
-  "Remix Action Function": {
-    "description": "Remix Action Function",
+  "Remix Action": {
+    "description": "Remix Action",
     "scope": "typescript,typescriptreact",
-    "prefix": ["ract"],
+    "prefix": ["rmxact"],
     "body": [
       "export async function action({ request }: ActionArgs) {",
-      "\t${TM_SELECTED_TEXT:${1}}",
+      "\t$1",
       "}"
     ]
   },
 
-  "Remix Catch Boundary": {
-    "description": "Remix Catch Boundary",
+  "Remix Meta": {
+    "description": "Remix Meta",
     "scope": "typescript,typescriptreact",
-    "prefix": ["rcatch"],
+    "prefix": ["rmxmeta"],
+    "body": ["export const meta: MetaFunction = () => {", "\treturn $1", "}"]
+  },
+
+  "Remix CatchBoundary": {
+    "description": "Remix CatchBoundary",
+    "scope": "typescript,typescriptreact",
+    "prefix": ["rmxcatch"],
     "body": [
       "export function CatchBoundary() {",
       "\tconst caught = useCatch()",
-      "\t${TM_SELECTED_TEXT:${1}}",
+      "\t$1",
       "}"
     ]
   },
 
-  "Remix Error Boundary": {
-    "description": "Remix Error Boundary",
+  "Remix ErrorBoundary": {
+    "description": "Remix ErrorBoundary",
     "scope": "typescript,typescriptreact",
-    "prefix": ["rerr"],
+    "prefix": ["rmxerr"],
     "body": [
       "export function ErrorBoundary({ error }: { error: unknown }) {",
-      "\t${TM_SELECTED_TEXT:${1}}",
+      "\t$1",
       "}"
     ]
   }

@@ -33,18 +33,16 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-" Lsp, completion, diagnostics, refactoring, snippets.
+" LSP, completion, diagnostics, refactoring, snippets.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-tsserver'
 Plug 'neoclide/coc-highlight'
 Plug 'neoclide/coc-snippets'
 Plug 'neoclide/coc-json'
 Plug 'honza/vim-snippets'
-" runtime coc.vim
 
 " Linting and formatting.
-Plug 'dense-analysis/ale'
-" runtime ale.vim
+" Plug 'dense-analysis/ale'
 
 " Defines camelCase and snake_keys motions (w, b, e).
 Plug 'bkad/CamelCaseMotion'
@@ -78,24 +76,6 @@ Plug 'https://gitlab.com/gi1242/vim-emoji-ab.git'
 " Automatically renames closing/opening tags.
 Plug 'AndrewRadev/tagalong.vim'
 
-" Completion.
-"  if has('nvim')
-"    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"  else
-"    Plug 'Shougo/deoplete.nvim'
-"    Plug 'roxma/nvim-yarp'
-"    Plug 'roxma/vim-hug-neovim-rpc'
-"  endif
-"  let g:deoplete#enable_at_startup = 0
-"  call deoplete#custom#option({'smart_case': v:true})
-"  call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment'])
-
-"  Plug 'junegunn/vim-after-object'
-"  augroup vimrc_after_object
-"    au!
-"    au VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
-"  augroup END
-
 " Aligns text.
 Plug 'junegunn/vim-easy-align'
 let g:easy_align_ignore_groups = []
@@ -112,7 +92,6 @@ nmap ga <Plug>(EasyAlign)
 
 " Zen mode.
 Plug 'junegunn/goyo.vim'
-" runtime goyo.vim
 
 " Git plugin.
 Plug 'tpope/vim-fugitive'
@@ -126,7 +105,6 @@ nnoremap <leader>gl :GV<CR>
 
 " Shows git diff in the sign column.
 Plug 'airblade/vim-gitgutter'
-" runtime gitgutter.vim
 
 " Highlights yank operations.
 Plug 'machakann/vim-highlightedyank'
@@ -140,9 +118,8 @@ let g:indentLine_leadingSpaceEnabled = '1'
 let g:indentLine_fileTypeExclude = ['text', 'vimwiki']
 
 " File system explorer.
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
-" runtime nerdtree.vim
+" Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+" Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
 
 " Highlights unique characters in every word to easier use f, F, t and T.
 Plug 'unblevable/quick-scope'
@@ -150,14 +127,13 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " Runs tests.
 Plug 'vim-test/vim-test'
-" runtime test.vim
 
 " Emmet support.
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
+" uses <C-Y> which conflicts with vim built-in
 
 " Code Snippets. (coc does that)
 " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" runtime ultisnips.vim
 
 " Highlights colornames and codes. (coc does that)
 "  Plug 'chrisbra/Colorizer'
@@ -170,11 +146,9 @@ nnoremap <silent> <leader> :WhichKey '\'<CR>
 
 " Displays a floating temrinal.
 Plug 'voldikss/vim-floaterm'
-" runtime floaterm.vim
 
 " Switch between alternative files.
 Plug 'tpope/vim-projectionist'
-" runtime projectionist.vim
 
 " Personal wiki.
 Plug 'vimwiki/vimwiki'
@@ -196,12 +170,6 @@ Plug 'tpope/vim-surround'
 
 " Pairs of handy bracket mappings.
 Plug 'tpope/vim-unimpaired'
-
-" Replace text witht he contents of a register.
-" Plug 'inkarkat/vim-ReplaceWithRegister'
-
-" Jump to any location specified by two characters.
-" Plug 'justinmk/vim-sneak'
 
 " Plug 'danro/rename.vim'
 " Plug 'miyakogi/seiya.vim'
@@ -227,7 +195,6 @@ let g:python_pep8_indent_hang_closing = 0
 
 " text objects.
 Plug 'kana/vim-textobj-user'
-" Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-function'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim' " adds i/ finally!
@@ -380,19 +347,11 @@ hi link netrwMarkFile Search
 
 " mappings {{{
 
-" buffers.
-nnoremap <silent> <leader>d     :bd!<CR>
-
 " vimrc.
 command! Rld :source $MYVIMRC
 nnoremap <silent> <leader>ve :edit   $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :split  $MYVIMRC<CR>
 nnoremap <silent> <leader>vv :vsplit $MYVIMRC<CR>
-
-" search.
-" Use normal regular expression.
-" nnoremap / /\v
-" vnoremap / /\v
 
 " move to the next/previous search result and center the screen.
 nnoremap n nzz
@@ -400,25 +359,12 @@ nnoremap N Nzz
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
-" search for word under cursor without jumping to next occurence.
-" nnoremap # #N
-" nnoremap * *N
-
-" Remove highlight.
-" nnoremap <silent> <CR> :nohlsearch<CR>
-" nnoremap <silent> <C-l> :nohlsearch<CR>
-
 " visual.
 vnoremap < <gv
 vnoremap > >gv
 
-" vnoremap J :m '>+1<CR>gv=gv
-" vnoremap K :m '<-2<CR>gv=gv
-
 " misc.
-" nnoremap Q <nop>
 tnoremap <Esc> <C-\><C-n>
-" nnoremap <leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
 "}}}
 
 " autocmds {{{
