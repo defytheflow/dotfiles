@@ -9,11 +9,6 @@
 #   [ "$#" -ne 0 ] && eval "$*" --help
 # }
 
-# Execute `npx <command> --version`
-# vx() {
-#   [ "$#" -ne 0 ] && eval npx "$*" --version
-# }
-
 # Combined mkdir and cd.
 mkcdir() {
   # -P - resolve symbolic links
@@ -44,17 +39,6 @@ _256() {
     [ ${val} -eq 0 ] && printf '\e[0m\n'
   done
 }
-
-# Print number of entries in a directory.
-# num() {
-#   [ -n "${1}" ] && dir=${1} || dir=.
-#   \ls -A "${dir}" | wc -l
-# }
-
-# Print each whereis entry on a newline.
-# whereis() {
-#   command whereis "$@" | sed -e 's/ /\n/g'
-# }
 
 # Set terminal title.
 title() {

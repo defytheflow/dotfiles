@@ -63,7 +63,7 @@ if command -v exa >/dev/null; then
 else
   case $OSTYPE in
   darwin*)
-    add-zsh-hook -Uz chpwd (){ ls -hG; }
+    add-zsh-hook -Uz chpwd (){ ls -h --color=auto; }
     ;;
   linux*)
     add-zsh-hook -Uz chpwd (){ ls -vh --color=auto; }
@@ -73,6 +73,9 @@ fi
 #}}}
 
 # history {{{
+# By default prints only 15 last entries (https://stackoverflow.com/a/26848769)
+alias history='history 1'
+
 HISTFILE="${ZSH_CACHE}/history"
 HISTSIZE=1000
 SAVEHIST=1000
@@ -168,7 +171,9 @@ RED=203
 # %m - displays information about stashes in case of git.
 
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' formats " %s(%F{$NIGHT_OWL_GREEN}%b%c%u%f)%m"
+#                                                      branch bold escape
+#                                                           v v
+zstyle ':vcs_info:git:*' formats " %s(%B%F{$NIGHT_OWL_GREEN}%b%%b%c%u%f)%m"
 zstyle ':vcs_info:git:*' actionformats " %s(%F{$NIGHT_OWL_GREEN}%b|%a%c%u%f)%m"
 zstyle ':vcs_info:git:*' check-for-changes true # enable to use %c and %u sequences.
 zstyle ':vcs_info:git:*' stagedstr "%F{$GREEN}*"
@@ -280,10 +285,11 @@ emojis=(
 )
 
 time_='[%D{%H:%M}]'
-pwd_="%F{$NIGHT_OWL_PURPLE}%~%f"
+pwd_="%B%F{$NIGHT_OWL_PURPLE}%~%f%b"
 emoji_=$(random_element $emojis)
 jobs_='%(1j.[%j] .)'
-char_="%(?.>.%F{$RED}>%f)"
+GREYISH_WHITE=252
+char_="%B%(?.%F{$GREYISH_WHITE}>%f.%F{$RED}>%f)%b"
 PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}${char_} '
 # EXIT_CODE="%(?..%F{$RED}[%?]%f)"
 # EXIT_CODE="%(?.%F{$NIGHT_OWL_GREEN}:)%f.%F{$RED}:(%f)"
