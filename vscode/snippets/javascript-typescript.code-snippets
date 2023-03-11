@@ -108,22 +108,14 @@
     "description": "Export Function",
     "scope": "javascript,javascriptreact",
     "prefix": ["efn"],
-    "body": [
-      "export function ${1:name}(${2:params}) {",
-      "\t$3",
-      "}"
-    ]
+    "body": ["export function ${1:name}(${2:params}) {", "\t$3", "}"]
   },
 
   "Export Async Function": {
     "description": "Export Async Function",
     "scope": "javascript,javascriptreact",
     "prefix": ["eafn"],
-    "body": [
-      "export async function ${1:name}(${2:params}) {",
-      "\t$3",
-      "}"
-    ]
+    "body": ["export async function ${1:name}(${2:params}) {", "\t$3", "}"]
   },
 
   /**
@@ -141,33 +133,21 @@
     "description": "TypeScript Async Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["afn", "asfn"],
-    "body": [
-      "async function ${1:name}(${2:params}: ${3:type}) {",
-      "\t$4",
-      "}"
-    ]
+    "body": ["async function ${1:name}(${2:params}: ${3:type}) {", "\t$4", "}"]
   },
 
   "TypeScript Export Function": {
     "description": "TypeScript Export Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["efn"],
-    "body": [
-      "export function ${1:name}(${2:params}: ${3:type}) {",
-      "\t$4",
-      "}"
-    ]
+    "body": ["export function ${1:name}(${2:params}: ${3:type}) {", "\t$4", "}"]
   },
 
   "TypeScript Export Async Function": {
     "description": "TypeScript Export Async Function",
     "scope": "typescript,typescriptreact",
     "prefix": ["eafn", "easfn"],
-    "body": [
-      "export async function ${1:name}(${2:params}: ${3:type}) {",
-      "\t$4",
-      "}"
-    ]
+    "body": ["export async function ${1:name}(${2:params}: ${3:type}) {", "\t$4", "}"]
   },
 
   /**
@@ -397,11 +377,7 @@
     "description": "Remix Action",
     "scope": "typescript,typescriptreact",
     "prefix": ["rmxact"],
-    "body": [
-      "export async function action({ request }: ActionArgs) {",
-      "\t$1",
-      "}"
-    ]
+    "body": ["export async function action({ request }: ActionArgs) {", "\t$1", "}"]
   },
 
   "Remix Meta": {

@@ -272,19 +272,22 @@ emojis=(
   # Activity.
   🏄‍♂️ 🏂 🏆 🏀 🥊 🎣 🧩 🎲 🎨 🎭 🎧 🎸 🎻 🎹 🥁 🎬
   # Travel & Places.
-  🌋 🗻 '🏕️ ' '🏝️ ' 🏠 🌃 🌆 🎡 🚂 🚃 '🏎 ' ⛵ '✈️ ' 🚁 🚀 🛸 🪐 '⛱️ '  🎇 🗿
+  🌋 🗻 '🏕️ ' '🏝️ ' 🏠 🌃 🌆 🎡 🚂 🚃 '🏎 ' ⛵ '✈️ ' 🚁 🚀 🛸 🪐 '⛱️ '  🎇 🗿 '❄️ '
   # Objects.
   💌 💣 🧭 🎈 🎉 🎊 🎏 🧧 🎀 🎁 🔮 💎 💻 💿 🔍 '🕯️ ' 💡 📚 💰 '✏️ ' '🖍️ ' 🔒 🔑 🪓 🔫 🧲 🧬 🔭 🧸
   # Symbols.
   💯 💤 🃏 '⚛️ ' 🔱 ⚪️
 )
+
 time_='[%D{%H:%M}]'
 pwd_="%F{$NIGHT_OWL_PURPLE}%~%f"
 emoji_=$(random_element $emojis)
 jobs_='%(1j.[%j] .)'
-PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}> '
+char_="%(?.>.%F{$RED}>%f)"
+PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}${char_} '
 # EXIT_CODE="%(?..%F{$RED}[%?]%f)"
 # EXIT_CODE="%(?.%F{$NIGHT_OWL_GREEN}:)%f.%F{$RED}:(%f)"
+
 # Uncomment to debug emojis display with '$' sign.
 # for emoji in $emojis; do echo "${emoji} $ "; done
 #}}}

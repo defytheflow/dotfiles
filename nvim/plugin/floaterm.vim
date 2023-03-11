@@ -14,7 +14,7 @@ com! Ranger FloatermNew --height=0.8 --width=0.8 ranger
 com! Python FloatermNew python
 com! Node   FloatermNew node
 
-nnoremap <silent> <leader>r :Ranger<CR>
+" nnoremap <silent> <leader>r :Ranger<CR>
 nnoremap <silent> <C-t>     :FloatermToggle<CR>
 " nnoremap <silent> <C-q>     :FloatermKill<CR>
 

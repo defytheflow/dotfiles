@@ -22,8 +22,12 @@ endif
 " plugins {{{
 call plug#begin(config_dir . '/plugged')
 
+" Status line.
+Plug 'nvim-lualine/lualine.nvim'
+
 " syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
+Plug 'nvim-treesitter/nvim-treesitter-context'
 
 " Fuzzy finder.
 Plug 'nvim-lua/plenary.nvim'
@@ -132,19 +136,11 @@ Plug 'vim-test/vim-test'
 " Plug 'mattn/emmet-vim'
 " uses <C-Y> which conflicts with vim built-in
 
-" Code Snippets. (coc does that)
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-
-" Highlights colornames and codes. (coc does that)
-"  Plug 'chrisbra/Colorizer'
-"  let g:colorizer_auto_filetype='css,html,js,text,scss'
-"  let g:colorizer_use_virtual_text = 1
-
 " Displays available keybindings.
 Plug 'liuchengxu/vim-which-key'
-nnoremap <silent> <leader> :WhichKey '\'<CR>
+nnoremap <silent> <leader> :WhichKey ' '<CR>
 
-" Displays a floating temrinal.
+" Displays a floating terminal.
 Plug 'voldikss/vim-floaterm'
 
 " Switch between alternative files.
@@ -152,9 +148,6 @@ Plug 'tpope/vim-projectionist'
 
 " Personal wiki.
 Plug 'vimwiki/vimwiki'
-
-" Status line.
-Plug 'itchyny/lightline.vim'
 
 " Auto close quotes and parentheses.
 Plug 'cohama/lexima.vim'
@@ -171,23 +164,8 @@ Plug 'tpope/vim-surround'
 " Pairs of handy bracket mappings.
 Plug 'tpope/vim-unimpaired'
 
-" Plug 'danro/rename.vim'
-" Plug 'miyakogi/seiya.vim'
-
-" Python.
-
-" Python folding.
-" Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
-" let g:SimpylFold_docstring_preview = 1
-" let g:SimpylFold_fold_docstring = 0
-" let g:SimpylFold_fold_import = 0
-
 " Python text objects and motions.
 Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' }
-
-" Python syntax highlighting.
-" Plug 'vim-python/python-syntax', { 'for': 'python' }
-" let g:python_highlight_all = 1
 
 " Python indentation that complies with pep8.
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
@@ -362,9 +340,6 @@ nnoremap <C-u> <C-u>zz
 " visual.
 vnoremap < <gv
 vnoremap > >gv
-
-" misc.
-tnoremap <Esc> <C-\><C-n>
 "}}}
 
 " autocmds {{{
@@ -393,11 +368,12 @@ augroup vimrc_indent
   au FileType vimwiki runtime ftplugin/text.vim
 augroup END
 
-" augroup vimrc_folds
-"   autocmd!
-"   autocmd BufWinLeave * mkview
-"   autocmd BufWinEnter * silent! loadview
-" augroup END
+" https://stackoverflow.com/a/54739345
+augroup vimrc_folds
+  autocmd!
+  au BufWinLeave ?* mkview 1
+  au BufWinEnter ?* silent! loadview 1
+augroup END
 
 fun! InstallPlugins()
   if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
@@ -418,6 +394,7 @@ augroup vimrc_misc
   au VimEnter    * :NoMatchParen
   au SourcePost   $MYVIMRC call InstallPlugins()
 augroup END
+
 
 augroup vimrc_binary
   au!
@@ -449,3 +426,8 @@ augroup vimrc_emoji_ab
   au FileType * runtime macros/emoji-ab.vim
   " au FileType html,markdown,text,gitcommit runtime macros/emoji-ab.vim
 augroup END
+
+" Status line.
+lua << END
+require('lualine').setup()
+END

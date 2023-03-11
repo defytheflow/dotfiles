@@ -70,7 +70,6 @@ command -v bat >/dev/null && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # node.
 export NODE_REPL_HISTORY="${XDG_CACHE_HOME}/node_repl_history"
-export NODE_REPL_EXTERNAL_MODULE="$(which node-prototype-repl)"
 
 # pipenv.
 export PIPENV_VENV_IN_PROJECT=1
