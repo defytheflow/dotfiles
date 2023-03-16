@@ -4,6 +4,8 @@
 # Created:  29.07.2020
 # Author:   Artyom Danilov (@defytheflow)
 
+. "$(dirname "${0}")/utils"
+
 log "Running ${1} module."
 
 update_system() {
@@ -42,15 +44,15 @@ install_packages() {
     yay \
     zathura zathura-pdf-mupdf zsh
 
-  for pack; do
-    log "Checking that $(color "${pack}") exists."
-    sudo pacman -Qi "${pack}" >/dev/null || sudo pacman -S --noconfirm "${pack}"
+  for package; do
+    log "Checking that $(color "${package}") exists."
+    sudo pacman -Qi "${package}" >/dev/null || sudo pacman -S --noconfirm "${package}"
   done
 
   set -- code rmtrash betterlockscreen java-language-server ccrypt
 
-  for pack; do
-    log "Checking that $(color "${pack}") AUR package exists."
-    yay -Qi "${pack}" >/dev/null || yay -S --noconfirm "${pack}"
+  for package; do
+    log "Checking that $(color "${package}") AUR package exists."
+    yay -Qi "${package}" >/dev/null || yay -S --noconfirm "${package}"
   done
 }

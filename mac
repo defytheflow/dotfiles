@@ -4,6 +4,8 @@
 # Created:  16.03.2021
 # Author:   Artyom Danilov (@defytheflow)
 
+. "$(dirname "${0}")/utils"
+
 log "Running ${1} module."
 
 install_packages() {
@@ -23,7 +25,7 @@ install_packages() {
   set -- \
     bat \
     deno diceware dos2unix \
-    exa \
+    exa ex-vi \
     fd fzf \
     gh git-delta graphviz \
     iterm2 \
@@ -31,15 +33,12 @@ install_packages() {
     neovim node \
     pipenv pgcli postgresql \
     ranger rename ripgrep \
+    shellcheck shfmt \
     tmux \
     wget
 
-  for pack; do
-    log "Checking that $(color "${pack}") exists."
-    package_exists "${pack}" || brew install "${pack}"
+  for package; do
+    log "Checking that $(color "${package}") exists."
+    brew ls --versions "${package}" >/dev/null || brew install "${package}"
   done
-}
-
-package_exists() {
-  brew ls --versions "${1}" >/dev/null
 }

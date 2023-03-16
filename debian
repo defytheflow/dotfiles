@@ -4,6 +4,8 @@
 # Created:  26.03.2020
 # Author:   Artyom Danilov (@defytheflow)
 
+. "$(dirname "${0}")/utils"
+
 log "Running ${1} module."
 
 update_system() {
@@ -78,6 +80,10 @@ install_packages() {
   install_zsh
   install_shfmt
 
+  debian_package_exists() {
+    sudo dpkg -l "${1}" >/dev/null 2>&1 && sudo dpkg -S "${1}" >/dev/null 2>&1
+  }
+
   set -- \
     cargo clang \
     gdb \
@@ -92,12 +98,8 @@ install_packages() {
     valgrind \
     xclip
 
-  for pack; do
-    log "Checking that $(color "${pack}") exists."
-    package_exists "${pack}" || sudo apt-get install -y "${pack}"
+  for package; do
+    log "Checking that $(color "${package}") exists."
+    debian_package_exists "${package}" || sudo apt-get install -y "${package}"
   done
-}
-
-package_exists() {
-  sudo dpkg -l "${1}" >/dev/null 2>&1 && sudo dpkg -S "${1}" >/dev/null 2>&1
 }

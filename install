@@ -99,12 +99,12 @@ install_pip_packages() {
     ipdb ipython isort \
     jupyter \
     mypy \
-    pipenv pytest \
-    # To install on m1 mac "CFLAGS='' pip install pynvim"
-    pynvim \
-    # To install on m1 mac "CFLAGS='' pip install python-language-server"
-    python-language-server
-    tldr \
+    pipenv pytest
+  # To install on m1 mac "CFLAGS='' pip install pynvim"
+  pynvim
+  # To install on m1 mac "CFLAGS='' pip install python-language-server"
+  python-language-server
+  tldr \
     vim-vint \
     yapf
 
