@@ -128,15 +128,15 @@ if command -v code >/dev/null; then
 fi
 
 # vim.
-alias vi='vim'
-alias via='vim ${DOTFILES_HOME}/shell/aliases'
-alias vif='vim ${DOTFILES_HOME}/shell/functions'
-alias vis='vim ${ZDOTDIR}/.zshrc'
+alias via='vim ${DOTFILES_HOME}/shell/aliases' # vi aliases
+alias vif='vim ${DOTFILES_HOME}/shell/functions' # vi functions
+alias vin='vim -u NONE' # vi none
+alias vis='vim ${ZDOTDIR}/.zshrc' # vi shell
 
 if command -v nvim >/dev/null; then
   alias vi='nvim'
   alias vim='nvim'
-  alias vie='nvim ${XDG_CONFIG_HOME}/nvim/init.vim' # edit nvim config file.
+  alias vie='nvim ${XDG_CONFIG_HOME}/nvim/init.vim' # vi edit (nvim config file)
 fi
 
 # python.

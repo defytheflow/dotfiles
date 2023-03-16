@@ -6,8 +6,6 @@ set updatetime=300
 " diagnostics appear/become resolved
 set signcolumn=yes
 
-let g:coc_snippet_next = '<tab>'
-
 " Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode.
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#_select_confirm() :
@@ -19,6 +17,12 @@ function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use <tab> to jump to next placeholder.
+let g:coc_snippet_next = '<tab>'
+
+" Use <s-tab> to jump to previous placeholder.
+let g:coc_snippet_prev = '<s-tab>'
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice

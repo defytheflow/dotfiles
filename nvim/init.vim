@@ -110,10 +110,6 @@ nnoremap <leader>gl :GV<CR>
 " Shows git diff in the sign column.
 Plug 'airblade/vim-gitgutter'
 
-" Highlights yank operations.
-Plug 'machakann/vim-highlightedyank'
-let g:highlightedyank_highlight_duration = 200
-
 " Displays vertical lines and dots at each indentation level.
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char =  '¦'
@@ -228,11 +224,10 @@ try
 catch
   colorscheme koehler
 endtry
-" hi Normal guibg=none
 
 " command-line.
-set cmdheight=2
-set history=1000
+" set cmdheight=2
+" set history=1000
 set wildmenu
 set wildmode=longest,list,full
 set wildignore+=*/.git/*,*/.venv/*,*/node_modules/*,*cache*,*coverage*
@@ -338,8 +333,8 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
 " visual.
-vnoremap < <gv
-vnoremap > >gv
+" vnoremap < <gv
+" vnoremap > >gv
 "}}}
 
 " autocmds {{{
@@ -370,9 +365,14 @@ augroup END
 
 " https://stackoverflow.com/a/54739345
 augroup vimrc_folds
-  autocmd!
+  au!
   au BufWinLeave ?* mkview 1
   au BufWinEnter ?* silent! loadview 1
+augroup END
+
+augroup vimrc_highlight_yank
+  au!
+  au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
 augroup END
 
 fun! InstallPlugins()
@@ -394,7 +394,6 @@ augroup vimrc_misc
   au VimEnter    * :NoMatchParen
   au SourcePost   $MYVIMRC call InstallPlugins()
 augroup END
-
 
 augroup vimrc_binary
   au!
