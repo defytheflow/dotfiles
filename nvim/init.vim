@@ -22,6 +22,22 @@ endif
 " plugins {{{
 call plug#begin(config_dir . '/plugged')
 
+" Terminal toggle.
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+
+" Indent guides.
+Plug 'lukas-reineke/indent-blankline.nvim'
+
+" neovim colorschemes.
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'tanvirtin/monokai.nvim'
+
+" Colored icons. Used by bufferline.nvim, lualine.nvim and telescope.nvim
+Plug 'nvim-tree/nvim-web-devicons'
+
+" Buffer line.
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
+
 " Status line.
 Plug 'nvim-lualine/lualine.nvim'
 
@@ -32,10 +48,16 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 " Fuzzy finder.
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'fannheyward/telescope-coc.nvim'
+Plug 'xiyaowong/telescope-emoji.nvim'
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fd <cmd>Telescope coc diagnostics<cr>
+nnoremap <leader>fe <cmd>Telescope emoji<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
+nnoremap <leader>fs <cmd>Telescope coc document_symbols<cr>
 
 " LSP, completion, diagnostics, refactoring, snippets.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -62,10 +84,6 @@ nmap <leader>mp <Plug>MarkdownPreviewToggle
 " Enables emoji abbreviations, digraphs and completion.
 Plug 'https://gitlab.com/gi1242/vim-emoji-ab.git'
 " It has a runtime command at the bottom of the file.
-
-" Plug 'junegunn/vim-emoji'
-" Make sure to declare it after vim-plug plugins block.
-" set completefunc=emoji#complete
 
 " Automatically inserts the closing tag.
 " Plug 'alvan/vim-closetag'
@@ -109,13 +127,6 @@ nnoremap <leader>gl :GV<CR>
 
 " Shows git diff in the sign column.
 Plug 'airblade/vim-gitgutter'
-
-" Displays vertical lines and dots at each indentation level.
-Plug 'Yggdroot/indentLine'
-let g:indentLine_char =  '¦'
-let g:indentLine_leadingSpaceChar = '·'
-let g:indentLine_leadingSpaceEnabled = '1'
-let g:indentLine_fileTypeExclude = ['text', 'vimwiki']
 
 " File system explorer.
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -284,6 +295,8 @@ set listchars+=trail:•
 set listchars+=nbsp:⦸
 set listchars+=extends:»
 set listchars+=precedes:«
+set listchars=lead:·
+" set listchars+=eol:↴
 
 " cursorline.
 set cursorline
@@ -426,7 +439,5 @@ augroup vimrc_emoji_ab
   " au FileType html,markdown,text,gitcommit runtime macros/emoji-ab.vim
 augroup END
 
-" Status line.
-lua << END
-require('lualine').setup()
-END
+" Sources lua/init.lua with lua plugins configurations.
+lua require('init')

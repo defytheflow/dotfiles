@@ -11,7 +11,7 @@ let g:floaterm_autoinsert = v:true
 let g:floaterm_winblend = 0
 
 com! Ranger FloatermNew --height=0.8 --width=0.8 ranger
-com! Python FloatermNew python
+com! Python FloatermNew python3
 com! Node   FloatermNew node
 
 " nnoremap <silent> <leader>r :Ranger<CR>
