@@ -25,9 +25,6 @@ call plug#begin(config_dir . '/plugged')
 " Terminal toggle.
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
-" Indent guides.
-Plug 'lukas-reineke/indent-blankline.nvim'
-
 " neovim colorschemes.
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'tanvirtin/monokai.nvim'
@@ -36,7 +33,7 @@ Plug 'tanvirtin/monokai.nvim'
 Plug 'nvim-tree/nvim-web-devicons'
 
 " Buffer line.
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
+" Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 
 " Status line.
 Plug 'nvim-lualine/lualine.nvim'
@@ -128,6 +125,12 @@ nnoremap <leader>gl :GV<CR>
 " Shows git diff in the sign column.
 Plug 'airblade/vim-gitgutter'
 
+" Displays vertical lines and dots at each indentation level.
+" Plug 'Yggdroot/indentLine'
+" let g:indentLine_leadingSpaceChar = '·'
+" let g:indentLine_leadingSpaceEnabled = '1'
+" let g:indentLine_fileTypeExclude = ['text', 'vimwiki']
+
 " File system explorer.
 " Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
@@ -179,8 +182,6 @@ Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 let g:python_pep8_indent_hang_closing = 0
 
 " text objects.
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-function'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'wellle/targets.vim' " adds i/ finally!
 
@@ -226,8 +227,9 @@ endif
 set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
 try
-  colorscheme night-owl
+  colorscheme tokyonight-moon
   " Good ones:
+  " colorscheme night-owl
   " colorscheme base16-classic-dark
   " colorscheme base16-gruvbox-dark-hard
   " colorscheme gruvbox
@@ -295,7 +297,7 @@ set listchars+=trail:•
 set listchars+=nbsp:⦸
 set listchars+=extends:»
 set listchars+=precedes:«
-set listchars=lead:·
+" set listchars=lead:·
 " set listchars+=eol:↴
 
 " cursorline.
@@ -376,12 +378,8 @@ augroup vimrc_indent
   au FileType vimwiki runtime ftplugin/text.vim
 augroup END
 
-" https://stackoverflow.com/a/54739345
-augroup vimrc_folds
-  au!
-  au BufWinLeave ?* mkview 1
-  au BufWinEnter ?* silent! loadview 1
-augroup END
+" Note: When you decide to put autocmds for saving folds state, make sure that nohlsearch
+" and Telescope find_files still work.
 
 augroup vimrc_highlight_yank
   au!
@@ -438,6 +436,3 @@ augroup vimrc_emoji_ab
   au FileType * runtime macros/emoji-ab.vim
   " au FileType html,markdown,text,gitcommit runtime macros/emoji-ab.vim
 augroup END
-
-" Sources lua/init.lua with lua plugins configurations.
-lua require('init')

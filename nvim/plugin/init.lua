@@ -29,22 +29,22 @@ require('nvim-treesitter.configs').setup({
 })
 
 -- Buffer line.
-require("bufferline").setup ({
-  options = {
-    always_show_bufferline = false,
-    numbers = "buffer_id",
-    diagnostics = "coc",
-    diagnostics_indicator = function(count, level, diagnostics_dict, context)
-      local s = " "
-      for e, n in pairs(diagnostics_dict) do
-        local sym = e == "error" and " " or (e == "warning" and " " or "" )
-        s = s .. sym .. n
-      end
-      return s
-    end,
-    separator_style = "thick",
-  }
-})
+-- require("bufferline").setup({
+--   options = {
+--     always_show_bufferline = false,
+--     numbers = "buffer_id",
+--     diagnostics = "coc",
+--     diagnostics_indicator = function(count, level, diagnostics_dict, context)
+--       local s = " "
+--       for e, n in pairs(diagnostics_dict) do
+--         local sym = e == "error" and " " or (e == "warning" and " " or "" )
+--         s = s .. sym .. n
+--       end
+--       return s
+--     end,
+--     separator_style = "thick",
+--   }
+-- })
 
 -- Status line.
 require('lualine').setup()
@@ -52,28 +52,6 @@ require('lualine').setup()
 -- Fuzzy finder.
 require("telescope").load_extension("emoji")
 require('telescope').load_extension('coc')
-
--- Indent guides.
-require("indent_blankline").setup ({
-  char = '¦',
-  show_trailing_blankline_indent = false,
-  -- show_first_indent_level = false,
-  use_treesitter = true,
-  show_current_context = true,
-  -- show_current_context_start = true,
-  filetype_exclude = {
-    -- defaults
-    "lspinfo",
-    "packer",
-    "checkhealth",
-    "help",
-    "man",
-    "",
-    -- custom
-    "text",
-    "vimwiki",
-  },
-})
 
 -- Terminal toggle.
 require('toggleterm').setup({
