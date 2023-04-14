@@ -9,7 +9,10 @@
     "/Users/defytheflow/.dotfiles/vscode/snippets"
   ],
 
-  "[javascript][typescript][html][json][jsonc][sh]": {
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "/opt/homebrew/bin/black",
+
+  "[javascript][typescript][html][json][jsonc][sh][python]": {
     "coc.preferences.formatOnSave": true
   },
 
@@ -36,11 +39,23 @@
     }
   },
 
+  // for swift https://github.com/neoclide/coc.nvim/issues/1178
+  "diagnostic.checkCurrentLine": true,
+  "suggest.timeout": 2000,
+
   "languageserver": {
     "ocaml-lsp": {
       "command": "opam",
       "args": ["config", "exec", "--", "ocamllsp"],
       "filetypes": ["ocaml", "reason"]
+    },
+
+    "swift": {
+      "command": "sourcekit-lsp",
+      "args": [],
+      "filetypes": ["swift"],
+      "initializationOptions": {},
+      "settings": {}
     }
   }
 }

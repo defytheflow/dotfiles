@@ -22,8 +22,10 @@ endif
 " plugins {{{
 call plug#begin(config_dir . '/plugged')
 
+Plug 'ThePrimeagen/vim-be-good'
+
 " Terminal toggle.
-Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+" Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
 " neovim colorschemes.
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -68,8 +70,8 @@ Plug 'honza/vim-snippets'
 " Plug 'dense-analysis/ale'
 
 " Defines camelCase and snake_keys motions (w, b, e).
-Plug 'bkad/CamelCaseMotion'
-let g:camelcasemotion_key = '<leader>'
+" Plug 'bkad/CamelCaseMotion'
+" let g:camelcasemotion_key = '<leader>'
 
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
@@ -239,8 +241,6 @@ catch
 endtry
 
 " command-line.
-" set cmdheight=2
-" set history=1000
 set wildmenu
 set wildmode=longest,list,full
 set wildignore+=*/.git/*,*/.venv/*,*/node_modules/*,*cache*,*coverage*
@@ -251,6 +251,9 @@ set foldmethod=marker
 
 " gui.
 set guifont=FiraCode:h11
+
+" cursor.
+set guicursor=i:block
 
 " indent.
 set expandtab " convert <tab> key-presses to spaces.
@@ -341,15 +344,21 @@ nnoremap <silent> <leader>ve :edit   $MYVIMRC<CR>
 nnoremap <silent> <leader>vs :split  $MYVIMRC<CR>
 nnoremap <silent> <leader>vv :vsplit $MYVIMRC<CR>
 
-" move to the next/previous search result and center the screen.
+" center the screen after a cursor jump.
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
+nnoremap <C-o> <C-o>zz
+nnoremap <C-i> <C-i>zz
+
+" misc.
+nnoremap <leader>d :bd<CR>
+nnoremap <leader>mk :w \| :make<CR>
 
 " visual.
-" vnoremap < <gv
-" vnoremap > >gv
+vnoremap < <gv
+vnoremap > >gv
 "}}}
 
 " autocmds {{{

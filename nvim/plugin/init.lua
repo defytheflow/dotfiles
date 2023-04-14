@@ -54,7 +54,7 @@ require("telescope").load_extension("emoji")
 require('telescope').load_extension('coc')
 
 -- Terminal toggle.
-require('toggleterm').setup({
-  open_mapping = [[<c-\>]],
-  -- shade_terminals = false,
-})
+-- require('toggleterm').setup({
+--   open_mapping = [[<c-\>]],
+--   -- shade_terminals = false,
+-- })

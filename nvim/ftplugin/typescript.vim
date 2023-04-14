@@ -10,7 +10,7 @@ setlocal softtabstop=2
 
 setlocal foldmethod=expr
 setlocal foldexpr=nvim_treesitter#foldexpr()
-setlocal foldnestmax=2
+" setlocal foldnestmax=2
 setlocal nofoldenable
 
 setlocal makeprg=ts-node\ %
