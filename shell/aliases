@@ -4,8 +4,11 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
+# attempts to discover a raspberry pi's ip address on the local network.
+alias find_raspberry_ip="arp -a | grep -E --ignore-case 'b8:27:eb|dc:a6:32'"
+
 # curls
-alias ip='curl -s http://ipecho.net/plain; echo'
+alias my_ip='curl -s http://ipecho.net/plain; echo'
 alias weather='curl -s http://wttr.in'
 
 # prisma
@@ -26,9 +29,15 @@ alias grep='grep --color=auto'
 alias ssh='TERM=xterm-color ssh' # fix 'tput: unknown terminal bug'
 
 case $OSTYPE in
-linux*)
-  alias open='xdg-open'
-  ;;
+  darwin*)
+    alias xcode='open -a xcode'
+    ;;
+esac
+
+case $OSTYPE in
+  linux*)
+    alias open='xdg-open'
+    ;;
 esac
 
 # cd.
@@ -41,12 +50,12 @@ alias -- -='cd -' # type '-' to go to previous dir.
 
 # ls.
 case $OSTYPE in
-darwin*)
-  alias ls='ls -h --color=auto'
-  ;;
-linux*)
-  alias ls='ls -vh --color=auto'
-  ;;
+  darwin*)
+    alias ls='ls -hF --color=auto'
+    ;;
+  linux*)
+    alias ls='ls -vhF --color=auto'
+    ;;
 esac
 alias sl='ls'
 # alias l='ls -1'
@@ -59,7 +68,7 @@ if command -v exa >/dev/null; then
   alias tree='exa -T --git-ignore -I ".git|__pycache__|node_modules"'
   alias t='tree'
   alias ta='tree -a'
-  alias ls='exa --git --header'
+  alias ls='exa --git --header -F'
 fi
 
 # files.
@@ -69,13 +78,13 @@ fi
 # alias tc='touch'
 
 case $OSTYPE in
-darwin*)
-  # alias rm='rm -vi'
-  ;;
-linux*)
-  alias rm='rm -vi --preserve-root'
-  alias rmdir='rmdir -v'
-  ;;
+  darwin*)
+    # alias rm='rm -vi'
+    ;;
+  linux*)
+    alias rm='rm -vi --preserve-root'
+    alias rmdir='rmdir -v'
+    ;;
 esac
 
 # rmtrash.
@@ -93,8 +102,8 @@ esac
 # gdb.
 if command -v gdb >/dev/null; then
   alias gdb='gdb --quiet'
-else
-  alias gdb='lldb'
+# else
+#   alias gdb='lldb'
 fi
 
 # java.
@@ -128,10 +137,10 @@ if command -v code >/dev/null; then
 fi
 
 # vim.
-alias via='vim ${DOTFILES_HOME}/shell/aliases' # vi aliases
+alias via='vim ${DOTFILES_HOME}/shell/aliases'   # vi aliases
 alias vif='vim ${DOTFILES_HOME}/shell/functions' # vi functions
-alias vin='vim -u NONE' # vi none
-alias vis='vim ${ZDOTDIR}/.zshrc' # vi shell
+alias vin='vim -u NONE'                          # vi none
+alias vis='vim ${ZDOTDIR}/.zshrc'                # vi shell
 
 if command -v nvim >/dev/null; then
   alias vi='nvim'
@@ -234,13 +243,13 @@ fi
 
 # systemd.
 case $OSTYPE in
-linux*)
-  alias sc='systemctl'
-  alias scdr='systemctl daemon-reload'
-  alias scr='systemctl restart'
-  alias scs='systemctl start'
-  alias sce='systemctl stop'
-  ;;
+  linux*)
+    alias sc='systemctl'
+    alias scdr='systemctl daemon-reload'
+    alias scr='systemctl restart'
+    alias scs='systemctl start'
+    alias sce='systemctl stop'
+    ;;
 esac
 
 # git.

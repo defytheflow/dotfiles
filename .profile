@@ -31,11 +31,11 @@ export PAGER='less'
 
 # brew.
 case $OSTYPE in
-darwin*)
-  eval $(/opt/homebrew/bin/brew shellenv)
-  # for haskell compiler.
-  export PATH="/opt/homebrew/opt/llvm/bin:${PATH}"
-  ;;
+  darwin*)
+    eval $(/opt/homebrew/bin/brew shellenv)
+    # for haskell compiler.
+    export PATH="/opt/homebrew/opt/llvm/bin:${PATH}"
+    ;;
 esac
 
 # cargo.
@@ -66,6 +66,7 @@ export CXXFLAGS='-g -W -Wall -Wextra -Wpedantic -std=c++20'
 export LDLIBS='-lm -lncurses -lsqlite3 -lcurl'
 
 # man.
+# bat doesn't adapt to light theme, always displays text in white.
 command -v bat >/dev/null && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # node.

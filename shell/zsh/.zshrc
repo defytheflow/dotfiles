@@ -59,14 +59,14 @@ setopt menu_complete # auto-insert first possible completion.
 # ls directory after cd.
 autoload -U add-zsh-hook
 if command -v exa >/dev/null; then
-  add-zsh-hook -Uz chpwd (){ exa; }
+  add-zsh-hook -Uz chpwd (){ exa -F; }
 else
   case $OSTYPE in
   darwin*)
-    add-zsh-hook -Uz chpwd (){ ls -h --color=auto; }
+    add-zsh-hook -Uz chpwd (){ ls -hF --color=auto; }
     ;;
   linux*)
-    add-zsh-hook -Uz chpwd (){ ls -vh --color=auto; }
+    add-zsh-hook -Uz chpwd (){ ls -vhF --color=auto; }
     ;;
   esac
 fi
@@ -289,6 +289,7 @@ pwd_="%B%F{$NIGHT_OWL_PURPLE}%~%f%b"
 emoji_=$(random_element $emojis)
 jobs_='%(1j.[%j] .)'
 GREYISH_WHITE=252
+# don't use a custom color for >, because it doesn't adjust to the terminal's colorscheme.
 char_="%B%(?.%F{$GREYISH_WHITE}>%f.%F{$RED}>%f)%b"
 PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}${char_} '
 # EXIT_CODE="%(?..%F{$RED}[%?]%f)"

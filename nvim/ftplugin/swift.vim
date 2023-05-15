@@ -12,3 +12,5 @@ setlocal foldexpr=nvim_treesitter#foldexpr()
 setlocal nofoldenable
 
 setlocal makeprg=swift\ %
+
+nnoremap <leader>mt :w \| :term swift %<CR>

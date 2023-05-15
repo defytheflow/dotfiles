@@ -7,10 +7,10 @@ scriptencoding utf-8
 setlocal shiftwidth=4
 setlocal softtabstop=4
 
-setlocal textwidth=90
+setlocal listchars=lead:·
 
-setlocal foldmethod=indent
-setlocal foldnestmax=2
+setlocal foldmethod=expr
+setlocal foldexpr=nvim_treesitter#foldexpr()
 setlocal nofoldenable
 
 setlocal makeprg=python3\ %
