@@ -1,0 +1,6 @@
+{
+  "Print Equals": {
+    "prefix": ["p="],
+    "body": ["print(\"$1=\\($1)\")"]
+  }
+}
