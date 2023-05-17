@@ -1,4 +1,5 @@
 {
+  "colors.enable": true,
   // "diagnostic.virtualText": true,
   // "diagnostic.virtualTextCurrentLineOnly": false,
 
@@ -12,7 +13,7 @@
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "/opt/homebrew/bin/black",
 
-  "[javascript][typescript][html][json][jsonc][sh][python]": {
+  "[javascript][typescript][typescriptreact][javascriptreact][html][json][jsonc][sh][python]": {
     "coc.preferences.formatOnSave": true
   },
 

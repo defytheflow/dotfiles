@@ -27,9 +27,13 @@ Plug 'ThePrimeagen/vim-be-good'
 " Terminal toggle.
 " Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
+" Indent guides.
+Plug 'lukas-reineke/indent-blankline.nvim'
+
 " neovim colorschemes.
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'tanvirtin/monokai.nvim'
+Plug 'arzg/vim-colors-xcode'
 
 " Colored icons. Used by bufferline.nvim, lualine.nvim and telescope.nvim
 Plug 'nvim-tree/nvim-web-devicons'
@@ -230,6 +234,7 @@ set termguicolors " use guifg/guibg instead of ctermfg/ctermfb in terminal.
 set background=dark
 try
   colorscheme tokyonight-moon
+  " colorscheme tokyonight-day
   " Good ones:
   " colorscheme night-owl
   " colorscheme base16-classic-dark
@@ -296,7 +301,7 @@ endif
 " whitespace.
 set list " show whitespace.
 set listchars=tab:ᐅ-
-set listchars+=trail:•
+" set listchars+=trail:•
 set listchars+=nbsp:⦸
 set listchars+=extends:»
 set listchars+=precedes:«
@@ -353,7 +358,7 @@ nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
 
 " misc.
-nnoremap <leader>d :bd<CR>
+nnoremap <leader>d :bd!<CR>
 nnoremap <leader>mk :w \| :make<CR>
 
 " visual.
@@ -412,7 +417,10 @@ augroup vimrc_misc
   au BufReadPost * call JumpToLastPos()
   au FileType    * set formatoptions-=cro " disable auto-commenting.
   au VimEnter    * :NoMatchParen
-  au SourcePost   $MYVIMRC call InstallPlugins()
+  " I change the default colorscheme in some ftplugins, this makes sure that
+  " the lualine setup runs after that.
+  au VimEnter    * :lua require('lualine').setup()
+  au SourcePost  $MYVIMRC call InstallPlugins()
 augroup END
 
 augroup vimrc_binary

@@ -1,3 +1,5 @@
+" Only register all these bindings and autocommands if coc plugin has been loaded.
+" if exists(':CocInstall')
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 " delays and poor user experience
 set updatetime=300
@@ -157,3 +159,4 @@ nnoremap <silent><nowait> <leader>ck  :<C-u>CocPrev<cr>
 nnoremap <silent><nowait> <leader>cp  :<C-u>CocListResume<cr>
 " Restart.
 nnoremap <silent><nowait> <leader>cr  :<C-u>CocRestart<CR>
+" endif

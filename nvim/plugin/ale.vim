@@ -15,6 +15,7 @@ let g:ale_linters = {
 \  'typescript': ['tsserver', 'eslint', ],
 \  'python':     ['pyls','flake8'],
 \  'sh':         ['language_server', 'shellcheck'],
+\  'swift':      ['swiftpm', 'swiftlint'],
 \  'vim':        ['vimls', 'vint'],
 \}
 

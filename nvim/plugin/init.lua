@@ -47,11 +47,33 @@ require('nvim-treesitter.configs').setup({
 -- })
 
 -- Status line.
-require('lualine').setup()
+-- require('lualine').setup() -- runs on VimEnter inside init.vim to support setting colorschemes in ftplugins
 
 -- Fuzzy finder.
 require("telescope").load_extension("emoji")
 require('telescope').load_extension('coc')
+
+-- Indent guides.
+require("indent_blankline").setup ({
+  -- char = '¦',
+  show_trailing_blankline_indent = false,
+  -- show_first_indent_level = false,
+  use_treesitter = true,
+  -- show_current_context = true,
+  -- show_current_context_start = true,
+  filetype_exclude = {
+    -- defaults
+    "lspinfo",
+    "packer",
+    "checkhealth",
+    "help",
+    "man",
+    "",
+    -- custom
+    "text",
+    "vimwiki",
+  },
+})
 
 -- Terminal toggle.
 -- require('toggleterm').setup({

@@ -34,7 +34,8 @@ install_packages() {
     pipenv pgcli postgresql \
     ranger rename ripgrep \
     shellcheck shfmt \
-    tmux \
+    telnet tmux \
+    vapor vint \
     wget
 
   for package; do

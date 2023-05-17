@@ -4,6 +4,11 @@ scriptencoding utf-8
 " Created:  28.03.2023
 " Author:   Artyom Danilov (@defytheflow)
 
+try
+  colorscheme xcodedarkhc
+catch
+endtry
+
 setlocal shiftwidth=4
 setlocal softtabstop=4
 
@@ -13,4 +18,7 @@ setlocal nofoldenable
 
 setlocal makeprg=swift\ %
 
+" make term
 nnoremap <leader>mt :w \| :term swift %<CR>
+" make split
+nnoremap <leader>ms :w \| :sp \| :term swift %<CR>

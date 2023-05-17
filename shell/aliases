@@ -29,12 +29,6 @@ alias grep='grep --color=auto'
 alias ssh='TERM=xterm-color ssh' # fix 'tput: unknown terminal bug'
 
 case $OSTYPE in
-  darwin*)
-    alias xcode='open -a xcode'
-    ;;
-esac
-
-case $OSTYPE in
   linux*)
     alias open='xdg-open'
     ;;
