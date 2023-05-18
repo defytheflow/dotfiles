@@ -47,7 +47,7 @@ require('nvim-treesitter.configs').setup({
 -- })
 
 -- Status line.
--- require('lualine').setup() -- runs on VimEnter inside init.vim to support setting colorschemes in ftplugins
+require('lualine').setup()
 
 -- Fuzzy finder.
 require("telescope").load_extension("emoji")

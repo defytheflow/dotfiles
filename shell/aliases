@@ -321,6 +321,13 @@ alias gpf='git push --force-with-lease'
 alias gpfnv='git push --force-with-lease --no-verify'
 alias gpu='git push --set-upstream'
 
+# `git push all` - push to all remotes.
+gpa() {
+  for remote in $(git remote -v | grep push | awk '{ print $1 }'); do
+    git push "$remote"
+  done
+}
+
 # git-pull.
 alias gpl='git pull'
 

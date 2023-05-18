@@ -6,6 +6,7 @@ scriptencoding utf-8
 
 try
   colorscheme xcodedarkhc
+  lua require('lualine').setup()
 catch
 endtry
 

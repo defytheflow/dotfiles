@@ -417,9 +417,6 @@ augroup vimrc_misc
   au BufReadPost * call JumpToLastPos()
   au FileType    * set formatoptions-=cro " disable auto-commenting.
   au VimEnter    * :NoMatchParen
-  " I change the default colorscheme in some ftplugins, this makes sure that
-  " the lualine setup runs after that.
-  au VimEnter    * :lua require('lualine').setup()
   au SourcePost  $MYVIMRC call InstallPlugins()
 augroup END
 
