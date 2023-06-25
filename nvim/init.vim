@@ -28,7 +28,7 @@ Plug 'ThePrimeagen/vim-be-good'
 " Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
 " Indent guides.
-Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'lukas-reineke/indent-blankline.nvim'
 
 " neovim colorschemes.
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -47,6 +47,7 @@ Plug 'nvim-lualine/lualine.nvim'
 " syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring' " jsx/tsx comments
 
 " Fuzzy finder.
 Plug 'nvim-lua/plenary.nvim'
@@ -61,6 +62,10 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
 nnoremap <leader>fs <cmd>Telescope coc document_symbols<cr>
+
+" Todo commments.
+Plug 'folke/todo-comments.nvim'
+nnoremap <leader>ft :TodoTelescope<cr>
 
 " LSP, completion, diagnostics, refactoring, snippets.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

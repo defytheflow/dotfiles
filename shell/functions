@@ -28,7 +28,7 @@ rld() {
 
 # Print each path entry on a newline.
 path() {
-  echo "${PATH}" | sed -e 's|:|\n|g'
+  echo "${PATH}" | sed 's/:/\n/g'
 }
 
 # Print all the terminal colors.

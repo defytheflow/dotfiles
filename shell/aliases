@@ -122,6 +122,13 @@ fi
 if command -v docker >/dev/null; then
   alias d='docker'
   alias dc='docker-compose'
+
+  # docker remove.
+  drm() {
+    for image in $(docker image ls | grep none | awk '{ print $3 }'); do
+      docker image rm "${image}" -f
+    done
+  }
 fi
 
 # vscode.

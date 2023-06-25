@@ -285,13 +285,20 @@ emojis=(
 )
 
 time_='[%D{%H:%M}]'
+# figure out how to not display anything if at home directory and otherwise display full path
+#                            %1~
 pwd_="%B%F{$NIGHT_OWL_PURPLE}%~%f%b"
 emoji_=$(random_element $emojis)
 jobs_='%(1j.[%j] .)'
 GREYISH_WHITE=252
+NEWLINE=$'\n'
 # don't use a custom color for >, because it doesn't adjust to the terminal's colorscheme.
 char_="%B%(?.%F{$GREYISH_WHITE}>%f.%F{$RED}>%f)%b"
 PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}${char_} '
+
+function short() { PROMPT='$ ' }
+function reset() { PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}${char_} ' }
+
 # EXIT_CODE="%(?..%F{$RED}[%?]%f)"
 # EXIT_CODE="%(?.%F{$NIGHT_OWL_GREEN}:)%f.%F{$RED}:(%f)"
 
@@ -346,4 +353,4 @@ HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-
 [[ -f "$HB_CNF_HANDLER" ]] && source "$HB_CNF_HANDLER";
 
 command -v fortune >/dev/null && fortune
-command -v title >/dev/null && title "Rest at the end, not in the middle."
+# command -v title >/dev/null && title "Rest at the end, not in the middle."

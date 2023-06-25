@@ -26,6 +26,10 @@ require('nvim-treesitter.configs').setup({
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = true,
   },
+
+  context_commentstring = {
+    enable = true,
+  },
 })
 
 -- Buffer line.
@@ -54,29 +58,32 @@ require("telescope").load_extension("emoji")
 require('telescope').load_extension('coc')
 
 -- Indent guides.
-require("indent_blankline").setup ({
-  -- char = '¦',
-  show_trailing_blankline_indent = false,
-  -- show_first_indent_level = false,
-  use_treesitter = true,
-  -- show_current_context = true,
-  -- show_current_context_start = true,
-  filetype_exclude = {
-    -- defaults
-    "lspinfo",
-    "packer",
-    "checkhealth",
-    "help",
-    "man",
-    "",
-    -- custom
-    "text",
-    "vimwiki",
-  },
-})
+-- require("indent_blankline").setup ({
+--   -- char = '¦',
+--   show_trailing_blankline_indent = false,
+--   -- show_first_indent_level = false,
+--   use_treesitter = true,
+--   -- show_current_context = true,
+--   -- show_current_context_start = true,
+--   filetype_exclude = {
+--     -- defaults
+--     "lspinfo",
+--     "packer",
+--     "checkhealth",
+--     "help",
+--     "man",
+--     "",
+--     -- custom
+--     "text",
+--     "vimwiki",
+--   },
+-- })
 
 -- Terminal toggle.
 -- require('toggleterm').setup({
 --   open_mapping = [[<c-\>]],
 --   -- shade_terminals = false,
 -- })
+
+-- Todo comments.
+require('todo-comments').setup()

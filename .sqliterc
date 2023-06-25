@@ -1,1 +1,3 @@
-.headers ON
+.headers on
+.mode table
+.nullvalue NULL
