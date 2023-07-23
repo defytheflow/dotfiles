@@ -1,5 +1,5 @@
 {
-  "workbench.startupEditor": "readme",
+  "workbench.startupEditor": "welcomePageInEmptyWorkbench",
   "editor.linkedEditing": true,
   "editor.hover.delay": 200,
   "editor.mouseWheelZoom": true,
@@ -11,8 +11,7 @@
 
   //* Inlay Hints.
   // bind is the same as switch languages on mac os
-  // "editor.inlayHints.enabled": "offUnlessPressed",
-  "editor.inlayHints.enabled": "off",
+  "editor.inlayHints.enabled": "on",
   "editor.inlayHints.padding": true,
 
   //* Unicode.
@@ -53,6 +52,11 @@
   "explorer.fileNesting.enabled": true,
   // "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
+  "explorer.autoRevealExclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/.venv": true
+  },
 
   //* Scrolling.
   "editor.smoothScrolling": true,
@@ -97,13 +101,13 @@
 
   //* Cursor.
   "editor.cursorBlinking": "solid",
-  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorWidth": 3,
 
   //* Font.
   "editor.codeLensFontFamily": "MonoLisa, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontFamily": "MonoLisa, Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontLigatures": true,
+  // "editor.fontLigatures": true,
   "editor.fontSize": 14,
 
   //* Indentation.
@@ -112,7 +116,7 @@
 
   //* Whitespace.
   "editor.insertSpaces": true,
-  "editor.renderWhitespace": "boundary",
+  // "editor.renderWhitespace": "boundary",
   "editor.renderControlCharacters": true,
   "files.eol": "\n",
 
@@ -254,8 +258,8 @@
     ".env.*": "shellscript",
     "Pipfile": "toml",
     // react.
-    "*.js": "javascriptreact",
-    "*.ts": "typescriptreact",
+    // "*.js": "javascriptreact",
+    // "*.ts": "typescriptreact",
     "*.css": "tailwindcss"
     // django.
     // "**/templates/**/*.html": "django-html",
@@ -266,7 +270,8 @@
     // "**/node_modules/**": true,
     // "**/.venv/**": true,
     // "**/*cache*/**": true,
-    "**/*coverage*/**": true
+    // "**/*coverage*/**": true,
+    "tsconfig.tsbuildinfo": true
     // "**/react-app-env.d.ts": true,
     // "**/next-env.d.ts": true
   },
@@ -283,20 +288,20 @@
     "editor.tabSize": 4,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
-    }
+    },
+    "editor.formatOnType": true
   },
   "python.formatting.provider": "black",
-  // "python.formatting.provider": "yapf",
-  // "python.formatting.yapfArgs": ["--exclude=*/migrations/*", "--exclude=*/site_packages/*"],
   "python.linting.enabled": true,
-  "python.linting.mypyEnabled": true,
-  // "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
-  "python.linting.flake8Enabled": true,
-  "python.linting.pydocstyleEnabled": false,
-  "python.linting.pylintEnabled": false,
   "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
-  "python.analysis.inlayHints.variableTypes": true,
-  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
+  "python.testing.pytestEnabled": true,
+  "python.analysis.inlayHints.variableTypes": false,
+  "python.analysis.inlayHints.functionReturnTypes": false,
+  // "python.analysis.typeCheckingMode": "strict",
+  "python.terminal.launchArgs": ["-m", "IPython", "--no-autoindent"],
 
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
@@ -319,7 +324,7 @@
   //* Markdown.
   "markdown.preview.fontSize": 18,
   "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
     "editor.quickSuggestions": { "comments": "off", "strings": "off", "other": "off" },
     "editor.acceptSuggestionOnEnter": "off"
   },
@@ -334,10 +339,10 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "js/ts.implicitProjectConfig.checkJs": true,
-  "javascript.inlayHints.parameterNames.enabled": "literals",
-  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "javascript.inlayHints.variableTypes.enabled": true,
+  // "js/ts.implicitProjectConfig.checkJs": true,
+  // "javascript.inlayHints.parameterNames.enabled": "literals",
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": false,
+  "javascript.inlayHints.variableTypes.enabled": false,
   // "javascript.inlayHints.parameterTypes.enabled": true,
 
   //* TypeScript.
@@ -354,6 +359,10 @@
   "typescript.inlayHints.parameterTypes.enabled": true,
   "typescript.inlayHints.enumMemberValues.enabled": true,
   // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+
+  "[swift]": {
+    "editor.inlayHints.enabled": "off"
+  },
 
   //* Shell.
   "[shellscript]": {
@@ -670,12 +679,8 @@
   "eslint.alwaysShowStatus": true,
 
   //* Prettier.
-  "prettier.arrowParens": "avoid",
-  "prettier.jsxSingleQuote": true,
   "prettier.printWidth": 90,
-  "prettier.quoteProps": "consistent",
-  "prettier.semi": false,
-  "prettier.singleQuote": true,
+  "prettier.arrowParens": "avoid",
 
   //* Beautify.
   "beautify.language": {
@@ -789,6 +794,7 @@
     "nestjs",
     "nextjs",
     "properoom",
+    "scipy",
     "signup"
   ],
 
@@ -813,8 +819,10 @@
     // Provide intellisense in variables, object properties and jsx props.
     // This causes "cssConflict" warnings inside create-t3-app and remix
     "[cC]lassName\\s*[:=]\\s*{?[\"']([^']*)[\"']}?",
-    // Provide intellisense in clsx() function calls.
-    ["clsx\\(([^)]*)\\)", "'([^']*)'"]
+    // clsx()
+    ["clsx\\(([^)]*)\\)", "'([^']*)'"],
+    // cva()
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],
   "tailwindCSS.lint.cssConflict": "ignore",
 
@@ -843,52 +851,43 @@
   },
 
   //* Error Lens.
-  "errorLens.enabled": false,
+  "errorLens.enabled": true,
   "errorLens.enabledDiagnosticLevels": ["error", "warning"],
   "errorLens.followCursor": "closestProblem",
-  // "errorLens.fontStyleItalic": true,
   "errorLens.messageTemplate": "$message ($source)",
+  "errorLens.messageBackgroundMode": "none",
+  // "errorLens.fontStyleItalic": true,
 
   //* Git Project Manager.
   "gitProjectManager.baseProjectsFolders": ["/users/defytheflow/dev/repos"],
   "gitProjectManager.ignoredFolders": ["node_modules"],
   // "gitProjectManager.storeRepositoriesBetweenSessions": true,
 
-  //* JavaScript Lesson Settings.
-  "[javascript-lesson]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.formatOnPaste": true,
-    "editor.formatOnType": true,
-    "editor.codeActionsOnSave": {
-      "source.addMissingImports": true
-    },
-    "editor.tabSize": 2,
-    "editor.rulers": [90],
-    "editor.bracketPairColorization.enabled": true,
-    "editor.renderWhitespace": "boundary",
-    "editor.minimap.enabled": false,
-    "editor.inlayHints.enabled": "on",
-    "editor.inlayHints.padding": true,
-    "editor.mouseWheelZoom": true,
-    "editor.stickyScroll.enabled": true,
-    "explorer.openEditors.visible": 0,
-    "files.associations": {
-      "*.js": "javascriptreact",
-      "*.ts": "typescriptreact",
-      ".env": "shellscript",
-      ".env.*": "shellscript"
-    },
-    "prettier.semi": false,
-    "prettier.arrowParens": "avoid",
-    "js/ts.implicitProjectConfig.checkJs": true,
-    "javascript.inlayHints.parameterNames.enabled": "literals",
-    "javascript.inlayHints.variableTypes.enabled": true,
-    "typescript.inlayHints.parameterNames.enabled": "literals",
-    "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-    "typescript.inlayHints.variableTypes.enabled": true
-  },
+  //* Total TypeScript.
+  "totalTypeScript.hideAllTips": false,
+  "totalTypeScript.hideBasicTips": true,
+  "totalTypeScript.hiddenTips": [
+    "as-const",
+    "as-const-on-object",
+    "typeof",
+    "passing-generics-to-types",
+    "keyof",
+    "mapped-type",
+    "parameters-utility-type",
+    "tuple-type",
+    "generic-slots-in-functions",
+    "record-utility-type",
+    "omit-utility-type",
+    "type-alias-with-generics",
+    "type-alias-with-multiple-generics",
+    "pick-utility-type"
+  ],
+
   "redhat.telemetry.enabled": false,
+  "react-native-tools.showUserTips": false,
+  "haskell.manageHLS": "GHCup",
+  "quokka.showStartViewOnFeatureRelease": false,
   "editor.minimap.enabled": false,
+  "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
   "window.zoomLevel": -1
 }
