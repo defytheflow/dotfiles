@@ -24,6 +24,30 @@ call plug#begin(config_dir . '/plugged')
 
 Plug 'ThePrimeagen/vim-be-good'
 
+" Dashboard.
+Plug 'nvimdev/dashboard-nvim'
+
+" Git signs/decorations.
+Plug 'lewis6991/gitsigns.nvim'
+
+" Displays available keybindings.
+Plug 'folke/which-key.nvim'
+nnoremap <silent> <leader> :WhichKey <leader><CR>
+
+" Zen mode.
+Plug 'folke/zen-mode.nvim'
+nnoremap <leader>z <cmd>ZenMode<CR>
+
+" Dims inactive portions of the code.
+Plug 'folke/twilight.nvim'
+
+" Outline window.
+Plug 'stevearc/aerial.nvim'
+nnoremap <leader>o <cmd>AerialToggle!<CR>
+
+" Netrw file icons.
+Plug 'prichrd/netrw.nvim'
+
 " Terminal toggle.
 " Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
@@ -35,19 +59,20 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'tanvirtin/monokai.nvim'
 Plug 'arzg/vim-colors-xcode'
 
-" Colored icons. Used by bufferline.nvim, lualine.nvim and telescope.nvim
+" Colored icons. Used by bufferline.nvim, lualine.nvim, telescope.nvim and netrw.nvim
 Plug 'nvim-tree/nvim-web-devicons'
 
 " Buffer line.
-" Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 
 " Status line.
-Plug 'nvim-lualine/lualine.nvim'
+Plug 'nvim-lualine/lualine.nvim' " NOTE: because of this plugin, default dashboard page disappears
 
 " syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring' " jsx/tsx comments
+Plug 'windwp/nvim-ts-autotag' " auto close tags
 
 " Fuzzy finder.
 Plug 'nvim-lua/plenary.nvim'
@@ -103,9 +128,6 @@ Plug 'https://gitlab.com/gi1242/vim-emoji-ab.git'
 " \ 'javascript.jsx': 'jsxRegion',
 " \ }
 
-" Automatically renames closing/opening tags.
-Plug 'AndrewRadev/tagalong.vim'
-
 " Aligns text.
 Plug 'junegunn/vim-easy-align'
 let g:easy_align_ignore_groups = []
@@ -120,9 +142,6 @@ nmap ga <Plug>(EasyAlign)
 " nnoremap <silent> gb        :Buffers<CR>
 " nnoremap <silent> <leader>b :Buffers<CR>
 
-" Zen mode.
-Plug 'junegunn/goyo.vim'
-
 " Git plugin.
 Plug 'tpope/vim-fugitive'
 nnoremap <leader>gs :Gstatus<CR>
@@ -134,7 +153,7 @@ Plug 'junegunn/gv.vim'
 nnoremap <leader>gl :GV<CR>
 
 " Shows git diff in the sign column.
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 
 " Displays vertical lines and dots at each indentation level.
 " Plug 'Yggdroot/indentLine'
@@ -156,10 +175,6 @@ Plug 'vim-test/vim-test'
 " Emmet support.
 " Plug 'mattn/emmet-vim'
 " uses <C-Y> which conflicts with vim built-in
-
-" Displays available keybindings.
-Plug 'liuchengxu/vim-which-key'
-nnoremap <silent> <leader> :WhichKey ' '<CR>
 
 " Displays a floating terminal.
 Plug 'voldikss/vim-floaterm'
@@ -361,6 +376,9 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
+
+" netrw.
+nnoremap <leader>n :Lex<CR>
 
 " misc.
 nnoremap <leader>d :bd!<CR>

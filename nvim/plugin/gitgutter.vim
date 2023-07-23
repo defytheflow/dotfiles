@@ -11,22 +11,15 @@ set signcolumn=yes " makes both git status and line number visible
 "   set signcolumn=yes " makes both git status and line number visible
 " endif
 
-let g:gitgutter_map_keys = 0
-" let g:gitgutter_sign_added = '✚'
-" let g:gitgutter_sign_modified = '✹'
+" fun! GitGutterColorsInit()
+"   hi GitGutterAdd    guifg=#00ff00 ctermfg=Green
+"   hi GitGutterChange guifg=#ffff00 ctermfg=Yellow
+"   hi GitGutterDelete guifg=#ff0000 ctermfg=Red
+" endfun
 
-fun! GitGutterColorsInit()
-  hi GitGutterAdd    guifg=#00ff00 ctermfg=Green
-  hi GitGutterChange guifg=#ffff00 ctermfg=Yellow
-  hi GitGutterDelete guifg=#ff0000 ctermfg=Red
-endfun
+" augroup vimrc_gitgutter
+"   au!
+"   au ColorScheme * call GitGutterColorsInit()
+" augroup END
 
-augroup vimrc_gitgutter
-  au!
-  au ColorScheme * call GitGutterColorsInit()
-augroup END
-
-call GitGutterColorsInit()
-
-nmap ]c <Plug>(GitGutterNextHunk)
-nmap [c <Plug>(GitGutterPrevHunk)
+" call GitGutterColorsInit()

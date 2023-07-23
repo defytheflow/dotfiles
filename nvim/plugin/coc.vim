@@ -78,6 +78,8 @@ augroup mygroup
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " Sort python imports with isort on save.
+  " autocmd BufWrite *.py CocCommand python.sortImports
 augroup end
 
 " Applying code actions to the selected code block
