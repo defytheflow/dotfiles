@@ -48,6 +48,7 @@ nnoremap <leader>o <cmd>AerialToggle!<CR>
 " Netrw file icons.
 Plug 'prichrd/netrw.nvim'
 
+
 " Terminal toggle.
 " Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
@@ -72,7 +73,9 @@ Plug 'nvim-lualine/lualine.nvim' " NOTE: because of this plugin, default dashboa
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring' " jsx/tsx comments
-Plug 'windwp/nvim-ts-autotag' " auto close tags
+" NOTE: Adds closing jsx tags every time I hit /, even if the tag is already completed
+" and I am editing within it.
+" Plug 'windwp/nvim-ts-autotag' " auto close tags
 
 " Fuzzy finder.
 Plug 'nvim-lua/plenary.nvim'
@@ -127,6 +130,9 @@ Plug 'https://gitlab.com/gi1242/vim-emoji-ab.git'
 " \ 'typescript.tsx': 'jsxRegion,tsxRegion',
 " \ 'javascript.jsx': 'jsxRegion',
 " \ }
+
+" Automatically renames closing/opening tags.
+Plug 'AndrewRadev/tagalong.vim'
 
 " Aligns text.
 Plug 'junegunn/vim-easy-align'
