@@ -162,6 +162,7 @@
   "terminal.integrated.tabs.hideCondition": "singleGroup",
   "terminal.integrated.smoothScrolling": true,
   "terminal.integrated.autoReplies": { "Terminate batch job (Y/N)?": "Y\r" },
+  "terminal.integrated.env.osx": {},
 
   //* Color Theme & Icon Theme.
   "workbench.colorTheme": "Night Owl (No Italics)",
@@ -271,7 +272,8 @@
     // "**/.venv/**": true,
     // "**/*cache*/**": true,
     // "**/*coverage*/**": true,
-    "tsconfig.tsbuildinfo": true
+    "tsconfig.tsbuildinfo": true,
+    "**/*.pyc": true
     // "**/react-app-env.d.ts": true,
     // "**/next-env.d.ts": true
   },
@@ -529,10 +531,22 @@
 
     // window commands.
     { "before": ["<C-w>", "o"], "commands": ["workbench.action.closeOtherEditors"] },
-    { "before": ["<C-w>", "H"], "commands": ["workbench.action.moveActiveEditorGroupLeft"] },
-    { "before": ["<C-w>", "J"], "commands": ["workbench.action.moveActiveEditorGroupDown"] },
-    { "before": ["<C-w>", "K"], "commands": ["workbench.action.moveActiveEditorGroupUp"] },
-    { "before": ["<C-w>", "L"], "commands": ["workbench.action.moveActiveEditorGroupRight"] },
+    {
+      "before": ["<C-w>", "H"],
+      "commands": ["workbench.action.moveActiveEditorGroupLeft"]
+    },
+    {
+      "before": ["<C-w>", "J"],
+      "commands": ["workbench.action.moveActiveEditorGroupDown"]
+    },
+    {
+      "before": ["<C-w>", "K"],
+      "commands": ["workbench.action.moveActiveEditorGroupUp"]
+    },
+    {
+      "before": ["<C-w>", "L"],
+      "commands": ["workbench.action.moveActiveEditorGroupRight"]
+    },
     { "before": ["<C-w>", ">"], "commands": ["workbench.action.increaseViewWidth"] },
     { "before": ["<C-w>", "<"], "commands": ["workbench.action.decreaseViewWidth"] },
     { "before": ["<C-w>", "+"], "commands": ["workbench.action.increaseViewHeight"] },
@@ -546,12 +560,24 @@
     // alternate file.
     { "before": ["<leader>", "a", "a"], "commands": ["alternate.alternateFile"] },
     { "before": ["<leader>", "a", "v"], "commands": ["alternate.alternateFileInSplit"] },
-    { "before": ["<leader>", "a", "c", "a"], "commands": ["alternate.createAlternateFile"] },
-    { "before": ["<leader>", "a", "c", "v"], "commands": ["alternate.createAlternateFileInSplit"] },
+    {
+      "before": ["<leader>", "a", "c", "a"],
+      "commands": ["alternate.createAlternateFile"]
+    },
+    {
+      "before": ["<leader>", "a", "c", "v"],
+      "commands": ["alternate.createAlternateFileInSplit"]
+    },
 
     // tests.
-    { "before": ["<leader>", "t", "n"], "commands": ["test-explorer.run-test-at-cursor"] },
-    { "before": ["<leader>", "d", "n"], "commands": ["test-explorer.debug-test-at-cursor"] },
+    {
+      "before": ["<leader>", "t", "n"],
+      "commands": ["test-explorer.run-test-at-cursor"]
+    },
+    {
+      "before": ["<leader>", "d", "n"],
+      "commands": ["test-explorer.debug-test-at-cursor"]
+    },
     { "before": ["<leader>", "t", "f"], "commands": ["test-explorer.run-this-file"] },
     { "before": ["<leader>", "t", "s"], "commands": ["test-explorer.run-all"] },
     { "before": ["<leader>", "t", "l"], "commands": ["test-explorer.rerun"] },
@@ -560,11 +586,17 @@
     { "before": ["<leader>", "v", "e"], "commands": ["open-in-vim.open"] },
 
     // emmet.
-    { "before": ["<leader>", "e", "w"], "commands": ["editor.emmet.action.wrapWithAbbreviation"] },
+    {
+      "before": ["<leader>", "e", "w"],
+      "commands": ["editor.emmet.action.wrapWithAbbreviation"]
+    },
 
     // git.
     { "before": ["<leader>", "g", "d"], "commands": ["git.openChange"] },
-    { "before": ["<leader>", "g", "a"], "commands": ["git.stage", "giteasy.doAddCurrentFile"] },
+    {
+      "before": ["<leader>", "g", "a"],
+      "commands": ["git.stage", "giteasy.doAddCurrentFile"]
+    },
     { "before": ["<leader>", "g", "u"], "commands": ["git.unstage"] },
     { "before": ["<leader>", "g", "c", "l"], "commands": ["git.clean"] },
     { "before": ["<leader>", "g", "l"], "commands": ["git-graph.view"] },
@@ -574,7 +606,10 @@
     {
       "before": ["<leader>", "e", "c"],
       "commands": [
-        { "command": "editor.action.codeAction", "args": { "kind": "refactor.extract.constant" } }
+        {
+          "command": "editor.action.codeAction",
+          "args": { "kind": "refactor.extract.constant" }
+        }
       ]
     },
     {
@@ -614,14 +649,17 @@
       ]
     },
 
+    // coc leader commands.
+    { "before": ["<leader>", "r", "n"], "commands": ["editor.action.rename"] },
+
     // custom leader commands.
     { "before": ["<leader>", "g", "o"], "commands": ["editor.action.openLink"] },
 
     // unimpaired commands.
-    // { "before": ["[", "b"], "commands": ["workbench.action.previousEditorInGroup"] },
-    // { "before": ["]", "b"], "commands": ["workbench.action.nextEditorInGroup"] },
-    // { "before": ["[", "B"], "commands": ["workbench.action.firstEditorInGroup"] },
-    // { "before": ["]", "B"], "commands": ["workbench.action.lastEditorInGroup"] },
+    { "before": ["[", "b"], "commands": ["workbench.action.previousEditorInGroup"] },
+    { "before": ["]", "b"], "commands": ["workbench.action.nextEditorInGroup"] },
+    { "before": ["[", "B"], "commands": ["workbench.action.firstEditorInGroup"] },
+    { "before": ["]", "B"], "commands": ["workbench.action.lastEditorInGroup"] },
     { "before": ["[", " "], "commands": ["editor.action.insertLineBefore"] },
     { "before": ["]", " "], "commands": ["editor.action.insertLineAfter"] },
     { "before": ["[", "e"], "commands": ["editor.action.moveLinesUpAction"] },
