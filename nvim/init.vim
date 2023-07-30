@@ -24,6 +24,12 @@ call plug#begin(config_dir . '/plugged')
 
 Plug 'ThePrimeagen/vim-be-good'
 
+" Generate JSDoc comments
+Plug 'heavenshell/vim-jsdoc', {
+  \ 'for': ['javascript', 'javascript.jsx','typescript'],
+  \ 'do': 'make install'
+\}
+
 " Dashboard.
 Plug 'nvimdev/dashboard-nvim'
 
