@@ -72,7 +72,7 @@ require('netrw').setup()
 require('aerial').setup({
   autojump = true,
   layout = {
-    default_direction = "prefer_left"
+    -- default_direction = "prefer_left"
   }
 })
 
@@ -110,4 +110,16 @@ require('dashboard').setup({
         },
       },
     },
+})
+
+-- Highlight trailing whitespace
+require('mini.trailspace').setup()
+
+-- Disable highlighting on dashboard page
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'dashboard',
+  callback = function(data)
+    vim.b[data.buf].minitrailspace_disable = true
+    vim.api.nvim_buf_call(data.buf, MiniTrailspace.unhighlight)
+  end,
 })

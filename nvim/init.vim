@@ -24,6 +24,8 @@ call plug#begin(config_dir . '/plugged')
 
 Plug 'ThePrimeagen/vim-be-good'
 
+Plug 'echasnovski/mini.trailspace'
+
 " Generate JSDoc comments
 Plug 'heavenshell/vim-jsdoc', {
   \ 'for': ['javascript', 'javascript.jsx','typescript'],
