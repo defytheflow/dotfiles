@@ -24,6 +24,10 @@ call plug#begin(config_dir . '/plugged')
 
 Plug 'ThePrimeagen/vim-be-good'
 
+" File explorer
+Plug 'nvim-tree/nvim-tree.lua'
+
+" Highlight trailing whitespace
 Plug 'echasnovski/mini.trailspace'
 
 " Generate JSDoc comments
@@ -390,9 +394,6 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
-
-" netrw.
-nnoremap <leader>n :Lex<CR>
 
 " misc.
 nnoremap <leader>d :bd!<CR>
