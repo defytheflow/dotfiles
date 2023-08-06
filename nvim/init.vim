@@ -1,3 +1,4 @@
+" vim: set foldmethod=marker:
 scriptencoding utf-8
 
 " File:     init.vim
@@ -26,6 +27,8 @@ Plug 'ThePrimeagen/vim-be-good'
 
 " File explorer
 Plug 'nvim-tree/nvim-tree.lua'
+" Plug 'qpkorr/vim-bufkill' " switches to the previous hidden buffer after deleting a buffer
+" let g:BufKillCreateMappings = 0
 
 " Highlight trailing whitespace
 Plug 'echasnovski/mini.trailspace'
@@ -290,7 +293,7 @@ set wildignore+=*/.git/*,*/.venv/*,*/node_modules/*,*cache*,*coverage*
 set wildignorecase
 
 " fold.
-set foldmethod=marker
+" set foldmethod=marker
 
 " gui.
 set guifont=FiraCode:h11
@@ -396,7 +399,17 @@ nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
 
 " misc.
-nnoremap <leader>d :bd!<CR>
+fun! BufferDelete()
+  " Tries to delete a buffer with :BD command from `qpkorr/vim-bufkill` plugin.
+  if exists(':BD')
+    exe "BD!"
+  else
+    exe "bd!"
+  endif
+endfun
+
+" nnoremap <silent> <leader>d  :call BufferDelete()<CR>
+nnoremap <leader>d  :bd!<CR>
 nnoremap <leader>mk :w \| :make<CR>
 
 " visual.

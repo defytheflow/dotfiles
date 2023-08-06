@@ -4,8 +4,8 @@ scriptencoding utf-8
 " Created:  04.10.2020
 " Author:   Artyom Danilov (@defytheflow)
 
-set foldtext=gitgutter#fold#foldtext()
-set signcolumn=yes " makes both git status and line number visible
+" set foldtext=gitgutter#fold#foldtext()
+" set signcolumn=yes " makes both git status and line number visible
 
 " if system("git rev-parse --is-inside-work-tree") == "true\n"
 "   set signcolumn=yes " makes both git status and line number visible

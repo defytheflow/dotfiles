@@ -30,6 +30,7 @@ install_packages() {
     gh git-delta graphviz \
     iterm2 \
     keycastr \
+    mycli \
     neovim node \
     pipenv pgcli postgresql \
     ranger rename ripgrep \

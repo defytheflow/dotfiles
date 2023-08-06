@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+# vim: set foldmethod=marker:
 
 # File:     .zshrc
 # Created:  22.03.2020

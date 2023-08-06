@@ -1,4 +1,4 @@
-# vim: filetype=i3config
+# vim: set foldmethod=marker filetype=i3config:
 
 # File:     i3/config
 # Created:  22.03.2020
