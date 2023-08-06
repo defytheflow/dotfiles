@@ -108,7 +108,6 @@ fi
 
 # tmux.
 alias tx='tmux'
-alias tmux='tmux -f ${XDG_CONFIG_HOME}/tmux/tmux.conf'
 if command -v tmuxinator >/dev/null; then
   alias mux='tmuxinator'
 fi
@@ -138,10 +137,11 @@ if command -v code >/dev/null; then
 fi
 
 # vim.
-alias via='vim ${DOTFILES_HOME}/shell/aliases'   # vi aliases
-alias vif='vim ${DOTFILES_HOME}/shell/functions' # vi functions
-alias vin='vim -u NONE'                          # vi none
-alias vis='vim ${ZDOTDIR}/.zshrc'                # vi shell
+alias via='vim ${DOTFILES_HOME}/shell/aliases'    # vi aliases
+alias vif='vim ${DOTFILES_HOME}/shell/functions'  # vi functions
+alias vin='vim -u NONE'                           # vi none
+alias vis='vim ${ZDOTDIR}/.zshrc'                 # vi shell
+alias vit='vim ${XDG_CONFIG_HOME}/tmux/tmux.conf' # vi tmux.conf
 
 if command -v nvim >/dev/null; then
   alias vi='nvim'
