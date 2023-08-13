@@ -14,7 +14,7 @@ require("bufferline").setup({
     separator_style = "thick",
     offsets = {
       {
-        filetype = 'NvimTree',
+        filetype = "NvimTree",
       }
     }
   }

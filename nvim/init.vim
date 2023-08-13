@@ -97,19 +97,9 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'fannheyward/telescope-coc.nvim'
 Plug 'xiyaowong/telescope-emoji.nvim'
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fd <cmd>Telescope coc diagnostics<cr>
-nnoremap <leader>fe <cmd>Telescope emoji<cr>
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
-nnoremap <leader>fs <cmd>Telescope coc document_symbols<cr>
-nnoremap <leader>fS <cmd>Telescope coc workspace_symbols<cr>
 
 " Todo commments.
 Plug 'folke/todo-comments.nvim'
-nnoremap <leader>ft :TodoTelescope<cr>
 
 " LSP, completion, diagnostics, refactoring, snippets.
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -166,7 +156,7 @@ nmap ga <Plug>(EasyAlign)
 
 " Git plugin.
 Plug 'tpope/vim-fugitive'
-nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gs :Git status<CR>
 nnoremap <leader>gd :Gdiff<CR>
 set previewheight=22
 

@@ -1,4 +1,4 @@
-local api = require('nvim-tree.api')
+local api = require("nvim-tree.api")
 
 require("nvim-tree").setup({
   view = {
@@ -20,4 +20,4 @@ require("nvim-tree").setup({
   },
 })
 
-vim.keymap.set('n', '<leader>n', api.tree.toggle)
+vim.keymap.set("n", "<leader>n", api.tree.toggle, { desc = "Toggle nvim-tree" })
