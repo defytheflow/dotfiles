@@ -105,6 +105,7 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fo <cmd>Telescope oldfiles<cr>
 nnoremap <leader>fs <cmd>Telescope coc document_symbols<cr>
+nnoremap <leader>fS <cmd>Telescope coc workspace_symbols<cr>
 
 " Todo commments.
 Plug 'folke/todo-comments.nvim'

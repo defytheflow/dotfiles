@@ -69,8 +69,8 @@ nmap <leader>rn <Plug>(coc-rename)
 nmap <F2> <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>pf  <Plug>(coc-format-selected)
+nmap <leader>pf  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -145,12 +145,14 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call CocActionAsync('runCommand', 'editor.action.organizeImport')
 
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Mappings for CoCList
+" Mappings for CocList
 " Show all diagnostics.
 nnoremap <silent><nowait> <leader>cl  :<C-u>CocList diagnostics<cr>
 " Manage extensions.

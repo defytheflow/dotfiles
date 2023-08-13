@@ -6,9 +6,7 @@
   // for coc-import-cost
   // "codeLens.enable": true,
 
-  "snippets.textmateSnippetsRoots": [
-    "/Users/defytheflow/.dotfiles/vscode/snippets"
-  ],
+  "snippets.textmateSnippetsRoots": ["~/.dotfiles/vscode/snippets"],
 
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "/opt/homebrew/bin/black",

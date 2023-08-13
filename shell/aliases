@@ -120,7 +120,8 @@ fi
 # docker.
 if command -v docker >/dev/null; then
   alias d='docker'
-  alias dc='docker-compose'
+  alias dc='docker compose'
+  alias dcu='docker compose up'
 
   # docker remove.
   drm() {

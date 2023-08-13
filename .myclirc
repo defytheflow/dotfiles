@@ -1,0 +1,5 @@
+# vi: ft=dosini
+[main]
+
+# Keygindings: Possible values: emacs, vi.
+key_bindings = vi
