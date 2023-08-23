@@ -43,6 +43,12 @@ Plug 'nvimdev/dashboard-nvim'
 " Git signs/decorations.
 Plug 'lewis6991/gitsigns.nvim'
 
+" Git plugin.
+Plug 'tpope/vim-fugitive'
+
+" Git log browser (depends on vim-fugitive ^^^)
+Plug 'junegunn/gv.vim'
+
 " Displays available keybindings.
 Plug 'folke/which-key.nvim'
 nnoremap <silent> <leader> :WhichKey <leader><CR>
@@ -143,17 +149,6 @@ Plug 'junegunn/vim-easy-align'
 let g:easy_align_ignore_groups = []
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
-" Git plugin.
-Plug 'tpope/vim-fugitive'
-nnoremap <leader>gc :Git commit<CR>
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gs :Git<CR>
-set previewheight=22
-
-" Git log browser (depends on vim-fugitive ^^^)
-Plug 'junegunn/gv.vim'
-nnoremap <leader>gl :GV<CR>
 
 " Displays vertical lines and dots at each indentation level.
 " Plug 'Yggdroot/indentLine'
