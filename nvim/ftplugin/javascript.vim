@@ -5,6 +5,7 @@ scriptencoding utf-8
 " Author:   Artyom Danilov (@defytheflow)
 " Note:     This plugin is loaded in javascriptreact files as well.
 
+setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal softtabstop=2
 

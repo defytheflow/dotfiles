@@ -4,6 +4,7 @@ scriptencoding utf-8
 " Created:  04.10.2020
 " Author:   Artyom Danilov (@defytheflow)
 
+setlocal tabstop=4
 setlocal shiftwidth=4
 setlocal softtabstop=4
 
