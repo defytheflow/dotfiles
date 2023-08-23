@@ -27,8 +27,6 @@ Plug 'ThePrimeagen/vim-be-good'
 
 " File explorer
 Plug 'nvim-tree/nvim-tree.lua'
-" Plug 'qpkorr/vim-bufkill' " switches to the previous hidden buffer after deleting a buffer
-" let g:BufKillCreateMappings = 0
 
 " Highlight trailing whitespace
 Plug 'echasnovski/mini.trailspace'
@@ -164,9 +162,6 @@ set previewheight=22
 " Git log browser (depends on vim-fugitive ^^^)
 Plug 'junegunn/gv.vim'
 nnoremap <leader>gl :GV<CR>
-
-" Shows git diff in the sign column.
-" Plug 'airblade/vim-gitgutter'
 
 " Displays vertical lines and dots at each indentation level.
 " Plug 'Yggdroot/indentLine'
@@ -391,16 +386,6 @@ nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
 
 " misc.
-fun! BufferDelete()
-  " Tries to delete a buffer with :BD command from `qpkorr/vim-bufkill` plugin.
-  if exists(':BD')
-    exe "BD!"
-  else
-    exe "bd!"
-  endif
-endfun
-
-" nnoremap <silent> <leader>d  :call BufferDelete()<CR>
 nnoremap <leader>d  :bd!<CR>
 nnoremap <leader>mk :w \| :make<CR>
 
