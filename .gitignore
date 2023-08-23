@@ -1,17 +1,34 @@
 .git/*
+.DS_Store
+
+# neovim
 nvim/autoload/plug.vim
 nvim/plugged/*
 nvim/.netrwhist
 nvim/thesaurus/*
+
+# ranger
 ranger/plugins/*
+
+# vscode
 vscode/*Storage
 vscode/*History
 vscode/sync
+
+# wm
 wm/awesome/vicious
+
+# zsh
 shell/zsh/.zsh_sessions
 shell/zsh/.zsh_history
+shell/zsh/.zcompdump
+
+# ghc
 ghc/ghci_history
+
+# pgcli
 pgcli/history
 pgcli/log
+
+# custom
 local_aliases
-.DS_Store
