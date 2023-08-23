@@ -20,6 +20,7 @@ require("lualine").setup()
 --     -- custom
 --     "text",
 --     "vimwiki",
+--     "dashboard",
 --   },
 -- })
 

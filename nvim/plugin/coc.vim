@@ -69,8 +69,8 @@ nmap <leader>rn <Plug>(coc-rename)
 nmap <F2> <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>pf  <Plug>(coc-format-selected)
-nmap <leader>pf  <Plug>(coc-format-selected)
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -138,6 +138,8 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
+
+nnoremap <leader>pf :Format<CR>
 
 " Add `:Fold` command to fold current buffer
 command! -nargs=? Fold :call CocAction('fold', <f-args>)

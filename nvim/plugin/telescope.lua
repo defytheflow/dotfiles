@@ -30,6 +30,7 @@ vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "[F]ind [O]ld files
 vim.keymap.set("n", "<leader>fs", "<cmd>Telescope coc document_symbols<cr>", { desc = "[F]ind [s]ymbols (document)" })
 vim.keymap.set("n", "<leader>fS", "<cmd>Telescope coc workspace_symbols<cr>", { desc = "[F]ind [S]ymbols (workspace)" })
 vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "[F]ind [T]odos" })
+vim.keymap.set("n", "<leader>f/", builtin.search_history)
 -- These throw lua errors
 -- vim.keymap.set("n", "<leader>fs", extensions.coc.document_symbols, {})
 -- vim.keymap.set("n", "<leader>fS", extensions.coc.workspace_symbols, {})

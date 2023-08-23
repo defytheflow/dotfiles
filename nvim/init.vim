@@ -156,8 +156,9 @@ nmap ga <Plug>(EasyAlign)
 
 " Git plugin.
 Plug 'tpope/vim-fugitive'
-nnoremap <leader>gs :Git status<CR>
+nnoremap <leader>gc :Git commit<CR>
 nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gs :Git<CR>
 set previewheight=22
 
 " Git log browser (depends on vim-fugitive ^^^)

@@ -649,8 +649,16 @@
       ]
     },
 
-    // coc leader commands.
+    // neovim mirroring leader commands.
     { "before": ["<leader>", "r", "n"], "commands": ["editor.action.rename"] },
+    {
+      "before": ["<leader>", "n"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
 
     // custom leader commands.
     { "before": ["<leader>", "g", "o"], "commands": ["editor.action.openLink"] },
@@ -670,7 +678,11 @@
     },
     {
       "before": ["]", "f"],
-      "commands": ["workbench.view.explorer", "list.focusDown", "explorer.openAndPassFocus"]
+      "commands": [
+        "workbench.view.explorer",
+        "list.focusDown",
+        "explorer.openAndPassFocus"
+      ]
     },
     {
       "before": ["[", "g"],
@@ -927,5 +939,6 @@
   "quokka.showStartViewOnFeatureRelease": false,
   "editor.minimap.enabled": false,
   "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
-  "window.zoomLevel": -1
+  "window.zoomLevel": -1,
+  "console-ninja.showWhatsNew": false
 }
