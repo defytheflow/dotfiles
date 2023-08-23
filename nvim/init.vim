@@ -169,10 +169,6 @@ nnoremap <leader>gl :GV<CR>
 " let g:indentLine_leadingSpaceEnabled = '1'
 " let g:indentLine_fileTypeExclude = ['text', 'vimwiki']
 
-" File system explorer.
-" Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
-" Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
-
 " Highlights unique characters in every word to easier use f, F, t and T.
 Plug 'unblevable/quick-scope'
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
