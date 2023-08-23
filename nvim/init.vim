@@ -144,14 +144,6 @@ let g:easy_align_ignore_groups = []
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" Fuzzy finder.
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
-" map <silent> <C-p> :Files<CR>
-" map <silent> <C-p> :execute system('git rev-parse --is-inside-work-tree') =~ 'true' ? 'GFiles' : 'Files' <CR>
-" nnoremap <silent> gb        :Buffers<CR>
-" nnoremap <silent> <leader>b :Buffers<CR>
-
 " Git plugin.
 Plug 'tpope/vim-fugitive'
 nnoremap <leader>gc :Git commit<CR>
