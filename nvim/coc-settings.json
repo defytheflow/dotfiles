@@ -56,5 +56,8 @@
       "initializationOptions": {},
       "settings": {}
     }
-  }
+  },
+
+  // for lua language server
+  "Lua.diagnostics.globals": ["vim"]
 }

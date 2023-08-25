@@ -10,13 +10,6 @@ require("toggleterm").setup({
 -- Netrw file icons.
 require("netrw").setup()
 
--- Zen mode
-require("zen-mode").setup({
-  window = {
-    width = 1,
-  },
-})
-
 -- Outline window.
 require("aerial").setup({
   autojump = true,

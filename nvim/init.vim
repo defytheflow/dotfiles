@@ -55,7 +55,6 @@ nnoremap <silent> <leader> :WhichKey <leader><CR>
 
 " Zen mode.
 Plug 'folke/zen-mode.nvim'
-nnoremap <leader>z <cmd>ZenMode<CR>
 
 " Dims inactive portions of the code.
 Plug 'folke/twilight.nvim'
