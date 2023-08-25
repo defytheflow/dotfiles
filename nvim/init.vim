@@ -51,7 +51,6 @@ Plug 'junegunn/gv.vim'
 
 " Displays available keybindings.
 Plug 'folke/which-key.nvim'
-nnoremap <silent> <leader> :WhichKey <leader><CR>
 
 " Zen mode.
 Plug 'folke/zen-mode.nvim'
@@ -61,7 +60,6 @@ Plug 'folke/twilight.nvim'
 
 " Outline window.
 Plug 'stevearc/aerial.nvim'
-nnoremap <leader>o <cmd>AerialToggle!<CR>
 
 " Netrw file icons.
 Plug 'prichrd/netrw.nvim'

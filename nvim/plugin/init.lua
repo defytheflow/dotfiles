@@ -10,16 +10,9 @@ require("toggleterm").setup({
 -- Netrw file icons.
 require("netrw").setup()
 
--- Outline window.
-require("aerial").setup({
-  autojump = true,
-  layout = {
-    -- default_direction = "prefer_left"
-  }
-})
-
 -- Displays available keybindings.
 require("which-key").setup()
+vim.keymap.set("n", "<leader>", function() vim.cmd.WhichKey("<leader>") end)
 
 -- Dashboard.
 require("dashboard").setup({

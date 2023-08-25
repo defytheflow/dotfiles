@@ -1,6 +1,6 @@
 vim.opt.previewheight = 22
 
-vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<cr>")
-vim.keymap.set("n", "<leader>gd", "<cmd>Gdiff<cr>")
-vim.keymap.set("n", "<leader>gl", "<cmd>Git log<cr>")
-vim.keymap.set("n", "<leader>gs", "<cmd>Git<cr>")
+vim.keymap.set("n", "<leader>gc", function() vim.cmd.Git("commit") end)
+vim.keymap.set("n", "<leader>gd", vim.cmd.Gdiff)
+vim.keymap.set("n", "<leader>gl", function() vim.cmd.Git("log") end)
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
