@@ -67,12 +67,11 @@ nnoremap <leader>o <cmd>AerialToggle!<CR>
 " Netrw file icons.
 Plug 'prichrd/netrw.nvim'
 
-
 " Terminal toggle.
-" Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
 " Indent guides.
-" Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 " neovim colorschemes.
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -150,12 +149,6 @@ let g:easy_align_ignore_groups = []
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" Displays vertical lines and dots at each indentation level.
-" Plug 'Yggdroot/indentLine'
-" let g:indentLine_leadingSpaceChar = '·'
-" let g:indentLine_leadingSpaceEnabled = '1'
-" let g:indentLine_fileTypeExclude = ['text', 'vimwiki']
-
 " Highlights unique characters in every word to easier use f, F, t and T.
 Plug 'unblevable/quick-scope'
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -211,10 +204,7 @@ Plug 'haishanh/night-owl.vim'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
 " syntaxes.
-" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mboughaba/i3config.vim'
-" Plug 'MaxMEllon/vim-jsx-pretty'
-" Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 Plug 'uiiaoo/java-syntax.vim', { 'for': 'java' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
