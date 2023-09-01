@@ -119,9 +119,8 @@ Plug 'honza/vim-snippets'
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
 
-" Preview markdown on your browser.
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-nmap <leader>mp <Plug>MarkdownPreviewToggle
+" Preview markdown in your browser.
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'] }
 
 " Enables emoji abbreviations, digraphs and completion.
 Plug 'https://gitlab.com/gi1242/vim-emoji-ab.git'
