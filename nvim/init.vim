@@ -394,7 +394,7 @@ augroup END
 
 augroup vimrc_highlight_yank
   au!
-  au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=200}
+  au TextYankPost * silent! lua vim.highlight.on_yank { higroup = "IncSearch", timeout = 200 }
 augroup END
 
 fun! InstallPlugins()

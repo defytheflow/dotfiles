@@ -1,4 +1,4 @@
-require("bufferline").setup({
+require("bufferline").setup {
   options = {
     always_show_bufferline = false,
     numbers = "buffer_id",
@@ -18,4 +18,4 @@ require("bufferline").setup({
       }
     }
   }
-})
+}

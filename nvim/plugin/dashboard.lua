@@ -1,4 +1,4 @@
-require("dashboard").setup({
+require("dashboard").setup {
     theme = "hyper",
     config = {
       week_header = {
@@ -28,4 +28,4 @@ require("dashboard").setup({
         },
       },
     },
-})
+}

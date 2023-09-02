@@ -1,4 +1,4 @@
-require("gitsigns").setup({
+require("gitsigns").setup {
   current_line_blame = true,
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
@@ -41,7 +41,7 @@ require("gitsigns").setup({
     -- Text object
     map({"o", "x"}, "ih", ":<C-U>Gitsigns select_hunk<CR>")
   end
-})
+}
 
 -- Highlights
 vim.cmd("highlight GitSignsAdd guifg=#C5E478")

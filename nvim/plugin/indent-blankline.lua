@@ -1,4 +1,4 @@
-require("indent_blankline").setup({
+require("indent_blankline").setup {
   -- char = "¦",
   show_trailing_blankline_indent = false,
   -- show_first_indent_level = false,
@@ -18,4 +18,4 @@ require("indent_blankline").setup({
     "vimwiki",
     "dashboard",
   },
-})
+}

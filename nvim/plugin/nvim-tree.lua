@@ -1,6 +1,6 @@
 local api = require("nvim-tree.api")
 
-require("nvim-tree").setup({
+require("nvim-tree").setup {
   view = {
     width = 35,
   },
@@ -18,6 +18,6 @@ require("nvim-tree").setup({
   filters = {
     git_ignored = false,
   },
-})
+}
 
 vim.keymap.set("n", "<leader>n", api.tree.toggle, { desc = "Toggle nvim-tree" })

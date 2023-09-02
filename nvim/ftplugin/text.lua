@@ -11,7 +11,7 @@ vim.opt_local.thesaurus:append("~/.config/nvim/thesaurus/mthesaur.txt")
 vim.opt_local.complete:append("s") -- search thesaurus for autocomplete.
 
 local function HighlightBadSpelling()
-  vim.cmd.highlight({ "SpellBad", "guifg=#ef4444", "ctermfg=Red" })
+  vim.cmd.highlight { "SpellBad", "guifg=#ef4444", "ctermfg=Red" }
 end
 
 local text_group = vim.api.nvim_create_augroup("vimrc_text", { clear = true })

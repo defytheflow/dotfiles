@@ -154,6 +154,8 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+nnoremap <silent> <leader>er :call CocAction('runCommand', 'eslint.restart')
+
 " Mappings for CocList
 " Show all diagnostics.
 nnoremap <silent><nowait> <leader>cl  :<C-u>CocList diagnostics<cr>

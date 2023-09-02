@@ -1,6 +1,6 @@
 local telescope = require("telescope")
 
-telescope.setup({
+telescope.setup {
   defaults = {
     layout_config = {
       preview_cutoff = 140, -- disables the preview when columns are less than this value
@@ -21,7 +21,7 @@ telescope.setup({
       no_ignore = true, -- includes files from .gitignore
     },
   },
-})
+}
 
 telescope.load_extension("emoji")
 telescope.load_extension("coc")

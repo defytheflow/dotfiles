@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.configs").setup {
   ensure_installed = {
     "c",
     "lua",
@@ -34,4 +34,6 @@ require("nvim-treesitter.configs").setup({
   autotag = {
     enable = true,
   },
-})
+}
+
+-- TODO: add a keymap that toggles the context

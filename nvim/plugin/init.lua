@@ -2,10 +2,10 @@
 require("lualine").setup()
 
 -- Terminal toggle.
-require("toggleterm").setup({
+require("toggleterm").setup {
   open_mapping = [[<c-\>]],
   -- shade_terminals = false,
-})
+}
 
 -- Netrw file icons.
 require("netrw").setup()
