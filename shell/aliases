@@ -379,6 +379,7 @@ alias gstd='git stash drop'
 alias gstl='git stash list'
 alias gstp='git stash pop'
 alias gstsh='git stash show'
+alias gstshp='git stash show -p'
 
 # gh (github command line client).
 if command -v gh >/dev/null; then

@@ -187,9 +187,15 @@ Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' }
 Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 let g:python_pep8_indent_hang_closing = 0
 
-" text objects.
+" Text object for entire buffer
+Plug 'kana/vim-textobj-entire' " needs `kana/vim-textobj-user` to work
+Plug 'kana/vim-textobj-user'
+
+" Text object for lines at the same indent level
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'wellle/targets.vim' " adds i/ finally!
+
+" Text objects like `i/`
+Plug 'wellle/targets.vim'
 
 " colorschemes.
 Plug 'tomasiser/vim-code-dark'
@@ -226,7 +232,7 @@ nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
 
 " misc.
-nnoremap <leader>d  :bd!<CR>
+nnoremap <silent> <leader>d  :bd!<CR>
 nnoremap <leader>mk :w \| :make<CR>
 
 " visual.

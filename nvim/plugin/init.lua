@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- SETTINGS {{{
+-- SETTINGS
 
 -- path
 vim.opt.path:append(os.getenv("HOME") .. "/.config/nvim/*plugin/") -- search files with `:find` command
@@ -114,5 +114,3 @@ vim.opt.mouse = "a" -- enable mouse in all modes
 vim.opt.virtualedit = "block" -- allow cursor to move where there is no text in visual block mode.
 vim.opt.timeoutlen = 500
 -- vim.opt.lazyredraw = false
-
---}}}
