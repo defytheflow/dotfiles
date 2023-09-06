@@ -215,31 +215,6 @@ Plug 'pantharshit00/vim-prisma'
 call plug#end()
 "}}}
 
-" mappings {{{
-
-" vimrc.
-command! Rld :source $MYVIMRC
-nnoremap <silent> <leader>ve :edit   $MYVIMRC<CR>
-nnoremap <silent> <leader>vs :split  $MYVIMRC<CR>
-nnoremap <silent> <leader>vv :vsplit $MYVIMRC<CR>
-
-" center the screen after a cursor jump.
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap <C-d> <C-d>zz
-nnoremap <C-u> <C-u>zz
-nnoremap <C-o> <C-o>zz
-nnoremap <C-i> <C-i>zz
-
-" misc.
-nnoremap <silent> <leader>d  :bd!<CR>
-nnoremap <leader>mk :w \| :make<CR>
-
-" visual.
-vnoremap < <gv
-vnoremap > >gv
-"}}}
-
 " autocmds {{{
 augroup vimrc_syntax
   au!

@@ -112,3 +112,29 @@ vim.opt.mouse = "a" -- enable mouse in all modes
 vim.opt.virtualedit = "block" -- allow cursor to move where there is no text in visual block mode.
 vim.opt.timeoutlen = 500
 -- vim.opt.lazyredraw = false
+
+-- KEYMAPS
+
+-- vimrc
+local myvimrc = vim.fn.expand("$MYVIMRC")
+vim.api.nvim_create_user_command("Rld", function() vim.cmd.source(myvimrc) end, {})
+vim.keymap.set("n", "<leader>ve", function() vim.cmd.edit(myvimrc) end, { desc = "[V]im [E]dit" })
+vim.keymap.set("n", "<leader>vs", function() vim.cmd.split(myvimrc) end, { desc = "[V]im [S]plit" })
+vim.keymap.set("n", "<leader>vv", function() vim.cmd.vsplit(myvimrc) end, { desc = "[V]im [V]split" })
+
+-- center the screeen after a cursor jump
+for _, keymap in ipairs { "n", "N", "<C-d>", "<C-u>", "<C-o>", "<C-i>" }  do
+  vim.keymap.set("n", keymap, keymap .. "zz")
+end
+
+-- misc
+vim.keymap.set("n", "<leader>d", vim.cmd.bdelete)
+vim.keymap.set("n", "<leader>mk", function() vim.cmd.write(); vim.cmd.make() end)
+
+-- press << or >> multiple times, maintaining visual selection
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
+-- move visual selection up or down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
