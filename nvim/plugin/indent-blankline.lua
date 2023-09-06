@@ -19,3 +19,6 @@ require("indent_blankline").setup {
     "dashboard",
   },
 }
+
+-- Color from NvimTreeIndentMaker highlight
+vim.cmd.highlight { "IndentBlanklineSpaceChar", "guifg=#3b4261" }

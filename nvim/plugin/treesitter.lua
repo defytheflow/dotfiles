@@ -36,4 +36,14 @@ require("nvim-treesitter.configs").setup {
   },
 }
 
--- TODO: add a keymap that toggles the context
+require("treesitter-context").setup {
+  on_attach = function()
+    vim.keymap.set("n", "<leader>ct", function()
+      vim.cmd.TSContextToggle()
+    end, { desc = "[C]ontext [T]oggle" })
+
+    vim.keymap.set("n", "<leader>cg", function()
+      require("treesitter-context").go_to_context()
+    end, { desc = "[C]ontext [G]o" })
+  end
+}

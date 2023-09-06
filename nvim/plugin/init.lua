@@ -1,5 +1,3 @@
--- vim: set foldmethod=marker:
-
 -- Status line.
 require("lualine").setup()
 
@@ -28,7 +26,7 @@ vim.opt.path:append(os.getenv("HOME") .. "/.config/nvim/*plugin/") -- search fil
 
 -- backup
 vim.opt.backup = true
-vim.opt.backupdir:append(os.getenv("HOME") .. "/.local/share/nvim/backup") -- TODO: maybe unnecessary
+vim.opt.backupdir = os.getenv("HOME") .. "/.local/state/nvim/backup"
 
 -- colorscheme
 vim.opt.termguicolors = true -- use guifg/guibg instead of ctermfg/ctermbg in terminal
@@ -87,11 +85,11 @@ vim.opt.colorcolumn = "+0" -- display a colorcolumn using the value of textwidth
 vim.opt.sidescrolloff = 10
 
 -- scroll off
-vim.opt.scrolloff = 10
+-- vim.opt.scrolloff = 10 - doesn't allow to do zt to the top of the buffer
 
 -- undo
 vim.opt.undofile = true
-vim.opt.undodir:append(os.getenv("HOME") .. "/.local/share/nvim/undo") -- TODO: maybe unnecessary
+vim.opt.undodir = os.getenv("HOME") .. "/.local/state/nvim/undo"
 
 -- whitespace
 vim.opt.list = true -- render whitespace with characters

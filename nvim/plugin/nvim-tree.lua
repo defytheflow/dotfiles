@@ -17,6 +17,7 @@ require("nvim-tree").setup {
   },
   filters = {
     git_ignored = false,
+    custom = { "*.pyc", ".DS_Store" }, -- names that will not be shown
   },
 }
 
