@@ -27,6 +27,7 @@ vim.opt.path:append(os.getenv("HOME") .. "/.config/nvim/*plugin/") -- search fil
 -- backup
 vim.opt.backup = true
 vim.opt.backupdir = os.getenv("HOME") .. "/.local/state/nvim/backup"
+vim.opt.swapfile = false
 
 -- colorscheme
 vim.opt.termguicolors = true -- use guifg/guibg instead of ctermfg/ctermbg in terminal
@@ -136,5 +137,61 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- move visual selection up or down
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- TODO: come up with a keymap
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- AUTOCOMMANDS
+
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd({ "BufWritePre" }, {
+  group = augroup("vimrc_trailing_whitespace", {}),
+  pattern = "*",
+  callback = function() vim.cmd("%s/\\s\\+$//e"); vim.cmd("%s/\n\\+\\%$//e") end,
+  desc = "Remove trailing whitespace",
+})
+
+autocmd({ "BufNewFile", "BufRead" }, {
+  group = augroup("vimrc_jsonc", {}),
+  pattern = { "coc-settings.json", "tsconfig.json", "settings.json", "keybindings.json", "*code-snippets" },
+  callback = function() vim.opt_local.filetype = "jsonc" end,
+})
+
+autocmd({ "FileType" }, {
+  group = augroup("vimrc_vimwiki", {}),
+  pattern = "vimwiki",
+  callback = function() vim.cmd.runtime("ftplugin/text.lua") end,
+})
+
+-- NOTE: When you decide to put autocmds for saving folds state, make sure that nohlsearch
+-- and Telescope find_files still work.
+
+autocmd({ "TextYankPost" }, {
+  group = augroup("vimrc_highlight_yank", {}),
+  pattern = "*",
+  callback = function() vim.highlight.on_yank { higroup = "IncSearch", timeout = 200 } end,
+})
+
+local misc_group = augroup("vimrc_misc", {})
+
+autocmd({ "VimEnter" }, {
+  group = misc_group,
+  pattern = "*",
+  callback = function() vim.cmd.NoMatchParen() end,
+})
+
+autocmd({ "FileType" }, {
+  group = misc_group,
+  pattern = "*",
+  callback = function() vim.opt.formatoptions:remove { "c", "r", "o" } end,
+  desc = "Disable auto commenting",
+})
+
+-- DIGRAPHS
+
+vim.cmd.digraph("P!", 129383) -- pie emoji 🥧
+vim.cmd.digraph("R!", 128640) -- rocket emoji 🚀
+vim.cmd.digraph("T!", 129394) -- smiling face with tear emoji 🥲
+vim.cmd.digraph("OO", 129417) -- owl emoji 🦉
