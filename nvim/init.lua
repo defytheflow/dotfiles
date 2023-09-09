@@ -1,14 +1,13 @@
--- lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
+  vim.fn.system {
     "git",
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
     lazypath,
-  })
+  }
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -73,7 +72,14 @@ require("lazy").setup {
   },
 
    -- Terminal toggle
-  { "akinsho/toggleterm.nvim", version = "*", config = true },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = true,
+    opts = {
+      open_mapping = [[<c-\>]],
+    },
+  },
 
    -- Buffer line
   { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
@@ -81,14 +87,15 @@ require("lazy").setup {
   -- Indent guides
   "lukas-reineke/indent-blankline.nvim",
 
-  -- Colorschemes
-  { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
-  "tanvirtin/monokai.nvim",
-  "arzg/vim-colors-xcode",
-
   -- Status line.
   -- NOTE: because of this plugin, default dashboard page disappears
-  { "nvim-lualine/lualine.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("lualine").setup()
+    end,
+  },
 
   -- Syntax highlighting
   {
@@ -97,7 +104,8 @@ require("lazy").setup {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-context",
       "JoosepAlviste/nvim-ts-context-commentstring",
-      -- "windwp/nvim-ts-autotag", -- NOTE: Adds closing jsx tags every time I hit /, event if the tag is already completed and I am editing within it.
+       -- "windwp/nvim-ts-autotag", -- NOTE: Adds closing jsx tags every time I hit /,
+       -- even if the tag is already completed and I am editing within it.
     },
   },
 
@@ -113,16 +121,18 @@ require("lazy").setup {
   },
 
   -- Todo comments
-  { "folke/todo-comments.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+  { "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim" },
 
   -- LSP, completion, diagnostics, refactoring, snippets
   {
-    "neoclide/coc.nvim", branch = "release",
+    "neoclide/coc.nvim",
+    branch = "release",
     dependencies = {
       "neoclide/coc-tsserver",
       "neoclide/coc-highlight",
-      "neoclide/coc-snippets",
       "neoclide/coc-json",
+      "neoclide/coc-css",
+      "neoclide/coc-snippets",
       "honza/vim-snippets",
     },
   },
@@ -131,52 +141,60 @@ require("lazy").setup {
   -- "dense-analysis/ale",
 
   -- Defines camelCase and snake_keys motions (w, b, e)
-  -- "bkad/CamelCaseMotion",
-  -- let g:camelcasemotion_key = '<leader>'
+  -- {
+  --   "bkad/CamelCaseMotion",
+  --   init = function()
+  --     vim.g.camelcasemotion_key = "<leader>"
+  --   end
+  -- },
 
-  -- TODO: what are these for?
-  "godlygeek/tabular",
-  "preservim/vim-markdown",
+  { "preservim/vim-markdown", ft="markdown", dependencies = "godlygeek/tabular" },
 
   -- Preview markdown in the browser
   {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
-    build = function() vim.fn["mkdp#util#install"]() end,
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
 
   -- Emoji abbreviations, digraphs and completion
   "https://gitlab.com/gi1242/vim-emoji-ab.git",
 
-  -- Automatically inserts the closing tag.
-  -- Plug 'alvan/vim-closetag'
-  -- let g:closetag_filenames = '*.html,*.xhtml,*.jsx,*.tsx'
-  -- let g:closetag_filetypes = 'html,xhtml,jsx'
-  -- " let g:closetag_close_shortcut = '<leader>>'
-  -- let g:closetag_regions =  {
-  -- \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-  -- \ 'javascript.jsx': 'jsxRegion',
-  -- \ }
+  -- Automatically insert the closing tag
+  {
+    "alvan/vim-closetag",
+    init = function()
+      vim.g.closetag_filenames = "*.html,*.xhtml,*.jsx,*.tsx"
+      vim.g.closetag_filetypes = "html,xhtml,jsx"
+      vim.g.closetag_regions = {
+        ["typescript.tsx"] = "jsxRegion,tsxRegion",
+        ["javascript.jsx"] = "jsxRegion",
+      }
+    end
+  },
 
-  -- Aligns text
-  "junegunn/vim-easy-align",
-  -- let g:easy_align_ignore_groups = []
-  -- xmap ga <Plug>(EasyAlign)
-  -- nmap ga <Plug>(EasyAlign)
+  -- Align text
+  {
+    "junegunn/vim-easy-align",
+    init = function()
+      vim.g.easy_align_ignore_groups = {}
+      vim.keymap.set("v", "ga", "<Plug>(EasyAlign)")
+      vim.keymap.set("n", "ga", "<Plug>(EasyAlign)")
+    end
+  },
 
-
-  -- Highlights unique characters in every word to easier use f, F, t and T
+  -- Highlight unique characters in every word to easier use f, F, t and T
   {
     "unblevable/quick-scope",
-    config = function()
-      -- TODO: doesn't work
+    init = function()
       vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
     end
   },
-  -- let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
   --  Emmet support.
-  --  Plug 'mattn/emmet-vim'
+  -- "mattn/emmet-vim"
   --  uses <C-Y> which conflicts with vim built-in
 
   "AndrewRadev/tagalong.vim",  -- Auto rename closing/opening tags
@@ -190,15 +208,11 @@ require("lazy").setup {
   "tpope/vim-surround",        -- Delete/change/add parentheses/quotes/tags
   "tpope/vim-unimpaired",      -- Pairs of handy bracket mappings
 
-  -- Python text objects and motions.
-  { "jeetsukumaran/vim-pythonsense", ft = "python" },
-
-  -- Python indentation that complies with pep8.
+  -- Python indentation that complies with pep8
   {
     "Vimjas/vim-python-pep8-indent",
     ft = "python",
-    config = function()
-      -- TODO: doesn't work
+    init = function()
       vim.g.python_pep8_indent_hang_closing = 0
     end,
   },
@@ -213,17 +227,29 @@ require("lazy").setup {
   "wellle/targets.vim",
 
   -- Colorschemes
-  "tomasiser/vim-code-dark",
-  "tomasr/molokai",
-  "morhetz/gruvbox",
-  "chriskempson/base16-vim",
+  { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
+  "tanvirtin/monokai.nvim",
+  "arzg/vim-colors-xcode",
   "haishanh/night-owl.vim",
-  { "kaicataldo/material.vim", branch = "main" },
-
-  -- Syntaxes
-  "mboughaba/i3config.vim",
-  { "uiiaoo/java-syntax.vim", ft = "java" },
-  { "octol/vim-cpp-enhanced-highlight", ft = "cpp" },
-  { "cespare/vim-toml", ft = "toml" },
-  "pantharshit00/vim-prisma",
+  "chriskempson/base16-vim",
+  "morhetz/gruvbox",
+  "tomasiser/vim-code-dark",
 }
+
+require("mini.trailspace").setup()
+
+-- Disable highlighting on dashboard page
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "dashboard",
+  callback = function(data)
+    vim.b[data.buf].minitrailspace_disable = true
+    vim.api.nvim_buf_call(data.buf, MiniTrailspace.unhighlight)
+  end,
+})
+
+-- NOTE: mini.trailspace must be loaded before my settings, otherwise doesn't work
+
+require("defytheflow.settings")
+require("defytheflow.keymaps")
+require("defytheflow.autocmds")
+require("defytheflow.digraphs")
