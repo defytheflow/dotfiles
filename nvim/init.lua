@@ -177,7 +177,7 @@ require("lazy").setup {
     "junegunn/vim-easy-align",
     init = function()
       vim.g.easy_align_ignore_groups = {}
-      vim.keymap.set("v", "ga", "<Plug>(EasyAlign)")
+      vim.keymap.set("x", "ga", "<Plug>(EasyAlign)")
       vim.keymap.set("n", "ga", "<Plug>(EasyAlign)")
     end
   },
