@@ -137,9 +137,6 @@ require("lazy").setup {
     },
   },
 
-  -- Linting and formatting
-  -- "dense-analysis/ale",
-
   -- Defines camelCase and snake_keys motions (w, b, e)
   -- {
   --   "bkad/CamelCaseMotion",
