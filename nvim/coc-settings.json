@@ -1,10 +1,15 @@
 {
   "colors.enable": true,
+  "highlight.colorNames.enable": false,
+
+  // use <C-n> and <C-p> to cycle through CocList's results.
+  "list.insertMappings": {
+    "<C-n>": "normal:j",
+    "<C-p>": "normal:k"
+  },
+
   // "diagnostic.virtualText": true,
   // "diagnostic.virtualTextCurrentLineOnly": false,
-
-  // for coc-import-cost
-  // "codeLens.enable": true,
 
   "snippets.textmateSnippetsRoots": ["~/.dotfiles/vscode/snippets"],
 

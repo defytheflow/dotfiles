@@ -10,21 +10,6 @@ vim.opt.swapfile = false
 -- colorscheme
 vim.opt.termguicolors = true -- use guifg/guibg instead of ctermfg/ctermbg in terminal
 
-if not pcall(function()
-  local colorschemes = {
-    "tokyonight-moon",
-    "tokyonight-day",
-    "night-owl",
-    "base16-classic-dark",
-    "base16-gruvbox-dark-hard",
-    "gruvbox",
-    "base16-ocean",
-  }
-  vim.cmd.colorscheme(colorschemes[1])
-end) then
-  vim.cmd.colorscheme("koehler")
-end
-
 -- command line
 vim.opt.wildmode = { "longest", "list", "full" }
 vim.opt.wildignore:append { "*/.git/*", "*/.venv/*", "*/node_modules/*", "*cache*", "*coverage*" }

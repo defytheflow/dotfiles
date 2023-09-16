@@ -3,6 +3,8 @@ local api = require("nvim-tree.api")
 require("nvim-tree").setup {
   view = {
     width = 35,
+    number  = true,
+    relativenumber = true,
   },
   renderer = {
     indent_markers = {

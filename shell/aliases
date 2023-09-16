@@ -138,11 +138,11 @@ if command -v code >/dev/null; then
 fi
 
 # vim.
-alias via='vim ${DOTFILES_HOME}/shell/aliases'    # vi aliases
-alias vif='vim ${DOTFILES_HOME}/shell/functions'  # vi functions
-alias vin='vim -u NONE'                           # vi none
-alias vis='vim ${ZDOTDIR}/.zshrc'                 # vi shell
-alias vit='vim ${XDG_CONFIG_HOME}/tmux/tmux.conf' # vi tmux.conf
+alias via='vim ${DOTFILES_HOME}/shell/aliases'   # vi aliases
+alias vif='vim ${DOTFILES_HOME}/shell/functions' # vi functions
+alias vin='vim -u NONE'                          # vi none
+alias vis='vim ${ZDOTDIR}/.zshrc'                # vi shell
+alias vit='vim ${HOME}/.config/tmux/tmux.conf'   # vi tmux.conf
 
 if command -v nvim >/dev/null; then
   alias vi='nvim'
@@ -335,8 +335,13 @@ alias gpu='git push --set-upstream'
 # `git push all` - push to all remotes.
 gpa() {
   for remote in $(git remote -v | grep push | awk '{ print $1 }'); do
-    git push "$remote"
+    git push "$remote" "$@"
   done
+}
+
+# `git push all --force`
+gpaf() {
+  gpa --force
 }
 
 # git-pull.

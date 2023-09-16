@@ -9,6 +9,7 @@ require("nvim-treesitter.configs").setup {
     "python",
     "tsx",
     "json",
+    "bash",
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)

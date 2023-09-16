@@ -17,6 +17,8 @@ require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
 
+  { "ThePrimeagen/harpoon", dependencies = "nvim-lua/plenary.nvim" },
+
   -- Open files at last edit location
   "farmergreg/vim-lastplace",
 
@@ -35,10 +37,21 @@ require("lazy").setup {
   { "prichrd/netrw.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
 
   -- Highlight trailing whitespace
-  "echasnovski/mini.trailspace",
+  {
+    "ntpeters/vim-better-whitespace",
+    init = function()
+      vim.g.better_whitespace_filetypes_blacklist = {
+        -- defaults
+        "diff", "git", "gitcommit", "unite", "qf", "help", "markdown", "fugitive",
+        -- custom
+        "dashboard"
+      }
+      vim.g.better_whitespace_guicolor = '#f38ba8'
+    end
+  },
 
   -- Generate JSDoc comments
-  {  "heavenshell/vim-jsdoc", build = "make install" },
+  { "heavenshell/vim-jsdoc", build = "make install" },
 
   -- Start screen
   {
@@ -71,7 +84,7 @@ require("lazy").setup {
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
   },
 
-   -- Terminal toggle
+  -- Terminal toggle
   {
     "akinsho/toggleterm.nvim",
     version = "*",
@@ -81,8 +94,8 @@ require("lazy").setup {
     },
   },
 
-   -- Buffer line
-  { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
+  -- Buffer line
+  { "akinsho/bufferline.nvim",  version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
 
   -- Indent guides
   "lukas-reineke/indent-blankline.nvim",
@@ -104,19 +117,19 @@ require("lazy").setup {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-context",
       "JoosepAlviste/nvim-ts-context-commentstring",
-       -- "windwp/nvim-ts-autotag", -- NOTE: Adds closing jsx tags every time I hit /,
-       -- even if the tag is already completed and I am editing within it.
+      -- "windwp/nvim-ts-autotag", -- NOTE: Adds closing jsx tags every time I hit /,
+      -- even if the tag is already completed and I am editing within it.
     },
   },
 
   -- Fuzzy finder
   {
-     "nvim-telescope/telescope.nvim",
-     tag = "0.1.2",
-     dependencies = {
-       "nvim-lua/plenary.nvim",
-       "fannheyward/telescope-coc.nvim",
-       "xiyaowong/telescope-emoji.nvim",
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.2",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "fannheyward/telescope-coc.nvim",
+      "xiyaowong/telescope-emoji.nvim",
     },
   },
 
@@ -145,7 +158,7 @@ require("lazy").setup {
   --   end
   -- },
 
-  { "preservim/vim-markdown", ft="markdown", dependencies = "godlygeek/tabular" },
+  { "preservim/vim-markdown",  ft = "markdown", dependencies = "godlygeek/tabular" },
 
   -- Preview markdown in the browser
   {
@@ -194,16 +207,16 @@ require("lazy").setup {
   -- "mattn/emmet-vim"
   --  uses <C-Y> which conflicts with vim built-in
 
-  "AndrewRadev/tagalong.vim",  -- Auto rename closing/opening tags
-  "vim-test/vim-test",         -- Run tests
-  "voldikss/vim-floaterm",     -- Display a floating terminal
-  "vimwiki/vimwiki",           -- Personal wiki
-  "cohama/lexima.vim",         -- Auto close quotes and parentheses.
-  "tpope/vim-projectionist",   -- Switch between alternative files
-  "tpope/vim-commentary",      -- Comment stuff out with `gc`
-  "tpope/vim-repeat",          -- Enable repeating plugin mappings with \"."
-  "tpope/vim-surround",        -- Delete/change/add parentheses/quotes/tags
-  "tpope/vim-unimpaired",      -- Pairs of handy bracket mappings
+  "AndrewRadev/tagalong.vim", -- Auto rename closing/opening tags
+  "vim-test/vim-test",        -- Run tests
+  "voldikss/vim-floaterm",    -- Display a floating terminal
+  "vimwiki/vimwiki",          -- Personal wiki
+  "cohama/lexima.vim",        -- Auto close quotes and parentheses.
+  "tpope/vim-projectionist",  -- Switch between alternative files
+  "tpope/vim-commentary",     -- Comment stuff out with `gc`
+  "tpope/vim-repeat",         -- Enable repeating plugin mappings with \"."
+  "tpope/vim-surround",       -- Delete/change/add parentheses/quotes/tags
+  "tpope/vim-unimpaired",     -- Pairs of handy bracket mappings
 
   -- Python indentation that complies with pep8
   {
@@ -224,27 +237,33 @@ require("lazy").setup {
   "wellle/targets.vim",
 
   -- Colorschemes
-  { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function() vim.cmd.colorscheme("tokyonight-moon") end
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = false,
+    priority = 1000,
+    -- config = function() vim.cmd.colorscheme("catppuccin") end
+  },
   "tanvirtin/monokai.nvim",
   "arzg/vim-colors-xcode",
   "haishanh/night-owl.vim",
-  "chriskempson/base16-vim",
+  {
+    "chriskempson/base16-vim",
+    config = function()
+      -- Good ones
+      -- vim.cmd.colorscheme("base16-classic-dark")
+      -- vim.cmd.colorscheme("base16-gruvbox-dark-hard")
+      -- vim.cmd.colorscheme("base16-ocean")
+    end
+  },
   "morhetz/gruvbox",
-  "tomasiser/vim-code-dark",
 }
-
-require("mini.trailspace").setup()
-
--- Disable highlighting on dashboard page
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "dashboard",
-  callback = function(data)
-    vim.b[data.buf].minitrailspace_disable = true
-    vim.api.nvim_buf_call(data.buf, MiniTrailspace.unhighlight)
-  end,
-})
-
--- NOTE: mini.trailspace must be loaded before my settings, otherwise doesn't work
 
 require("defytheflow.settings")
 require("defytheflow.keymaps")

@@ -6,13 +6,14 @@ vim.keymap.set("n", "<leader>vs", function() vim.cmd.split(myvimrc) end, { desc 
 vim.keymap.set("n", "<leader>vv", function() vim.cmd.vsplit(myvimrc) end, { desc = "[V]im [V]split" })
 
 -- center the screeen after a cursor jump
-for _, keymap in ipairs { "n", "N", "<C-d>", "<C-u>", "<C-o>", "<C-i>" }  do
+for _, keymap in ipairs { "n", "N", "<C-d>", "<C-u>", "<C-o>", "<C-i>" } do
   vim.keymap.set("n", keymap, keymap .. "zz")
 end
 
 -- misc
 vim.keymap.set("n", "<leader>d", vim.cmd.bdelete)
-vim.keymap.set("n", "<leader>mk", function() vim.cmd.write(); vim.cmd.make() end)
+vim.keymap.set("n", "<leader>D", function() vim.cmd.bprevious() vim.cmd.bdelete('#') end)
+vim.keymap.set("n", "<leader>mk", function() vim.cmd.write() vim.cmd.make() end)
 
 -- press << or >> multiple times, maintaining visual selection
 vim.keymap.set("v", "<", "<gv")
