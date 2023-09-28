@@ -40,11 +40,21 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind [g]rep liv
 vim.keymap.set("n", "<leader>fG", builtin.grep_string, { desc = "[F]ind [G]rep under cursor" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
 vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "[F]ind [O]ld files" })
-vim.keymap.set("n", "<leader>fs", "<cmd>Telescope coc document_symbols<cr>", { desc = "[F]ind [s]ymbols (document)" })
-vim.keymap.set("n", "<leader>fS", "<cmd>Telescope coc workspace_symbols<cr>", { desc = "[F]ind [S]ymbols (workspace)" })
 vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "[F]ind [T]odos" })
 vim.keymap.set("n", "<leader>f/", builtin.search_history)
+vim.keymap.set("n", "<leader>fl", builtin.git_status)
 
--- These throw lua errors
--- vim.keymap.set("n", "<leader>fs", extensions.coc.document_symbols, {})
--- vim.keymap.set("n", "<leader>fS", extensions.coc.workspace_symbols, {})
+vim.keymap.set("n", "gr", "<cmd>Telescope coc references<cr>", { desc = "[G]oto [R]eferences" })
+vim.keymap.set("n", "<leader>ds", "<cmd>Telescope coc document_symbols<cr>", { desc = "[D]ocument [s]ymbols" })
+vim.keymap.set("n", "<leader>ws", "<cmd>Telescope coc workspace_symbols<cr>", { desc = "[W]orkspace [S]ymbols" })
+
+vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "[?] Find recently opened files" })
+vim.keymap.set("n", "<leader><space>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+vim.keymap.set("n", "<leader>/", function()
+  builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = "[/] Fuzzily search in current buffer" })
+
+vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })

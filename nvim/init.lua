@@ -44,9 +44,9 @@ require("lazy").setup {
         -- defaults
         "diff", "git", "gitcommit", "unite", "qf", "help", "markdown", "fugitive",
         -- custom
-        "dashboard"
+        "dashboard", "toggleterm",
       }
-      vim.g.better_whitespace_guicolor = '#f38ba8'
+      vim.g.better_whitespace_guicolor = "#f38ba8"
     end
   },
 
@@ -65,6 +65,9 @@ require("lazy").setup {
 
   -- Git plugin
   "tpope/vim-fugitive",
+
+  -- Github plugin
+  "tpope/vim-rhubarb",
 
   -- Git commit browser
   { "junegunn/gv.vim", dependencies = "tpope/vim-fugitive" },
@@ -241,14 +244,14 @@ require("lazy").setup {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    config = function() vim.cmd.colorscheme("tokyonight-moon") end
+    -- config = function() vim.cmd.colorscheme("tokyonight-moon") end
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
     lazy = false,
     priority = 1000,
-    -- config = function() vim.cmd.colorscheme("catppuccin") end
+    config = function() vim.cmd.colorscheme("catppuccin") end
   },
   "tanvirtin/monokai.nvim",
   "arzg/vim-colors-xcode",

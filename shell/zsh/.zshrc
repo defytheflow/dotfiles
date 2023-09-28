@@ -297,8 +297,8 @@ NEWLINE=$'\n'
 char_="%B%(?.%F{$GREYISH_WHITE}>%f.%F{$RED}>%f)%b"
 PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}${char_} '
 
-function short() { PROMPT='$ ' }
-function reset() { PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}${char_} ' }
+function short { PROMPT='$ ' }
+function reset { PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}${char_} ' }
 
 # EXIT_CODE="%(?..%F{$RED}[%?]%f)"
 # EXIT_CODE="%(?.%F{$NIGHT_OWL_GREEN}:)%f.%F{$RED}:(%f)"

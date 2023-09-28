@@ -147,7 +147,7 @@ alias vit='vim ${HOME}/.config/tmux/tmux.conf'   # vi tmux.conf
 if command -v nvim >/dev/null; then
   alias vi='nvim'
   alias vim='nvim'
-  alias vie='nvim ${XDG_CONFIG_HOME}/nvim/init.lua' # vi edit (nvim config file)
+  alias vie='nvim ${HOME}/.config/nvim/init.lua' # vi edit (nvim config file)
 fi
 
 # python.

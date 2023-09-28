@@ -2,7 +2,7 @@ local api = require("nvim-tree.api")
 
 require("nvim-tree").setup {
   view = {
-    width = 35,
+    width = { min = 30 },
     number  = true,
     relativenumber = true,
   },

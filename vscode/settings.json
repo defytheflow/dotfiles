@@ -392,7 +392,7 @@
 
   //* Vim.
   "vim.leader": " ",
-  "vim.vimrc.enable": true,
+  "vim.vimrc.enable": false,
   "vim.textwidth": 90,
   "vim.foldfix": false,
   // "vim.cursorStylePerMode.insert": "block",
