@@ -43,10 +43,10 @@ vim.keymap.set("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 -- Use <c-space> to trigger completion
 vim.keymap.set("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
 
--- Use `[g` and `]g` to navigate diagnostics
+-- Use `[d` and `]d` to navigate diagnostics
 -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-vim.keymap.set("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
-vim.keymap.set("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
+vim.keymap.set("n", "[d", "<Plug>(coc-diagnostic-prev)", { silent = true, desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "]d", "<Plug>(coc-diagnostic-next)", { silent = true, desc = "Go to next [D]iagnostic message" })
 
 -- GoTo code navigation
 vim.keymap.set("n", "gd", "<Plug>(coc-definition)", { silent = true })
@@ -133,17 +133,6 @@ vim.keymap.set("n", "<leader>r", "<Plug>(coc-codeaction-refactor-selected)", { s
 
 -- Run the Code Lens actions on the current line
 vim.keymap.set("n", "<leader>cl", "<Plug>(coc-codelens-action)", opts)
-
--- Map function and class text objects
--- NOTE: Requires 'textDocument.documentSymbol' support from the language server
-vim.keymap.set("x", "if", "<Plug>(coc-funcobj-i)", opts)
-vim.keymap.set("o", "if", "<Plug>(coc-funcobj-i)", opts)
-vim.keymap.set("x", "af", "<Plug>(coc-funcobj-a)", opts)
-vim.keymap.set("o", "af", "<Plug>(coc-funcobj-a)", opts)
-vim.keymap.set("x", "ic", "<Plug>(coc-classobj-i)", opts)
-vim.keymap.set("o", "ic", "<Plug>(coc-classobj-i)", opts)
-vim.keymap.set("x", "ac", "<Plug>(coc-classobj-a)", opts)
-vim.keymap.set("o", "ac", "<Plug>(coc-classobj-a)", opts)
 
 -- Remap <C-f>/<C-b> and <C-d>/<C-u> to scroll float windows/popups
 ---@diagnostic disable-next-line: redefined-local

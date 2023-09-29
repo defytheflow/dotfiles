@@ -79,7 +79,12 @@ require("lazy").setup {
   "folke/zen-mode.nvim",
 
   -- Dim inactive portions of the code
-  "folke/twilight.nvim",
+  {
+    "folke/twilight.nvim",
+    opts = {
+      context = 20,
+    },
+  },
 
   -- Outline window
   {
@@ -118,6 +123,7 @@ require("lazy").setup {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
       "JoosepAlviste/nvim-ts-context-commentstring",
       -- "windwp/nvim-ts-autotag", -- NOTE: Adds closing jsx tags every time I hit /,
