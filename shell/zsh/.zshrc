@@ -109,7 +109,7 @@ zstyle ':completion:*:descriptions' format %F{default}%B%--- %d ---%b%f
 # cursor {{{
 function _set_block_cursor() { echo -ne '\e[1 q' }
 function _set_beam_cursor() { echo -ne '\e[5 q' }
-function zle-keymap-select {
+function zle-keymap-select() {
   if [[ $KEYMAP == vicmd ]] || [[ $1 = 'block' ]]; then
     _set_block_cursor
   elif [ $KEYMAP = main ] || [ $KEYMAP = viins ] || [ $KEYMAP = '' ] || [ $1 = 'beam' ]; then
@@ -180,7 +180,7 @@ zstyle ':vcs_info:git:*' check-for-changes true # enable to use %c and %u sequen
 zstyle ':vcs_info:git:*' stagedstr "%F{$GREEN}*"
 zstyle ':vcs_info:git:*' unstagedstr "%F{$ORANGE}*"
 zstyle ':vcs_info:*+*:*' debug false
-zstyle ':vcs_info:git*+set-message:*' hooks git-status git-untracked
+zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-status git-untracked
 
 function +vi-git-commit-count() {
   count=$(git rev-list --count ${hook_com[branch]})
@@ -239,10 +239,19 @@ function +vi-git-status() {
 }
 
 # from: https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
-function +vi-git-untracked(){
+function +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
     git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
     hook_com[unstaged]+="%F{$RED}*"
+  fi
+}
+
+function +vi-git-stash() {
+  count=$(git stash list 2>/dev/null | wc -l)
+  count=${count##*(  )} # removes leading whitespace
+
+  if [ $count -gt 0 ]; then
+    hook_com[misc]+="@{$count}"
   fi
 }
 
@@ -251,7 +260,7 @@ precmd() { vcs_info }
 # Allows to include commands and variables in the shell prompt.
 setopt prompt_subst
 
-function random_element {
+function random_element() {
   declare -a array=("$@")
   r=$((RANDOM % ${#array[@]}))
   printf "%s\n" "${array[$r]}"
@@ -285,20 +294,26 @@ emojis=(
   💯 💤 🃏 '⚛️ ' 🔱 ⚪️
 )
 
-time_='[%D{%H:%M}]'
+_time_='[%D{%H:%M}]'
 # figure out how to not display anything if at home directory and otherwise display full path
 #                            %1~
-pwd_="%B%F{$NIGHT_OWL_PURPLE}%~%f%b"
-emoji_=$(random_element $emojis)
-jobs_='%(1j.[%j] .)'
+_pwd_="%B%F{$NIGHT_OWL_PURPLE}%~%f%b"
+_emoji_=$(random_element $emojis)
+_jobs_='%(1j.[%j] .)'
 GREYISH_WHITE=252
 NEWLINE=$'\n'
 # don't use a custom color for >, because it doesn't adjust to the terminal's colorscheme.
-char_="%B%(?.%F{$GREYISH_WHITE}>%f.%F{$RED}>%f)%b"
-PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}${char_} '
+_char_="%B%(?.%F{$GREYISH_WHITE}>%f.%F{$RED}>%f)%b"
+_short_prompt_='${_emoji_} ${_jobs_}${_char_} '
+# don't use ${_short_prompt_} inside _long_prompt_ because emoji() function will not work
+_long_prompt_='${_time_} ${_pwd_}${vcs_info_msg_0_} ${_emoji_} ${_jobs_}${_char_} '
 
-function short { PROMPT='$ ' }
-function reset { PROMPT='${time_} ${pwd_}${vcs_info_msg_0_} ${emoji_} ${jobs_}${char_} ' }
+PROMPT=$_long_prompt_
+function short() { PROMPT=$_short_prompt_ }
+function long() { PROMPT=$_long_prompt_ }
+# tried to write a solution with a while loop to avoid the same emojis, couldn't get it to work,
+# always got stuck in an infinite loop.
+function emoji() { _emoji_=$(random_element $emojis) }
 
 # EXIT_CODE="%(?..%F{$RED}[%?]%f)"
 # EXIT_CODE="%(?.%F{$NIGHT_OWL_GREEN}:)%f.%F{$RED}:(%f)"

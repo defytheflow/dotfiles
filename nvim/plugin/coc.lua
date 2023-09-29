@@ -111,17 +111,20 @@ vim.api.nvim_create_autocmd("BufWrite", {
 
 -- Apply codeAction to the selected region
 -- Example: `<leader>aap` for current paragraph
+---@diagnostic disable-next-line: redefined-local
 local opts = { silent = true, nowait = true }
 vim.keymap.set("x", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
 vim.keymap.set("n", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
 
 -- Remap keys for apply code actions at the cursor position
-vim.keymap.set("n", "<leader>ac", "<Plug>(coc-codeaction-cursor)", opts)
+vim.keymap.set("n", "<leader>ca", "<Plug>(coc-codeaction-cursor)",
+  { silent = true, nowait = true, desc = "[C]ode [A]ction" })
 -- TODO: <leader>as conflicts with alternative file split mapping
 -- Remap keys for apply source code actions for current file
 vim.keymap.set("n", "<leader>aS", "<Plug>(coc-codeaction-source)", opts)
 -- Apply the most preferred quickfix action on the current line
-vim.keymap.set("n", "<leader>qf", "<Plug>(coc-fix-current)", opts)
+vim.keymap.set("n", "<leader>qf", "<Plug>(coc-fix-current)",
+  { silent = true, nowait = true, desc = "[Q]uick [F]ix" })
 
 -- Remap keys for apply refactor code actions
 vim.keymap.set("n", "<leader>re", "<Plug>(coc-codeaction-refactor)", { silent = true })
@@ -180,7 +183,9 @@ vim.api.nvim_create_user_command("Prettier", "call CocAction('runCommand', 'pret
 -- provide custom statusline: lightline.vim, vim-airline
 vim.opt.statusline:prepend("%{coc#status()}%{get(b:,'coc_current_function','')}")
 
-vim.keymap.set("n", "<leader>er", "call CocAction('runCommand', 'eslint.restart')", { silent = true })
+vim.keymap.set("n", "<leader>er",
+  function() vim.fn.CocAction("runCommand", "eslint.restart") end,
+  { silent = true, desc = "[E]slint [R]estart" })
 
 -- Mappings for CoCList
 -- code actions and coc stuff
