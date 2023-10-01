@@ -26,7 +26,6 @@ telescope.setup {
 }
 
 telescope.load_extension("emoji")
-telescope.load_extension("coc")
 
 local builtin = require("telescope.builtin")
 local extensions = telescope.extensions
@@ -34,7 +33,6 @@ local extensions = telescope.extensions
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind [b]uffers" })
 vim.keymap.set("n", "<leader>fB", builtin.git_branches, { desc = "[F]ind [B]ranches" })
 vim.keymap.set("n", "<leader>fc", builtin.git_commits, { desc = "[F]ind [C]ommits" })
-vim.keymap.set("n", "<leader>fd", extensions.coc.diagnostics, { desc = "[F]ind [D]iagnostics" })
 vim.keymap.set("n", "<leader>fe", extensions.emoji.emoji, { desc = "[F]ind [E]moji" })
 vim.keymap.set("n", "<leader>ff", builtin.git_files, { desc = "[F]ind [f]iles (git)" })
 vim.keymap.set("n", "<leader>fF", builtin.find_files, { desc = "[F]ind [F]iles (all)" })
@@ -47,10 +45,6 @@ vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[F]ind [R]esume" })
 vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "[F]ind [T]odos" })
 vim.keymap.set("n", "<leader>f/", builtin.search_history)
 vim.keymap.set("n", "<leader>fl", builtin.git_status)
-
-vim.keymap.set("n", "gr", "<cmd>Telescope coc references<cr>", { desc = "[G]oto [R]eferences" })
-vim.keymap.set("n", "<leader>ds", "<cmd>Telescope coc document_symbols<cr>", { desc = "[D]ocument [s]ymbols" })
-vim.keymap.set("n", "<leader>ws", "<cmd>Telescope coc workspace_symbols<cr>", { desc = "[W]orkspace [S]ymbols" })
 
 vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "[?] Find recently opened files" })
 vim.keymap.set("n", "<leader><space>", builtin.buffers, { desc = "[ ] Find existing buffers" })

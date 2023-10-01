@@ -3,9 +3,9 @@ local zen_mode = require("zen-mode")
 zen_mode.setup {
   window = {
     width = 1,
-  },
-  options = {
-    cursorline = false,
+    options = {
+      cursorline = false,
+    },
   },
   on_open = function(win)
     vim.wo.colorcolumn = ""

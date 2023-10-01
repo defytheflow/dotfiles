@@ -1,6 +1,6 @@
 pcall(function()
-  vim.cmd.colorscheme("xcodedarkhc")
-  require("lualine").setup()
+  -- vim.cmd.colorscheme("xcodedarkhc")
+  -- require("lualine").setup()
 end)
 
 vim.opt_local.tabstop = 4

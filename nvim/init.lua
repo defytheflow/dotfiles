@@ -13,11 +13,24 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
+-- NOTE: `opts = {}` is the same as calling `require('some-plugin').setup({})`
 require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
 
-  { "ThePrimeagen/harpoon", dependencies = "nvim-lua/plenary.nvim" },
+  -- Marks per project
+  {
+    "ThePrimeagen/harpoon",
+    dependencies = "nvim-lua/plenary.nvim",
+  },
+
+  -- Highlight colors
+  {
+    "brenoprata10/nvim-highlight-colors",
+    opts = {
+      enable_tailwind = true,
+    },
+  },
 
   -- Open files at last edit location
   "farmergreg/vim-lastplace",
@@ -34,7 +47,10 @@ require("lazy").setup {
   },
 
   -- Netrw file icons
-  { "prichrd/netrw.nvim", dependencies = "nvim-tree/nvim-web-devicons" },
+  {
+    "prichrd/netrw.nvim",
+    dependencies = "nvim-tree/nvim-web-devicons",
+  },
 
   -- Highlight trailing whitespace
   {
@@ -103,19 +119,59 @@ require("lazy").setup {
   },
 
   -- Buffer line
-  { "akinsho/bufferline.nvim",  version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
+  {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = "nvim-tree/nvim-web-devicons"
+  },
 
   -- Indent guides
   "lukas-reineke/indent-blankline.nvim",
 
-  -- Status line.
-  -- NOTE: because of this plugin, default dashboard page disappears
+  -- Status line (because of this plugin default dashboard page disappears)
   {
     "nvim-lualine/lualine.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("lualine").setup()
-    end,
+    opts = {},
+  },
+
+  -- LSP configuration & plugins
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      -- Automatically install LSPs to stdpath for neovim
+      { "williamboman/mason.nvim", config = true },
+      "williamboman/mason-lspconfig.nvim",
+
+      -- Useful status updates for LSP
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+
+      -- Neovim setup for init.lua and plugin development with full signature help, docs
+      -- and completion for the nvim lua API.
+      "folke/neodev.nvim",
+    },
+  },
+
+  -- Autocompletion
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      -- Snippet Engine & its associated nvim-cmp source
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+
+      -- Adds LSP completion capabilities
+      "hrsh7th/cmp-nvim-lsp",
+
+      -- Adds a number of user-friendly snippets
+      "rafamadriz/friendly-snippets",
+    },
+  },
+
+  -- Pretty list of showing diagnostics, references, telescope results, quickfix and location lists.
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
   -- Syntax highlighting
@@ -135,11 +191,7 @@ require("lazy").setup {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.2",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "fannheyward/telescope-coc.nvim",
-      "xiyaowong/telescope-emoji.nvim",
-    },
+    dependencies = { "nvim-lua/plenary.nvim", "xiyaowong/telescope-emoji.nvim" },
   },
 
   -- Todo comments
@@ -157,6 +209,10 @@ require("lazy").setup {
       "neoclide/coc-snippets",
       "honza/vim-snippets",
     },
+    ft = "swift",
+    config = function()
+      require("plugin.coc")
+    end
   },
 
   -- Defines camelCase and snake_keys motions (w, b, e)
@@ -167,7 +223,11 @@ require("lazy").setup {
   --   end
   -- },
 
-  { "preservim/vim-markdown",  ft = "markdown", dependencies = "godlygeek/tabular" },
+  {
+    "preservim/vim-markdown",
+    ft = "markdown",
+    dependencies = "godlygeek/tabular",
+  },
 
   -- Preview markdown in the browser
   {

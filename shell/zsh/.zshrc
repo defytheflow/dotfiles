@@ -364,6 +364,12 @@ export PATH="${BUN_INSTALL}/bin:${PATH}"
 export PNPM_HOME="${HOME}/.local/share/pnpm"
 export PATH="${PNPM_HOME}:${PATH}"
 
+# go
+export PATH="/usr/local/go/bin:${PATH}"
+
+# rust
+export PATH="${PATH}:${HOME}/.config/cargo/bin"
+
 # command not found
 HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
 [[ -f "$HB_CNF_HANDLER" ]] && source "$HB_CNF_HANDLER";

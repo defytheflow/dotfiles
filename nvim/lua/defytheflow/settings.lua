@@ -2,6 +2,15 @@
 vim.opt.path:append(os.getenv("HOME") .. "/.config/nvim/*plugin/") -- search files with `:find` command
 vim.opt.path:append(os.getenv("HOME") .. "/.config/nvim/lua/defytheflow/") -- search files with `:find` command
 
+-- Always show the signcolumn, otherwise it would shift the text each time
+-- diagnostics appeared/became resolved
+vim.opt.signcolumn = "yes"
+
+-- Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
+-- delays and poor user experience
+vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+
 -- backup
 vim.opt.backup = true
 vim.opt.backupdir = os.getenv("HOME") .. "/.local/state/nvim/backup"
