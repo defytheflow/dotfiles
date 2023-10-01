@@ -49,7 +49,7 @@ export FZF_DEFAULT_OPTS='--cycle'
 command -v rg >/dev/null && export FZF_CTRL_T_COMMAND='rg --files --hidden'
 
 # ipython.
-export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
+# export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
 
 # java.
 # export JAVA_HOME=/usr/lib/jvm/java-14-openjdk

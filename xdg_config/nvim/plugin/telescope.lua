@@ -4,7 +4,7 @@ local actions = require("telescope.actions")
 telescope.setup {
   defaults = {
     layout_config = {
-      preview_cutoff = 140, -- disables the preview when columns are less than this value
+      -- preview_cutoff = 140, -- disables the preview when columns are less than this value
     },
     file_ignore_patterns = { ".git/*" },
     mappings = {

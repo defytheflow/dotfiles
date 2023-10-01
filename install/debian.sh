@@ -4,7 +4,7 @@
 # Created:  26.03.2020
 # Author:   Artyom Danilov (@defytheflow)
 
-. "$(dirname "${0}")/utils"
+. "$(dirname "${0}")/utils.sh"
 
 log "Running ${1} module."
 

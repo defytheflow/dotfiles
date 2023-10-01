@@ -18,6 +18,12 @@ require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
 
+  {
+    "prettier/vim-prettier",
+    run = "yarn install --frozen-lockfile --production",
+    ft = {"javascript", "typescript", "css", "scss", "json", "graphql", "markdown", "vue", "yaml", "html"},
+  },
+
   -- Marks per project
   {
     "ThePrimeagen/harpoon",
@@ -156,12 +162,16 @@ require("lazy").setup {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
+      -- Adds LSP completion capabilities
+      "hrsh7th/cmp-nvim-lsp",
+
       -- Snippet Engine & its associated nvim-cmp source
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
 
-      -- Adds LSP completion capabilities
-      "hrsh7th/cmp-nvim-lsp",
+      -- Buffer words and filesystem paths completion
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
 
       -- Adds a number of user-friendly snippets
       "rafamadriz/friendly-snippets",

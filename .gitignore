@@ -24,11 +24,14 @@ shell/zsh/.zsh_history
 shell/zsh/.zcompdump
 
 # ghc
-ghc/ghci_history
+home/.ghc/ghci_history
 
 # pgcli
-pgcli/history
-pgcli/log
+xdg_config/pgcli/history
+xdg_config/pgcli/log
+
+# install
+install/node_modules
 
 # custom
 local_aliases

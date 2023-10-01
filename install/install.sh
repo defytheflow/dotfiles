@@ -12,14 +12,14 @@ relative_import() {
 }
 
 relative_import '.profile'
-relative_import 'utils'
+relative_import 'utils.sh'
 
 main() {
   check_environ
   check_internet
 
   if [ "${ON_MAC}" ]; then
-    relative_import 'mac'
+    relative_import 'mac.sh'
   else
     check_distro
   fi
@@ -46,10 +46,10 @@ check_distro() {
 
   case "${distro}" in
     *Manjaro*)
-      relative_import 'arch'
+      relative_import 'arch.sh'
       ;;
     *Ubuntu*)
-      relative_import 'debian'
+      relative_import 'debian.sh'
       ;;
     *)
       err "Distribution '${distro}' is not supported."

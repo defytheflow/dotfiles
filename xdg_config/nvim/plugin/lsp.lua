@@ -44,7 +44,6 @@ local on_attach = function(_, bufnr)
 
   nmap("<leader>f", vim.lsp.buf.format, "Format")
   xmap("<leader>f", vim.lsp.buf.format, "Format")
-  nmap("<leader>pf", vim.lsp.buf.format, "[P]retty [F]ormat")
 end
 
 local servers = {
@@ -54,7 +53,9 @@ local servers = {
   rust_analyzer = {},
   tsserver = {},
   tailwindcss = {},
-  html = { filetypes = { 'html', 'twig', 'hbs' } },
+  eslint = {},
+  html = { filetypes = { "html", "twig", "hbs" } },
+  cssls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -101,7 +102,7 @@ cmp.setup {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete {},
+    ["<C-Space>"] = cmp.mapping.complete(),
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
@@ -128,5 +129,7 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
+    { name = "buffer" },
+    { name = "path" },
   }
 }
