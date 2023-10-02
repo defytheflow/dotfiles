@@ -21,7 +21,10 @@ require("lazy").setup {
   {
     "prettier/vim-prettier",
     run = "yarn install --frozen-lockfile --production",
-    ft = {"javascript", "typescript", "css", "scss", "json", "graphql", "markdown", "vue", "yaml", "html"},
+    ft = {"javascript", "typescript", "javascriptreact", "typescriptreact", "css", "scss", "json", "graphql", "markdown", "vue", "yaml", "html"},
+    config = function()
+      vim.g["prettier#exec_cmd_async"] = 1
+    end
   },
 
   -- Marks per project
@@ -105,6 +108,8 @@ require("lazy").setup {
     "folke/twilight.nvim",
     opts = {
       context = 20,
+      -- TODO: dim out everything except current active function
+      -- expand = { "function", "method" }
     },
   },
 

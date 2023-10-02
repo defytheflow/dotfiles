@@ -3,7 +3,7 @@ vim.diagnostic.config({ virtual_text = true })
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+-- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 local on_attach = function(_, bufnr)
   local map = function(mode)
@@ -20,6 +20,7 @@ local on_attach = function(_, bufnr)
 
   nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
   nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+  xmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
   nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
   nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
@@ -48,7 +49,7 @@ end
 
 local servers = {
   clangd = {},
-  gopls = {},
+  -- gopls = {},
   pyright = {},
   rust_analyzer = {},
   tsserver = {},
