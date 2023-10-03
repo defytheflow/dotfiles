@@ -1,11 +1,20 @@
-local todo_comments = require("todo-comments")
-
-todo_comments.setup {
+require("todo-comments").setup {
   highlight = {
     after = "", -- don't highlight text after the keyword
     -- keyword = "fg",
   },
+  keywords = {
+    NOTE = { signs = false },
+  },
 }
 
-vim.keymap.set("n", "]t", function() todo_comments.jump_next() end, { desc = "Next [T]odo comment" })
-vim.keymap.set("n", "[t", function() todo_comments.jump_prev() end, { desc = "Previous [T]odo comment" })
+vim.keymap.set("n", "]t", function()
+  require("todo-comments").jump_next()
+end, { desc = "Next [T]odo comment" })
+
+vim.keymap.set("n", "[t", function()
+  require("todo-comments").jump_prev()
+end, { desc = "Previous [T]odo comment" })
+
+vim.keymap.set("n", "<leader>ft", vim.cmd.TodoTelescope, { desc = "[F]ind [T]odos" })
+vim.keymap.set("n", "<leader>st", vim.cmd.TodoTelescope, { desc = "[S]earch [T]odos" })

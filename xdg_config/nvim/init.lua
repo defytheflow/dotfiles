@@ -11,9 +11,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+--  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
--- NOTE: `opts = {}` is the same as calling `require('some-plugin').setup({})`
+--  NOTE: `opts = {}` is the same as calling `require('some-plugin').setup({})`
 require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
@@ -137,7 +139,18 @@ require("lazy").setup {
   },
 
   -- Indent guides
-  "lukas-reineke/indent-blankline.nvim",
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+
+  -- Commenting plugin
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup {
+        -- enable jsx, tsx commenting support
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
+      }
+    end,
+  },
 
   -- Status line (because of this plugin default dashboard page disappears)
   {
@@ -189,7 +202,7 @@ require("lazy").setup {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
-  -- Syntax highlighting
+  -- Highlight, edit and navigate code
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -197,8 +210,9 @@ require("lazy").setup {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
       "JoosepAlviste/nvim-ts-context-commentstring",
-      -- "windwp/nvim-ts-autotag", -- NOTE: Adds closing jsx tags every time I hit /,
-      -- even if the tag is already completed and I am editing within it.
+      -- NOTE: Adds closing jsx tags every time I hit /, even if the tag is already
+      -- completed and I am editing within it.
+      -- "windwp/nvim-ts-autotag",
     },
   },
 
@@ -206,7 +220,20 @@ require("lazy").setup {
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.2",
-    dependencies = { "nvim-lua/plenary.nvim", "xiyaowong/telescope-emoji.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+
+      -- Fuzzy finder algorithm
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+        cond = function()
+          return vim.fn.executable("make") == 1
+        end,
+      },
+
+      "xiyaowong/telescope-emoji.nvim",
+    },
   },
 
   -- Todo comments
@@ -297,7 +324,7 @@ require("lazy").setup {
   "vimwiki/vimwiki",          -- Personal wiki
   "cohama/lexima.vim",        -- Auto close quotes and parentheses.
   "tpope/vim-projectionist",  -- Switch between alternative files
-  "tpope/vim-commentary",     -- Comment stuff out with `gc`
+  -- "tpope/vim-commentary",     -- Comment stuff out with `gc`
   "tpope/vim-repeat",         -- Enable repeating plugin mappings with \"."
   "tpope/vim-surround",       -- Delete/change/add parentheses/quotes/tags
   "tpope/vim-unimpaired",     -- Pairs of handy bracket mappings
