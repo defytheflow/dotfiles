@@ -4,9 +4,24 @@ local trouble = require("trouble.providers.telescope")
 
 telescope.setup {
   defaults = {
-    -- layout_strategy = "vertical",
+    layout_strategy = "vertical",
+    -- layout_strategy = "flex",
+
     layout_config = {
       preview_cutoff = 140, -- disables the preview when columns are less than this value
+
+      width = 0.9,
+      height = 0.8,
+
+      horizontal = {
+        width = { padding = 0.15 },
+      },
+
+      vertical = {
+        height = 0.65,
+        preview_height = 0.75,
+        prompt_position = "top",
+      },
     },
     file_ignore_patterns = { ".git/*" },
     mappings = {
@@ -54,6 +69,9 @@ vim.keymap.set("n", "<leader>sb", require("telescope.builtin").git_branches, { d
 vim.keymap.set("n", "<leader>sc", require("telescope.builtin").git_commits, { desc = "[S]earch Git [C]ommits" })
 vim.keymap.set("n", "<leader>ss", require("telescope.builtin").git_status, { desc = "[Search] Git [S]tatus" })
 vim.keymap.set("n", "<leader>se", "<cmd>Telescope emoji<cr>", { desc = "[S]earch [E]moji" })
+vim.keymap.set("n", "<leader>sv", function()
+  require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+end, { desc = "[S]earch [V]im" })
 
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
 vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })

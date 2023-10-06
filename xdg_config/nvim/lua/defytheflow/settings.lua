@@ -84,4 +84,3 @@ vim.opt.exrc = true -- auto execute .nvim.lua, .nvimrc in the current dir
 vim.opt.mouse = "a" -- enable mouse in all modes
 vim.opt.virtualedit = "block" -- allow cursor to move where there is no text in visual block mode.
 vim.opt.timeoutlen = 500
--- vim.opt.lazyredraw = false

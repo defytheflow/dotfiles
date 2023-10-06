@@ -303,7 +303,7 @@ _jobs_='%(1j.[%j] .)'
 GREYISH_WHITE=252
 NEWLINE=$'\n'
 # don't use a custom color for >, because it doesn't adjust to the terminal's colorscheme.
-_char_="%B%(?.%F{$GREYISH_WHITE}>%f.%F{$RED}>%f)%b"
+_char_="${NEWLINE}%B%(?.%F{$GREYISH_WHITE}>%f.%F{$RED}>%f)%b"
 _short_prompt_='${_emoji_} ${_jobs_}${_char_} '
 # don't use ${_short_prompt_} inside _long_prompt_ because emoji() function will not work
 _long_prompt_='${_time_} ${_pwd_}${vcs_info_msg_0_} ${_emoji_} ${_jobs_}${_char_} '

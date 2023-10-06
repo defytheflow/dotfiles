@@ -67,6 +67,7 @@ vim.defer_fn(function()
         set_jumps = true, -- Whether to set jumps in the jumplist
         goto_next_start = {
           ["]m"] = "@function.outer",
+          ["]f"] = "@function.outer",
           ["]]"] = "@class.outer",
           ["]l"] = "@loop.outer",
           -- ["]c"] = "@conditional.outer",
@@ -80,6 +81,7 @@ vim.defer_fn(function()
         },
         goto_previous_start = {
           ["[m"] = "@function.outer",
+          ["[f"] = "@function.outer",
           ["[["] = "@class.outer",
           ["[l"] = "@loop.outer",
           -- ["[c"] = "@conditional.outer",
@@ -119,7 +121,7 @@ vim.defer_fn(function()
   }
 
   -- To use for text objects
-  local vim_unimpaired_mappings = { "[C", "[CC", "]C", "]CC", "[A", "]A" }
+  local vim_unimpaired_mappings = { "[C", "[CC", "]C", "]CC", "[A", "]A", "[f", "]f" }
   for _, mapping in ipairs(vim_unimpaired_mappings) do
     vim.cmd.unmap(mapping)
   end

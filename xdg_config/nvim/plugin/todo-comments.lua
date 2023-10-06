@@ -1,7 +1,7 @@
 require("todo-comments").setup {
   highlight = {
     after = "", -- don't highlight text after the keyword
-    -- keyword = "fg",
+    keyword = "fg",
   },
   keywords = {
     NOTE = { signs = false },
