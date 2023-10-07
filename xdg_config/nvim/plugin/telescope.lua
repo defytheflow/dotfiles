@@ -41,7 +41,7 @@ telescope.setup {
     },
     find_files = {
       hidden = true,
-      no_ignore = true, -- includes files from .gitignore
+      -- no_ignore = true, -- includes files from .gitignore
     },
   },
 }
@@ -51,13 +51,14 @@ require("telescope").load_extension("emoji")
 
 vim.keymap.set("n", "<leader>gf", require("telescope.builtin").git_files, { desc = "Search [G]it [F]iles" })
 
-vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "[F]ind [F]iles" })
+vim.keymap.set("n", "<leader>ff", function()
+  require("telescope.builtin").find_files { no_ignore = true }
+end, { desc = "[F]ind [F]iles" })
 vim.keymap.set("n", "<leader>fw", require("telescope.builtin").grep_string, { desc = "[F]ind current [W]ord" })
-vim.keymap.set("n", "<leader>fd", require("telescope.builtin").diagnostics, { desc = "[F]ind [D]iagnostics" })
 vim.keymap.set("n", "<leader>fr", require("telescope.builtin").resume, { desc = "[F]ind [R]esume" })
 vim.keymap.set("n", "<leader>fe", "<cmd>Telescope emoji<cr>", { desc = "[F]ind [E]moji" })
 
-vim.keymap.set("n", "<leader>sf", require("telescope.builtin").git_files, { desc = "[S]earch [F]iles" })
+vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
 vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
 vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })

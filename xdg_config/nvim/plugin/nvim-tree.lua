@@ -14,8 +14,12 @@ require("nvim-tree").setup {
       git_placement = "after",
     },
   },
+  diagnostics = {
+    enable = true,
+  },
   update_focused_file = {
     enable = true,
+    update_root = true,
   },
   filters = {
     git_ignored = false,

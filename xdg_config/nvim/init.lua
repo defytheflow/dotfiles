@@ -122,14 +122,7 @@ require("lazy").setup {
   },
 
   -- Terminal toggle
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    config = true,
-    opts = {
-      open_mapping = [[<c-\>]],
-    },
-  },
+  { "akinsho/toggleterm.nvim", version = "*", config = true, },
 
   -- Buffer line
   {
@@ -168,7 +161,7 @@ require("lazy").setup {
       "williamboman/mason-lspconfig.nvim",
 
       -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
 
       -- Neovim setup for init.lua and plugin development with full signature help, docs
       -- and completion for the nvim lua API.
@@ -182,17 +175,17 @@ require("lazy").setup {
     dependencies = {
       -- Adds LSP completion capabilities
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
 
-      -- Snippet Engine & its associated nvim-cmp source
+      -- Snippet engine, its associated nvim-cmp source and some user-friendly snippets
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
+      "rafamadriz/friendly-snippets",
 
-      -- Buffer words and filesystem paths completion
+      -- Buffer words and filesystem paths
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-
-      -- Adds a number of user-friendly snippets
-      "rafamadriz/friendly-snippets",
+      "hrsh7th/cmp-emoji",
     },
   },
 
@@ -240,22 +233,21 @@ require("lazy").setup {
   { "folke/todo-comments.nvim", dependencies = "nvim-lua/plenary.nvim" },
 
   -- LSP, completion, diagnostics, refactoring, snippets
-  {
-    "neoclide/coc.nvim",
-    branch = "release",
-    dependencies = {
-      "neoclide/coc-tsserver",
-      "neoclide/coc-highlight",
-      "neoclide/coc-json",
-      "neoclide/coc-css",
-      "neoclide/coc-snippets",
-      "honza/vim-snippets",
-    },
-    ft = "swift",
-    config = function()
-      require("plugin.coc")
-    end
-  },
+  -- {
+  --   "neoclide/coc.nvim",
+  --   branch = "release",
+  --   dependencies = {
+  --     "neoclide/coc-tsserver",
+  --     "neoclide/coc-highlight",
+  --     "neoclide/coc-json",
+  --     "neoclide/coc-css",
+  --     "neoclide/coc-snippets",
+  --     "honza/vim-snippets",
+  --   },
+  --   config = function()
+  --     require("plugin.coc")
+  --   end
+  -- },
 
   -- Defines camelCase and snake_keys motions (w, b, e)
   -- {

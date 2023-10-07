@@ -1,4 +1,4 @@
-vim.diagnostic.config({ virtual_text = true })
+vim.diagnostic.config { virtual_text = true }
 
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
@@ -24,8 +24,8 @@ local on_attach = function(_, bufnr)
 
   nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
   nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-  nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation") -- coc.nvim gi
-  nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")                     -- coc.nvim gy
+  nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+  nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
   nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
   nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
@@ -49,12 +49,15 @@ end
 
 local servers = {
   clangd = {},
-  -- gopls = {},
+  gopls = {},
   pyright = {},
   rust_analyzer = {},
   tsserver = {},
   tailwindcss = {},
   eslint = {},
+  stylelint_lsp = { filetypes = "css", "less", "scss", "vue" },
+  cssmodules_ls = {},
+  emmet_language_server = {},
   html = { filetypes = { "html", "twig", "hbs" } },
   cssls = {},
   lua_ls = {
@@ -89,11 +92,24 @@ mason_lspconfig.setup_handlers {
   end
 }
 
+-- NOTE: mason can't install it
+require("lspconfig").sourcekit.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+-- NOTE: mason throws an error trying to install it
+require("lspconfig").ocamllsp.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup {}
 
+---@diagnostic disable-next-line: missing-fields
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -103,15 +119,21 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert {
     ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-e>"] = cmp.mapping.abort(),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
     ["<Tab>"] = cmp.mapping(function(fallback)
-      if luasnip.expand_or_locally_jumpable() then
+      if cmp.visible() then
+        cmp.confirm {
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true,
+        }
+      elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
       else
         fallback()
@@ -127,8 +149,10 @@ cmp.setup {
   },
   sources = {
     { name = "nvim_lsp" },
+    { name = "nvim_lsp_signature_help" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
+    { name = "emoji" },
   }
 }
