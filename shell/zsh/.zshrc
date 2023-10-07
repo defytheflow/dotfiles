@@ -163,30 +163,33 @@ GREEN=2
 ORANGE=214
 # This red looks/feels like zsh syntax plugin's red.
 RED=203
+GREY=250
 
-# %s - displays the current version control system, like 'git' or 'svn'.
-# %b - displays branch.
-# %c - displays S if repository has staged changes.
-# %u - displays U if repository ahs unstaged changes.
-# %a - displays current action, like 'rebase' or 'merge'.
-# %m - displays information about stashes in case of git.
+# Replacements:
+# %s - displays the current version control system (git, svn, etc.).
+# %b - displays current branch.
+# %a - displays current action (rebase' or merge).
+# %c - displays string from `stagedstr` style if repository has staged changes.
+# %u - displays string from `unstagedstr` style if repository has unstaged changes.
+# %m - a misc replacement, backend decides what this replacement expands to.
 
 zstyle ':vcs_info:*' enable git
 #                                                      branch bold escape
 #                                                           v v
-zstyle ':vcs_info:git:*' formats " %s(%B%F{$NIGHT_OWL_GREEN}%b%%b%c%u%f)%m"
-zstyle ':vcs_info:git:*' actionformats " %s(%F{$NIGHT_OWL_GREEN}%b|%a%c%u%f)%m"
+zstyle ':vcs_info:git:*' formats " %s(%B%F{$NIGHT_OWL_GREEN}%b%%b%c%u%f%m)"
+zstyle ':vcs_info:git:*' actionformats " %s(%F{$NIGHT_OWL_GREEN}%b|%a%c%u%f%m)"
 zstyle ':vcs_info:git:*' check-for-changes true # enable to use %c and %u sequences.
 zstyle ':vcs_info:git:*' stagedstr "%F{$GREEN}*"
 zstyle ':vcs_info:git:*' unstagedstr "%F{$ORANGE}*"
 zstyle ':vcs_info:*+*:*' debug false
-zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-status git-untracked
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-stash git-remotebranch git-status
 
 function +vi-git-commit-count() {
   count=$(git rev-list --count ${hook_com[branch]})
   hook_com[misc]+="(${count})"
 }
 
+# Compare local changes to remote changes
 # from: https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
 function +vi-git-status() {
   local -a gitstatus ahead_and_behind
@@ -238,11 +241,30 @@ function +vi-git-status() {
   hook_com[misc]+=${(j::)gitstatus}
 }
 
+# Display the existence of files not yet known to git
 # from: https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
 function +vi-git-untracked() {
   if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
     git status --porcelain | grep -q '^?? ' 2> /dev/null ; then
     hook_com[unstaged]+="%F{$RED}*"
+  fi
+}
+
+# Show remote branch name for remote-tracking branches
+# from: https://github.com/zsh-users/zsh/blob/master/Misc/vcs_info-examples
+function +vi-git-remotebranch() {
+  local remote
+
+  # Are we on a remote-tracking branch?
+  remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
+      --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+
+  # The first test will show a tracking branch whenever there is one. The
+  # second test, however, will only show the remote branch's name if it
+  # differs from the local one.
+  if [[ -n ${remote} ]] ; then
+  #if [[ -n ${remote} && ${remote#*/} != ${hook_com[branch]} ]] ; then
+      hook_com[misc]="${hook_com[misc]}${reset_color}->%B%F{$GREY}${remote}${reset_color}"
   fi
 }
 

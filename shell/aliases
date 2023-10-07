@@ -140,6 +140,7 @@ fi
 # vim.
 alias via='vim ${DOTFILES_HOME}/shell/aliases'   # vi aliases
 alias vif='vim ${DOTFILES_HOME}/shell/functions' # vi functions
+alias vil="vim -c':e#<1'"                        # vi last
 alias vin='vim -u NONE'                          # vi none
 alias vis='vim ${ZDOTDIR}/.zshrc'                # vi shell
 alias vit='vim ${HOME}/.config/tmux/tmux.conf'   # vi tmux.conf
