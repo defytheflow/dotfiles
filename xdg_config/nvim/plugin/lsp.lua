@@ -1,8 +1,24 @@
-vim.diagnostic.config { virtual_text = true }
+vim.diagnostic.config {
+  underline = false,
+  float = {
+    border = "rounded",
+    source = "always",
+  }
+}
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover,
+  { border = "rounded" }
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help,
+  { border = "rounded" }
+)
 
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics in a floating window" })
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 local on_attach = function(_, bufnr)
@@ -19,11 +35,23 @@ local on_attach = function(_, bufnr)
   local xmap = map("x")
 
   nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+  vim.keymap.set("n", "<leader>rN", function()
+    return ":IncRename " .. vim.fn.expand("<cword>")
+  end, { expr = true, buffer = bufnr })
+
   nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
   xmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
   nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-  nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+  nmap("gr", function()
+    require("telescope.builtin").lsp_references {
+      layout_config = {
+        preview_cutoff = 0,
+        width = 0.8,
+        height = 0.95,
+      },
+    }
+  end, "[G]oto [R]eferences")
   nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
   nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
   nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")

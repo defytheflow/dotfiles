@@ -47,6 +47,7 @@ vim.defer_fn(function()
       },
     },
 
+    -- TODO: figure out a text object mapping for a conditional and a comment
     textobjects = {
       select = {
         enable = true,
@@ -60,6 +61,8 @@ vim.defer_fn(function()
           ["ic"] = "@class.inner",
           ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
           ["aC"] = "@comment.outer",
+          ["il"] = "@loop.inner",
+          ["al"] = "@loop.outer",
         },
       },
       move = {

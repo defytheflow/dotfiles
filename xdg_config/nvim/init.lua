@@ -20,6 +20,19 @@ require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
 
+  { "nvimdev/lspsaga.nvim", opts = {}, },
+
+  -- LSP renaming with immediate visual feedback
+  { "smjonas/inc-rename.nvim", opts = {} },
+
+  -- Dims inactive windows
+  {
+    "sunjon/Shade.nvim",
+    opts = {
+      overlay_opacity = 40,
+    },
+  },
+
   {
     "prettier/vim-prettier",
     run = "yarn install --frozen-lockfile --production",
