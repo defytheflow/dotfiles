@@ -72,7 +72,7 @@ vim.opt.listchars = {
   nbsp = "⦸",
   extends = "»",
   precedes = "«",
-  -- lead = "·",
+  lead = "·",
   -- eol = "↴",
 }
 

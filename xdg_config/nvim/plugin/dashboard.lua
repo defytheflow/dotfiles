@@ -27,5 +27,10 @@ require("dashboard").setup {
         key = "d",
       },
     },
+    footer = {
+      "",
+      "🚀 Interested people watch obsessed people change the world.",
+      "",
+    }
   },
 }

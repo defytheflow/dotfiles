@@ -13,7 +13,7 @@ end
 -- misc
 vim.keymap.set("n", "<leader>d", vim.cmd.bdelete)
 vim.keymap.set("n", "<leader>D", function() vim.cmd.bprevious() vim.cmd.bdelete('#') end)
-vim.keymap.set("n", "<leader>mk", function() vim.cmd.write() vim.cmd.make() end)
+vim.keymap.set("n", "<leader>mk", function() vim.cmd.write() vim.cmd.make() end, { desc = "[M]a[k]e" })
 
 -- press << or >> multiple times, maintaining visual selection
 vim.keymap.set("v", "<", "<gv")

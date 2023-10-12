@@ -278,6 +278,7 @@ alias gca='git commit --amend'
 alias gcanv='git commit --amend --no-verify'
 alias gcane='git commit --amend --no-edit'
 alias gcanvne='git commit --amend --no-verify --no-edit'
+alias gcanenv='git commit --amend --no-edit --no-verify'
 # alias gcaann='git commit -a --amend --no-edit --no-verify'
 # alias gcaa='git commit -a --amend --no-edit'
 

@@ -1,5 +1,6 @@
 vim.diagnostic.config {
   underline = false,
+  severity_sort = true,
   float = {
     border = "rounded",
     source = "always",
@@ -47,7 +48,8 @@ local on_attach = function(_, bufnr)
     require("telescope.builtin").lsp_references {
       layout_config = {
         preview_cutoff = 0,
-        width = 0.8,
+        preview_height = 0.6,
+        width = 0.95,
         height = 0.95,
       },
     }

@@ -65,7 +65,7 @@ vim.keymap.set("n", "<leader>sg", function()
       preview_cutoff = 0,
       preview_height = 0.65,
       width = 0.95,
-      height = 0.99,
+      height = 0.95,
     }
   }
 end, { desc = "[S]earch by [G]rep" })
@@ -82,14 +82,14 @@ vim.keymap.set("n", "<leader>ss", function()
     layout_config = {
       preview_cutoff = 0,
       preview_height = 0.65,
-      width = 0.8,
+      width = 0.95,
       height = 0.95,
     }
   }
 end, { desc = "[Search] Git [S]tatus" })
 vim.keymap.set("n", "<leader>se", "<cmd>Telescope emoji<cr>", { desc = "[S]earch [E]moji" })
 vim.keymap.set("n", "<leader>sv", function()
-  require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+  require("telescope.builtin").find_files { cwd = vim.fn.stdpath("config") }
 end, { desc = "[S]earch [V]im" })
 
 vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
