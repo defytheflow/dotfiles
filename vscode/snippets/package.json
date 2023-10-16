@@ -1,0 +1,26 @@
+{
+  "name": "snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "all",
+        "path": "./javascript-typescript.code-snippets"
+      },
+      {
+        "language": "python",
+        "path": "./python.json"
+      },
+      {
+        "language": "swift",
+        "path": "./swift.json"
+      },
+      {
+        "language": ["css", "css"],
+        "path": "./css.json"
+      }
+    ]
+  }
+}

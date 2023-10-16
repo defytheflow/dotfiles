@@ -1,7 +1,4 @@
 {
-  /**
-   ** Mypy.
-   */
   "Pytest Mark Skip": {
     "prefix": ["sk"],
     "body": ["@pytest.mark.skip"]
@@ -12,27 +9,15 @@
     "body": ["@pytest.mark.django_db"]
   },
 
-  /**
-   ** Mypy.
-   */
-
   "Type Ignore": {
     "prefix": ["ti"],
     "body": ["# type: ignore"]
   },
 
-  /**
-   ** Yapf.
-   */
-
   "Yapf Disable": {
     "prefix": "yd",
     "body": ["# yapf: disable"]
   },
-
-  /**
-   ** Debugger.
-   */
 
   "Breakpoint": {
     "prefix": ["br"],
@@ -49,10 +34,6 @@
     "body": ["__import__(\"ipdb\").set_trace()"]
   },
 
-  /**
-   ** Print.
-   */
-
   "Print": {
     "prefix": ["p"],
     "body": ["print($1)"]
@@ -60,15 +41,6 @@
 
   "Print Equals": {
     "prefix": ["p="],
-    // 91m - red
-    // 92m - green
-    // 93m - yellow
-    // 94m - blue
-    // 95m - purple
-    // 96m - cyan
-    // 97m - white
-    // "body": ["print(f\"{$1=}\")"]
-    //"body": ["print(f\"\\033[97m{$1=}\\033[00m\")"]
     "body": ["print(f\"{$1=}\")"]
   },
 
