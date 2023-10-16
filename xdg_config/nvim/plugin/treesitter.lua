@@ -1,5 +1,6 @@
 -- Defer setup after first render to improve startup time of 'nvim {filename}'
 vim.defer_fn(function()
+  ---@diagnostic disable-next-line: missing-fields
   require("nvim-treesitter.configs").setup {
     ensure_installed = {
       "c",
@@ -33,9 +34,9 @@ vim.defer_fn(function()
       enable = true,
     },
 
-    -- autotag = {
-    --   enable = true,
-    -- },
+    autotag = {
+      enable = true,
+    },
 
     incremental_selection = {
       enable = true,
@@ -47,7 +48,6 @@ vim.defer_fn(function()
       },
     },
 
-    -- TODO: figure out a text object mapping for a conditional and a comment
     textobjects = {
       select = {
         enable = true,
@@ -60,9 +60,10 @@ vim.defer_fn(function()
           ["ac"] = "@class.outer",
           ["ic"] = "@class.inner",
           ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-          ["aC"] = "@comment.outer",
-          ["il"] = "@loop.inner",
+          ["aC"] = "@conditional.outer",
+          ["iC"] = "@conditional.inner",
           ["al"] = "@loop.outer",
+          ["il"] = "@loop.inner",
         },
       },
       move = {
@@ -73,10 +74,9 @@ vim.defer_fn(function()
           ["]f"] = "@function.outer",
           ["]]"] = "@class.outer",
           ["]l"] = "@loop.outer",
-          -- ["]c"] = "@conditional.outer",
           ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
           ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
-          ["]C"] = "@comment.outer",
+          ["]C"] = "@conditional.outer",
         },
         goto_next_end = {
           ["]M"] = "@function.outer",
@@ -87,10 +87,9 @@ vim.defer_fn(function()
           ["[f"] = "@function.outer",
           ["[["] = "@class.outer",
           ["[l"] = "@loop.outer",
-          -- ["[c"] = "@conditional.outer",
           ["[s"] = { query = "@scope", query_group = "locals", desc = "Previous scope" },
           ["[z"] = { query = "@fold", query_group = "folds", desc = "Previous fold" },
-          ["[C"] = "@comment.outer",
+          ["[C"] = "@contitional.outer",
         },
         goto_previous_end = {
           ["[M"] = "@function.outer",

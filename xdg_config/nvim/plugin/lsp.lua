@@ -1,5 +1,4 @@
 vim.diagnostic.config {
-  underline = false,
   severity_sort = true,
   float = {
     border = "rounded",
@@ -22,6 +21,14 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagn
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics in a floating window" })
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
+vim.keymap.set("n", "[E", function()
+  vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR }
+end, { desc = "Go to previous [E]rror" })
+
+vim.keymap.set("n", "]E", function()
+  vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }
+end, { desc = "Go to next [E]rror" })
+
 local on_attach = function(_, bufnr)
   local map = function(mode)
     return function(keys, func, desc)
@@ -35,13 +42,29 @@ local on_attach = function(_, bufnr)
   local nmap = map("n")
   local xmap = map("x")
 
-  nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+  vim.keymap.set("n", "<leader>O", ":Lspsaga outline toggle<CR>", { desc = "LSP: [O]utline" })
+  vim.keymap.set("n", "<leader>lr", vim.cmd.LspRestart, { desc = "LSP: [R]estart" })
+
+  nmap("<leader>rn", function()
+    vim.lsp.buf.rename()
+    -- vim.cmd.Lspsaga("rename") -- vim.lsp.buf.rename
+  end, "[R]e[n]ame")
+
   vim.keymap.set("n", "<leader>rN", function()
     return ":IncRename " .. vim.fn.expand("<cword>")
-  end, { expr = true, buffer = bufnr })
+  end, { expr = true, buffer = bufnr, desc = "LSP: [R]e[n]ame" })
 
-  nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-  xmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+  nmap("<leader>ca", function()
+    vim.cmd.Lspsaga("code_action") -- vim.lsp.buf.code_action
+  end, "[C]ode [A]ction")
+
+  xmap("<leader>ca", function()
+    vim.cmd.Lspsaga("code_action") -- vim.lsp.buf.code_action
+  end, "[C]ode [A]ction")
+
+  nmap("<leader>k", function()
+    vim.cmd.Lspsaga("peek_definition")
+  end, "Peek Definition")
 
   nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
   nmap("gr", function()
@@ -184,5 +207,20 @@ cmp.setup {
     { name = "buffer" },
     { name = "path" },
     { name = "emoji" },
+  }
+}
+
+require("lspsaga").setup {
+  symbol_in_winbar = {
+    enable = false,
+  },
+  lightbulb = {
+    virtual_text = false,
+  },
+  outline = {
+    -- auto_preview = false,
+  },
+  definition = {
+    width = 1.0,
   }
 }

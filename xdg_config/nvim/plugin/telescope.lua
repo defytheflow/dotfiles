@@ -63,7 +63,7 @@ vim.keymap.set("n", "<leader>sg", function()
   require("telescope.builtin").live_grep {
     layout_config = {
       preview_cutoff = 0,
-      preview_height = 0.65,
+      preview_height = 0.6,
       width = 0.95,
       height = 0.95,
     }

@@ -11,19 +11,17 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+-- NOTE: FiraCode Nerd Font makes all the icons inside neovim work.
+
+-- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
---  NOTE: `opts = {}` is the same as calling `require('some-plugin').setup({})`
+-- NOTE: `opts = {}` is the same as calling `require('some-plugin').setup({})`
 require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
 
-  "nvimdev/lspsaga.nvim",
-
-  -- LSP renaming with immediate visual feedback
-  { "smjonas/inc-rename.nvim", opts = {} },
 
   -- NOTE: breaks treesitter-context
   -- Dims inactive windows
@@ -78,18 +76,18 @@ require("lazy").setup {
   },
 
   -- Highlight trailing whitespace
-  {
-    "ntpeters/vim-better-whitespace",
-    init = function()
-      vim.g.better_whitespace_filetypes_blacklist = {
-        -- defaults
-        "diff", "git", "gitcommit", "unite", "qf", "help", "markdown", "fugitive",
-        -- custom
-        "dashboard", "toggleterm",
-      }
-      vim.g.better_whitespace_guicolor = "#f38ba8"
-    end
-  },
+  -- {
+  --   "ntpeters/vim-better-whitespace",
+  --   init = function()
+  --     vim.g.better_whitespace_filetypes_blacklist = {
+  --       -- defaults
+  --       "diff", "git", "gitcommit", "unite", "qf", "help", "markdown", "fugitive",
+  --       -- custom
+  --       "dashboard", "toggleterm",
+  --     }
+  --     vim.g.better_whitespace_guicolor = "#f38ba8"
+  --   end
+  -- },
 
   -- Generate JSDoc comments
   { "heavenshell/vim-jsdoc", build = "make install" },
@@ -180,6 +178,12 @@ require("lazy").setup {
       -- Neovim setup for init.lua and plugin development with full signature help, docs
       -- and completion for the nvim lua API.
       "folke/neodev.nvim",
+
+      -- More LSP actions, alternative UI
+      "nvimdev/lspsaga.nvim",
+
+      -- LSP renaming with immediate visual feedback
+      { "smjonas/inc-rename.nvim", opts = {} },
     },
   },
 
@@ -219,7 +223,7 @@ require("lazy").setup {
       "JoosepAlviste/nvim-ts-context-commentstring",
       -- NOTE: Adds closing jsx tags every time I hit /, even if the tag is already
       -- completed and I am editing within it.
-      -- "windwp/nvim-ts-autotag",
+      "windwp/nvim-ts-autotag",
     },
   },
 
@@ -290,17 +294,17 @@ require("lazy").setup {
   "https://gitlab.com/gi1242/vim-emoji-ab.git",
 
   -- Automatically insert the closing tag
-  {
-    "alvan/vim-closetag",
-    init = function()
-      vim.g.closetag_filenames = "*.html,*.xhtml,*.jsx,*.tsx"
-      vim.g.closetag_filetypes = "html,xhtml,jsx"
-      vim.g.closetag_regions = {
-        ["typescript.tsx"] = "jsxRegion,tsxRegion",
-        ["javascript.jsx"] = "jsxRegion",
-      }
-    end
-  },
+  -- {
+  --   "alvan/vim-closetag",
+  --   init = function()
+  --     vim.g.closetag_filenames = "*.html,*.xhtml,*.jsx,*.tsx"
+  --     vim.g.closetag_filetypes = "html,xhtml,jsx"
+  --     vim.g.closetag_regions = {
+  --       ["typescript.tsx"] = "jsxRegion,tsxRegion",
+  --       ["javascript.jsx"] = "jsxRegion",
+  --     }
+  --   end
+  -- },
 
   -- Align text
   {

@@ -336,6 +336,7 @@ function long() { PROMPT=$_long_prompt_ }
 # tried to write a solution with a while loop to avoid the same emojis, couldn't get it to work,
 # always got stuck in an infinite loop.
 function emoji() { _emoji_=$(random_element $emojis) }
+function properoomify() { _emoji_="🐝 " }
 
 # EXIT_CODE="%(?..%F{$RED}[%?]%f)"
 # EXIT_CODE="%(?.%F{$NIGHT_OWL_GREEN}:)%f.%F{$RED}:(%f)"
