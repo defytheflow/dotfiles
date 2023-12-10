@@ -106,7 +106,16 @@ local servers = {
   pyright = {},
   rust_analyzer = {},
   tsserver = {},
-  tailwindcss = {},
+  tailwindcss = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+          { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" }
+        },
+      },
+    },
+  },
   eslint = {},
   stylelint_lsp = { filetypes = "css", "less", "scss", "vue" },
   cssmodules_ls = {},
@@ -207,7 +216,11 @@ cmp.setup {
   sources = {
     { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
-    { name = "luasnip" },
+    --[[
+      Priority is set so that snippets appear above other options.
+      Useful for "console.log" to appear above `import log from "node:console"`.
+    ]]--
+    { name = "luasnip", priority = 10 },
     { name = "buffer" },
     { name = "path" },
     { name = "emoji" },
@@ -227,4 +240,34 @@ require("lspsaga").setup {
   definition = {
     width = 1.0,
   }
+}
+
+-- Autoformat code on save
+local null_ls = require("null-ls")
+
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup {
+    sources = {
+      null_ls.builtins.formatting.prettier.with {
+        extra_args = { "--print-width", "90", "--arrow-parens", "avoid" }
+      }
+    },
+    -- you can reuse a shared lspconfig on_attach callback here
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.buf.format({
+                      -- async = false
+                      filter = function(client)
+                        return client.name == "null-ls"
+                      end
+                    })
+                end,
+            })
+        end
+    end,
 }

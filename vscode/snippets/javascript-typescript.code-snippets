@@ -59,11 +59,12 @@
    */
 
   // This snippet is the same as built in one, but without a semicolon.
+  // Used in neovim, as there is no built in one.
   "Console Log": {
     "description": "Console Log",
     "scope": "javascript,typescript,javascriptreact,typescriptreact",
     "prefix": ["log"],
-    "body": ["console.log($1)"]
+    "body": ["console.log($1);"]
   },
 
   // This snippet is the same as in `JavaScript (ES6) code snippets` but without a semicolon.

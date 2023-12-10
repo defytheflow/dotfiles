@@ -4,6 +4,7 @@
   "editor.hover.delay": 200,
   "editor.mouseWheelZoom": true,
   "editor.stickyScroll.enabled": true,
+  "editor.snippetSuggestions": "top",
 
   //* Settings.
   "workbench.settings.editor": "json",
@@ -78,10 +79,8 @@
 
   //* Formatting & Fixing.
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.addMissingImports": true
-    // "source.sortImports": true
-    // "source.organizeImports": true
+    "source.fixAll": "explicit",
+    "source.addMissingImports": "explicit"
   },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -92,7 +91,7 @@
   //* Completion.
   "editor.suggest.insertMode": "replace",
   "editor.tabCompletion": "on",
-  "editor.wordBasedSuggestions": false,
+  "editor.wordBasedSuggestions": "off",
   "editor.inlineSuggest.enabled": true,
   "editor.quickSuggestions": {
     "strings": true
@@ -289,16 +288,10 @@
     "editor.defaultFormatter": "ms-python.python",
     "editor.tabSize": 4,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true
+      "source.organizeImports": "explicit"
     },
     "editor.formatOnType": true
   },
-  "python.formatting.provider": "black",
-  "python.linting.enabled": true,
-  "python.linting.ignorePatterns": ["**/site-packages/**/*.py"],
-  "python.linting.flake8Enabled": true,
-  "python.linting.mypyEnabled": true,
-  "python.linting.mypyArgs": ["--strict", "--show-error-codes"],
   "python.testing.pytestEnabled": true,
   "python.analysis.inlayHints.variableTypes": false,
   "python.analysis.inlayHints.functionReturnTypes": false,
@@ -725,9 +718,6 @@
     // "django-html": "html"
   },
 
-  //* Eslint.
-  "eslint.alwaysShowStatus": true,
-
   //* Prettier.
   "prettier.printWidth": 90,
   "prettier.arrowParens": "avoid",
@@ -912,26 +902,6 @@
   "gitProjectManager.baseProjectsFolders": ["/users/defytheflow/dev/repos"],
   "gitProjectManager.ignoredFolders": ["node_modules"],
   // "gitProjectManager.storeRepositoriesBetweenSessions": true,
-
-  //* Total TypeScript.
-  "totalTypeScript.hideAllTips": false,
-  "totalTypeScript.hideBasicTips": true,
-  "totalTypeScript.hiddenTips": [
-    "as-const",
-    "as-const-on-object",
-    "typeof",
-    "passing-generics-to-types",
-    "keyof",
-    "mapped-type",
-    "parameters-utility-type",
-    "tuple-type",
-    "generic-slots-in-functions",
-    "record-utility-type",
-    "omit-utility-type",
-    "type-alias-with-generics",
-    "type-alias-with-multiple-generics",
-    "pick-utility-type"
-  ],
 
   "redhat.telemetry.enabled": false,
   "react-native-tools.showUserTips": false,

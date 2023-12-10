@@ -22,6 +22,11 @@ require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
 
+  -- Autoformatting on save
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+  },
 
   -- NOTE: breaks treesitter-context
   -- Dims inactive windows
