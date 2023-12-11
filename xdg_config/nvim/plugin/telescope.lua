@@ -50,13 +50,9 @@ pcall(require("telescope").load_extension, "fzf")
 require("telescope").load_extension("emoji")
 
 vim.keymap.set("n", "<leader>gf", require("telescope.builtin").git_files, { desc = "Search [G]it [F]iles" })
-
 vim.keymap.set("n", "<leader>ff", function()
   require("telescope.builtin").find_files { no_ignore = true }
 end, { desc = "[F]ind [F]iles" })
-vim.keymap.set("n", "<leader>fw", require("telescope.builtin").grep_string, { desc = "[F]ind current [W]ord" })
-vim.keymap.set("n", "<leader>fr", require("telescope.builtin").resume, { desc = "[F]ind [R]esume" })
-vim.keymap.set("n", "<leader>fe", "<cmd>Telescope emoji<cr>", { desc = "[F]ind [E]moji" })
 
 vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
 vim.keymap.set("n", "<leader>sg", function()
@@ -69,7 +65,16 @@ vim.keymap.set("n", "<leader>sg", function()
     }
   }
 end, { desc = "[S]earch by [G]rep" })
-vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
+vim.keymap.set("n", "<leader>sw", function()
+  require("telescope.builtin").grep_string {
+    layout_config = {
+      preview_cutoff = 0,
+      preview_height = 0.6,
+      width = 0.95,
+      height = 0.95,
+    }
+  }
+end, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>sk", require("telescope.builtin").keymaps, { desc = "[S]earch [K]eymaps" })
 vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
