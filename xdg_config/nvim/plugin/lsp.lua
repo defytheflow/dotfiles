@@ -165,6 +165,14 @@ mason_lspconfig.setup_handlers {
   end
 }
 
+require("lspconfig").tsserver.setup {
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    require("twoslash-queries").attach(client, bufnr)
+  end
+}
+
 -- NOTE: mason can't install it
 require("lspconfig").sourcekit.setup {
   capabilities = capabilities,

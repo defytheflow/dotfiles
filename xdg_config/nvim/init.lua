@@ -22,6 +22,8 @@ require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
 
+  { "marilari88/twoslash-queries.nvim" },
+
   -- Autoformatting on save
   {
     "jose-elias-alvarez/null-ls.nvim",
