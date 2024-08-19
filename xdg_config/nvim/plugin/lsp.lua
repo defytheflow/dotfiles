@@ -92,7 +92,6 @@ local on_attach = function(_, bufnr)
       symbol_width = 40,
     }
   end, "[W]orkspace [S]ymbols")
-
   nmap("K", vim.lsp.buf.hover, "Hover Documentation")
   nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
@@ -113,7 +112,7 @@ end
 
 local servers = {
   clangd = {},
-  gopls = {},
+  -- gopls = {},
   pyright = {},
   rust_analyzer = {},
   tsserver = {},
@@ -239,7 +238,8 @@ cmp.setup {
       Priority is set so that snippets appear above other options.
       Useful for "console.log" to appear above `import log from "node:console"`.
     ]]--
-    { name = "luasnip", priority = 10 },
+    -- { name = "luasnip", priority = 10 }, -- because of this when you press <c-space> snippets appear first and you need to scroll to see the properties and options, fuck
+    { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
     { name = "emoji" },
@@ -261,32 +261,56 @@ require("lspsaga").setup {
   }
 }
 
--- Autoformat code on save
 local null_ls = require("null-ls")
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup {
-    sources = {
-      null_ls.builtins.formatting.prettier.with {
-        extra_args = { "--print-width", "90", "--arrow-parens", "avoid" }
-      }
+  debug = true,
+  sources = {
+    null_ls.builtins.diagnostics.flake8,
+    null_ls.builtins.formatting.isort,
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.sql_formatter.with {
+      filetypes = { "sql", "mysql", }
     },
-    -- you can reuse a shared lspconfig on_attach callback here
-    on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                callback = function()
-                    vim.lsp.buf.format({
-                      -- async = false
-                      filter = function(client)
-                        return client.name == "null-ls"
-                      end
-                    })
-                end,
-            })
-        end
-    end,
+    null_ls.builtins.formatting.prettier.with {
+      extra_args = { "--print-width", "100" }
+    },
+  },
+  on_attach = function(_, bufnr)
+    local desc = "Format current buffer with null-ls"
+
+    vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+      vim.lsp.buf.format()
+    end, { desc = desc })
+
+    vim.keymap.set({ "n", "x" }, "<leader>f", vim.lsp.buf.format, { buffer = bufnr, desc = desc })
+  end
 }
+
+-- Autoformat code on save
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- null_ls.setup {
+--     sources = {
+--       null_ls.builtins.formatting.prettier.with {
+--         extra_args = { "--print-width", "100" }
+--       }
+--     },
+--     -- you can reuse a shared lspconfig on_attach callback here
+--     on_attach = function(client, bufnr)
+--         if client.supports_method("textDocument/formatting") then
+--             vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+--             vim.api.nvim_create_autocmd("BufWritePre", {
+--                 group = augroup,
+--                 buffer = bufnr,
+--                 callback = function()
+--                     vim.lsp.buf.format({
+--                       -- async = false
+--                       filter = function(client)
+--                         return client.name == "null-ls"
+--                       end
+--                     })
+--                 end,
+--             })
+--         end
+--     end,
+-- }
