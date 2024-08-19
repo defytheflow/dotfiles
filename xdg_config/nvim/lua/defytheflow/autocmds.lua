@@ -17,7 +17,7 @@ autocmd({ "BufNewFile", "BufRead" }, {
 autocmd({ "FileType" }, {
   group = augroup("vimrc_vimwiki", {}),
   pattern = "vimwiki",
-  callback = function() vim.cmd.runtime("ftplugin/text.lua") end,
+  callback = function() vim.cmd.runtime("ftplugin/text.lua"); vim.cmd.runtime("ftplugin/markdown.lua") end,
 })
 
 -- NOTE: When you decide to put autocmds for saving folds state, make sure that nohlsearch

@@ -11,15 +11,28 @@ for _, keymap in ipairs { "n", "N", "<C-d>", "<C-u>", "<C-o>", "<C-i>" } do
 end
 
 -- misc
-vim.keymap.set("n", "<leader>d", vim.cmd.bdelete)
-vim.keymap.set("n", "<leader>D", function() vim.cmd.bprevious() vim.cmd.bdelete('#') end)
+-- vim.keymap.set("n", "<leader>d", vim.cmd.bdelete)
+-- vim.keymap.set("n", "<leader>D", function() vim.cmd.bprevious() vim.cmd.bdelete('#') end)
 vim.keymap.set("n", "<leader>mk", function() vim.cmd.write() vim.cmd.make() end, { desc = "[M]a[k]e" })
 
--- press << or >> multiple times, maintaining visual selection
+-- common typo
+vim.api.nvim_create_user_command("Bd", function() vim.cmd.bd() end, {})
+
+-- press `<<` or `>>` multiple times, maintaining visual selection
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
+
+-- move between tabs with `T]` and `[T`
+vim.keymap.set("n", "]T", vim.cmd.tabnext, { desc = "Go to next [T]ab" });
+vim.keymap.set("n", "[T", vim.cmd.tabprevious, { desc = "Go to previous [T]ab" });
 
 -- move visual selection up or down
 -- TODO: come up with a keymap
 -- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 -- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- vim.keymap.set("n", "<leader>p", function()
+--   vim.cmd("!npx prettier --write %")
+-- end, {})
+
+-- vim.keymap.set("n", "<leader>p", [[:!npx prettier --write %<CR>]], {})
