@@ -148,7 +148,14 @@ require("lazy").setup {
   { "junegunn/gv.vim", dependencies = "tpope/vim-fugitive" },
 
   -- Display available keymaps
-  { "folke/which-key.nvim", event = "VeryLazy" },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- Don't show a warning on start up when issues were detected with the mappings
+      notify = false,
+    },
+  },
 
   -- Zen mode
   "folke/zen-mode.nvim",
@@ -254,6 +261,7 @@ require("lazy").setup {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {},
   },
 
   -- Highlight, edit and navigate code

@@ -138,7 +138,8 @@ local servers = {
       telemetry = { enable = false },
     },
   },
-  intelephense = {},
+  -- intelephense = {},
+  phpactor = {},
   sqlls = {},
 }
 

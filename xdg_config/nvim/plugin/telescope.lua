@@ -1,6 +1,5 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
 
 telescope.setup {
   defaults = {
@@ -28,10 +27,10 @@ telescope.setup {
       i = {
         ["<esc>"] = actions.close, -- TODO: doesn't work
         ["<C-u>"] = false,         -- clears the prompt, scrolls the previewer by default
-        ["<C-t>"] = trouble.open_with_trouble,
+        ["<C-t>"] = require("trouble.sources.telescope").open,
       },
       n = {
-        ["<C-t>"] = trouble.open_with_trouble,
+        ["<C-t>"] = require("trouble.sources.telescope").open,
       }
     },
   },
