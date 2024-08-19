@@ -24,7 +24,36 @@ require("lazy").setup {
 
   { "marilari88/twoslash-queries.nvim" },
 
-  -- Autoformatting on save
+  -- Overlays '*' characters over values inside .env files
+  { "laytan/cloak.nvim", opts = {} },
+
+  -- Tree explorer that allows editing through text manipulating in a buffer
+  {
+    "stevearc/oil.nvim",
+    opts = {
+      skip_confirm_for_simple_edits = true,
+    },
+    init = function()
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    end
+  },
+
+  -- Database viewer
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod", lazy = true },
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+    },
+    cmd = {
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
+    },
+  },
+
+  -- Flake8 linting and Autoformatting on save
   {
     "jose-elias-alvarez/null-ls.nvim",
     dependencies = "nvim-lua/plenary.nvim",
@@ -83,18 +112,18 @@ require("lazy").setup {
   },
 
   -- Highlight trailing whitespace
-  -- {
-  --   "ntpeters/vim-better-whitespace",
-  --   init = function()
-  --     vim.g.better_whitespace_filetypes_blacklist = {
-  --       -- defaults
-  --       "diff", "git", "gitcommit", "unite", "qf", "help", "markdown", "fugitive",
-  --       -- custom
-  --       "dashboard", "toggleterm",
-  --     }
-  --     vim.g.better_whitespace_guicolor = "#f38ba8"
-  --   end
-  -- },
+  {
+    "ntpeters/vim-better-whitespace",
+    init = function()
+      vim.g.better_whitespace_filetypes_blacklist = {
+        -- defaults
+        "diff", "git", "gitcommit", "unite", "qf", "help", "markdown", "fugitive",
+        -- custom
+        "dashboard", "toggleterm",
+      }
+      vim.g.better_whitespace_guicolor = "#f38ba8"
+    end
+  },
 
   -- Generate JSDoc comments
   { "heavenshell/vim-jsdoc", build = "make install" },
@@ -162,6 +191,13 @@ require("lazy").setup {
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
       }
     end,
+    init = function()
+      -- to make gcc '--' comments work in in DBUI query buffer for MySQL
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "mysql",
+        command = "setlocal commentstring=--\\ %s",
+      })
+    end,
   },
 
   -- Status line (because of this plugin default dashboard page disappears)
@@ -226,7 +262,7 @@ require("lazy").setup {
     build = ":TSUpdate",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/nvim-treesitter-context",
+      {  "nvim-treesitter/nvim-treesitter-context", opts = { enable = false } },
       "JoosepAlviste/nvim-ts-context-commentstring",
       -- NOTE: Adds closing jsx tags every time I hit /, even if the tag is already
       -- completed and I am editing within it.
