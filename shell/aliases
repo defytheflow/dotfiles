@@ -179,6 +179,7 @@ fi
 if command -v brew >/dev/null; then
   alias bi='brew install'
   alias bs='brew services'
+  alias bl='brew list'
 fi
 
 # pipenv.

@@ -23,19 +23,22 @@ install_packages() {
   install_brew
 
   set -- \
-    bat \
+    bat bpython btop \
+    ccrypt cloc composer cowsay \
     deno diceware dos2unix \
     exa ex-vi \
-    fd fzf \
+    fd fish fortune fzf \
     gh git-delta graphviz \
     iterm2 \
+    jq \
     keycastr \
-    mycli \
+    lolcat lua luarocks \
+    mycli mysql \
     neovim node \
-    pipenv pgcli postgresql \
+    php pipenv pgcli pnpm postgresql \
     ranger rename ripgrep \
     shellcheck shfmt \
-    task telnet tmux \
+    task telnet tlrc tmux tmuxinator tree \
     vapor vint \
     wget
 
