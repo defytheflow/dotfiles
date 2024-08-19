@@ -26,16 +26,14 @@ vim.defer_fn(function()
       enable = true,
     },
 
-    -- indent = {
-    --   enable = true,
-    -- },
-
-    context_commentstring = {
+    -- Needed because treesitter highlight turns off autoindent for php files
+    indent = {
       enable = true,
     },
 
     autotag = {
       enable = true,
+      enable_close_on_slash = false,
     },
 
     incremental_selection = {
@@ -110,17 +108,15 @@ vim.defer_fn(function()
     },
   }
 
-  require("treesitter-context").setup {
-    on_attach = function()
-      vim.keymap.set("n", "<leader>ct", function()
-        vim.cmd.TSContextToggle()
-      end, { desc = "[C]ontext [T]oggle" })
+  vim.keymap.set("n", "<leader>ct", function()
+    vim.cmd.TSContextToggle()
+  end, { desc = "[C]ontext [T]oggle" })
 
-      vim.keymap.set("n", "<leader>cg", function()
-        require("treesitter-context").go_to_context()
-      end, { desc = "[C]ontext [G]o" })
-    end
-  }
+  vim.keymap.set("n", "<leader>cg", function()
+    require("treesitter-context").go_to_context()
+  end, { desc = "[C]ontext [G]o" })
+
+   vim.g.skip_ts_context_commentstring_module = true
 
   -- To use for text objects
   local vim_unimpaired_mappings = { "[C", "[CC", "]C", "]CC", "[A", "]A", "[f", "]f" }
