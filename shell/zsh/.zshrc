@@ -178,11 +178,12 @@ zstyle ':vcs_info:*' enable git
 #                                                           v v
 zstyle ':vcs_info:git:*' formats " %s(%B%F{$NIGHT_OWL_GREEN}%b%%b%c%u%f%m)"
 zstyle ':vcs_info:git:*' actionformats " %s(%F{$NIGHT_OWL_GREEN}%b|%a%c%u%f%m)"
-zstyle ':vcs_info:git:*' check-for-changes true # enable to use %c and %u sequences.
+zstyle ':vcs_info:git:*' check-for-changes false # enable to use %c and %u sequences.
 zstyle ':vcs_info:git:*' stagedstr "%F{$GREEN}*"
 zstyle ':vcs_info:git:*' unstagedstr "%F{$ORANGE}*"
 zstyle ':vcs_info:*+*:*' debug false
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-stash git-remotebranch git-status
+# zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-stash git-remotebranch git-status
+zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-remotebranch git-status
 
 function +vi-git-commit-count() {
   count=$(git rev-list --count ${hook_com[branch]})
