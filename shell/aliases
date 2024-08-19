@@ -4,6 +4,8 @@
 # Created:  30.12.2019
 # Author:   Artyom Danilov (@defytheflow)
 
+alias ci='composer install'
+
 # attempts to discover a raspberry pi's ip address on the local network.
 alias find_raspberry_ip="arp -a | grep -E --ignore-case 'b8:27:eb|dc:a6:32'"
 
@@ -52,6 +54,7 @@ case $OSTYPE in
     ;;
 esac
 alias sl='ls'
+alias ll="ls -lh --color --time-style=+%F"
 # alias l='ls -1'
 # alias la='ls -a'
 # alias ll='ls -l'
@@ -120,8 +123,11 @@ fi
 # docker.
 if command -v docker >/dev/null; then
   alias d='docker'
+  alias da='docker attach'
+  alias dr='docker restart'
   alias dc='docker compose'
   alias dcu='docker compose up'
+  alias dcd='docker compose down'
 
   # docker remove.
   drm() {
@@ -204,6 +210,7 @@ if command -v ni >/dev/null; then
   alias nrm='nr make'
   alias nrt='nr typecheck'
   alias nt='nr test'
+  alias nte='nr test:e2e'
   # alias nrtc='nr test -- --coverage --coverageDirectory=coverage'
   # alias nrtv='nr test -- --verbose'
   # alias nrtw='nr test -- --watchAll=true'
@@ -267,9 +274,10 @@ alias gap='git add --patch'
 
 # git-branch.
 alias gb='git branch'
-alias gba='git branch -a'
-alias gbd='git branch -d'
-alias gbm='git branch -m'
+alias gba='git branch -a' # --all
+alias gbd='git branch -d' # --delete
+alias gbm='git branch -m' # --move
+alias gbv='git branch -v' # --verbose
 
 # git-commit.
 alias gc='git commit'
@@ -279,6 +287,8 @@ alias gcanv='git commit --amend --no-verify'
 alias gcane='git commit --amend --no-edit'
 alias gcanvne='git commit --amend --no-verify --no-edit'
 alias gcanenv='git commit --amend --no-edit --no-verify'
+alias gcm='git commit -m' # -- message
+alias gcam='git commit -am' # --all --message
 # alias gcaann='git commit -a --amend --no-edit --no-verify'
 # alias gcaa='git commit -a --amend --no-edit'
 
@@ -307,17 +317,23 @@ gdv() {
 alias gi='git init'
 
 # git-log.
-alias gl='git log'
+alias gl='git log --abbrev-commit'
+alias gla='git log'
 alias glr='git log --reverse'
 alias gls='git log --stat'
 alias glg='git log --grep'
-alias glo='git log --pretty="%C(yellow)%cd %C(cyan)%h%C(auto)%d %Creset%s (%Cblue%aN%Creset)" --graph --date=short --date-order'
+alias glo='git log --oneline'
+alias glog='git log --oneline --graph'
+alias gloa='git log --oneline --all'
+alias gloag='git log --oneline --all --graph'
+# alias glog='git log --pretty="%C(yellow)%cd %C(cyan)%h%C(auto)%d %Creset%s (%Cblue%aN%Creset)" --graph --date=short --date-order'
 # the same as glo, but logs author's email instead of name.
-alias gloe='git log --pretty="%C(yellow)%cd %C(cyan)%h%C(auto)%d %Creset%s (%Cblue%aE%Creset)" --graph --date=short --date-order'
+# alias gloe='git log --pretty="%C(yellow)%cd %C(cyan)%h%C(auto)%d %Creset%s (%Cblue%aE%Creset)" --graph --date=short --date-order'
 # the same as glo, but logs author's name and email.
-alias gloa='git log --pretty="%C(yellow)%cd %C(cyan)%h%C(auto)%d %Creset%s (%Cblue%aN %Creset- %Cblue%aE%Creset)" --graph --date=short --date-order'
+# alias gloa='git log --pretty="%C(yellow)%cd %C(cyan)%h%C(auto)%d %Creset%s (%Cblue%aN %Creset- %Cblue%aE%Creset)" --graph --date=short --date-order'
 alias gwc='git whatchanged'
 alias gln='git log HEAD@{1}..HEAD@{0}' # show commits since last pull (new commits).
+alias glp='git log -p'
 # alias glg='git log --graph'
 
 # git-merge.
@@ -387,6 +403,9 @@ alias gstl='git stash list'
 alias gstp='git stash pop'
 alias gstsh='git stash show'
 alias gstshp='git stash show -p'
+
+# git-switch
+alias gsw='git switch'
 
 # gh (github command line client).
 if command -v gh >/dev/null; then
