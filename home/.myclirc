@@ -1,5 +1,8 @@
 # vi: ft=dosini
 [main]
 
-# Keygindings: Possible values: emacs, vi.
+# Keybindings: Possible values: emacs, vi.
 key_bindings = vi
+
+# Skip intro info on startup and outro info on exit
+less_chatty = True
