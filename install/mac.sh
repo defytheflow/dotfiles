@@ -1,6 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-# File:     mac
+# File:     mac.sh
 # Created:  16.03.2021
 # Author:   Artyom Danilov (@defytheflow)
 
@@ -22,27 +22,28 @@ install_packages() {
 
   install_brew
 
-  set -- \
-    bat bpython btop \
-    ccrypt cloc composer cowsay \
-    deno diceware dos2unix \
-    exa ex-vi \
-    fd fish fortune fzf \
-    gh git-delta graphviz \
-    iterm2 \
-    jq \
-    keycastr \
-    lolcat lua luarocks \
-    mycli mysql \
-    neovim node \
-    php pipenv pgcli pnpm postgresql \
-    ranger rename ripgrep \
-    shellcheck shfmt \
-    task telnet tlrc tmux tmuxinator tree \
-    vapor vint \
+  packages=(
+    bat bpython btop
+    ccrypt cloc composer cowsay
+    deno diceware dos2unix
+    exa ex-vi
+    fd fish fortune fzf
+    gh git-delta graphviz
+    iterm2
+    jq
+    keycastr
+    lolcat lua luarocks
+    mycli mysql
+    neovim node
+    php pipenv pgcli pnpm postgresql
+    ranger rename ripgrep
+    shellcheck shfmt
+    task telnet tmux tmuxinator trash tree
+    vapor vint
     wget
+  )
 
-  for package; do
+  for package in ${packages[@]}; do
     log "Checking that $(color "${package}") exists."
     brew ls --versions "${package}" >/dev/null || brew install "${package}"
   done
