@@ -13,6 +13,7 @@ relative_import() {
 
 relative_import '.profile'
 relative_import 'utils.sh'
+relative_import 'npm.sh'
 
 main() {
   check_environ
@@ -110,28 +111,6 @@ install_pip_packages() {
 
   for pack; do
     python3 -m pip list | grep "${pack}" || python3 -m pip install "${pack}"
-  done
-}
-
-install_npm_packages() {
-  log 'Installing npm packages.'
-
-  set -- \
-    @antfu/ni \
-    bash-language-server \
-    chalk create-react-app \
-    eslint \
-    jest jsonlint \
-    live-server \
-    nodejs/repl nodemon npm-check-updates npkill \
-    pnpm prettier neovim \
-    sass stylelint sqlite3 \
-    typescript trash-cli ts-node \
-    @types/node \
-    vim-language-server
-
-  for pack; do
-    npm list --global "${pack}" || sudo npm install --global "${pack}"
   done
 }
 
