@@ -24,6 +24,24 @@ require("lazy").setup {
 
   { "marilari88/twoslash-queries.nvim" },
 
+  -- Debugger
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      -- UI for debugger
+      { "rcarriga/nvim-dap-ui", opts = {} },
+      "nvim-neotest/nvim-nio",
+
+      -- Displays variable values as a virtual text
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        opts = {
+          commented = true,
+        },
+      },
+    },
+  },
+
   -- Overlays '*' characters over values inside .env files
   { "laytan/cloak.nvim", opts = {} },
 
