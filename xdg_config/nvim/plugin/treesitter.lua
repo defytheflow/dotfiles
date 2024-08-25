@@ -9,6 +9,7 @@ vim.defer_fn(function()
       "vimdoc",
       "javascript",
       "typescript",
+      "php",
       "python",
       "tsx",
       "json",

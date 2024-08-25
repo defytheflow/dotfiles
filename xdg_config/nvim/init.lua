@@ -223,7 +223,19 @@ require("lazy").setup {
       "williamboman/mason-lspconfig.nvim",
 
       -- Useful status updates for LSP
-      { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
+      {
+        "j-hui/fidget.nvim",
+        tag = "v1.4.5",
+        opts = {
+          progress = {
+            ignore = {
+              -- phpactor spams "Code actions resolved"
+              -- "Resolving code actions" message on almost every key stroke in normal mode
+              "phpactor",
+            },
+          },
+        },
+      },
 
       -- Neovim setup for init.lua and plugin development with full signature help, docs
       -- and completion for the nvim lua API.
