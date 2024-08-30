@@ -35,7 +35,7 @@ install_packages() {
     lolcat lua luarocks
     mycli mysql
     neovim node
-    php pipenv pgcli pnpm postgresql
+    php php-cs-fixer pipenv pgcli pnpm postgresql
     ranger rename ripgrep
     shellcheck shfmt
     task telnet tmux tmuxinator trash tree

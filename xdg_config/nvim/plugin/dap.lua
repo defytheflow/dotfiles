@@ -43,3 +43,5 @@ end)
 -- require("dapui").open()
 -- require("dapui").close()
 -- require("dapui").toggle()
+
+vim.keymap.set("n", "<leader>do", function() require("dapui").toggle() end)

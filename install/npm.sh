@@ -27,6 +27,7 @@ install_npm_packages() {
     sass
     serve
     stylelint
+    sql-formatter
     typescript
     trash-cli
     ts-node

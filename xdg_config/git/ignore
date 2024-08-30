@@ -3,6 +3,7 @@
 .mypy_cache/
 .ccls-cache/
 .pytest_cache/
+.php-cs-fixer.cache
 
 # python
 *.py[co]
