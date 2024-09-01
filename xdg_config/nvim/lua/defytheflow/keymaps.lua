@@ -13,10 +13,7 @@ end
 -- misc
 -- vim.keymap.set("n", "<leader>d", vim.cmd.bdelete)
 -- vim.keymap.set("n", "<leader>D", function() vim.cmd.bprevious() vim.cmd.bdelete('#') end)
-vim.keymap.set("n", "<leader>mk", function()
-  vim.cmd.write()
-  vim.cmd.make { bang = true } -- without `bang = true` opens a new buffer if make command fails
-end, { desc = "[M]a[k]e" })
+vim.keymap.set("n", "<leader>mk", "<Cmd>w<CR><Cmd>make!<CR>", { desc = "[M]a[k]e" })
 
 -- common typo
 vim.api.nvim_create_user_command("Bd", function() vim.cmd.bd() end, {})

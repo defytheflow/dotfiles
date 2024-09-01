@@ -49,6 +49,7 @@ require("lazy").setup {
   {
     "stevearc/oil.nvim",
     opts = {
+      default_file_explorer = false, -- without this, disables :Ex command for opening netrw
       skip_confirm_for_simple_edits = true,
     },
     init = function()

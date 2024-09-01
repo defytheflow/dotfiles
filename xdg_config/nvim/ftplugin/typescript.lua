@@ -8,8 +8,14 @@ vim.opt_local.foldmethod = "expr"
 vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt_local.foldenable = false
 
--- TODO:
--- check if bun installed
--- check if ts-node installed
--- fallback to tsc and node
-vim.opt_local.makeprg = "bun %"
+  -- TODO:
+  -- fallback to tsc and node
+
+local executables = { "bun", "deno", "ts-node" }
+
+for _, executable in ipairs(executables) do
+  if vim.fn.executable(executable) == 1 then
+    vim.opt_local.makeprg = executable .. " %"
+    break
+  end
+end

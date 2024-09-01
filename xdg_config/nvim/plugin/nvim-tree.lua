@@ -1,6 +1,7 @@
 local api = require("nvim-tree.api")
 
 require("nvim-tree").setup {
+  hijack_netrw = true,
   view = {
     width = { min = 30 },
     number  = true,
