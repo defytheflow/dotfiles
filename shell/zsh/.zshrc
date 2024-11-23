@@ -5,9 +5,16 @@
 # Created:  22.03.2020
 # Author:   Artyom Danilov (@defytheflow)
 
-[[ -f "${HOME}/.zprofile" ]] && source "${HOME}/.zprofile"
+[[ -f "${ZDOTDIR}/.zshenv" ]] && source "${ZDOTDIR}/.zshenv"
 
 ZSH_CACHE="${HOME}/.cache/zsh"
+
+# brew.
+case $OSTYPE in
+  darwin*)
+    eval $(/opt/homebrew/bin/brew shellenv)
+    ;;
+esac
 
 # plugins {{{
 export ZPLUG_HOME="${HOME}/.config/zplug"
@@ -18,7 +25,7 @@ source "${ZPLUG_HOME}/init.zsh"
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-zplug 'plugins/command-not-found', from:oh-my-zsh
+# zplug 'plugins/command-not-found', from:oh-my-zsh
 zplug 'plugins/fzf', from:oh-my-zsh
 zplug 'kutsan/zsh-system-clipboard'
 
@@ -77,7 +84,6 @@ fi
 # By default prints only 15 last entries (https://stackoverflow.com/a/26848769)
 alias history='history 1'
 
-HISTFILE="${ZSH_CACHE}/history"
 HISTSIZE=1000
 SAVEHIST=1000
 
@@ -395,8 +401,8 @@ export PATH="/usr/local/go/bin:${PATH}"
 export PATH="${PATH}:${HOME}/.config/cargo/bin"
 
 # command not found
-HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
-[[ -f "$HB_CNF_HANDLER" ]] && source "$HB_CNF_HANDLER";
+# HB_CNF_HANDLER="$(brew --repository)/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+# [[ -f "$HB_CNF_HANDLER" ]] && source "$HB_CNF_HANDLER";
 
-command -v fortune >/dev/null && fortune
+# command -v fortune >/dev/null && fortune
 # command -v title >/dev/null && title "Rest at the end, not in the middle."

@@ -141,6 +141,7 @@ local servers = {
   intelephense = {},
   phpactor = {},
   sqlls = {},
+  jsonls = {},
 }
 
 require("neodev").setup()

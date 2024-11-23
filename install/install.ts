@@ -1,24 +1,52 @@
 import * as os from "node:os";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
+import * as util from "node:util";
+import { exec as nodeExec } from "node:child_process";
+const exec = util.promisify(nodeExec);
 
 const HOME = os.homedir();
 const XDG_CONFIG_HOME = process.env.XDG_CONFIG_HOME || path.join(HOME, ".config");
+const DOTFILES_HOME = path.dirname(__dirname);
 
-const MY_HOME = path.join(path.dirname(__dirname), "home");
-const MY_XDG_CONFIG_HOME = path.join(path.dirname(__dirname), "xdg_config");
+const MY_HOME = path.join(DOTFILES_HOME, "home");
+const MY_XDG_CONFIG_HOME = path.join(DOTFILES_HOME, "xdg_config");
 
 main();
 
 async function main() {
-  for (let fileOrDirName of (await fs.readdir(MY_XDG_CONFIG_HOME)).sort(sortAlpha)) {
+  await createSymlinks();
+
+  await generateShellProfile();
+
+  await installPackages(
+    "brew",
+    ["git-delta", "fd", "fzf", "neovim", "pipx", "ripgrep", "tmux"],
+    name => `brew ls --versions "${name}" >/dev/null || brew install "${name}"`,
+  );
+
+  await installPackages(
+    "npm",
+    ["@antfu/ni", "npkill", "pnpm", "prettier", "sql-formatter"],
+    name => `npm list --global "${name}" >/dev/null || npm install -g "${name}"`,
+  );
+
+  await installPackages(
+    "pip",
+    ["black", "flake8", "isort"],
+    name => `command -v "${name}" >/dev/null  || pipx install "${name}"`,
+  );
+}
+
+async function createSymlinks() {
+  for (const fileOrDirName of (await fs.readdir(MY_XDG_CONFIG_HOME)).sort(sortAlpha)) {
     await symlink(
       path.join(MY_XDG_CONFIG_HOME, fileOrDirName),
-      path.join(XDG_CONFIG_HOME, fileOrDirName)
+      path.join(XDG_CONFIG_HOME, fileOrDirName),
     );
   }
 
-  for (let fileOrDirName of (await fs.readdir(MY_HOME)).sort(sortAlpha)) {
+  for (const fileOrDirName of (await fs.readdir(MY_HOME)).sort(sortAlpha)) {
     await symlink(path.join(MY_HOME, fileOrDirName), path.join(HOME, fileOrDirName));
   }
 
@@ -52,4 +80,43 @@ async function symlink(targetPath: string, symlinkPath: string) {
   } catch (err) {
     console.error("symlink err", err);
   }
+}
+
+async function generateShellProfile() {
+  const content = `
+export DOTFILES_HOME="${DOTFILES_HOME}";
+export ZDOTDIR="$DOTFILES_HOME/shell/zsh";
+`;
+
+  try {
+    const filePath = path.join(HOME, ".zprofile");
+    await fs.writeFile(filePath, content);
+    console.log(`writeFile ${filePath}`);
+  } catch (err) {
+    console.error("writeFile err", err);
+  }
+}
+
+async function installPackages(
+  provider: string,
+  packages: readonly string[],
+  command: (packageName: string) => string,
+) {
+  console.log(`Installing ${provider} packages.`);
+
+  await Promise.all(
+    packages.map(async function installPackage(package_: string) {
+      console.log(`Checking that "${package_}" exists.`);
+
+      const { stdout, stderr } = await exec(command(package_));
+
+      if (stdout) {
+        console.log(stdout);
+      }
+
+      if (stderr) {
+        console.log(stderr);
+      }
+    }),
+  );
 }
