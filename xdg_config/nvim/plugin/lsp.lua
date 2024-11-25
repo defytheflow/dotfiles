@@ -115,7 +115,7 @@ local servers = {
   gopls = {},
   pyright = {},
   rust_analyzer = {},
-  tsserver = {},
+  ts_ls = {},
   tailwindcss = {
     tailwindCSS = {
       experimental = {
@@ -127,7 +127,7 @@ local servers = {
     },
   },
   eslint = {},
-  stylelint_lsp = { filetypes = "css", "less", "scss", "vue" },
+  stylelint_lsp = { filetypes = { "css", "less", "scss", "vue" } },
   cssmodules_ls = {},
   emmet_language_server = {},
   html = { filetypes = { "html", "twig", "hbs" } },
@@ -166,7 +166,8 @@ mason_lspconfig.setup_handlers {
   end
 }
 
-require("lspconfig").tsserver.setup {
+
+require("lspconfig").ts_ls.setup {
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
