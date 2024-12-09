@@ -166,6 +166,19 @@ mason_lspconfig.setup_handlers {
   end
 }
 
+require("lspconfig").jsonls.setup({
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  settings = {
+    json = {
+      schemas = {
+        {
+          fileMatch = {"tsconfig.json"},
+          url = "http://json.schemastore.org/tsconfig"
+        }
+      }
+    }
+  }
+})
 
 require("lspconfig").ts_ls.setup {
   capabilities = capabilities,
