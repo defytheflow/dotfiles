@@ -12,7 +12,7 @@ const DOTFILES_HOME = path.dirname(__dirname);
 const MY_HOME = path.join(DOTFILES_HOME, "home");
 const MY_XDG_CONFIG_HOME = path.join(DOTFILES_HOME, "xdg_config");
 
-const BREW_PACKAGES = ["git-delta", "fd", "fzf", "neovim", "pipx", "ripgrep", "tmux"];
+const BREW_PACKAGES = ["composer", "fd", "fzf", "git-delta", "neovim", "pipx", "ripgrep", "tmux"];
 const NPM_PACKAGES = ["@antfu/ni", "npkill", "pnpm", "prettier", "sql-formatter"];
 const PIP_PACKAGES = ["black", "flake8", "isort"];
 

@@ -291,7 +291,9 @@ null_ls.setup {
     null_ls.builtins.formatting.prettier.with {
       extra_args = { "--print-width", "100" }
     },
-    null_ls.builtins.diagnostics.phpstan,
+    null_ls.builtins.diagnostics.phpstan.with {
+      args = { "analyze", "--error-format", "json", "--no-progress" }
+    }
   },
   on_attach = function(_, bufnr)
     local desc = "Format current buffer with null-ls"
