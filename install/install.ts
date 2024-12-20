@@ -12,31 +12,27 @@ const DOTFILES_HOME = path.dirname(__dirname);
 const MY_HOME = path.join(DOTFILES_HOME, "home");
 const MY_XDG_CONFIG_HOME = path.join(DOTFILES_HOME, "xdg_config");
 
+const BREW_PACKAGES = ["git-delta", "fd", "fzf", "neovim", "pipx", "ripgrep", "tmux"];
+const NPM_PACKAGES = ["@antfu/ni", "npkill", "pnpm", "prettier", "sql-formatter"];
+const PIP_PACKAGES = ["black", "flake8", "isort"];
+
 main();
 
 async function main() {
   await createSymlinks();
-
   await generateShellProfile();
-
-  await installPackages(
-    "brew",
-    ["git-delta", "fd", "fzf", "neovim", "pipx", "ripgrep", "tmux"],
-    name => `brew ls --versions "${name}" >/dev/null || brew install "${name}"`,
-  );
-
-  await installPackages(
-    "npm",
-    ["@antfu/ni", "npkill", "pnpm", "prettier", "sql-formatter"],
-    name => `npm list --global "${name}" >/dev/null || npm install -g "${name}"`,
-  );
-
-  await installPackages(
-    "pip",
-    ["black", "flake8", "isort"],
-    name => `command -v "${name}" >/dev/null  || pipx install "${name}"`,
-  );
+  await installPackages("brew", BREW_PACKAGES, brewInstall);
+  await installPackages("npm", NPM_PACKAGES, npmInstall);
+  await installPackages("pip", PIP_PACKAGES, pipInstall);
 }
+
+const brewInstall: InstallFn = name =>
+  `brew ls --versions "${name}" >/dev/null || brew install "${name}"`;
+
+const npmInstall: InstallFn = name =>
+  `npm list --global "${name}" >/dev/null || npm install -g "${name}"`;
+
+const pipInstall: InstallFn = name => `command -v "${name}" >/dev/null  || pipx install "${name}"`;
 
 async function createSymlinks() {
   for (const fileOrDirName of (await fs.readdir(MY_XDG_CONFIG_HOME)).sort(sortAlpha)) {
@@ -49,6 +45,11 @@ async function createSymlinks() {
   for (const fileOrDirName of (await fs.readdir(MY_HOME)).sort(sortAlpha)) {
     await symlink(path.join(MY_HOME, fileOrDirName), path.join(HOME, fileOrDirName));
   }
+
+  await symlink(
+    path.join(DOTFILES_HOME, "vscode"),
+    path.join(HOME, "Library/Application Support/Code/User"),
+  );
 
   function sortAlpha(a: string, b: string) {
     return a.localeCompare(b);
@@ -97,11 +98,9 @@ export ZDOTDIR="$DOTFILES_HOME/shell/zsh";
   }
 }
 
-async function installPackages(
-  provider: string,
-  packages: readonly string[],
-  command: (packageName: string) => string,
-) {
+type InstallFn = (packageName: string) => string;
+
+async function installPackages(provider: string, packages: readonly string[], command: InstallFn) {
   console.log(`Installing ${provider} packages.`);
 
   await Promise.all(

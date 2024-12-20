@@ -18,3 +18,6 @@ export NPM_CONFIG_CACHE="$HOME/.cache/npm"
 
 # `zsh` history file
 export HISTFILE="$HOME/.cache/zsh_history"
+
+# `less` history file
+export LESSHISTFILE="${HOME}/.cache/less/history"
