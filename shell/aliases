@@ -299,6 +299,9 @@ alias gcb='git checkout -b'
 alias gco='git checkout'
 alias gco.='git checkout -- .'
 
+# git-cherry-pick
+alias gcp='git cherry-pick'
+
 # git-clone.
 alias gcl='git clone'
 
@@ -314,6 +317,9 @@ alias gdt='git difftool'
 gdv() {
   git diff --ignore-all-space "$@" | vim -R -
 }
+
+# git-fetch
+alias gfa='git fetch --all'
 
 # git-init.
 alias gi='git init'
