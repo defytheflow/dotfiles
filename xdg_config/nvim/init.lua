@@ -22,6 +22,8 @@ require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
 
+  { "petertriho/nvim-scrollbar", opts = {} },
+
   { 'danilamihailov/beacon.nvim' },
 
   { "marilari88/twoslash-queries.nvim" },
