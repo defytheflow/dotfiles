@@ -204,7 +204,7 @@ local cmp = require("cmp")
 local luasnip = require("luasnip")
 
 require("luasnip.loaders.from_vscode").lazy_load {
-  paths = { "~/.dotfiles/vscode/snippets" }
+  paths = { os.getenv("DOTFILES_HOME") .. "/vscode/snippets" }
 }
 
 luasnip.config.setup {}
