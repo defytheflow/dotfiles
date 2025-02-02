@@ -44,3 +44,4 @@
 
 theme = catppuccin-frappe
 macos-titlebar-style = hidden
+background = #041628
