@@ -21,3 +21,9 @@ export HISTFILE="$HOME/.cache/zsh_history"
 
 # `less` history file
 export LESSHISTFILE="${HOME}/.cache/less/history"
+
+# `make`
+# These flags will be used by default when you compile a program from neovim, using the
+# `:make` command
+export CXX='clang++'
+export CXXFLAGS="-std=c++20 -Wall -Wextra -Wpedantic"
