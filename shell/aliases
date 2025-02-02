@@ -374,7 +374,7 @@ gpaf() {
 alias gpl='git pull'
 
 # git-remote.
-alias gr='git remote -v'
+alias grv='git remote -v'
 alias gra='git remote add'
 
 # git-rm.

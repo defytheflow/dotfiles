@@ -112,7 +112,7 @@ end
 
 local servers = {
   clangd = {},
-  gopls = {},
+  -- gopls = {}, -- mason can't download it and throws an error
   pyright = {},
   rust_analyzer = {},
   ts_ls = {},
@@ -222,7 +222,7 @@ cmp.setup {
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-e>"] = cmp.mapping.abort(),
-    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<A-i>"] = cmp.mapping.complete(),
     ["<CR>"] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
