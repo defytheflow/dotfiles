@@ -22,6 +22,26 @@ require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
 
+  -- Switch between themes with persistence
+  {
+    "zaldih/themery.nvim",
+    lazy = false,
+    config = function()
+      require("themery").setup({
+        themes = {
+          "catppuccin",
+          "tokyonight-moon",
+          "base16-classic-dark",
+          "base16-gruvbox-dark-hard",
+          "base16-ocean",
+          "night-owl",
+          "xcode",
+          "monokai",
+        }
+      })
+    end
+  },
+
   { "petertriho/nvim-scrollbar", opts = {} },
 
   { 'danilamihailov/beacon.nvim' },
