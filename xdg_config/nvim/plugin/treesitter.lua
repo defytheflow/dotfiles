@@ -17,6 +17,8 @@ vim.defer_fn(function()
       "json",
       "bash",
       "css",
+      "sql",
+      "html",
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
