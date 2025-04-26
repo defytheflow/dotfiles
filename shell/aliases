@@ -213,6 +213,7 @@ if command -v ni >/dev/null; then
   alias nrt='nr typecheck'
   alias nt='nr test'
   alias nte='nr test:e2e'
+  alias nrc='nr check'
   # alias nrtc='nr test -- --coverage --coverageDirectory=coverage'
   # alias nrtv='nr test -- --verbose'
   # alias nrtw='nr test -- --watchAll=true'

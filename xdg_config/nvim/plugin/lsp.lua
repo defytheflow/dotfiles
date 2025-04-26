@@ -108,6 +108,14 @@ local on_attach = function(_, bufnr)
 
   nmap("<leader>f", vim.lsp.buf.format, "Format")
   xmap("<leader>f", vim.lsp.buf.format, "Format")
+
+  -- Formats code on save
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*.go", "*.lua" },
+    callback = function()
+      vim.lsp.buf.format { async = false }
+    end
+  })
 end
 
 local servers = {
@@ -121,14 +129,13 @@ local servers = {
       experimental = {
         classRegex = {
           { "cva\\(((?:[^()]|\\([^()]*\\))*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-          { "cx\\(((?:[^()]|\\([^()]*\\))*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" }
+          { "cx\\(((?:[^()]|\\([^()]*\\))*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" }
         },
       },
     },
   },
   eslint = {},
-  stylelint_lsp = { filetypes = { "css", "less", "scss", "vue" } },
-  cssmodules_ls = {},
+  gopls = {},
   emmet_language_server = {},
   html = { filetypes = { "html", "twig", "hbs" } },
   cssls = {},
@@ -172,7 +179,7 @@ require("lspconfig").jsonls.setup({
     json = {
       schemas = {
         {
-          fileMatch = {"tsconfig.json"},
+          fileMatch = { "tsconfig.json" },
           url = "http://json.schemastore.org/tsconfig"
         }
       }
@@ -253,7 +260,7 @@ cmp.setup {
     --[[
       Priority is set so that snippets appear above other options.
       Useful for "console.log" to appear above `import log from "node:console"`.
-    ]]--
+    ]] --
     -- { name = "luasnip", priority = 10 }, -- because of this when you press <c-space> snippets appear first and you need to scroll to see the properties and options, fuck
     { name = "luasnip" },
     { name = "buffer" },
@@ -289,7 +296,7 @@ null_ls.setup {
       filetypes = { "sql", "mysql", }
     },
     null_ls.builtins.formatting.prettier.with {
-      extra_args = { "--print-width", "100" }
+      -- extra_args = { "--print-width", "90" }
     },
     null_ls.builtins.diagnostics.phpstan.with {
       args = { "analyze", "--error-format", "json", "--no-progress" }
@@ -305,31 +312,3 @@ null_ls.setup {
     vim.keymap.set({ "n", "x" }, "<leader>f", vim.lsp.buf.format, { buffer = bufnr, desc = desc })
   end
 }
-
--- Autoformat code on save
--- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
--- null_ls.setup {
---     sources = {
---       null_ls.builtins.formatting.prettier.with {
---         extra_args = { "--print-width", "100" }
---       }
---     },
---     -- you can reuse a shared lspconfig on_attach callback here
---     on_attach = function(client, bufnr)
---         if client.supports_method("textDocument/formatting") then
---             vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
---             vim.api.nvim_create_autocmd("BufWritePre", {
---                 group = augroup,
---                 buffer = bufnr,
---                 callback = function()
---                     vim.lsp.buf.format({
---                       -- async = false
---                       filter = function(client)
---                         return client.name == "null-ls"
---                       end
---                     })
---                 end,
---             })
---         end
---     end,
--- }
