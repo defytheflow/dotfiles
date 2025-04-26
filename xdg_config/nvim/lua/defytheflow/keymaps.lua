@@ -1,3 +1,13 @@
+--- Check if a keymap exists in a given mode.
+local function keymap_exists(mode, lhs)
+  for _, map in ipairs(vim.api.nvim_get_keymap(mode)) do
+    if map.lhs == lhs then
+      return true
+    end
+  end
+  return false
+end
+
 -- vimrc
 local myvimrc = vim.fn.expand("$MYVIMRC")
 vim.api.nvim_create_user_command("Rld", function() vim.cmd.source(myvimrc) end, {})
@@ -13,7 +23,12 @@ end
 -- misc
 -- vim.keymap.set("n", "<leader>d", vim.cmd.bdelete)
 -- vim.keymap.set("n", "<leader>D", function() vim.cmd.bprevious() vim.cmd.bdelete('#') end)
-vim.keymap.set("n", "<leader>mk", "<Cmd>w<CR><Cmd>make!<CR>", { desc = "[M]a[k]e" })
+
+-- NOTE: We define a <leader>mk keybind inside toggleterm.lua which loads first.
+-- In case in the future i remove this plugin, this will act as a fallback
+if not keymap_exists("n", vim.g.mapleader .. "mk") then
+  vim.keymap.set("n", "<leader>mk", "<Cmd>w<CR><Cmd>make!<CR>", { desc = "[M]a[k]e" })
+end
 
 -- common typo
 vim.api.nvim_create_user_command("Bd", function() vim.cmd.bd() end, {})
