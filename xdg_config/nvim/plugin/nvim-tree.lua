@@ -3,8 +3,8 @@ local api = require("nvim-tree.api")
 require("nvim-tree").setup {
   hijack_netrw = true,
   view = {
-    width = { min = 33 },
-    number  = true,
+    width          = { min = 33 },
+    number         = true,
     relativenumber = true,
   },
   renderer = {
@@ -23,7 +23,13 @@ require("nvim-tree").setup {
   },
   filters = {
     git_ignored = false,
-    custom = { "*.pyc", ".DS_Store" }, -- names that will not be shown
+    custom = {
+      "*.pyc",
+      ".DS_Store",
+      ".mypy_cache",
+      ".ruff_cache",
+      ".pytest_cache",
+    }, -- names that will not be shown
   },
 }
 

@@ -55,7 +55,7 @@ case $OSTYPE in
     ;;
 esac
 alias sl='ls'
-alias ll="ls -lh --color --time-style=+%F"
+alias ll="ls -lha --color"
 # alias l='ls -1'
 # alias la='ls -a'
 # alias ll='ls -l'
@@ -427,6 +427,14 @@ fi
 
 if command -v ghcal >/dev/null; then
   alias ghst='ghcal -u defytheflow -e $(date "+%Y.%m.%d")'
+fi
+
+# task
+if command -v task >/dev/null; then
+  alias ta='task add'
+  alias td='task done'
+  alias tl='task list'
+  alias tn='task next'
 fi
 
 # amixer.
