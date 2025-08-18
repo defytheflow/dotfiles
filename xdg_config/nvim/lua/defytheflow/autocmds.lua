@@ -4,7 +4,9 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd({ "BufWritePre" }, {
   group = augroup("vimrc_trailing_whitespace", {}),
   pattern = "*",
-  callback = function() vim.cmd("%s/\\s\\+$//e"); vim.cmd("%s/\n\\+\\%$//e") end,
+  callback = function()
+    vim.cmd("%s/\\s\\+$//e"); vim.cmd("%s/\n\\+\\%$//e")
+  end,
   desc = "Remove trailing whitespace",
 })
 
@@ -17,7 +19,9 @@ autocmd({ "BufNewFile", "BufRead" }, {
 autocmd({ "FileType" }, {
   group = augroup("vimrc_vimwiki", {}),
   pattern = "vimwiki",
-  callback = function() vim.cmd.runtime("ftplugin/text.lua"); vim.cmd.runtime("ftplugin/markdown.lua") end,
+  callback = function()
+    vim.cmd.runtime("ftplugin/text.lua"); vim.cmd.runtime("ftplugin/markdown.lua")
+  end,
 })
 
 -- NOTE: When you decide to put autocmds for saving folds state, make sure that nohlsearch
@@ -42,4 +46,12 @@ autocmd({ "FileType" }, {
   pattern = "*",
   callback = function() vim.opt.formatoptions:remove { "c", "r", "o" } end,
   desc = "Disable auto commenting",
+})
+
+vim.o.autoread = true
+
+autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+  desc = "Reload file"
 })

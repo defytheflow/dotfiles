@@ -29,6 +29,7 @@ require("nvim-tree").setup {
       ".mypy_cache",
       ".ruff_cache",
       ".pytest_cache",
+      "__pycache__",
     }, -- names that will not be shown
   },
 }

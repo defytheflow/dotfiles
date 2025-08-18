@@ -46,9 +46,17 @@ local on_attach = function(_, bufnr)
   vim.keymap.set("n", "<leader>lr", vim.cmd.LspRestart, { desc = "LSP: [R]estart" })
 
   nmap("<leader>rn", function()
-    vim.lsp.buf.rename()
-    -- vim.cmd.Lspsaga("rename") -- vim.lsp.buf.rename
+    -- vim.lsp.buf.rename()
+    vim.cmd.Lspsaga("rename") -- vim.lsp.buf.rename
   end, "[R]e[n]ame")
+
+  nmap("<leader>pd", function()
+    vim.cmd.Lspsaga("peek_definition")
+  end, "[P]eek [D]efinition")
+
+  nmap("<leader>pr", function()
+    vim.cmd.Lspsaga("finder")
+  end, "[P]eek [R]eferences")
 
   vim.keymap.set("n", "<leader>rN", function()
     return ":IncRename " .. vim.fn.expand("<cword>")
@@ -115,7 +123,7 @@ local on_attach = function(_, bufnr)
 
   -- Formats code on save
   vim.api.nvim_create_autocmd("BufWritePre", {
-    pattern = { "*.go", "*.lua" },
+    pattern = { "*.go" },
     callback = function()
       vim.lsp.buf.format { async = false }
     end
