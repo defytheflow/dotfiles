@@ -170,6 +170,7 @@ ORANGE=214
 # This red looks/feels like zsh syntax plugin's red.
 RED=203
 GREY=250
+DARK_LAVAND_PURPLE=146
 
 # Replacements:
 # %s - displays the current version control system (git, svn, etc.).
@@ -189,11 +190,13 @@ zstyle ':vcs_info:git:*' stagedstr "%F{$GREEN}*"
 zstyle ':vcs_info:git:*' unstagedstr "%F{$ORANGE}*"
 zstyle ':vcs_info:*+*:*' debug false
 # zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-stash git-remotebranch git-status
-zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-remotebranch git-status
+zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-remotebranch git-status git-commit-count
+
+GIT_CONFIG_USER_NAME=$(git config --global user.name)
 
 function +vi-git-commit-count() {
-  count=$(git rev-list --count ${hook_com[branch]})
-  hook_com[misc]+="(${count})"
+  count=$(git rev-list --count --author="$GIT_CONFIG_USER_NAME" ${hook_com[branch]} 2>/dev/null || echo 0)
+  hook_com[misc]+="%B%F{$DARK_LAVAND_PURPLE}[${count}]%f%b"
 }
 
 # Compare local changes to remote changes

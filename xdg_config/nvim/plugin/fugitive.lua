@@ -1,5 +1,6 @@
 vim.opt.previewheight = 22
 
+vim.keymap.set("n", "<leader>ga", function() vim.cmd.Git("add %") end, { desc = "[G]it [A]dd" })
 vim.keymap.set("n", "<leader>gc", function() vim.cmd.Git("commit") end, { desc = "[G]it [C]ommit" })
 vim.keymap.set("n", "<leader>gd", function()
   if vim.bo.filetype == "gitcommit" then
