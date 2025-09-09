@@ -22,6 +22,8 @@ require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
 
+  -- "github/copilot.vim",
+
   -- Switch between themes with persistence
   {
     "zaldih/themery.nvim",
@@ -325,7 +327,7 @@ require("lazy").setup {
     build = ":TSUpdate",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      {  "nvim-treesitter/nvim-treesitter-context", opts = { enable = true } },
+      {  "nvim-treesitter/nvim-treesitter-context", opts = { enable = false } },
       "JoosepAlviste/nvim-ts-context-commentstring",
       -- NOTE: Adds closing jsx tags every time I hit /, even if the tag is already
       -- completed and I am editing within it.
