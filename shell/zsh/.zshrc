@@ -196,7 +196,8 @@ GIT_CONFIG_USER_NAME=$(git config --global user.name)
 
 function +vi-git-commit-count() {
   count=$(git rev-list --count --author="$GIT_CONFIG_USER_NAME" ${hook_com[branch]} 2>/dev/null || echo 0)
-  hook_com[misc]+="%B%F{$DARK_LAVAND_PURPLE}[${count}]%f%b"
+  count_today=$(git rev-list --count --author="$GIT_CONFIG_USER_NAME" --since="$(date +%Y-%m-%d)T00:00:00" ${hook_com[branch]})
+  hook_com[misc]+="%B%F{$DARK_LAVAND_PURPLE}[${count_today}/${count}]%f%b"
 }
 
 # Compare local changes to remote changes
