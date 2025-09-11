@@ -504,6 +504,10 @@
           "args": { "kind": "refactor.move.newFile" }
         }
       ]
+    },
+    {
+      "before": ["<leader>", "h", "s"],
+      "commands": ["git.stageSelectedRanges"]
     }
   ],
 
@@ -655,6 +659,10 @@
     {
       "before": ["<leader>", "p", "r"],
       "commands": ["editor.action.goToReferences"]
+    },
+    {
+      "before": ["<leader>", "h", "s"],
+      "commands": ["git.stageSelectedRanges"]
     },
     {
       "before": ["<leader>", "n"],
