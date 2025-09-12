@@ -505,10 +505,8 @@
         }
       ]
     },
-    {
-      "before": ["<leader>", "h", "s"],
-      "commands": ["git.stageSelectedRanges"]
-    }
+    { "before": ["<leader>", "h", "s"], "commands": ["git.stageSelectedRanges"] },
+    { "before": ["<leader>", "h", "r"], "commands": ["git.revertSelectedRanges"] }
   ],
 
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -652,18 +650,10 @@
 
     // neovim mirroring leader commands.
     { "before": ["<leader>", "r", "n"], "commands": ["editor.action.rename"] },
-    {
-      "before": ["<leader>", "c", "a"],
-      "commands": ["editor.action.codeAction"]
-    },
-    {
-      "before": ["<leader>", "p", "r"],
-      "commands": ["editor.action.goToReferences"]
-    },
-    {
-      "before": ["<leader>", "h", "s"],
-      "commands": ["git.stageSelectedRanges"]
-    },
+    { "before": ["<leader>", "c", "a"], "commands": ["editor.action.codeAction"] },
+    { "before": ["<leader>", "p", "r"], "commands": ["editor.action.goToReferences"] },
+    { "before": ["<leader>", "h", "s"], "commands": ["git.stageSelectedRanges"] },
+    { "before": ["<leader>", "h", "r"], "commands": ["git.revertSelectedRanges"] },
     {
       "before": ["<leader>", "n"],
       "commands": ["workbench.action.toggleSidebarVisibility"]
