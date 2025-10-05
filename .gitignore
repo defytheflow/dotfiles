@@ -35,3 +35,7 @@ install/node_modules
 
 # custom
 local_aliases
+
+# cursor
+cursor/*Storage
+cursor/*History

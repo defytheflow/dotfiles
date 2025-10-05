@@ -51,6 +51,11 @@ async function createSymlinks() {
     path.join(HOME, "Library/Application Support/Code/User"),
   );
 
+  await symlink(
+    path.join(DOTFILES_HOME, "cursor"),
+    path.join(HOME, "Library/Application Support/Cursor/User"),
+  );
+
   function sortAlpha(a: string, b: string) {
     return a.localeCompare(b);
   }
