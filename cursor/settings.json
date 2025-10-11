@@ -38,6 +38,10 @@
       "commands": ["editor.action.goToReferences"]
     },
     {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    {
       "before": ["<leader>", "h", "s"],
       "commands": ["git.stageSelectedRanges"]
     },
@@ -122,5 +126,6 @@
   },
   "terminal.integrated.fontSize": 13,
   "git.blame.statusBarItem.enabled": true,
-  "git.blame.editorDecoration.enabled": false
+  "git.blame.editorDecoration.enabled": false,
+  "workbench.editor.enablePreview": false
 }
