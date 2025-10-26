@@ -195,8 +195,11 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-stash git-remotebranch git-statu
 GIT_CONFIG_USER_NAME=$(git config --global user.name)
 
 function +vi-git-commit-count() {
-  count=$(git rev-list --count --author="$GIT_CONFIG_USER_NAME" ${hook_com[branch]} 2>/dev/null || echo 0)
-  count_today=$(git rev-list --count --author="$GIT_CONFIG_USER_NAME" --since="$(date +%Y-%m-%d)T00:00:00" ${hook_com[branch]})
+  # `refs/heads/` prefix before hook_com[branch] is needed in case branch has the same name as
+  # a file or folder inside the current directory and git is confused what we want: branch or file,
+  # this prefix makes sure git treats it as a branch name
+  count=$(git rev-list --count --author="$GIT_CONFIG_USER_NAME" refs/heads/${hook_com[branch]} 2>/dev/null || echo 0)
+  count_today=$(git rev-list --count --author="$GIT_CONFIG_USER_NAME" --since="$(date +%Y-%m-%d)T00:00:00" refs/heads/${hook_com[branch]})
   hook_com[misc]+="%B%F{$DARK_LAVAND_PURPLE}[${count_today}/${count}]%f%b"
 }
 
