@@ -22,6 +22,9 @@ export HISTFILE="$HOME/.cache/zsh_history"
 # `less` history file
 export LESSHISTFILE="${HOME}/.cache/less/history"
 
+# editor used by other programs
+export EDITOR='nvim'
+
 # `make`
 # These flags will be used by default when you compile a program from neovim, using the
 # `:make` command

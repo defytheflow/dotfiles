@@ -198,8 +198,16 @@ function +vi-git-commit-count() {
   # `refs/heads/` prefix before hook_com[branch] is needed in case branch has the same name as
   # a file or folder inside the current directory and git is confused what we want: branch or file,
   # this prefix makes sure git treats it as a branch name
-  count=$(git rev-list --count --author="$GIT_CONFIG_USER_NAME" refs/heads/${hook_com[branch]} 2>/dev/null || echo 0)
-  count_today=$(git rev-list --count --author="$GIT_CONFIG_USER_NAME" --since="$(date +%Y-%m-%d)T00:00:00" refs/heads/${hook_com[branch]})
+
+  # Check if the branch exists and has commits
+  if ! git rev-parse --verify refs/heads/${hook_com[branch]} >/dev/null 2>&1; then
+    count=0
+    count_today=0
+  else
+    count=$(git rev-list --count --author="$GIT_CONFIG_USER_NAME" refs/heads/${hook_com[branch]} 2>/dev/null || echo 0)
+    count_today=$(git rev-list --count --author="$GIT_CONFIG_USER_NAME" --since="$(date +%Y-%m-%d)T00:00:00" refs/heads/${hook_com[branch]})
+  fi
+
   hook_com[misc]+="%B%F{$DARK_LAVAND_PURPLE}[${count_today}/${count}]%f%b"
 }
 
