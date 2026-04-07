@@ -523,6 +523,7 @@
     // g commands.
     { "before": ["K"], "commands": ["editor.action.showHover"] },
     { "before": ["g", "D"], "commands": ["editor.action.revealDefinitionAside"] },
+    { "before": ["g", "s"], "commands": ["typescript.goToSourceDefinition"] },
 
     // z commands.
     { "before": ["z", "j"], "commands": ["editor.gotoNextFold"] },
