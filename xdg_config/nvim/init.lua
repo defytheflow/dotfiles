@@ -327,9 +327,11 @@ require("lazy").setup {
   -- Highlight, edit and navigate code
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
       {  "nvim-treesitter/nvim-treesitter-context", opts = { enable = false } },
       "JoosepAlviste/nvim-ts-context-commentstring",
       -- NOTE: Adds closing jsx tags every time I hit /, even if the tag is already
