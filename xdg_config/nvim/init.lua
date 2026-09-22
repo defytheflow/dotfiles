@@ -100,8 +100,11 @@ require("lazy").setup {
 
   -- Flake8 linting and Autoformatting on save
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvimtools/none-ls-extras.nvim",
+    },
   },
 
   -- NOTE: breaks treesitter-context
