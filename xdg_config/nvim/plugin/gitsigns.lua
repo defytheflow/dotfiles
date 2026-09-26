@@ -47,7 +47,25 @@ require("gitsigns").setup {
     end
 
     -- Actions
-    if not arc_repo then
+    if arc_repo then
+      local arc_gitsigns = require("defytheflow.arc_gitsigns")
+
+      map("n", "<leader>hs", arc_gitsigns.stage_hunk, { desc = "[H]unk [s]tage" })
+      map("v", "<leader>hs", function()
+        arc_gitsigns.stage_hunk { vim.fn.line("."), vim.fn.line("v") }
+      end)
+      map("n", "<leader>hr", arc_gitsigns.reset_hunk, { desc = "[H]unk [r]eset" })
+      map("v", "<leader>hr", function()
+        arc_gitsigns.reset_hunk { vim.fn.line("."), vim.fn.line("v") }
+      end, { desc = "[H]unk [r]eset" })
+      map("n", "<leader>hS", arc_gitsigns.stage_buffer, { desc = "[H]unk [S]tage buffer" })
+      map("n", "<leader>hu", arc_gitsigns.unstage_hunk, { desc = "[H]unk [U]nstage" })
+      map("v", "<leader>hu", function()
+        arc_gitsigns.unstage_hunk { vim.fn.line("."), vim.fn.line("v") }
+      end, { desc = "[H]unk [U]nstage" })
+      map("n", "<leader>hR", arc_gitsigns.reset_buffer, { desc = "[H]unk [R]eset buffer" })
+      map("n", "<leader>hU", arc_gitsigns.unstage_buffer, { desc = "[H]unk [U]nstage buffer" })
+    else
       map("n", "<leader>hs", gs.stage_hunk, { desc = "[H]unk [s]tage" })
       map("n", "<leader>hr", gs.reset_hunk, { desc = "[H]unk [r]eset" })
       map("v", "<leader>hs", function() gs.stage_hunk { vim.fn.line("."), vim.fn.line("v") } end)
