@@ -29,6 +29,11 @@ require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
 
+  {
+    dir = "~/arcadia/junk/moonw1nd/lua/telescope-arc.nvim",
+    cond = is_arc_repo,
+  },
+
   -- "github/copilot.vim",
 
   -- Switch between themes with persistence
