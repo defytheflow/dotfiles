@@ -11,6 +11,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local function is_arc_repo()
+  if vim.fn.executable("arc") ~= 1 then return false end
+
+  vim.fn.system({ "arc", "root" })
+  return vim.v.shell_error == 0
+end
+
 -- NOTE: FiraCode Nerd Font makes all the icons inside neovim work.
 
 -- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -183,8 +190,15 @@ require("lazy").setup {
     dependencies = "nvim-tree/nvim-web-devicons",
   },
 
-  -- Git signs/decorations
-  "lewis6991/gitsigns.nvim",
+  -- Git/Arc signs and decorations
+  {
+    "lewis6991/gitsigns.nvim",
+    cond = function() return not is_arc_repo() end,
+  },
+  {
+    dir = vim.fn.expand("~/arcadia/contrib/tier1/gitsigns.arc.nvim"),
+    cond = is_arc_repo,
+  },
 
   -- Git plugin
   "tpope/vim-fugitive",
