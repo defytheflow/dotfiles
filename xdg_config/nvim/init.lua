@@ -11,12 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local function is_arc_repo()
-  if vim.fn.executable("arc") ~= 1 then return false end
-
-  vim.fn.system({ "arc", "root" })
-  return vim.v.shell_error == 0
-end
+local is_arc_repo = require("defytheflow.vcs").is_arc_repo
 
 -- NOTE: FiraCode Nerd Font makes all the icons inside neovim work.
 

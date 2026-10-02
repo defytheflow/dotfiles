@@ -1,14 +1,7 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 
-local function is_arc_repo()
-  if vim.fn.executable("arc") ~= 1 then return false end
-
-  vim.fn.system({ "arc", "root" })
-  return vim.v.shell_error == 0
-end
-
-local arc_repo = is_arc_repo()
+local arc_repo = require("defytheflow.vcs").is_arc_repo()
 
 telescope.setup {
   defaults = {
