@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local is_arc_repo = require("defytheflow.vcs").is_arc_repo
+
 -- NOTE: FiraCode Nerd Font makes all the icons inside neovim work.
 
 -- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -21,6 +23,11 @@ vim.g.maplocalleader = " "
 require("lazy").setup {
   -- Game to practice basic vim movements
   "ThePrimeagen/vim-be-good",
+
+  {
+    dir = "~/arcadia/junk/moonw1nd/lua/telescope-arc.nvim",
+    cond = is_arc_repo,
+  },
 
   -- "github/copilot.vim",
 
@@ -100,8 +107,11 @@ require("lazy").setup {
 
   -- Flake8 linting and Autoformatting on save
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = "nvim-lua/plenary.nvim",
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvimtools/none-ls-extras.nvim",
+    },
   },
 
   -- NOTE: breaks treesitter-context
@@ -177,11 +187,21 @@ require("lazy").setup {
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
+    init = function()
+      vim.opt.shortmess:append("I") -- hide the built-in intro before dashboard renders
+    end,
     dependencies = "nvim-tree/nvim-web-devicons",
   },
 
-  -- Git signs/decorations
-  "lewis6991/gitsigns.nvim",
+  -- Git/Arc signs and decorations
+  {
+    "lewis6991/gitsigns.nvim",
+    cond = function() return not is_arc_repo() end,
+  },
+  {
+    dir = vim.fn.expand("~/arcadia/contrib/tier1/gitsigns.arc.nvim"),
+    cond = is_arc_repo,
+  },
 
   -- Git plugin
   "tpope/vim-fugitive",
@@ -256,7 +276,9 @@ require("lazy").setup {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
-    opts = {},
+    opts = function()
+      return require("plugin.lualine").opts()
+    end,
   },
 
   -- LSP configuration & plugins
@@ -324,9 +346,11 @@ require("lazy").setup {
   -- Highlight, edit and navigate code
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
       {  "nvim-treesitter/nvim-treesitter-context", opts = { enable = false } },
       "JoosepAlviste/nvim-ts-context-commentstring",
       -- NOTE: Adds closing jsx tags every time I hit /, even if the tag is already
@@ -338,7 +362,7 @@ require("lazy").setup {
   -- Fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.2",
+    tag = "v0.2.2",
     dependencies = {
       "nvim-lua/plenary.nvim",
 
