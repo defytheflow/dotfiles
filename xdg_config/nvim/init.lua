@@ -276,7 +276,9 @@ require("lazy").setup {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
-    opts = {},
+    opts = function()
+      return require("plugin.lualine").opts()
+    end,
   },
 
   -- LSP configuration & plugins
