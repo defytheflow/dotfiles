@@ -187,6 +187,9 @@ require("lazy").setup {
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
+    init = function()
+      vim.opt.shortmess:append("I") -- hide the built-in intro before dashboard renders
+    end,
     dependencies = "nvim-tree/nvim-web-devicons",
   },
 
