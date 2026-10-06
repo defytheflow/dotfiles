@@ -42,6 +42,8 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-theme = catppuccin-frappe
+theme = Catppuccin Frappe
 macos-titlebar-style = hidden
 background = #041628
+background-opacity = 0.94
+background-blur = true

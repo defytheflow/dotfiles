@@ -112,6 +112,7 @@ fi
 
 # tmux.
 alias tx='tmux'
+alias ta='tmux a'
 if command -v tmuxinator >/dev/null; then
   alias mux='tmuxinator'
 fi
@@ -436,6 +437,27 @@ if command -v task >/dev/null; then
   alias tl='task list'
   alias tm='task modify'
   alias tn='task next'
+fi
+
+# arc
+if command -v arc >/dev/null; then
+  alias aa='arc add'
+  alias ab='arc branch'
+  alias ac='arc commit'
+  alias aca='arc commit --amend'
+  alias aco='arc checkout'
+  alias ad='arc diff'
+  alias ads='arc diff --staged'
+  alias al='arc log'
+  alias als='arc log --stat'
+  alias ap='arc push'
+  alias apf='arc push --force'
+  alias apl='arc pull'
+  alias arb='arc rebase'
+  alias ars='arc reset'
+  alias as='arc status'
+  alias ash='arc show'
+  alias asl='arc stash list'
 fi
 
 # amixer.

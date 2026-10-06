@@ -6,16 +6,6 @@ vim.diagnostic.config {
   }
 }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover,
-  { border = "rounded" }
-)
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help,
-  { border = "rounded" }
-)
-
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics in a floating window" })
@@ -105,8 +95,12 @@ local on_attach = function(_, bufnr)
       symbol_width = 40,
     }
   end, "[W]orkspace [S]ymbols")
-  nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-  nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+  nmap("K", function()
+    vim.lsp.buf.hover { border = "rounded" }
+  end, "Hover Documentation")
+  nmap("<C-k>", function()
+    vim.lsp.buf.signature_help { border = "rounded" }
+  end, "Signature Documentation")
 
   nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
   nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
@@ -154,6 +148,7 @@ local servers = {
   cssls = {},
   lua_ls = {
     Lua = {
+      diagnostics = { globals = { "vim" } },
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
@@ -169,24 +164,16 @@ require("neodev").setup()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-local mason_lspconfig = require("mason-lspconfig")
+for server_name, settings in pairs(servers) do
+  vim.lsp.config(server_name, {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = settings,
+    filetypes = settings.filetypes,
+  })
+end
 
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require("lspconfig")[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end
-}
-
-require("lspconfig").jsonls.setup({
+vim.lsp.config("jsonls", {
   capabilities = require('cmp_nvim_lsp').default_capabilities(),
   settings = {
     json = {
@@ -200,24 +187,30 @@ require("lspconfig").jsonls.setup({
   }
 })
 
-require("lspconfig").ts_ls.setup {
+vim.lsp.config("ts_ls", {
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     require("twoslash-queries").attach(client, bufnr)
   end
-}
+})
 
 -- NOTE: mason can't install it
-require("lspconfig").sourcekit.setup {
+vim.lsp.config("sourcekit", {
   capabilities = capabilities,
   on_attach = on_attach,
-}
+})
+vim.lsp.enable("sourcekit")
 
 -- NOTE: mason throws an error trying to install it
-require("lspconfig").ocamllsp.setup {
+vim.lsp.config("ocamllsp", {
   capabilities = capabilities,
   on_attach = on_attach,
+})
+vim.lsp.enable("ocamllsp")
+
+require("mason-lspconfig").setup {
+  ensure_installed = vim.tbl_keys(servers),
 }
 
 local cmp = require("cmp")
@@ -302,7 +295,7 @@ local null_ls = require("null-ls")
 null_ls.setup {
   debug = true,
   sources = {
-    null_ls.builtins.diagnostics.flake8,
+    require("none-ls.diagnostics.flake8"),
     null_ls.builtins.formatting.isort,
     null_ls.builtins.diagnostics.mypy,
     null_ls.builtins.formatting.black,
@@ -317,7 +310,7 @@ null_ls.setup {
     }
   },
   on_attach = function(_, bufnr)
-    local desc = "Format current buffer with null-ls"
+    local desc = "Format current buffer with none-ls"
 
     vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
       vim.lsp.buf.format()

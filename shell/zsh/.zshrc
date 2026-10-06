@@ -8,6 +8,7 @@
 [[ -f "${ZDOTDIR}/.zshenv" ]] && source "${ZDOTDIR}/.zshenv"
 
 ZSH_CACHE="${HOME}/.cache/zsh"
+mkdir -p "${ZSH_CACHE}"
 
 # brew.
 case $OSTYPE in
@@ -19,14 +20,18 @@ esac
 # plugins {{{
 export ZPLUG_HOME="${HOME}/.config/zplug"
 export ZPLUG_CACHE_DIR="${HOME}/.cache/zplug"
+export ZPLUG_LOADFILE="${ZPLUG_LOADFILE:-${ZPLUG_HOME}/packages.zsh}"
 
 [[ -d "${ZPLUG_HOME}" ]] || git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
+[[ -f "${ZPLUG_LOADFILE}" ]] || touch "${ZPLUG_LOADFILE}"
 source "${ZPLUG_HOME}/init.zsh"
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 # zplug 'plugins/command-not-found', from:oh-my-zsh
-zplug 'plugins/fzf', from:oh-my-zsh
+if command -v fzf >/dev/null; then
+  zplug 'plugins/fzf', from:oh-my-zsh
+fi
 zplug 'kutsan/zsh-system-clipboard'
 
 zplug "zsh-users/zsh-history-substring-search"
@@ -57,6 +62,10 @@ if ! zplug check --verbose; then
 fi
 
 zplug load # --verbose
+# zplug disables job control while loading plugins. Restore it here so its
+# first-prompt hook skips logging "turn monitor on". That log starts Python
+# through pyenv and noticeably delays the prompt on this machine.
+[[ -t 0 ]] && setopt monitor
 #}}}
 
 # options {{{
@@ -338,6 +347,20 @@ emojis=(
   💯 💤 🃏 '⚛️ ' 🔱 ⚪️
 )
 
+function arc_branch() {
+  case "$PWD" in
+    "$HOME/arcadia"|"$HOME/arcadia/"*|"$HOME/arcadia-wt"|"$HOME/arcadia-wt/"*) ;;
+    *) return 0 ;;
+  esac
+
+  local branch
+  branch=$(arc info 2>/dev/null | grep 'branch' | awk -F ': ' '{print $2}')
+
+  if [ -n "$branch" ]; then
+    echo " arc(%B%F{$NIGHT_OWL_GREEN}$branch%b%f)"
+  fi
+}
+
 _time_='[%D{%H:%M}]'
 # figure out how to not display anything if at home directory and otherwise display full path
 #                            %1~
@@ -350,7 +373,7 @@ NEWLINE=$'\n'
 _char_="${NEWLINE}%B%(?.%F{$GREYISH_WHITE}>%f.%F{$RED}>%f)%b"
 _short_prompt_='${_emoji_} ${_jobs_}${_char_} '
 # don't use ${_short_prompt_} inside _long_prompt_ because emoji() function will not work
-_long_prompt_='${_time_} ${_pwd_}${vcs_info_msg_0_} ${_emoji_} ${_jobs_}${_char_} '
+_long_prompt_='${_time_} ${_pwd_}${vcs_info_msg_0_}$(arc_branch) ${_emoji_} ${_jobs_}${_char_} '
 
 PROMPT=$_long_prompt_
 function short() { PROMPT=$_short_prompt_ }
