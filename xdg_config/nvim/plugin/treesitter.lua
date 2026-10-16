@@ -118,7 +118,7 @@ vim.keymap.set("n", "[F", function()
 end)
 
 vim.keymap.set("n", "<leader>ct", function()
-  vim.cmd.TSContextToggle()
+  require("treesitter-context").toggle()
 end, { desc = "[C]ontext [T]oggle" })
 
 vim.keymap.set("n", "<leader>cg", function()

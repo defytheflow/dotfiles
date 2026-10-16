@@ -416,9 +416,12 @@ require("lazy").setup {
   -- Preview markdown in the browser
   {
     "iamcco/markdown-preview.nvim",
-    ft = "markdown",
+    ft = { "markdown", "vimwiki" },
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown", "vimwiki" }
+    end,
     build = function()
-      vim.fn["mkdp#util#install"]()
+      vim.fn["mkdp#util#install_sync"]()
     end,
   },
 
