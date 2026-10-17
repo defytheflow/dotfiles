@@ -56,7 +56,7 @@
   "explorer.autoRevealExclude": {
     "**/node_modules": true,
     "**/bower_components": true,
-    "**/.venv": true
+    "**/.venv": true,
   },
 
   //* Scrolling.
@@ -80,7 +80,7 @@
   //* Formatting & Fixing.
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
-    "source.addMissingImports": "explicit"
+    "source.addMissingImports": "explicit",
   },
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -94,7 +94,7 @@
   "editor.wordBasedSuggestions": "off",
   "editor.inlineSuggest.enabled": true,
   "editor.quickSuggestions": {
-    "strings": true
+    "strings": true,
     // "other": "inline"
   },
 
@@ -146,7 +146,7 @@
     "**/node_modules": true,
     "**/bower_components": true,
     "**/*.code-search": true,
-    "**/package-lock.json": true
+    "**/package-lock.json": true,
   },
 
   //* Terminal.
@@ -181,8 +181,8 @@
       "editorGroup.border": "#102a44",
       "sideBar.background": "#001122",
       "sideBar.border": "#102a44",
-      "sideBar.foreground": "#8BADC1"
-    }
+      "sideBar.foreground": "#8BADC1",
+    },
   },
 
   "editor.tokenColorCustomizations": {
@@ -195,12 +195,12 @@
             "meta.object.member.js.jsx meta.var.expr.js.jsx storage.type.js.jsx",
             "meta.objectliteral.ts meta.var.expr.ts storage.type.ts",
             "meta.objectliteral.tsx meta.var.expr.tsx storage.type.tsx",
-            "meta.objectliteral.js.jsx meta.var.expr.js.jsx storage.type.js.jsx"
+            "meta.objectliteral.js.jsx meta.var.expr.js.jsx storage.type.js.jsx",
           ],
           "settings": {
-            "foreground": "#C792EA"
-          }
-        }
+            "foreground": "#C792EA",
+          },
+        },
         // Colors like in https://github.com/haishanh/night-owl.vim
         // {
         //   "scope": [
@@ -244,8 +244,8 @@
         //     "foreground": "#e99413"
         //   }
         // }
-      ]
-    }
+      ],
+    },
   },
 
   //* Files.
@@ -260,7 +260,7 @@
     // react.
     // "*.js": "javascriptreact",
     // "*.ts": "typescriptreact",
-    "*.css": "tailwindcss"
+    "*.css": "tailwindcss",
     // django.
     // "**/templates/**/*.html": "django-html",
     // "**/templates/**/*": "django-txt"
@@ -278,10 +278,10 @@
     "**/__pycache__": true,
     "**/.mypy_cache": true,
     "**/.pytest_cache": true,
-    "**/.ruff_cache": true
+    "**/.ruff_cache": true,
   },
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter-notebook"
+    "*.ipynb": "jupyter-notebook",
   },
 
   //* Extensions.
@@ -292,9 +292,9 @@
     "editor.defaultFormatter": "ms-python.python",
     "editor.tabSize": 4,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit"
+      "source.organizeImports": "explicit",
     },
-    "editor.formatOnType": true
+    "editor.formatOnType": true,
   },
   "python.testing.pytestEnabled": true,
   "python.analysis.inlayHints.variableTypes": false,
@@ -303,12 +303,12 @@
   "python.terminal.launchArgs": ["-m", "IPython", "--no-autoindent"],
 
   "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode"
+    "editor.defaultFormatter": "astro-build.astro-vscode",
   },
 
   //* HTML.
   "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   // "[django-html]": {
   //   "editor.defaultFormatter": "HookyQR.beautify"
@@ -317,7 +317,7 @@
   //* CSS/SCSS.
   "[css][scss][tailwindcss]": {
     // "editor.defaultFormatter": "stylelint.vscode-stylelint"
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
 
   //* Markdown.
@@ -325,17 +325,17 @@
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
     "editor.quickSuggestions": { "comments": "off", "strings": "off", "other": "off" },
-    "editor.acceptSuggestionOnEnter": "off"
+    "editor.acceptSuggestionOnEnter": "off",
   },
 
   //* JSON.
   "[json][jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
 
   //* JavaScript.
   "[javascript][javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
   // "js/ts.implicitProjectConfig.checkJs": true,
@@ -346,7 +346,7 @@
 
   //* TypeScript.
   "[typescript][typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.enablePromptUseWorkspaceTsdk": true,
@@ -360,31 +360,31 @@
   // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
 
   "[swift]": {
-    "editor.inlayHints.enabled": "off"
+    "editor.inlayHints.enabled": "off",
   },
 
   //* Shell.
   "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
+    "editor.defaultFormatter": "foxundermoon.shell-format",
   },
 
   //* Haskell.
   "[haskell]": {
-    "editor.defaultFormatter": "haskell.haskell"
+    "editor.defaultFormatter": "haskell.haskell",
   },
 
   //* Elm.
   "[elm]": {
-    "editor.defaultFormatter": "elmTooling.elm-ls-vscode"
+    "editor.defaultFormatter": "elmTooling.elm-ls-vscode",
   },
   "elmLS.disableElmLSDiagnostics": true,
 
   //* Docker.
   "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
   },
   "[dockercompose]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
   },
 
   //* Vim.
@@ -400,7 +400,7 @@
     "<C-g>": false,
     // vscode windows: toggle panel visibility
     // vim: move [count] lines down
-    "<C-j>": false
+    "<C-j>": false,
   },
 
   // neovim.
@@ -434,11 +434,11 @@
     "R!": ["🚀 ", ["0xD83D", "0xDE80"]],
     "S!": ["🤷‍♀️ ", ["0XD83E", "0XDD37", "0X200D", "0X2640", "0XFE0F"]],
     "T!": ["🥲 ", ["0xD83E", "0XDD72"]],
-    "OO": ["🦉 ", ["0xD83E", "0xDD89"]]
+    "OO": ["🦉 ", ["0xD83E", "0xDD89"]],
   },
 
   "vim.insertModeKeyBindingsNonRecursive": [
-    { "before": ["C-y", ","], "commands": ["editor.emmet.action.expandAbbreviation"] }
+    { "before": ["C-y", ","], "commands": ["editor.emmet.action.expandAbbreviation"] },
     // disable arrow keys.
     // { "before": ["left"], "after": [""] },
     // { "before": ["right"], "after": [""] },
@@ -465,48 +465,48 @@
       "commands": [
         {
           "command": "editor.action.codeAction",
-          "args": { "kind": "refactor.extract.constant" }
-        }
-      ]
+          "args": { "kind": "refactor.extract.constant" },
+        },
+      ],
     },
     {
       "before": ["<leader>", "e", "f"],
       "commands": [
         {
           "command": "editor.action.codeAction",
-          "args": { "kind": "refactor.extract.function" }
-        }
-      ]
+          "args": { "kind": "refactor.extract.function" },
+        },
+      ],
     },
     {
       "before": ["<leader>", "e", "t"],
       "commands": [
         {
           "command": "editor.action.codeAction",
-          "args": { "kind": "refactor.extract.type" }
-        }
-      ]
+          "args": { "kind": "refactor.extract.type" },
+        },
+      ],
     },
     {
       "before": ["<leader>", "a", "b"],
       "commands": [
         {
           "command": "editor.action.codeAction",
-          "args": { "kind": "refactor.rewrite.arrow.braces" }
-        }
-      ]
+          "args": { "kind": "refactor.rewrite.arrow.braces" },
+        },
+      ],
     },
     {
       "before": ["<leader>", "m", "f"],
       "commands": [
         {
           "command": "editor.action.codeAction",
-          "args": { "kind": "refactor.move.newFile" }
-        }
-      ]
+          "args": { "kind": "refactor.move.newFile" },
+        },
+      ],
     },
     { "before": ["<leader>", "h", "s"], "commands": ["git.stageSelectedRanges"] },
-    { "before": ["<leader>", "h", "r"], "commands": ["git.revertSelectedRanges"] }
+    { "before": ["<leader>", "h", "r"], "commands": ["git.revertSelectedRanges"] },
   ],
 
   "vim.normalModeKeyBindingsNonRecursive": [
@@ -532,19 +532,19 @@
     { "before": ["<C-w>", "o"], "commands": ["workbench.action.closeOtherEditors"] },
     {
       "before": ["<C-w>", "H"],
-      "commands": ["workbench.action.moveActiveEditorGroupLeft"]
+      "commands": ["workbench.action.moveActiveEditorGroupLeft"],
     },
     {
       "before": ["<C-w>", "J"],
-      "commands": ["workbench.action.moveActiveEditorGroupDown"]
+      "commands": ["workbench.action.moveActiveEditorGroupDown"],
     },
     {
       "before": ["<C-w>", "K"],
-      "commands": ["workbench.action.moveActiveEditorGroupUp"]
+      "commands": ["workbench.action.moveActiveEditorGroupUp"],
     },
     {
       "before": ["<C-w>", "L"],
-      "commands": ["workbench.action.moveActiveEditorGroupRight"]
+      "commands": ["workbench.action.moveActiveEditorGroupRight"],
     },
     { "before": ["<C-w>", ">"], "commands": ["workbench.action.increaseViewWidth"] },
     { "before": ["<C-w>", "<"], "commands": ["workbench.action.decreaseViewWidth"] },
@@ -561,21 +561,21 @@
     { "before": ["<leader>", "a", "v"], "commands": ["alternate.alternateFileInSplit"] },
     {
       "before": ["<leader>", "a", "c", "a"],
-      "commands": ["alternate.createAlternateFile"]
+      "commands": ["alternate.createAlternateFile"],
     },
     {
       "before": ["<leader>", "a", "c", "v"],
-      "commands": ["alternate.createAlternateFileInSplit"]
+      "commands": ["alternate.createAlternateFileInSplit"],
     },
 
     // tests.
     {
       "before": ["<leader>", "t", "n"],
-      "commands": ["test-explorer.run-test-at-cursor"]
+      "commands": ["test-explorer.run-test-at-cursor"],
     },
     {
       "before": ["<leader>", "d", "n"],
-      "commands": ["test-explorer.debug-test-at-cursor"]
+      "commands": ["test-explorer.debug-test-at-cursor"],
     },
     { "before": ["<leader>", "t", "f"], "commands": ["test-explorer.run-this-file"] },
     { "before": ["<leader>", "t", "s"], "commands": ["test-explorer.run-all"] },
@@ -587,14 +587,14 @@
     // emmet.
     {
       "before": ["<leader>", "e", "w"],
-      "commands": ["editor.emmet.action.wrapWithAbbreviation"]
+      "commands": ["editor.emmet.action.wrapWithAbbreviation"],
     },
 
     // git.
     { "before": ["<leader>", "g", "d"], "commands": ["git.openChange"] },
     {
       "before": ["<leader>", "g", "a"],
-      "commands": ["git.stage", "giteasy.doAddCurrentFile"]
+      "commands": ["git.stage", "giteasy.doAddCurrentFile"],
     },
     { "before": ["<leader>", "g", "u"], "commands": ["git.unstage"] },
     { "before": ["<leader>", "g", "c", "l"], "commands": ["git.clean"] },
@@ -607,45 +607,45 @@
       "commands": [
         {
           "command": "editor.action.codeAction",
-          "args": { "kind": "refactor.extract.constant" }
-        }
-      ]
+          "args": { "kind": "refactor.extract.constant" },
+        },
+      ],
     },
     {
       "before": ["<leader>", "e", "f"],
       "commands": [
         {
           "command": "editor.action.codeAction",
-          "args": { "kind": "refactor.extract.function" }
-        }
-      ]
+          "args": { "kind": "refactor.extract.function" },
+        },
+      ],
     },
     {
       "before": ["<leader>", "e", "t"],
       "commands": [
         {
           "command": "editor.action.codeAction",
-          "args": { "kind": "refactor.extract.type" }
-        }
-      ]
+          "args": { "kind": "refactor.extract.type" },
+        },
+      ],
     },
     {
       "before": ["<leader>", "a", "b"],
       "commands": [
         {
           "command": "editor.action.codeAction",
-          "args": { "kind": "refactor.rewrite.arrow.braces" }
-        }
-      ]
+          "args": { "kind": "refactor.rewrite.arrow.braces" },
+        },
+      ],
     },
     {
       "before": ["<leader>", "m", "f"],
       "commands": [
         {
           "command": "editor.action.codeAction",
-          "args": { "kind": "refactor.move.newFile" }
-        }
-      ]
+          "args": { "kind": "refactor.move.newFile" },
+        },
+      ],
     },
 
     // neovim mirroring leader commands.
@@ -657,11 +657,11 @@
     { "before": ["<leader>", "h", "r"], "commands": ["git.revertSelectedRanges"] },
     {
       "before": ["<leader>", "n"],
-      "commands": ["workbench.action.toggleSidebarVisibility"]
+      "commands": ["workbench.action.toggleSidebarVisibility"],
     },
     {
       "before": ["<leader>", "f", "f"],
-      "commands": ["workbench.action.quickOpen"]
+      "commands": ["workbench.action.quickOpen"],
     },
 
     // custom leader commands.
@@ -678,25 +678,29 @@
     { "before": ["]", "e"], "commands": ["editor.action.moveLinesDownAction"] },
     {
       "before": ["[", "f"],
-      "commands": ["workbench.view.explorer", "list.focusUp", "explorer.openAndPassFocus"]
+      "commands": [
+        "workbench.view.explorer",
+        "list.focusUp",
+        "explorer.openAndPassFocus",
+      ],
     },
     {
       "before": ["]", "f"],
       "commands": [
         "workbench.view.explorer",
         "list.focusDown",
-        "explorer.openAndPassFocus"
-      ]
+        "explorer.openAndPassFocus",
+      ],
     },
     {
       "before": ["[", "g"],
       // "commands": ["editor.action.marker.prevInFiles", "closeMarkersNavigation"]
-      "commands": ["editor.action.marker.prev", "closeMarkersNavigation"]
+      "commands": ["editor.action.marker.prev", "closeMarkersNavigation"],
     },
     {
       "before": ["]", "g"],
       // "commands": ["editor.action.marker.nextInFiles", "closeMarkersNavigation"]
-      "commands": ["editor.action.marker.next", "closeMarkersNavigation"]
+      "commands": ["editor.action.marker.next", "closeMarkersNavigation"],
     },
 
     // vim-gitgutter
@@ -704,16 +708,16 @@
       "before": ["[", "c"],
       "commands": [
         "workbench.action.compareEditor.previousChange",
-        "workbench.action.editor.previousChange"
-      ]
+        "workbench.action.editor.previousChange",
+      ],
     },
     {
       "before": ["]", "c"],
       "commands": [
         "workbench.action.compareEditor.nextChange",
-        "workbench.action.editor.nextChange"
-      ]
-    }
+        "workbench.action.editor.nextChange",
+      ],
+    },
 
     // custom unimpaired commands.
     // { "before": ["[", "w"], "commands": ["workbench.action.focusPreviousGroup"] },
@@ -725,7 +729,7 @@
   //* Emmet.
   // "emmet.useInlineCompletions": true,
   "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
+    "javascript": "javascriptreact",
     // "django-html": "html"
   },
 
@@ -735,7 +739,7 @@
 
   //* Beautify.
   "beautify.language": {
-    "html": ["htm", "html", "django-html"]
+    "html": ["htm", "html", "django-html"],
   },
 
   //* Stylelint.
@@ -748,7 +752,7 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
   ],
   "color-highlight.markerType": "dot-before",
   "color-highlight.markRuler": false,
@@ -761,7 +765,7 @@
     "NOTE": { "foreground": "#ffd700", "gutterIcon": false, "icon": "bookmark" },
     "HACK": { "foreground": "#78f0e0", "gutterIcon": true, "icon": "smiley" },
     "FIXME": { "foreground": "#ffdab9", "gutterIcon": true, "icon": "flame" },
-    "BUG": { "foreground": "#FF5874", "gutterIcon": true, "icon": "flame" }
+    "BUG": { "foreground": "#FF5874", "gutterIcon": true, "icon": "flame" },
   },
 
   //* Better Comments.
@@ -771,7 +775,7 @@
     { "tag": "?", "color": "#3498DB" },
     { "tag": "*", "color": "#98C379" },
     { "tag": "//", "color": "#474747", "strikethrough": true },
-    { "tag": "##", "color": "#474747", "strikethrough": true }
+    { "tag": "##", "color": "#474747", "strikethrough": true },
   ],
 
   //* Highlight Matching Tag.
@@ -799,7 +803,7 @@
           "javascript.inlayHints.variableTypes.enabled": true,
 
           "python.analysis.inlayHints.variableTypes": true,
-          "python.analysis.inlayHints.functionReturnTypes": true
+          "python.analysis.inlayHints.functionReturnTypes": true,
         },
         {
           // "typescript.inlayHints.parameterNames.enabled": "none",
@@ -813,10 +817,10 @@
           "javascript.inlayHints.variableTypes.enabled": false,
 
           "python.analysis.inlayHints.variableTypes": false,
-          "python.analysis.inlayHints.functionReturnTypes": false
-        }
-      ]
-    }
+          "python.analysis.inlayHints.functionReturnTypes": false,
+        },
+      ],
+    },
   ],
 
   //* Code Spell Checker.
@@ -835,7 +839,7 @@
     "zfill",
     "ipdb",
     "ipynb",
-    "venv"
+    "venv",
   ],
   "cSpell.userWords": [
     "arrowup",
@@ -846,7 +850,7 @@
     "nextjs",
     "properoom",
     "scipy",
-    "signup"
+    "signup",
   ],
 
   //* Gitlens.
@@ -862,7 +866,7 @@
     "className",
     "ngClass",
     // When I create custom components, I often configure their styles through `classNames` property.
-    "classNames"
+    "classNames",
   ],
   // NOTE: If you are debugging this, don't forget to comment out your workspace tailwind
   // settings.
@@ -873,7 +877,7 @@
     // clsx()
     ["clsx\\(([^)]*)\\)", "'([^']*)'"],
     // cva()
-    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
   ],
   "tailwindCSS.lint.cssConflict": "ignore",
 
@@ -881,7 +885,7 @@
   "vsicons.dontShowNewVersionMessage": true,
   "vsicons.associations.files": [
     // Associating css files to tailwindcss files removed the css icon, this fixes it.
-    { "icon": "css", "extensions": ["css"], "format": "svg" }
+    { "icon": "css", "extensions": ["css"], "format": "svg" },
   ],
 
   //* Emoji Sense.
@@ -898,7 +902,7 @@
     "django-html": true,
     "css": true,
     "scss": true,
-    "tailwindcss": true
+    "tailwindcss": true,
   },
 
   //* Error Lens.
@@ -921,5 +925,5 @@
   "editor.minimap.enabled": false,
   "lldb.library": "/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/LLDB",
   "window.zoomLevel": -1,
-  "console-ninja.showWhatsNew": false
+  "console-ninja.showWhatsNew": false,
 }
