@@ -73,20 +73,22 @@ setopt autocd autopushd # don't type cd.
 setopt interactive_comments # allow comments in interactive shells.
 setopt menu_complete # auto-insert first possible completion.
 
-# ls directory after cd.
+# List the directory after cd using a named hook. Defining a function as
+# add-zsh-hook ... (){ ... } would overwrite add-zsh-hook itself and break fnm.
 autoload -U add-zsh-hook
 if command -v exa >/dev/null; then
-  add-zsh-hook -Uz chpwd (){ exa -F; }
+  _list_directory_after_cd() { exa -F; }
 else
   case $OSTYPE in
   darwin*)
-    add-zsh-hook -Uz chpwd (){ ls -hF --color=auto; }
+    _list_directory_after_cd() { ls -hF --color=auto; }
     ;;
   linux*)
-    add-zsh-hook -Uz chpwd (){ ls -vhF --color=auto; }
+    _list_directory_after_cd() { ls -vhF --color=auto; }
     ;;
   esac
 fi
+add-zsh-hook chpwd _list_directory_after_cd
 #}}}
 
 # history {{{
