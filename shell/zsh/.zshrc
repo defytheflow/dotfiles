@@ -348,13 +348,29 @@ emojis=(
 )
 
 function arc_branch() {
+  # arcadia-wt itself only contains worktrees; it has no branch to display.
   case "$PWD" in
-    "$HOME/arcadia"|"$HOME/arcadia/"*|"$HOME/arcadia-wt"|"$HOME/arcadia-wt/"*) ;;
+    "$HOME/arcadia"|"$HOME/arcadia/"*|"$HOME/arcadia-wt/"*) ;;
     *) return 0 ;;
   esac
 
-  local branch
-  branch=$(arc info 2>/dev/null | grep 'branch' | awk -F ': ' '{print $2}')
+  # arc info adds ~55 ms to every prompt. Read HEAD with shell builtins to
+  # keep branch updates immediate. Omit the branch if HEAD cannot be parsed.
+  local root="$PWD" head branch
+  while [[ "$root" != / && ! -r "$root/.arc/HEAD" ]]; do
+    root="${root:h}"
+  done
+
+  if [[ -r "$root/.arc/HEAD" ]] &&
+     IFS= read -r head 2>/dev/null < "$root/.arc/HEAD" &&
+     [[ "$head" =~ '^Symbolic: "([^"\\]+)"$' ]]; then
+    branch="$match[1]"
+  fi
+
+  # Keep the slow fallback disabled for now.
+  # if [[ -z "$branch" ]]; then
+  #   branch=$(arc info 2>/dev/null | grep 'branch' | awk -F ': ' '{print $2}')
+  # fi
 
   if [ -n "$branch" ]; then
     echo " arc(%B%F{$NIGHT_OWL_GREEN}$branch%b%f)"
