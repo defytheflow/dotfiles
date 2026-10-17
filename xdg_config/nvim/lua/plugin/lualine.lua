@@ -1,3 +1,4 @@
+-- Configure lualine for Arc repositories.
 local M = {}
 local branch = ""
 local refreshing = false

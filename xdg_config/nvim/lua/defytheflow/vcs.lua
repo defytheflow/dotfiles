@@ -1,6 +1,8 @@
 local M = {}
 local arc_repo
 
+-- Check whether Neovim's working directory is inside an Arc repository.
+-- This lets the config choose Arc integrations instead of Git integrations.
 function M.is_arc_repo()
   if arc_repo ~= nil then return arc_repo end
 

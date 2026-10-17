@@ -2,6 +2,7 @@ local languages = {
   "bash",
   "c",
   "css",
+  "diff",
   "html",
   "javascript",
   "jsdoc",
