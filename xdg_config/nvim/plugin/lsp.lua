@@ -1,10 +1,15 @@
 vim.diagnostic.config {
   severity_sort = true,
+  virtual_text = false,
   float = {
     border = "rounded",
     source = "always",
   }
 }
+
+vim.keymap.set("n", "<leader>li", function()
+  vim.diagnostic.config { virtual_text = not vim.diagnostic.config().virtual_text }
+end, { desc = "Toggle [L]SP [I]nline diagnostics" })
 
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
@@ -18,6 +23,27 @@ end, { desc = "Go to previous [E]rror" })
 vim.keymap.set("n", "]E", function()
   vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }
 end, { desc = "Go to next [E]rror" })
+
+local function format_buffer()
+  -- gopls organizes imports through a separate code action; apply its edits before formatting.
+  if vim.bo.filetype == "go" then
+    for _, client in ipairs(vim.lsp.get_clients { bufnr = 0, name = "gopls" }) do
+      local params = vim.lsp.util.make_range_params(0, client.offset_encoding)
+      params.context = { diagnostics = {}, only = { "source.organizeImports" } }
+      local response, err = client:request_sync("textDocument/codeAction", params, 3000, 0)
+      if not response or response.err then
+        vim.notify("Could not organize Go imports: " .. vim.inspect(err or (response and response.err)), vim.log.levels.WARN)
+        return
+      end
+      for _, action in ipairs(response.result or {}) do
+        if action.edit then
+          vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+        end
+      end
+    end
+  end
+  vim.lsp.buf.format()
+end
 
 local on_attach = function(_, bufnr)
   local map = function(mode)
@@ -33,7 +59,9 @@ local on_attach = function(_, bufnr)
   local xmap = map("x")
 
   vim.keymap.set("n", "<leader>O", ":Lspsaga outline toggle<CR>", { desc = "LSP: [O]utline" })
-  vim.keymap.set("n", "<leader>lr", vim.cmd.LspRestart, { desc = "LSP: [R]estart" })
+  vim.keymap.set("n", "<leader>lr", function()
+    vim.cmd("lsp restart")
+  end, { desc = "[L]SP: [R]estart" })
 
   nmap("<leader>rn", function()
     -- vim.lsp.buf.rename()
@@ -112,7 +140,7 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = "Format current buffer with LSP" })
 
-  nmap("<leader>f", vim.lsp.buf.format, "Format")
+  nmap("<leader>f", format_buffer, "Format")
   xmap("<leader>f", vim.lsp.buf.format, "Format")
 
   -- Formats code on save
@@ -316,6 +344,7 @@ null_ls.setup {
       vim.lsp.buf.format()
     end, { desc = desc })
 
-    vim.keymap.set({ "n", "x" }, "<leader>f", vim.lsp.buf.format, { buffer = bufnr, desc = desc })
+    vim.keymap.set("n", "<leader>f", format_buffer, { buffer = bufnr, desc = desc })
+    vim.keymap.set("x", "<leader>f", vim.lsp.buf.format, { buffer = bufnr, desc = desc })
   end
 }
