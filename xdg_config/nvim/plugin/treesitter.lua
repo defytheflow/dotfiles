@@ -3,6 +3,7 @@ local languages = {
   "c",
   "css",
   "diff",
+  "go",
   "html",
   "javascript",
   "jsdoc",

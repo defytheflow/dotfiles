@@ -28,7 +28,7 @@ vim.opt.wildignorecase = true
 vim.opt.guifont = "FiraCode:h11"
 
 -- cursor
-vim.opt.guicursor = "i:block" -- use block cursor in insert mode
+vim.opt.guicursor = "a:block-Cursor" -- use a block cursor with the theme's color in all modes
 
 -- gutter
 vim.opt.number = true
