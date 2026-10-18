@@ -1,6 +1,6 @@
 vim.diagnostic.config {
   severity_sort = true,
-  virtual_text = false,
+  virtual_text = true,
   float = {
     border = "rounded",
     source = "always",
@@ -11,17 +11,25 @@ vim.keymap.set("n", "<leader>li", function()
   vim.diagnostic.config { virtual_text = not vim.diagnostic.config().virtual_text }
 end, { desc = "Toggle [L]SP [I]nline diagnostics" })
 
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "<leader>lh", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = 0 }, { bufnr = 0 })
+end, { desc = "Toggle [L]SP inlay [H]ints" })
+
+vim.keymap.set("n", "[d", function()
+  vim.diagnostic.jump { count = -1, float = true }
+end, { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "]d", function()
+  vim.diagnostic.jump { count = 1, float = true }
+end, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics in a floating window" })
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 vim.keymap.set("n", "[E", function()
-  vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR }
+  vim.diagnostic.jump { count = -1, float = true, severity = vim.diagnostic.severity.ERROR }
 end, { desc = "Go to previous [E]rror" })
 
 vim.keymap.set("n", "]E", function()
-  vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }
+  vim.diagnostic.jump { count = 1, float = true, severity = vim.diagnostic.severity.ERROR }
 end, { desc = "Go to next [E]rror" })
 
 local function format_buffer()
@@ -45,7 +53,11 @@ local function format_buffer()
   vim.lsp.buf.format()
 end
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
+  if client:supports_method("textDocument/inlayHint") then
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  end
+
   local map = function(mode)
     return function(keys, func, desc)
       if desc then
@@ -157,7 +169,22 @@ local servers = {
   -- gopls = {}, -- mason can't download it and throws an error
   pyright = {},
   rust_analyzer = {},
-  ts_ls = {},
+  ts_ls = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayVariableTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+      },
+    },
+    javascript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayVariableTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+      },
+    },
+  },
   tailwindcss = {
     tailwindCSS = {
       experimental = {
@@ -170,7 +197,16 @@ local servers = {
   },
   ruff = {},
   eslint = {},
-  gopls = {},
+  -- Show inferred types and parameter names to make Go code easier to follow.
+  gopls = {
+    gopls = {
+      hints = {
+        assignVariableTypes = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+    },
+  },
   emmet_language_server = {},
   html = { filetypes = { "html", "twig", "hbs" } },
   cssls = {},
@@ -217,6 +253,8 @@ vim.lsp.config("jsonls", {
 
 vim.lsp.config("ts_ls", {
   capabilities = capabilities,
+  -- Keep hints visible without clickable links: TypeScript 5.3.3 crashes on destructured parameter types.
+  init_options = { preferences = { interactiveInlayHints = false } },
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     require("twoslash-queries").attach(client, bufnr)
@@ -311,17 +349,17 @@ require("lspsaga").setup {
     virtual_text = false,
   },
   outline = {
-    -- auto_preview = false,
+    auto_preview = false, -- don't display symbol preview in the outline window
   },
   definition = {
     width = 1.0,
-  }
+  },
 }
 
 local null_ls = require("null-ls")
 
 null_ls.setup {
-  debug = true,
+  debug = false,
   sources = {
     require("none-ls.diagnostics.flake8"),
     null_ls.builtins.formatting.isort,
@@ -330,9 +368,7 @@ null_ls.setup {
     null_ls.builtins.formatting.sql_formatter.with {
       filetypes = { "sql", "mysql", }
     },
-    null_ls.builtins.formatting.prettier.with {
-      -- extra_args = { "--print-width", "90" }
-    },
+    null_ls.builtins.formatting.prettier,
     null_ls.builtins.diagnostics.phpstan.with {
       args = { "analyze", "--error-format", "json", "--no-progress" }
     }

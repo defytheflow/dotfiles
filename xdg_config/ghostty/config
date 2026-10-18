@@ -47,3 +47,4 @@ macos-titlebar-style = hidden
 background = #041628
 background-opacity = 0.94
 background-blur = true
+font-size = 14

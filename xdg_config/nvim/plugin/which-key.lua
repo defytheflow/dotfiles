@@ -1,6 +1,6 @@
 require("which-key").setup()
 
-require("which-key").register {
+require("which-key").add {
   { "<leader>g", group = "[G]it" },
   -- { "<leader>g_", hidden = true },
   { "<leader>h", group = "[H]unk (more git)" },

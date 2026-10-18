@@ -42,6 +42,7 @@ vim.opt.expandtab = true -- convert <tab> key presses to spaces
 vim.opt.smartindent = true
 
 -- search
+vim.opt.inccommand = "split" -- preview substitutions, including matches outside the visible area
 vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true

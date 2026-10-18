@@ -3,6 +3,10 @@ vim.opt_local.shiftwidth = 4
 vim.opt_local.softtabstop = 4
 vim.opt_local.listchars:append { tab = "  " }
 
+vim.opt_local.foldmethod = "expr"
+vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt_local.foldenable = false
+
 vim.opt_local.makeprg = "go run %"
 
 vim.keymap.set("n", "<leader>mk", function()

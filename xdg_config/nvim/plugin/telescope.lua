@@ -24,7 +24,6 @@ telescope.setup {
         prompt_position = "top",
       },
     },
-    file_ignore_patterns = { ".git/*" },
     mappings = {
       i = {
         ["<esc>"] = actions.close, -- TODO: doesn't work
@@ -59,6 +58,17 @@ telescope.setup {
     },
     find_files = {
       hidden = true,
+      find_command = function(opts)
+        local command = { "rg", "--files", "--color", "never", "--glob", "!**/.git/**" }
+        if arc_repo then
+          -- Ripgrep otherwise skips .gitignore files outside Git repositories.
+          vim.list_extend(command, { "--no-require-git", "--glob", "!**/.arc/**" })
+        end
+        if not opts.no_ignore then
+          vim.list_extend(command, { "--glob", "!**/node_modules/**" })
+        end
+        return command
+      end,
       -- no_ignore = true, -- includes files from .gitignore
     },
   },

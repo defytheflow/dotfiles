@@ -3,6 +3,7 @@ local languages = {
   "c",
   "css",
   "diff",
+  "gitcommit",
   "go",
   "html",
   "javascript",
@@ -126,5 +127,17 @@ end, { desc = "[C]ontext [T]oggle" })
 vim.keymap.set("n", "<leader>cg", function()
   require("treesitter-context").go_to_context()
 end, { desc = "[C]ontext [G]o" })
+
+-- Keep sticky signatures without the underline added by the colorscheme.
+local function hide_context_underline()
+  vim.api.nvim_set_hl(0, "TreesitterContextBottom", {})
+  vim.api.nvim_set_hl(0, "TreesitterContextLineNumberBottom", {})
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("treesitter_context_highlights", { clear = true }),
+  callback = hide_context_underline,
+})
+hide_context_underline()
 
 vim.g.skip_ts_context_commentstring_module = true
