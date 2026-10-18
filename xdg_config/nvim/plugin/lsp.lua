@@ -62,6 +62,37 @@ local on_attach = function(client, bufnr)
   local nmap = map("n")
   local xmap = map("x")
 
+  if client:supports_method("textDocument/documentHighlight") then
+    local function set_reference_highlights(enabled)
+      local group = vim.api.nvim_create_augroup("lsp_reference_highlights_" .. bufnr, { clear = true })
+      vim.b[bufnr].reference_highlights = enabled
+      if enabled then
+        vim.api.nvim_create_autocmd("CursorHold", {
+          group = group,
+          buffer = bufnr,
+          callback = vim.lsp.buf.document_highlight,
+        })
+        vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
+          group = group,
+          buffer = bufnr,
+          callback = vim.lsp.buf.clear_references,
+        })
+      end
+    end
+
+    if vim.b[bufnr].reference_highlights == nil then
+      set_reference_highlights(true)
+    end
+
+    nmap("<leader>lH", function()
+      local enabled = not vim.b[bufnr].reference_highlights
+      set_reference_highlights(enabled)
+      vim.lsp.buf.clear_references()
+      if enabled then vim.lsp.buf.document_highlight() end
+      vim.notify("Reference highlights: " .. (enabled and "enabled" or "disabled"))
+    end, "Toggle [L]SP reference [H]ighlights")
+  end
+
   nmap("<leader>li", function()
     local enabled = not vim.diagnostic.config().virtual_text
     vim.diagnostic.config { virtual_text = enabled }
@@ -128,6 +159,12 @@ local on_attach = function(client, bufnr)
     }
   end, "[G]oto [R]eferences")
   nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+  nmap("<leader>ci", function()
+    require("trouble").open("lsp_incoming_calls")
+  end, "[C]alls [I]ncoming")
+  nmap("<leader>co", function()
+    require("trouble").open("lsp_outgoing_calls")
+  end, "[C]alls [O]utgoing")
   nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
   nmap("<leader>ds", function()
     require("telescope.builtin").lsp_document_symbols {

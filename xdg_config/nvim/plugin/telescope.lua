@@ -3,6 +3,11 @@ local actions = require("telescope.actions")
 
 local arc_repo = require("defytheflow.vcs").is_arc_repo()
 
+local grep_args = { "--glob", "!**/node_modules/**", "--glob", "!**/.git/**" }
+if arc_repo then
+  vim.list_extend(grep_args, { "--no-require-git", "--glob", "!**/.arc/**" })
+end
+
 telescope.setup {
   defaults = {
     layout_strategy = "vertical",
@@ -36,6 +41,8 @@ telescope.setup {
     },
   },
   pickers = {
+    live_grep = { additional_args = grep_args },
+    grep_string = { additional_args = grep_args },
     -- Use Git's Delta pager; -Rc preserves colors and paints from the top.
     git_status = {
       previewer = require("telescope.previewers").new_termopen_previewer {

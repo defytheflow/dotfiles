@@ -1,6 +1,13 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+autocmd("FileType", {
+  group = augroup("vimrc_quickfix_height", {}),
+  pattern = "qf",
+  callback = function() vim.cmd.resize(15) end,
+  desc = "Give search and call results more room",
+})
+
 autocmd({ "BufWritePre" }, {
   group = augroup("vimrc_trailing_whitespace", {}),
   pattern = "*",

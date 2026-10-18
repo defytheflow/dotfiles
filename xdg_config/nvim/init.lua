@@ -355,7 +355,11 @@ require("lazy").setup {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {},
+    opts = {
+      focus = true,
+      win = { size = 15 },
+      modes = { symbols = { focus = true } }, -- this mode otherwise overrides the global focus setting
+    },
   },
 
   -- Highlight, edit and navigate code
@@ -366,7 +370,14 @@ require("lazy").setup {
     build = ":TSUpdate",
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
-      {  "nvim-treesitter/nvim-treesitter-context", opts = { enable = true } },
+      {
+        "nvim-treesitter/nvim-treesitter-context",
+        opts = {
+          enable = true,
+          max_lines = 3,
+          multiline_threshold = 1, -- keep function names without pinning long parameter lists
+        },
+      },
       "JoosepAlviste/nvim-ts-context-commentstring",
       -- NOTE: Adds closing jsx tags every time I hit /, even if the tag is already
       -- completed and I am editing within it.
