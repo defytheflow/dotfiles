@@ -57,6 +57,16 @@ require("lazy").setup {
 
   { "marilari88/twoslash-queries.nvim" },
 
+  -- Preview replacements across files before applying them.
+  {
+    "MagicDuck/grug-far.nvim",
+    cmd = { "GrugFar", "GrugFarWithin" },
+    keys = {
+      { "<leader>sR", ":GrugFar<CR>", mode = { "n", "x" }, desc = "[S]earch and [R]eplace" },
+    },
+    opts = {},
+  },
+
   -- Debugger
   {
     "mfussenegger/nvim-dap",
