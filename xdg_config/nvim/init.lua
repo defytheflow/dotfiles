@@ -51,7 +51,12 @@ require("lazy").setup {
     end
   },
 
-  { "petertriho/nvim-scrollbar", opts = {} },
+  {
+    "petertriho/nvim-scrollbar",
+    opts = {
+      handle = { color = "#45475a", blend = 30 }, -- subtly distinguish the scroll position from the background
+    },
+  },
 
   { 'danilamihailov/beacon.nvim' },
 

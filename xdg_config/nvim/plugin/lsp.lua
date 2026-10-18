@@ -7,14 +7,6 @@ vim.diagnostic.config {
   }
 }
 
-vim.keymap.set("n", "<leader>li", function()
-  vim.diagnostic.config { virtual_text = not vim.diagnostic.config().virtual_text }
-end, { desc = "Toggle [L]SP [I]nline diagnostics" })
-
-vim.keymap.set("n", "<leader>lh", function()
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = 0 }, { bufnr = 0 })
-end, { desc = "Toggle [L]SP inlay [H]ints" })
-
 vim.keymap.set("n", "[d", function()
   vim.diagnostic.jump { count = -1, float = true }
 end, { desc = "Go to previous [D]iagnostic message" })
@@ -69,6 +61,20 @@ local on_attach = function(client, bufnr)
 
   local nmap = map("n")
   local xmap = map("x")
+
+  nmap("<leader>li", function()
+    local enabled = not vim.diagnostic.config().virtual_text
+    vim.diagnostic.config { virtual_text = enabled }
+    vim.notify("Inline diagnostics: " .. (enabled and "enabled" or "disabled"))
+  end, "Toggle [L]SP [I]nline diagnostics")
+
+  if client:supports_method("textDocument/inlayHint") then
+    nmap("<leader>lh", function()
+      local enabled = not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }
+      vim.lsp.inlay_hint.enable(enabled, { bufnr = bufnr })
+      vim.notify("Inlay hints: " .. (enabled and "enabled" or "disabled"))
+    end, "Toggle [L]SP inlay [H]ints")
+  end
 
   vim.keymap.set("n", "<leader>O", ":Lspsaga outline toggle<CR>", { desc = "LSP: [O]utline" })
   vim.keymap.set("n", "<leader>lr", function()
@@ -352,7 +358,7 @@ require("lspsaga").setup {
     auto_preview = false, -- don't display symbol preview in the outline window
   },
   definition = {
-    width = 1.0,
+    width = 0.75,
   },
 }
 
