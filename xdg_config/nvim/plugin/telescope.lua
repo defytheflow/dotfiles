@@ -99,7 +99,24 @@ local function vcs_picker(arc_picker, git_picker, opts)
   end
 end
 
+local function open_status_tree(prompt_bufnr)
+  require("trouble.sources.telescope").open(prompt_bufnr, {
+    mode = "telescope_files",
+    title = "Arc Status",
+    win = { size = 25 },
+    groups = { { "directory", format = "{directory_icon} {directory}" } },
+    format = "{status} {file_icon} {basename}",
+    formatters = {
+      status = function(ctx) return ctx.item.item.status or "" end,
+    },
+  })
+end
+
 local status_picker = vcs_picker("status", "git_status", {
+  attach_mappings = arc_repo and function(_, map)
+    map({ "i", "n" }, "<C-y>", open_status_tree)
+    return true
+  end or nil,
   -- Arc provides its own preview-command hook.
   preview_cmd = arc_repo and {
     staged = [[arc diff --git --no-color --cached -- "%s" | delta --paging=always --pager='less -Rc']],
@@ -117,6 +134,14 @@ local status_picker = vcs_picker("status", "git_status", {
 -- Telescope arc
 if arc_repo then
   vim.keymap.set("n", "<leader>as", status_picker, { desc = "[A]rc [S]tatus" })
+  vim.keymap.set("n", "<leader>ad", function()
+    telescope.extensions.arc.status {
+      on_complete = { function(picker)
+        picker:clear_completion_callbacks()
+        open_status_tree(picker.prompt_bufnr)
+      end },
+    }
+  end, { desc = "[A]rc changes by [D]irectory" })
   vim.keymap.set('n', '<leader>af', "<cmd>Telescope arc ls_files<cr>")
   vim.keymap.set('n', '<leader>ac', "<cmd>Telescope arc commits<cr>")
   vim.keymap.set('n', '<leader>ab', "<cmd>Telescope arc branches<cr>")

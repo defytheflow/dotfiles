@@ -166,7 +166,8 @@
   "terminal.integrated.env.osx": {},
 
   //* Color Theme & Icon Theme.
-  "workbench.colorTheme": "Night Owl (No Italics)",
+  "catppuccin.italicComments": false,
+  "catppuccin.italicKeywords": false,
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorCustomizations": {
     "[Night Owl][Night Owl (No Italics)]": {
@@ -263,6 +264,7 @@
     // "*.js": "javascriptreact",
     // "*.ts": "typescriptreact",
     "*.css": "tailwindcss",
+    "*.module.css": "css",
     // django.
     // "**/templates/**/*.html": "django-html",
     // "**/templates/**/*": "django-txt"

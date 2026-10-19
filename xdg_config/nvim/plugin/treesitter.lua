@@ -20,6 +20,7 @@ local languages = {
   "typescript",
   "vim",
   "vimdoc",
+  "yaml",
 }
 
 require("nvim-treesitter").install(languages)

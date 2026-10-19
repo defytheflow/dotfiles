@@ -448,6 +448,7 @@ if command -v arc >/dev/null; then
   alias aco='arc checkout'
   alias ad='arc diff'
   alias ads='arc diff --staged'
+  alias adst='arc diff -B --stat'
   alias al='arc log'
   alias als='arc log --stat'
   alias ap='arc push'

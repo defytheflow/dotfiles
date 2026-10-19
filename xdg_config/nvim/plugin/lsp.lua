@@ -209,7 +209,6 @@ end
 
 local servers = {
   clangd = {},
-  -- gopls = {}, -- mason can't download it and throws an error
   pyright = {},
   rust_analyzer = {},
   ts_ls = {
@@ -386,7 +385,9 @@ cmp.setup {
 
 require("lspsaga").setup {
   symbol_in_winbar = {
-    enable = false,
+    enable = true,
+    show_file = true,
+    folder_level = 5,
   },
   lightbulb = {
     virtual_text = false,
@@ -398,6 +399,8 @@ require("lspsaga").setup {
     width = 0.75,
   },
 }
+
+vim.keymap.set("n", "<leader>lb", "<Cmd>Lspsaga winbar_toggle<CR>", { desc = "Toggle [L]SP [B]readcrumbs" })
 
 local null_ls = require("null-ls")
 

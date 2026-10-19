@@ -24,6 +24,6 @@ end, { buffer = true, desc = "[M]a[k]e Go module or file" })
 vim.keymap.set("n", "<leader>mt", function()
   vim.cmd.write()
   local directory = vim.fs.root(0, "go.mod") or vim.fn.expand("%:p:h")
-  local command = "go -C " .. vim.fn.shellescape(directory) .. " test -v"
+  local command = "go -C " .. vim.fn.shellescape(directory) .. " test -v -race -timeout 20s"
   require("toggleterm").exec(command, nil, nil, nil, nil, nil, false)
 end, { buffer = true, desc = "[M]ake Go [T]ests" })
