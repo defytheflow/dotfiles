@@ -237,16 +237,20 @@ local servers = {
   ts_ls = {
     typescript = {
       inlayHints = {
-        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHints = "literals",
         includeInlayVariableTypeHints = true,
         includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+        -- includeInlayPropertyDeclarationTypeHints = true,
       },
     },
     javascript = {
       inlayHints = {
-        includeInlayParameterNameHints = "all",
-        includeInlayVariableTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
+        -- includeInlayParameterNameHints = "literals",
+        includeInlayVariableTypeHints = false,
+        includeInlayFunctionLikeReturnTypeHints = false,
+        -- includeInlayFunctionParameterTypeHints = true,
       },
     },
   },
