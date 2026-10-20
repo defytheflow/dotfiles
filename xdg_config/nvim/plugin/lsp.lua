@@ -45,6 +45,29 @@ local function format_buffer()
   vim.lsp.buf.format()
 end
 
+-- Jump to the implementation in TypeScript/JavaScript, with normal LSP definitions as a fallback.
+-- This makes gd open React component code instead of an import or React's FC declaration.
+local function goto_definition()
+  local client = vim.lsp.get_clients { bufnr = 0, name = "ts_ls" }[1]
+  if not client then
+    vim.lsp.buf.definition()
+    return
+  end
+
+  -- TypeScript's source lookup follows React component imports instead of stopping at FC types.
+  local params = vim.lsp.util.make_position_params(0, client.offset_encoding)
+  client:exec_cmd({
+    command = "_typescript.goToSourceDefinition",
+    arguments = { params.textDocument.uri, params.position },
+  }, { bufnr = vim.api.nvim_get_current_buf() }, function(err, locations)
+    if not err and locations and #locations == 1 then
+      vim.lsp.util.show_document(locations[1], client.offset_encoding, { focus = true })
+    else
+      vim.lsp.buf.definition()
+    end
+  end)
+end
+
 local on_attach = function(client, bufnr)
   if client:supports_method("textDocument/inlayHint") then
     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
@@ -141,7 +164,7 @@ local on_attach = function(client, bufnr)
     vim.cmd.Lspsaga("peek_definition")
   end, "Peek Definition")
 
-  nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+  nmap("gd", goto_definition, "[G]oto [D]efinition")
   nmap("gD", function()
     vim.cmd.vsplit()
     vim.lsp.buf.definition()
