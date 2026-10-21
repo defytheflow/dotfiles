@@ -1,5 +1,5 @@
 vim.g.projectionist_heuristics = {
-  ["package.json&tsconfig.json"] = {
+  ["package.json|tsconfig.json"] = {
     ["*.tsx"] = {
       type = "source",
       alternate = { "{}.css", "{}.scss", "{}.module.css", "{}.module.scss", "{}.test.tsx" },
@@ -24,6 +24,12 @@ vim.g.projectionist_heuristics = {
   },
 }
 
-vim.keymap.set("n", "<leader>aa", vim.cmd.A, { desc = "[A]lternative [A]lternative" })
-vim.keymap.set("n", "<leader>as", vim.cmd.AS, { desc = "[A]lternative [S]plit" })
-vim.keymap.set("n", "<leader>av", vim.cmd.AV, { desc = "[A]lternative [V]split" })
+local function open_alternate(command)
+  -- Refresh rules for the current buffer if startup detection happened before they were available.
+  vim.cmd("doautocmd <nomodeline> projectionist FileType")
+  vim.cmd[command]()
+end
+
+vim.keymap.set("n", "<leader>aa", function() open_alternate("A") end, { desc = "[A]lternative [A]lternative" })
+vim.keymap.set("n", "<leader>as", function() open_alternate("AS") end, { desc = "[A]lternative [S]plit" })
+vim.keymap.set("n", "<leader>av", function() open_alternate("AV") end, { desc = "[A]lternative [V]split" })

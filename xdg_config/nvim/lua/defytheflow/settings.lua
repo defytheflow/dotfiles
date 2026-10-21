@@ -28,7 +28,7 @@ vim.opt.wildignorecase = true
 vim.opt.guifont = "FiraCode:h11"
 
 -- cursor
-vim.opt.guicursor = "i:block" -- use block cursor in insert mode
+vim.opt.guicursor = "a:block-Cursor" -- use a block cursor with the theme's color in all modes
 
 -- gutter
 vim.opt.number = true
@@ -42,6 +42,7 @@ vim.opt.expandtab = true -- convert <tab> key presses to spaces
 vim.opt.smartindent = true
 
 -- search
+vim.opt.inccommand = "split" -- preview substitutions, including matches outside the visible area
 vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -84,3 +85,4 @@ vim.opt.exrc = true -- auto execute .nvim.lua, .nvimrc in the current dir
 vim.opt.mouse = "a" -- enable mouse in all modes
 vim.opt.virtualedit = "block" -- allow cursor to move where there is no text in visual block mode.
 vim.opt.timeoutlen = 500
+vim.opt.spelllang = "en_us,ru"

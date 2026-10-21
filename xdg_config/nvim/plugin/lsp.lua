@@ -1,35 +1,78 @@
 vim.diagnostic.config {
   severity_sort = true,
+  virtual_text = true,
   float = {
     border = "rounded",
     source = "always",
   }
 }
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover,
-  { border = "rounded" }
-)
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help,
-  { border = "rounded" }
-)
-
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "[d", function()
+  vim.diagnostic.jump { count = -1, float = true }
+end, { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "]d", function()
+  vim.diagnostic.jump { count = 1, float = true }
+end, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics in a floating window" })
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 vim.keymap.set("n", "[E", function()
-  vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR }
+  vim.diagnostic.jump { count = -1, float = true, severity = vim.diagnostic.severity.ERROR }
 end, { desc = "Go to previous [E]rror" })
 
 vim.keymap.set("n", "]E", function()
-  vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }
+  vim.diagnostic.jump { count = 1, float = true, severity = vim.diagnostic.severity.ERROR }
 end, { desc = "Go to next [E]rror" })
 
-local on_attach = function(_, bufnr)
+local function format_buffer()
+  -- gopls organizes imports through a separate code action; apply its edits before formatting.
+  if vim.bo.filetype == "go" then
+    for _, client in ipairs(vim.lsp.get_clients { bufnr = 0, name = "gopls" }) do
+      local params = vim.lsp.util.make_range_params(0, client.offset_encoding)
+      params.context = { diagnostics = {}, only = { "source.organizeImports" } }
+      local response, err = client:request_sync("textDocument/codeAction", params, 3000, 0)
+      if not response or response.err then
+        vim.notify("Could not organize Go imports: " .. vim.inspect(err or (response and response.err)), vim.log.levels.WARN)
+        return
+      end
+      for _, action in ipairs(response.result or {}) do
+        if action.edit then
+          vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+        end
+      end
+    end
+  end
+  vim.lsp.buf.format()
+end
+
+-- Jump to the implementation in TypeScript/JavaScript, with normal LSP definitions as a fallback.
+-- This makes gd open React component code instead of an import or React's FC declaration.
+local function goto_definition()
+  local client = vim.lsp.get_clients { bufnr = 0, name = "ts_ls" }[1]
+  if not client then
+    vim.lsp.buf.definition()
+    return
+  end
+
+  -- TypeScript's source lookup follows React component imports instead of stopping at FC types.
+  local params = vim.lsp.util.make_position_params(0, client.offset_encoding)
+  client:exec_cmd({
+    command = "_typescript.goToSourceDefinition",
+    arguments = { params.textDocument.uri, params.position },
+  }, { bufnr = vim.api.nvim_get_current_buf() }, function(err, locations)
+    if not err and locations and #locations == 1 then
+      vim.lsp.util.show_document(locations[1], client.offset_encoding, { focus = true })
+    else
+      vim.lsp.buf.definition()
+    end
+  end)
+end
+
+local on_attach = function(client, bufnr)
+  if client:supports_method("textDocument/inlayHint") then
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  end
+
   local map = function(mode)
     return function(keys, func, desc)
       if desc then
@@ -42,8 +85,55 @@ local on_attach = function(_, bufnr)
   local nmap = map("n")
   local xmap = map("x")
 
+  if client:supports_method("textDocument/documentHighlight") then
+    local function set_reference_highlights(enabled)
+      local group = vim.api.nvim_create_augroup("lsp_reference_highlights_" .. bufnr, { clear = true })
+      vim.b[bufnr].reference_highlights = enabled
+      if enabled then
+        vim.api.nvim_create_autocmd("CursorHold", {
+          group = group,
+          buffer = bufnr,
+          callback = vim.lsp.buf.document_highlight,
+        })
+        vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufLeave" }, {
+          group = group,
+          buffer = bufnr,
+          callback = vim.lsp.buf.clear_references,
+        })
+      end
+    end
+
+    if vim.b[bufnr].reference_highlights == nil then
+      set_reference_highlights(true)
+    end
+
+    nmap("<leader>lH", function()
+      local enabled = not vim.b[bufnr].reference_highlights
+      set_reference_highlights(enabled)
+      vim.lsp.buf.clear_references()
+      if enabled then vim.lsp.buf.document_highlight() end
+      vim.notify("Reference highlights: " .. (enabled and "enabled" or "disabled"))
+    end, "Toggle [L]SP reference [H]ighlights")
+  end
+
+  nmap("<leader>li", function()
+    local enabled = not vim.diagnostic.config().virtual_text
+    vim.diagnostic.config { virtual_text = enabled }
+    vim.notify("Inline diagnostics: " .. (enabled and "enabled" or "disabled"))
+  end, "Toggle [L]SP [I]nline diagnostics")
+
+  if client:supports_method("textDocument/inlayHint") then
+    nmap("<leader>lh", function()
+      local enabled = not vim.lsp.inlay_hint.is_enabled { bufnr = bufnr }
+      vim.lsp.inlay_hint.enable(enabled, { bufnr = bufnr })
+      vim.notify("Inlay hints: " .. (enabled and "enabled" or "disabled"))
+    end, "Toggle [L]SP inlay [H]ints")
+  end
+
   vim.keymap.set("n", "<leader>O", ":Lspsaga outline toggle<CR>", { desc = "LSP: [O]utline" })
-  vim.keymap.set("n", "<leader>lr", vim.cmd.LspRestart, { desc = "LSP: [R]estart" })
+  vim.keymap.set("n", "<leader>lr", function()
+    vim.cmd("lsp restart")
+  end, { desc = "[L]SP: [R]estart" })
 
   nmap("<leader>rn", function()
     -- vim.lsp.buf.rename()
@@ -74,7 +164,7 @@ local on_attach = function(_, bufnr)
     vim.cmd.Lspsaga("peek_definition")
   end, "Peek Definition")
 
-  nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+  nmap("gd", goto_definition, "[G]oto [D]efinition")
   nmap("gD", function()
     vim.cmd.vsplit()
     vim.lsp.buf.definition()
@@ -92,6 +182,12 @@ local on_attach = function(_, bufnr)
     }
   end, "[G]oto [R]eferences")
   nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+  nmap("<leader>ci", function()
+    require("trouble").open("lsp_incoming_calls")
+  end, "[C]alls [I]ncoming")
+  nmap("<leader>co", function()
+    require("trouble").open("lsp_outgoing_calls")
+  end, "[C]alls [O]utgoing")
   nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
   nmap("<leader>ds", function()
     require("telescope.builtin").lsp_document_symbols {
@@ -105,8 +201,12 @@ local on_attach = function(_, bufnr)
       symbol_width = 40,
     }
   end, "[W]orkspace [S]ymbols")
-  nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-  nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+  nmap("K", function()
+    vim.lsp.buf.hover { border = "rounded" }
+  end, "Hover Documentation")
+  nmap("<C-k>", function()
+    vim.lsp.buf.signature_help { border = "rounded" }
+  end, "Signature Documentation")
 
   nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
   nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
@@ -118,7 +218,7 @@ local on_attach = function(_, bufnr)
     vim.lsp.buf.format()
   end, { desc = "Format current buffer with LSP" })
 
-  nmap("<leader>f", vim.lsp.buf.format, "Format")
+  nmap("<leader>f", format_buffer, "Format")
   xmap("<leader>f", vim.lsp.buf.format, "Format")
 
   -- Formats code on save
@@ -132,10 +232,28 @@ end
 
 local servers = {
   clangd = {},
-  -- gopls = {}, -- mason can't download it and throws an error
   pyright = {},
   rust_analyzer = {},
-  ts_ls = {},
+  ts_ls = {
+    typescript = {
+      inlayHints = {
+        includeInlayParameterNameHints = "literals",
+        includeInlayVariableTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+        -- includeInlayPropertyDeclarationTypeHints = true,
+      },
+    },
+    javascript = {
+      inlayHints = {
+        -- includeInlayParameterNameHints = "literals",
+        includeInlayVariableTypeHints = false,
+        includeInlayFunctionLikeReturnTypeHints = false,
+        -- includeInlayFunctionParameterTypeHints = true,
+      },
+    },
+  },
   tailwindcss = {
     tailwindCSS = {
       experimental = {
@@ -148,12 +266,22 @@ local servers = {
   },
   ruff = {},
   eslint = {},
-  gopls = {},
+  -- Show inferred types and parameter names to make Go code easier to follow.
+  gopls = {
+    gopls = {
+      hints = {
+        assignVariableTypes = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+    },
+  },
   emmet_language_server = {},
   html = { filetypes = { "html", "twig", "hbs" } },
   cssls = {},
   lua_ls = {
     Lua = {
+      diagnostics = { globals = { "vim" } },
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
@@ -169,24 +297,16 @@ require("neodev").setup()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-local mason_lspconfig = require("mason-lspconfig")
+for server_name, settings in pairs(servers) do
+  vim.lsp.config(server_name, {
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = settings,
+    filetypes = settings.filetypes,
+  })
+end
 
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require("lspconfig")[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end
-}
-
-require("lspconfig").jsonls.setup({
+vim.lsp.config("jsonls", {
   capabilities = require('cmp_nvim_lsp').default_capabilities(),
   settings = {
     json = {
@@ -200,24 +320,32 @@ require("lspconfig").jsonls.setup({
   }
 })
 
-require("lspconfig").ts_ls.setup {
+vim.lsp.config("ts_ls", {
   capabilities = capabilities,
+  -- Keep hints visible without clickable links: TypeScript 5.3.3 crashes on destructured parameter types.
+  init_options = { preferences = { interactiveInlayHints = false } },
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     require("twoslash-queries").attach(client, bufnr)
   end
-}
+})
 
 -- NOTE: mason can't install it
-require("lspconfig").sourcekit.setup {
+vim.lsp.config("sourcekit", {
   capabilities = capabilities,
   on_attach = on_attach,
-}
+})
+vim.lsp.enable("sourcekit")
 
 -- NOTE: mason throws an error trying to install it
-require("lspconfig").ocamllsp.setup {
+vim.lsp.config("ocamllsp", {
   capabilities = capabilities,
   on_attach = on_attach,
+})
+vim.lsp.enable("ocamllsp")
+
+require("mason-lspconfig").setup {
+  ensure_installed = vim.tbl_keys(servers),
 }
 
 local cmp = require("cmp")
@@ -284,45 +412,48 @@ cmp.setup {
 
 require("lspsaga").setup {
   symbol_in_winbar = {
-    enable = false,
+    enable = true,
+    show_file = true,
+    folder_level = 5,
   },
   lightbulb = {
     virtual_text = false,
   },
   outline = {
-    -- auto_preview = false,
+    auto_preview = false, -- don't display symbol preview in the outline window
   },
   definition = {
-    width = 1.0,
-  }
+    width = 0.75,
+  },
 }
+
+vim.keymap.set("n", "<leader>lb", "<Cmd>Lspsaga winbar_toggle<CR>", { desc = "Toggle [L]SP [B]readcrumbs" })
 
 local null_ls = require("null-ls")
 
 null_ls.setup {
-  debug = true,
+  debug = false,
   sources = {
-    null_ls.builtins.diagnostics.flake8,
+    require("none-ls.diagnostics.flake8"),
     null_ls.builtins.formatting.isort,
     null_ls.builtins.diagnostics.mypy,
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.sql_formatter.with {
       filetypes = { "sql", "mysql", }
     },
-    null_ls.builtins.formatting.prettier.with {
-      -- extra_args = { "--print-width", "90" }
-    },
+    null_ls.builtins.formatting.prettier,
     null_ls.builtins.diagnostics.phpstan.with {
       args = { "analyze", "--error-format", "json", "--no-progress" }
     }
   },
   on_attach = function(_, bufnr)
-    local desc = "Format current buffer with null-ls"
+    local desc = "Format current buffer with none-ls"
 
     vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
       vim.lsp.buf.format()
     end, { desc = desc })
 
-    vim.keymap.set({ "n", "x" }, "<leader>f", vim.lsp.buf.format, { buffer = bufnr, desc = desc })
+    vim.keymap.set("n", "<leader>f", format_buffer, { buffer = bufnr, desc = desc })
+    vim.keymap.set("x", "<leader>f", vim.lsp.buf.format, { buffer = bufnr, desc = desc })
   end
 }

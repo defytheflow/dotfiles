@@ -8,6 +8,7 @@
 [[ -f "${ZDOTDIR}/.zshenv" ]] && source "${ZDOTDIR}/.zshenv"
 
 ZSH_CACHE="${HOME}/.cache/zsh"
+mkdir -p "${ZSH_CACHE}"
 
 # brew.
 case $OSTYPE in
@@ -19,14 +20,18 @@ esac
 # plugins {{{
 export ZPLUG_HOME="${HOME}/.config/zplug"
 export ZPLUG_CACHE_DIR="${HOME}/.cache/zplug"
+export ZPLUG_LOADFILE="${ZPLUG_LOADFILE:-${ZPLUG_HOME}/packages.zsh}"
 
 [[ -d "${ZPLUG_HOME}" ]] || git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
+[[ -f "${ZPLUG_LOADFILE}" ]] || touch "${ZPLUG_LOADFILE}"
 source "${ZPLUG_HOME}/init.zsh"
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 # zplug 'plugins/command-not-found', from:oh-my-zsh
-zplug 'plugins/fzf', from:oh-my-zsh
+if command -v fzf >/dev/null; then
+  zplug 'plugins/fzf', from:oh-my-zsh
+fi
 zplug 'kutsan/zsh-system-clipboard'
 
 zplug "zsh-users/zsh-history-substring-search"
@@ -57,6 +62,10 @@ if ! zplug check --verbose; then
 fi
 
 zplug load # --verbose
+# zplug disables job control while loading plugins. Restore it here so its
+# first-prompt hook skips logging "turn monitor on". That log starts Python
+# through pyenv and noticeably delays the prompt on this machine.
+[[ -t 0 ]] && setopt monitor
 #}}}
 
 # options {{{
@@ -64,20 +73,22 @@ setopt autocd autopushd # don't type cd.
 setopt interactive_comments # allow comments in interactive shells.
 setopt menu_complete # auto-insert first possible completion.
 
-# ls directory after cd.
+# List the directory after cd using a named hook. Defining a function as
+# add-zsh-hook ... (){ ... } would overwrite add-zsh-hook itself and break fnm.
 autoload -U add-zsh-hook
 if command -v exa >/dev/null; then
-  add-zsh-hook -Uz chpwd (){ exa -F; }
+  _list_directory_after_cd() { exa -F; }
 else
   case $OSTYPE in
   darwin*)
-    add-zsh-hook -Uz chpwd (){ ls -hF --color=auto; }
+    _list_directory_after_cd() { ls -hF --color=auto; }
     ;;
   linux*)
-    add-zsh-hook -Uz chpwd (){ ls -vhF --color=auto; }
+    _list_directory_after_cd() { ls -vhF --color=auto; }
     ;;
   esac
 fi
+add-zsh-hook chpwd _list_directory_after_cd
 #}}}
 
 # history {{{
@@ -338,6 +349,36 @@ emojis=(
   💯 💤 🃏 '⚛️ ' 🔱 ⚪️
 )
 
+function arc_branch() {
+  # arcadia-wt itself only contains worktrees; it has no branch to display.
+  case "$PWD" in
+    "$HOME/arcadia"|"$HOME/arcadia/"*|"$HOME/arcadia-wt/"*) ;;
+    *) return 0 ;;
+  esac
+
+  # arc info adds ~55 ms to every prompt. Read HEAD with shell builtins to
+  # keep branch updates immediate. Omit the branch if HEAD cannot be parsed.
+  local root="$PWD" head branch
+  while [[ "$root" != / && ! -r "$root/.arc/HEAD" ]]; do
+    root="${root:h}"
+  done
+
+  if [[ -r "$root/.arc/HEAD" ]] &&
+     IFS= read -r head 2>/dev/null < "$root/.arc/HEAD" &&
+     [[ "$head" =~ '^Symbolic: "([^"\\]+)"$' ]]; then
+    branch="$match[1]"
+  fi
+
+  # Keep the slow fallback disabled for now.
+  # if [[ -z "$branch" ]]; then
+  #   branch=$(arc info 2>/dev/null | grep 'branch' | awk -F ': ' '{print $2}')
+  # fi
+
+  if [ -n "$branch" ]; then
+    echo " arc(%B%F{$NIGHT_OWL_GREEN}$branch%b%f)"
+  fi
+}
+
 _time_='[%D{%H:%M}]'
 # figure out how to not display anything if at home directory and otherwise display full path
 #                            %1~
@@ -350,7 +391,7 @@ NEWLINE=$'\n'
 _char_="${NEWLINE}%B%(?.%F{$GREYISH_WHITE}>%f.%F{$RED}>%f)%b"
 _short_prompt_='${_emoji_} ${_jobs_}${_char_} '
 # don't use ${_short_prompt_} inside _long_prompt_ because emoji() function will not work
-_long_prompt_='${_time_} ${_pwd_}${vcs_info_msg_0_} ${_emoji_} ${_jobs_}${_char_} '
+_long_prompt_='${_time_} ${_pwd_}${vcs_info_msg_0_}$(arc_branch) ${_emoji_} ${_jobs_}${_char_} '
 
 PROMPT=$_long_prompt_
 function short() { PROMPT=$_short_prompt_ }

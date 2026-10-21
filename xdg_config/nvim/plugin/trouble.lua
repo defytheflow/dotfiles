@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>q", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>q", function() require("trouble").toggle("diagnostics") end)
 vim.keymap.set("n", "gR", function() require("trouble").open("lsp_references") end, { desc = "[G]oto [R]eferences" })
 
 -- vim.keymap.set("n", "<leader>xx", function() require("trouble").open() end)
