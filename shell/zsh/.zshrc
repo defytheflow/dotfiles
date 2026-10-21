@@ -182,6 +182,7 @@ ORANGE=214
 RED=203
 GREY=250
 DARK_LAVAND_PURPLE=146
+ARC_UPSTREAM_BLUE='#92a9e9'
 
 # Replacements:
 # %s - displays the current version control system (git, svn, etc.).
@@ -358,7 +359,7 @@ function arc_branch() {
 
   # arc info adds ~55 ms to every prompt. Read HEAD with shell builtins to
   # keep branch updates immediate. Omit the branch if HEAD cannot be parsed.
-  local root="$PWD" head branch
+  local root="$PWD" head branch remote login ref_line remote_prompt
   while [[ "$root" != / && ! -r "$root/.arc/HEAD" ]]; do
     root="${root:h}"
   done
@@ -369,13 +370,40 @@ function arc_branch() {
     branch="$match[1]"
   fi
 
+  # Read the configured upstream without running arc on every prompt.
+  if [[ -n "$branch" && -r "$root/.arc/refs/heads/$branch" ]]; then
+    while IFS= read -r ref_line; do
+      if [[ "$ref_line" =~ '^Remote: "([^"\\]+)"$' ]]; then
+        remote="$match[1]"
+        break
+      fi
+    done < "$root/.arc/refs/heads/$branch"
+  fi
+
   # Keep the slow fallback disabled for now.
   # if [[ -z "$branch" ]]; then
   #   branch=$(arc info 2>/dev/null | grep 'branch' | awk -F ': ' '{print $2}')
   # fi
 
   if [ -n "$branch" ]; then
-    echo " arc(%B%F{$NIGHT_OWL_GREEN}$branch%b%f)"
+    if [[ -n "$remote" ]]; then
+      # Use Arc's login to distinguish another user's upstream.
+      if [[ -r "$root/.arc/config" ]]; then
+        while IFS= read -r ref_line; do
+          if [[ "$ref_line" =~ '^Login: "([^"\\]+)"$' ]]; then
+            login="$match[1]"
+            break
+          fi
+        done < "$root/.arc/config"
+      fi
+
+      if [[ -n "$login" && "$remote" == "users/$login/$branch" ]]; then
+        remote_prompt="${reset_color}%B%F{$GREY}%F{$ARC_UPSTREAM_BLUE}->${reset_color}"
+      else
+        remote_prompt="${reset_color}->%B%F{$GREY}${remote}${reset_color}"
+      fi
+    fi
+    echo " arc(%B%F{$NIGHT_OWL_GREEN}$branch%b%f${remote_prompt})"
   fi
 }
 
