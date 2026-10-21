@@ -21,6 +21,7 @@ local languages = {
   "vim",
   "vimdoc",
   "yaml",
+  "zsh",
 }
 
 require("nvim-treesitter").install(languages)

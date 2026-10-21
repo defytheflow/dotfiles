@@ -30,6 +30,60 @@ require("lazy").setup {
   },
 
   -- "github/copilot.vim",
+  {
+    "olimorris/codecompanion.nvim",
+    version = "^19.0.0",
+    opts = {
+      adapters = {
+        acp = {
+          codex = function()
+            return require("codecompanion.adapters").extend("codex", {
+              defaults = {
+                auth_method = "chat-gpt",
+              },
+            })
+          end,
+        },
+      },
+
+      interactions = {
+        chat = {
+          adapter = "codex",
+          opts = {
+            completion_provider = "cmp",
+          },
+        },
+        cli = {
+          agent = "codex",
+          agents = {
+            codex = {
+              cmd = "codex",
+              args = {},
+              description = "OpenAI Codex CLI",
+              provider = "terminal",
+            },
+          },
+          opts = {
+            auto_insert = true,
+            reload = true,
+          },
+        },
+      },
+
+      display = {
+        cli = {
+          window = {
+            layout = "vertical",
+            width = 0.35,
+          },
+        },
+      },
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
 
   -- Switch between themes with persistence
   {
@@ -437,6 +491,16 @@ require("lazy").setup {
     "preservim/vim-markdown",
     ft = "markdown",
     dependencies = "godlygeek/tabular",
+  },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "vimwiki", "codecompanion" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    init = function()
+      vim.treesitter.language.register("markdown", "vimwiki")
+    end,
+    opts = {},
   },
 
   -- Preview markdown in the browser
