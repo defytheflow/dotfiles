@@ -296,6 +296,8 @@ require("neodev").setup()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+-- Let file explorers request import updates before renaming or moving files.
+capabilities.workspace = { fileOperations = { willRename = true, didRename = true } }
 
 for server_name, settings in pairs(servers) do
   vim.lsp.config(server_name, {

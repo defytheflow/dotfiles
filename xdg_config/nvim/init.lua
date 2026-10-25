@@ -230,6 +230,16 @@ require("lazy").setup {
     dependencies = "nvim-tree/nvim-web-devicons"
   },
 
+  -- Update imports through LSP when files are renamed or moved in NvimTree.
+  {
+    "antosha417/nvim-lsp-file-operations",
+    dependencies = { "nvim-tree/nvim-tree.lua", "nvim-lua/plenary.nvim" },
+    config = function()
+      require("nvim-tree") -- Load the module before the bridge detects its integrations.
+      require("lsp-file-operations").setup()
+    end,
+  },
+
   -- Netrw file icons
   {
     "prichrd/netrw.nvim",
