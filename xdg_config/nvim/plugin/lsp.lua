@@ -10,9 +10,11 @@ vim.diagnostic.config {
 vim.keymap.set("n", "[d", function()
   vim.diagnostic.jump { count = -1, float = true }
 end, { desc = "Go to previous [D]iagnostic message" })
+
 vim.keymap.set("n", "]d", function()
   vim.diagnostic.jump { count = 1, float = true }
 end, { desc = "Go to next [D]iagnostic message" })
+
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostics in a floating window" })
 -- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
@@ -32,7 +34,8 @@ local function format_buffer()
       params.context = { diagnostics = {}, only = { "source.organizeImports" } }
       local response, err = client:request_sync("textDocument/codeAction", params, 3000, 0)
       if not response or response.err then
-        vim.notify("Could not organize Go imports: " .. vim.inspect(err or (response and response.err)), vim.log.levels.WARN)
+        vim.notify("Could not organize Go imports: " .. vim.inspect(err or (response and response.err)),
+          vim.log.levels.WARN)
         return
       end
       for _, action in ipairs(response.result or {}) do
@@ -85,6 +88,8 @@ local on_attach = function(client, bufnr)
   local nmap = map("n")
   local xmap = map("x")
 
+  -- DISPLAY TOGGLES
+
   if client:supports_method("textDocument/documentHighlight") then
     local function set_reference_highlights(enabled)
       local group = vim.api.nvim_create_augroup("lsp_reference_highlights_" .. bufnr, { clear = true })
@@ -130,15 +135,33 @@ local on_attach = function(client, bufnr)
     end, "Toggle [L]SP inlay [H]ints")
   end
 
-  vim.keymap.set("n", "<leader>O", ":Lspsaga outline toggle<CR>", { desc = "LSP: [O]utline" })
-  vim.keymap.set("n", "<leader>lr", function()
+  nmap("<leader>lb", function()
+    vim.cmd.Lspsaga("winbar_toggle")
+  end, "Toggle [B]readcrumbs")
+
+  -- SERVER MANAGEMENT
+
+  nmap("<leader>lr", function()
     vim.cmd("lsp restart")
-  end, { desc = "[L]SP: [R]estart" })
+  end, "[R]estart")
+
+  -- OUTLINE
+
+  nmap("<leader>O", function()
+    vim.cmd.Lspsaga("outline")
+  end, "[O]utline")
+
+  -- RENAME
 
   nmap("<leader>rn", function()
-    -- vim.lsp.buf.rename()
     vim.cmd.Lspsaga("rename") -- vim.lsp.buf.rename
   end, "[R]e[n]ame")
+
+  vim.keymap.set("n", "<leader>rN", function()
+    return ":IncRename " .. vim.fn.expand("<cword>")
+  end, { expr = true, buffer = bufnr, desc = "LSP: [R]e[n]ame" })
+
+  -- PEEK
 
   nmap("<leader>pd", function()
     vim.cmd.Lspsaga("peek_definition")
@@ -148,9 +171,11 @@ local on_attach = function(client, bufnr)
     vim.cmd.Lspsaga("finder")
   end, "[P]eek [R]eferences")
 
-  vim.keymap.set("n", "<leader>rN", function()
-    return ":IncRename " .. vim.fn.expand("<cword>")
-  end, { expr = true, buffer = bufnr, desc = "LSP: [R]e[n]ame" })
+  nmap("<leader>pi", function()
+    vim.cmd.Lspsaga("incoming_calls")
+  end, "[P]eek [I]ncoming calls")
+
+  -- CODE ACTIONS
 
   nmap("<leader>ca", function()
     vim.cmd.Lspsaga("code_action") -- vim.lsp.buf.code_action
@@ -160,15 +185,18 @@ local on_attach = function(client, bufnr)
     vim.cmd.Lspsaga("code_action") -- vim.lsp.buf.code_action
   end, "[C]ode [A]ction")
 
-  nmap("<leader>k", function()
-    vim.cmd.Lspsaga("peek_definition")
-  end, "Peek Definition")
+  -- DEFINITIONS
 
   nmap("gd", goto_definition, "[G]oto [D]efinition")
+
   nmap("gD", function()
     vim.cmd.vsplit()
-    vim.lsp.buf.definition()
+    goto_definition()
   end, "[G]oto [D]efinition in vertical split")
+
+  nmap("gt", vim.lsp.buf.type_definition, "[G]oto [T]ype [D]efinition")
+
+  -- REFERENCES
 
   nmap("gr", function()
     require("telescope.builtin").lsp_references {
@@ -181,38 +209,60 @@ local on_attach = function(client, bufnr)
       },
     }
   end, "[G]oto [R]eferences")
+
+  nmap("gR", function()
+    require("trouble").open("lsp_references")
+  end, "[G]oto [R]eferences")
+
+  -- IMPLEMENTATIONS
+
   nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+
+  -- CALL LISTS
+
   nmap("<leader>ci", function()
     require("trouble").open("lsp_incoming_calls")
   end, "[C]alls [I]ncoming")
+
   nmap("<leader>co", function()
     require("trouble").open("lsp_outgoing_calls")
   end, "[C]alls [O]utgoing")
-  nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+
+  -- SYMBOLS
+
   nmap("<leader>ds", function()
     require("telescope.builtin").lsp_document_symbols {
       fname_width = 50,
       symbol_width = 40,
     }
   end, "[D]ocument [S]ymbols")
+
   nmap("<leader>ws", function()
     require("telescope.builtin").lsp_dynamic_workspace_symbols {
       fname_width = 50,
       symbol_width = 40,
     }
   end, "[W]orkspace [S]ymbols")
+
+  -- DOCUMENTATION
+
   nmap("K", function()
     vim.lsp.buf.hover { border = "rounded" }
   end, "Hover Documentation")
+
   nmap("<C-k>", function()
     vim.lsp.buf.signature_help { border = "rounded" }
   end, "Signature Documentation")
+
+  -- WORKSPACE MANAGEMENT
 
   nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
   nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
   nmap("<leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, "[W]orkspace [L]ist Folders")
+
+  -- FORMATTING
 
   vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
     vim.lsp.buf.format()
@@ -425,11 +475,9 @@ require("lspsaga").setup {
     auto_preview = false, -- don't display symbol preview in the outline window
   },
   definition = {
-    width = 0.75,
+    width = 1,
   },
 }
-
-vim.keymap.set("n", "<leader>lb", "<Cmd>Lspsaga winbar_toggle<CR>", { desc = "Toggle [L]SP [B]readcrumbs" })
 
 local null_ls = require("null-ls")
 

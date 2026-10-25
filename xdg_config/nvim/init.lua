@@ -506,11 +506,11 @@ require("lazy").setup {
 
   {
     "MeanderingProgrammer/render-markdown.nvim",
-    ft = { "markdown", "vimwiki", "codecompanion" },
+    ft = { "codecompanion" },
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-    init = function()
-      vim.treesitter.language.register("markdown", "vimwiki")
-    end,
+    -- init = function()
+    --   vim.treesitter.language.register("markdown", "vimwiki")
+    -- end,
     opts = {},
   },
 
