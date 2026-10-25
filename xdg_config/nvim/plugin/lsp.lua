@@ -463,6 +463,9 @@ cmp.setup {
 }
 
 require("lspsaga").setup {
+  ui = {
+    foldericon = false,
+  },
   symbol_in_winbar = {
     enable = true,
     show_file = true,
@@ -478,6 +481,37 @@ require("lspsaga").setup {
     width = 1,
   },
 }
+
+-- Keep breadcrumbs text-only and padded after Lspsaga refreshes them.
+local format_saga_breadcrumbs = vim.schedule_wrap(function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local bar = vim.wo[win].winbar
+    if bar:find("%%#Saga") then
+      local text = bar
+      for _, kind in pairs(require("lspsaga.lspkind").kind) do
+        text = text:gsub(vim.pesc(kind[2]), "")
+      end
+      if text:sub(1, 2) ~= "  " then text = "  " .. text end
+      if text ~= bar then vim.wo[win].winbar = text end
+    end
+  end
+end)
+
+local breadcrumb_group = vim.api.nvim_create_augroup("SagaBreadcrumbPadding", { clear = true })
+vim.api.nvim_create_autocmd({ "VimEnter", "BufWinEnter", "LspAttach", "CursorMoved" }, {
+  group = breadcrumb_group,
+  callback = format_saga_breadcrumbs,
+})
+vim.api.nvim_create_autocmd("User", {
+  group = breadcrumb_group,
+  pattern = "SagaSymbolUpdate",
+  callback = format_saga_breadcrumbs,
+})
+vim.api.nvim_create_autocmd("OptionSet", {
+  group = breadcrumb_group,
+  pattern = "winbar",
+  callback = format_saga_breadcrumbs,
+})
 
 local null_ls = require("null-ls")
 
