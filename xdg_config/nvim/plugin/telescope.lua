@@ -1,6 +1,13 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 
+local arc_repo = require("defytheflow.vcs").is_arc_repo()
+
+local grep_args = { "--glob", "!**/node_modules/**", "--glob", "!**/.git/**" }
+if arc_repo then
+  vim.list_extend(grep_args, { "--no-require-git", "--glob", "!**/.arc/**" })
+end
+
 telescope.setup {
   defaults = {
     layout_strategy = "vertical",
@@ -22,7 +29,6 @@ telescope.setup {
         prompt_position = "top",
       },
     },
-    file_ignore_patterns = { ".git/*" },
     mappings = {
       i = {
         ["<esc>"] = actions.close, -- TODO: doesn't work
@@ -35,11 +41,41 @@ telescope.setup {
     },
   },
   pickers = {
+    live_grep = { additional_args = grep_args },
+    grep_string = { additional_args = grep_args },
+    -- Use Git's Delta pager; -Rc preserves colors and paints from the top.
+    git_status = {
+      previewer = require("telescope.previewers").new_termopen_previewer {
+        env = { LESS = "" }, -- Disable Git's default quit-if-one-screen flags.
+        get_command = function(entry, status)
+          -- Preview new files with Bat instead of a diff.
+          if entry.status == "??" or entry.status == "A " then
+            return { "bat", "--color=always", "--paging=always", "--pager=less -Rc", "--", entry.path }
+          end
+          return {
+            "git", "-C", status.picker.cwd, "-c", "core.pager=delta",
+            "-c", "delta.paging=always", "-c", "delta.pager=less -Rc",
+            "diff", "HEAD", "--", entry.value,
+          }
+        end,
+      },
+    },
     git_files = {
       show_untracked = true,
     },
     find_files = {
       hidden = true,
+      find_command = function(opts)
+        local command = { "rg", "--files", "--color", "never", "--glob", "!**/.git/**" }
+        if arc_repo then
+          -- Ripgrep otherwise skips .gitignore files outside Git repositories.
+          vim.list_extend(command, { "--no-require-git", "--glob", "!**/.arc/**" })
+        end
+        if not opts.no_ignore then
+          vim.list_extend(command, { "--glob", "!**/node_modules/**" })
+        end
+        return command
+      end,
       -- no_ignore = true, -- includes files from .gitignore
     },
   },
@@ -47,6 +83,71 @@ telescope.setup {
 
 pcall(require("telescope").load_extension, "fzf")
 require("telescope").load_extension("emoji")
+if arc_repo then
+  telescope.load_extension("arc")
+end
+
+local function vcs_picker(arc_picker, git_picker, opts)
+  return function()
+    local picker_opts = opts and vim.deepcopy(opts) or nil
+
+    if arc_repo then
+      telescope.extensions.arc[arc_picker](picker_opts)
+    else
+      require("telescope.builtin")[git_picker](picker_opts)
+    end
+  end
+end
+
+local function open_status_tree(prompt_bufnr)
+  require("trouble.sources.telescope").open(prompt_bufnr, {
+    mode = "telescope_files",
+    title = "Arc Status",
+    win = { size = 25 },
+    groups = { { "directory", format = "{directory_icon} {directory}" } },
+    format = "{status} {file_icon} {basename}",
+    formatters = {
+      status = function(ctx) return ctx.item.item.status or "" end,
+    },
+  })
+end
+
+local status_picker = vcs_picker("status", "git_status", {
+  attach_mappings = arc_repo and function(_, map)
+    map({ "i", "n" }, "<C-y>", open_status_tree)
+    return true
+  end or nil,
+  -- Arc provides its own preview-command hook.
+  preview_cmd = arc_repo and {
+    staged = [[arc diff --git --no-color --cached -- "%s" | delta --paging=always --pager='less -Rc']],
+    unstaged = [[arc diff --git --no-color -- "%s" | delta --paging=always --pager='less -Rc']],
+    untracked = [[bat --color=always --style=plain --paging=always --pager='less -Rc' -- "%s"]],
+  } or nil,
+  layout_config = {
+    preview_cutoff = 0,
+    preview_height = 0.65,
+    width = 0.95,
+    height = 0.95,
+  }
+})
+
+-- Telescope arc
+if arc_repo then
+  vim.keymap.set("n", "<leader>as", status_picker, { desc = "[A]rc [S]tatus" })
+  vim.keymap.set("n", "<leader>ad", function()
+    telescope.extensions.arc.status {
+      on_complete = { function(picker)
+        picker:clear_completion_callbacks()
+        open_status_tree(picker.prompt_bufnr)
+      end },
+    }
+  end, { desc = "[A]rc changes by [D]irectory" })
+  vim.keymap.set('n', '<leader>af', "<cmd>Telescope arc ls_files<cr>")
+  vim.keymap.set('n', '<leader>ac', "<cmd>Telescope arc commits<cr>")
+  vim.keymap.set('n', '<leader>ab', "<cmd>Telescope arc branches<cr>")
+  vim.keymap.set('n', '<leader>at', "<cmd>Telescope arc stash<cr>")
+  vim.keymap.set('n', '<leader>ap', "<cmd>Telescope arc pr_list<cr>")
+end
 
 vim.keymap.set("n", "<leader>gf", require("telescope.builtin").git_files, { desc = "Search [G]it [F]iles" })
 vim.keymap.set("n", "<leader>ff", function()
@@ -79,18 +180,9 @@ vim.keymap.set("n", "<leader>sk", require("telescope.builtin").keymaps, { desc =
 vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
 vim.keymap.set("n", "<leader>sr", require("telescope.builtin").resume, { desc = "[S]earch [R]esume" })
 vim.keymap.set("n", "<leader>sH", require("telescope.builtin").search_history, { desc = "[S]earch [H]istory" })
-vim.keymap.set("n", "<leader>sb", require("telescope.builtin").git_branches, { desc = "[S]earch Git [B]ranches" })
-vim.keymap.set("n", "<leader>sc", require("telescope.builtin").git_commits, { desc = "[S]earch Git [C]ommits" })
-vim.keymap.set("n", "<leader>ss", function()
-  require("telescope.builtin").git_status {
-    layout_config = {
-      preview_cutoff = 0,
-      preview_height = 0.65,
-      width = 0.95,
-      height = 0.95,
-    }
-  }
-end, { desc = "[Search] Git [S]tatus" })
+vim.keymap.set("n", "<leader>sb", vcs_picker("branches", "git_branches"), { desc = "[S]earch VCS [B]ranches" })
+vim.keymap.set("n", "<leader>sc", vcs_picker("commits", "git_commits"), { desc = "[S]earch VCS [C]ommits" })
+vim.keymap.set("n", "<leader>ss", status_picker, { desc = "[S]earch VCS [S]tatus" })
 vim.keymap.set("n", "<leader>se", "<cmd>Telescope emoji<cr>", { desc = "[S]earch [E]moji" })
 vim.keymap.set("n", "<leader>sv", function()
   require("telescope.builtin").find_files { cwd = vim.fn.stdpath("config") }

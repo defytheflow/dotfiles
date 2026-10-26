@@ -326,6 +326,16 @@
   },
 
   /**
+   ** Add selected code to the Codex thread with `cmd+i`.
+   */
+
+  {
+    "key": "cmd+i",
+    "command": "chatgpt.addToThread",
+    "when": "editorHasSelection && editorTextFocus"
+  },
+
+  /**
    ** Disable 'Open in Github' Extension `ctrl+l` keybinding. It conflicts with terminal's
    ** `ctrl+l` to clear screen.
    */
